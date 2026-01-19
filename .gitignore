@@ -1,0 +1,21 @@
+# Quarto
+.quarto/
+*.log
+
+# IDE
+.vscode/
+.claude/
+
+# Temporários
+*.tmp
+nul
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Não ignore _site (necessário para GitHub Pages)
+# !_site/
+
+/.quarto/

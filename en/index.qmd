@@ -1,0 +1,10 @@
+---
+title: "Synesis"
+subtitle: "The convergence of information into intelligence."
+---
+
+# Welcome to Synesis
+
+English documentation is in progress. For now, you can browse the Portuguese site.
+
+[Go to Portuguese documentation](../pt/)

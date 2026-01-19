@@ -1,0 +1,914 @@
+[
+  {
+    "objectID": "reference/ideas.html",
+    "href": "reference/ideas.html",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "Ideias: Propostas de especificação de Extensões da Linguagem\n\n\n\nEsta especificação detalha os novos recursos planejados para a versão 1.2 da linguagem Synesis. O foco desta atualização é evoluir a linguagem de um sistema de anotação linear para um motor de inferência qualitativa e gestão de conhecimento (Zettelkasten), além de introduzir suporte nativo para loci canônicos (textos sagrados).\n\n\n\n\nO comando RENDER permite declarar explicitamente, dentro do arquivo de projeto, quais formatos de arquivo devem ser gerados e onde devem ser salvos. Isso garante a reprodutibilidade da compilação sem depender de parâmetros de linha de comando.\n\n\nRENDER AS [JSON | CSV | EXCEL] INTO \"path/to/filename\"\n\n\n\nRENDER: Verbo de comando que inicia a definição de um alvo de compilação. Indica a criação de uma representação estruturada (artefato) a partir dos dados interpretados.\nAS: Cláusula que especifica o formato de serialização.\nJSON: Gera a árvore de sintaxe abstrata completa com metadados de rastreabilidade.\nCSV: Gera tabelas relacionais planas (separadas por tipo de bloco).\nEXCEL: Gera um arquivo .xlsx com abas correspondentes às tabelas CSV.\nINTO: Cláusula que define o caminho de destino.\nDeve ser uma string entre aspas duplas.\nRecomenda-se o uso de caminhos relativos à raiz do projeto para garantir portabilidade entre diferentes máquinas.\nSe o diretório de destino não existir, o compilador tentará criá-lo.\n\n\n\n\nPROJECT \"Estudo Fenomenológico 2026\"\n\nTEMPLATE \"templates/research_v1.synt\"\nINCLUDE BIBLIOGRAPHY \"data/references.bib\"\nINCLUDE ANNOTATIONS \"data/interviews/*.syn\"\nINCLUDE ONTOLOGY \"ontology/main.syno\"\n\n# Configuração Declarativa de Saída\n# Gera múltiplos formatos simultaneamente em diretórios organizados\n\nRENDER AS JSON  INTO \"dist/full_data.json\"\nRENDER AS EXCEL INTO \"reports/human_readable/matrix.xlsx\"\nRENDER AS CSV   INTO \"reports/raw_data/export.csv\"\n\nEND\n\n\n\n\nMultiplicidade: É permitido declarar múltiplos comandos RENDER no mesmo projeto. O compilador processará todos sequencialmente.\nPermissão de Escrita: O compilador deve ter permissão de escrita no diretório alvo. Se o arquivo de destino estiver bloqueado (ex: aberto no Excel), a compilação falhará com erro de E/S.\nCaminhos Absolutos: O uso de caminhos absolutos (ex: C:/Users/...) emitirá um Warning, pois quebra a portabilidade do projeto.\n\n\n\n\n\n\n\nO compilador passa a atuar como assistente metodológico, não apenas validador sintático.\n\n\nO compilador analisará a ontologia em busca de conceitos com grafia similar (Lexical Similarity), prevenindo a fragmentação do grafo de conhecimento.\n\nAlgoritmo: Distância de Levenshtein / Jaro-Winkler.\nComportamento: Warning (Aviso) durante a compilação.\nExemplo de Detecção: InteracaoSocial vs Interacao_Social.\n\n\n\n\nImpede a criação de loops lógicos nas definições taxonômicas. * Regra: Um conceito não pode ser ancestral de si mesmo. * Erro Fatal: A compilação é abortada se um ciclo for detectado (ex: A &gt; B &gt; C &gt; A).\n\n\n\nIdentifica conceitos definidos na ontologia que nunca foram aplicados em nenhum ITEM ou ZETTEL. * Comportamento: Warning (Relatório de limpeza de Codebook).\n\n\n\n\n\n\n\nSubstitui o uso solto de TOPIC para definições estritas de relacionamento “é-um” (is-a). Permite herança de propriedades.\nSintaxe:\nTAXONOMY\n    Emoções\n        &gt; Negativas\n            &gt; Raiva\n            &gt; Medo\n        &gt; Positivas\n            &gt; Alegria\nEND\n\n\n\nDefine invariantes lógicas para garantir a consistência metodológica das anotações.\nSintaxe:\nCONSTRAINT\n    # Exclusão mútua: Um item não pode ter ambos os códigos simultaneamente\n    FORBID Code \"Sentimento: Positivo\" WITH Code \"Risco: Crítico\"\n\n    # Dependência lógica: O código B exige a presença do código A\n    REQUIRE Code \"Solução\" IF Code \"Problema\" PRESENT\nEND\n\n\n\nFormaliza as relações retóricas entre fontes bibliográficas (Source-to-Source), independente de anotações internas.\nSintaxe:\nCROSSREF\n    @smith2019 -&gt; REFUTES -&gt; @doe2018\n    @jones2020 -&gt; EXTENDS -&gt; @smith2019\nEND\n\n\n\n\n\nIntroduz a capacidade de criar “Notas Permanentes” que sintetizam conhecimento independente de uma fonte bibliográfica específica.\n\n\nEntidade de nível superior, irmã de SOURCE e ONTOLOGY. Não requer @bibref.\nSintaxe:\n# Sintaxe: ZETTEL [ID_UNICO]\nZETTEL 2026011401\n    title: \"O Princípio da Atomicidade\"\n    body: \"Uma DSL deve forçar a quebra de conceitos...\"\n    \n    # Conexões explícitas (Rizoma)\n    links: 2026011205, 2025123001\n    \n    # Metadados\n    tags: DSL Design\n    origin: @turing1936\nEND\n\n\n\nNo arquivo de template .synt, novos tipos de campos são suportados:\n\nLINK (Type REFERENCE): Cria arestas bidirecionais entre nós ZETTEL.\nORIGIN (Type REFERENCE): Cria aresta de citação para um SOURCE.\n\n\n\n\n\n\nSistema de endereçamento especializado para textos que utilizam o padrão Locus (Livro, Capítulo, Versículo) em vez de referência bibliográfica autor-data.\n\n\nSubstitui o bloco SOURCE para textos sagrados. Utiliza o padrão USX para identificação de livros.\nSintaxe:\n# Sintaxe: BIBLE [USX_CODE] [CAP:VERSO] [(VERSAO)]\nBIBLE ROM 8:28-30 (ARA)\n    \n    # Título da perícope (String com aspas obrigatórias para suportar pontuação)\n    pericope: \"A eficácia da vocação: O propósito eterno.\"\n\n    ITEM\n        quote: \"Sabemos que todas as coisas cooperam...\"\n        code: Providência\n    END\nEND\n\n\n\nO parser aplica regras estritas para evitar ambiguidade:\n\nUSX Code: Exatamente 3 letras maiúsculas (ex: MAT, GEN, PSA).\nSeparadores: Uso obrigatório de : para separar capítulo/verso e - para intervalos.\nPerícope: Deve ser delimitada por aspas duplas \"\" ou triplas \"\"\" para permitir caracteres especiais, vírgulas e quebras de linha sem quebrar o parser.\n\n\n\n\nTEMPLATE biblical_exegesis\n\nBIBLE FIELDS\n    OPTIONAL pericope\nEND\n\nITEM FIELDS\n    REQUIRED quote\n    REQUIRED code\n    OPTIONAL original_term  # Ex: Grego/Hebraico\nEND\n\n\n\n\n\nSnippet da gramática para suportar o cabeçalho BIBLE:\n// Definição do Bloco Canon\ncanon_block: \"BIBLE\" usx_code bible_ref version? block_body \"END\"\n\n// Códigos USX (3 letras maiúsculas estritas)\nusx_code: UCASE_LETTER UCASE_LETTER UCASE_LETTER \n\n// Referências suportadas: 8, 8:28, 8:28-30, 8:28-9:1\nbible_ref: chapter\n         | chapter \":\" verse\n         | chapter \":\" verse \"-\" verse\n         | chapter \":\" verse \"-\" chapter \":\" verse\n\nchapter: INT\nverse: INT | \"END\"\nversion: \"(\" UCASE_LETTER+ \")\" | \"@\" LCASE_LETTER+ DIGIT+",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "reference/ideas.html#introdução-às-extensões",
+    "href": "reference/ideas.html#introdução-às-extensões",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "Esta especificação detalha os novos recursos planejados para a versão 1.2 da linguagem Synesis. O foco desta atualização é evoluir a linguagem de um sistema de anotação linear para um motor de inferência qualitativa e gestão de conhecimento (Zettelkasten), além de introduzir suporte nativo para loci canônicos (textos sagrados).",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "reference/ideas.html#configuração-de-artefatos-de-saída-render",
+    "href": "reference/ideas.html#configuração-de-artefatos-de-saída-render",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "O comando RENDER permite declarar explicitamente, dentro do arquivo de projeto, quais formatos de arquivo devem ser gerados e onde devem ser salvos. Isso garante a reprodutibilidade da compilação sem depender de parâmetros de linha de comando.\n\n\nRENDER AS [JSON | CSV | EXCEL] INTO \"path/to/filename\"\n\n\n\nRENDER: Verbo de comando que inicia a definição de um alvo de compilação. Indica a criação de uma representação estruturada (artefato) a partir dos dados interpretados.\nAS: Cláusula que especifica o formato de serialização.\nJSON: Gera a árvore de sintaxe abstrata completa com metadados de rastreabilidade.\nCSV: Gera tabelas relacionais planas (separadas por tipo de bloco).\nEXCEL: Gera um arquivo .xlsx com abas correspondentes às tabelas CSV.\nINTO: Cláusula que define o caminho de destino.\nDeve ser uma string entre aspas duplas.\nRecomenda-se o uso de caminhos relativos à raiz do projeto para garantir portabilidade entre diferentes máquinas.\nSe o diretório de destino não existir, o compilador tentará criá-lo.\n\n\n\n\nPROJECT \"Estudo Fenomenológico 2026\"\n\nTEMPLATE \"templates/research_v1.synt\"\nINCLUDE BIBLIOGRAPHY \"data/references.bib\"\nINCLUDE ANNOTATIONS \"data/interviews/*.syn\"\nINCLUDE ONTOLOGY \"ontology/main.syno\"\n\n# Configuração Declarativa de Saída\n# Gera múltiplos formatos simultaneamente em diretórios organizados\n\nRENDER AS JSON  INTO \"dist/full_data.json\"\nRENDER AS EXCEL INTO \"reports/human_readable/matrix.xlsx\"\nRENDER AS CSV   INTO \"reports/raw_data/export.csv\"\n\nEND\n\n\n\n\nMultiplicidade: É permitido declarar múltiplos comandos RENDER no mesmo projeto. O compilador processará todos sequencialmente.\nPermissão de Escrita: O compilador deve ter permissão de escrita no diretório alvo. Se o arquivo de destino estiver bloqueado (ex: aberto no Excel), a compilação falhará com erro de E/S.\nCaminhos Absolutos: O uso de caminhos absolutos (ex: C:/Users/...) emitirá um Warning, pois quebra a portabilidade do projeto.",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "reference/ideas.html#análise-semântica-avançada",
+    "href": "reference/ideas.html#análise-semântica-avançada",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "O compilador passa a atuar como assistente metodológico, não apenas validador sintático.\n\n\nO compilador analisará a ontologia em busca de conceitos com grafia similar (Lexical Similarity), prevenindo a fragmentação do grafo de conhecimento.\n\nAlgoritmo: Distância de Levenshtein / Jaro-Winkler.\nComportamento: Warning (Aviso) durante a compilação.\nExemplo de Detecção: InteracaoSocial vs Interacao_Social.\n\n\n\n\nImpede a criação de loops lógicos nas definições taxonômicas. * Regra: Um conceito não pode ser ancestral de si mesmo. * Erro Fatal: A compilação é abortada se um ciclo for detectado (ex: A &gt; B &gt; C &gt; A).\n\n\n\nIdentifica conceitos definidos na ontologia que nunca foram aplicados em nenhum ITEM ou ZETTEL. * Comportamento: Warning (Relatório de limpeza de Codebook).",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "reference/ideas.html#novos-comandos-estruturais",
+    "href": "reference/ideas.html#novos-comandos-estruturais",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "Substitui o uso solto de TOPIC para definições estritas de relacionamento “é-um” (is-a). Permite herança de propriedades.\nSintaxe:\nTAXONOMY\n    Emoções\n        &gt; Negativas\n            &gt; Raiva\n            &gt; Medo\n        &gt; Positivas\n            &gt; Alegria\nEND\n\n\n\nDefine invariantes lógicas para garantir a consistência metodológica das anotações.\nSintaxe:\nCONSTRAINT\n    # Exclusão mútua: Um item não pode ter ambos os códigos simultaneamente\n    FORBID Code \"Sentimento: Positivo\" WITH Code \"Risco: Crítico\"\n\n    # Dependência lógica: O código B exige a presença do código A\n    REQUIRE Code \"Solução\" IF Code \"Problema\" PRESENT\nEND\n\n\n\nFormaliza as relações retóricas entre fontes bibliográficas (Source-to-Source), independente de anotações internas.\nSintaxe:\nCROSSREF\n    @smith2019 -&gt; REFUTES -&gt; @doe2018\n    @jones2020 -&gt; EXTENDS -&gt; @smith2019\nEND",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "reference/ideas.html#gestão-de-conhecimento-zettelkasten",
+    "href": "reference/ideas.html#gestão-de-conhecimento-zettelkasten",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "Introduz a capacidade de criar “Notas Permanentes” que sintetizam conhecimento independente de uma fonte bibliográfica específica.\n\n\nEntidade de nível superior, irmã de SOURCE e ONTOLOGY. Não requer @bibref.\nSintaxe:\n# Sintaxe: ZETTEL [ID_UNICO]\nZETTEL 2026011401\n    title: \"O Princípio da Atomicidade\"\n    body: \"Uma DSL deve forçar a quebra de conceitos...\"\n    \n    # Conexões explícitas (Rizoma)\n    links: 2026011205, 2025123001\n    \n    # Metadados\n    tags: DSL Design\n    origin: @turing1936\nEND\n\n\n\nNo arquivo de template .synt, novos tipos de campos são suportados:\n\nLINK (Type REFERENCE): Cria arestas bidirecionais entre nós ZETTEL.\nORIGIN (Type REFERENCE): Cria aresta de citação para um SOURCE.",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "reference/ideas.html#anotação-canônica-bíblicaexegética",
+    "href": "reference/ideas.html#anotação-canônica-bíblicaexegética",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "Sistema de endereçamento especializado para textos que utilizam o padrão Locus (Livro, Capítulo, Versículo) em vez de referência bibliográfica autor-data.\n\n\nSubstitui o bloco SOURCE para textos sagrados. Utiliza o padrão USX para identificação de livros.\nSintaxe:\n# Sintaxe: BIBLE [USX_CODE] [CAP:VERSO] [(VERSAO)]\nBIBLE ROM 8:28-30 (ARA)\n    \n    # Título da perícope (String com aspas obrigatórias para suportar pontuação)\n    pericope: \"A eficácia da vocação: O propósito eterno.\"\n\n    ITEM\n        quote: \"Sabemos que todas as coisas cooperam...\"\n        code: Providência\n    END\nEND\n\n\n\nO parser aplica regras estritas para evitar ambiguidade:\n\nUSX Code: Exatamente 3 letras maiúsculas (ex: MAT, GEN, PSA).\nSeparadores: Uso obrigatório de : para separar capítulo/verso e - para intervalos.\nPerícope: Deve ser delimitada por aspas duplas \"\" ou triplas \"\"\" para permitir caracteres especiais, vírgulas e quebras de linha sem quebrar o parser.\n\n\n\n\nTEMPLATE biblical_exegesis\n\nBIBLE FIELDS\n    OPTIONAL pericope\nEND\n\nITEM FIELDS\n    REQUIRED quote\n    REQUIRED code\n    OPTIONAL original_term  # Ex: Grego/Hebraico\nEND",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "reference/ideas.html#apêndice-a-notas-de-implementação-lark-grammar",
+    "href": "reference/ideas.html#apêndice-a-notas-de-implementação-lark-grammar",
+    "title": "1 Synesis: Ideias",
+    "section": "",
+    "text": "Snippet da gramática para suportar o cabeçalho BIBLE:\n// Definição do Bloco Canon\ncanon_block: \"BIBLE\" usx_code bible_ref version? block_body \"END\"\n\n// Códigos USX (3 letras maiúsculas estritas)\nusx_code: UCASE_LETTER UCASE_LETTER UCASE_LETTER \n\n// Referências suportadas: 8, 8:28, 8:28-30, 8:28-9:1\nbible_ref: chapter\n         | chapter \":\" verse\n         | chapter \":\" verse \"-\" verse\n         | chapter \":\" verse \"-\" chapter \":\" verse\n\nchapter: INT\nverse: INT | \"END\"\nversion: \"(\" UCASE_LETTER+ \")\" | \"@\" LCASE_LETTER+ DIGIT+",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Ideias"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Synesis",
+    "section": "",
+    "text": "O conhecimento humano é naturalmente intrincado, cheio de nuances e conexões profundas. Isso é complexidade — e é valioso. A complicação surge apenas quando nos faltam métodos adequados de organização de saberes.\nSynesis é uma linguagem de domínio específico (DSL) declarativa, criada para quem precisa de mais do que simples anotações. É um método de consolidação de conhecimento.\nAo contrário de ferramentas tradicionais, o Synesis atua como um compilador para o seu pensamento analítico: ele recebe suas interpretações e anotações em arquivos de texto puro, valida a consistência lógica entre elas e as transforma em estruturas de conhecimento canônicas e rigorosas.\nMuitas vezes, acredita-se que o rigor técnico sufoca a criatividade. O Synesis prova o contrário: a disciplina é a verdadeira forma de liberdade. Ao delegar a organização lógica para uma estrutura canônica, sua mente fica livre para o que realmente importa: a interpretação, a nuance e o insight. O resultado é a verdadeira sýnesis: a convergência de fragmentos de informação em um todo inteligível, auditável e tecnicamente estruturado.\n\n\nDo grego σύνεσις (sýnesis):\n\nEtimologia: σῠνῑ́ημῐ (sŭnī́ēmĭ, “reunir”, “fazer convergir”) + sufixo -σῐς (-sĭs).\n\nSignificados: 1. Confluência; união; convergência. 2. Entendimento; inteligência. 3. [cite_start]Consciência.\n\n\n\nA estrutura do Synesis é modular e baseada inteiramente em texto plano, oferecendo um ambiente livre de distrações, portabilidade total e máxima eficiência.\nTodo o processo é orquestrado por um arquivo de projeto (.synp), que conecta seus componentes:\n\nReferências Bibliográficas (.bib): Suas fontes originais.\nAnotações Interpretativas (.syn): Seus insights, padronizados por templates (.synt).\nOntologias (.syno): O grande diferencial — arquivos que definem formalmente suas categorias de análise e inter-relações lógicas.\n\n\n\nVocê identifica uma fonte de conhecimento e cria blocos semânticos que conectam segmentos da fonte original com sua interpretação sistemática:\nSOURCE @entrevista_01\nEND SOURCE\n\nITEM @entrevista_01\n    quote: \"O custo é muito alto para mim\"\n    note: Barreira econômica para adoção\n    chain: Custo -&gt; INIBE -&gt; Adoção\nEND ITEM\nEsta abordagem eleva suas anotações ao nível de dados estruturados. A escrita diária é intuitiva e você não precisa ser programador para anotar; uma lógica de codificação básica é necessária apenas se você decidir construir suas próprias estruturas de análise (templates). Pense no arquivo de template como um contrato, um acordo que você estipula para suas anotações e o compilador. Você pode revisar/ampliar/atualizar este contrato na medida em que sua pesquisa avança.\n\n\n\n\nAo compilar esses arquivos, o Synesis verifica a consistência dos conceitos e gera saídas universais.\n\n\n\n\n\nflowchart LR\n    %% --- DEFINIÇÃO DE CORES (Paleta Synesis 2.0) ---\n    %% Primary: #084C54 (Teal Profundo)\n    %% Accent: #00BFA5 (Mint/Cyan)\n    %% Fundo: #FFFFFF (Branco puro para garantir contraste)\n\n    %% --- ESTILOS DOS NÓS ---\n    %% Compilador: Círculo duplo, Borda Forte, Fundo Branco\n    classDef compiler fill:#fff,stroke:#084C54,stroke-width:4px,color:#084C54,font-weight:bold;\n    \n    %% High Value: Borda Mint, Fundo Cyan muito claro, Texto Teal\n    classDef highValue fill:#E0F7FA,stroke:#00BFA5,stroke-width:2px,color:#084C54;\n    \n    %% Nós Padrão (Inputs/Outputs): Fundo cinza claro, Borda suave\n    classDef defaultNode fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C54;\n\n    %% --- ESTRUTURA DO DIAGRAMA ---\n\n    subgraph Input [\"Ambiente de Trabalho\"]\n        direction TB\n        E[\"Ontologia (.syno)\"]:::defaultNode\n        D[\"Template (.synt)\"]:::defaultNode\n        A[\"Fontes Bibliográficas (.bib)\"]:::defaultNode\n        B[\"Anotações Interpretativas (.syn)\"]:::defaultNode\n    end\n\n    %% O Motor Central\n    C(((\"Compilador Synesis\\nValidação & Lógica\"))):::compiler\n\n    subgraph Output [\"Formatos de Intercâmbio\"]\n        direction TB\n        F[\"JSON Estruturado\"]:::defaultNode\n        G[\"Tabelas CSV/Excel\"]:::defaultNode\n        H[\"REFI-QDA/Outros\"]:::defaultNode\n    end\n\n    subgraph Ecosystem [\"Ecossistema de Aplicação\"]\n        direction TB\n        I[\"Bancos de Grafos\\nNeo4j, Memgraph\"]:::highValue\n        J[\"Agentes de IA Rastreáveis\\nvia MCP\"]:::highValue\n        K[\"Data Science & Dashboards\\nR, Jupyter Labs\"]:::highValue\n    end\n\n    %% --- FORÇAR ESTILO DOS SUBGRUPOS (A Correção Principal) ---\n    %% Usamos 'style' direto pelo ID do subgraph para garantir transparência\n    style Input fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54\n    style Output fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54\n    style Ecosystem fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54\n\n    %% --- CONEXÕES ---\n    E --&gt; C\n    D --&gt; C\n    A --&gt; C\n    B --&gt; C\n\n    C == \"Compilação\" ==&gt; F\n    C --&gt; G\n    C -.-&gt; H\n\n    F == \"Estrutura Complexa\" ==&gt; I\n    F == \"Contexto Grounded\" ==&gt; J\n    F -. \"Análise Quantitativa\" .-&gt; K\n    G -. \"Análise Quantitativa\" .-&gt; K\n\n    %% Estilo das Linhas\n    linkStyle default stroke:#64748B,stroke-width:1px;\n\n\n\n\n\n\n\n\nO resultado da compilação Synesis vai muito além de documentos estáticos. O compilador transforma suas definições em formatos universais de intercâmbio (JSON, Excel, CSV), tornando seu conhecimento integrável a qualquer stack tecnológica:\n\nGraph Databases: Alimente nativamente Neo4j ou Memgraph para visualizar a topologia complexa dos seus conceitos.\nData Science: Forneça datasets estruturados para análises estatísticas rigorosas em R ou visualizações em Jupyter Labs.\nAI Ready: Através do protocolo MCP (Model Context Protocol), conecte seus dados a assistentes como Claude Desktop, permitindo interações em linguagem natural com respostas 100% rastreáveis e baseadas na sua “fonte da verdade”.\n\n\n\n\n\n\n\n\n\n\n\nPesquisadores de Humanidades\n\n\n\nPerfeito para pesquisas qualitativas complexas onde a precisão interpretativa é crítica. Veja nosso guia de introdução sem jargão técnico.\nVeja o Guia para Pesquisadores — uma introdução sem jargão técnico.\n\n\n\n\n\n\n\n\nTomadores de Decisão\n\n\n\nIdeal para documentação de sistemas de conhecimento e cenários que exigem rastreabilidade e escalabilidade.\nVeja o Guia para Gestores — foco em valor organizacional.\n\n\n\n\n\n\n\n\nEm dúvida se precisa de Synesis?\n\n\n\nLeia Por que não usar Excel? — uma resposta honesta.\n\n\n\n\n\n\nNão é programação de Software: Embora use conceitos de engenharia, você não precisa “saber programar”. Synesis é uma linguagem declarativa: você descreve o que sabe, e não como o computador deve processar. É marcação de conhecimento, não desenvolvimento de apps.\nNão é um Bloco de Notas: Ferramentas de anotação priorizam a velocidade de captura e flexibilidade visual. O Synesis prioriza a consistência lógica e a estrutura canônica. Enquanto anotações aceitam contradições, o Synesis as valida e resolve.\nNão é um “Jardim Murado”: Softwares para CAQDAS são excelentes, mas frequentemente prendem seus dados em formatos proprietários. O Synesis é “Code-First” e interoperável: seus dados são arquivos de texto abertos, versionáveis (Git) e compiláveis para qualquer outro sistema.\n\n\n\n\nO Synesis foi desenhado para ser o elo perdido entre a pesquisa qualitativa e a ciência de dados, sem tentar substituir ferramentas especializadas:\n\nNão analisa estatísticas, ele as alimenta: O Synesis não calcula regressões, mas gera os datasets estruturados (.csv, .json) que permitem ao R ou Python realizar análises quantitativas sobre dados qualitativos com precisão absoluta.\nNão é uma “Caixa Preta” de IA: Diferente de IAs que resumem textos magicamente (e alucinam), o Synesis oferece grounding. Ele é a estrutura de verdade manual que serve de lastro para que a IA opere com segurança.\nNão substitui a leitura humana: Ele é uma ferramenta de formalização. A interpretação continua sendo sua; o Synesis garante que essa interpretação seja sistemática e auditável.",
+    "crumbs": [
+      "Introdução",
+      "Synesis"
+    ]
+  },
+  {
+    "objectID": "index.html#a-origem-do-nome",
+    "href": "index.html#a-origem-do-nome",
+    "title": "Synesis",
+    "section": "",
+    "text": "Do grego σύνεσις (sýnesis):\n\nEtimologia: σῠνῑ́ημῐ (sŭnī́ēmĭ, “reunir”, “fazer convergir”) + sufixo -σῐς (-sĭs).\n\nSignificados: 1. Confluência; união; convergência. 2. Entendimento; inteligência. 3. [cite_start]Consciência.",
+    "crumbs": [
+      "Introdução",
+      "Synesis"
+    ]
+  },
+  {
+    "objectID": "index.html#como-funciona",
+    "href": "index.html#como-funciona",
+    "title": "Synesis",
+    "section": "",
+    "text": "A estrutura do Synesis é modular e baseada inteiramente em texto plano, oferecendo um ambiente livre de distrações, portabilidade total e máxima eficiência.\nTodo o processo é orquestrado por um arquivo de projeto (.synp), que conecta seus componentes:\n\nReferências Bibliográficas (.bib): Suas fontes originais.\nAnotações Interpretativas (.syn): Seus insights, padronizados por templates (.synt).\nOntologias (.syno): O grande diferencial — arquivos que definem formalmente suas categorias de análise e inter-relações lógicas.\n\n\n\nVocê identifica uma fonte de conhecimento e cria blocos semânticos que conectam segmentos da fonte original com sua interpretação sistemática:\nSOURCE @entrevista_01\nEND SOURCE\n\nITEM @entrevista_01\n    quote: \"O custo é muito alto para mim\"\n    note: Barreira econômica para adoção\n    chain: Custo -&gt; INIBE -&gt; Adoção\nEND ITEM\nEsta abordagem eleva suas anotações ao nível de dados estruturados. A escrita diária é intuitiva e você não precisa ser programador para anotar; uma lógica de codificação básica é necessária apenas se você decidir construir suas próprias estruturas de análise (templates). Pense no arquivo de template como um contrato, um acordo que você estipula para suas anotações e o compilador. Você pode revisar/ampliar/atualizar este contrato na medida em que sua pesquisa avança.",
+    "crumbs": [
+      "Introdução",
+      "Synesis"
+    ]
+  },
+  {
+    "objectID": "index.html#o-fluxo-de-compilação",
+    "href": "index.html#o-fluxo-de-compilação",
+    "title": "Synesis",
+    "section": "",
+    "text": "Ao compilar esses arquivos, o Synesis verifica a consistência dos conceitos e gera saídas universais.\n\n\n\n\n\nflowchart LR\n    %% --- DEFINIÇÃO DE CORES (Paleta Synesis 2.0) ---\n    %% Primary: #084C54 (Teal Profundo)\n    %% Accent: #00BFA5 (Mint/Cyan)\n    %% Fundo: #FFFFFF (Branco puro para garantir contraste)\n\n    %% --- ESTILOS DOS NÓS ---\n    %% Compilador: Círculo duplo, Borda Forte, Fundo Branco\n    classDef compiler fill:#fff,stroke:#084C54,stroke-width:4px,color:#084C54,font-weight:bold;\n    \n    %% High Value: Borda Mint, Fundo Cyan muito claro, Texto Teal\n    classDef highValue fill:#E0F7FA,stroke:#00BFA5,stroke-width:2px,color:#084C54;\n    \n    %% Nós Padrão (Inputs/Outputs): Fundo cinza claro, Borda suave\n    classDef defaultNode fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C54;\n\n    %% --- ESTRUTURA DO DIAGRAMA ---\n\n    subgraph Input [\"Ambiente de Trabalho\"]\n        direction TB\n        E[\"Ontologia (.syno)\"]:::defaultNode\n        D[\"Template (.synt)\"]:::defaultNode\n        A[\"Fontes Bibliográficas (.bib)\"]:::defaultNode\n        B[\"Anotações Interpretativas (.syn)\"]:::defaultNode\n    end\n\n    %% O Motor Central\n    C(((\"Compilador Synesis\\nValidação & Lógica\"))):::compiler\n\n    subgraph Output [\"Formatos de Intercâmbio\"]\n        direction TB\n        F[\"JSON Estruturado\"]:::defaultNode\n        G[\"Tabelas CSV/Excel\"]:::defaultNode\n        H[\"REFI-QDA/Outros\"]:::defaultNode\n    end\n\n    subgraph Ecosystem [\"Ecossistema de Aplicação\"]\n        direction TB\n        I[\"Bancos de Grafos\\nNeo4j, Memgraph\"]:::highValue\n        J[\"Agentes de IA Rastreáveis\\nvia MCP\"]:::highValue\n        K[\"Data Science & Dashboards\\nR, Jupyter Labs\"]:::highValue\n    end\n\n    %% --- FORÇAR ESTILO DOS SUBGRUPOS (A Correção Principal) ---\n    %% Usamos 'style' direto pelo ID do subgraph para garantir transparência\n    style Input fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54\n    style Output fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54\n    style Ecosystem fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54\n\n    %% --- CONEXÕES ---\n    E --&gt; C\n    D --&gt; C\n    A --&gt; C\n    B --&gt; C\n\n    C == \"Compilação\" ==&gt; F\n    C --&gt; G\n    C -.-&gt; H\n\n    F == \"Estrutura Complexa\" ==&gt; I\n    F == \"Contexto Grounded\" ==&gt; J\n    F -. \"Análise Quantitativa\" .-&gt; K\n    G -. \"Análise Quantitativa\" .-&gt; K\n\n    %% Estilo das Linhas\n    linkStyle default stroke:#64748B,stroke-width:1px;\n\n\n\n\n\n\n\n\nO resultado da compilação Synesis vai muito além de documentos estáticos. O compilador transforma suas definições em formatos universais de intercâmbio (JSON, Excel, CSV), tornando seu conhecimento integrável a qualquer stack tecnológica:\n\nGraph Databases: Alimente nativamente Neo4j ou Memgraph para visualizar a topologia complexa dos seus conceitos.\nData Science: Forneça datasets estruturados para análises estatísticas rigorosas em R ou visualizações em Jupyter Labs.\nAI Ready: Através do protocolo MCP (Model Context Protocol), conecte seus dados a assistentes como Claude Desktop, permitindo interações em linguagem natural com respostas 100% rastreáveis e baseadas na sua “fonte da verdade”.",
+    "crumbs": [
+      "Introdução",
+      "Synesis"
+    ]
+  },
+  {
+    "objectID": "index.html#para-quem-é-o-synesis",
+    "href": "index.html#para-quem-é-o-synesis",
+    "title": "Synesis",
+    "section": "",
+    "text": "Pesquisadores de Humanidades\n\n\n\nPerfeito para pesquisas qualitativas complexas onde a precisão interpretativa é crítica. Veja nosso guia de introdução sem jargão técnico.\nVeja o Guia para Pesquisadores — uma introdução sem jargão técnico.\n\n\n\n\n\n\n\n\nTomadores de Decisão\n\n\n\nIdeal para documentação de sistemas de conhecimento e cenários que exigem rastreabilidade e escalabilidade.\nVeja o Guia para Gestores — foco em valor organizacional.\n\n\n\n\n\n\n\n\nEm dúvida se precisa de Synesis?\n\n\n\nLeia Por que não usar Excel? — uma resposta honesta.",
+    "crumbs": [
+      "Introdução",
+      "Synesis"
+    ]
+  },
+  {
+    "objectID": "index.html#o-que-synesis-não-é",
+    "href": "index.html#o-que-synesis-não-é",
+    "title": "Synesis",
+    "section": "",
+    "text": "Não é programação de Software: Embora use conceitos de engenharia, você não precisa “saber programar”. Synesis é uma linguagem declarativa: você descreve o que sabe, e não como o computador deve processar. É marcação de conhecimento, não desenvolvimento de apps.\nNão é um Bloco de Notas: Ferramentas de anotação priorizam a velocidade de captura e flexibilidade visual. O Synesis prioriza a consistência lógica e a estrutura canônica. Enquanto anotações aceitam contradições, o Synesis as valida e resolve.\nNão é um “Jardim Murado”: Softwares para CAQDAS são excelentes, mas frequentemente prendem seus dados em formatos proprietários. O Synesis é “Code-First” e interoperável: seus dados são arquivos de texto abertos, versionáveis (Git) e compiláveis para qualquer outro sistema.",
+    "crumbs": [
+      "Introdução",
+      "Synesis"
+    ]
+  },
+  {
+    "objectID": "index.html#o-lugar-do-synesis-no-seu-stack",
+    "href": "index.html#o-lugar-do-synesis-no-seu-stack",
+    "title": "Synesis",
+    "section": "",
+    "text": "O Synesis foi desenhado para ser o elo perdido entre a pesquisa qualitativa e a ciência de dados, sem tentar substituir ferramentas especializadas:\n\nNão analisa estatísticas, ele as alimenta: O Synesis não calcula regressões, mas gera os datasets estruturados (.csv, .json) que permitem ao R ou Python realizar análises quantitativas sobre dados qualitativos com precisão absoluta.\nNão é uma “Caixa Preta” de IA: Diferente de IAs que resumem textos magicamente (e alucinam), o Synesis oferece grounding. Ele é a estrutura de verdade manual que serve de lastro para que a IA opere com segurança.\nNão substitui a leitura humana: Ele é uma ferramenta de formalização. A interpretação continua sendo sua; o Synesis garante que essa interpretação seja sistemática e auditável.",
+    "crumbs": [
+      "Introdução",
+      "Synesis"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html",
+    "href": "guide/guia_profissionais.html",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Guia para tomadores de decisão e profissionais do conhecimento\n\n\n\nVivemos em uma era caracterizada pela sigla VUCA: Volatilidade, Incerteza, Complexidade e Ambiguidade. Nesse contexto, tomar decisões eficientes requer mais do que intuição — exige a capacidade de integrar e analisar múltiplas fontes de dados, identificando não apenas correlações, mas relações de causa e efeito entre os fenômenos observados.\nConforme destacado em pesquisas recentes sobre Grafos de Conhecimento Causal (Causal Knowledge Graphs), a simples correlação entre dados pode levar a conclusões equivocadas. O exemplo clássico: existe correlação estatística entre consumo de chocolate e número de ganhadores do Prêmio Nobel em diferentes países — mas seria absurdo concluir que distribuir chocolate aumentará a produção científica de uma organização.\nO verdadeiro desafio está em capturar relações causais, não apenas correlações superficiais.\n\n\n\n\nSynesis é uma linguagem estruturada para captura sistemática de conhecimento causal a partir de fontes documentais e observações qualitativas.\nEnquanto sistemas automatizados como descoberta causal estatística trabalham com dados numéricos, grande parte do conhecimento organizacional está disperso em:\n\nRelatórios e documentos técnicos\nEntrevistas e pesquisas qualitativas\nLiteratura especializada e manuais\nRegistros de incidentes e lições aprendidas\nPesquisas de engajamento e clima organizacional\n\nSynesis oferece uma forma padronizada de extrair, documentar e estruturar relações causais dessas fontes textuais, tornando-as processáveis e integráveis com outros sistemas de análise.\n\n\n\n\n\n\nQuando uma relação causal é extraída de um documento (por exemplo: “falta de treinamento causa erros operacionais”), ela é puramente qualitativa. Não há como prever a probabilidade ou magnitude do efeito.\nComo Synesis contribui: Ao estruturar sistematicamente essas relações, elas podem ser posteriormente integradas com dados numéricos para quantificação dos efeitos causais.\n\n\n\nAlgoritmos de descoberta causal estatística, quando aplicados a dados com vieses ou lacunas, podem derivar relações onde a direção da causalidade está invertida.\nComo Synesis contribui: Conhecimento prévio documentado em Synesis serve como “conhecimento anterior” (prior knowledge) para validar ou corrigir descobertas estatísticas.\n\n\n\nDescoberta causal tradicional trabalha com um único conjunto de dados. Não consegue combinar observações de diferentes departamentos, períodos ou condições.\nComo Synesis contribui: A estrutura padronizada permite integrar conhecimento de múltiplas fontes em um vocabulário comum.\n\n\n\n\n\n\n\nCenário: A área de RH precisa recomendar iniciativas para melhorar engajamento, mas cada departamento tem características diferentes.\nCom Synesis: - Documente relações causais da literatura de comportamento organizacional - Registre observações das pesquisas de engajamento com interpretações estruturadas - Identifique quais fatores (oportunidades de carreira, clareza de visão, trabalho em equipe) causam quais resultados (motivação, satisfação, retenção) - Recomende iniciativas com base em evidências documentadas\nExemplo de registro:\n- Fonte: Pesquisa de Engajamento Q4/2024, Departamento Comercial\n- Observação: \"Sinto que não tenho oportunidades de crescimento aqui\"\n- Interpretação: Funcionário expressa frustração com limitação de carreira\n- Relação identificada: Falta de Oportunidades → REDUZ → Motivação\n\n\n\nCenário: Equipe de operações precisa identificar causas-raiz de falhas em sistemas complexos.\nCom Synesis: - Extraia relações causais de manuais técnicos e guias de troubleshooting - Documente cada incidente com a cadeia causal identificada - Construa uma base de conhecimento que acelere diagnósticos futuros\nExemplo de registro:\n- Fonte: Relatório de Incidente #2024-0892\n- Observação: Desconexão intermitente durante download de arquivos\n- Interpretação: Padrão consistente com erro de configuração de MAC\n- Relação identificada: Erro de Configuração → CAUSA → Desconexão\n\n\n\nCenário: Equipe comercial quer entender por que algumas negociações são bem-sucedidas e outras não.\nCom Synesis: - Registre observações de cada negociação (reuniões, objeções, decisões) - Identifique padrões causais entre ações e resultados - Combine com dados de engajamento para entender como fatores internos afetam performance externa\nExemplo de registro:\n- Fonte: Análise de Negociação #2024-156 (Sucesso)\n- Observação: Cliente mencionou confiança na equipe técnica\n- Interpretação: Demonstração de competência técnica influenciou decisão\n- Relação identificada: Competência Técnica → INFLUENCIA → Confiança → INFLUENCIA → Fechamento\n\n\n\n\n\n\n\nSOURCE @pesquisa_engajamento_2024\n    access_date: 2024-12-15\nTodo conhecimento é rastreável até sua origem — um documento, uma entrevista, um relatório.\n\n\n\nITEM\n    quote: \"Não sei para onde a empresa está indo\"\n    note: Funcionário expressa falta de clareza sobre direção estratégica\n    chain: Falta de Clareza → REDUZ → Engajamento\nEND\nCada item conecta a evidência textual à sua interpretação e à relação causal identificada.\n\n\n\nONTOLOGY Engajamento\n    topic: Comportamento Organizacional\n    description: Nível de comprometimento e conexão emocional do funcionário\nEND\nConceitos são definidos explicitamente, garantindo consistência ao longo do projeto.\n\n\n\nO compilador Synesis: - Verifica consistência das anotações - Gera formatos estruturados (JSON, CSV, planilhas) - Permite integração com sistemas de análise\n\n\n\n\n\n\n\nCada conclusão pode ser rastreada até a evidência original. Quando alguém pergunta “por que você recomenda isso?”, a resposta está documentada.\n\n\n\nO saber dos especialistas, que normalmente existe apenas em suas cabeças, fica registrado e disponível para a organização.\n\n\n\nRelações causais documentadas qualitativamente podem ser combinadas com análises estatísticas para validação cruzada.\n\n\n\nOrganizações que investem em Grafos de Conhecimento Causal precisam de conhecimento estruturado como entrada. Synesis fornece essa estrutura a partir de fontes documentais.\n\n\n\nEm vez de decisões baseadas em “achismo” ou correlações superficiais, a organização passa a operar com base em relações causais documentadas e verificáveis.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAbordagem\nFonte de dados\nTipo de relação\nLimitação\n\n\n\n\nAnálise estatística tradicional\nNuméricos\nCorrelação\nNão distingue causa de efeito\n\n\nDescoberta causal estatística\nNuméricos\nCausal (estimada)\nRequer grandes volumes; pode errar direção\n\n\nPesquisa qualitativa tradicional\nTextuais\nQualitativa\nNão estruturada; difícil de integrar\n\n\nSynesis\nTextuais\nCausal (documentada)\nRequer análise humana; complementa estatística\n\n\n\nA combinação ideal: usar Synesis para estruturar conhecimento qualitativo, descoberta causal estatística para dados numéricos, e integrar ambos em um Grafo de Conhecimento Causal.\n\n\n\n\nImagine uma empresa que quer melhorar simultaneamente: - Taxa de sucesso em negociações comerciais - Engajamento dos funcionários - Qualidade de entrega dos projetos\nFluxo com Synesis:\n\nColeta estruturada\n\nPesquisas de engajamento documentadas em Synesis\nAnálise de negociações documentada em Synesis\nRelatórios de qualidade documentados em Synesis\n\nIdentificação de conexões\n\nDescoberta estatística identifica: Engajamento → Qualidade de Entrega\nSynesis documenta: Trabalho em Equipe → Engajamento (da literatura)\nSynesis documenta: Qualidade de Entrega → Confiança do Cliente (das negociações)\n\nGrafo integrado\n\nTrabalho em Equipe → Engajamento → Qualidade → Confiança → Sucesso em Negociações\n\nRecomendação fundamentada\n\nInvestir em iniciativas de trabalho em equipe tem efeito cascata documentado até o resultado comercial\n\n\n\n\n\n\n\n\n\nIdentifique um domínio piloto — RH, operações ou comercial são bons pontos de partida\nDefina o vocabulário inicial — quais conceitos são relevantes para suas decisões?\nTreine os analistas — a curva de aprendizado é baixa para quem já trabalha com dados qualitativos\nIntegre com processos existentes — Synesis complementa, não substitui, ferramentas atuais\n\n\n\n\n\nExperimente com um projeto pequeno — uma análise de literatura, um conjunto de entrevistas\nFoque nas relações causais — pergunte sempre “o que causa o quê?”\nMantenha consistência — use os mesmos termos para os mesmos conceitos\nDocumente suas interpretações — a anotação é tão importante quanto a citação\n\n\n\n\n\n\n\n\nNão. Synesis trabalha com conhecimento qualitativo e se integra com ferramentas quantitativas. É um complemento, não um substituto.\n\n\n\nA sintaxe é simples e legível. Profissionais de pesquisa, análise e gestão conseguem aprender rapidamente. Não é necessário programação.\n\n\n\nSistemas de IA que trabalham com raciocínio causal precisam de conhecimento estruturado. Synesis fornece esse conhecimento a partir de fontes que a IA não consegue processar sozinha com a mesma qualidade.\n\n\n\nPlanilhas não têm validação de consistência, não estruturam relações causais nativamente e não garantem rastreabilidade. Synesis foi projetado especificamente para captura de conhecimento causal.\n\n\n\n\n\nEm um mundo onde decisões precisam ser cada vez mais fundamentadas em dados, o conhecimento qualitativo não pode ficar de fora. Synesis oferece uma ponte entre o saber dos especialistas — disperso em documentos, relatórios e observações — e os sistemas de análise que suportam a tomada de decisão.\nA combinação de conhecimento causal estruturado com análise estatística representa o próximo passo na evolução da inteligência organizacional: decisões não apenas baseadas em dados, mas baseadas em entendimento causal dos fenômenos.\n\nSynesis: transformando conhecimento disperso em inteligência acionável.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#o-desafio-da-era-dos-dados",
+    "href": "guide/guia_profissionais.html#o-desafio-da-era-dos-dados",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Vivemos em uma era caracterizada pela sigla VUCA: Volatilidade, Incerteza, Complexidade e Ambiguidade. Nesse contexto, tomar decisões eficientes requer mais do que intuição — exige a capacidade de integrar e analisar múltiplas fontes de dados, identificando não apenas correlações, mas relações de causa e efeito entre os fenômenos observados.\nConforme destacado em pesquisas recentes sobre Grafos de Conhecimento Causal (Causal Knowledge Graphs), a simples correlação entre dados pode levar a conclusões equivocadas. O exemplo clássico: existe correlação estatística entre consumo de chocolate e número de ganhadores do Prêmio Nobel em diferentes países — mas seria absurdo concluir que distribuir chocolate aumentará a produção científica de uma organização.\nO verdadeiro desafio está em capturar relações causais, não apenas correlações superficiais.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#onde-entra-a-linguagem-synesis",
+    "href": "guide/guia_profissionais.html#onde-entra-a-linguagem-synesis",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Synesis é uma linguagem estruturada para captura sistemática de conhecimento causal a partir de fontes documentais e observações qualitativas.\nEnquanto sistemas automatizados como descoberta causal estatística trabalham com dados numéricos, grande parte do conhecimento organizacional está disperso em:\n\nRelatórios e documentos técnicos\nEntrevistas e pesquisas qualitativas\nLiteratura especializada e manuais\nRegistros de incidentes e lições aprendidas\nPesquisas de engajamento e clima organizacional\n\nSynesis oferece uma forma padronizada de extrair, documentar e estruturar relações causais dessas fontes textuais, tornando-as processáveis e integráveis com outros sistemas de análise.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#o-problema-que-synesis-resolve",
+    "href": "guide/guia_profissionais.html#o-problema-que-synesis-resolve",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Quando uma relação causal é extraída de um documento (por exemplo: “falta de treinamento causa erros operacionais”), ela é puramente qualitativa. Não há como prever a probabilidade ou magnitude do efeito.\nComo Synesis contribui: Ao estruturar sistematicamente essas relações, elas podem ser posteriormente integradas com dados numéricos para quantificação dos efeitos causais.\n\n\n\nAlgoritmos de descoberta causal estatística, quando aplicados a dados com vieses ou lacunas, podem derivar relações onde a direção da causalidade está invertida.\nComo Synesis contribui: Conhecimento prévio documentado em Synesis serve como “conhecimento anterior” (prior knowledge) para validar ou corrigir descobertas estatísticas.\n\n\n\nDescoberta causal tradicional trabalha com um único conjunto de dados. Não consegue combinar observações de diferentes departamentos, períodos ou condições.\nComo Synesis contribui: A estrutura padronizada permite integrar conhecimento de múltiplas fontes em um vocabulário comum.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#aplicações-práticas",
+    "href": "guide/guia_profissionais.html#aplicações-práticas",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Cenário: A área de RH precisa recomendar iniciativas para melhorar engajamento, mas cada departamento tem características diferentes.\nCom Synesis: - Documente relações causais da literatura de comportamento organizacional - Registre observações das pesquisas de engajamento com interpretações estruturadas - Identifique quais fatores (oportunidades de carreira, clareza de visão, trabalho em equipe) causam quais resultados (motivação, satisfação, retenção) - Recomende iniciativas com base em evidências documentadas\nExemplo de registro:\n- Fonte: Pesquisa de Engajamento Q4/2024, Departamento Comercial\n- Observação: \"Sinto que não tenho oportunidades de crescimento aqui\"\n- Interpretação: Funcionário expressa frustração com limitação de carreira\n- Relação identificada: Falta de Oportunidades → REDUZ → Motivação\n\n\n\nCenário: Equipe de operações precisa identificar causas-raiz de falhas em sistemas complexos.\nCom Synesis: - Extraia relações causais de manuais técnicos e guias de troubleshooting - Documente cada incidente com a cadeia causal identificada - Construa uma base de conhecimento que acelere diagnósticos futuros\nExemplo de registro:\n- Fonte: Relatório de Incidente #2024-0892\n- Observação: Desconexão intermitente durante download de arquivos\n- Interpretação: Padrão consistente com erro de configuração de MAC\n- Relação identificada: Erro de Configuração → CAUSA → Desconexão\n\n\n\nCenário: Equipe comercial quer entender por que algumas negociações são bem-sucedidas e outras não.\nCom Synesis: - Registre observações de cada negociação (reuniões, objeções, decisões) - Identifique padrões causais entre ações e resultados - Combine com dados de engajamento para entender como fatores internos afetam performance externa\nExemplo de registro:\n- Fonte: Análise de Negociação #2024-156 (Sucesso)\n- Observação: Cliente mencionou confiança na equipe técnica\n- Interpretação: Demonstração de competência técnica influenciou decisão\n- Relação identificada: Competência Técnica → INFLUENCIA → Confiança → INFLUENCIA → Fechamento",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#como-funciona-na-prática",
+    "href": "guide/guia_profissionais.html#como-funciona-na-prática",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "SOURCE @pesquisa_engajamento_2024\n    access_date: 2024-12-15\nTodo conhecimento é rastreável até sua origem — um documento, uma entrevista, um relatório.\n\n\n\nITEM\n    quote: \"Não sei para onde a empresa está indo\"\n    note: Funcionário expressa falta de clareza sobre direção estratégica\n    chain: Falta de Clareza → REDUZ → Engajamento\nEND\nCada item conecta a evidência textual à sua interpretação e à relação causal identificada.\n\n\n\nONTOLOGY Engajamento\n    topic: Comportamento Organizacional\n    description: Nível de comprometimento e conexão emocional do funcionário\nEND\nConceitos são definidos explicitamente, garantindo consistência ao longo do projeto.\n\n\n\nO compilador Synesis: - Verifica consistência das anotações - Gera formatos estruturados (JSON, CSV, planilhas) - Permite integração com sistemas de análise",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#benefícios-para-a-organização",
+    "href": "guide/guia_profissionais.html#benefícios-para-a-organização",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Cada conclusão pode ser rastreada até a evidência original. Quando alguém pergunta “por que você recomenda isso?”, a resposta está documentada.\n\n\n\nO saber dos especialistas, que normalmente existe apenas em suas cabeças, fica registrado e disponível para a organização.\n\n\n\nRelações causais documentadas qualitativamente podem ser combinadas com análises estatísticas para validação cruzada.\n\n\n\nOrganizações que investem em Grafos de Conhecimento Causal precisam de conhecimento estruturado como entrada. Synesis fornece essa estrutura a partir de fontes documentais.\n\n\n\nEm vez de decisões baseadas em “achismo” ou correlações superficiais, a organização passa a operar com base em relações causais documentadas e verificáveis.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#comparação-com-outras-abordagens",
+    "href": "guide/guia_profissionais.html#comparação-com-outras-abordagens",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Abordagem\nFonte de dados\nTipo de relação\nLimitação\n\n\n\n\nAnálise estatística tradicional\nNuméricos\nCorrelação\nNão distingue causa de efeito\n\n\nDescoberta causal estatística\nNuméricos\nCausal (estimada)\nRequer grandes volumes; pode errar direção\n\n\nPesquisa qualitativa tradicional\nTextuais\nQualitativa\nNão estruturada; difícil de integrar\n\n\nSynesis\nTextuais\nCausal (documentada)\nRequer análise humana; complementa estatística\n\n\n\nA combinação ideal: usar Synesis para estruturar conhecimento qualitativo, descoberta causal estatística para dados numéricos, e integrar ambos em um Grafo de Conhecimento Causal.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#cenário-de-uso-integrado",
+    "href": "guide/guia_profissionais.html#cenário-de-uso-integrado",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Imagine uma empresa que quer melhorar simultaneamente: - Taxa de sucesso em negociações comerciais - Engajamento dos funcionários - Qualidade de entrega dos projetos\nFluxo com Synesis:\n\nColeta estruturada\n\nPesquisas de engajamento documentadas em Synesis\nAnálise de negociações documentada em Synesis\nRelatórios de qualidade documentados em Synesis\n\nIdentificação de conexões\n\nDescoberta estatística identifica: Engajamento → Qualidade de Entrega\nSynesis documenta: Trabalho em Equipe → Engajamento (da literatura)\nSynesis documenta: Qualidade de Entrega → Confiança do Cliente (das negociações)\n\nGrafo integrado\n\nTrabalho em Equipe → Engajamento → Qualidade → Confiança → Sucesso em Negociações\n\nRecomendação fundamentada\n\nInvestir em iniciativas de trabalho em equipe tem efeito cascata documentado até o resultado comercial",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#começando-com-synesis",
+    "href": "guide/guia_profissionais.html#começando-com-synesis",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Identifique um domínio piloto — RH, operações ou comercial são bons pontos de partida\nDefina o vocabulário inicial — quais conceitos são relevantes para suas decisões?\nTreine os analistas — a curva de aprendizado é baixa para quem já trabalha com dados qualitativos\nIntegre com processos existentes — Synesis complementa, não substitui, ferramentas atuais\n\n\n\n\n\nExperimente com um projeto pequeno — uma análise de literatura, um conjunto de entrevistas\nFoque nas relações causais — pergunte sempre “o que causa o quê?”\nMantenha consistência — use os mesmos termos para os mesmos conceitos\nDocumente suas interpretações — a anotação é tão importante quanto a citação",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#perguntas-frequentes",
+    "href": "guide/guia_profissionais.html#perguntas-frequentes",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Não. Synesis trabalha com conhecimento qualitativo e se integra com ferramentas quantitativas. É um complemento, não um substituto.\n\n\n\nA sintaxe é simples e legível. Profissionais de pesquisa, análise e gestão conseguem aprender rapidamente. Não é necessário programação.\n\n\n\nSistemas de IA que trabalham com raciocínio causal precisam de conhecimento estruturado. Synesis fornece esse conhecimento a partir de fontes que a IA não consegue processar sozinha com a mesma qualidade.\n\n\n\nPlanilhas não têm validação de consistência, não estruturam relações causais nativamente e não garantem rastreabilidade. Synesis foi projetado especificamente para captura de conhecimento causal.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "guide/guia_profissionais.html#conclusão",
+    "href": "guide/guia_profissionais.html#conclusão",
+    "title": "1 Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados",
+    "section": "",
+    "text": "Em um mundo onde decisões precisam ser cada vez mais fundamentadas em dados, o conhecimento qualitativo não pode ficar de fora. Synesis oferece uma ponte entre o saber dos especialistas — disperso em documentos, relatórios e observações — e os sistemas de análise que suportam a tomada de decisão.\nA combinação de conhecimento causal estruturado com análise estatística representa o próximo passo na evolução da inteligência organizacional: decisões não apenas baseadas em dados, mas baseadas em entendimento causal dos fenômenos.\n\nSynesis: transformando conhecimento disperso em inteligência acionável.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html",
+    "href": "ecossistema/guia_synesis_explorer.html",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Objetivo: ajudar voce a instalar e usar a extensao para navegar seus arquivos Synesis (.syn, .synt, .synp, .syno) de forma simples.\n\n\n\n\nMostra suas referencias, codigos e relacoes em paineis laterais\nAbre um grafo de relacoes e o resumo (abstract) das referencias\nAjuda a encontrar trechos com facilidade\n\n\n\n\nTela inicial do VS Code com a extensao instalada.\n\n\n\n\n\n\n\nVS Code instalado\nArquivos Synesis no seu computador\n\n\n\n\n\n\nAbra o VS Code\nClique no icone de extensoes (barra lateral)\nClique nos tres pontinhos (menu) e escolha “Install from VSIX…”\nSelecione o arquivo .vsix da extensao\nAguarde a instalacao e reinicie o VS Code se solicitado\n\n\n\n\nMenu “Install from VSIX…”\n\n\n\n\n\n\n\nAbra a pasta do seu projeto no VS Code\nCertifique-se de que seus arquivos .syn e o projeto .synp estao na pasta\n\n\n\n\nPasta do projeto aberta no VS Code.\n\n\n\n\n\n\n\nNa barra lateral esquerda, clique no icone “Synesis Explorer”\nVoce vera tres secoes:\n\nReferences\nCodes\nRelations (aparece quando houver relacoes)\n\n\n\n\n\nPainel Synesis Explorer com as tres secoes.\n\n\n\n\n\n\n\n\n\nLista suas fontes (SOURCE)\nUse o botao de atualizar (refresh) quando mudar arquivos\nUse o filtro para encontrar rapidamente uma referencia\n\n\n\n\nReferencias com lista e botoes no topo.\n\n\n\n\n\n\nMostra os codigos encontrados nos seus dados\nUse refresh e filtro da mesma forma\n\n\n\n\nCodes com lista de codigos.\n\n\n\n\n\n\nMostra relacoes (chains) encontradas\nSe nao aparecer, verifique se há campos do tipo chain: nos arquivos de anotação (.syn)\n\n\n\n\nRelations com algumas relacoes listadas.\n\n\n\n\n\n\n\n\n\n\nMostra um grafo das relacoes\nAtalho: Ctrl+Alt+G (Windows/Linux) ou Cmd+Shift+G (Mac)\n\n\n\n\nGrafo aberto em uma aba.\n\n\n\n\n\n\nMostra o abstract de referencias BibTeX\nAtalho: Ctrl+Shift+A (Windows/Linux) ou Cmd+Shift+A (Mac)\n\n\n\n\nAbstract aberto em uma aba.\n\n\n\n\n\n\n\n\nSe algo nao atualizar, clique em refresh\nO Word Wrap é ativado automaticamente para facilitar a leitura\nUse o filtro para reduzir listas grandes\n\n\n\n\n\nNao vejo nada no painel - Verifique se a pasta do projeto foi aberta no VS Code - Verifique se ha arquivos .syn na pasta\nRelations nao aparecem - Verifique se existem linhas chain: nos arquivos\n\n\n\n\nCom isso, voce ja consegue navegar, filtrar e visualizar seus dados Synesis diretamente no VS Code.\n\n\n\nFluxo completo (arquivo aberto + explorer + viewer).",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#o-que-a-extensao-faz",
+    "href": "ecossistema/guia_synesis_explorer.html#o-que-a-extensao-faz",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Mostra suas referencias, codigos e relacoes em paineis laterais\nAbre um grafo de relacoes e o resumo (abstract) das referencias\nAjuda a encontrar trechos com facilidade\n\n\n\n\nTela inicial do VS Code com a extensao instalada.",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#requisitos-basicos",
+    "href": "ecossistema/guia_synesis_explorer.html#requisitos-basicos",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "VS Code instalado\nArquivos Synesis no seu computador",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#instalacao-arquivo-vsix",
+    "href": "ecossistema/guia_synesis_explorer.html#instalacao-arquivo-vsix",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Abra o VS Code\nClique no icone de extensoes (barra lateral)\nClique nos tres pontinhos (menu) e escolha “Install from VSIX…”\nSelecione o arquivo .vsix da extensao\nAguarde a instalacao e reinicie o VS Code se solicitado\n\n\n\n\nMenu “Install from VSIX…”",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#como-abrir-seu-projeto",
+    "href": "ecossistema/guia_synesis_explorer.html#como-abrir-seu-projeto",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Abra a pasta do seu projeto no VS Code\nCertifique-se de que seus arquivos .syn e o projeto .synp estao na pasta\n\n\n\n\nPasta do projeto aberta no VS Code.",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#onde-encontrar-o-synesis-explorer",
+    "href": "ecossistema/guia_synesis_explorer.html#onde-encontrar-o-synesis-explorer",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Na barra lateral esquerda, clique no icone “Synesis Explorer”\nVoce vera tres secoes:\n\nReferences\nCodes\nRelations (aparece quando houver relacoes)\n\n\n\n\n\nPainel Synesis Explorer com as tres secoes.",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#usando-os-explorers",
+    "href": "ecossistema/guia_synesis_explorer.html#usando-os-explorers",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Lista suas fontes (SOURCE)\nUse o botao de atualizar (refresh) quando mudar arquivos\nUse o filtro para encontrar rapidamente uma referencia\n\n\n\n\nReferencias com lista e botoes no topo.\n\n\n\n\n\n\nMostra os codigos encontrados nos seus dados\nUse refresh e filtro da mesma forma\n\n\n\n\nCodes com lista de codigos.\n\n\n\n\n\n\nMostra relacoes (chains) encontradas\nSe nao aparecer, verifique se há campos do tipo chain: nos arquivos de anotação (.syn)\n\n\n\n\nRelations com algumas relacoes listadas.",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#usando-os-viewers",
+    "href": "ecossistema/guia_synesis_explorer.html#usando-os-viewers",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Mostra um grafo das relacoes\nAtalho: Ctrl+Alt+G (Windows/Linux) ou Cmd+Shift+G (Mac)\n\n\n\n\nGrafo aberto em uma aba.\n\n\n\n\n\n\nMostra o abstract de referencias BibTeX\nAtalho: Ctrl+Shift+A (Windows/Linux) ou Cmd+Shift+A (Mac)\n\n\n\n\nAbstract aberto em uma aba.",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#dicas-rapidas",
+    "href": "ecossistema/guia_synesis_explorer.html#dicas-rapidas",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Se algo nao atualizar, clique em refresh\nO Word Wrap é ativado automaticamente para facilitar a leitura\nUse o filtro para reduzir listas grandes",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#problemas-comuns",
+    "href": "ecossistema/guia_synesis_explorer.html#problemas-comuns",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Nao vejo nada no painel - Verifique se a pasta do projeto foi aberta no VS Code - Verifique se ha arquivos .syn na pasta\nRelations nao aparecem - Verifique se existem linhas chain: nos arquivos",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "ecossistema/guia_synesis_explorer.html#pronto-para-usar",
+    "href": "ecossistema/guia_synesis_explorer.html#pronto-para-usar",
+    "title": "1 Guia rapido: Synesis Explorer (VS Code)",
+    "section": "",
+    "text": "Com isso, voce ja consegue navegar, filtrar e visualizar seus dados Synesis diretamente no VS Code.\n\n\n\nFluxo completo (arquivo aberto + explorer + viewer).",
+    "crumbs": [
+      "Introdução",
+      "Ecossistema",
+      "Guia rapido: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html",
+    "href": "guide/guia_pesquisadores.html",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Guia introdutório para pesquisadores de humanidades\n\n\n\nSynesis é uma forma estruturada de registrar suas anotações de pesquisa qualitativa em arquivos de texto simples. Pense nela como um caderno de campo digital com regras claras que ajudam você a manter consistência ao longo de todo o projeto.\nO nome vem do grego σύνεσις (sýnesis), que significa “compreensão” ou “entendimento” — exatamente o que buscamos ao analisar dados qualitativos.\n\n\n\n\n\n\nSe você já trabalhou com pesquisa qualitativa, provavelmente conhece estas situações:\n\nAnotações espalhadas em diferentes arquivos e formatos\nDificuldade em lembrar por que marcou determinado trecho como importante\nCódigos que mudam de nome ao longo do projeto\nHoras reorganizando dados antes de poder analisá-los\nDificuldade em explicar seu processo analítico para outros pesquisadores\n\n\n\n\nSynesis oferece uma estrutura simples e consistente para:\n\nRegistrar excertos relevantes das suas fontes\nAnotar suas interpretações e reflexões\nCodificar trechos com conceitos analíticos\nRelacionar conceitos entre si (relações causais, de influência, etc.)\nDocumentar seu vocabulário conceitual (ontologia)\n\nTudo isso em arquivos de texto que você pode abrir em qualquer computador, agora ou daqui a vinte anos.\n\n\n\n\n\n\n\nImagine que você está analisando entrevistas sobre aceitação de novas tecnologias. Você encontra este trecho:\n\n“Eu até queria usar, mas o custo é muito alto para o meu orçamento.”\n\nEm Synesis, você registraria assim:\nSOURCE @entrevista_maria\n    \n    ITEM\n        quote: \"Eu até queria usar, mas o custo é muito alto para o meu orçamento.\"\n        note: Participante expressa desejo de adoção limitado por barreira econômica\n        chain: Custo -&gt; INIBE -&gt; Adoção\n    END\n\nEND\nO que cada parte significa:\n\nSOURCE: indica de onde vem o material (uma entrevista, um documento, um artigo)\nITEM: é uma unidade de análise — um trecho que você considera relevante\nquote: o excerto literal da fonte\nnote: sua interpretação ou reflexão sobre o trecho\nchain: a relação que você identificou entre conceitos\n\n\n\n\nA notação Custo -&gt; INIBE -&gt; Adoção significa: “o Custo INIBE a Adoção”. Essa forma de registrar permite que você construa, aos poucos, um mapa das relações que emergem dos seus dados.\nVocê pode encadear múltiplas relações:\nchain: Falta de Informação -&gt; GERA -&gt; Desconfiança -&gt; INIBE -&gt; Adoção\nIsso registra uma sequência: a falta de informação gera desconfiança, que por sua vez inibe a adoção.\n\n\n\n\n\n\n\nCada fonte que você analisa recebe um identificador único, conectado às suas referências bibliográficas:\nSOURCE @silva2023\n    ...\nEND\nO @silva2023 corresponde a uma entrada no seu arquivo de referências (formato BibTeX, usado por gerenciadores como Zotero e Mendeley).\n\n\n\nDentro de cada fonte, você registra os trechos relevantes:\nITEM\n    quote: \"O texto literal extraído da fonte\"\n    note: Sua interpretação ou comentário analítico\n    code: Conceito A, Conceito B\n    chain: Conceito A -&gt; RELAÇÃO -&gt; Conceito B\nEND\nVocê pode ter quantos itens precisar em cada fonte.\n\n\n\nPara manter consistência, você define seus conceitos principais:\nONTOLOGY Custo\n    topic: Fatores Econômicos\n    description: Despesa financeira associada à aquisição ou uso de tecnologia\nEND\n\nONTOLOGY Adoção\n    topic: Comportamento\n    description: Decisão de incorporar uma tecnologia ao cotidiano\nEND\nIsso cria um glossário vivo do seu projeto, ajudando a manter definições claras e consistentes.\n\n\n\n\n\nAs relações entre conceitos dependem do seu campo de estudo. Alguns exemplos comuns:\n\n\n\n\n\n\n\n\nRelação\nSignificado\nExemplo\n\n\n\n\nINFLUENCIA\nUm fator afeta outro\nRenda -&gt; INFLUENCIA -&gt; Acesso\n\n\nGERA\nUm fator produz outro\nDesinformação -&gt; GERA -&gt; Medo\n\n\nINIBE\nUm fator dificulta outro\nBurocracia -&gt; INIBE -&gt; Participação\n\n\nPOSSIBILITA\nUm fator permite outro\nEducação -&gt; POSSIBILITA -&gt; Autonomia\n\n\nDEPENDE_DE\nUm fator requer outro\nConfiança -&gt; DEPENDE_DE -&gt; Transparência\n\n\n\nVocê define quais relações fazem sentido para sua pesquisa no arquivo de template.\n\n\n\n\n\n\nCada interpretação está conectada ao trecho original. Você (ou outro pesquisador) pode sempre voltar à fonte para verificar o contexto.\n\n\n\nCom um vocabulário definido, você evita usar “Custo”, “Preço” e “Valor econômico” para o mesmo conceito em diferentes momentos da análise.\n\n\n\nSeu processo analítico fica documentado. Ao escrever a metodologia do seu artigo ou tese, você tem um registro claro de como chegou às suas conclusões.\n\n\n\nArquivos de texto simples funcionam em qualquer sistema operacional e não dependem de software específico. Sua pesquisa não fica “presa” em um programa.\n\n\n\nColegas podem revisar suas anotações, sugerir interpretações alternativas e contribuir com o projeto usando as mesmas convenções.\n\n\n\n\n\n\n\nReúna suas referências bibliográficas em um arquivo .bib (exportável de Zotero, Mendeley ou similar).\n\n\n\nCrie um template básico definindo: - Quais campos você usará (citação, nota, código, cadeia) - Quais tipos de relação fazem sentido para seu estudo - Quais categorias de conceitos você espera encontrar\n\n\n\nÀ medida que lê suas fontes, registre os trechos relevantes com suas interpretações. Não se preocupe em ter tudo perfeito desde o início — o processo é iterativo.\n\n\n\nConforme padrões emergem, documente seus conceitos na ontologia. Revise definições, agrupe conceitos relacionados, refine as relações.\n\n\n\nO compilador Synesis transforma suas anotações em formatos estruturados (planilhas, por exemplo) que facilitam a visualização de padrões e a geração de relatórios.\n\n\n\n\n\nPara visualizar como as peças se encaixam:\nPROJETO: Aceitação de Tecnologias Verdes\n│\n├── referencias.bib          ← Suas referências bibliográficas\n│\n├── template.synt            ← Regras do seu projeto\n│\n├── anotacoes/\n│   ├── entrevistas.syn      ← Anotações de entrevistas\n│   └── documentos.syn       ← Anotações de documentos\n│\n└── ontologia.syno           ← Seu vocabulário conceitual\nO arquivo de projeto (.synp) conecta tudo:\nPROJECT aceitacao_tecnologias_verdes\n\nTEMPLATE \"template.synt\"\nINCLUDE BIBLIOGRAPHY \"referencias.bib\"\nINCLUDE ANNOTATIONS \"anotacoes/entrevistas.syn\"\nINCLUDE ANNOTATIONS \"anotacoes/documentos.syn\"\nINCLUDE ONTOLOGY \"ontologia.syno\"\n\nDESCRIPTION\n    Estudo sobre fatores que influenciam a aceitação \n    de tecnologias verdes em comunidades urbanas.\nEND\n\nEND\n\n\n\n\n\n\nNão. Synesis usa uma sintaxe simples e legível. Se você consegue organizar um documento com títulos e subtítulos, consegue usar Synesis.\n\n\n\nSim. Os arquivos Synesis são texto puro, editáveis em qualquer editor (Word, Google Docs, Notepad, ou editores especializados). O compilador gera planilhas que você pode abrir no Excel ou Google Sheets.\n\n\n\nO compilador indica exatamente onde está o problema e sugere como corrigir. As mensagens de erro são escritas para serem compreensíveis, não técnicas.\n\n\n\nSynesis tem propósito diferente. Enquanto esses softwares oferecem interfaces gráficas completas, Synesis foca na estruturação e documentação do processo analítico. Alguns pesquisadores usam ambos: Synesis para registro estruturado e outros softwares para visualização.\n\n\n\nSynesis é flexível. O template permite adaptar a estrutura para diferentes abordagens metodológicas: análise de conteúdo, teoria fundamentada, análise temática, entre outras.\n\n\n\n\n\n\nLeia o Guia de Referência para conhecer todos os comandos disponíveis\nExperimente com um projeto pequeno — algumas entrevistas ou documentos\nAdapte o template às necessidades específicas da sua pesquisa\nCompartilhe suas dúvidas com a comunidade de usuários\n\n\nSynesis foi desenvolvida para tornar a pesquisa qualitativa mais organizada, transparente e reproduzível — sem exigir conhecimento técnico avançado.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#o-que-é-synesis",
+    "href": "guide/guia_pesquisadores.html#o-que-é-synesis",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Synesis é uma forma estruturada de registrar suas anotações de pesquisa qualitativa em arquivos de texto simples. Pense nela como um caderno de campo digital com regras claras que ajudam você a manter consistência ao longo de todo o projeto.\nO nome vem do grego σύνεσις (sýnesis), que significa “compreensão” ou “entendimento” — exatamente o que buscamos ao analisar dados qualitativos.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#por-que-usar-synesis",
+    "href": "guide/guia_pesquisadores.html#por-que-usar-synesis",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Se você já trabalhou com pesquisa qualitativa, provavelmente conhece estas situações:\n\nAnotações espalhadas em diferentes arquivos e formatos\nDificuldade em lembrar por que marcou determinado trecho como importante\nCódigos que mudam de nome ao longo do projeto\nHoras reorganizando dados antes de poder analisá-los\nDificuldade em explicar seu processo analítico para outros pesquisadores\n\n\n\n\nSynesis oferece uma estrutura simples e consistente para:\n\nRegistrar excertos relevantes das suas fontes\nAnotar suas interpretações e reflexões\nCodificar trechos com conceitos analíticos\nRelacionar conceitos entre si (relações causais, de influência, etc.)\nDocumentar seu vocabulário conceitual (ontologia)\n\nTudo isso em arquivos de texto que você pode abrir em qualquer computador, agora ou daqui a vinte anos.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#como-funciona-na-prática",
+    "href": "guide/guia_pesquisadores.html#como-funciona-na-prática",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Imagine que você está analisando entrevistas sobre aceitação de novas tecnologias. Você encontra este trecho:\n\n“Eu até queria usar, mas o custo é muito alto para o meu orçamento.”\n\nEm Synesis, você registraria assim:\nSOURCE @entrevista_maria\n    \n    ITEM\n        quote: \"Eu até queria usar, mas o custo é muito alto para o meu orçamento.\"\n        note: Participante expressa desejo de adoção limitado por barreira econômica\n        chain: Custo -&gt; INIBE -&gt; Adoção\n    END\n\nEND\nO que cada parte significa:\n\nSOURCE: indica de onde vem o material (uma entrevista, um documento, um artigo)\nITEM: é uma unidade de análise — um trecho que você considera relevante\nquote: o excerto literal da fonte\nnote: sua interpretação ou reflexão sobre o trecho\nchain: a relação que você identificou entre conceitos\n\n\n\n\nA notação Custo -&gt; INIBE -&gt; Adoção significa: “o Custo INIBE a Adoção”. Essa forma de registrar permite que você construa, aos poucos, um mapa das relações que emergem dos seus dados.\nVocê pode encadear múltiplas relações:\nchain: Falta de Informação -&gt; GERA -&gt; Desconfiança -&gt; INIBE -&gt; Adoção\nIsso registra uma sequência: a falta de informação gera desconfiança, que por sua vez inibe a adoção.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#os-componentes-básicos",
+    "href": "guide/guia_pesquisadores.html#os-componentes-básicos",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Cada fonte que você analisa recebe um identificador único, conectado às suas referências bibliográficas:\nSOURCE @silva2023\n    ...\nEND\nO @silva2023 corresponde a uma entrada no seu arquivo de referências (formato BibTeX, usado por gerenciadores como Zotero e Mendeley).\n\n\n\nDentro de cada fonte, você registra os trechos relevantes:\nITEM\n    quote: \"O texto literal extraído da fonte\"\n    note: Sua interpretação ou comentário analítico\n    code: Conceito A, Conceito B\n    chain: Conceito A -&gt; RELAÇÃO -&gt; Conceito B\nEND\nVocê pode ter quantos itens precisar em cada fonte.\n\n\n\nPara manter consistência, você define seus conceitos principais:\nONTOLOGY Custo\n    topic: Fatores Econômicos\n    description: Despesa financeira associada à aquisição ou uso de tecnologia\nEND\n\nONTOLOGY Adoção\n    topic: Comportamento\n    description: Decisão de incorporar uma tecnologia ao cotidiano\nEND\nIsso cria um glossário vivo do seu projeto, ajudando a manter definições claras e consistentes.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#tipos-de-relação",
+    "href": "guide/guia_pesquisadores.html#tipos-de-relação",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "As relações entre conceitos dependem do seu campo de estudo. Alguns exemplos comuns:\n\n\n\n\n\n\n\n\nRelação\nSignificado\nExemplo\n\n\n\n\nINFLUENCIA\nUm fator afeta outro\nRenda -&gt; INFLUENCIA -&gt; Acesso\n\n\nGERA\nUm fator produz outro\nDesinformação -&gt; GERA -&gt; Medo\n\n\nINIBE\nUm fator dificulta outro\nBurocracia -&gt; INIBE -&gt; Participação\n\n\nPOSSIBILITA\nUm fator permite outro\nEducação -&gt; POSSIBILITA -&gt; Autonomia\n\n\nDEPENDE_DE\nUm fator requer outro\nConfiança -&gt; DEPENDE_DE -&gt; Transparência\n\n\n\nVocê define quais relações fazem sentido para sua pesquisa no arquivo de template.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#benefícios-para-sua-pesquisa",
+    "href": "guide/guia_pesquisadores.html#benefícios-para-sua-pesquisa",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Cada interpretação está conectada ao trecho original. Você (ou outro pesquisador) pode sempre voltar à fonte para verificar o contexto.\n\n\n\nCom um vocabulário definido, você evita usar “Custo”, “Preço” e “Valor econômico” para o mesmo conceito em diferentes momentos da análise.\n\n\n\nSeu processo analítico fica documentado. Ao escrever a metodologia do seu artigo ou tese, você tem um registro claro de como chegou às suas conclusões.\n\n\n\nArquivos de texto simples funcionam em qualquer sistema operacional e não dependem de software específico. Sua pesquisa não fica “presa” em um programa.\n\n\n\nColegas podem revisar suas anotações, sugerir interpretações alternativas e contribuir com o projeto usando as mesmas convenções.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#como-começar",
+    "href": "guide/guia_pesquisadores.html#como-começar",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Reúna suas referências bibliográficas em um arquivo .bib (exportável de Zotero, Mendeley ou similar).\n\n\n\nCrie um template básico definindo: - Quais campos você usará (citação, nota, código, cadeia) - Quais tipos de relação fazem sentido para seu estudo - Quais categorias de conceitos você espera encontrar\n\n\n\nÀ medida que lê suas fontes, registre os trechos relevantes com suas interpretações. Não se preocupe em ter tudo perfeito desde o início — o processo é iterativo.\n\n\n\nConforme padrões emergem, documente seus conceitos na ontologia. Revise definições, agrupe conceitos relacionados, refine as relações.\n\n\n\nO compilador Synesis transforma suas anotações em formatos estruturados (planilhas, por exemplo) que facilitam a visualização de padrões e a geração de relatórios.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#um-projeto-completo-em-miniatura",
+    "href": "guide/guia_pesquisadores.html#um-projeto-completo-em-miniatura",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Para visualizar como as peças se encaixam:\nPROJETO: Aceitação de Tecnologias Verdes\n│\n├── referencias.bib          ← Suas referências bibliográficas\n│\n├── template.synt            ← Regras do seu projeto\n│\n├── anotacoes/\n│   ├── entrevistas.syn      ← Anotações de entrevistas\n│   └── documentos.syn       ← Anotações de documentos\n│\n└── ontologia.syno           ← Seu vocabulário conceitual\nO arquivo de projeto (.synp) conecta tudo:\nPROJECT aceitacao_tecnologias_verdes\n\nTEMPLATE \"template.synt\"\nINCLUDE BIBLIOGRAPHY \"referencias.bib\"\nINCLUDE ANNOTATIONS \"anotacoes/entrevistas.syn\"\nINCLUDE ANNOTATIONS \"anotacoes/documentos.syn\"\nINCLUDE ONTOLOGY \"ontologia.syno\"\n\nDESCRIPTION\n    Estudo sobre fatores que influenciam a aceitação \n    de tecnologias verdes em comunidades urbanas.\nEND\n\nEND",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#perguntas-frequentes",
+    "href": "guide/guia_pesquisadores.html#perguntas-frequentes",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Não. Synesis usa uma sintaxe simples e legível. Se você consegue organizar um documento com títulos e subtítulos, consegue usar Synesis.\n\n\n\nSim. Os arquivos Synesis são texto puro, editáveis em qualquer editor (Word, Google Docs, Notepad, ou editores especializados). O compilador gera planilhas que você pode abrir no Excel ou Google Sheets.\n\n\n\nO compilador indica exatamente onde está o problema e sugere como corrigir. As mensagens de erro são escritas para serem compreensíveis, não técnicas.\n\n\n\nSynesis tem propósito diferente. Enquanto esses softwares oferecem interfaces gráficas completas, Synesis foca na estruturação e documentação do processo analítico. Alguns pesquisadores usam ambos: Synesis para registro estruturado e outros softwares para visualização.\n\n\n\nSynesis é flexível. O template permite adaptar a estrutura para diferentes abordagens metodológicas: análise de conteúdo, teoria fundamentada, análise temática, entre outras.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_pesquisadores.html#próximos-passos",
+    "href": "guide/guia_pesquisadores.html#próximos-passos",
+    "title": "1 Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa",
+    "section": "",
+    "text": "Leia o Guia de Referência para conhecer todos os comandos disponíveis\nExperimente com um projeto pequeno — algumas entrevistas ou documentos\nAdapte o template às necessidades específicas da sua pesquisa\nCompartilhe suas dúvidas com a comunidade de usuários\n\n\nSynesis foi desenvolvida para tornar a pesquisa qualitativa mais organizada, transparente e reproduzível — sem exigir conhecimento técnico avançado.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html",
+    "href": "guide/guia_sincero.html",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Uma resposta honesta sobre quando Synesis faz sentido — e quando não faz\n\n\n\n\n“Por que devo aprender uma linguagem, ter todo esse trabalho, para no final gerar uma planilha? Por que não pular essa etapa e anotar direto no Excel?”\n\nEssa é uma pergunta legítima. E merece uma resposta honesta.\n\n\n\n\nSe seu projeto é pequeno, seus dados são simples, e você trabalha sozinho: use o Excel.\nSério. Não complique.\nSynesis existe para resolver problemas que o Excel não resolve bem. Se você não tem esses problemas, não precisa de Synesis.\n\n\n\n\n\n\nNo Excel, nada impede você de escrever:\n\n\n\nCódigo\nRelação\nCódigo\n\n\n\n\nCusto\ninfluencia\nAdoção\n\n\ncusto\nINFLUENCIA\nadoção\n\n\nPreço\nafeta\nAceitação\n\n\n\nSão três formas de dizer a mesma coisa? Ou são conceitos diferentes? O Excel não sabe. Você também não vai lembrar daqui a seis meses.\nSynesis força consistência. Se você definiu “Custo” na ontologia, o compilador reclama quando você escreve “custo” ou “Preço”. Isso parece burocracia até você ter 200 códigos e perceber que metade são duplicatas com nomes ligeiramente diferentes.\n\n\n\nNo Excel, você provavelmente faz algo assim:\n\n\n\nCitação\nCódigo\n\n\n\n\n“O preço é muito alto”\nBarreira Econômica\n\n\n\nOnde está sua interpretação? Por que você decidiu que isso é “Barreira Econômica” e não “Percepção de Valor”? Você lembra? Consegue explicar para seu orientador? Para o parecerista que vai revisar seu artigo?\nSynesis exige que você registre a interpretação junto com a codificação. Isso parece trabalho extra até alguém questionar suas conclusões e você ter que justificar cada decisão analítica.\n\n\n\nTente fazer isso no Excel: - Dado um código, encontrar todas as citações associadas - Dada uma citação, encontrar todos os códigos atribuídos - Dado um artigo, encontrar todas as cadeias causais extraídas - Dada uma cadeia causal, encontrar a fonte original\nVocê pode fazer com filtros, PROCV, tabelas dinâmicas. Vai funcionar. Até você adicionar mais 50 fontes e perceber que sua planilha virou um monstro de abas interconectadas que só você entende (e mesmo você, nem sempre).\nSynesis mantém a estrutura fonte → item → interpretação → código/cadeia automaticamente. O compilador gera os CSVs com colunas de rastreabilidade (source_file, source_line, source_column). Você sempre sabe de onde veio cada dado.\n\n\n\nCom 10 entrevistas e 30 códigos, Excel funciona.\nCom 100 artigos, 500 códigos e 3 pesquisadores, Excel vira pesadelo: - Quem alterou o quê? - Por que este código sumiu? - Esta citação estava em qual versão do arquivo? - Como mesclar as análises de três pessoas?\nSynesis são arquivos de texto. Funcionam com Git. Você tem histórico completo, pode fazer merge, pode reverter, pode trabalhar em paralelo. Isso não é vantagem para um TCC. É essencial para um projeto de pesquisa de 3 anos com equipe.\n\n\n\nTente representar isso no Excel:\nFalta de Informação → GERA → Desconfiança → INIBE → Adoção\nVocê vai precisar de colunas separadas, ou células concatenadas, ou uma estrutura improvisada. Qualquer análise posterior vai exigir parsing manual.\nSynesis tem sintaxe nativa para cadeias causais. O compilador entende a estrutura e pode exportar em formatos adequados para análise de redes ou grafos de conhecimento.\n\n\n\n\n\n\n\n\n\n\n\n\n“Trabalho extra”\nO que você ganha\n\n\n\n\nAprender a sintaxe\nEstrutura que força clareza conceitual\n\n\nDefinir ontologia\nVocabulário controlado que não vira bagunça\n\n\nEscrever em texto puro\nArquivos versionáveis, pesquisáveis, duráveis\n\n\nUsar o compilador\nValidação automática + múltiplos formatos de saída\n\n\nSeparar fonte/item/código\nRastreabilidade completa e auditável\n\n\n\n\n\n\n\nSeja honesto consigo mesmo. Use Excel se:\n\nSeu projeto tem menos de 20 fontes\nVocê trabalha sozinho\nOs códigos são simples (sem hierarquias complexas)\nVocê não precisa justificar decisões analíticas em detalhe\nO projeto termina em alguns meses e não será retomado\nVocê não pretende integrar com outras ferramentas de análise\n\nNão há vergonha nisso. Ferramenta certa para o problema certo.\n\n\n\n\nConsidere Synesis se:\n\nVocê tem dezenas ou centenas de fontes\nMúltiplas pessoas vão codificar ou revisar\nO projeto dura anos (dissertação, tese, pesquisa institucional)\nVocê precisa demonstrar rigor metodológico\nOs dados serão reanalisados ou expandidos no futuro\nVocê quer integrar com análise de redes ou grafos de conhecimento\nConsistência terminológica é crítica para suas conclusões\nVocê já perdeu dados ou trabalho por problemas com planilhas\n\n\n\n\n\n\n\nCusto inicial: Baixo. Você já sabe usar.\nCusto ao longo do tempo: Cresce exponencialmente. Manutenção de planilhas complexas, correção de inconsistências, reconstrução de rastreabilidade perdida, explicação de decisões não documentadas.\nCusto de erro: Alto. Erros se propagam silenciosamente. Você pode descobrir inconsistências só na fase de escrita, quando é tarde demais.\n\n\n\nCusto inicial: Médio. Precisa aprender a sintaxe e definir a estrutura.\nCusto ao longo do tempo: Estável. A estrutura se mantém. Validação automática pega erros cedo.\nCusto de erro: Baixo. O compilador reclama imediatamente quando algo está errado.\n\n\n\n\n\nNão é “por que não usar Excel?”\nÉ: “Qual é o custo de fazer errado?”\nSe o custo de inconsistência, perda de rastreabilidade ou bagunça conceitual é baixo para seu projeto, use Excel.\nSe esse custo é alto — porque você precisa defender uma tese, publicar um artigo, ou tomar decisões organizacionais baseadas nos dados — o investimento em estrutura se paga.\n\n\n\n\nSe você está em dúvida:\n\nComece no Excel para explorar os dados\nMigre para Synesis quando perceber que precisa de mais estrutura\nExporte para Excel quando precisar de visualizações ou análises específicas\n\nSynesis não é anti-Excel. O Excel é um dos formatos de saída. A questão é: onde fica a fonte da verdade?\n\nSe a fonte da verdade é a planilha, você tem os problemas que descrevi.\nSe a fonte da verdade são os arquivos Synesis, o Excel é só uma das formas de visualizar.\n\n\n\n\n\nSynesis não é para todo mundo. Não é para todo projeto.\nÉ para quem já sofreu com: - Planilhas que viraram monstros incompreensíveis - Códigos duplicados que contaminaram a análise - Perguntas de “de onde veio isso?” sem resposta - Meses de trabalho perdidos por falta de estrutura\nSe você nunca teve esses problemas, talvez não precise de Synesis.\nSe você já teve, sabe exatamente por que vale a pena investir em estrutura desde o início.\n\nA melhor ferramenta é a que resolve seu problema. Às vezes é o Excel. Às vezes não é.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#a-pergunta-incômoda",
+    "href": "guide/guia_sincero.html#a-pergunta-incômoda",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "“Por que devo aprender uma linguagem, ter todo esse trabalho, para no final gerar uma planilha? Por que não pular essa etapa e anotar direto no Excel?”\n\nEssa é uma pergunta legítima. E merece uma resposta honesta.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#resposta-curta",
+    "href": "guide/guia_sincero.html#resposta-curta",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Se seu projeto é pequeno, seus dados são simples, e você trabalha sozinho: use o Excel.\nSério. Não complique.\nSynesis existe para resolver problemas que o Excel não resolve bem. Se você não tem esses problemas, não precisa de Synesis.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#os-problemas-que-o-excel-não-resolve",
+    "href": "guide/guia_sincero.html#os-problemas-que-o-excel-não-resolve",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "No Excel, nada impede você de escrever:\n\n\n\nCódigo\nRelação\nCódigo\n\n\n\n\nCusto\ninfluencia\nAdoção\n\n\ncusto\nINFLUENCIA\nadoção\n\n\nPreço\nafeta\nAceitação\n\n\n\nSão três formas de dizer a mesma coisa? Ou são conceitos diferentes? O Excel não sabe. Você também não vai lembrar daqui a seis meses.\nSynesis força consistência. Se você definiu “Custo” na ontologia, o compilador reclama quando você escreve “custo” ou “Preço”. Isso parece burocracia até você ter 200 códigos e perceber que metade são duplicatas com nomes ligeiramente diferentes.\n\n\n\nNo Excel, você provavelmente faz algo assim:\n\n\n\nCitação\nCódigo\n\n\n\n\n“O preço é muito alto”\nBarreira Econômica\n\n\n\nOnde está sua interpretação? Por que você decidiu que isso é “Barreira Econômica” e não “Percepção de Valor”? Você lembra? Consegue explicar para seu orientador? Para o parecerista que vai revisar seu artigo?\nSynesis exige que você registre a interpretação junto com a codificação. Isso parece trabalho extra até alguém questionar suas conclusões e você ter que justificar cada decisão analítica.\n\n\n\nTente fazer isso no Excel: - Dado um código, encontrar todas as citações associadas - Dada uma citação, encontrar todos os códigos atribuídos - Dado um artigo, encontrar todas as cadeias causais extraídas - Dada uma cadeia causal, encontrar a fonte original\nVocê pode fazer com filtros, PROCV, tabelas dinâmicas. Vai funcionar. Até você adicionar mais 50 fontes e perceber que sua planilha virou um monstro de abas interconectadas que só você entende (e mesmo você, nem sempre).\nSynesis mantém a estrutura fonte → item → interpretação → código/cadeia automaticamente. O compilador gera os CSVs com colunas de rastreabilidade (source_file, source_line, source_column). Você sempre sabe de onde veio cada dado.\n\n\n\nCom 10 entrevistas e 30 códigos, Excel funciona.\nCom 100 artigos, 500 códigos e 3 pesquisadores, Excel vira pesadelo: - Quem alterou o quê? - Por que este código sumiu? - Esta citação estava em qual versão do arquivo? - Como mesclar as análises de três pessoas?\nSynesis são arquivos de texto. Funcionam com Git. Você tem histórico completo, pode fazer merge, pode reverter, pode trabalhar em paralelo. Isso não é vantagem para um TCC. É essencial para um projeto de pesquisa de 3 anos com equipe.\n\n\n\nTente representar isso no Excel:\nFalta de Informação → GERA → Desconfiança → INIBE → Adoção\nVocê vai precisar de colunas separadas, ou células concatenadas, ou uma estrutura improvisada. Qualquer análise posterior vai exigir parsing manual.\nSynesis tem sintaxe nativa para cadeias causais. O compilador entende a estrutura e pode exportar em formatos adequados para análise de redes ou grafos de conhecimento.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#o-que-você-ganha-com-o-trabalho-extra",
+    "href": "guide/guia_sincero.html#o-que-você-ganha-com-o-trabalho-extra",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "“Trabalho extra”\nO que você ganha\n\n\n\n\nAprender a sintaxe\nEstrutura que força clareza conceitual\n\n\nDefinir ontologia\nVocabulário controlado que não vira bagunça\n\n\nEscrever em texto puro\nArquivos versionáveis, pesquisáveis, duráveis\n\n\nUsar o compilador\nValidação automática + múltiplos formatos de saída\n\n\nSeparar fonte/item/código\nRastreabilidade completa e auditável",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#quando-excel-é-a-escolha-certa",
+    "href": "guide/guia_sincero.html#quando-excel-é-a-escolha-certa",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Seja honesto consigo mesmo. Use Excel se:\n\nSeu projeto tem menos de 20 fontes\nVocê trabalha sozinho\nOs códigos são simples (sem hierarquias complexas)\nVocê não precisa justificar decisões analíticas em detalhe\nO projeto termina em alguns meses e não será retomado\nVocê não pretende integrar com outras ferramentas de análise\n\nNão há vergonha nisso. Ferramenta certa para o problema certo.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#quando-synesis-vale-o-investimento",
+    "href": "guide/guia_sincero.html#quando-synesis-vale-o-investimento",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Considere Synesis se:\n\nVocê tem dezenas ou centenas de fontes\nMúltiplas pessoas vão codificar ou revisar\nO projeto dura anos (dissertação, tese, pesquisa institucional)\nVocê precisa demonstrar rigor metodológico\nOs dados serão reanalisados ou expandidos no futuro\nVocê quer integrar com análise de redes ou grafos de conhecimento\nConsistência terminológica é crítica para suas conclusões\nVocê já perdeu dados ou trabalho por problemas com planilhas",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#o-custo-real-de-cada-abordagem",
+    "href": "guide/guia_sincero.html#o-custo-real-de-cada-abordagem",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Custo inicial: Baixo. Você já sabe usar.\nCusto ao longo do tempo: Cresce exponencialmente. Manutenção de planilhas complexas, correção de inconsistências, reconstrução de rastreabilidade perdida, explicação de decisões não documentadas.\nCusto de erro: Alto. Erros se propagam silenciosamente. Você pode descobrir inconsistências só na fase de escrita, quando é tarde demais.\n\n\n\nCusto inicial: Médio. Precisa aprender a sintaxe e definir a estrutura.\nCusto ao longo do tempo: Estável. A estrutura se mantém. Validação automática pega erros cedo.\nCusto de erro: Baixo. O compilador reclama imediatamente quando algo está errado.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#a-pergunta-que-você-deveria-fazer",
+    "href": "guide/guia_sincero.html#a-pergunta-que-você-deveria-fazer",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Não é “por que não usar Excel?”\nÉ: “Qual é o custo de fazer errado?”\nSe o custo de inconsistência, perda de rastreabilidade ou bagunça conceitual é baixo para seu projeto, use Excel.\nSe esse custo é alto — porque você precisa defender uma tese, publicar um artigo, ou tomar decisões organizacionais baseadas nos dados — o investimento em estrutura se paga.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#um-meio-termo-honesto",
+    "href": "guide/guia_sincero.html#um-meio-termo-honesto",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Se você está em dúvida:\n\nComece no Excel para explorar os dados\nMigre para Synesis quando perceber que precisa de mais estrutura\nExporte para Excel quando precisar de visualizações ou análises específicas\n\nSynesis não é anti-Excel. O Excel é um dos formatos de saída. A questão é: onde fica a fonte da verdade?\n\nSe a fonte da verdade é a planilha, você tem os problemas que descrevi.\nSe a fonte da verdade são os arquivos Synesis, o Excel é só uma das formas de visualizar.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "guide/guia_sincero.html#conclusão-brutal",
+    "href": "guide/guia_sincero.html#conclusão-brutal",
+    "title": "1 Por que não fazer direto no Excel?",
+    "section": "",
+    "text": "Synesis não é para todo mundo. Não é para todo projeto.\nÉ para quem já sofreu com: - Planilhas que viraram monstros incompreensíveis - Códigos duplicados que contaminaram a análise - Perguntas de “de onde veio isso?” sem resposta - Meses de trabalho perdidos por falta de estrutura\nSe você nunca teve esses problemas, talvez não precise de Synesis.\nSe você já teve, sabe exatamente por que vale a pena investir em estrutura desde o início.\n\nA melhor ferramenta é a que resolve seu problema. Às vezes é o Excel. Às vezes não é.",
+    "crumbs": [
+      "Introdução",
+      "Guias por Audiência",
+      "Por que não fazer direto no Excel?"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html",
+    "href": "reference/guia_referencia.html",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "Versão 1.1\n\n\n\n\n\nSynesis é uma Domain-Specific Language (DSL) declarativa para formalização, validação e compilação de corpora analíticos de pesquisas qualitativas. O compilador transforma anotações interpretativas em estruturas canônicas, assegurando inteligibilidade humana e rigor formal.\n\n\n\n\nValida sintaxe e semântica de anotações\nGera AST (Abstract Syntax Tree)\nProduz formatos estruturados básicos (JSON, CSV, EXCEL)\nNormaliza conceitos via templates configuráveis\n\n\n\n\n\nNão é runtime ou sistema de execução\nNão realiza análise estatística\nNão gerencia interface de usuário\nNão persiste estado entre execuções\n\n\n\n\nO compilador processa arquivos de texto, produz artefatos estruturados e termina. Não há estado persistente, loops condicionais ou side-effects além da escrita de arquivos de saída.\n\n\n\n\n\n\n\n\n\n\nExtensão\nDescrição\n\n\n\n\n.synp\nArquivo de projeto (ponto de entrada único)\n\n\n.syn\nArquivos de anotação (SOURCE + ITEM)\n\n\n.syno\nArquivos de ontologia (ONTOLOGY)\n\n\n.synt\nArquivo de template (FIELD definitions)\n\n\n.bib\nReferências BibTeX/BibLaTeX\n\n\n\n\n\n\n\n\n\n\n\n\n\nFormato\nDescrição\n\n\n\n\nJSON\nRepresentação serializada completa (inclui location em todos os nós)\n\n\nCSV\nTabelas planas por tipo de bloco (inclui colunas source_file, source_line, source_column)\n\n\nEXCEL\nTabelas planas como abas\n\n\nDiagnósticos\nRelatório de erros com localização precisa\n\n\n\n\n\n\nCada linha CSV de ITEM, CHAIN ou ONTOLOGY inclui colunas de localização:\nbibref,from_code,relation,to_code,source_file,source_line,source_column\nashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11\n\n\n\n\nCompilação determinística: mesma entrada produz mesma saída\nErros reportados com arquivo, linha, coluna e contexto\nCompilação parcial é exclusivamente pedagógica\nArtefatos finais (JSON, CSV) gerados apenas mediante compilação completa\nValidação de referências bibliográficas é obrigatória\n\n\n\n\n\n\nO arquivo de projeto orquestra os componentes da análise e serve como ponto de entrada único para o compilador.\n\n\nPROJECT project_name\n\nTEMPLATE \"filename.synt\"\nINCLUDE BIBLIOGRAPHY \"filename.bib\"\nINCLUDE ANNOTATIONS \"filename.syn\"\nINCLUDE ONTOLOGY \"filename.syno\"\n\n# Colchetes indicam que todo o bloco METADATA é opcional\n[METADATA\n    version: 1.0\n    author: string\n    [created: date]    # Campo individual opcional\n    [modified: date]   # Campo individual opcional\n    [dataset: string]\nEND]\n\n# Colchetes indicam que todo o bloco DESCRIPTION é opcional\n[DESCRIPTION\n    Texto livre descrevendo o projeto...\nEND]\n\nEND\n\n\n\n\nPROJECT: Palavra-chave obrigatória que inicia a definição do projeto\nTEMPLATE: Referência ao arquivo .synt que define as regras de validação\nINCLUDE BIBLIOGRAPHY: Caminho para arquivo .bib com referências\nINCLUDE ANNOTATIONS: Caminho para arquivo(s) .syn com anotações\nINCLUDE ONTOLOGY: Caminho para arquivo(s) .syno com definições ontológicas\nMETADATA: Bloco opcional com metadados do projeto\nDESCRIPTION: Bloco opcional com descrição livre do projeto\n\n\n\n\n\n\nO template define a estrutura e regras de validação para anotações.\n\n\nTEMPLATE name \n[version: \"string\"]\n[author: \"string\"]\n\n\n\nSOURCE FIELDS\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\nITEM FIELDS\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\nONTOLOGY FIELDS\n    [REQUIRED | OPTIONAL | BUNDLE] field_name [,field_name] ...\nEND\n\n\n\nTEMPLATE qualitative_analysis\nversion: \"1.0\"\nauthor: \"Researcher\"\n\nSOURCE FIELDS\n    REQUIRED bibref\n    OPTIONAL access_date\nEND\n\nITEM FIELDS\n    REQUIRED quote\n    REQUIRED BUNDLE note, chain\n    OPTIONAL code\nEND\n\nONTOLOGY FIELDS\n    REQUIRED description\n    OPTIONAL topic\nEND\n\n\n\n\n\nA declaração FIELD especifica o tipo, escopo e restrições de cada campo.\n\n\nFIELD field_name TYPE [TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]\n    SCOPE [SOURCE | ITEM | ONTOLOGY]\n    [DESCRIPTION description text]\n    \n    # Propriedade exclusiva para TYPE CHAIN\n    [ARITY operator number] \n    [RELATIONS\n        relation_name: description\n    END]\n\n    # Propriedade exclusiva para TYPE ORDERED ou ENUMERATED\n    [VALUES\n        [index] value_name: description  # Para ORDERED\n        value_name: description          # Para ENUMERATED\n    END]\n\n    # Propriedade exclusiva para TYPE SCALE\n    [FORMAT [min..max]]\n    \nEND\n\n\n\nFIELD chain TYPE CHAIN\n    SCOPE ITEM\n    DESCRIPTION Cadeia causal entre conceitos\n    ARITY &gt;= 2\n    RELATIONS\n        INFLUENCES: Relação de influência causal\n        ENABLES: Relação de habilitação\n        INHIBITS: Relação de inibição\n    END\nEND\n\nFIELD aspect TYPE ORDERED\n    SCOPE ONTOLOGY\n    DESCRIPTION Aspecto modal de Dooyeweerd\n    VALUES\n        1 quantitative: Aspecto numérico\n        2 spatial: Aspecto espacial\n        3 kinematic: Aspecto cinético\n        4 physical: Aspecto físico\n        5 biotic: Aspecto biótico\n    END\nEND\n\nFIELD sentiment TYPE ENUMERATED\n    SCOPE ITEM\n    DESCRIPTION Sentimento expresso no excerto\n    VALUES\n        positive: Sentimento positivo\n        negative: Sentimento negativo\n        neutral: Sentimento neutro\n    END\nEND\n\nFIELD confidence TYPE SCALE\n    SCOPE ITEM\n    DESCRIPTION Nível de confiança da interpretação\n    FORMAT [1..5]\nEND\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipo\nEscopo\nSemântica\n\n\n\n\nQUOTATION\nITEM\nExcerto textual da fonte\n\n\nMEMO\nITEM\nAnotação analítica do pesquisador\n\n\nCODE\nITEM\nRótulo conceitual (categorização)\n\n\nCHAIN\nITEM\nRelação qualificada entre códigos\n\n\nTEXT\nqualquer\nTexto livre genérico\n\n\nDATE\nSOURCE\nData com formato especificado\n\n\nSCALE\nqualquer\nValor numérico em intervalo [min..max]\n\n\nENUMERATED\nqualquer\nValor de lista fechada sem hierarquia\n\n\nORDERED\nONTOLOGY\nValor de lista com hierarquia ordinal indexada\n\n\nTOPIC\nONTOLOGY\nCategoria hierárquica superior (agrupamento dinâmico)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNível\nFIXO (linguagem)\nCONFIGURÁVEL (template)\n\n\n\n\nPalavras-chave\nSOURCE, ITEM, ONTOLOGY, FIELD, END\nNomes de campos como aspect, quote\n\n\nTipos de dados\nQUOTATION, MEMO, CODE, CHAIN, TEXT, etc.\nValores em listas ORDERED/ENUMERATED\n\n\nEstrutura\nBlocos SOURCE/ITEM/ONTOLOGY, sintaxe FIELD…END\nQuais campos são REQUIRED/OPTIONAL\n\n\nModificadores\nBUNDLE, REQUIRED, OPTIONAL, SCOPE, TYPE\nQuais campos usar BUNDLE\n\n\n\n\n\n\n\n\n\n\nContextualiza ITEMs com referência bibliográfica. Cada SOURCE referencia exatamente uma entrada do arquivo .bib.\nSOURCE @bibref                # ← Referência obrigatória ao .bib\n    [field_name: value]       # ← Campos opcionais do SOURCE\n    \n    ITEM                      # ← Um ou mais ITEMs obrigatórios\n        ...\n    END\n    \nEND\nExemplo anotado:\nSOURCE @smith2023             # ← Deve existir em referencias.bib\n    access_date: 2025-01-15   # ← Campo opcional definido no template\n\n    ITEM                      # ← Primeiro item de análise\n        quote: \"The technology shows promising results.\"\n        note: Autor expressa otimismo sobre resultados\n        chain: Technology -&gt; INFLUENCES -&gt; Acceptance\n    END\n\nEND                           # ← Fecha o bloco SOURCE\n\n\n\nUnidade analítica fundamental. Contém excerto, memos, códigos e/ou cadeias. Pertence a exatamente um SOURCE.\nITEM [@bibref]                # ← Referência opcional (herda do SOURCE pai)\n    field_name: value         # ← Um ou mais campos obrigatórios\n    [field_name: value] ...   # ← Campos adicionais conforme template\nEND\nExemplo anotado:\nITEM @ref2025                 # ← Referência opcional para rastreabilidade\n    quote: Texto extraído     # ← Campo obrigatório (QUOTATION)\n\n    note: Primeira interp.    # ← Primeiro par do BUNDLE\n    chain: A -&gt; INFLUENCES -&gt; B\n\n    note: Segunda interp.     # ← Segundo par do BUNDLE (mesma quantidade)\n    chain: C -&gt; ENABLES -&gt; D\nEND                           # ← Fecha o bloco ITEM\n\n\n\nDefine conceito do vocabulário controlado. Estrutura plana com possibilidade de hierarquia.\nONTOLOGY concept_name         # ← Nome do conceito (pode conter espaços)\n    field_name: value         # ← Um ou mais campos obrigatórios\n    [field_name: value] ...   # ← Campos adicionais conforme template\nEND\nExemplo anotado:\nONTOLOGY Cost                 # ← Nome simples (sem espaços)\n    topic: Economics          # ← Agrupamento dinâmico (TOPIC)\n    description: Economic factor representing financial expenditure\nEND\n\nONTOLOGY Public Acceptance    # ← Nome com espaços (sem aspas)\n    topic: Social Factors     # ← Mesmo topic agrupa conceitos relacionados\n    description: Community-level support for technology\nEND\n\n\n\n\n\n\n\nQuando o template define RELATIONS, a cadeia usa o padrão: posições ímpares são códigos, posições pares são tipos de relação.\nchain: Code -&gt; RELATION -&gt; Code [-&gt; RELATION -&gt; Code] ...\n#      ^^^^    ^^^^^^^^    ^^^^\n#      código  relação     código (padrão alternado)\nExemplo anotado:\nchain: Climate Belief -&gt; INFLUENCES -&gt; Support\n#      ^^^^^^^^^^^^^    ^^^^^^^^^^    ^^^^^^^\n#      código (origem)  relação       código (destino)\n\nchain: A -&gt; INFLUENCES -&gt; B -&gt; ENABLES -&gt; C\n#      ^    ^^^^^^^^^^    ^    ^^^^^^^    ^\n#      cod1 rel1          cod2 rel2       cod3 (cadeia estendida)\n\n\n\nQuando o template NÃO define RELATIONS, apenas códigos são separados por -&gt;. A relação é implícita.\nchain: Code -&gt; Code [-&gt; Code] ...\n#      ^^^^    ^^^^\n#      origem  destino (relação implícita entre cada par)\nExemplo anotado:\nchain: A -&gt; B             # ← Relação implícita: A relaciona-se com B\nchain: A -&gt; B -&gt; C        # ← Duas relações implícitas: A→B e B→C\n\n\n\nO parser captura espaços internos sem exigir aspas:\nchain: Institutional Barrier -&gt; ENABLES -&gt; Financial Barrier\n#      ^^^^^^^^^^^^^^^^^^^^              ^^^^^^^^^^^^^^^^^^\n#      conceito com espaços              conceito com espaços (sem aspas)\n\nchain: Public Acceptance -&gt; INFLUENCES -&gt; CCS Support -&gt; ENABLES -&gt; Deployment\n#      ^^^^^^^^^^^^^^^^^                  ^^^^^^^^^^^               ^^^^^^^^^^\n#      3 palavras                         2 palavras                1 palavra\n\n\n\n\n\nO modificador BUNDLE define grupos de campos que formam unidade mínima repetível de interpretação.\n\n\nITEM FIELDS\n    REQUIRED BUNDLE field_name, field_name [,field_name] ...\n    #        ^^^^^^ ^^^^^^^^^^  ^^^^^^^^^^\n    #        modif. campo1      campo2 (devem aparecer juntos)\nEND\n\n\n\n\nCampos em BUNDLE são obrigatórios como unidade indivisível\nMínimo 1 ocorrência do bundle completo\nCampos do bundle nunca aparecem isoladamente\nDevem aparecer em igual quantidade: len(field1) == len(field2) == len(field3) &gt;= 1\nCorrespondência posicional: field1[i] relaciona-se com field2[i] e field3[i]\n\n\n\n\nITEM @ref2025\n    quote: Texto extraído da fonte    # ← Campo independente\n\n    note: Primeira interpretação      # ← bundle[0].note\n    chain: A -&gt; INFLUENCES -&gt; B       # ← bundle[0].chain (par 1)\n\n    note: Segunda interpretação       # ← bundle[1].note\n    chain: C -&gt; ENABLES -&gt; D          # ← bundle[1].chain (par 2)\nEND\n# Resultado: 2 pares note+chain, correspondência posicional garantida\n\n\n\n\nCampo isolado de bundle: erro\nContagens diferentes: erro\nAusência completa de bundle obrigatório: erro\nViolação de BUNDLE gera erro de compilação (não warning)\n\n\n\n\n\n\nO tipo TOPIC permite definir categorias hierárquicas superiores que agrupam conceitos ontológicos de forma dinâmica, sem pré-definição no template.\n\n\n\n\n\n\n\n\n\n\nCaracterística\nENUMERATED\nTOPIC\n\n\n\n\nValores permitidos\nLista fechada pré-definida\nAberto, dinâmico\n\n\nUso\nCategorização controlada\nAgrupamento emergente\n\n\nValidação\nRejeita valores fora da lista\nAceita qualquer string\n\n\n\n\n\n\nONTOLOGY Cost\n    topic: Economics              # ← Categoria emergente (não pré-definida)\n    description: Economic factor representing financial expenditure\nEND\n\nONTOLOGY Public Acceptance\n    topic: Social Factors         # ← Outra categoria emergente\n    description: Community-level support for technology\nEND\n\n# Resultado: dois topics criados dinamicamente (Economics, Social Factors)\n# O compilador aceita qualquer string como valor de TOPIC\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#\nEtapa\nResponsabilidade\n\n\n\n\n1\nDescoberta\nLer .synp, resolver caminhos, listar arquivos\n\n\n2\nTemplate Loading\nParsear e validar .synt (define regras)\n\n\n3\nBibTeX Loading\nCarregar .bib, construir índice de referências\n\n\n4\nParsing Sintático\nLark processa cada arquivo .syn e .syno\n\n\n5\nTransformação\nConverter árvores concretas em AST tipada\n\n\n6\nValidação Semântica\nVerificar referências, tipos, campos obrigatórios\n\n\n7\nNormalização\nAplicar defaults, canonicalização de valores\n\n\n8\nVinculação\nAssociar ITEMs a SOURCEs, CODEs e CHAINs a ONTOLOGYs\n\n\n9\nExportação\nGerar JSON, CSV, conforme definido no template\n\n\n\n\n\n\nProjeto → Template → BibTeX → Anotações → Ontologia\nCada fase depende da anterior. Erros interrompem o pipeline.\n\n\n\n\n\n\n\nO compilador prioriza mensagens de erro educativas que ensinam a sintaxe correta sem exigir leitura do manual.\n\n\n\nErro comum:\ncode: Climate Belief Risk Perception  # ERRO: falta vírgula\nMensagem sugerida:\nerro: arquivo.syn:3:26: Múltiplos códigos devem ser separados por vírgula.\n    code: Climate Belief Risk Perception\n                         ^~~~ falta vírgula antes de \"Risk\"\n\nUse vírgula para separar códigos:\n    code: Climate Belief, Risk Perception\n\nOU especifique cada código em linha separada:\n    code: Climate Belief\n    code: Risk Perception\n\n\n\nErro comum:\nchain: Climate Belief INFLUENCES Support  # ERRO: falta -&gt;\nMensagem sugerida:\nerro: arquivo.syn:2:27: Cadeia causal exige operador '-&gt;' entre elementos.\n    chain: Climate Belief INFLUENCES Support\n                          ^~~~~~~~~~~ falta '-&gt;' antes de \"INFLUENCES\"\n\nUse '-&gt;' para conectar elementos:\n    chain: Climate Belief -&gt; INFLUENCES -&gt; Support\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPalavra-chave\nDescrição\n\n\n\n\nPROJECT\nInicia definição de projeto\n\n\nTEMPLATE\nReferência ao arquivo de template ou início de definição\n\n\nSOURCE\nBloco de fonte bibliográfica\n\n\nITEM\nUnidade analítica\n\n\nONTOLOGY\nDefinição de conceito\n\n\nFIELD\nDefinição de campo\n\n\nEND\nEncerra qualquer bloco\n\n\n\n\n\n\n\n\n\nPalavra-chave\nDescrição\n\n\n\n\nINCLUDE\nInclui arquivo externo\n\n\nBIBLIOGRAPHY\nTipo de inclusão para .bib\n\n\nANNOTATIONS\nTipo de inclusão para .syn\n\n\n\n\n\n\n\n\n\nModificador\nDescrição\n\n\n\n\nREQUIRED\nCampo obrigatório\n\n\nOPTIONAL\nCampo opcional\n\n\nBUNDLE\nGrupo de campos obrigatórios como unidade\n\n\n\n\n\n\n\n\n\nEspecificador\nDescrição\n\n\n\n\nTYPE\nDefine o tipo do campo\n\n\nSCOPE\nDefine o escopo (SOURCE, ITEM, ONTOLOGY)\n\n\nDESCRIPTION\nTexto descritivo do campo\n\n\nARITY\nRestrição de aridade para CHAIN\n\n\nRELATIONS\nLista de relações para CHAIN\n\n\nVALUES\nLista de valores para ORDERED/ENUMERATED\n\n\nFORMAT\nFormato para SCALE\n\n\n\n\n\n\n\n\nAs seções abaixo estão indicadas como tópicos para desenvolvimento futuro do guia, com base nas funcionalidades implícitas nos documentos fonte.\n\n\n\nComo o compilador valida que cada @bibref existe no arquivo .bib incluído.\n\n\n\n\n\nRegras para normalização de valores e conceitos via template.\n\n\n\n\n\nEstrutura do JSON gerado, incluindo campos location para rastreabilidade.\n\n\n\n\n\nFormato das tabelas planas por tipo de bloco, colunas de rastreabilidade.\n\n\n\n\n\nOrganização de abas por tipo de bloco.\n\n\n\n\n\nDetalhes técnicos do parser utilizado para processamento sintático.\n\n\n\n\n\nProjetos exemplo demonstrando uso integrado de todos os componentes.\n\n\n\n\n\nRecomendações para estruturação consistente de anotações qualitativas.\n\n\n\n\n\n\n\n\nPROJECT project_name              # ← Nome do projeto (obrigatório)\n\nTEMPLATE \"filename.synt\"          # ← Arquivo de template (obrigatório)\nINCLUDE BIBLIOGRAPHY \"filename.bib\"   # ← Referências BibTeX\nINCLUDE ANNOTATIONS \"filename.syn\"    # ← Arquivos de anotação\nINCLUDE ONTOLOGY \"filename.syno\"      # ← Arquivos de ontologia\n\n[METADATA                         # ← Bloco opcional\n    version: 1.0\n    author: string\n    [created: date]               # ← Campo opcional dentro do bloco\n    [modified: date]\n    [dataset: string]\nEND]\n\n[DESCRIPTION                      # ← Bloco opcional\n    Texto livre descrevendo o projeto...\nEND]\n\nEND                               # ← Fecha o PROJECT\n\n\n\nTEMPLATE name                     # ← Nome do template (obrigatório)\n[version: \"string\"]               # ← Metadado opcional\n[author: \"string\"]\n\nSOURCE FIELDS                     # ← Campos válidos em blocos SOURCE\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\n\nITEM FIELDS                       # ← Campos válidos em blocos ITEM\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\n\nONTOLOGY FIELDS                   # ← Campos válidos em blocos ONTOLOGY\n    [REQUIRED | OPTIONAL | BUNDLE] field_name [,field_name] ...\nEND\n\nFIELD field_name TYPE [TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]\n    SCOPE [SOURCE | ITEM | ONTOLOGY]  # ← Onde o campo pode ser usado\n    [DESCRIPTION description text]\n    \n    [ARITY operator number]       # ← Apenas para CHAIN\n    [RELATIONS                    # ← Apenas para CHAIN\n        relation_name: description\n    END]\n\n    [VALUES                       # ← Apenas para ORDERED/ENUMERATED\n        [index] value_name: description\n    END]\n\n    [FORMAT [min..max]]           # ← Apenas para SCALE\n    \nEND\n\n\n\nSOURCE @bibref                    # ← Referência ao .bib (obrigatório)\n    [field_name: value]           # ← Campos do SOURCE (conforme template)\n    \n    ITEM                          # ← Um ou mais ITEMs\n        field_name: value         # ← Campos obrigatórios\n        [field_name: value] ...   # ← Campos opcionais\n    END\n    \nEND\n\n\n\nONTOLOGY concept_name             # ← Nome do conceito (pode ter espaços)\n    field_name: value             # ← Campos obrigatórios\n    [field_name: value] ...       # ← Campos opcionais\nEND\n\n\n\n# Chain qualificada (com RELATIONS definidas no template)\nchain: Code -&gt; RELATION -&gt; Code [-&gt; RELATION -&gt; Code] ...\n#      ^^^^    ^^^^^^^^    ^^^^\n#      código  relação     código (padrão alternado obrigatório)\n\n# Chain simples (sem RELATIONS no template)\nchain: Code -&gt; Code [-&gt; Code] ...\n#      ^^^^    ^^^^\n#      origem  destino (relação implícita)\n\nDocumento gerado a partir da especificação Synesis v1.1",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#introdução",
+    "href": "reference/guia_referencia.html#introdução",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "Synesis é uma Domain-Specific Language (DSL) declarativa para formalização, validação e compilação de corpora analíticos de pesquisas qualitativas. O compilador transforma anotações interpretativas em estruturas canônicas, assegurando inteligibilidade humana e rigor formal.\n\n\n\n\nValida sintaxe e semântica de anotações\nGera AST (Abstract Syntax Tree)\nProduz formatos estruturados básicos (JSON, CSV, EXCEL)\nNormaliza conceitos via templates configuráveis\n\n\n\n\n\nNão é runtime ou sistema de execução\nNão realiza análise estatística\nNão gerencia interface de usuário\nNão persiste estado entre execuções\n\n\n\n\nO compilador processa arquivos de texto, produz artefatos estruturados e termina. Não há estado persistente, loops condicionais ou side-effects além da escrita de arquivos de saída.",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#arquivos-e-formatos",
+    "href": "reference/guia_referencia.html#arquivos-e-formatos",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "Extensão\nDescrição\n\n\n\n\n.synp\nArquivo de projeto (ponto de entrada único)\n\n\n.syn\nArquivos de anotação (SOURCE + ITEM)\n\n\n.syno\nArquivos de ontologia (ONTOLOGY)\n\n\n.synt\nArquivo de template (FIELD definitions)\n\n\n.bib\nReferências BibTeX/BibLaTeX\n\n\n\n\n\n\n\n\n\n\n\n\n\nFormato\nDescrição\n\n\n\n\nJSON\nRepresentação serializada completa (inclui location em todos os nós)\n\n\nCSV\nTabelas planas por tipo de bloco (inclui colunas source_file, source_line, source_column)\n\n\nEXCEL\nTabelas planas como abas\n\n\nDiagnósticos\nRelatório de erros com localização precisa\n\n\n\n\n\n\nCada linha CSV de ITEM, CHAIN ou ONTOLOGY inclui colunas de localização:\nbibref,from_code,relation,to_code,source_file,source_line,source_column\nashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11\n\n\n\n\nCompilação determinística: mesma entrada produz mesma saída\nErros reportados com arquivo, linha, coluna e contexto\nCompilação parcial é exclusivamente pedagógica\nArtefatos finais (JSON, CSV) gerados apenas mediante compilação completa\nValidação de referências bibliográficas é obrigatória",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#estrutura-do-projeto-.synp",
+    "href": "reference/guia_referencia.html#estrutura-do-projeto-.synp",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "O arquivo de projeto orquestra os componentes da análise e serve como ponto de entrada único para o compilador.\n\n\nPROJECT project_name\n\nTEMPLATE \"filename.synt\"\nINCLUDE BIBLIOGRAPHY \"filename.bib\"\nINCLUDE ANNOTATIONS \"filename.syn\"\nINCLUDE ONTOLOGY \"filename.syno\"\n\n# Colchetes indicam que todo o bloco METADATA é opcional\n[METADATA\n    version: 1.0\n    author: string\n    [created: date]    # Campo individual opcional\n    [modified: date]   # Campo individual opcional\n    [dataset: string]\nEND]\n\n# Colchetes indicam que todo o bloco DESCRIPTION é opcional\n[DESCRIPTION\n    Texto livre descrevendo o projeto...\nEND]\n\nEND\n\n\n\n\nPROJECT: Palavra-chave obrigatória que inicia a definição do projeto\nTEMPLATE: Referência ao arquivo .synt que define as regras de validação\nINCLUDE BIBLIOGRAPHY: Caminho para arquivo .bib com referências\nINCLUDE ANNOTATIONS: Caminho para arquivo(s) .syn com anotações\nINCLUDE ONTOLOGY: Caminho para arquivo(s) .syno com definições ontológicas\nMETADATA: Bloco opcional com metadados do projeto\nDESCRIPTION: Bloco opcional com descrição livre do projeto",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#definição-de-template-.synt",
+    "href": "reference/guia_referencia.html#definição-de-template-.synt",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "O template define a estrutura e regras de validação para anotações.\n\n\nTEMPLATE name \n[version: \"string\"]\n[author: \"string\"]\n\n\n\nSOURCE FIELDS\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\nITEM FIELDS\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\nONTOLOGY FIELDS\n    [REQUIRED | OPTIONAL | BUNDLE] field_name [,field_name] ...\nEND\n\n\n\nTEMPLATE qualitative_analysis\nversion: \"1.0\"\nauthor: \"Researcher\"\n\nSOURCE FIELDS\n    REQUIRED bibref\n    OPTIONAL access_date\nEND\n\nITEM FIELDS\n    REQUIRED quote\n    REQUIRED BUNDLE note, chain\n    OPTIONAL code\nEND\n\nONTOLOGY FIELDS\n    REQUIRED description\n    OPTIONAL topic\nEND",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#definição-de-campos-field",
+    "href": "reference/guia_referencia.html#definição-de-campos-field",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "A declaração FIELD especifica o tipo, escopo e restrições de cada campo.\n\n\nFIELD field_name TYPE [TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]\n    SCOPE [SOURCE | ITEM | ONTOLOGY]\n    [DESCRIPTION description text]\n    \n    # Propriedade exclusiva para TYPE CHAIN\n    [ARITY operator number] \n    [RELATIONS\n        relation_name: description\n    END]\n\n    # Propriedade exclusiva para TYPE ORDERED ou ENUMERATED\n    [VALUES\n        [index] value_name: description  # Para ORDERED\n        value_name: description          # Para ENUMERATED\n    END]\n\n    # Propriedade exclusiva para TYPE SCALE\n    [FORMAT [min..max]]\n    \nEND\n\n\n\nFIELD chain TYPE CHAIN\n    SCOPE ITEM\n    DESCRIPTION Cadeia causal entre conceitos\n    ARITY &gt;= 2\n    RELATIONS\n        INFLUENCES: Relação de influência causal\n        ENABLES: Relação de habilitação\n        INHIBITS: Relação de inibição\n    END\nEND\n\nFIELD aspect TYPE ORDERED\n    SCOPE ONTOLOGY\n    DESCRIPTION Aspecto modal de Dooyeweerd\n    VALUES\n        1 quantitative: Aspecto numérico\n        2 spatial: Aspecto espacial\n        3 kinematic: Aspecto cinético\n        4 physical: Aspecto físico\n        5 biotic: Aspecto biótico\n    END\nEND\n\nFIELD sentiment TYPE ENUMERATED\n    SCOPE ITEM\n    DESCRIPTION Sentimento expresso no excerto\n    VALUES\n        positive: Sentimento positivo\n        negative: Sentimento negativo\n        neutral: Sentimento neutro\n    END\nEND\n\nFIELD confidence TYPE SCALE\n    SCOPE ITEM\n    DESCRIPTION Nível de confiança da interpretação\n    FORMAT [1..5]\nEND",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#tipos-de-campo",
+    "href": "reference/guia_referencia.html#tipos-de-campo",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "Tipo\nEscopo\nSemântica\n\n\n\n\nQUOTATION\nITEM\nExcerto textual da fonte\n\n\nMEMO\nITEM\nAnotação analítica do pesquisador\n\n\nCODE\nITEM\nRótulo conceitual (categorização)\n\n\nCHAIN\nITEM\nRelação qualificada entre códigos\n\n\nTEXT\nqualquer\nTexto livre genérico\n\n\nDATE\nSOURCE\nData com formato especificado\n\n\nSCALE\nqualquer\nValor numérico em intervalo [min..max]\n\n\nENUMERATED\nqualquer\nValor de lista fechada sem hierarquia\n\n\nORDERED\nONTOLOGY\nValor de lista com hierarquia ordinal indexada\n\n\nTOPIC\nONTOLOGY\nCategoria hierárquica superior (agrupamento dinâmico)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNível\nFIXO (linguagem)\nCONFIGURÁVEL (template)\n\n\n\n\nPalavras-chave\nSOURCE, ITEM, ONTOLOGY, FIELD, END\nNomes de campos como aspect, quote\n\n\nTipos de dados\nQUOTATION, MEMO, CODE, CHAIN, TEXT, etc.\nValores em listas ORDERED/ENUMERATED\n\n\nEstrutura\nBlocos SOURCE/ITEM/ONTOLOGY, sintaxe FIELD…END\nQuais campos são REQUIRED/OPTIONAL\n\n\nModificadores\nBUNDLE, REQUIRED, OPTIONAL, SCOPE, TYPE\nQuais campos usar BUNDLE",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#blocos-estruturais",
+    "href": "reference/guia_referencia.html#blocos-estruturais",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "Contextualiza ITEMs com referência bibliográfica. Cada SOURCE referencia exatamente uma entrada do arquivo .bib.\nSOURCE @bibref                # ← Referência obrigatória ao .bib\n    [field_name: value]       # ← Campos opcionais do SOURCE\n    \n    ITEM                      # ← Um ou mais ITEMs obrigatórios\n        ...\n    END\n    \nEND\nExemplo anotado:\nSOURCE @smith2023             # ← Deve existir em referencias.bib\n    access_date: 2025-01-15   # ← Campo opcional definido no template\n\n    ITEM                      # ← Primeiro item de análise\n        quote: \"The technology shows promising results.\"\n        note: Autor expressa otimismo sobre resultados\n        chain: Technology -&gt; INFLUENCES -&gt; Acceptance\n    END\n\nEND                           # ← Fecha o bloco SOURCE\n\n\n\nUnidade analítica fundamental. Contém excerto, memos, códigos e/ou cadeias. Pertence a exatamente um SOURCE.\nITEM [@bibref]                # ← Referência opcional (herda do SOURCE pai)\n    field_name: value         # ← Um ou mais campos obrigatórios\n    [field_name: value] ...   # ← Campos adicionais conforme template\nEND\nExemplo anotado:\nITEM @ref2025                 # ← Referência opcional para rastreabilidade\n    quote: Texto extraído     # ← Campo obrigatório (QUOTATION)\n\n    note: Primeira interp.    # ← Primeiro par do BUNDLE\n    chain: A -&gt; INFLUENCES -&gt; B\n\n    note: Segunda interp.     # ← Segundo par do BUNDLE (mesma quantidade)\n    chain: C -&gt; ENABLES -&gt; D\nEND                           # ← Fecha o bloco ITEM\n\n\n\nDefine conceito do vocabulário controlado. Estrutura plana com possibilidade de hierarquia.\nONTOLOGY concept_name         # ← Nome do conceito (pode conter espaços)\n    field_name: value         # ← Um ou mais campos obrigatórios\n    [field_name: value] ...   # ← Campos adicionais conforme template\nEND\nExemplo anotado:\nONTOLOGY Cost                 # ← Nome simples (sem espaços)\n    topic: Economics          # ← Agrupamento dinâmico (TOPIC)\n    description: Economic factor representing financial expenditure\nEND\n\nONTOLOGY Public Acceptance    # ← Nome com espaços (sem aspas)\n    topic: Social Factors     # ← Mesmo topic agrupa conceitos relacionados\n    description: Community-level support for technology\nEND",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#cadeias-semânticas-chain",
+    "href": "reference/guia_referencia.html#cadeias-semânticas-chain",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "Quando o template define RELATIONS, a cadeia usa o padrão: posições ímpares são códigos, posições pares são tipos de relação.\nchain: Code -&gt; RELATION -&gt; Code [-&gt; RELATION -&gt; Code] ...\n#      ^^^^    ^^^^^^^^    ^^^^\n#      código  relação     código (padrão alternado)\nExemplo anotado:\nchain: Climate Belief -&gt; INFLUENCES -&gt; Support\n#      ^^^^^^^^^^^^^    ^^^^^^^^^^    ^^^^^^^\n#      código (origem)  relação       código (destino)\n\nchain: A -&gt; INFLUENCES -&gt; B -&gt; ENABLES -&gt; C\n#      ^    ^^^^^^^^^^    ^    ^^^^^^^    ^\n#      cod1 rel1          cod2 rel2       cod3 (cadeia estendida)\n\n\n\nQuando o template NÃO define RELATIONS, apenas códigos são separados por -&gt;. A relação é implícita.\nchain: Code -&gt; Code [-&gt; Code] ...\n#      ^^^^    ^^^^\n#      origem  destino (relação implícita entre cada par)\nExemplo anotado:\nchain: A -&gt; B             # ← Relação implícita: A relaciona-se com B\nchain: A -&gt; B -&gt; C        # ← Duas relações implícitas: A→B e B→C\n\n\n\nO parser captura espaços internos sem exigir aspas:\nchain: Institutional Barrier -&gt; ENABLES -&gt; Financial Barrier\n#      ^^^^^^^^^^^^^^^^^^^^              ^^^^^^^^^^^^^^^^^^\n#      conceito com espaços              conceito com espaços (sem aspas)\n\nchain: Public Acceptance -&gt; INFLUENCES -&gt; CCS Support -&gt; ENABLES -&gt; Deployment\n#      ^^^^^^^^^^^^^^^^^                  ^^^^^^^^^^^               ^^^^^^^^^^\n#      3 palavras                         2 palavras                1 palavra",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#modificador-bundle",
+    "href": "reference/guia_referencia.html#modificador-bundle",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "O modificador BUNDLE define grupos de campos que formam unidade mínima repetível de interpretação.\n\n\nITEM FIELDS\n    REQUIRED BUNDLE field_name, field_name [,field_name] ...\n    #        ^^^^^^ ^^^^^^^^^^  ^^^^^^^^^^\n    #        modif. campo1      campo2 (devem aparecer juntos)\nEND\n\n\n\n\nCampos em BUNDLE são obrigatórios como unidade indivisível\nMínimo 1 ocorrência do bundle completo\nCampos do bundle nunca aparecem isoladamente\nDevem aparecer em igual quantidade: len(field1) == len(field2) == len(field3) &gt;= 1\nCorrespondência posicional: field1[i] relaciona-se com field2[i] e field3[i]\n\n\n\n\nITEM @ref2025\n    quote: Texto extraído da fonte    # ← Campo independente\n\n    note: Primeira interpretação      # ← bundle[0].note\n    chain: A -&gt; INFLUENCES -&gt; B       # ← bundle[0].chain (par 1)\n\n    note: Segunda interpretação       # ← bundle[1].note\n    chain: C -&gt; ENABLES -&gt; D          # ← bundle[1].chain (par 2)\nEND\n# Resultado: 2 pares note+chain, correspondência posicional garantida\n\n\n\n\nCampo isolado de bundle: erro\nContagens diferentes: erro\nAusência completa de bundle obrigatório: erro\nViolação de BUNDLE gera erro de compilação (não warning)",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#tipo-topic",
+    "href": "reference/guia_referencia.html#tipo-topic",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "O tipo TOPIC permite definir categorias hierárquicas superiores que agrupam conceitos ontológicos de forma dinâmica, sem pré-definição no template.\n\n\n\n\n\n\n\n\n\n\nCaracterística\nENUMERATED\nTOPIC\n\n\n\n\nValores permitidos\nLista fechada pré-definida\nAberto, dinâmico\n\n\nUso\nCategorização controlada\nAgrupamento emergente\n\n\nValidação\nRejeita valores fora da lista\nAceita qualquer string\n\n\n\n\n\n\nONTOLOGY Cost\n    topic: Economics              # ← Categoria emergente (não pré-definida)\n    description: Economic factor representing financial expenditure\nEND\n\nONTOLOGY Public Acceptance\n    topic: Social Factors         # ← Outra categoria emergente\n    description: Community-level support for technology\nEND\n\n# Resultado: dois topics criados dinamicamente (Economics, Social Factors)\n# O compilador aceita qualquer string como valor de TOPIC",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#pipeline-de-compilação",
+    "href": "reference/guia_referencia.html#pipeline-de-compilação",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "#\nEtapa\nResponsabilidade\n\n\n\n\n1\nDescoberta\nLer .synp, resolver caminhos, listar arquivos\n\n\n2\nTemplate Loading\nParsear e validar .synt (define regras)\n\n\n3\nBibTeX Loading\nCarregar .bib, construir índice de referências\n\n\n4\nParsing Sintático\nLark processa cada arquivo .syn e .syno\n\n\n5\nTransformação\nConverter árvores concretas em AST tipada\n\n\n6\nValidação Semântica\nVerificar referências, tipos, campos obrigatórios\n\n\n7\nNormalização\nAplicar defaults, canonicalização de valores\n\n\n8\nVinculação\nAssociar ITEMs a SOURCEs, CODEs e CHAINs a ONTOLOGYs\n\n\n9\nExportação\nGerar JSON, CSV, conforme definido no template\n\n\n\n\n\n\nProjeto → Template → BibTeX → Anotações → Ontologia\nCada fase depende da anterior. Erros interrompem o pipeline.",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#error-handling-pedagógico",
+    "href": "reference/guia_referencia.html#error-handling-pedagógico",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "O compilador prioriza mensagens de erro educativas que ensinam a sintaxe correta sem exigir leitura do manual.\n\n\n\nErro comum:\ncode: Climate Belief Risk Perception  # ERRO: falta vírgula\nMensagem sugerida:\nerro: arquivo.syn:3:26: Múltiplos códigos devem ser separados por vírgula.\n    code: Climate Belief Risk Perception\n                         ^~~~ falta vírgula antes de \"Risk\"\n\nUse vírgula para separar códigos:\n    code: Climate Belief, Risk Perception\n\nOU especifique cada código em linha separada:\n    code: Climate Belief\n    code: Risk Perception\n\n\n\nErro comum:\nchain: Climate Belief INFLUENCES Support  # ERRO: falta -&gt;\nMensagem sugerida:\nerro: arquivo.syn:2:27: Cadeia causal exige operador '-&gt;' entre elementos.\n    chain: Climate Belief INFLUENCES Support\n                          ^~~~~~~~~~~ falta '-&gt;' antes de \"INFLUENCES\"\n\nUse '-&gt;' para conectar elementos:\n    chain: Climate Belief -&gt; INFLUENCES -&gt; Support",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#referência-rápida-de-palavras-chave",
+    "href": "reference/guia_referencia.html#referência-rápida-de-palavras-chave",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "Palavra-chave\nDescrição\n\n\n\n\nPROJECT\nInicia definição de projeto\n\n\nTEMPLATE\nReferência ao arquivo de template ou início de definição\n\n\nSOURCE\nBloco de fonte bibliográfica\n\n\nITEM\nUnidade analítica\n\n\nONTOLOGY\nDefinição de conceito\n\n\nFIELD\nDefinição de campo\n\n\nEND\nEncerra qualquer bloco\n\n\n\n\n\n\n\n\n\nPalavra-chave\nDescrição\n\n\n\n\nINCLUDE\nInclui arquivo externo\n\n\nBIBLIOGRAPHY\nTipo de inclusão para .bib\n\n\nANNOTATIONS\nTipo de inclusão para .syn\n\n\n\n\n\n\n\n\n\nModificador\nDescrição\n\n\n\n\nREQUIRED\nCampo obrigatório\n\n\nOPTIONAL\nCampo opcional\n\n\nBUNDLE\nGrupo de campos obrigatórios como unidade\n\n\n\n\n\n\n\n\n\nEspecificador\nDescrição\n\n\n\n\nTYPE\nDefine o tipo do campo\n\n\nSCOPE\nDefine o escopo (SOURCE, ITEM, ONTOLOGY)\n\n\nDESCRIPTION\nTexto descritivo do campo\n\n\nARITY\nRestrição de aridade para CHAIN\n\n\nRELATIONS\nLista de relações para CHAIN\n\n\nVALUES\nLista de valores para ORDERED/ENUMERATED\n\n\nFORMAT\nFormato para SCALE",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#seções-sugeridas-para-expansão",
+    "href": "reference/guia_referencia.html#seções-sugeridas-para-expansão",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "As seções abaixo estão indicadas como tópicos para desenvolvimento futuro do guia, com base nas funcionalidades implícitas nos documentos fonte.\n\n\n\nComo o compilador valida que cada @bibref existe no arquivo .bib incluído.\n\n\n\n\n\nRegras para normalização de valores e conceitos via template.\n\n\n\n\n\nEstrutura do JSON gerado, incluindo campos location para rastreabilidade.\n\n\n\n\n\nFormato das tabelas planas por tipo de bloco, colunas de rastreabilidade.\n\n\n\n\n\nOrganização de abas por tipo de bloco.\n\n\n\n\n\nDetalhes técnicos do parser utilizado para processamento sintático.\n\n\n\n\n\nProjetos exemplo demonstrando uso integrado de todos os componentes.\n\n\n\n\n\nRecomendações para estruturação consistente de anotações qualitativas.",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  },
+  {
+    "objectID": "reference/guia_referencia.html#apêndice-a-sintaxe-consolidada",
+    "href": "reference/guia_referencia.html#apêndice-a-sintaxe-consolidada",
+    "title": "1 Synesis: Guia de Referência da Linguagem",
+    "section": "",
+    "text": "PROJECT project_name              # ← Nome do projeto (obrigatório)\n\nTEMPLATE \"filename.synt\"          # ← Arquivo de template (obrigatório)\nINCLUDE BIBLIOGRAPHY \"filename.bib\"   # ← Referências BibTeX\nINCLUDE ANNOTATIONS \"filename.syn\"    # ← Arquivos de anotação\nINCLUDE ONTOLOGY \"filename.syno\"      # ← Arquivos de ontologia\n\n[METADATA                         # ← Bloco opcional\n    version: 1.0\n    author: string\n    [created: date]               # ← Campo opcional dentro do bloco\n    [modified: date]\n    [dataset: string]\nEND]\n\n[DESCRIPTION                      # ← Bloco opcional\n    Texto livre descrevendo o projeto...\nEND]\n\nEND                               # ← Fecha o PROJECT\n\n\n\nTEMPLATE name                     # ← Nome do template (obrigatório)\n[version: \"string\"]               # ← Metadado opcional\n[author: \"string\"]\n\nSOURCE FIELDS                     # ← Campos válidos em blocos SOURCE\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\n\nITEM FIELDS                       # ← Campos válidos em blocos ITEM\n    [REQUIRED | BUNDLE | OPTIONAL] field_name [,field_name] ...\nEND\n\nONTOLOGY FIELDS                   # ← Campos válidos em blocos ONTOLOGY\n    [REQUIRED | OPTIONAL | BUNDLE] field_name [,field_name] ...\nEND\n\nFIELD field_name TYPE [TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]\n    SCOPE [SOURCE | ITEM | ONTOLOGY]  # ← Onde o campo pode ser usado\n    [DESCRIPTION description text]\n    \n    [ARITY operator number]       # ← Apenas para CHAIN\n    [RELATIONS                    # ← Apenas para CHAIN\n        relation_name: description\n    END]\n\n    [VALUES                       # ← Apenas para ORDERED/ENUMERATED\n        [index] value_name: description\n    END]\n\n    [FORMAT [min..max]]           # ← Apenas para SCALE\n    \nEND\n\n\n\nSOURCE @bibref                    # ← Referência ao .bib (obrigatório)\n    [field_name: value]           # ← Campos do SOURCE (conforme template)\n    \n    ITEM                          # ← Um ou mais ITEMs\n        field_name: value         # ← Campos obrigatórios\n        [field_name: value] ...   # ← Campos opcionais\n    END\n    \nEND\n\n\n\nONTOLOGY concept_name             # ← Nome do conceito (pode ter espaços)\n    field_name: value             # ← Campos obrigatórios\n    [field_name: value] ...       # ← Campos opcionais\nEND\n\n\n\n# Chain qualificada (com RELATIONS definidas no template)\nchain: Code -&gt; RELATION -&gt; Code [-&gt; RELATION -&gt; Code] ...\n#      ^^^^    ^^^^^^^^    ^^^^\n#      código  relação     código (padrão alternado obrigatório)\n\n# Chain simples (sem RELATIONS no template)\nchain: Code -&gt; Code [-&gt; Code] ...\n#      ^^^^    ^^^^\n#      origem  destino (relação implícita)\n\nDocumento gerado a partir da especificação Synesis v1.1",
+    "crumbs": [
+      "Introdução",
+      "Referência",
+      "Synesis: Guia de Referência da Linguagem"
+    ]
+  }
+]
