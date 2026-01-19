@@ -2,6 +2,12 @@
 
 Documentação bilíngue (Português/Inglês) do Synesis Language, construída com Quarto e otimizada para GitHub Pages.
 
+## Localização do site.
+
+https://synesis-lang.github.io/synesis-docs/ (redireciona automaticamente)
+https://synesis-lang.github.io/synesis-docs/pt/ (português direto)
+https://synesis-lang.github.io/synesis-docs/en/ (inglês direto)
+
 ## 🌐 Estrutura do Site
 
 ```
@@ -26,6 +32,23 @@ synesis-docs/
     ├── pt/           # Site em Português
     └── en/           # Site em Inglês
 ```
+
+## 🖥️ Usando GitHub Desktop (Recomendado)
+
+Para facilitar o gerenciamento do repositório, você pode usar o GitHub Desktop:
+
+1. **Instale:** https://desktop.github.com/
+2. **Adicione o repositório:** File > Add Local Repository > `D:\GitHub\synesis-docs`
+3. **Publique (primeira vez):** Publish repository > Organização: `synesis-lang`
+
+**Workflow simplificado:**
+1. Edite arquivos `.qmd` no VS Code
+2. Execute `.\deploy.bat` no terminal
+3. No GitHub Desktop, faça Pull para sincronizar
+
+📖 **Guia completo:** [GITHUB-DESKTOP-GUIDE.md](GITHUB-DESKTOP-GUIDE.md)
+
+---
 
 ## 🚀 Build & Deploy
 

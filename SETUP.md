@@ -1,5 +1,11 @@
 # Guia de Setup: GitHub Pages para Synesis Docs
 
+## Localização do site:
+
+https://synesis-lang.github.io/synesis-docs/ (redireciona automaticamente)
+https://synesis-lang.github.io/synesis-docs/pt/ (português direto)
+https://synesis-lang.github.io/synesis-docs/en/ (inglês direto)
+
 ## ✅ Progresso Atual
 
 - [x] Diretório GitHub criado: `D:/GitHub/`
