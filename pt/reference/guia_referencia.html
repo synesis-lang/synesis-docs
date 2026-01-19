@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>guia_referencia – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guias" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guias</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guias">    
+        <li>
+    <a class="dropdown-item" href="../guide/guia_pesquisadores.html">
+ <span class="dropdown-text">Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../guide/guia_profissionais.html">
+ <span class="dropdown-text">Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../guide/guia_sincero.html">
+ <span class="dropdown-text">Guia sincero</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-referência" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Referência</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-referência">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/ideas.html">
+ <span class="dropdown-text">Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ecossistema" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Ecossistema</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ecossistema">    
+        <li>
+    <a class="dropdown-item" href="../ecossistema/guia_synesis_explorer.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Referência</a></li><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Synesis: Guia de Referência da Linguagem</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guias por Audiência</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guide/guia_pesquisadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guide/guia_profissionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guide/guia_sincero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Por que não fazer direto no Excel?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Referência</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/guia_referencia.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Synesis: Guia de Referência da Linguagem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: Ideias</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Ecossistema</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecossistema/guia_synesis_explorer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guia rapido: Synesis Explorer (VS Code)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#synesis-guia-de-referência-da-linguagem" id="toc-synesis-guia-de-referência-da-linguagem" class="nav-link active" data-scroll-target="#synesis-guia-de-referência-da-linguagem"><span class="header-section-number">1</span> Synesis: Guia de Referência da Linguagem</a>
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link" data-scroll-target="#introdução"><span class="header-section-number">1.1</span> Introdução</a>
+  <ul class="collapse">
+  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">1.1.1</span> Definição</a></li>
+  <li><a href="#o-que-o-compilador-faz" id="toc-o-que-o-compilador-faz" class="nav-link" data-scroll-target="#o-que-o-compilador-faz"><span class="header-section-number">1.1.2</span> O que o Compilador Faz</a></li>
+  <li><a href="#o-que-o-compilador-não-faz" id="toc-o-que-o-compilador-não-faz" class="nav-link" data-scroll-target="#o-que-o-compilador-não-faz"><span class="header-section-number">1.1.3</span> O que o Compilador NÃO Faz</a></li>
+  <li><a href="#fronteiras-rígidas" id="toc-fronteiras-rígidas" class="nav-link" data-scroll-target="#fronteiras-rígidas"><span class="header-section-number">1.1.4</span> Fronteiras Rígidas</a></li>
+  </ul></li>
+  <li><a href="#arquivos-e-formatos" id="toc-arquivos-e-formatos" class="nav-link" data-scroll-target="#arquivos-e-formatos"><span class="header-section-number">1.2</span> Arquivos e Formatos</a>
+  <ul class="collapse">
+  <li><a href="#arquivos-de-entrada" id="toc-arquivos-de-entrada" class="nav-link" data-scroll-target="#arquivos-de-entrada"><span class="header-section-number">1.2.1</span> Arquivos de Entrada</a></li>
+  <li><a href="#arquivos-de-saída" id="toc-arquivos-de-saída" class="nav-link" data-scroll-target="#arquivos-de-saída"><span class="header-section-number">1.2.2</span> Arquivos de Saída</a></li>
+  <li><a href="#rastreabilidade-em-csv" id="toc-rastreabilidade-em-csv" class="nav-link" data-scroll-target="#rastreabilidade-em-csv"><span class="header-section-number">1.2.3</span> Rastreabilidade em CSV</a></li>
+  <li><a href="#invariantes-do-compilador" id="toc-invariantes-do-compilador" class="nav-link" data-scroll-target="#invariantes-do-compilador"><span class="header-section-number">1.2.4</span> Invariantes do Compilador</a></li>
+  </ul></li>
+  <li><a href="#estrutura-do-projeto-.synp" id="toc-estrutura-do-projeto-.synp" class="nav-link" data-scroll-target="#estrutura-do-projeto-.synp"><span class="header-section-number">1.3</span> Estrutura do Projeto (.synp)</a>
+  <ul class="collapse">
+  <li><a href="#sintaxe" id="toc-sintaxe" class="nav-link" data-scroll-target="#sintaxe"><span class="header-section-number">1.3.1</span> Sintaxe</a></li>
+  <li><a href="#semântica" id="toc-semântica" class="nav-link" data-scroll-target="#semântica"><span class="header-section-number">1.3.2</span> Semântica</a></li>
+  </ul></li>
+  <li><a href="#definição-de-template-.synt" id="toc-definição-de-template-.synt" class="nav-link" data-scroll-target="#definição-de-template-.synt"><span class="header-section-number">1.4</span> Definição de Template (.synt)</a>
+  <ul class="collapse">
+  <li><a href="#cabeçalho-do-template" id="toc-cabeçalho-do-template" class="nav-link" data-scroll-target="#cabeçalho-do-template"><span class="header-section-number">1.4.1</span> Cabeçalho do Template</a></li>
+  <li><a href="#blocos-de-campos" id="toc-blocos-de-campos" class="nav-link" data-scroll-target="#blocos-de-campos"><span class="header-section-number">1.4.2</span> Blocos de Campos</a></li>
+  <li><a href="#exemplo-completo" id="toc-exemplo-completo" class="nav-link" data-scroll-target="#exemplo-completo"><span class="header-section-number">1.4.3</span> Exemplo Completo</a></li>
+  </ul></li>
+  <li><a href="#definição-de-campos-field" id="toc-definição-de-campos-field" class="nav-link" data-scroll-target="#definição-de-campos-field"><span class="header-section-number">1.5</span> Definição de Campos (FIELD)</a>
+  <ul class="collapse">
+  <li><a href="#sintaxe-1" id="toc-sintaxe-1" class="nav-link" data-scroll-target="#sintaxe-1"><span class="header-section-number">1.5.1</span> Sintaxe</a></li>
+  <li><a href="#exemplo-completo-de-field" id="toc-exemplo-completo-de-field" class="nav-link" data-scroll-target="#exemplo-completo-de-field"><span class="header-section-number">1.5.2</span> Exemplo Completo de FIELD</a></li>
+  </ul></li>
+  <li><a href="#tipos-de-campo" id="toc-tipos-de-campo" class="nav-link" data-scroll-target="#tipos-de-campo"><span class="header-section-number">1.6</span> Tipos de Campo</a>
+  <ul class="collapse">
+  <li><a href="#tabela-de-tipos" id="toc-tabela-de-tipos" class="nav-link" data-scroll-target="#tabela-de-tipos"><span class="header-section-number">1.6.1</span> Tabela de Tipos</a></li>
+  <li><a href="#distinção-linguagem-vs-template" id="toc-distinção-linguagem-vs-template" class="nav-link" data-scroll-target="#distinção-linguagem-vs-template"><span class="header-section-number">1.6.2</span> Distinção: Linguagem vs Template</a></li>
+  </ul></li>
+  <li><a href="#blocos-estruturais" id="toc-blocos-estruturais" class="nav-link" data-scroll-target="#blocos-estruturais"><span class="header-section-number">1.7</span> Blocos Estruturais</a>
+  <ul class="collapse">
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">1.7.1</span> SOURCE</a></li>
+  <li><a href="#item" id="toc-item" class="nav-link" data-scroll-target="#item"><span class="header-section-number">1.7.2</span> ITEM</a></li>
+  <li><a href="#ontology" id="toc-ontology" class="nav-link" data-scroll-target="#ontology"><span class="header-section-number">1.7.3</span> ONTOLOGY</a></li>
+  </ul></li>
+  <li><a href="#cadeias-semânticas-chain" id="toc-cadeias-semânticas-chain" class="nav-link" data-scroll-target="#cadeias-semânticas-chain"><span class="header-section-number">1.8</span> Cadeias Semânticas (CHAIN)</a>
+  <ul class="collapse">
+  <li><a href="#chain-qualificada" id="toc-chain-qualificada" class="nav-link" data-scroll-target="#chain-qualificada"><span class="header-section-number">1.8.1</span> Chain Qualificada</a></li>
+  <li><a href="#chain-simples" id="toc-chain-simples" class="nav-link" data-scroll-target="#chain-simples"><span class="header-section-number">1.8.2</span> Chain Simples</a></li>
+  <li><a href="#conceitos-com-espaços" id="toc-conceitos-com-espaços" class="nav-link" data-scroll-target="#conceitos-com-espaços"><span class="header-section-number">1.8.3</span> Conceitos com Espaços</a></li>
+  </ul></li>
+  <li><a href="#modificador-bundle" id="toc-modificador-bundle" class="nav-link" data-scroll-target="#modificador-bundle"><span class="header-section-number">1.9</span> Modificador BUNDLE</a>
+  <ul class="collapse">
+  <li><a href="#sintaxe-2" id="toc-sintaxe-2" class="nav-link" data-scroll-target="#sintaxe-2"><span class="header-section-number">1.9.1</span> Sintaxe</a></li>
+  <li><a href="#semântica-1" id="toc-semântica-1" class="nav-link" data-scroll-target="#semântica-1"><span class="header-section-number">1.9.2</span> Semântica</a></li>
+  <li><a href="#exemplo-anotado" id="toc-exemplo-anotado" class="nav-link" data-scroll-target="#exemplo-anotado"><span class="header-section-number">1.9.3</span> Exemplo Anotado</a></li>
+  <li><a href="#validação" id="toc-validação" class="nav-link" data-scroll-target="#validação"><span class="header-section-number">1.9.4</span> Validação</a></li>
+  </ul></li>
+  <li><a href="#tipo-topic" id="toc-tipo-topic" class="nav-link" data-scroll-target="#tipo-topic"><span class="header-section-number">1.10</span> Tipo TOPIC</a>
+  <ul class="collapse">
+  <li><a href="#diferença-de-enumerated" id="toc-diferença-de-enumerated" class="nav-link" data-scroll-target="#diferença-de-enumerated"><span class="header-section-number">1.10.1</span> Diferença de ENUMERATED</a></li>
+  <li><a href="#exemplo-anotado-1" id="toc-exemplo-anotado-1" class="nav-link" data-scroll-target="#exemplo-anotado-1"><span class="header-section-number">1.10.2</span> Exemplo Anotado</a></li>
+  </ul></li>
+  <li><a href="#pipeline-de-compilação" id="toc-pipeline-de-compilação" class="nav-link" data-scroll-target="#pipeline-de-compilação"><span class="header-section-number">1.11</span> Pipeline de Compilação</a>
+  <ul class="collapse">
+  <li><a href="#etapas-obrigatórias" id="toc-etapas-obrigatórias" class="nav-link" data-scroll-target="#etapas-obrigatórias"><span class="header-section-number">1.11.1</span> Etapas Obrigatórias</a></li>
+  <li><a href="#ordem-de-dependência" id="toc-ordem-de-dependência" class="nav-link" data-scroll-target="#ordem-de-dependência"><span class="header-section-number">1.11.2</span> Ordem de Dependência</a></li>
+  </ul></li>
+  <li><a href="#error-handling-pedagógico" id="toc-error-handling-pedagógico" class="nav-link" data-scroll-target="#error-handling-pedagógico"><span class="header-section-number">1.12</span> Error Handling Pedagógico</a>
+  <ul class="collapse">
+  <li><a href="#princípio-de-design" id="toc-princípio-de-design" class="nav-link" data-scroll-target="#princípio-de-design"><span class="header-section-number">1.12.1</span> Princípio de Design</a></li>
+  <li><a href="#detector-de-vírgula-ausente-em-listas-code" id="toc-detector-de-vírgula-ausente-em-listas-code" class="nav-link" data-scroll-target="#detector-de-vírgula-ausente-em-listas-code"><span class="header-section-number">1.12.2</span> Detector de “Vírgula Ausente” em Listas CODE</a></li>
+  <li><a href="#detector-de-cadeia-malformada-em-chain" id="toc-detector-de-cadeia-malformada-em-chain" class="nav-link" data-scroll-target="#detector-de-cadeia-malformada-em-chain"><span class="header-section-number">1.12.3</span> Detector de “Cadeia Malformada” em CHAIN</a></li>
+  </ul></li>
+  <li><a href="#referência-rápida-de-palavras-chave" id="toc-referência-rápida-de-palavras-chave" class="nav-link" data-scroll-target="#referência-rápida-de-palavras-chave"><span class="header-section-number">1.13</span> Referência Rápida de Palavras-Chave</a>
+  <ul class="collapse">
+  <li><a href="#palavras-chave-de-estrutura" id="toc-palavras-chave-de-estrutura" class="nav-link" data-scroll-target="#palavras-chave-de-estrutura"><span class="header-section-number">1.13.1</span> Palavras-Chave de Estrutura</a></li>
+  <li><a href="#palavras-chave-de-inclusão" id="toc-palavras-chave-de-inclusão" class="nav-link" data-scroll-target="#palavras-chave-de-inclusão"><span class="header-section-number">1.13.2</span> Palavras-Chave de Inclusão</a></li>
+  <li><a href="#modificadores-de-campo" id="toc-modificadores-de-campo" class="nav-link" data-scroll-target="#modificadores-de-campo"><span class="header-section-number">1.13.3</span> Modificadores de Campo</a></li>
+  <li><a href="#especificadores-de-campo" id="toc-especificadores-de-campo" class="nav-link" data-scroll-target="#especificadores-de-campo"><span class="header-section-number">1.13.4</span> Especificadores de Campo</a></li>
+  </ul></li>
+  <li><a href="#seções-sugeridas-para-expansão" id="toc-seções-sugeridas-para-expansão" class="nav-link" data-scroll-target="#seções-sugeridas-para-expansão"><span class="header-section-number">1.14</span> Seções Sugeridas para Expansão</a>
+  <ul class="collapse">
+  <li><a href="#validação-de-referências-bibliográficas" id="toc-validação-de-referências-bibliográficas" class="nav-link" data-scroll-target="#validação-de-referências-bibliográficas"><span class="header-section-number">1.14.1</span> Validação de Referências Bibliográficas</a></li>
+  <li><a href="#normalização-e-canonicalização" id="toc-normalização-e-canonicalização" class="nav-link" data-scroll-target="#normalização-e-canonicalização"><span class="header-section-number">1.14.2</span> Normalização e Canonicalização</a></li>
+  <li><a href="#exportação-para-json" id="toc-exportação-para-json" class="nav-link" data-scroll-target="#exportação-para-json"><span class="header-section-number">1.14.3</span> Exportação para JSON</a></li>
+  <li><a href="#exportação-para-csv" id="toc-exportação-para-csv" class="nav-link" data-scroll-target="#exportação-para-csv"><span class="header-section-number">1.14.4</span> Exportação para CSV</a></li>
+  <li><a href="#exportação-para-excel" id="toc-exportação-para-excel" class="nav-link" data-scroll-target="#exportação-para-excel"><span class="header-section-number">1.14.5</span> Exportação para EXCEL</a></li>
+  <li><a href="#integração-com-lark-parser" id="toc-integração-com-lark-parser" class="nav-link" data-scroll-target="#integração-com-lark-parser"><span class="header-section-number">1.14.6</span> Integração com Lark Parser</a></li>
+  <li><a href="#exemplos-completos-de-projetos" id="toc-exemplos-completos-de-projetos" class="nav-link" data-scroll-target="#exemplos-completos-de-projetos"><span class="header-section-number">1.14.7</span> Exemplos Completos de Projetos</a></li>
+  <li><a href="#boas-práticas-de-anotação" id="toc-boas-práticas-de-anotação" class="nav-link" data-scroll-target="#boas-práticas-de-anotação"><span class="header-section-number">1.14.8</span> Boas Práticas de Anotação</a></li>
+  </ul></li>
+  <li><a href="#apêndice-a-sintaxe-consolidada" id="toc-apêndice-a-sintaxe-consolidada" class="nav-link" data-scroll-target="#apêndice-a-sintaxe-consolidada"><span class="header-section-number">1.15</span> Apêndice A: Sintaxe Consolidada</a>
+  <ul class="collapse">
+  <li><a href="#projeto-.synp" id="toc-projeto-.synp" class="nav-link" data-scroll-target="#projeto-.synp"><span class="header-section-number">1.15.1</span> Projeto (.synp)</a></li>
+  <li><a href="#template-.synt" id="toc-template-.synt" class="nav-link" data-scroll-target="#template-.synt"><span class="header-section-number">1.15.2</span> Template (.synt)</a></li>
+  <li><a href="#anotações-.syn" id="toc-anotações-.syn" class="nav-link" data-scroll-target="#anotações-.syn"><span class="header-section-number">1.15.3</span> Anotações (.syn)</a></li>
+  <li><a href="#ontologia-.syno" id="toc-ontologia-.syno" class="nav-link" data-scroll-target="#ontologia-.syno"><span class="header-section-number">1.15.4</span> Ontologia (.syno)</a></li>
+  <li><a href="#cadeias-chain" id="toc-cadeias-chain" class="nav-link" data-scroll-target="#cadeias-chain"><span class="header-section-number">1.15.5</span> Cadeias (CHAIN)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="synesis-guia-de-referência-da-linguagem" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis: Guia de Referência da Linguagem</h1>
+<p><strong>Versão 1.1</strong></p>
+<hr>
+<section id="introdução" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">1.1</span> Introdução</h2>
+<section id="definição" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="definição"><span class="header-section-number">1.1.1</span> Definição</h3>
+<p>Synesis é uma Domain-Specific Language (DSL) declarativa para formalização, validação e compilação de corpora analíticos de pesquisas qualitativas. O compilador transforma anotações interpretativas em estruturas canônicas, assegurando inteligibilidade humana e rigor formal.</p>
+</section>
+<section id="o-que-o-compilador-faz" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="o-que-o-compilador-faz"><span class="header-section-number">1.1.2</span> O que o Compilador Faz</h3>
+<ul>
+<li>Valida sintaxe e semântica de anotações</li>
+<li>Gera AST (Abstract Syntax Tree)</li>
+<li>Produz formatos estruturados básicos (JSON, CSV, EXCEL)</li>
+<li>Normaliza conceitos via templates configuráveis</li>
+</ul>
+</section>
+<section id="o-que-o-compilador-não-faz" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="o-que-o-compilador-não-faz"><span class="header-section-number">1.1.3</span> O que o Compilador NÃO Faz</h3>
+<ul>
+<li>Não é runtime ou sistema de execução</li>
+<li>Não realiza análise estatística</li>
+<li>Não gerencia interface de usuário</li>
+<li>Não persiste estado entre execuções</li>
+</ul>
+</section>
+<section id="fronteiras-rígidas" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="fronteiras-rígidas"><span class="header-section-number">1.1.4</span> Fronteiras Rígidas</h3>
+<p>O compilador processa arquivos de texto, produz artefatos estruturados e termina. Não há estado persistente, loops condicionais ou side-effects além da escrita de arquivos de saída.</p>
+<hr>
+</section>
+</section>
+<section id="arquivos-e-formatos" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="arquivos-e-formatos"><span class="header-section-number">1.2</span> Arquivos e Formatos</h2>
+<section id="arquivos-de-entrada" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="arquivos-de-entrada"><span class="header-section-number">1.2.1</span> Arquivos de Entrada</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Extensão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.synp</code></td>
+<td>Arquivo de projeto (ponto de entrada único)</td>
+</tr>
+<tr class="even">
+<td><code>.syn</code></td>
+<td>Arquivos de anotação (SOURCE + ITEM)</td>
+</tr>
+<tr class="odd">
+<td><code>.syno</code></td>
+<td>Arquivos de ontologia (ONTOLOGY)</td>
+</tr>
+<tr class="even">
+<td><code>.synt</code></td>
+<td>Arquivo de template (FIELD definitions)</td>
+</tr>
+<tr class="odd">
+<td><code>.bib</code></td>
+<td>Referências BibTeX/BibLaTeX</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="arquivos-de-saída" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="arquivos-de-saída"><span class="header-section-number">1.2.2</span> Arquivos de Saída</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formato</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JSON</td>
+<td>Representação serializada completa (inclui <code>location</code> em todos os nós)</td>
+</tr>
+<tr class="even">
+<td>CSV</td>
+<td>Tabelas planas por tipo de bloco (inclui colunas <code>source_file</code>, <code>source_line</code>, <code>source_column</code>)</td>
+</tr>
+<tr class="odd">
+<td>EXCEL</td>
+<td>Tabelas planas como abas</td>
+</tr>
+<tr class="even">
+<td>Diagnósticos</td>
+<td>Relatório de erros com localização precisa</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rastreabilidade-em-csv" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="rastreabilidade-em-csv"><span class="header-section-number">1.2.3</span> Rastreabilidade em CSV</h3>
+<p>Cada linha CSV de ITEM, CHAIN ou ONTOLOGY inclui colunas de localização:</p>
+<pre class="csv"><code>bibref,from_code,relation,to_code,source_file,source_line,source_column
+ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pre>
+</section>
+<section id="invariantes-do-compilador" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="invariantes-do-compilador"><span class="header-section-number">1.2.4</span> Invariantes do Compilador</h3>
+<ol type="1">
+<li>Compilação determinística: mesma entrada produz mesma saída</li>
+<li>Erros reportados com arquivo, linha, coluna e contexto</li>
+<li>Compilação parcial é exclusivamente pedagógica</li>
+<li>Artefatos finais (JSON, CSV) gerados apenas mediante compilação completa</li>
+<li>Validação de referências bibliográficas é obrigatória</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="estrutura-do-projeto-.synp" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="estrutura-do-projeto-.synp"><span class="header-section-number">1.3</span> Estrutura do Projeto (.synp)</h2>
+<p>O arquivo de projeto orquestra os componentes da análise e serve como ponto de entrada único para o compilador.</p>
+<section id="sintaxe" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="sintaxe"><span class="header-section-number">1.3.1</span> Sintaxe</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> project_name</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"filename.synt"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"filename.bib"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"filename.syn"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"filename.syno"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Colchetes indicam que todo o bloco METADATA é opcional</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]    <span class="co"># Campo individual opcional</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]   <span class="co"># Campo individual opcional</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Colchetes indicam que todo o bloco DESCRIPTION é opcional</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    Texto livre descrevendo o projeto...</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="semântica" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="semântica"><span class="header-section-number">1.3.2</span> Semântica</h3>
+<ul>
+<li><strong>PROJECT</strong>: Palavra-chave obrigatória que inicia a definição do projeto</li>
+<li><strong>TEMPLATE</strong>: Referência ao arquivo <code>.synt</code> que define as regras de validação</li>
+<li><strong>INCLUDE BIBLIOGRAPHY</strong>: Caminho para arquivo <code>.bib</code> com referências</li>
+<li><strong>INCLUDE ANNOTATIONS</strong>: Caminho para arquivo(s) <code>.syn</code> com anotações</li>
+<li><strong>INCLUDE ONTOLOGY</strong>: Caminho para arquivo(s) <code>.syno</code> com definições ontológicas</li>
+<li><strong>METADATA</strong>: Bloco opcional com metadados do projeto</li>
+<li><strong>DESCRIPTION</strong>: Bloco opcional com descrição livre do projeto</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="definição-de-template-.synt" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="definição-de-template-.synt"><span class="header-section-number">1.4</span> Definição de Template (.synt)</h2>
+<p>O template define a estrutura e regras de validação para anotações.</p>
+<section id="cabeçalho-do-template" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="cabeçalho-do-template"><span class="header-section-number">1.4.1</span> Cabeçalho do Template</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="blocos-de-campos" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="blocos-de-campos"><span class="header-section-number">1.4.2</span> Blocos de Campos</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exemplo-completo" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="exemplo-completo"><span class="header-section-number">1.4.3</span> Exemplo Completo</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> qualitative_analysis</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">version:</span> <span class="st">"1.0"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author:</span> <span class="st">"Researcher"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> bibref</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> access_date</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> <span class="at">note</span>, <span class="at">chain</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> code</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> description</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> topic</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="definição-de-campos-field" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="definição-de-campos-field"><span class="header-section-number">1.5</span> Definição de Campos (FIELD)</h2>
+<p>A declaração FIELD especifica o tipo, escopo e restrições de cada campo.</p>
+<section id="sintaxe-1" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="sintaxe-1"><span class="header-section-number">1.5.1</span> Sintaxe</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE CHAIN</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE ORDERED ou ENUMERATED</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description  <span class="co"># Para ORDERED</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">value_name:</span> description          <span class="co"># Para ENUMERATED</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE SCALE</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exemplo-completo-de-field" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="exemplo-completo-de-field"><span class="header-section-number">1.5.2</span> Exemplo Completo de FIELD</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal entre conceitos</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Relação de influência causal</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Relação de habilitação</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INHIBITS:</span> Relação de inibição</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> aspect <span class="kw">TYPE</span> <span class="kw">ORDERED</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Aspecto modal de Dooyeweerd</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        1 <span class="fu">quantitative:</span> Aspecto numérico</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        2 <span class="fu">spatial:</span> Aspecto espacial</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        3 <span class="fu">kinematic:</span> Aspecto cinético</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        4 <span class="fu">physical:</span> Aspecto físico</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        5 <span class="fu">biotic:</span> Aspecto biótico</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> sentiment <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Sentimento expresso no excerto</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">positive:</span> Sentimento positivo</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">negative:</span> Sentimento negativo</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">neutral:</span> Sentimento neutro</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> confidence <span class="kw">TYPE</span> <span class="kw">SCALE</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Nível de confiança da interpretação</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FORMAT</span> <span class="bn">[1..5]</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="tipos-de-campo" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="tipos-de-campo"><span class="header-section-number">1.6</span> Tipos de Campo</h2>
+<section id="tabela-de-tipos" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="tabela-de-tipos"><span class="header-section-number">1.6.1</span> Tabela de Tipos</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 32%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Escopo</th>
+<th>Semântica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>QUOTATION</td>
+<td>ITEM</td>
+<td>Excerto textual da fonte</td>
+</tr>
+<tr class="even">
+<td>MEMO</td>
+<td>ITEM</td>
+<td>Anotação analítica do pesquisador</td>
+</tr>
+<tr class="odd">
+<td>CODE</td>
+<td>ITEM</td>
+<td>Rótulo conceitual (categorização)</td>
+</tr>
+<tr class="even">
+<td>CHAIN</td>
+<td>ITEM</td>
+<td>Relação qualificada entre códigos</td>
+</tr>
+<tr class="odd">
+<td>TEXT</td>
+<td>qualquer</td>
+<td>Texto livre genérico</td>
+</tr>
+<tr class="even">
+<td>DATE</td>
+<td>SOURCE</td>
+<td>Data com formato especificado</td>
+</tr>
+<tr class="odd">
+<td>SCALE</td>
+<td>qualquer</td>
+<td>Valor numérico em intervalo [min..max]</td>
+</tr>
+<tr class="even">
+<td>ENUMERATED</td>
+<td>qualquer</td>
+<td>Valor de lista fechada sem hierarquia</td>
+</tr>
+<tr class="odd">
+<td>ORDERED</td>
+<td>ONTOLOGY</td>
+<td>Valor de lista com hierarquia ordinal indexada</td>
+</tr>
+<tr class="even">
+<td>TOPIC</td>
+<td>ONTOLOGY</td>
+<td>Categoria hierárquica superior (agrupamento dinâmico)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="distinção-linguagem-vs-template" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="distinção-linguagem-vs-template"><span class="header-section-number">1.6.2</span> Distinção: Linguagem vs Template</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 46%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nível</th>
+<th>FIXO (linguagem)</th>
+<th>CONFIGURÁVEL (template)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Palavras-chave</td>
+<td><code>SOURCE</code>, <code>ITEM</code>, <code>ONTOLOGY</code>, <code>FIELD</code>, <code>END</code></td>
+<td>Nomes de campos como <code>aspect</code>, <code>quote</code></td>
+</tr>
+<tr class="even">
+<td>Tipos de dados</td>
+<td><code>QUOTATION</code>, <code>MEMO</code>, <code>CODE</code>, <code>CHAIN</code>, <code>TEXT</code>, etc.</td>
+<td>Valores em listas ORDERED/ENUMERATED</td>
+</tr>
+<tr class="odd">
+<td>Estrutura</td>
+<td>Blocos SOURCE/ITEM/ONTOLOGY, sintaxe FIELD…END</td>
+<td>Quais campos são REQUIRED/OPTIONAL</td>
+</tr>
+<tr class="even">
+<td>Modificadores</td>
+<td><code>BUNDLE</code>, <code>REQUIRED</code>, <code>OPTIONAL</code>, <code>SCOPE</code>, <code>TYPE</code></td>
+<td>Quais campos usar BUNDLE</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="blocos-estruturais" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="blocos-estruturais"><span class="header-section-number">1.7</span> Blocos Estruturais</h2>
+<section id="source" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="source"><span class="header-section-number">1.7.1</span> SOURCE</h3>
+<p>Contextualiza ITEMs com referência bibliográfica. Cada SOURCE referencia exatamente uma entrada do arquivo <code>.bib</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                <span class="co"># ← Referência obrigatória ao .bib</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]       <span class="co"># ← Campos opcionais do SOURCE</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span>                      <span class="co"># ← Um ou mais ITEMs obrigatórios</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo anotado:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@smith2023</span>             <span class="co"># ← Deve existir em referencias.bib</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2025-01-15   <span class="co"># ← Campo opcional definido no template</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span>                      <span class="co"># ← Primeiro item de análise</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quote:</span> <span class="st">"The technology shows promising results."</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">note:</span> Autor expressa otimismo sobre resultados</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">chain:</span> Technology <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>                           <span class="co"># ← Fecha o bloco SOURCE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="item" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="item"><span class="header-section-number">1.7.2</span> ITEM</h3>
+<p>Unidade analítica fundamental. Contém excerto, memos, códigos e/ou cadeias. Pertence a exatamente um SOURCE.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="bn">[@bibref]</span>                <span class="co"># ← Referência opcional (herda do SOURCE pai)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Um ou mais campos obrigatórios</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos adicionais conforme template</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo anotado:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span>                 <span class="co"># ← Referência opcional para rastreabilidade</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Texto extraído     <span class="co"># ← Campo obrigatório (QUOTATION)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Primeira interp.    <span class="co"># ← Primeiro par do BUNDLE</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Segunda interp.     <span class="co"># ← Segundo par do BUNDLE (mesma quantidade)</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>                           <span class="co"># ← Fecha o bloco ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ontology" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="ontology"><span class="header-section-number">1.7.3</span> ONTOLOGY</h3>
+<p>Define conceito do vocabulário controlado. Estrutura plana com possibilidade de hierarquia.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name         <span class="co"># ← Nome do conceito (pode conter espaços)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Um ou mais campos obrigatórios</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos adicionais conforme template</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo anotado:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost                 <span class="co"># ← Nome simples (sem espaços)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics          <span class="co"># ← Agrupamento dinâmico (TOPIC)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public Acceptance    <span class="co"># ← Nome com espaços (sem aspas)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social Factors     <span class="co"># ← Mesmo topic agrupa conceitos relacionados</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="cadeias-semânticas-chain" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="cadeias-semânticas-chain"><span class="header-section-number">1.8</span> Cadeias Semânticas (CHAIN)</h2>
+<section id="chain-qualificada" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="chain-qualificada"><span class="header-section-number">1.8.1</span> Chain Qualificada</h3>
+<p>Quando o template define RELATIONS, a cadeia usa o padrão: posições ímpares são códigos, posições pares são tipos de relação.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      código  relação     código (padrão alternado)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo anotado:</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate Belief <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Support</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^    ^^^^^^^^^^    ^^^^^^^</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      código (origem)  relação       código (destino)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> C</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^    ^^^^^^^^^^    ^    ^^^^^^^    ^</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#      cod1 rel1          cod2 rel2       cod3 (cadeia estendida)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chain-simples" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="chain-simples"><span class="header-section-number">1.8.2</span> Chain Simples</h3>
+<p>Quando o template NÃO define RELATIONS, apenas códigos são separados por <code>-&gt;</code>. A relação é implícita.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      origem  destino (relação implícita entre cada par)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo anotado:</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B             <span class="co"># ← Relação implícita: A relaciona-se com B</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B <span class="op">-&gt;</span> C        <span class="co"># ← Duas relações implícitas: A→B e B→C</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="conceitos-com-espaços" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="conceitos-com-espaços"><span class="header-section-number">1.8.3</span> Conceitos com Espaços</h3>
+<p>O parser captura espaços internos sem exigir aspas:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Institutional Barrier <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financial Barrier</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^^^^              ^^^^^^^^^^^^^^^^^^</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      conceito com espaços              conceito com espaços (sem aspas)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Public Acceptance <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS Support <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^                  ^^^^^^^^^^^               ^^^^^^^^^^</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#      3 palavras                         2 palavras                1 palavra</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="modificador-bundle" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="modificador-bundle"><span class="header-section-number">1.9</span> Modificador BUNDLE</h2>
+<p>O modificador BUNDLE define grupos de campos que formam unidade mínima repetível de interpretação.</p>
+<section id="sintaxe-2" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="sintaxe-2"><span class="header-section-number">1.9.1</span> Sintaxe</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> field_name, field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        ^^^^^^ ^^^^^^^^^^  ^^^^^^^^^^</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        modif. campo1      campo2 (devem aparecer juntos)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="semântica-1" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="semântica-1"><span class="header-section-number">1.9.2</span> Semântica</h3>
+<ul>
+<li>Campos em BUNDLE são obrigatórios como unidade indivisível</li>
+<li>Mínimo 1 ocorrência do bundle completo</li>
+<li>Campos do bundle <strong>nunca</strong> aparecem isoladamente</li>
+<li>Devem aparecer em igual quantidade: <code>len(field1) == len(field2) == len(field3) &gt;= 1</code></li>
+<li>Correspondência posicional: <code>field1[i]</code> relaciona-se com <code>field2[i]</code> e <code>field3[i]</code></li>
+</ul>
+</section>
+<section id="exemplo-anotado" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="exemplo-anotado"><span class="header-section-number">1.9.3</span> Exemplo Anotado</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Texto extraído da fonte    <span class="co"># ← Campo independente</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Primeira interpretação      <span class="co"># ← bundle[0].note</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B       <span class="co"># ← bundle[0].chain (par 1)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Segunda interpretação       <span class="co"># ← bundle[1].note</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D          <span class="co"># ← bundle[1].chain (par 2)</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: 2 pares note+chain, correspondência posicional garantida</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="validação" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="validação"><span class="header-section-number">1.9.4</span> Validação</h3>
+<ul>
+<li>Campo isolado de bundle: <strong>erro</strong></li>
+<li>Contagens diferentes: <strong>erro</strong></li>
+<li>Ausência completa de bundle obrigatório: <strong>erro</strong></li>
+<li>Violação de BUNDLE gera erro de compilação (não warning)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="tipo-topic" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="tipo-topic"><span class="header-section-number">1.10</span> Tipo TOPIC</h2>
+<p>O tipo TOPIC permite definir categorias hierárquicas superiores que agrupam conceitos ontológicos de forma dinâmica, sem pré-definição no template.</p>
+<section id="diferença-de-enumerated" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="diferença-de-enumerated"><span class="header-section-number">1.10.1</span> Diferença de ENUMERATED</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 35%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th>ENUMERATED</th>
+<th>TOPIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Valores permitidos</td>
+<td>Lista fechada pré-definida</td>
+<td>Aberto, dinâmico</td>
+</tr>
+<tr class="even">
+<td>Uso</td>
+<td>Categorização controlada</td>
+<td>Agrupamento emergente</td>
+</tr>
+<tr class="odd">
+<td>Validação</td>
+<td>Rejeita valores fora da lista</td>
+<td>Aceita qualquer string</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exemplo-anotado-1" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="exemplo-anotado-1"><span class="header-section-number">1.10.2</span> Exemplo Anotado</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics              <span class="co"># ← Categoria emergente (não pré-definida)</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public Acceptance</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social Factors         <span class="co"># ← Outra categoria emergente</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: dois topics criados dinamicamente (Economics, Social Factors)</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># O compilador aceita qualquer string como valor de TOPIC</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="pipeline-de-compilação" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="pipeline-de-compilação"><span class="header-section-number">1.11</span> Pipeline de Compilação</h2>
+<section id="etapas-obrigatórias" class="level3" data-number="1.11.1">
+<h3 data-number="1.11.1" class="anchored" data-anchor-id="etapas-obrigatórias"><span class="header-section-number">1.11.1</span> Etapas Obrigatórias</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 51%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Etapa</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Descoberta</td>
+<td>Ler .synp, resolver caminhos, listar arquivos</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Template Loading</td>
+<td>Parsear e validar .synt (define regras)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>BibTeX Loading</td>
+<td>Carregar .bib, construir índice de referências</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Parsing Sintático</td>
+<td>Lark processa cada arquivo .syn e .syno</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Transformação</td>
+<td>Converter árvores concretas em AST tipada</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Validação Semântica</td>
+<td>Verificar referências, tipos, campos obrigatórios</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Normalização</td>
+<td>Aplicar defaults, canonicalização de valores</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Vinculação</td>
+<td>Associar ITEMs a SOURCEs, CODEs e CHAINs a ONTOLOGYs</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Exportação</td>
+<td>Gerar JSON, CSV, conforme definido no template</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ordem-de-dependência" class="level3" data-number="1.11.2">
+<h3 data-number="1.11.2" class="anchored" data-anchor-id="ordem-de-dependência"><span class="header-section-number">1.11.2</span> Ordem de Dependência</h3>
+<pre><code>Projeto → Template → BibTeX → Anotações → Ontologia</code></pre>
+<p>Cada fase depende da anterior. Erros interrompem o pipeline.</p>
+<hr>
+</section>
+</section>
+<section id="error-handling-pedagógico" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="error-handling-pedagógico"><span class="header-section-number">1.12</span> Error Handling Pedagógico</h2>
+<section id="princípio-de-design" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="princípio-de-design"><span class="header-section-number">1.12.1</span> Princípio de Design</h3>
+<p>O compilador prioriza mensagens de erro educativas que ensinam a sintaxe correta sem exigir leitura do manual.</p>
+</section>
+<section id="detector-de-vírgula-ausente-em-listas-code" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="detector-de-vírgula-ausente-em-listas-code"><span class="header-section-number">1.12.2</span> Detector de “Vírgula Ausente” em Listas CODE</h3>
+<p><strong>Erro comum:</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Climate Belief Risk Perception  <span class="co"># ERRO: falta vírgula</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Mensagem sugerida:</strong></p>
+<pre><code>erro: arquivo.syn:3:26: Múltiplos códigos devem ser separados por vírgula.
+    code: Climate Belief Risk Perception
+                         ^~~~ falta vírgula antes de "Risk"
+
+Use vírgula para separar códigos:
+    code: Climate Belief, Risk Perception
+
+OU especifique cada código em linha separada:
+    code: Climate Belief
+    code: Risk Perception</code></pre>
+</section>
+<section id="detector-de-cadeia-malformada-em-chain" class="level3" data-number="1.12.3">
+<h3 data-number="1.12.3" class="anchored" data-anchor-id="detector-de-cadeia-malformada-em-chain"><span class="header-section-number">1.12.3</span> Detector de “Cadeia Malformada” em CHAIN</h3>
+<p><strong>Erro comum:</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate Belief INFLUENCES Support  <span class="co"># ERRO: falta -&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Mensagem sugerida:</strong></p>
+<pre><code>erro: arquivo.syn:2:27: Cadeia causal exige operador '-&gt;' entre elementos.
+    chain: Climate Belief INFLUENCES Support
+                          ^~~~~~~~~~~ falta '-&gt;' antes de "INFLUENCES"
+
+Use '-&gt;' para conectar elementos:
+    chain: Climate Belief -&gt; INFLUENCES -&gt; Support</code></pre>
+<hr>
+</section>
+</section>
+<section id="referência-rápida-de-palavras-chave" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="referência-rápida-de-palavras-chave"><span class="header-section-number">1.13</span> Referência Rápida de Palavras-Chave</h2>
+<section id="palavras-chave-de-estrutura" class="level3" data-number="1.13.1">
+<h3 data-number="1.13.1" class="anchored" data-anchor-id="palavras-chave-de-estrutura"><span class="header-section-number">1.13.1</span> Palavras-Chave de Estrutura</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Palavra-chave</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PROJECT</code></td>
+<td>Inicia definição de projeto</td>
+</tr>
+<tr class="even">
+<td><code>TEMPLATE</code></td>
+<td>Referência ao arquivo de template ou início de definição</td>
+</tr>
+<tr class="odd">
+<td><code>SOURCE</code></td>
+<td>Bloco de fonte bibliográfica</td>
+</tr>
+<tr class="even">
+<td><code>ITEM</code></td>
+<td>Unidade analítica</td>
+</tr>
+<tr class="odd">
+<td><code>ONTOLOGY</code></td>
+<td>Definição de conceito</td>
+</tr>
+<tr class="even">
+<td><code>FIELD</code></td>
+<td>Definição de campo</td>
+</tr>
+<tr class="odd">
+<td><code>END</code></td>
+<td>Encerra qualquer bloco</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="palavras-chave-de-inclusão" class="level3" data-number="1.13.2">
+<h3 data-number="1.13.2" class="anchored" data-anchor-id="palavras-chave-de-inclusão"><span class="header-section-number">1.13.2</span> Palavras-Chave de Inclusão</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Palavra-chave</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>INCLUDE</code></td>
+<td>Inclui arquivo externo</td>
+</tr>
+<tr class="even">
+<td><code>BIBLIOGRAPHY</code></td>
+<td>Tipo de inclusão para .bib</td>
+</tr>
+<tr class="odd">
+<td><code>ANNOTATIONS</code></td>
+<td>Tipo de inclusão para .syn</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modificadores-de-campo" class="level3" data-number="1.13.3">
+<h3 data-number="1.13.3" class="anchored" data-anchor-id="modificadores-de-campo"><span class="header-section-number">1.13.3</span> Modificadores de Campo</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Modificador</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>REQUIRED</code></td>
+<td>Campo obrigatório</td>
+</tr>
+<tr class="even">
+<td><code>OPTIONAL</code></td>
+<td>Campo opcional</td>
+</tr>
+<tr class="odd">
+<td><code>BUNDLE</code></td>
+<td>Grupo de campos obrigatórios como unidade</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="especificadores-de-campo" class="level3" data-number="1.13.4">
+<h3 data-number="1.13.4" class="anchored" data-anchor-id="especificadores-de-campo"><span class="header-section-number">1.13.4</span> Especificadores de Campo</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Especificador</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>TYPE</code></td>
+<td>Define o tipo do campo</td>
+</tr>
+<tr class="even">
+<td><code>SCOPE</code></td>
+<td>Define o escopo (SOURCE, ITEM, ONTOLOGY)</td>
+</tr>
+<tr class="odd">
+<td><code>DESCRIPTION</code></td>
+<td>Texto descritivo do campo</td>
+</tr>
+<tr class="even">
+<td><code>ARITY</code></td>
+<td>Restrição de aridade para CHAIN</td>
+</tr>
+<tr class="odd">
+<td><code>RELATIONS</code></td>
+<td>Lista de relações para CHAIN</td>
+</tr>
+<tr class="even">
+<td><code>VALUES</code></td>
+<td>Lista de valores para ORDERED/ENUMERATED</td>
+</tr>
+<tr class="odd">
+<td><code>FORMAT</code></td>
+<td>Formato para SCALE</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="seções-sugeridas-para-expansão" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="seções-sugeridas-para-expansão"><span class="header-section-number">1.14</span> Seções Sugeridas para Expansão</h2>
+<p><em>As seções abaixo estão indicadas como tópicos para desenvolvimento futuro do guia, com base nas funcionalidades implícitas nos documentos fonte.</em></p>
+<section id="validação-de-referências-bibliográficas" class="level3" data-number="1.14.1">
+<h3 data-number="1.14.1" class="anchored" data-anchor-id="validação-de-referências-bibliográficas"><span class="header-section-number">1.14.1</span> Validação de Referências Bibliográficas</h3>
+<blockquote class="blockquote">
+<p>Como o compilador valida que cada <code>@bibref</code> existe no arquivo .bib incluído.</p>
+</blockquote>
+</section>
+<section id="normalização-e-canonicalização" class="level3" data-number="1.14.2">
+<h3 data-number="1.14.2" class="anchored" data-anchor-id="normalização-e-canonicalização"><span class="header-section-number">1.14.2</span> Normalização e Canonicalização</h3>
+<blockquote class="blockquote">
+<p>Regras para normalização de valores e conceitos via template.</p>
+</blockquote>
+</section>
+<section id="exportação-para-json" class="level3" data-number="1.14.3">
+<h3 data-number="1.14.3" class="anchored" data-anchor-id="exportação-para-json"><span class="header-section-number">1.14.3</span> Exportação para JSON</h3>
+<blockquote class="blockquote">
+<p>Estrutura do JSON gerado, incluindo campos <code>location</code> para rastreabilidade.</p>
+</blockquote>
+</section>
+<section id="exportação-para-csv" class="level3" data-number="1.14.4">
+<h3 data-number="1.14.4" class="anchored" data-anchor-id="exportação-para-csv"><span class="header-section-number">1.14.4</span> Exportação para CSV</h3>
+<blockquote class="blockquote">
+<p>Formato das tabelas planas por tipo de bloco, colunas de rastreabilidade.</p>
+</blockquote>
+</section>
+<section id="exportação-para-excel" class="level3" data-number="1.14.5">
+<h3 data-number="1.14.5" class="anchored" data-anchor-id="exportação-para-excel"><span class="header-section-number">1.14.5</span> Exportação para EXCEL</h3>
+<blockquote class="blockquote">
+<p>Organização de abas por tipo de bloco.</p>
+</blockquote>
+</section>
+<section id="integração-com-lark-parser" class="level3" data-number="1.14.6">
+<h3 data-number="1.14.6" class="anchored" data-anchor-id="integração-com-lark-parser"><span class="header-section-number">1.14.6</span> Integração com Lark Parser</h3>
+<blockquote class="blockquote">
+<p>Detalhes técnicos do parser utilizado para processamento sintático.</p>
+</blockquote>
+</section>
+<section id="exemplos-completos-de-projetos" class="level3" data-number="1.14.7">
+<h3 data-number="1.14.7" class="anchored" data-anchor-id="exemplos-completos-de-projetos"><span class="header-section-number">1.14.7</span> Exemplos Completos de Projetos</h3>
+<blockquote class="blockquote">
+<p>Projetos exemplo demonstrando uso integrado de todos os componentes.</p>
+</blockquote>
+</section>
+<section id="boas-práticas-de-anotação" class="level3" data-number="1.14.8">
+<h3 data-number="1.14.8" class="anchored" data-anchor-id="boas-práticas-de-anotação"><span class="header-section-number">1.14.8</span> Boas Práticas de Anotação</h3>
+<blockquote class="blockquote">
+<p>Recomendações para estruturação consistente de anotações qualitativas.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="apêndice-a-sintaxe-consolidada" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="apêndice-a-sintaxe-consolidada"><span class="header-section-number">1.15</span> Apêndice A: Sintaxe Consolidada</h2>
+<section id="projeto-.synp" class="level3" data-number="1.15.1">
+<h3 data-number="1.15.1" class="anchored" data-anchor-id="projeto-.synp"><span class="header-section-number">1.15.1</span> Projeto (.synp)</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> project_name              <span class="co"># ← Nome do projeto (obrigatório)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"filename.synt"</span>          <span class="co"># ← Arquivo de template (obrigatório)</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"filename.bib"</span>   <span class="co"># ← Referências BibTeX</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"filename.syn"</span>    <span class="co"># ← Arquivos de anotação</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"filename.syno"</span>      <span class="co"># ← Arquivos de ontologia</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span>                         <span class="co"># ← Bloco opcional</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]               <span class="co"># ← Campo opcional dentro do bloco</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span>                      <span class="co"># ← Bloco opcional</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    Texto livre descrevendo o projeto...</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>                               <span class="co"># ← Fecha o PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="template-.synt" class="level3" data-number="1.15.2">
+<h3 data-number="1.15.2" class="anchored" data-anchor-id="template-.synt"><span class="header-section-number">1.15.2</span> Template (.synt)</h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name                     <span class="co"># ← Nome do template (obrigatório)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]               <span class="co"># ← Metadado opcional</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span>                     <span class="co"># ← Campos válidos em blocos SOURCE</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span>                       <span class="co"># ← Campos válidos em blocos ITEM</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span>                   <span class="co"># ← Campos válidos em blocos ONTOLOGY</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span>  <span class="co"># ← Onde o campo pode ser usado</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span>       <span class="co"># ← Apenas para CHAIN</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span>                    <span class="co"># ← Apenas para CHAIN</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span>                       <span class="co"># ← Apenas para ORDERED/ENUMERATED</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]           <span class="co"># ← Apenas para SCALE</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="anotações-.syn" class="level3" data-number="1.15.3">
+<h3 data-number="1.15.3" class="anchored" data-anchor-id="anotações-.syn"><span class="header-section-number">1.15.3</span> Anotações (.syn)</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                    <span class="co"># ← Referência ao .bib (obrigatório)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]           <span class="co"># ← Campos do SOURCE (conforme template)</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span>                          <span class="co"># ← Um ou mais ITEMs</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">field_name:</span> value         <span class="co"># ← Campos obrigatórios</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos opcionais</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ontologia-.syno" class="level3" data-number="1.15.4">
+<h3 data-number="1.15.4" class="anchored" data-anchor-id="ontologia-.syno"><span class="header-section-number">1.15.4</span> Ontologia (.syno)</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name             <span class="co"># ← Nome do conceito (pode ter espaços)</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value             <span class="co"># ← Campos obrigatórios</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...       <span class="co"># ← Campos opcionais</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cadeias-chain" class="level3" data-number="1.15.5">
+<h3 data-number="1.15.5" class="anchored" data-anchor-id="cadeias-chain"><span class="header-section-number">1.15.5</span> Cadeias (CHAIN)</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain qualificada (com RELATIONS definidas no template)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co">#      código  relação     código (padrão alternado obrigatório)</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain simples (sem RELATIONS no template)</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">#      origem  destino (relação implícita)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><em>Documento gerado a partir da especificação Synesis v1.1</em></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

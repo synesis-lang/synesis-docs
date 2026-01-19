@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ideas – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guias" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guias</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guias">    
+        <li>
+    <a class="dropdown-item" href="../guide/guia_pesquisadores.html">
+ <span class="dropdown-text">Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../guide/guia_profissionais.html">
+ <span class="dropdown-text">Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../guide/guia_sincero.html">
+ <span class="dropdown-text">Guia sincero</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-referência" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Referência</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-referência">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/ideas.html">
+ <span class="dropdown-text">Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ecossistema" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Ecossistema</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ecossistema">    
+        <li>
+    <a class="dropdown-item" href="../ecossistema/guia_synesis_explorer.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Referência</a></li><li class="breadcrumb-item"><a href="../reference/ideas.html">Synesis: Ideias</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guias por Audiência</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guide/guia_pesquisadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: Uma Linguagem para Organizar sua Pesquisa Qualitativa</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guide/guia_profissionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: Estruturando Conhecimento para Decisões Baseadas em Dados</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guide/guia_sincero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Por que não fazer direto no Excel?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Referência</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/guia_referencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: Guia de Referência da Linguagem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/ideas.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Synesis: Ideias</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Ecossistema</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecossistema/guia_synesis_explorer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guia rapido: Synesis Explorer (VS Code)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#synesis-ideias" id="toc-synesis-ideias" class="nav-link active" data-scroll-target="#synesis-ideias"><span class="header-section-number">1</span> Synesis: Ideias</a>
+  <ul>
+  <li><a href="#introdução-às-extensões" id="toc-introdução-às-extensões" class="nav-link" data-scroll-target="#introdução-às-extensões"><span class="header-section-number">1.1</span> Introdução às Extensões</a></li>
+  <li><a href="#configuração-de-artefatos-de-saída-render" id="toc-configuração-de-artefatos-de-saída-render" class="nav-link" data-scroll-target="#configuração-de-artefatos-de-saída-render"><span class="header-section-number">1.2</span> Configuração de Artefatos de Saída (RENDER)</a>
+  <ul class="collapse">
+  <li><a href="#sintaxe" id="toc-sintaxe" class="nav-link" data-scroll-target="#sintaxe"><span class="header-section-number">1.2.1</span> Sintaxe</a>
+  <ul class="collapse">
+  <li><a href="#semântica" id="toc-semântica" class="nav-link" data-scroll-target="#semântica"><span class="header-section-number">1.2.1.1</span> Semântica</a></li>
+  <li><a href="#exemplo-no-contexto-.synp" id="toc-exemplo-no-contexto-.synp" class="nav-link" data-scroll-target="#exemplo-no-contexto-.synp"><span class="header-section-number">1.2.1.2</span> Exemplo no Contexto (.synp)</a></li>
+  <li><a href="#regras-de-validação" id="toc-regras-de-validação" class="nav-link" data-scroll-target="#regras-de-validação"><span class="header-section-number">1.2.1.3</span> Regras de Validação</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#análise-semântica-avançada" id="toc-análise-semântica-avançada" class="nav-link" data-scroll-target="#análise-semântica-avançada"><span class="header-section-number">1.3</span> Análise Semântica Avançada</a>
+  <ul class="collapse">
+  <li><a href="#detecção-de-redundância-ontológica-fuzzy-matching" id="toc-detecção-de-redundância-ontológica-fuzzy-matching" class="nav-link" data-scroll-target="#detecção-de-redundância-ontológica-fuzzy-matching"><span class="header-section-number">1.3.1</span> Detecção de Redundância Ontológica (Fuzzy Matching)</a></li>
+  <li><a href="#validação-de-ciclos-hierárquicos" id="toc-validação-de-ciclos-hierárquicos" class="nav-link" data-scroll-target="#validação-de-ciclos-hierárquicos"><span class="header-section-number">1.3.2</span> Validação de Ciclos Hierárquicos</a></li>
+  <li><a href="#eliminação-de-código-morto-ghost-concepts" id="toc-eliminação-de-código-morto-ghost-concepts" class="nav-link" data-scroll-target="#eliminação-de-código-morto-ghost-concepts"><span class="header-section-number">1.3.3</span> Eliminação de Código Morto (Ghost Concepts)</a></li>
+  </ul></li>
+  <li><a href="#novos-comandos-estruturais" id="toc-novos-comandos-estruturais" class="nav-link" data-scroll-target="#novos-comandos-estruturais"><span class="header-section-number">1.4</span> Novos Comandos Estruturais</a>
+  <ul class="collapse">
+  <li><a href="#taxonomy-hierarquia-rígida" id="toc-taxonomy-hierarquia-rígida" class="nav-link" data-scroll-target="#taxonomy-hierarquia-rígida"><span class="header-section-number">1.4.1</span> TAXONOMY (Hierarquia Rígida)</a></li>
+  <li><a href="#constraint-regras-de-negócio" id="toc-constraint-regras-de-negócio" class="nav-link" data-scroll-target="#constraint-regras-de-negócio"><span class="header-section-number">1.4.2</span> CONSTRAINT (Regras de Negócio)</a></li>
+  <li><a href="#crossref-rede-de-citações" id="toc-crossref-rede-de-citações" class="nav-link" data-scroll-target="#crossref-rede-de-citações"><span class="header-section-number">1.4.3</span> CROSSREF (Rede de Citações)</a></li>
+  </ul></li>
+  <li><a href="#gestão-de-conhecimento-zettelkasten" id="toc-gestão-de-conhecimento-zettelkasten" class="nav-link" data-scroll-target="#gestão-de-conhecimento-zettelkasten"><span class="header-section-number">1.5</span> Gestão de Conhecimento (Zettelkasten)</a>
+  <ul class="collapse">
+  <li><a href="#bloco-zettel" id="toc-bloco-zettel" class="nav-link" data-scroll-target="#bloco-zettel"><span class="header-section-number">1.5.1</span> 4.1 Bloco ZETTEL</a></li>
+  <li><a href="#campos-exclusivos-zettel-fields" id="toc-campos-exclusivos-zettel-fields" class="nav-link" data-scroll-target="#campos-exclusivos-zettel-fields"><span class="header-section-number">1.5.2</span> Campos Exclusivos (ZETTEL FIELDS)</a></li>
+  </ul></li>
+  <li><a href="#anotação-canônica-bíblicaexegética" id="toc-anotação-canônica-bíblicaexegética" class="nav-link" data-scroll-target="#anotação-canônica-bíblicaexegética"><span class="header-section-number">1.6</span> Anotação Canônica (Bíblica/Exegética)</a>
+  <ul class="collapse">
+  <li><a href="#bloco-bible" id="toc-bloco-bible" class="nav-link" data-scroll-target="#bloco-bible"><span class="header-section-number">1.6.1</span> Bloco BIBLE</a></li>
+  <li><a href="#regras-de-endereçamento-parsing" id="toc-regras-de-endereçamento-parsing" class="nav-link" data-scroll-target="#regras-de-endereçamento-parsing"><span class="header-section-number">1.6.2</span> Regras de Endereçamento (Parsing)</a></li>
+  <li><a href="#exemplo-de-template-para-canon" id="toc-exemplo-de-template-para-canon" class="nav-link" data-scroll-target="#exemplo-de-template-para-canon"><span class="header-section-number">1.6.3</span> Exemplo de Template para Canon</a></li>
+  </ul></li>
+  <li><a href="#apêndice-a-notas-de-implementação-lark-grammar" id="toc-apêndice-a-notas-de-implementação-lark-grammar" class="nav-link" data-scroll-target="#apêndice-a-notas-de-implementação-lark-grammar"><span class="header-section-number">1.7</span> Apêndice A: Notas de Implementação (Lark Grammar)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="synesis-ideias" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis: Ideias</h1>
+<p><strong>Ideias:</strong> Propostas de especificação de Extensões da Linguagem</p>
+<hr>
+<section id="introdução-às-extensões" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introdução-às-extensões"><span class="header-section-number">1.1</span> Introdução às Extensões</h2>
+<p>Esta especificação detalha os novos recursos planejados para a versão 1.2 da linguagem Synesis. O foco desta atualização é evoluir a linguagem de um sistema de anotação linear para um <strong>motor de inferência qualitativa</strong> e gestão de conhecimento (Zettelkasten), além de introduzir suporte nativo para loci canônicos (textos sagrados).</p>
+<hr>
+</section>
+<section id="configuração-de-artefatos-de-saída-render" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="configuração-de-artefatos-de-saída-render"><span class="header-section-number">1.2</span> Configuração de Artefatos de Saída (RENDER)</h2>
+<p>O comando <code>RENDER</code> permite declarar explicitamente, dentro do arquivo de projeto, quais formatos de arquivo devem ser gerados e onde devem ser salvos. Isso garante a reprodutibilidade da compilação sem depender de parâmetros de linha de comando.</p>
+<section id="sintaxe" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="sintaxe"><span class="header-section-number">1.2.1</span> Sintaxe</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RENDER AS <span class="bn">[JSON | CSV | EXCEL]</span> INTO <span class="st">"path/to/filename"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="semântica" class="level4" data-number="1.2.1.1">
+<h4 data-number="1.2.1.1" class="anchored" data-anchor-id="semântica"><span class="header-section-number">1.2.1.1</span> Semântica</h4>
+<ul>
+<li><p><strong>RENDER</strong>: Verbo de comando que inicia a definição de um alvo de compilação. Indica a criação de uma representação estruturada (artefato) a partir dos dados interpretados.</p></li>
+<li><p><strong>AS</strong>: Cláusula que especifica o formato de serialização.</p></li>
+<li><p><code>JSON</code>: Gera a árvore de sintaxe abstrata completa com metadados de rastreabilidade.</p></li>
+<li><p><code>CSV</code>: Gera tabelas relacionais planas (separadas por tipo de bloco).</p></li>
+<li><p><code>EXCEL</code>: Gera um arquivo <code>.xlsx</code> com abas correspondentes às tabelas CSV.</p></li>
+<li><p><strong>INTO</strong>: Cláusula que define o caminho de destino.</p></li>
+<li><p>Deve ser uma string entre aspas duplas.</p></li>
+<li><p>Recomenda-se o uso de <strong>caminhos relativos</strong> à raiz do projeto para garantir portabilidade entre diferentes máquinas.</p></li>
+<li><p>Se o diretório de destino não existir, o compilador tentará criá-lo.</p></li>
+</ul>
+</section>
+<section id="exemplo-no-contexto-.synp" class="level4" data-number="1.2.1.2">
+<h4 data-number="1.2.1.2" class="anchored" data-anchor-id="exemplo-no-contexto-.synp"><span class="header-section-number">1.2.1.2</span> Exemplo no Contexto (.synp)</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> <span class="st">"Estudo Fenomenológico 2026"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"templates/research_v1.synt"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"data/references.bib"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"data/interviews/*.syn"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology/main.syno"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuração Declarativa de Saída</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Gera múltiplos formatos simultaneamente em diretórios organizados</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>RENDER AS JSON  INTO <span class="st">"dist/full_data.json"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>RENDER AS EXCEL INTO <span class="st">"reports/human_readable/matrix.xlsx"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>RENDER AS CSV   INTO <span class="st">"reports/raw_data/export.csv"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="regras-de-validação" class="level4" data-number="1.2.1.3">
+<h4 data-number="1.2.1.3" class="anchored" data-anchor-id="regras-de-validação"><span class="header-section-number">1.2.1.3</span> Regras de Validação</h4>
+<ol type="1">
+<li><strong>Multiplicidade</strong>: É permitido declarar múltiplos comandos <code>RENDER</code> no mesmo projeto. O compilador processará todos sequencialmente.</li>
+<li><strong>Permissão de Escrita</strong>: O compilador deve ter permissão de escrita no diretório alvo. Se o arquivo de destino estiver bloqueado (ex: aberto no Excel), a compilação falhará com erro de E/S.</li>
+<li><strong>Caminhos Absolutos</strong>: O uso de caminhos absolutos (ex: <code>C:/Users/...</code>) emitirá um <em>Warning</em>, pois quebra a portabilidade do projeto.</li>
+</ol>
+<hr>
+</section>
+</section>
+</section>
+<section id="análise-semântica-avançada" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="análise-semântica-avançada"><span class="header-section-number">1.3</span> Análise Semântica Avançada</h2>
+<p>O compilador passa a atuar como assistente metodológico, não apenas validador sintático.</p>
+<section id="detecção-de-redundância-ontológica-fuzzy-matching" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="detecção-de-redundância-ontológica-fuzzy-matching"><span class="header-section-number">1.3.1</span> Detecção de Redundância Ontológica (Fuzzy Matching)</h3>
+<p>O compilador analisará a ontologia em busca de conceitos com grafia similar (Lexical Similarity), prevenindo a fragmentação do grafo de conhecimento.</p>
+<ul>
+<li><strong>Algoritmo:</strong> Distância de Levenshtein / Jaro-Winkler.</li>
+<li><strong>Comportamento:</strong> Warning (Aviso) durante a compilação.</li>
+<li><strong>Exemplo de Detecção:</strong> <code>InteracaoSocial</code> vs <code>Interacao_Social</code>.</li>
+</ul>
+</section>
+<section id="validação-de-ciclos-hierárquicos" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="validação-de-ciclos-hierárquicos"><span class="header-section-number">1.3.2</span> Validação de Ciclos Hierárquicos</h3>
+<p>Impede a criação de loops lógicos nas definições taxonômicas. * <strong>Regra:</strong> Um conceito não pode ser ancestral de si mesmo. * <strong>Erro Fatal:</strong> A compilação é abortada se um ciclo for detectado (ex: A &gt; B &gt; C &gt; A).</p>
+</section>
+<section id="eliminação-de-código-morto-ghost-concepts" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="eliminação-de-código-morto-ghost-concepts"><span class="header-section-number">1.3.3</span> Eliminação de Código Morto (Ghost Concepts)</h3>
+<p>Identifica conceitos definidos na ontologia que nunca foram aplicados em nenhum <code>ITEM</code> ou <code>ZETTEL</code>. * <strong>Comportamento:</strong> Warning (Relatório de limpeza de Codebook).</p>
+<hr>
+</section>
+</section>
+<section id="novos-comandos-estruturais" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="novos-comandos-estruturais"><span class="header-section-number">1.4</span> Novos Comandos Estruturais</h2>
+<section id="taxonomy-hierarquia-rígida" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="taxonomy-hierarquia-rígida"><span class="header-section-number">1.4.1</span> TAXONOMY (Hierarquia Rígida)</h3>
+<p>Substitui o uso solto de <code>TOPIC</code> para definições estritas de relacionamento “é-um” (is-a). Permite herança de propriedades.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>TAXONOMY</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Emoções</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        &gt; Negativas</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            &gt; Raiva</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            &gt; Medo</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        &gt; Positivas</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            &gt; Alegria</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="constraint-regras-de-negócio" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="constraint-regras-de-negócio"><span class="header-section-number">1.4.2</span> CONSTRAINT (Regras de Negócio)</h3>
+<p>Define invariantes lógicas para garantir a consistência metodológica das anotações.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CONSTRAINT</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclusão mútua: Um item não pode ter ambos os códigos simultaneamente</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    FORBID Code <span class="st">"Sentimento: Positivo"</span> WITH Code <span class="st">"Risco: Crítico"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dependência lógica: O código B exige a presença do código A</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    REQUIRE Code <span class="st">"Solução"</span> IF Code <span class="st">"Problema"</span> PRESENT</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="crossref-rede-de-citações" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="crossref-rede-de-citações"><span class="header-section-number">1.4.3</span> CROSSREF (Rede de Citações)</h3>
+<p>Formaliza as relações retóricas entre fontes bibliográficas (Source-to-Source), independente de anotações internas.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>CROSSREF</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@smith2019</span> <span class="op">-&gt;</span> REFUTES <span class="op">-&gt;</span> <span class="fu">@doe2018</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@jones2020</span> <span class="op">-&gt;</span> EXTENDS <span class="op">-&gt;</span> <span class="fu">@smith2019</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="gestão-de-conhecimento-zettelkasten" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="gestão-de-conhecimento-zettelkasten"><span class="header-section-number">1.5</span> Gestão de Conhecimento (Zettelkasten)</h2>
+<p>Introduz a capacidade de criar “Notas Permanentes” que sintetizam conhecimento independente de uma fonte bibliográfica específica.</p>
+<section id="bloco-zettel" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="bloco-zettel"><span class="header-section-number">1.5.1</span> 4.1 Bloco ZETTEL</h3>
+<p>Entidade de nível superior, irmã de <code>SOURCE</code> e <code>ONTOLOGY</code>. Não requer <code>@bibref</code>.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sintaxe: ZETTEL [ID_UNICO]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ZETTEL 2026011401</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">title:</span> <span class="st">"O Princípio da Atomicidade"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">body:</span> <span class="st">"Uma DSL deve forçar a quebra de conceitos..."</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Conexões explícitas (Rizoma)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">links:</span> 2026011205, 2025123001</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Metadados</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tags:</span> DSL Design</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">origin:</span> <span class="fu">@turing1936</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="campos-exclusivos-zettel-fields" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="campos-exclusivos-zettel-fields"><span class="header-section-number">1.5.2</span> Campos Exclusivos (ZETTEL FIELDS)</h3>
+<p>No arquivo de template <code>.synt</code>, novos tipos de campos são suportados:</p>
+<ul>
+<li><strong>LINK (Type REFERENCE):</strong> Cria arestas bidirecionais entre nós ZETTEL.</li>
+<li><strong>ORIGIN (Type REFERENCE):</strong> Cria aresta de citação para um SOURCE.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="anotação-canônica-bíblicaexegética" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="anotação-canônica-bíblicaexegética"><span class="header-section-number">1.6</span> Anotação Canônica (Bíblica/Exegética)</h2>
+<p>Sistema de endereçamento especializado para textos que utilizam o padrão Locus (Livro, Capítulo, Versículo) em vez de referência bibliográfica autor-data.</p>
+<section id="bloco-bible" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="bloco-bible"><span class="header-section-number">1.6.1</span> Bloco BIBLE</h3>
+<p>Substitui o bloco <code>SOURCE</code> para textos sagrados. Utiliza o padrão USX para identificação de livros.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sintaxe: BIBLE [USX_CODE] [CAP:VERSO] [(VERSAO)]</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>BIBLE ROM <span class="fu">8:</span>28-30 (ARA)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Título da perícope (String com aspas obrigatórias para suportar pontuação)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pericope:</span> <span class="st">"A eficácia da vocação: O propósito eterno."</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quote:</span> <span class="st">"Sabemos que todas as coisas cooperam..."</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">code:</span> Providência</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="regras-de-endereçamento-parsing" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="regras-de-endereçamento-parsing"><span class="header-section-number">1.6.2</span> Regras de Endereçamento (Parsing)</h3>
+<p>O parser aplica regras estritas para evitar ambiguidade:</p>
+<ol type="1">
+<li><strong>USX Code:</strong> Exatamente 3 letras maiúsculas (ex: <code>MAT</code>, <code>GEN</code>, <code>PSA</code>).</li>
+<li><strong>Separadores:</strong> Uso obrigatório de <code>:</code> para separar capítulo/verso e <code>-</code> para intervalos.</li>
+<li><strong>Perícope:</strong> Deve ser delimitada por aspas duplas <code>""</code> ou triplas <code>"""</code> para permitir caracteres especiais, vírgulas e quebras de linha sem quebrar o parser.</li>
+</ol>
+</section>
+<section id="exemplo-de-template-para-canon" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="exemplo-de-template-para-canon"><span class="header-section-number">1.6.3</span> Exemplo de Template para Canon</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> biblical_exegesis</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>BIBLE <span class="kw">FIELDS</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> pericope</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> code</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> original_term  <span class="co"># Ex: Grego/Hebraico</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="apêndice-a-notas-de-implementação-lark-grammar" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="apêndice-a-notas-de-implementação-lark-grammar"><span class="header-section-number">1.7</span> Apêndice A: Notas de Implementação (Lark Grammar)</h2>
+<p>Snippet da gramática para suportar o cabeçalho <code>BIBLE</code>:</p>
+<pre class="lark"><code>// Definição do Bloco Canon
+canon_block: "BIBLE" usx_code bible_ref version? block_body "END"
+
+// Códigos USX (3 letras maiúsculas estritas)
+usx_code: UCASE_LETTER UCASE_LETTER UCASE_LETTER 
+
+// Referências suportadas: 8, 8:28, 8:28-30, 8:28-9:1
+bible_ref: chapter
+         | chapter ":" verse
+         | chapter ":" verse "-" verse
+         | chapter ":" verse "-" chapter ":" verse
+
+chapter: INT
+verse: INT | "END"
+version: "(" UCASE_LETTER+ ")" | "@" LCASE_LETTER+ DIGIT+</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
