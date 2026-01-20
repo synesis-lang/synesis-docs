@@ -1,0 +1,26 @@
+{
+  "about.qmd": {
+    "about.html": "16a5936a"
+  },
+  "ecossistema/guia_synesis_explorer.qmd": {
+    "guia_synesis_explorer.html": "c6c89009"
+  },
+  "guide/guia_pesquisadores.qmd": {
+    "guia_pesquisadores.html": "349dd913"
+  },
+  "guide/guia_profissionais.qmd": {
+    "guia_profissionais.html": "cfcdddf7"
+  },
+  "guide/guia_sincero.qmd": {
+    "guia_sincero.html": "e0db6c59"
+  },
+  "index.qmd": {
+    "index.html": "be3693b9"
+  },
+  "reference/guia_referencia.qmd": {
+    "guia_referencia.html": "4b2dffc1"
+  },
+  "reference/ideas.qmd": {
+    "ideas.html": "47299d9c"
+  }
+}
