@@ -332,9 +332,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#bloco-bible" id="toc-bloco-bible" class="nav-link" data-scroll-target="#bloco-bible"><span class="header-section-number">1.6.1</span> Bloco BIBLE</a></li>
   <li><a href="#regras-de-endereçamento-parsing" id="toc-regras-de-endereçamento-parsing" class="nav-link" data-scroll-target="#regras-de-endereçamento-parsing"><span class="header-section-number">1.6.2</span> Regras de Endereçamento (Parsing)</a></li>
-  <li><a href="#exemplo-de-template-para-canon" id="toc-exemplo-de-template-para-canon" class="nav-link" data-scroll-target="#exemplo-de-template-para-canon"><span class="header-section-number">1.6.3</span> Exemplo de Template para Canon</a></li>
+  <li><a href="#exemplo-de-template-para-canon" id="toc-exemplo-de-template-para-canon" class="nav-link" data-scroll-target="#exemplo-de-template-para-canon"><span class="header-section-number">1.6.3</span> Exemplo de Template para Canon</a>
+  <ul class="collapse">
+  <li><a href="#apêndice-a-notas-de-implementação-lark-grammar" id="toc-apêndice-a-notas-de-implementação-lark-grammar" class="nav-link" data-scroll-target="#apêndice-a-notas-de-implementação-lark-grammar"><span class="header-section-number">1.6.3.1</span> Apêndice A: Notas de Implementação (Lark Grammar)</a></li>
   </ul></li>
-  <li><a href="#apêndice-a-notas-de-implementação-lark-grammar" id="toc-apêndice-a-notas-de-implementação-lark-grammar" class="nav-link" data-scroll-target="#apêndice-a-notas-de-implementação-lark-grammar"><span class="header-section-number">1.7</span> Apêndice A: Notas de Implementação (Lark Grammar)</a></li>
+  </ul></li>
+  <li><a href="#visualização-imediata" id="toc-visualização-imediata" class="nav-link" data-scroll-target="#visualização-imediata"><span class="header-section-number">1.7</span> Visualização Imediata</a></li>
+  <li><a href="#integração-com-data-science" id="toc-integração-com-data-science" class="nav-link" data-scroll-target="#integração-com-data-science"><span class="header-section-number">1.8</span> Integração com Data Science</a></li>
+  <li><a href="#possível-workflow" id="toc-possível-workflow" class="nav-link" data-scroll-target="#possível-workflow"><span class="header-section-number">1.9</span> Possível Workflow</a>
+  <ul class="collapse">
+  <li><a href="#passo-1-desacoplamento-de-io-entradasaída" id="toc-passo-1-desacoplamento-de-io-entradasaída" class="nav-link" data-scroll-target="#passo-1-desacoplamento-de-io-entradasaída"><span class="header-section-number">1.9.1</span> Passo 1: Desacoplamento de I/O (Entrada/Saída)</a></li>
+  <li><a href="#passo-2-exposição-da-api-pública-do-core" id="toc-passo-2-exposição-da-api-pública-do-core" class="nav-link" data-scroll-target="#passo-2-exposição-da-api-pública-do-core"><span class="header-section-number">1.9.2</span> Passo 2: Exposição da API Pública do Core</a></li>
+  <li><a href="#passo-3-criação-do-adaptador-python-data-science" id="toc-passo-3-criação-do-adaptador-python-data-science" class="nav-link" data-scroll-target="#passo-3-criação-do-adaptador-python-data-science"><span class="header-section-number">1.9.3</span> Passo 3: Criação do Adaptador Python (Data Science)</a></li>
+  <li><a href="#passo-4-adaptação-para-o-lsp-editor-intelligence" id="toc-passo-4-adaptação-para-o-lsp-editor-intelligence" class="nav-link" data-scroll-target="#passo-4-adaptação-para-o-lsp-editor-intelligence"><span class="header-section-number">1.9.4</span> Passo 4: Adaptação para o LSP (Editor Intelligence)</a></li>
+  <li><a href="#passo-5-cli-como-cliente-magro" id="toc-passo-5-cli-como-cliente-magro" class="nav-link" data-scroll-target="#passo-5-cli-como-cliente-magro"><span class="header-section-number">1.9.5</span> Passo 5: CLI como “Cliente Magro”</a></li>
+  <li><a href="#resumo-do-fluxo-de-dados" id="toc-resumo-do-fluxo-de-dados" class="nav-link" data-scroll-target="#resumo-do-fluxo-de-dados"><span class="header-section-number">1.9.6</span> Resumo do Fluxo de Dados</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -534,11 +547,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> code</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> original_term  <span class="co"># Ex: Grego/Hebraico</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="apêndice-a-notas-de-implementação-lark-grammar" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="apêndice-a-notas-de-implementação-lark-grammar"><span class="header-section-number">1.7</span> Apêndice A: Notas de Implementação (Lark Grammar)</h2>
+<section id="apêndice-a-notas-de-implementação-lark-grammar" class="level4" data-number="1.6.3.1">
+<h4 data-number="1.6.3.1" class="anchored" data-anchor-id="apêndice-a-notas-de-implementação-lark-grammar"><span class="header-section-number">1.6.3.1</span> Apêndice A: Notas de Implementação (Lark Grammar)</h4>
 <p>Snippet da gramática para suportar o cabeçalho <code>BIBLE</code>:</p>
 <pre class="lark"><code>// Definição do Bloco Canon
 canon_block: "BIBLE" usx_code bible_ref version? block_body "END"
@@ -555,8 +565,97 @@ bible_ref: chapter
 chapter: INT
 verse: INT | "END"
 version: "(" UCASE_LETTER+ ")" | "@" LCASE_LETTER+ DIGIT+</code></pre>
+<hr>
+</section>
+</section>
+</section>
+<section id="visualização-imediata" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="visualização-imediata"><span class="header-section-number">1.7</span> Visualização Imediata</h2>
+<p>O output JSON é útil para processamento, mas humanos precisam ver o grafo.</p>
+<p>Ideia: Criar um comando synesis serve que sobe um servidor local simples mostrando o grafo de conexões (usando D3.js ou Cytoscape) gerado a partir do JSON exportado.</p>
+<hr>
+</section>
+<section id="integração-com-data-science" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="integração-com-data-science"><span class="header-section-number">1.8</span> Integração com Data Science</h2>
+<p>O suporte a exportação CSV/Excel é bom, mas uma integração direta com Pandas seria matadora.</p>
+<p>Exemplo: Uma biblioteca Python import synesis que permite carregar o projeto diretamente em um DataFrame sem passar pelo terminal, facilitando o uso em Jupyter Notebooks.</p>
+</section>
+<section id="possível-workflow" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="possível-workflow"><span class="header-section-number">1.9</span> Possível Workflow</h2>
+<p>Correto. A premissa é exata: o <strong>Core do Compilador</strong> (Parser + Análise Semântica) atua como a única fonte da verdade. Tanto a exportação de arquivos, quanto a biblioteca Python (<code>synesis.load</code>), quanto o servidor LSP consomem a mesma <strong>Árvore Sintática Abstrata (AST)</strong> e a mesma <strong>Tabela de Símbolos</strong>.</p>
+<p>Aqui está o workflow objetivo para essa implementação, focando na arquitetura “Compiler as a Library” (Compilador como Biblioteca):</p>
+<section id="passo-1-desacoplamento-de-io-entradasaída" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="passo-1-desacoplamento-de-io-entradasaída"><span class="header-section-number">1.9.1</span> Passo 1: Desacoplamento de I/O (Entrada/Saída)</h3>
+<p>O primeiro passo é garantir que o compilador não “saiba” que está escrevendo arquivos.</p>
+<ul>
+<li><strong>Ação:</strong> Separar as funções de exportação. Hoje, provável que exista uma função <code>export_csv(ast, filepath)</code>.</li>
+<li><strong>Refatoração:</strong> Dividir em duas:</li>
+</ul>
+<ol type="1">
+<li><code>transform_to_tabular_data(ast)</code>: Recebe a AST e retorna listas de dicionários/objetos em memória (sem tocar no disco).</li>
+<li><code>write_csv(data, filepath)</code>: Recebe os dados e apenas grava o arquivo.</li>
+</ol>
+</section>
+<section id="passo-2-exposição-da-api-pública-do-core" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="passo-2-exposição-da-api-pública-do-core"><span class="header-section-number">1.9.2</span> Passo 2: Exposição da API Pública do Core</h3>
+<p>O módulo principal do Synesis deve expor o acesso programático à compilação.</p>
+<ul>
+<li><strong>Ação:</strong> Tornar a função de orquestração acessível externamente.</li>
+<li><strong>Definição:</strong> Criar/Ajustar um método (ex: <code>Synesis.compile_source()</code>) que aceita uma string ou caminho de arquivo e retorna o objeto <code>Project</code> (o resultado da validação semântica contendo todas as estruturas ligadas).</li>
+</ul>
+</section>
+<section id="passo-3-criação-do-adaptador-python-data-science" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="passo-3-criação-do-adaptador-python-data-science"><span class="header-section-number">1.9.3</span> Passo 3: Criação do Adaptador Python (Data Science)</h3>
+<p>Este é o consumidor que você sugeriu (<code>synesis.load</code>).</p>
+<ul>
+<li><strong>Dependência:</strong> Definir Pandas como dependência opcional.</li>
+<li><strong>Fluxo:</strong></li>
+</ul>
+<ol type="1">
+<li>Chama a API do Passo 2 para obter o objeto <code>Project</code> em memória.</li>
+<li>Chama a função de transformação do Passo 1 (<code>transform_to_tabular_data</code>).</li>
+<li>Instancia DataFrames do Pandas usando esses dados.</li>
+<li>Aplica tipagem (converte strings para <code>datetime</code> objects, categorias, etc.) baseada nos tipos da AST.</li>
+</ol>
+</section>
+<section id="passo-4-adaptação-para-o-lsp-editor-intelligence" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="passo-4-adaptação-para-o-lsp-editor-intelligence"><span class="header-section-number">1.9.4</span> Passo 4: Adaptação para o LSP (Editor Intelligence)</h3>
+<p>O LSP consome a mesma AST, mas precisa de dados diferentes (localização em vez de valor).</p>
+<ul>
+<li><strong>Ação:</strong> Garantir que os nós da AST (Item, Source, Field) preservem metadados de origem (<code>linha</code>, <code>coluna</code>, <code>arquivo</code>).</li>
+<li><strong>Fluxo:</strong></li>
+</ul>
+<ol type="1">
+<li>O LSP envia o texto do arquivo atual (mesmo incompleto).</li>
+<li>O Core tenta fazer o parse (com tolerância a erros).</li>
+<li>O Core retorna a <strong>Tabela de Símbolos</strong> (lista de ontologias e definições disponíveis).</li>
+<li>O LSP usa essa tabela para fornecer <em>Autocomplete</em> e <em>Go to Definition</em>.</li>
+</ol>
+</section>
+<section id="passo-5-cli-como-cliente-magro" class="level3" data-number="1.9.5">
+<h3 data-number="1.9.5" class="anchored" data-anchor-id="passo-5-cli-como-cliente-magro"><span class="header-section-number">1.9.5</span> Passo 5: CLI como “Cliente Magro”</h3>
+<p>O comando <code>synesis compile</code> no terminal passa a ser apenas mais um cliente, igual ao Python ou ao LSP.</p>
+<ul>
+<li><strong>Ação:</strong> O CLI apenas coleta argumentos, chama a API do Passo 2 e usa as funções de escrita de arquivo (<code>write_csv</code>, <code>write_json</code>) definidas no Passo 1.</li>
+</ul>
+</section>
+<section id="resumo-do-fluxo-de-dados" class="level3" data-number="1.9.6">
+<h3 data-number="1.9.6" class="anchored" data-anchor-id="resumo-do-fluxo-de-dados"><span class="header-section-number">1.9.6</span> Resumo do Fluxo de Dados</h3>
+<ol type="1">
+<li><strong>Entrada:</strong> Arquivos <code>.syn</code> / <code>.synt</code></li>
+<li><strong>Motor Central (Synesis Core):</strong> Gera AST + Validação Semântica.</li>
+<li><strong>Distribuição:</strong></li>
+</ol>
+<ul>
+<li>via <strong>CLI</strong> -&gt; Escreve no Disco (JSON/CSV).</li>
+<li>via <strong>Python SDK</strong> -&gt; Entrega Objetos/DataFrames em Memória.</li>
+<li>via <strong>LSP</strong> -&gt; Entrega Metadados de Posição e Erros para o Editor.</li>
+<li></li>
+</ul>
+<hr>
 
 
+</section>
 </section>
 </section>
 
