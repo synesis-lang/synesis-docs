@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Honest guide – Synesis Language</title>
+<title>guia_sincero – Synesis Language</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -120,6 +154,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Reference</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../reference/ideas.html">
  <span class="dropdown-text">Ideas</span></a>
   </li>  
@@ -168,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_sincero.html">Honest guide</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_sincero.html">Why not just do it in Excel?</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_pesquisadores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Researchers</span></a>
+ <span class="menu-text">Synesis: A Language for Organizing Your Qualitative Research</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_profissionais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Professionals</span></a>
+ <span class="menu-text">Synesis: Structuring Knowledge for Data-Driven Decisions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_sincero.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Honest guide</span></a>
+ <span class="menu-text">Why not just do it in Excel?</span></a>
   </div>
 </li>
       </ul>
@@ -227,13 +265,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/guia_referencia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reference guide</span></a>
+ <span class="menu-text">Synesis: Language Reference Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/synesis_load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: In-Memory API (<code>synesis.load</code>)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ideas</span></a>
+ <span class="menu-text">Synesis: Ideas</span></a>
   </div>
 </li>
       </ul>
@@ -250,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ecossistema/guia_synesis_explorer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Synesis Explorer</span></a>
+ <span class="menu-text">Quick Guide: Synesis Explorer (VS Code)</span></a>
   </div>
 </li>
       </ul>
@@ -265,37 +309,246 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#honest-guide" id="toc-honest-guide" class="nav-link active" data-scroll-target="#honest-guide"><span class="header-section-number">1</span> Honest guide</a></li>
+  <li><a href="#why-not-just-do-it-in-excel" id="toc-why-not-just-do-it-in-excel" class="nav-link active" data-scroll-target="#why-not-just-do-it-in-excel"><span class="header-section-number">1</span> Why not just do it in Excel?</a>
+  <ul>
+  <li><a href="#the-uncomfortable-question" id="toc-the-uncomfortable-question" class="nav-link" data-scroll-target="#the-uncomfortable-question"><span class="header-section-number">1.1</span> The uncomfortable question</a></li>
+  <li><a href="#short-answer" id="toc-short-answer" class="nav-link" data-scroll-target="#short-answer"><span class="header-section-number">1.2</span> Short answer</a></li>
+  <li><a href="#the-problems-excel-doesnt-solve" id="toc-the-problems-excel-doesnt-solve" class="nav-link" data-scroll-target="#the-problems-excel-doesnt-solve"><span class="header-section-number">1.3</span> The problems Excel doesn’t solve</a>
+  <ul class="collapse">
+  <li><a href="#excel-doesnt-validate-conceptual-consistency" id="toc-excel-doesnt-validate-conceptual-consistency" class="nav-link" data-scroll-target="#excel-doesnt-validate-conceptual-consistency"><span class="header-section-number">1.3.1</span> 1. Excel doesn’t validate conceptual consistency</a></li>
+  <li><a href="#excel-doesnt-connect-interpretation-to-evidence" id="toc-excel-doesnt-connect-interpretation-to-evidence" class="nav-link" data-scroll-target="#excel-doesnt-connect-interpretation-to-evidence"><span class="header-section-number">1.3.2</span> 2. Excel doesn’t connect interpretation to evidence</a></li>
+  <li><a href="#excel-doesnt-guarantee-bidirectional-traceability" id="toc-excel-doesnt-guarantee-bidirectional-traceability" class="nav-link" data-scroll-target="#excel-doesnt-guarantee-bidirectional-traceability"><span class="header-section-number">1.3.3</span> 3. Excel doesn’t guarantee bidirectional traceability</a></li>
+  <li><a href="#excel-doesnt-scale-for-complex-projects" id="toc-excel-doesnt-scale-for-complex-projects" class="nav-link" data-scroll-target="#excel-doesnt-scale-for-complex-projects"><span class="header-section-number">1.3.4</span> 4. Excel doesn’t scale for complex projects</a></li>
+  <li><a href="#excel-doesnt-natively-express-causal-relationships" id="toc-excel-doesnt-natively-express-causal-relationships" class="nav-link" data-scroll-target="#excel-doesnt-natively-express-causal-relationships"><span class="header-section-number">1.3.5</span> 5. Excel doesn’t natively express causal relationships</a></li>
+  </ul></li>
+  <li><a href="#what-you-gain-from-the-extra-work" id="toc-what-you-gain-from-the-extra-work" class="nav-link" data-scroll-target="#what-you-gain-from-the-extra-work"><span class="header-section-number">1.4</span> What you gain from the “extra work”</a></li>
+  <li><a href="#when-excel-is-the-right-choice" id="toc-when-excel-is-the-right-choice" class="nav-link" data-scroll-target="#when-excel-is-the-right-choice"><span class="header-section-number">1.5</span> When Excel is the right choice</a></li>
+  <li><a href="#when-synesis-is-worth-the-investment" id="toc-when-synesis-is-worth-the-investment" class="nav-link" data-scroll-target="#when-synesis-is-worth-the-investment"><span class="header-section-number">1.6</span> When Synesis is worth the investment</a></li>
+  <li><a href="#the-real-cost-of-each-approach" id="toc-the-real-cost-of-each-approach" class="nav-link" data-scroll-target="#the-real-cost-of-each-approach"><span class="header-section-number">1.7</span> The real cost of each approach</a>
+  <ul class="collapse">
+  <li><a href="#excel" id="toc-excel" class="nav-link" data-scroll-target="#excel"><span class="header-section-number">1.7.1</span> Excel</a></li>
+  <li><a href="#synesis" id="toc-synesis" class="nav-link" data-scroll-target="#synesis"><span class="header-section-number">1.7.2</span> Synesis</a></li>
+  </ul></li>
+  <li><a href="#the-question-you-should-be-asking" id="toc-the-question-you-should-be-asking" class="nav-link" data-scroll-target="#the-question-you-should-be-asking"><span class="header-section-number">1.8</span> The question you should be asking</a></li>
+  <li><a href="#an-honest-middle-ground" id="toc-an-honest-middle-ground" class="nav-link" data-scroll-target="#an-honest-middle-ground"><span class="header-section-number">1.9</span> An honest middle ground</a></li>
+  <li><a href="#brutal-conclusion" id="toc-brutal-conclusion" class="nav-link" data-scroll-target="#brutal-conclusion"><span class="header-section-number">1.10</span> Brutal conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_sincero.html">Honest guide</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Honest guide</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
+<section id="why-not-just-do-it-in-excel" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Why not just do it in Excel?</h1>
+<p><strong>An honest answer about when Synesis makes sense — and when it doesn’t</strong></p>
+<hr>
+<section id="the-uncomfortable-question" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-uncomfortable-question"><span class="header-section-number">1.1</span> The uncomfortable question</h2>
+<blockquote class="blockquote">
+<p>“Why should I learn a language, go through all this work, just to generate a spreadsheet in the end? Why not skip this step and annotate directly in Excel?”</p>
+</blockquote>
+<p>This is a legitimate question. And it deserves an honest answer.</p>
+<hr>
+</section>
+<section id="short-answer" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="short-answer"><span class="header-section-number">1.2</span> Short answer</h2>
+<p><strong>If your project is small, your data is simple, and you work alone: use Excel.</strong></p>
+<p>Seriously. Don’t overcomplicate things.</p>
+<p>Synesis exists to solve problems that Excel doesn’t solve well. If you don’t have those problems, you don’t need Synesis.</p>
+<hr>
+</section>
+<section id="the-problems-excel-doesnt-solve" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-problems-excel-doesnt-solve"><span class="header-section-number">1.3</span> The problems Excel doesn’t solve</h2>
+<section id="excel-doesnt-validate-conceptual-consistency" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="excel-doesnt-validate-conceptual-consistency"><span class="header-section-number">1.3.1</span> 1. Excel doesn’t validate conceptual consistency</h3>
+<p>In Excel, nothing prevents you from writing:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Relationship</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cost</td>
+<td>influences</td>
+<td>Adoption</td>
+</tr>
+<tr class="even">
+<td>cost</td>
+<td>INFLUENCES</td>
+<td>adoption</td>
+</tr>
+<tr class="odd">
+<td>Price</td>
+<td>affects</td>
+<td>Acceptance</td>
+</tr>
+</tbody>
+</table>
+<p>Are these three ways of saying the same thing? Or are they different concepts? Excel doesn’t know. Neither will you remember six months from now.</p>
+<p><strong>Synesis forces consistency.</strong> If you defined “Cost” in the ontology, the compiler complains when you write “cost” or “Price”. This seems like bureaucracy until you have 200 codes and realize half are duplicates with slightly different names.</p>
+</section>
+<section id="excel-doesnt-connect-interpretation-to-evidence" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="excel-doesnt-connect-interpretation-to-evidence"><span class="header-section-number">1.3.2</span> 2. Excel doesn’t connect interpretation to evidence</h3>
+<p>In Excel, you probably do something like this:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Quote</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“The price is too high”</td>
+<td>Economic Barrier</td>
+</tr>
+</tbody>
+</table>
+<p>Where is your interpretation? Why did you decide this is “Economic Barrier” and not “Value Perception”? Do you remember? Can you explain it to your advisor? To the reviewer who will review your article?</p>
+<p><strong>Synesis requires you to record the interpretation along with the coding.</strong> This seems like extra work until someone questions your conclusions and you have to justify each analytical decision.</p>
+</section>
+<section id="excel-doesnt-guarantee-bidirectional-traceability" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="excel-doesnt-guarantee-bidirectional-traceability"><span class="header-section-number">1.3.3</span> 3. Excel doesn’t guarantee bidirectional traceability</h3>
+<p>Try doing this in Excel: - Given a code, find all associated quotes - Given a quote, find all assigned codes - Given an article, find all extracted causal chains - Given a causal chain, find the original source</p>
+<p>You can do it with filters, VLOOKUP, pivot tables. It will work. Until you add 50 more sources and realize your spreadsheet has become a monster of interconnected tabs that only you understand (and even you, not always).</p>
+<p><strong>Synesis maintains the source → item → interpretation → code/chain structure automatically.</strong> The compiler generates CSVs with traceability columns (<code>source_file</code>, <code>source_line</code>, <code>source_column</code>). You always know where each piece of data came from.</p>
+</section>
+<section id="excel-doesnt-scale-for-complex-projects" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="excel-doesnt-scale-for-complex-projects"><span class="header-section-number">1.3.4</span> 4. Excel doesn’t scale for complex projects</h3>
+<p>With 10 interviews and 30 codes, Excel works.</p>
+<p>With 100 articles, 500 codes, and 3 researchers, Excel becomes a nightmare: - Who changed what? - Why did this code disappear? - Which version of the file was this quote in? - How do I merge analyses from three people?</p>
+<p><strong>Synesis files are text files.</strong> They work with Git. You have complete history, can merge, can revert, can work in parallel. This isn’t an advantage for an undergraduate thesis. It’s essential for a 3-year research project with a team.</p>
+</section>
+<section id="excel-doesnt-natively-express-causal-relationships" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="excel-doesnt-natively-express-causal-relationships"><span class="header-section-number">1.3.5</span> 5. Excel doesn’t natively express causal relationships</h3>
+<p>Try representing this in Excel:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Lack of Information <span class="op">-&gt;</span> GENERATES <span class="op">-&gt;</span> Distrust <span class="op">-&gt;</span> INHIBITS <span class="op">-&gt;</span> Adoption</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll need separate columns, or concatenated cells, or an improvised structure. Any subsequent analysis will require manual parsing.</p>
+<p><strong>Synesis has native syntax for causal chains.</strong> The compiler understands the structure and can export in formats suitable for network analysis or knowledge graphs.</p>
+<hr>
+</section>
+</section>
+<section id="what-you-gain-from-the-extra-work" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="what-you-gain-from-the-extra-work"><span class="header-section-number">1.4</span> What you gain from the “extra work”</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>“Extra work”</th>
+<th>What you gain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Learning the syntax</td>
+<td>Structure that forces conceptual clarity</td>
+</tr>
+<tr class="even">
+<td>Defining ontology</td>
+<td>Controlled vocabulary that doesn’t become a mess</td>
+</tr>
+<tr class="odd">
+<td>Writing in plain text</td>
+<td>Versionable, searchable, durable files</td>
+</tr>
+<tr class="even">
+<td>Using the compiler</td>
+<td>Automatic validation + multiple output formats</td>
+</tr>
+<tr class="odd">
+<td>Separating source/item/code</td>
+<td>Complete and auditable traceability</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="when-excel-is-the-right-choice" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="when-excel-is-the-right-choice"><span class="header-section-number">1.5</span> When Excel is the right choice</h2>
+<p>Be honest with yourself. Use Excel if:</p>
+<ul>
+<li>Your project has fewer than 20 sources</li>
+<li>You work alone</li>
+<li>The codes are simple (no complex hierarchies)</li>
+<li>You don’t need to justify analytical decisions in detail</li>
+<li>The project ends in a few months and won’t be resumed</li>
+<li>You don’t plan to integrate with other analysis tools</li>
+</ul>
+<p><strong>There’s no shame in that.</strong> Right tool for the right problem.</p>
+<hr>
+</section>
+<section id="when-synesis-is-worth-the-investment" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="when-synesis-is-worth-the-investment"><span class="header-section-number">1.6</span> When Synesis is worth the investment</h2>
+<p>Consider Synesis if:</p>
+<ul>
+<li>You have dozens or hundreds of sources</li>
+<li>Multiple people will code or review</li>
+<li>The project lasts years (dissertation, thesis, institutional research)</li>
+<li>You need to demonstrate methodological rigor</li>
+<li>The data will be reanalyzed or expanded in the future</li>
+<li>You want to integrate with network analysis or knowledge graphs</li>
+<li>Terminological consistency is critical to your conclusions</li>
+<li>You’ve already lost data or work due to spreadsheet problems</li>
+</ul>
+<hr>
+</section>
+<section id="the-real-cost-of-each-approach" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="the-real-cost-of-each-approach"><span class="header-section-number">1.7</span> The real cost of each approach</h2>
+<section id="excel" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="excel"><span class="header-section-number">1.7.1</span> Excel</h3>
+<p><strong>Initial cost:</strong> Low. You already know how to use it.</p>
+<p><strong>Cost over time:</strong> Grows exponentially. Maintaining complex spreadsheets, correcting inconsistencies, reconstructing lost traceability, explaining undocumented decisions.</p>
+<p><strong>Cost of error:</strong> High. Errors propagate silently. You may discover inconsistencies only at the writing stage, when it’s too late.</p>
+</section>
+<section id="synesis" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="synesis"><span class="header-section-number">1.7.2</span> Synesis</h3>
+<p><strong>Initial cost:</strong> Medium. You need to learn the syntax and define the structure.</p>
+<p><strong>Cost over time:</strong> Stable. The structure is maintained. Automatic validation catches errors early.</p>
+<p><strong>Cost of error:</strong> Low. The compiler complains immediately when something is wrong.</p>
+<hr>
+</section>
+</section>
+<section id="the-question-you-should-be-asking" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="the-question-you-should-be-asking"><span class="header-section-number">1.8</span> The question you should be asking</h2>
+<p>It’s not “why not use Excel?”</p>
+<p>It’s: <strong>“What is the cost of doing it wrong?”</strong></p>
+<p>If the cost of inconsistency, loss of traceability, or conceptual mess is low for your project, use Excel.</p>
+<p>If that cost is high — because you need to defend a thesis, publish an article, or make organizational decisions based on the data — the investment in structure pays off.</p>
+<hr>
+</section>
+<section id="an-honest-middle-ground" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="an-honest-middle-ground"><span class="header-section-number">1.9</span> An honest middle ground</h2>
+<p>If you’re in doubt:</p>
+<ol type="1">
+<li><strong>Start in Excel</strong> to explore the data</li>
+<li><strong>Migrate to Synesis</strong> when you realize you need more structure</li>
+<li><strong>Export to Excel</strong> when you need specific visualizations or analyses</li>
+</ol>
+<p>Synesis is not anti-Excel. Excel is one of the output formats. The question is: where is the <strong>source of truth</strong>?</p>
+<ul>
+<li>If the source of truth is the spreadsheet, you have the problems I described.</li>
+<li>If the source of truth is the Synesis files, Excel is just one of the ways to visualize.</li>
+</ul>
+<hr>
+</section>
+<section id="brutal-conclusion" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="brutal-conclusion"><span class="header-section-number">1.10</span> Brutal conclusion</h2>
+<p>Synesis is not for everyone. It’s not for every project.</p>
+<p>It’s for those who have already suffered with: - Spreadsheets that became incomprehensible monsters - Duplicate codes that contaminated the analysis - “Where did this come from?” questions without answers - Months of work lost due to lack of structure</p>
+<p>If you’ve never had these problems, maybe you don’t need Synesis.</p>
+<p>If you have, you know exactly why it’s worth investing in structure from the start.</p>
+<hr>
+<p><em>The best tool is the one that solves your problem. Sometimes it’s Excel. Sometimes it’s not.</em></p>
 
-    
-  
-    
-  </div>
-  
 
-
-</header>
-
-
-<section id="honest-guide" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Honest guide</h1>
-<p>English content coming soon.</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

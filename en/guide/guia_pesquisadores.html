@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Researchers – Synesis Language</title>
+<title>guia_pesquisadores – Synesis Language</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -120,6 +154,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Reference</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../reference/ideas.html">
  <span class="dropdown-text">Ideas</span></a>
   </li>  
@@ -168,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Researchers</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Synesis: A Language for Organizing Your Qualitative Research</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_pesquisadores.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Researchers</span></a>
+ <span class="menu-text">Synesis: A Language for Organizing Your Qualitative Research</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_profissionais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Professionals</span></a>
+ <span class="menu-text">Synesis: Structuring Knowledge for Data-Driven Decisions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_sincero.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Honest guide</span></a>
+ <span class="menu-text">Why not just do it in Excel?</span></a>
   </div>
 </li>
       </ul>
@@ -227,13 +265,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/guia_referencia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reference guide</span></a>
+ <span class="menu-text">Synesis: Language Reference Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/synesis_load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: In-Memory API (<code>synesis.load</code>)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ideas</span></a>
+ <span class="menu-text">Synesis: Ideas</span></a>
   </div>
 </li>
       </ul>
@@ -250,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ecossistema/guia_synesis_explorer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Synesis Explorer</span></a>
+ <span class="menu-text">Quick Guide: Synesis Explorer (VS Code)</span></a>
   </div>
 </li>
       </ul>
@@ -265,37 +309,335 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#researchers" id="toc-researchers" class="nav-link active" data-scroll-target="#researchers"><span class="header-section-number">1</span> Researchers</a></li>
+  <li><a href="#synesis-a-language-for-organizing-your-qualitative-research" id="toc-synesis-a-language-for-organizing-your-qualitative-research" class="nav-link active" data-scroll-target="#synesis-a-language-for-organizing-your-qualitative-research"><span class="header-section-number">1</span> Synesis: A Language for Organizing Your Qualitative Research</a>
+  <ul>
+  <li><a href="#what-is-synesis" id="toc-what-is-synesis" class="nav-link" data-scroll-target="#what-is-synesis"><span class="header-section-number">1.1</span> What is Synesis?</a></li>
+  <li><a href="#why-use-synesis" id="toc-why-use-synesis" class="nav-link" data-scroll-target="#why-use-synesis"><span class="header-section-number">1.2</span> Why use Synesis?</a>
+  <ul class="collapse">
+  <li><a href="#the-common-problem" id="toc-the-common-problem" class="nav-link" data-scroll-target="#the-common-problem"><span class="header-section-number">1.2.1</span> The common problem</a></li>
+  <li><a href="#synesis-proposal" id="toc-synesis-proposal" class="nav-link" data-scroll-target="#synesis-proposal"><span class="header-section-number">1.2.2</span> Synesis proposal</a></li>
+  </ul></li>
+  <li><a href="#how-does-it-work-in-practice" id="toc-how-does-it-work-in-practice" class="nav-link" data-scroll-target="#how-does-it-work-in-practice"><span class="header-section-number">1.3</span> How does it work in practice?</a>
+  <ul class="collapse">
+  <li><a href="#a-simple-example" id="toc-a-simple-example" class="nav-link" data-scroll-target="#a-simple-example"><span class="header-section-number">1.3.1</span> A simple example</a></li>
+  <li><a href="#building-relationships" id="toc-building-relationships" class="nav-link" data-scroll-target="#building-relationships"><span class="header-section-number">1.3.2</span> Building relationships</a></li>
+  </ul></li>
+  <li><a href="#basic-components" id="toc-basic-components" class="nav-link" data-scroll-target="#basic-components"><span class="header-section-number">1.4</span> Basic components</a>
+  <ul class="collapse">
+  <li><a href="#sources-source" id="toc-sources-source" class="nav-link" data-scroll-target="#sources-source"><span class="header-section-number">1.4.1</span> 1. Sources (SOURCE)</a></li>
+  <li><a href="#analysis-items-item" id="toc-analysis-items-item" class="nav-link" data-scroll-target="#analysis-items-item"><span class="header-section-number">1.4.2</span> 2. Analysis items (ITEM)</a></li>
+  <li><a href="#conceptual-vocabulary-ontology" id="toc-conceptual-vocabulary-ontology" class="nav-link" data-scroll-target="#conceptual-vocabulary-ontology"><span class="header-section-number">1.4.3</span> 3. Conceptual vocabulary (ONTOLOGY)</a></li>
+  </ul></li>
+  <li><a href="#types-of-relationships" id="toc-types-of-relationships" class="nav-link" data-scroll-target="#types-of-relationships"><span class="header-section-number">1.5</span> Types of relationships</a></li>
+  <li><a href="#benefits-for-your-research" id="toc-benefits-for-your-research" class="nav-link" data-scroll-target="#benefits-for-your-research"><span class="header-section-number">1.6</span> Benefits for your research</a>
+  <ul class="collapse">
+  <li><a href="#traceability" id="toc-traceability" class="nav-link" data-scroll-target="#traceability"><span class="header-section-number">1.6.1</span> Traceability</a></li>
+  <li><a href="#consistency" id="toc-consistency" class="nav-link" data-scroll-target="#consistency"><span class="header-section-number">1.6.2</span> Consistency</a></li>
+  <li><a href="#methodological-transparency" id="toc-methodological-transparency" class="nav-link" data-scroll-target="#methodological-transparency"><span class="header-section-number">1.6.3</span> Methodological transparency</a></li>
+  <li><a href="#portability" id="toc-portability" class="nav-link" data-scroll-target="#portability"><span class="header-section-number">1.6.4</span> Portability</a></li>
+  <li><a href="#collaboration" id="toc-collaboration" class="nav-link" data-scroll-target="#collaboration"><span class="header-section-number">1.6.5</span> Collaboration</a></li>
+  </ul></li>
+  <li><a href="#how-to-get-started" id="toc-how-to-get-started" class="nav-link" data-scroll-target="#how-to-get-started"><span class="header-section-number">1.7</span> How to get started</a>
+  <ul class="collapse">
+  <li><a href="#step-1-organize-your-sources" id="toc-step-1-organize-your-sources" class="nav-link" data-scroll-target="#step-1-organize-your-sources"><span class="header-section-number">1.7.1</span> Step 1: Organize your sources</a></li>
+  <li><a href="#step-2-define-your-structure" id="toc-step-2-define-your-structure" class="nav-link" data-scroll-target="#step-2-define-your-structure"><span class="header-section-number">1.7.2</span> Step 2: Define your structure</a></li>
+  <li><a href="#step-3-start-annotating" id="toc-step-3-start-annotating" class="nav-link" data-scroll-target="#step-3-start-annotating"><span class="header-section-number">1.7.3</span> Step 3: Start annotating</a></li>
+  <li><a href="#step-4-refine-your-vocabulary" id="toc-step-4-refine-your-vocabulary" class="nav-link" data-scroll-target="#step-4-refine-your-vocabulary"><span class="header-section-number">1.7.4</span> Step 4: Refine your vocabulary</a></li>
+  <li><a href="#step-5-analyze-the-results" id="toc-step-5-analyze-the-results" class="nav-link" data-scroll-target="#step-5-analyze-the-results"><span class="header-section-number">1.7.5</span> Step 5: Analyze the results</a></li>
+  </ul></li>
+  <li><a href="#a-complete-project-in-miniature" id="toc-a-complete-project-in-miniature" class="nav-link" data-scroll-target="#a-complete-project-in-miniature"><span class="header-section-number">1.8</span> A complete project in miniature</a></li>
+  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions"><span class="header-section-number">1.9</span> Frequently asked questions</a>
+  <ul class="collapse">
+  <li><a href="#do-i-need-to-know-how-to-program" id="toc-do-i-need-to-know-how-to-program" class="nav-link" data-scroll-target="#do-i-need-to-know-how-to-program"><span class="header-section-number">1.9.1</span> Do I need to know how to program?</a></li>
+  <li><a href="#can-i-use-it-with-my-current-software" id="toc-can-i-use-it-with-my-current-software" class="nav-link" data-scroll-target="#can-i-use-it-with-my-current-software"><span class="header-section-number">1.9.2</span> Can I use it with my current software?</a></li>
+  <li><a href="#what-if-i-make-a-syntax-error" id="toc-what-if-i-make-a-syntax-error" class="nav-link" data-scroll-target="#what-if-i-make-a-syntax-error"><span class="header-section-number">1.9.3</span> What if I make a syntax error?</a></li>
+  <li><a href="#does-synesis-replace-software-like-nvivo-or-atlas.ti" id="toc-does-synesis-replace-software-like-nvivo-or-atlas.ti" class="nav-link" data-scroll-target="#does-synesis-replace-software-like-nvivo-or-atlas.ti"><span class="header-section-number">1.9.4</span> Does Synesis replace software like NVivo or Atlas.ti?</a></li>
+  <li><a href="#can-i-use-it-for-any-type-of-qualitative-research" id="toc-can-i-use-it-for-any-type-of-qualitative-research" class="nav-link" data-scroll-target="#can-i-use-it-for-any-type-of-qualitative-research"><span class="header-section-number">1.9.5</span> Can I use it for any type of qualitative research?</a></li>
+  </ul></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">1.10</span> Next steps</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Researchers</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Researchers</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
+<section id="synesis-a-language-for-organizing-your-qualitative-research" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis: A Language for Organizing Your Qualitative Research</h1>
+<p><strong>Introductory guide for humanities researchers</strong></p>
+<hr>
+<section id="what-is-synesis" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-synesis"><span class="header-section-number">1.1</span> What is Synesis?</h2>
+<p>Synesis is a structured way to record your qualitative research annotations in simple text files. Think of it as a <strong>digital field notebook</strong> with clear rules that help you maintain consistency throughout your entire project.</p>
+<p>The name comes from the Greek <em>σύνεσις</em> (sýnesis), which means “comprehension” or “understanding” — exactly what we seek when analyzing qualitative data.</p>
+<hr>
+</section>
+<section id="why-use-synesis" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="why-use-synesis"><span class="header-section-number">1.2</span> Why use Synesis?</h2>
+<section id="the-common-problem" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="the-common-problem"><span class="header-section-number">1.2.1</span> The common problem</h3>
+<p>If you’ve worked with qualitative research before, you’ve probably encountered these situations:</p>
+<ul>
+<li>Notes scattered across different files and formats</li>
+<li>Difficulty remembering why you marked a particular excerpt as important</li>
+<li>Codes that change names throughout the project</li>
+<li>Hours reorganizing data before being able to analyze them</li>
+<li>Difficulty explaining your analytical process to other researchers</li>
+</ul>
+</section>
+<section id="synesis-proposal" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="synesis-proposal"><span class="header-section-number">1.2.2</span> Synesis proposal</h3>
+<p>Synesis offers a simple and consistent structure to:</p>
+<ul>
+<li><strong>Record</strong> relevant excerpts from your sources</li>
+<li><strong>Annotate</strong> your interpretations and reflections</li>
+<li><strong>Code</strong> excerpts with analytical concepts</li>
+<li><strong>Relate</strong> concepts to each other (causal relations, influence, etc.)</li>
+<li><strong>Document</strong> your conceptual vocabulary (ontology)</li>
+</ul>
+<p>All of this in text files that you can open on any computer, now or twenty years from now.</p>
+<hr>
+</section>
+</section>
+<section id="how-does-it-work-in-practice" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="how-does-it-work-in-practice"><span class="header-section-number">1.3</span> How does it work in practice?</h2>
+<section id="a-simple-example" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="a-simple-example"><span class="header-section-number">1.3.1</span> A simple example</h3>
+<p>Imagine you’re analyzing interviews about acceptance of new technologies. You find this excerpt:</p>
+<blockquote class="blockquote">
+<p>“I even wanted to use it, but the cost is too high for my budget.”</p>
+</blockquote>
+<p>In Synesis, you would record it like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@interview_maria</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quote:</span> <span class="st">"I even wanted to use it, but the cost is too high for my budget."</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">note:</span> Participant expresses desire for adoption limited by economic barrier</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">chain:</span> Cost <span class="op">-&gt;</span> INHIBITS <span class="op">-&gt;</span> Adoption</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What each part means:</p>
+<ul>
+<li><strong>SOURCE</strong>: indicates where the material comes from (an interview, a document, an article)</li>
+<li><strong>ITEM</strong>: is a unit of analysis — an excerpt you consider relevant</li>
+<li><strong>quote</strong>: the literal excerpt from the source</li>
+<li><strong>note</strong>: your interpretation or reflection about the excerpt</li>
+<li><strong>chain</strong>: the relationship you identified between concepts</li>
+</ul>
+</section>
+<section id="building-relationships" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="building-relationships"><span class="header-section-number">1.3.2</span> Building relationships</h3>
+<p>The notation <code>Cost -&gt; INHIBITS -&gt; Adoption</code> means: “Cost INHIBITS Adoption”. This way of recording allows you to gradually build a map of relationships emerging from your data.</p>
+<p>You can chain multiple relationships:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Lack of Information <span class="op">-&gt;</span> GENERATES <span class="op">-&gt;</span> Distrust <span class="op">-&gt;</span> INHIBITS <span class="op">-&gt;</span> Adoption</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This records a sequence: lack of information generates distrust, which in turn inhibits adoption.</p>
+<hr>
+</section>
+</section>
+<section id="basic-components" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="basic-components"><span class="header-section-number">1.4</span> Basic components</h2>
+<section id="sources-source" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="sources-source"><span class="header-section-number">1.4.1</span> 1. Sources (SOURCE)</h3>
+<p>Each source you analyze receives a unique identifier, connected to your bibliographic references:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@silva2023</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>@silva2023</code> corresponds to an entry in your references file (BibTeX format, used by managers like Zotero and Mendeley).</p>
+</section>
+<section id="analysis-items-item" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="analysis-items-item"><span class="header-section-number">1.4.2</span> 2. Analysis items (ITEM)</h3>
+<p>Within each source, you record relevant excerpts:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"The literal text extracted from the source"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Your interpretation or analytical comment</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Concept A, Concept B</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Concept A <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Concept B</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can have as many items as you need in each source.</p>
+</section>
+<section id="conceptual-vocabulary-ontology" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="conceptual-vocabulary-ontology"><span class="header-section-number">1.4.3</span> 3. Conceptual vocabulary (ONTOLOGY)</h3>
+<p>To maintain consistency, you define your main concepts:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economic Factors</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Financial expense associated with technology acquisition or use</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Adoption</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Behavior</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Decision to incorporate a technology into daily life</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a living glossary for your project, helping maintain clear and consistent definitions.</p>
+<hr>
+</section>
+</section>
+<section id="types-of-relationships" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="types-of-relationships"><span class="header-section-number">1.5</span> Types of relationships</h2>
+<p>Relationships between concepts depend on your field of study. Some common examples:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relationship</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>INFLUENCES</td>
+<td>One factor affects another</td>
+<td>Income -&gt; INFLUENCES -&gt; Access</td>
+</tr>
+<tr class="even">
+<td>GENERATES</td>
+<td>One factor produces another</td>
+<td>Misinformation -&gt; GENERATES -&gt; Fear</td>
+</tr>
+<tr class="odd">
+<td>INHIBITS</td>
+<td>One factor hinders another</td>
+<td>Bureaucracy -&gt; INHIBITS -&gt; Participation</td>
+</tr>
+<tr class="even">
+<td>ENABLES</td>
+<td>One factor allows another</td>
+<td>Education -&gt; ENABLES -&gt; Autonomy</td>
+</tr>
+<tr class="odd">
+<td>DEPENDS_ON</td>
+<td>One factor requires another</td>
+<td>Trust -&gt; DEPENDS_ON -&gt; Transparency</td>
+</tr>
+</tbody>
+</table>
+<p>You define which relationships make sense for your research in the template file.</p>
+<hr>
+</section>
+<section id="benefits-for-your-research" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="benefits-for-your-research"><span class="header-section-number">1.6</span> Benefits for your research</h2>
+<section id="traceability" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="traceability"><span class="header-section-number">1.6.1</span> Traceability</h3>
+<p>Each interpretation is connected to the original excerpt. You (or another researcher) can always go back to the source to verify the context.</p>
+</section>
+<section id="consistency" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="consistency"><span class="header-section-number">1.6.2</span> Consistency</h3>
+<p>With a defined vocabulary, you avoid using “Cost”, “Price” and “Economic Value” for the same concept at different moments of the analysis.</p>
+</section>
+<section id="methodological-transparency" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="methodological-transparency"><span class="header-section-number">1.6.3</span> Methodological transparency</h3>
+<p>Your analytical process is documented. When writing the methodology for your article or thesis, you have a clear record of how you reached your conclusions.</p>
+</section>
+<section id="portability" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="portability"><span class="header-section-number">1.6.4</span> Portability</h3>
+<p>Simple text files work on any operating system and don’t depend on specific software. Your research isn’t “locked” in a program.</p>
+</section>
+<section id="collaboration" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="collaboration"><span class="header-section-number">1.6.5</span> Collaboration</h3>
+<p>Colleagues can review your annotations, suggest alternative interpretations, and contribute to the project using the same conventions.</p>
+<hr>
+</section>
+</section>
+<section id="how-to-get-started" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="how-to-get-started"><span class="header-section-number">1.7</span> How to get started</h2>
+<section id="step-1-organize-your-sources" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="step-1-organize-your-sources"><span class="header-section-number">1.7.1</span> Step 1: Organize your sources</h3>
+<p>Gather your bibliographic references in a <code>.bib</code> file (exportable from Zotero, Mendeley or similar).</p>
+</section>
+<section id="step-2-define-your-structure" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="step-2-define-your-structure"><span class="header-section-number">1.7.2</span> Step 2: Define your structure</h3>
+<p>Create a basic template defining: - Which fields you’ll use (quote, note, code, chain) - Which types of relationships make sense for your study - Which concept categories you expect to find</p>
+</section>
+<section id="step-3-start-annotating" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="step-3-start-annotating"><span class="header-section-number">1.7.3</span> Step 3: Start annotating</h3>
+<p>As you read your sources, record relevant excerpts with your interpretations. Don’t worry about having everything perfect from the start — the process is iterative.</p>
+</section>
+<section id="step-4-refine-your-vocabulary" class="level3" data-number="1.7.4">
+<h3 data-number="1.7.4" class="anchored" data-anchor-id="step-4-refine-your-vocabulary"><span class="header-section-number">1.7.4</span> Step 4: Refine your vocabulary</h3>
+<p>As patterns emerge, document your concepts in the ontology. Revise definitions, group related concepts, refine relationships.</p>
+</section>
+<section id="step-5-analyze-the-results" class="level3" data-number="1.7.5">
+<h3 data-number="1.7.5" class="anchored" data-anchor-id="step-5-analyze-the-results"><span class="header-section-number">1.7.5</span> Step 5: Analyze the results</h3>
+<p>The Synesis compiler transforms your annotations into structured formats (spreadsheets, for example) that facilitate pattern visualization and report generation.</p>
+<hr>
+</section>
+</section>
+<section id="a-complete-project-in-miniature" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="a-complete-project-in-miniature"><span class="header-section-number">1.8</span> A complete project in miniature</h2>
+<p>To visualize how the pieces fit together:</p>
+<pre><code>PROJECT: Green Technology Acceptance
+│
+├── references.bib          ← Your bibliographic references
+│
+├── template.synt            ← Your project rules
+│
+├── annotations/
+│   ├── interviews.syn      ← Interview annotations
+│   └── documents.syn       ← Document annotations
+│
+└── ontology.syno           ← Your conceptual vocabulary</code></pre>
+<p>The project file (<code>.synp</code>) connects everything:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> green_technology_acceptance</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"references.bib"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations/interviews.syn"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations/documents.syn"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology.syno"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">DESCRIPTION</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    Study on factors influencing the acceptance</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    of green technologies in urban communities.</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="frequently-asked-questions" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="frequently-asked-questions"><span class="header-section-number">1.9</span> Frequently asked questions</h2>
+<section id="do-i-need-to-know-how-to-program" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="do-i-need-to-know-how-to-program"><span class="header-section-number">1.9.1</span> Do I need to know how to program?</h3>
+<p>No.&nbsp;Synesis uses a simple and readable syntax. If you can organize a document with titles and subtitles, you can use Synesis.</p>
+</section>
+<section id="can-i-use-it-with-my-current-software" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="can-i-use-it-with-my-current-software"><span class="header-section-number">1.9.2</span> Can I use it with my current software?</h3>
+<p>Yes. Synesis files are plain text, editable in any editor (Word, Google Docs, Notepad, or specialized editors). The compiler generates spreadsheets that you can open in Excel or Google Sheets.</p>
+</section>
+<section id="what-if-i-make-a-syntax-error" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="what-if-i-make-a-syntax-error"><span class="header-section-number">1.9.3</span> What if I make a syntax error?</h3>
+<p>The compiler indicates exactly where the problem is and suggests how to fix it. Error messages are written to be understandable, not technical.</p>
+</section>
+<section id="does-synesis-replace-software-like-nvivo-or-atlas.ti" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="does-synesis-replace-software-like-nvivo-or-atlas.ti"><span class="header-section-number">1.9.4</span> Does Synesis replace software like NVivo or Atlas.ti?</h3>
+<p>Synesis has a different purpose. While these software packages offer complete graphical interfaces, Synesis focuses on structuring and documenting the analytical process. Some researchers use both: Synesis for structured recording and other software for visualization.</p>
+</section>
+<section id="can-i-use-it-for-any-type-of-qualitative-research" class="level3" data-number="1.9.5">
+<h3 data-number="1.9.5" class="anchored" data-anchor-id="can-i-use-it-for-any-type-of-qualitative-research"><span class="header-section-number">1.9.5</span> Can I use it for any type of qualitative research?</h3>
+<p>Synesis is flexible. The template allows adapting the structure for different methodological approaches: content analysis, grounded theory, thematic analysis, among others.</p>
+<hr>
+</section>
+</section>
+<section id="next-steps" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">1.10</span> Next steps</h2>
+<ol type="1">
+<li><strong>Read the Reference Guide</strong> to learn all available commands</li>
+<li><strong>Experiment with a small project</strong> — a few interviews or documents</li>
+<li><strong>Adapt the template</strong> to your research’s specific needs</li>
+<li><strong>Share your questions</strong> with the user community</li>
+</ol>
+<hr>
+<p><em>Synesis was developed to make qualitative research more organized, transparent, and reproducible — without requiring advanced technical knowledge.</em></p>
 
-    
-  
-    
-  </div>
-  
 
-
-</header>
-
-
-<section id="researchers" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Researchers</h1>
-<p>English content coming soon.</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

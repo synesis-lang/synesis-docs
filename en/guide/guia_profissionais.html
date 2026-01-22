@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Professionals – Synesis Language</title>
+<title>guia_profissionais – Synesis Language</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -120,6 +154,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Reference</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../reference/ideas.html">
  <span class="dropdown-text">Ideas</span></a>
   </li>  
@@ -168,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_profissionais.html">Professionals</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_profissionais.html">Synesis: Structuring Knowledge for Data-Driven Decisions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_pesquisadores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Researchers</span></a>
+ <span class="menu-text">Synesis: A Language for Organizing Your Qualitative Research</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_profissionais.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Professionals</span></a>
+ <span class="menu-text">Synesis: Structuring Knowledge for Data-Driven Decisions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_sincero.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Honest guide</span></a>
+ <span class="menu-text">Why not just do it in Excel?</span></a>
   </div>
 </li>
       </ul>
@@ -227,13 +265,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/guia_referencia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reference guide</span></a>
+ <span class="menu-text">Synesis: Language Reference Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/synesis_load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: In-Memory API (<code>synesis.load</code>)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ideas</span></a>
+ <span class="menu-text">Synesis: Ideas</span></a>
   </div>
 </li>
       </ul>
@@ -250,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ecossistema/guia_synesis_explorer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Synesis Explorer</span></a>
+ <span class="menu-text">Quick Guide: Synesis Explorer (VS Code)</span></a>
   </div>
 </li>
       </ul>
@@ -265,37 +309,321 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#professionals" id="toc-professionals" class="nav-link active" data-scroll-target="#professionals"><span class="header-section-number">1</span> Professionals</a></li>
+  <li><a href="#synesis-structuring-knowledge-for-data-driven-decisions" id="toc-synesis-structuring-knowledge-for-data-driven-decisions" class="nav-link active" data-scroll-target="#synesis-structuring-knowledge-for-data-driven-decisions"><span class="header-section-number">1</span> Synesis: Structuring Knowledge for Data-Driven Decisions</a>
+  <ul>
+  <li><a href="#the-challenge-of-the-data-era" id="toc-the-challenge-of-the-data-era" class="nav-link" data-scroll-target="#the-challenge-of-the-data-era"><span class="header-section-number">1.1</span> The challenge of the data era</a></li>
+  <li><a href="#where-does-synesis-language-fit-in" id="toc-where-does-synesis-language-fit-in" class="nav-link" data-scroll-target="#where-does-synesis-language-fit-in"><span class="header-section-number">1.2</span> Where does Synesis language fit in?</a></li>
+  <li><a href="#the-problem-synesis-solves" id="toc-the-problem-synesis-solves" class="nav-link" data-scroll-target="#the-problem-synesis-solves"><span class="header-section-number">1.3</span> The problem Synesis solves</a>
+  <ul class="collapse">
+  <li><a href="#limitation-1-qualitative-knowledge-is-not-quantifiable" id="toc-limitation-1-qualitative-knowledge-is-not-quantifiable" class="nav-link" data-scroll-target="#limitation-1-qualitative-knowledge-is-not-quantifiable"><span class="header-section-number">1.3.1</span> Limitation 1: Qualitative knowledge is not quantifiable</a></li>
+  <li><a href="#limitation-2-statistical-discovery-can-invert-cause-and-effect" id="toc-limitation-2-statistical-discovery-can-invert-cause-and-effect" class="nav-link" data-scroll-target="#limitation-2-statistical-discovery-can-invert-cause-and-effect"><span class="header-section-number">1.3.2</span> Limitation 2: Statistical discovery can invert cause and effect</a></li>
+  <li><a href="#limitation-3-data-from-different-contexts-dont-communicate" id="toc-limitation-3-data-from-different-contexts-dont-communicate" class="nav-link" data-scroll-target="#limitation-3-data-from-different-contexts-dont-communicate"><span class="header-section-number">1.3.3</span> Limitation 3: Data from different contexts don’t communicate</a></li>
+  </ul></li>
+  <li><a href="#practical-applications" id="toc-practical-applications" class="nav-link" data-scroll-target="#practical-applications"><span class="header-section-number">1.4</span> Practical applications</a>
+  <ul class="collapse">
+  <li><a href="#human-resources-management" id="toc-human-resources-management" class="nav-link" data-scroll-target="#human-resources-management"><span class="header-section-number">1.4.1</span> Human Resources Management</a></li>
+  <li><a href="#failure-and-incident-analysis" id="toc-failure-and-incident-analysis" class="nav-link" data-scroll-target="#failure-and-incident-analysis"><span class="header-section-number">1.4.2</span> Failure and Incident Analysis</a></li>
+  <li><a href="#market-analysis-and-negotiations" id="toc-market-analysis-and-negotiations" class="nav-link" data-scroll-target="#market-analysis-and-negotiations"><span class="header-section-number">1.4.3</span> Market Analysis and Negotiations</a></li>
+  </ul></li>
+  <li><a href="#how-it-works-in-practice" id="toc-how-it-works-in-practice" class="nav-link" data-scroll-target="#how-it-works-in-practice"><span class="header-section-number">1.5</span> How it works in practice</a>
+  <ul class="collapse">
+  <li><a href="#you-document-the-source" id="toc-you-document-the-source" class="nav-link" data-scroll-target="#you-document-the-source"><span class="header-section-number">1.5.1</span> 1. You document the source</a></li>
+  <li><a href="#you-record-observations-and-interpretations" id="toc-you-record-observations-and-interpretations" class="nav-link" data-scroll-target="#you-record-observations-and-interpretations"><span class="header-section-number">1.5.2</span> 2. You record observations and interpretations</a></li>
+  <li><a href="#you-define-your-conceptual-vocabulary" id="toc-you-define-your-conceptual-vocabulary" class="nav-link" data-scroll-target="#you-define-your-conceptual-vocabulary"><span class="header-section-number">1.5.3</span> 3. You define your conceptual vocabulary</a></li>
+  <li><a href="#the-system-validates-and-structures" id="toc-the-system-validates-and-structures" class="nav-link" data-scroll-target="#the-system-validates-and-structures"><span class="header-section-number">1.5.4</span> 4. The system validates and structures</a></li>
+  </ul></li>
+  <li><a href="#benefits-for-the-organization" id="toc-benefits-for-the-organization" class="nav-link" data-scroll-target="#benefits-for-the-organization"><span class="header-section-number">1.6</span> Benefits for the organization</a>
+  <ul class="collapse">
+  <li><a href="#complete-traceability" id="toc-complete-traceability" class="nav-link" data-scroll-target="#complete-traceability"><span class="header-section-number">1.6.1</span> Complete traceability</a></li>
+  <li><a href="#preserved-institutional-knowledge" id="toc-preserved-institutional-knowledge" class="nav-link" data-scroll-target="#preserved-institutional-knowledge"><span class="header-section-number">1.6.2</span> Preserved institutional knowledge</a></li>
+  <li><a href="#qualitative-quantitative-integration" id="toc-qualitative-quantitative-integration" class="nav-link" data-scroll-target="#qualitative-quantitative-integration"><span class="header-section-number">1.6.3</span> Qualitative-quantitative integration</a></li>
+  <li><a href="#foundation-for-artificial-intelligence" id="toc-foundation-for-artificial-intelligence" class="nav-link" data-scroll-target="#foundation-for-artificial-intelligence"><span class="header-section-number">1.6.4</span> Foundation for artificial intelligence</a></li>
+  <li><a href="#grounded-decision-making" id="toc-grounded-decision-making" class="nav-link" data-scroll-target="#grounded-decision-making"><span class="header-section-number">1.6.5</span> Grounded decision making</a></li>
+  </ul></li>
+  <li><a href="#comparison-with-other-approaches" id="toc-comparison-with-other-approaches" class="nav-link" data-scroll-target="#comparison-with-other-approaches"><span class="header-section-number">1.7</span> Comparison with other approaches</a></li>
+  <li><a href="#integrated-use-scenario" id="toc-integrated-use-scenario" class="nav-link" data-scroll-target="#integrated-use-scenario"><span class="header-section-number">1.8</span> Integrated use scenario</a></li>
+  <li><a href="#getting-started-with-synesis" id="toc-getting-started-with-synesis" class="nav-link" data-scroll-target="#getting-started-with-synesis"><span class="header-section-number">1.9</span> Getting started with Synesis</a>
+  <ul class="collapse">
+  <li><a href="#for-organizations" id="toc-for-organizations" class="nav-link" data-scroll-target="#for-organizations"><span class="header-section-number">1.9.1</span> For organizations</a></li>
+  <li><a href="#for-individual-professionals" id="toc-for-individual-professionals" class="nav-link" data-scroll-target="#for-individual-professionals"><span class="header-section-number">1.9.2</span> For individual professionals</a></li>
+  </ul></li>
+  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions"><span class="header-section-number">1.10</span> Frequently asked questions</a>
+  <ul class="collapse">
+  <li><a href="#does-synesis-replace-bi-or-analytics-tools" id="toc-does-synesis-replace-bi-or-analytics-tools" class="nav-link" data-scroll-target="#does-synesis-replace-bi-or-analytics-tools"><span class="header-section-number">1.10.1</span> Does Synesis replace BI or analytics tools?</a></li>
+  <li><a href="#do-i-need-technical-knowledge-to-use-it" id="toc-do-i-need-technical-knowledge-to-use-it" class="nav-link" data-scroll-target="#do-i-need-technical-knowledge-to-use-it"><span class="header-section-number">1.10.2</span> Do I need technical knowledge to use it?</a></li>
+  <li><a href="#how-does-synesis-relate-to-artificial-intelligence" id="toc-how-does-synesis-relate-to-artificial-intelligence" class="nav-link" data-scroll-target="#how-does-synesis-relate-to-artificial-intelligence"><span class="header-section-number">1.10.3</span> How does Synesis relate to artificial intelligence?</a></li>
+  <li><a href="#whats-the-difference-between-synesis-and-simply-using-spreadsheets" id="toc-whats-the-difference-between-synesis-and-simply-using-spreadsheets" class="nav-link" data-scroll-target="#whats-the-difference-between-synesis-and-simply-using-spreadsheets"><span class="header-section-number">1.10.4</span> What’s the difference between Synesis and simply using spreadsheets?</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.11</span> Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guide/guia_pesquisadores.html">Guides by Audience</a></li><li class="breadcrumb-item"><a href="../guide/guia_profissionais.html">Professionals</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Professionals</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
+<section id="synesis-structuring-knowledge-for-data-driven-decisions" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis: Structuring Knowledge for Data-Driven Decisions</h1>
+<p><strong>Guide for decision makers and knowledge professionals</strong></p>
+<hr>
+<section id="the-challenge-of-the-data-era" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-challenge-of-the-data-era"><span class="header-section-number">1.1</span> The challenge of the data era</h2>
+<p>We live in an era characterized by the acronym VUCA: Volatility, Uncertainty, Complexity, and Ambiguity. In this context, making efficient decisions requires more than intuition — it demands the ability to integrate and analyze multiple data sources, identifying not just correlations, but cause-and-effect relationships between observed phenomena.</p>
+<p>As highlighted in recent research on Causal Knowledge Graphs, simple correlation between data can lead to wrong conclusions. The classic example: there is statistical correlation between chocolate consumption and number of Nobel Prize winners in different countries — but it would be absurd to conclude that distributing chocolate will increase an organization’s scientific output.</p>
+<p><strong>The real challenge lies in capturing causal relationships</strong>, not just superficial correlations.</p>
+<hr>
+</section>
+<section id="where-does-synesis-language-fit-in" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="where-does-synesis-language-fit-in"><span class="header-section-number">1.2</span> Where does Synesis language fit in?</h2>
+<p>Synesis is a structured language for systematic capture of causal knowledge from documentary sources and qualitative observations.</p>
+<p>While automated systems like statistical causal discovery work with numerical data, much of organizational knowledge is dispersed in:</p>
+<ul>
+<li>Reports and technical documents</li>
+<li>Interviews and qualitative surveys</li>
+<li>Specialized literature and manuals</li>
+<li>Incident records and lessons learned</li>
+<li>Engagement and organizational climate surveys</li>
+</ul>
+<p>Synesis offers a standardized way to <strong>extract, document, and structure causal relationships</strong> from these textual sources, making them processable and integrable with other analysis systems.</p>
+<hr>
+</section>
+<section id="the-problem-synesis-solves" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-problem-synesis-solves"><span class="header-section-number">1.3</span> The problem Synesis solves</h2>
+<section id="limitation-1-qualitative-knowledge-is-not-quantifiable" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="limitation-1-qualitative-knowledge-is-not-quantifiable"><span class="header-section-number">1.3.1</span> Limitation 1: Qualitative knowledge is not quantifiable</h3>
+<p>When a causal relationship is extracted from a document (for example: “lack of training causes operational errors”), it is purely qualitative. There’s no way to predict the probability or magnitude of the effect.</p>
+<p><strong>How Synesis contributes:</strong> By systematically structuring these relationships, they can later be integrated with numerical data to quantify causal effects.</p>
+</section>
+<section id="limitation-2-statistical-discovery-can-invert-cause-and-effect" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="limitation-2-statistical-discovery-can-invert-cause-and-effect"><span class="header-section-number">1.3.2</span> Limitation 2: Statistical discovery can invert cause and effect</h3>
+<p>Statistical causal discovery algorithms, when applied to biased or incomplete data, can derive relationships where the direction of causality is inverted.</p>
+<p><strong>How Synesis contributes:</strong> Prior knowledge documented in Synesis serves as “prior knowledge” to validate or correct statistical discoveries.</p>
+</section>
+<section id="limitation-3-data-from-different-contexts-dont-communicate" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="limitation-3-data-from-different-contexts-dont-communicate"><span class="header-section-number">1.3.3</span> Limitation 3: Data from different contexts don’t communicate</h3>
+<p>Traditional causal discovery works with a single dataset. It can’t combine observations from different departments, periods, or conditions.</p>
+<p><strong>How Synesis contributes:</strong> The standardized structure allows integrating knowledge from multiple sources in a common vocabulary.</p>
+<hr>
+</section>
+</section>
+<section id="practical-applications" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="practical-applications"><span class="header-section-number">1.4</span> Practical applications</h2>
+<section id="human-resources-management" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="human-resources-management"><span class="header-section-number">1.4.1</span> Human Resources Management</h3>
+<p><strong>Scenario:</strong> The HR area needs to recommend initiatives to improve engagement, but each department has different characteristics.</p>
+<p><strong>With Synesis:</strong> - Document causal relationships from organizational behavior literature - Record observations from engagement surveys with structured interpretations - Identify which factors (career opportunities, vision clarity, teamwork) cause which outcomes (motivation, satisfaction, retention) - Recommend initiatives based on documented evidence</p>
+<pre><code>Example record:
+- Source: Engagement Survey Q4/2024, Commercial Department
+- Observation: "I feel I don't have growth opportunities here"
+- Interpretation: Employee expresses frustration with career limitations
+- Identified relationship: Lack of Opportunities → REDUCES → Motivation</code></pre>
+</section>
+<section id="failure-and-incident-analysis" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="failure-and-incident-analysis"><span class="header-section-number">1.4.2</span> Failure and Incident Analysis</h3>
+<p><strong>Scenario:</strong> Operations team needs to identify root causes of failures in complex systems.</p>
+<p><strong>With Synesis:</strong> - Extract causal relationships from technical manuals and troubleshooting guides - Document each incident with the identified causal chain - Build a knowledge base that accelerates future diagnoses</p>
+<pre><code>Example record:
+- Source: Incident Report #2024-0892
+- Observation: Intermittent disconnection during file download
+- Interpretation: Pattern consistent with MAC configuration error
+- Identified relationship: Configuration Error → CAUSES → Disconnection</code></pre>
+</section>
+<section id="market-analysis-and-negotiations" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="market-analysis-and-negotiations"><span class="header-section-number">1.4.3</span> Market Analysis and Negotiations</h3>
+<p><strong>Scenario:</strong> Sales team wants to understand why some negotiations succeed and others don’t.</p>
+<p><strong>With Synesis:</strong> - Record observations from each negotiation (meetings, objections, decisions) - Identify causal patterns between actions and outcomes - Combine with engagement data to understand how internal factors affect external performance</p>
+<pre><code>Example record:
+- Source: Negotiation Analysis #2024-156 (Success)
+- Observation: Client mentioned trust in technical team
+- Interpretation: Technical competence demonstration influenced decision
+- Identified relationship: Technical Competence → INFLUENCES → Trust → INFLUENCES → Closure</code></pre>
+<hr>
+</section>
+</section>
+<section id="how-it-works-in-practice" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="how-it-works-in-practice"><span class="header-section-number">1.5</span> How it works in practice</h2>
+<section id="you-document-the-source" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="you-document-the-source"><span class="header-section-number">1.5.1</span> 1. You document the source</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@engagement_survey_2024</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2024-12-15</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All knowledge is traceable to its origin — a document, an interview, a report.</p>
+</section>
+<section id="you-record-observations-and-interpretations" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="you-record-observations-and-interpretations"><span class="header-section-number">1.5.2</span> 2. You record observations and interpretations</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"I don't know where the company is going"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Employee expresses lack of clarity about strategic direction</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Lack of Clarity → REDUCES → Engagement</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each item connects textual evidence to your interpretation and the identified causal relationship.</p>
+</section>
+<section id="you-define-your-conceptual-vocabulary" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="you-define-your-conceptual-vocabulary"><span class="header-section-number">1.5.3</span> 3. You define your conceptual vocabulary</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Engagement</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Organizational Behavior</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Level of employee commitment and emotional connection</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Concepts are explicitly defined, ensuring consistency throughout the project.</p>
+</section>
+<section id="the-system-validates-and-structures" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="the-system-validates-and-structures"><span class="header-section-number">1.5.4</span> 4. The system validates and structures</h3>
+<p>The Synesis compiler: - Verifies annotation consistency - Generates structured formats (JSON, CSV, spreadsheets) - Enables integration with analysis systems</p>
+<hr>
+</section>
+</section>
+<section id="benefits-for-the-organization" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="benefits-for-the-organization"><span class="header-section-number">1.6</span> Benefits for the organization</h2>
+<section id="complete-traceability" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="complete-traceability"><span class="header-section-number">1.6.1</span> Complete traceability</h3>
+<p>Every conclusion can be traced back to the original evidence. When someone asks “why do you recommend this?”, the answer is documented.</p>
+</section>
+<section id="preserved-institutional-knowledge" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="preserved-institutional-knowledge"><span class="header-section-number">1.6.2</span> Preserved institutional knowledge</h3>
+<p>Expert knowledge, which normally exists only in their heads, gets recorded and available for the organization.</p>
+</section>
+<section id="qualitative-quantitative-integration" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="qualitative-quantitative-integration"><span class="header-section-number">1.6.3</span> Qualitative-quantitative integration</h3>
+<p>Qualitatively documented causal relationships can be combined with statistical analyses for cross-validation.</p>
+</section>
+<section id="foundation-for-artificial-intelligence" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="foundation-for-artificial-intelligence"><span class="header-section-number">1.6.4</span> Foundation for artificial intelligence</h3>
+<p>Organizations investing in Causal Knowledge Graphs need structured knowledge as input. Synesis provides this structure from documentary sources.</p>
+</section>
+<section id="grounded-decision-making" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="grounded-decision-making"><span class="header-section-number">1.6.5</span> Grounded decision making</h3>
+<p>Instead of decisions based on “gut feeling” or superficial correlations, the organization operates based on documented and verifiable causal relationships.</p>
+<hr>
+</section>
+</section>
+<section id="comparison-with-other-approaches" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="comparison-with-other-approaches"><span class="header-section-number">1.7</span> Comparison with other approaches</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 27%">
+<col style="width: 31%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Data source</th>
+<th>Relationship type</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Traditional statistical analysis</td>
+<td>Numerical</td>
+<td>Correlation</td>
+<td>Doesn’t distinguish cause from effect</td>
+</tr>
+<tr class="even">
+<td>Statistical causal discovery</td>
+<td>Numerical</td>
+<td>Causal (estimated)</td>
+<td>Requires large volumes; may err on direction</td>
+</tr>
+<tr class="odd">
+<td>Traditional qualitative research</td>
+<td>Textual</td>
+<td>Qualitative</td>
+<td>Unstructured; hard to integrate</td>
+</tr>
+<tr class="even">
+<td><strong>Synesis</strong></td>
+<td>Textual</td>
+<td>Causal (documented)</td>
+<td>Requires human analysis; complements statistics</td>
+</tr>
+</tbody>
+</table>
+<p>The ideal combination: use Synesis to structure qualitative knowledge, statistical causal discovery for numerical data, and integrate both in a Causal Knowledge Graph.</p>
+<hr>
+</section>
+<section id="integrated-use-scenario" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="integrated-use-scenario"><span class="header-section-number">1.8</span> Integrated use scenario</h2>
+<p>Imagine a company wanting to simultaneously improve: - Success rate in commercial negotiations - Employee engagement - Project delivery quality</p>
+<p><strong>Flow with Synesis:</strong></p>
+<ol type="1">
+<li><strong>Structured collection</strong>
+<ul>
+<li>Engagement surveys documented in Synesis</li>
+<li>Negotiation analysis documented in Synesis</li>
+<li>Quality reports documented in Synesis</li>
+</ul></li>
+<li><strong>Connection identification</strong>
+<ul>
+<li>Statistical discovery identifies: Engagement → Delivery Quality</li>
+<li>Synesis documents: Teamwork → Engagement (from literature)</li>
+<li>Synesis documents: Delivery Quality → Customer Trust (from negotiations)</li>
+</ul></li>
+<li><strong>Integrated graph</strong>
+<ul>
+<li>Teamwork → Engagement → Quality → Trust → Negotiation Success</li>
+</ul></li>
+<li><strong>Grounded recommendation</strong>
+<ul>
+<li>Investing in teamwork initiatives has documented cascade effect up to commercial results</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+<section id="getting-started-with-synesis" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="getting-started-with-synesis"><span class="header-section-number">1.9</span> Getting started with Synesis</h2>
+<section id="for-organizations" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="for-organizations"><span class="header-section-number">1.9.1</span> For organizations</h3>
+<ol type="1">
+<li><strong>Identify a pilot domain</strong> — HR, operations, or commercial are good starting points</li>
+<li><strong>Define initial vocabulary</strong> — what concepts are relevant for your decisions?</li>
+<li><strong>Train analysts</strong> — the learning curve is low for those who already work with qualitative data</li>
+<li><strong>Integrate with existing processes</strong> — Synesis complements, doesn’t replace, current tools</li>
+</ol>
+</section>
+<section id="for-individual-professionals" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="for-individual-professionals"><span class="header-section-number">1.9.2</span> For individual professionals</h3>
+<ol type="1">
+<li><strong>Experiment with a small project</strong> — a literature review, a set of interviews</li>
+<li><strong>Focus on causal relationships</strong> — always ask “what causes what?”</li>
+<li><strong>Maintain consistency</strong> — use the same terms for the same concepts</li>
+<li><strong>Document your interpretations</strong> — the annotation is as important as the citation</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="frequently-asked-questions" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="frequently-asked-questions"><span class="header-section-number">1.10</span> Frequently asked questions</h2>
+<section id="does-synesis-replace-bi-or-analytics-tools" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="does-synesis-replace-bi-or-analytics-tools"><span class="header-section-number">1.10.1</span> Does Synesis replace BI or analytics tools?</h3>
+<p>No.&nbsp;Synesis works with qualitative knowledge and integrates with quantitative tools. It’s a complement, not a replacement.</p>
+</section>
+<section id="do-i-need-technical-knowledge-to-use-it" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="do-i-need-technical-knowledge-to-use-it"><span class="header-section-number">1.10.2</span> Do I need technical knowledge to use it?</h3>
+<p>The syntax is simple and readable. Research, analysis, and management professionals can learn quickly. Programming is not required.</p>
+</section>
+<section id="how-does-synesis-relate-to-artificial-intelligence" class="level3" data-number="1.10.3">
+<h3 data-number="1.10.3" class="anchored" data-anchor-id="how-does-synesis-relate-to-artificial-intelligence"><span class="header-section-number">1.10.3</span> How does Synesis relate to artificial intelligence?</h3>
+<p>AI systems that work with causal reasoning need structured knowledge. Synesis provides this knowledge from sources that AI can’t process alone with the same quality.</p>
+</section>
+<section id="whats-the-difference-between-synesis-and-simply-using-spreadsheets" class="level3" data-number="1.10.4">
+<h3 data-number="1.10.4" class="anchored" data-anchor-id="whats-the-difference-between-synesis-and-simply-using-spreadsheets"><span class="header-section-number">1.10.4</span> What’s the difference between Synesis and simply using spreadsheets?</h3>
+<p>Spreadsheets have no consistency validation, don’t natively structure causal relationships, and don’t guarantee traceability. Synesis was specifically designed for causal knowledge capture.</p>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">1.11</span> Conclusion</h2>
+<p>In a world where decisions need to be increasingly data-grounded, qualitative knowledge can’t be left out. Synesis offers a bridge between expert knowledge — dispersed in documents, reports, and observations — and the analysis systems that support decision making.</p>
+<p>The combination of structured causal knowledge with statistical analysis represents the next step in the evolution of organizational intelligence: decisions not only based on data, but based on <strong>causal understanding</strong> of phenomena.</p>
+<hr>
+<p><em>Synesis: transforming dispersed knowledge into actionable intelligence.</em></p>
 
-    
-  
-    
-  </div>
-  
 
-
-</header>
-
-
-<section id="professionals" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Professionals</h1>
-<p>English content coming soon.</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

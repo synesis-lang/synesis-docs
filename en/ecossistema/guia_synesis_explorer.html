@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Synesis Explorer – Synesis Language</title>
+<title>guia_synesis_explorer – Synesis Language</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,6 +120,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Reference</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../reference/ideas.html">
  <span class="dropdown-text">Ideas</span></a>
   </li>  
@@ -168,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ecossistema/guia_synesis_explorer.html">Ecosystem</a></li><li class="breadcrumb-item"><a href="../ecossistema/guia_synesis_explorer.html">Synesis Explorer</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ecossistema/guia_synesis_explorer.html">Ecosystem</a></li><li class="breadcrumb-item"><a href="../ecossistema/guia_synesis_explorer.html">Quick Guide: Synesis Explorer (VS Code)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,19 +202,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_pesquisadores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Researchers</span></a>
+ <span class="menu-text">Synesis: A Language for Organizing Your Qualitative Research</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_profissionais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Professionals</span></a>
+ <span class="menu-text">Synesis: Structuring Knowledge for Data-Driven Decisions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_sincero.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Honest guide</span></a>
+ <span class="menu-text">Why not just do it in Excel?</span></a>
   </div>
 </li>
       </ul>
@@ -227,13 +231,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/guia_referencia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reference guide</span></a>
+ <span class="menu-text">Synesis: Language Reference Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/synesis_load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: In-Memory API (<code>synesis.load</code>)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ideas</span></a>
+ <span class="menu-text">Synesis: Ideas</span></a>
   </div>
 </li>
       </ul>
@@ -250,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ecossistema/guia_synesis_explorer.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Synesis Explorer</span></a>
+ <span class="menu-text">Quick Guide: Synesis Explorer (VS Code)</span></a>
   </div>
 </li>
       </ul>
@@ -265,37 +275,215 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#synesis-explorer" id="toc-synesis-explorer" class="nav-link active" data-scroll-target="#synesis-explorer"><span class="header-section-number">1</span> Synesis Explorer</a></li>
+  <li><a href="#quick-guide-synesis-explorer-vs-code" id="toc-quick-guide-synesis-explorer-vs-code" class="nav-link active" data-scroll-target="#quick-guide-synesis-explorer-vs-code"><span class="header-section-number">1</span> Quick Guide: Synesis Explorer (VS Code)</a>
+  <ul>
+  <li><a href="#what-the-extension-does" id="toc-what-the-extension-does" class="nav-link" data-scroll-target="#what-the-extension-does"><span class="header-section-number">1.1</span> What the extension does</a></li>
+  <li><a href="#basic-requirements" id="toc-basic-requirements" class="nav-link" data-scroll-target="#basic-requirements"><span class="header-section-number">1.2</span> Basic requirements</a></li>
+  <li><a href="#installation-vsix-file" id="toc-installation-vsix-file" class="nav-link" data-scroll-target="#installation-vsix-file"><span class="header-section-number">1.3</span> Installation (VSIX file)</a></li>
+  <li><a href="#how-to-open-your-project" id="toc-how-to-open-your-project" class="nav-link" data-scroll-target="#how-to-open-your-project"><span class="header-section-number">1.4</span> How to open your project</a></li>
+  <li><a href="#where-to-find-synesis-explorer" id="toc-where-to-find-synesis-explorer" class="nav-link" data-scroll-target="#where-to-find-synesis-explorer"><span class="header-section-number">1.5</span> Where to find Synesis Explorer</a></li>
+  <li><a href="#using-the-explorers" id="toc-using-the-explorers" class="nav-link" data-scroll-target="#using-the-explorers"><span class="header-section-number">1.6</span> Using the Explorers</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.6.1</span> References</a></li>
+  <li><a href="#codes" id="toc-codes" class="nav-link" data-scroll-target="#codes"><span class="header-section-number">1.6.2</span> Codes</a></li>
+  <li><a href="#relations" id="toc-relations" class="nav-link" data-scroll-target="#relations"><span class="header-section-number">1.6.3</span> Relations</a></li>
+  </ul></li>
+  <li><a href="#using-the-viewers" id="toc-using-the-viewers" class="nav-link" data-scroll-target="#using-the-viewers"><span class="header-section-number">1.7</span> Using the Viewers</a>
+  <ul class="collapse">
+  <li><a href="#graph-viewer" id="toc-graph-viewer" class="nav-link" data-scroll-target="#graph-viewer"><span class="header-section-number">1.7.1</span> Graph Viewer</a></li>
+  <li><a href="#abstract-viewer" id="toc-abstract-viewer" class="nav-link" data-scroll-target="#abstract-viewer"><span class="header-section-number">1.7.2</span> Abstract Viewer</a></li>
+  </ul></li>
+  <li><a href="#quick-tips" id="toc-quick-tips" class="nav-link" data-scroll-target="#quick-tips"><span class="header-section-number">1.8</span> Quick tips</a></li>
+  <li><a href="#common-problems" id="toc-common-problems" class="nav-link" data-scroll-target="#common-problems"><span class="header-section-number">1.9</span> Common problems</a></li>
+  <li><a href="#ready-to-use" id="toc-ready-to-use" class="nav-link" data-scroll-target="#ready-to-use"><span class="header-section-number">1.10</span> Ready to use</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ecossistema/guia_synesis_explorer.html">Ecosystem</a></li><li class="breadcrumb-item"><a href="../ecossistema/guia_synesis_explorer.html">Synesis Explorer</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Synesis Explorer</h1>
+
+
+
+<section id="quick-guide-synesis-explorer-vs-code" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Quick Guide: Synesis Explorer (VS Code)</h1>
+<p><strong>Goal:</strong> help you install and use the extension to navigate your Synesis files (.syn, .synt, .synp, .syno) easily.</p>
+<hr>
+<section id="what-the-extension-does" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-the-extension-does"><span class="header-section-number">1.1</span> What the extension does</h2>
+<ul>
+<li>Shows your references, codes, and relations in side panels</li>
+<li>Opens a relationship graph and the abstract summary of references</li>
+<li>Helps you find excerpts easily</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/01_tela_inicial.png" class="img-fluid figure-img"></p>
+<figcaption>VS Code initial screen with the extension installed.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="basic-requirements" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="basic-requirements"><span class="header-section-number">1.2</span> Basic requirements</h2>
+<ul>
+<li>VS Code installed</li>
+<li>Synesis files on your computer</li>
+</ul>
+<hr>
+</section>
+<section id="installation-vsix-file" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="installation-vsix-file"><span class="header-section-number">1.3</span> Installation (VSIX file)</h2>
+<ol type="1">
+<li>Open VS Code</li>
+<li>Click on the extensions icon (sidebar)</li>
+<li>Click on the three dots (menu) and choose “Install from VSIX…”</li>
+<li>Select the <code>.vsix</code> extension file</li>
+<li>Wait for installation and restart VS Code if prompted</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/02_install.png" class="img-fluid figure-img"></p>
+<figcaption>Menu “Install from VSIX…”</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="how-to-open-your-project" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="how-to-open-your-project"><span class="header-section-number">1.4</span> How to open your project</h2>
+<ol type="1">
+<li>Open your project folder in VS Code</li>
+<li>Make sure your <code>.syn</code> files and the <code>.synp</code> project are in the folder</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/03_projeto_synesis.png" class="img-fluid figure-img"></p>
+<figcaption>Project folder open in VS Code.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="where-to-find-synesis-explorer" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="where-to-find-synesis-explorer"><span class="header-section-number">1.5</span> Where to find Synesis Explorer</h2>
+<ol type="1">
+<li>On the left sidebar, click the “Synesis Explorer” icon</li>
+<li>You will see three sections:
+<ul>
+<li>References</li>
+<li>Codes</li>
+<li>Relations (appears when there are relations)</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/04_painel_synesis.png" class="img-fluid figure-img"></p>
+<figcaption>Synesis Explorer panel with the three sections.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="using-the-explorers" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="using-the-explorers"><span class="header-section-number">1.6</span> Using the Explorers</h2>
+<section id="references" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="references"><span class="header-section-number">1.6.1</span> References</h3>
+<ul>
+<li>Lists your sources (SOURCE)</li>
+<li>Use the refresh button when files change</li>
+<li>Use the filter to quickly find a reference</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/05_references.png" class="img-fluid figure-img"></p>
+<figcaption>References with list and buttons at the top.</figcaption>
+</figure>
+</div>
+</section>
+<section id="codes" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="codes"><span class="header-section-number">1.6.2</span> Codes</h3>
+<ul>
+<li>Shows codes found in your data</li>
+<li>Use refresh and filter the same way</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/06_codes.png" class="img-fluid figure-img"></p>
+<figcaption>Codes with code list.</figcaption>
+</figure>
+</div>
+</section>
+<section id="relations" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="relations"><span class="header-section-number">1.6.3</span> Relations</h3>
+<ul>
+<li>Shows relations (chains) found</li>
+<li>If it doesn’t appear, check if there are <code>chain:</code> fields in annotation files (.syn)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/07_relations.png" class="img-fluid figure-img"></p>
+<figcaption>Relations with some listed relations.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="using-the-viewers" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="using-the-viewers"><span class="header-section-number">1.7</span> Using the Viewers</h2>
+<section id="graph-viewer" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="graph-viewer"><span class="header-section-number">1.7.1</span> Graph Viewer</h3>
+<ul>
+<li>Shows a graph of relations</li>
+<li>Shortcut: <code>Ctrl+Alt+G</code> (Windows/Linux) or <code>Cmd+Shift+G</code> (Mac)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/08_graph_viewer.png" class="img-fluid figure-img"></p>
+<figcaption>Graph open in a tab.</figcaption>
+</figure>
+</div>
+</section>
+<section id="abstract-viewer" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="abstract-viewer"><span class="header-section-number">1.7.2</span> Abstract Viewer</h3>
+<ul>
+<li>Shows the abstract of BibTeX references</li>
+<li>Shortcut: <code>Ctrl+Shift+A</code> (Windows/Linux) or <code>Cmd+Shift+A</code> (Mac)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/09_abstract_viewer.png" class="img-fluid figure-img"></p>
+<figcaption>Abstract open in a tab.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="quick-tips" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="quick-tips"><span class="header-section-number">1.8</span> Quick tips</h2>
+<ul>
+<li>If something doesn’t update, click refresh</li>
+<li>Word Wrap is automatically enabled for easier reading</li>
+<li>Use the filter to reduce large lists</li>
+</ul>
+<hr>
+</section>
+<section id="common-problems" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="common-problems"><span class="header-section-number">1.9</span> Common problems</h2>
+<p><strong>I don’t see anything in the panel</strong> - Check if the project folder was opened in VS Code - Check if there are <code>.syn</code> files in the folder</p>
+<p><strong>Relations don’t appear</strong> - Check if there are <code>chain:</code> lines in the files</p>
+<hr>
+</section>
+<section id="ready-to-use" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="ready-to-use"><span class="header-section-number">1.10</span> Ready to use</h2>
+<p>With this, you can now navigate, filter, and visualize your Synesis data directly in VS Code.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/10_full_view.png" class="img-fluid figure-img"></p>
+<figcaption>Complete flow (file open + explorer + viewer).</figcaption>
+</figure>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="synesis-explorer" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Synesis Explorer</h1>
-<p>English content coming soon.</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reference guide – Synesis Language</title>
+<title>guia_referencia – Synesis Language</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -120,6 +154,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Reference</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../reference/ideas.html">
  <span class="dropdown-text">Ideas</span></a>
   </li>  
@@ -168,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Reference guide</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Synesis: Language Reference Guide</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_pesquisadores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Researchers</span></a>
+ <span class="menu-text">Synesis: A Language for Organizing Your Qualitative Research</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_profissionais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Professionals</span></a>
+ <span class="menu-text">Synesis: Structuring Knowledge for Data-Driven Decisions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guide/guia_sincero.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Honest guide</span></a>
+ <span class="menu-text">Why not just do it in Excel?</span></a>
   </div>
 </li>
       </ul>
@@ -227,13 +265,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/guia_referencia.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Reference guide</span></a>
+ <span class="menu-text">Synesis: Language Reference Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/synesis_load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synesis: In-Memory API (<code>synesis.load</code>)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ideas</span></a>
+ <span class="menu-text">Synesis: Ideas</span></a>
   </div>
 </li>
       </ul>
@@ -250,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ecossistema/guia_synesis_explorer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Synesis Explorer</span></a>
+ <span class="menu-text">Quick Guide: Synesis Explorer (VS Code)</span></a>
   </div>
 </li>
       </ul>
@@ -265,37 +309,1098 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reference-guide" id="toc-reference-guide" class="nav-link active" data-scroll-target="#reference-guide"><span class="header-section-number">1</span> Reference guide</a></li>
+  <li><a href="#synesis-language-reference-guide" id="toc-synesis-language-reference-guide" class="nav-link active" data-scroll-target="#synesis-language-reference-guide"><span class="header-section-number">1</span> Synesis: Language Reference Guide</a>
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">1.1.1</span> Definition</a></li>
+  <li><a href="#what-the-compiler-does" id="toc-what-the-compiler-does" class="nav-link" data-scroll-target="#what-the-compiler-does"><span class="header-section-number">1.1.2</span> What the Compiler Does</a></li>
+  <li><a href="#what-the-compiler-does-not-do" id="toc-what-the-compiler-does-not-do" class="nav-link" data-scroll-target="#what-the-compiler-does-not-do"><span class="header-section-number">1.1.3</span> What the Compiler Does NOT Do</a></li>
+  <li><a href="#rigid-boundaries" id="toc-rigid-boundaries" class="nav-link" data-scroll-target="#rigid-boundaries"><span class="header-section-number">1.1.4</span> Rigid Boundaries</a></li>
+  </ul></li>
+  <li><a href="#files-and-formats" id="toc-files-and-formats" class="nav-link" data-scroll-target="#files-and-formats"><span class="header-section-number">1.2</span> Files and Formats</a>
+  <ul class="collapse">
+  <li><a href="#input-files" id="toc-input-files" class="nav-link" data-scroll-target="#input-files"><span class="header-section-number">1.2.1</span> Input Files</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files"><span class="header-section-number">1.2.2</span> Output Files</a></li>
+  <li><a href="#csv-traceability" id="toc-csv-traceability" class="nav-link" data-scroll-target="#csv-traceability"><span class="header-section-number">1.2.3</span> CSV Traceability</a></li>
+  <li><a href="#compiler-invariants" id="toc-compiler-invariants" class="nav-link" data-scroll-target="#compiler-invariants"><span class="header-section-number">1.2.4</span> Compiler Invariants</a></li>
+  </ul></li>
+  <li><a href="#project-structure-.synp" id="toc-project-structure-.synp" class="nav-link" data-scroll-target="#project-structure-.synp"><span class="header-section-number">1.3</span> Project Structure (.synp)</a>
+  <ul class="collapse">
+  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">1.3.1</span> Syntax</a></li>
+  <li><a href="#semantics" id="toc-semantics" class="nav-link" data-scroll-target="#semantics"><span class="header-section-number">1.3.2</span> Semantics</a></li>
+  </ul></li>
+  <li><a href="#template-definition-.synt" id="toc-template-definition-.synt" class="nav-link" data-scroll-target="#template-definition-.synt"><span class="header-section-number">1.4</span> Template Definition (.synt)</a>
+  <ul class="collapse">
+  <li><a href="#template-header" id="toc-template-header" class="nav-link" data-scroll-target="#template-header"><span class="header-section-number">1.4.1</span> Template Header</a></li>
+  <li><a href="#field-blocks" id="toc-field-blocks" class="nav-link" data-scroll-target="#field-blocks"><span class="header-section-number">1.4.2</span> Field Blocks</a></li>
+  <li><a href="#complete-example" id="toc-complete-example" class="nav-link" data-scroll-target="#complete-example"><span class="header-section-number">1.4.3</span> Complete Example</a></li>
+  </ul></li>
+  <li><a href="#field-definition-field" id="toc-field-definition-field" class="nav-link" data-scroll-target="#field-definition-field"><span class="header-section-number">1.5</span> Field Definition (FIELD)</a>
+  <ul class="collapse">
+  <li><a href="#syntax-1" id="toc-syntax-1" class="nav-link" data-scroll-target="#syntax-1"><span class="header-section-number">1.5.1</span> Syntax</a></li>
+  <li><a href="#complete-field-example" id="toc-complete-field-example" class="nav-link" data-scroll-target="#complete-field-example"><span class="header-section-number">1.5.2</span> Complete FIELD Example</a></li>
+  </ul></li>
+  <li><a href="#field-types" id="toc-field-types" class="nav-link" data-scroll-target="#field-types"><span class="header-section-number">1.6</span> Field Types</a>
+  <ul class="collapse">
+  <li><a href="#type-table" id="toc-type-table" class="nav-link" data-scroll-target="#type-table"><span class="header-section-number">1.6.1</span> Type Table</a></li>
+  <li><a href="#distinction-language-vs-template" id="toc-distinction-language-vs-template" class="nav-link" data-scroll-target="#distinction-language-vs-template"><span class="header-section-number">1.6.2</span> Distinction: Language vs Template</a></li>
+  </ul></li>
+  <li><a href="#structural-blocks" id="toc-structural-blocks" class="nav-link" data-scroll-target="#structural-blocks"><span class="header-section-number">1.7</span> Structural Blocks</a>
+  <ul class="collapse">
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">1.7.1</span> SOURCE</a></li>
+  <li><a href="#item" id="toc-item" class="nav-link" data-scroll-target="#item"><span class="header-section-number">1.7.2</span> ITEM</a></li>
+  <li><a href="#ontology" id="toc-ontology" class="nav-link" data-scroll-target="#ontology"><span class="header-section-number">1.7.3</span> ONTOLOGY</a></li>
+  </ul></li>
+  <li><a href="#semantic-chains-chain" id="toc-semantic-chains-chain" class="nav-link" data-scroll-target="#semantic-chains-chain"><span class="header-section-number">1.8</span> Semantic Chains (CHAIN)</a>
+  <ul class="collapse">
+  <li><a href="#qualified-chain" id="toc-qualified-chain" class="nav-link" data-scroll-target="#qualified-chain"><span class="header-section-number">1.8.1</span> Qualified Chain</a></li>
+  <li><a href="#simple-chain" id="toc-simple-chain" class="nav-link" data-scroll-target="#simple-chain"><span class="header-section-number">1.8.2</span> Simple Chain</a></li>
+  <li><a href="#concepts-with-spaces" id="toc-concepts-with-spaces" class="nav-link" data-scroll-target="#concepts-with-spaces"><span class="header-section-number">1.8.3</span> Concepts with Spaces</a></li>
+  </ul></li>
+  <li><a href="#bundle-modifier" id="toc-bundle-modifier" class="nav-link" data-scroll-target="#bundle-modifier"><span class="header-section-number">1.9</span> BUNDLE Modifier</a>
+  <ul class="collapse">
+  <li><a href="#syntax-2" id="toc-syntax-2" class="nav-link" data-scroll-target="#syntax-2"><span class="header-section-number">1.9.1</span> Syntax</a></li>
+  <li><a href="#semantics-1" id="toc-semantics-1" class="nav-link" data-scroll-target="#semantics-1"><span class="header-section-number">1.9.2</span> Semantics</a></li>
+  <li><a href="#annotated-example" id="toc-annotated-example" class="nav-link" data-scroll-target="#annotated-example"><span class="header-section-number">1.9.3</span> Annotated Example</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation"><span class="header-section-number">1.9.4</span> Validation</a></li>
+  </ul></li>
+  <li><a href="#topic-type" id="toc-topic-type" class="nav-link" data-scroll-target="#topic-type"><span class="header-section-number">1.10</span> TOPIC Type</a>
+  <ul class="collapse">
+  <li><a href="#difference-from-enumerated" id="toc-difference-from-enumerated" class="nav-link" data-scroll-target="#difference-from-enumerated"><span class="header-section-number">1.10.1</span> Difference from ENUMERATED</a></li>
+  <li><a href="#annotated-example-1" id="toc-annotated-example-1" class="nav-link" data-scroll-target="#annotated-example-1"><span class="header-section-number">1.10.2</span> Annotated Example</a></li>
+  </ul></li>
+  <li><a href="#compilation-pipeline" id="toc-compilation-pipeline" class="nav-link" data-scroll-target="#compilation-pipeline"><span class="header-section-number">1.11</span> Compilation Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#mandatory-steps" id="toc-mandatory-steps" class="nav-link" data-scroll-target="#mandatory-steps"><span class="header-section-number">1.11.1</span> Mandatory Steps</a></li>
+  <li><a href="#dependency-order" id="toc-dependency-order" class="nav-link" data-scroll-target="#dependency-order"><span class="header-section-number">1.11.2</span> Dependency Order</a></li>
+  </ul></li>
+  <li><a href="#pedagogical-error-handling" id="toc-pedagogical-error-handling" class="nav-link" data-scroll-target="#pedagogical-error-handling"><span class="header-section-number">1.12</span> Pedagogical Error Handling</a>
+  <ul class="collapse">
+  <li><a href="#design-principle" id="toc-design-principle" class="nav-link" data-scroll-target="#design-principle"><span class="header-section-number">1.12.1</span> Design Principle</a></li>
+  <li><a href="#missing-comma-detector-in-code-lists" id="toc-missing-comma-detector-in-code-lists" class="nav-link" data-scroll-target="#missing-comma-detector-in-code-lists"><span class="header-section-number">1.12.2</span> “Missing Comma” Detector in CODE Lists</a></li>
+  <li><a href="#malformed-chain-detector-in-chain" id="toc-malformed-chain-detector-in-chain" class="nav-link" data-scroll-target="#malformed-chain-detector-in-chain"><span class="header-section-number">1.12.3</span> “Malformed Chain” Detector in CHAIN</a></li>
+  </ul></li>
+  <li><a href="#keyword-quick-reference" id="toc-keyword-quick-reference" class="nav-link" data-scroll-target="#keyword-quick-reference"><span class="header-section-number">1.13</span> Keyword Quick Reference</a>
+  <ul class="collapse">
+  <li><a href="#structure-keywords" id="toc-structure-keywords" class="nav-link" data-scroll-target="#structure-keywords"><span class="header-section-number">1.13.1</span> Structure Keywords</a></li>
+  <li><a href="#inclusion-keywords" id="toc-inclusion-keywords" class="nav-link" data-scroll-target="#inclusion-keywords"><span class="header-section-number">1.13.2</span> Inclusion Keywords</a></li>
+  <li><a href="#field-modifiers" id="toc-field-modifiers" class="nav-link" data-scroll-target="#field-modifiers"><span class="header-section-number">1.13.3</span> Field Modifiers</a></li>
+  <li><a href="#field-specifiers" id="toc-field-specifiers" class="nav-link" data-scroll-target="#field-specifiers"><span class="header-section-number">1.13.4</span> Field Specifiers</a></li>
+  </ul></li>
+  <li><a href="#suggested-sections-for-expansion" id="toc-suggested-sections-for-expansion" class="nav-link" data-scroll-target="#suggested-sections-for-expansion"><span class="header-section-number">1.14</span> Suggested Sections for Expansion</a>
+  <ul class="collapse">
+  <li><a href="#bibliographic-reference-validation" id="toc-bibliographic-reference-validation" class="nav-link" data-scroll-target="#bibliographic-reference-validation"><span class="header-section-number">1.14.1</span> Bibliographic Reference Validation</a></li>
+  <li><a href="#normalization-and-canonicalization" id="toc-normalization-and-canonicalization" class="nav-link" data-scroll-target="#normalization-and-canonicalization"><span class="header-section-number">1.14.2</span> Normalization and Canonicalization</a></li>
+  <li><a href="#json-export" id="toc-json-export" class="nav-link" data-scroll-target="#json-export"><span class="header-section-number">1.14.3</span> JSON Export</a></li>
+  <li><a href="#csv-export" id="toc-csv-export" class="nav-link" data-scroll-target="#csv-export"><span class="header-section-number">1.14.4</span> CSV Export</a></li>
+  <li><a href="#excel-export" id="toc-excel-export" class="nav-link" data-scroll-target="#excel-export"><span class="header-section-number">1.14.5</span> EXCEL Export</a></li>
+  <li><a href="#integration-with-lark-parser" id="toc-integration-with-lark-parser" class="nav-link" data-scroll-target="#integration-with-lark-parser"><span class="header-section-number">1.14.6</span> Integration with Lark Parser</a></li>
+  <li><a href="#complete-project-examples" id="toc-complete-project-examples" class="nav-link" data-scroll-target="#complete-project-examples"><span class="header-section-number">1.14.7</span> Complete Project Examples</a></li>
+  <li><a href="#annotation-best-practices" id="toc-annotation-best-practices" class="nav-link" data-scroll-target="#annotation-best-practices"><span class="header-section-number">1.14.8</span> Annotation Best Practices</a></li>
+  </ul></li>
+  <li><a href="#appendix-a-consolidated-syntax" id="toc-appendix-a-consolidated-syntax" class="nav-link" data-scroll-target="#appendix-a-consolidated-syntax"><span class="header-section-number">1.15</span> Appendix A: Consolidated Syntax</a>
+  <ul class="collapse">
+  <li><a href="#project-.synp" id="toc-project-.synp" class="nav-link" data-scroll-target="#project-.synp"><span class="header-section-number">1.15.1</span> Project (.synp)</a></li>
+  <li><a href="#template-.synt" id="toc-template-.synt" class="nav-link" data-scroll-target="#template-.synt"><span class="header-section-number">1.15.2</span> Template (.synt)</a></li>
+  <li><a href="#annotations-.syn" id="toc-annotations-.syn" class="nav-link" data-scroll-target="#annotations-.syn"><span class="header-section-number">1.15.3</span> Annotations (.syn)</a></li>
+  <li><a href="#ontology-.syno" id="toc-ontology-.syno" class="nav-link" data-scroll-target="#ontology-.syno"><span class="header-section-number">1.15.4</span> Ontology (.syno)</a></li>
+  <li><a href="#chains-chain" id="toc-chains-chain" class="nav-link" data-scroll-target="#chains-chain"><span class="header-section-number">1.15.5</span> Chains (CHAIN)</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/guia_referencia.html">Reference guide</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Reference guide</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
+<section id="synesis-language-reference-guide" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis: Language Reference Guide</h1>
+<p><strong>Version 1.1</strong></p>
+<hr>
+<section id="introduction" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<section id="definition" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">1.1.1</span> Definition</h3>
+<p>Synesis is a declarative Domain-Specific Language (DSL) for formalization, validation, and compilation of analytical corpora for qualitative research. The compiler transforms interpretive annotations into canonical structures, ensuring human intelligibility and formal rigor.</p>
+</section>
+<section id="what-the-compiler-does" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="what-the-compiler-does"><span class="header-section-number">1.1.2</span> What the Compiler Does</h3>
+<ul>
+<li>Validates syntax and semantics of annotations</li>
+<li>Generates AST (Abstract Syntax Tree)</li>
+<li>Produces basic structured formats (JSON, CSV, EXCEL)</li>
+<li>Normalizes concepts via configurable templates</li>
+</ul>
+</section>
+<section id="what-the-compiler-does-not-do" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="what-the-compiler-does-not-do"><span class="header-section-number">1.1.3</span> What the Compiler Does NOT Do</h3>
+<ul>
+<li>It’s not a runtime or execution system</li>
+<li>Does not perform statistical analysis</li>
+<li>Does not manage user interface</li>
+<li>Does not persist state between executions</li>
+</ul>
+</section>
+<section id="rigid-boundaries" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="rigid-boundaries"><span class="header-section-number">1.1.4</span> Rigid Boundaries</h3>
+<p>The compiler processes text files, produces structured artifacts, and terminates. There is no persistent state, conditional loops, or side-effects beyond writing output files.</p>
+<hr>
+</section>
+</section>
+<section id="files-and-formats" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="files-and-formats"><span class="header-section-number">1.2</span> Files and Formats</h2>
+<section id="input-files" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="input-files"><span class="header-section-number">1.2.1</span> Input Files</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.synp</code></td>
+<td>Project file (single entry point)</td>
+</tr>
+<tr class="even">
+<td><code>.syn</code></td>
+<td>Annotation files (SOURCE + ITEM)</td>
+</tr>
+<tr class="odd">
+<td><code>.syno</code></td>
+<td>Ontology files (ONTOLOGY)</td>
+</tr>
+<tr class="even">
+<td><code>.synt</code></td>
+<td>Template file (FIELD definitions)</td>
+</tr>
+<tr class="odd">
+<td><code>.bib</code></td>
+<td>BibTeX/BibLaTeX references</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="output-files" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="output-files"><span class="header-section-number">1.2.2</span> Output Files</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JSON</td>
+<td>Complete serialized representation (includes <code>location</code> in all nodes)</td>
+</tr>
+<tr class="even">
+<td>CSV</td>
+<td>Flat tables by block type (includes <code>source_file</code>, <code>source_line</code>, <code>source_column</code> columns)</td>
+</tr>
+<tr class="odd">
+<td>EXCEL</td>
+<td>Flat tables as tabs</td>
+</tr>
+<tr class="even">
+<td>Diagnostics</td>
+<td>Error report with precise location</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="csv-traceability" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="csv-traceability"><span class="header-section-number">1.2.3</span> CSV Traceability</h3>
+<p>Each CSV row for ITEM, CHAIN, or ONTOLOGY includes location columns:</p>
+<pre class="csv"><code>bibref,from_code,relation,to_code,source_file,source_line,source_column
+ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pre>
+</section>
+<section id="compiler-invariants" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="compiler-invariants"><span class="header-section-number">1.2.4</span> Compiler Invariants</h3>
+<ol type="1">
+<li>Deterministic compilation: same input produces same output</li>
+<li>Errors reported with file, line, column, and context</li>
+<li>Partial compilation is exclusively pedagogical</li>
+<li>Final artifacts (JSON, CSV) generated only upon complete compilation</li>
+<li>Bibliographic reference validation is mandatory</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="project-structure-.synp" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="project-structure-.synp"><span class="header-section-number">1.3</span> Project Structure (.synp)</h2>
+<p>The project file orchestrates analysis components and serves as the single entry point for the compiler.</p>
+<section id="syntax" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="syntax"><span class="header-section-number">1.3.1</span> Syntax</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> project_name</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"filename.synt"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"filename.bib"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"filename.syn"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"filename.syno"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Brackets indicate the entire METADATA block is optional</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]    <span class="co"># Individual optional field</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]   <span class="co"># Individual optional field</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Brackets indicate the entire DESCRIPTION block is optional</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    Free <span class="at">text</span> describing the project...</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="semantics" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="semantics"><span class="header-section-number">1.3.2</span> Semantics</h3>
+<ul>
+<li><strong>PROJECT</strong>: Mandatory keyword that starts project definition</li>
+<li><strong>TEMPLATE</strong>: Reference to <code>.synt</code> file that defines validation rules</li>
+<li><strong>INCLUDE BIBLIOGRAPHY</strong>: Path to <code>.bib</code> file with references</li>
+<li><strong>INCLUDE ANNOTATIONS</strong>: Path to <code>.syn</code> file(s) with annotations</li>
+<li><strong>INCLUDE ONTOLOGY</strong>: Path to <code>.syno</code> file(s) with ontological definitions</li>
+<li><strong>METADATA</strong>: Optional block with project metadata</li>
+<li><strong>DESCRIPTION</strong>: Optional block with free project description</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="template-definition-.synt" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="template-definition-.synt"><span class="header-section-number">1.4</span> Template Definition (.synt)</h2>
+<p>The template defines structure and validation rules for annotations.</p>
+<section id="template-header" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="template-header"><span class="header-section-number">1.4.1</span> Template Header</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="field-blocks" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="field-blocks"><span class="header-section-number">1.4.2</span> Field Blocks</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="complete-example" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="complete-example"><span class="header-section-number">1.4.3</span> Complete Example</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> qualitative_analysis</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">version:</span> <span class="st">"1.0"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author:</span> <span class="st">"Researcher"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> bibref</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> access_date</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> <span class="at">note</span>, <span class="at">chain</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> code</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> description</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> topic</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="field-definition-field" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="field-definition-field"><span class="header-section-number">1.5</span> Field Definition (FIELD)</h2>
+<p>The FIELD declaration specifies the type, scope, and restrictions of each field.</p>
+<section id="syntax-1" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="syntax-1"><span class="header-section-number">1.5.1</span> Syntax</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclusive property for TYPE CHAIN</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclusive property for TYPE ORDERED or ENUMERATED</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description  <span class="co"># For ORDERED</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">value_name:</span> description          <span class="co"># For ENUMERATED</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclusive property for TYPE SCALE</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="complete-field-example" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="complete-field-example"><span class="header-section-number">1.5.2</span> Complete FIELD Example</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Causal <span class="at">chain</span> between concepts</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Causal influence relationship</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Enablement relationship</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INHIBITS:</span> Inhibition relationship</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> aspect <span class="kw">TYPE</span> <span class="kw">ORDERED</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Dooyeweerd's modal aspect</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        1 <span class="fu">quantitative:</span> Numerical aspect</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        2 <span class="fu">spatial:</span> Spatial aspect</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        3 <span class="fu">kinematic:</span> Kinetic aspect</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        4 <span class="fu">physical:</span> Physical aspect</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        5 <span class="fu">biotic:</span> Biotic aspect</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> sentiment <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Sentiment expressed in the excerpt</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">positive:</span> Positive sentiment</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">negative:</span> Negative sentiment</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">neutral:</span> Neutral sentiment</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> confidence <span class="kw">TYPE</span> <span class="kw">SCALE</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Interpretation confidence level</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FORMAT</span> <span class="bn">[1..5]</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="field-types" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="field-types"><span class="header-section-number">1.6</span> Field Types</h2>
+<section id="type-table" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="type-table"><span class="header-section-number">1.6.1</span> Type Table</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 32%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Scope</th>
+<th>Semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>QUOTATION</td>
+<td>ITEM</td>
+<td>Textual excerpt from source</td>
+</tr>
+<tr class="even">
+<td>MEMO</td>
+<td>ITEM</td>
+<td>Researcher’s analytical annotation</td>
+</tr>
+<tr class="odd">
+<td>CODE</td>
+<td>ITEM</td>
+<td>Conceptual label (categorization)</td>
+</tr>
+<tr class="even">
+<td>CHAIN</td>
+<td>ITEM</td>
+<td>Qualified relationship between codes</td>
+</tr>
+<tr class="odd">
+<td>TEXT</td>
+<td>any</td>
+<td>Generic free text</td>
+</tr>
+<tr class="even">
+<td>DATE</td>
+<td>SOURCE</td>
+<td>Date with specified format</td>
+</tr>
+<tr class="odd">
+<td>SCALE</td>
+<td>any</td>
+<td>Numeric value in range [min..max]</td>
+</tr>
+<tr class="even">
+<td>ENUMERATED</td>
+<td>any</td>
+<td>Value from closed list without hierarchy</td>
+</tr>
+<tr class="odd">
+<td>ORDERED</td>
+<td>ONTOLOGY</td>
+<td>Value from list with indexed ordinal hierarchy</td>
+</tr>
+<tr class="even">
+<td>TOPIC</td>
+<td>ONTOLOGY</td>
+<td>Higher hierarchical category (dynamic grouping)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="distinction-language-vs-template" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="distinction-language-vs-template"><span class="header-section-number">1.6.2</span> Distinction: Language vs Template</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 46%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>FIXED (language)</th>
+<th>CONFIGURABLE (template)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Keywords</td>
+<td><code>SOURCE</code>, <code>ITEM</code>, <code>ONTOLOGY</code>, <code>FIELD</code>, <code>END</code></td>
+<td>Field names like <code>aspect</code>, <code>quote</code></td>
+</tr>
+<tr class="even">
+<td>Data types</td>
+<td><code>QUOTATION</code>, <code>MEMO</code>, <code>CODE</code>, <code>CHAIN</code>, <code>TEXT</code>, etc.</td>
+<td>Values in ORDERED/ENUMERATED lists</td>
+</tr>
+<tr class="odd">
+<td>Structure</td>
+<td>SOURCE/ITEM/ONTOLOGY blocks, FIELD…END syntax</td>
+<td>Which fields are REQUIRED/OPTIONAL</td>
+</tr>
+<tr class="even">
+<td>Modifiers</td>
+<td><code>BUNDLE</code>, <code>REQUIRED</code>, <code>OPTIONAL</code>, <code>SCOPE</code>, <code>TYPE</code></td>
+<td>Which fields use BUNDLE</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="structural-blocks" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="structural-blocks"><span class="header-section-number">1.7</span> Structural Blocks</h2>
+<section id="source" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="source"><span class="header-section-number">1.7.1</span> SOURCE</h3>
+<p>Contextualizes ITEMs with bibliographic reference. Each SOURCE references exactly one entry from the <code>.bib</code> file.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                <span class="co"># ← Mandatory reference to .bib</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]       <span class="co"># ← Optional SOURCE fields</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span>                      <span class="co"># ← One or more mandatory ITEMs</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Annotated example:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@smith2023</span>             <span class="co"># ← Must exist in references.bib</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2025-01-15   <span class="co"># ← Optional field defined in template</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span>                      <span class="co"># ← First analysis item</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quote:</span> <span class="st">"The technology shows promising results."</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">note:</span> Author expresses optimism about results</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">chain:</span> Technology <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>                           <span class="co"># ← Closes SOURCE block</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="item" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="item"><span class="header-section-number">1.7.2</span> ITEM</h3>
+<p>Fundamental analytical unit. Contains excerpt, memos, codes, and/or chains. Belongs to exactly one SOURCE.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="bn">[@bibref]</span>                <span class="co"># ← Optional reference (inherits from parent SOURCE)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← One or more mandatory fields</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Additional fields per template</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Annotated example:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span>                 <span class="co"># ← Optional reference for traceability</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Extracted <span class="at">text</span>     <span class="co"># ← Mandatory field (QUOTATION)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> First interp.       <span class="co"># ← First BUNDLE pair</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Second interp.      <span class="co"># ← Second BUNDLE pair (same count)</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>                           <span class="co"># ← Closes ITEM block</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ontology" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="ontology"><span class="header-section-number">1.7.3</span> ONTOLOGY</h3>
+<p>Defines concept from controlled vocabulary. Flat structure with possibility of hierarchy.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name         <span class="co"># ← Concept name (can contain spaces)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← One or more mandatory fields</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Additional fields per template</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Annotated example:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost                 <span class="co"># ← Simple name (no spaces)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics          <span class="co"># ← Dynamic grouping (TOPIC)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public Acceptance    <span class="co"># ← Name with spaces (no quotes)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social Factors     <span class="co"># ← Same topic groups related concepts</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="semantic-chains-chain" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="semantic-chains-chain"><span class="header-section-number">1.8</span> Semantic Chains (CHAIN)</h2>
+<section id="qualified-chain" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="qualified-chain"><span class="header-section-number">1.8.1</span> Qualified Chain</h3>
+<p>When the template defines RELATIONS, the chain uses the pattern: odd positions are codes, even positions are relation types.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      code    relation    code (alternating pattern)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Annotated example:</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate Belief <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Support</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^    ^^^^^^^^^^    ^^^^^^^</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      code (origin)    relation      code (destination)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> C</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^    ^^^^^^^^^^    ^    ^^^^^^^    ^</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#      cod1 rel1          cod2 rel2       cod3 (extended chain)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-chain" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="simple-chain"><span class="header-section-number">1.8.2</span> Simple Chain</h3>
+<p>When the template does NOT define RELATIONS, only codes are separated by <code>-&gt;</code>. The relationship is implicit.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      origin  destination (implicit relationship between each pair)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Annotated example:</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B             <span class="co"># ← Implicit relationship: A relates to B</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B <span class="op">-&gt;</span> C        <span class="co"># ← Two implicit relationships: A→B and B→C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="concepts-with-spaces" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="concepts-with-spaces"><span class="header-section-number">1.8.3</span> Concepts with Spaces</h3>
+<p>The parser captures internal spaces without requiring quotes:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Institutional Barrier <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financial Barrier</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^^^^              ^^^^^^^^^^^^^^^^^^</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      concept with spaces               concept with spaces (no quotes)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Public Acceptance <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS Support <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^                  ^^^^^^^^^^^               ^^^^^^^^^^</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#      3 words                            2 words                   1 word</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="bundle-modifier" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="bundle-modifier"><span class="header-section-number">1.9</span> BUNDLE Modifier</h2>
+<p>The BUNDLE modifier defines groups of fields that form a minimum repeatable unit of interpretation.</p>
+<section id="syntax-2" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="syntax-2"><span class="header-section-number">1.9.1</span> Syntax</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> field_name, field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        ^^^^^^ ^^^^^^^^^^  ^^^^^^^^^^</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        modif. field1      field2 (must appear together)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="semantics-1" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="semantics-1"><span class="header-section-number">1.9.2</span> Semantics</h3>
+<ul>
+<li>BUNDLE fields are mandatory as an indivisible unit</li>
+<li>Minimum 1 occurrence of complete bundle</li>
+<li>Bundle fields <strong>never</strong> appear in isolation</li>
+<li>Must appear in equal quantity: <code>len(field1) == len(field2) == len(field3) &gt;= 1</code></li>
+<li>Positional correspondence: <code>field1[i]</code> relates to <code>field2[i]</code> and <code>field3[i]</code></li>
+</ul>
+</section>
+<section id="annotated-example" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="annotated-example"><span class="header-section-number">1.9.3</span> Annotated Example</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Text extracted from source    <span class="co"># ← Independent field</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> First interpretation           <span class="co"># ← bundle[0].note</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B          <span class="co"># ← bundle[0].chain (pair 1)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Second interpretation          <span class="co"># ← bundle[1].note</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D             <span class="co"># ← bundle[1].chain (pair 2)</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Result: 2 note+chain pairs, guaranteed positional correspondence</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="validation" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="validation"><span class="header-section-number">1.9.4</span> Validation</h3>
+<ul>
+<li>Isolated bundle field: <strong>error</strong></li>
+<li>Different counts: <strong>error</strong></li>
+<li>Complete absence of mandatory bundle: <strong>error</strong></li>
+<li>BUNDLE violation generates compilation error (not warning)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="topic-type" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="topic-type"><span class="header-section-number">1.10</span> TOPIC Type</h2>
+<p>The TOPIC type allows defining higher hierarchical categories that dynamically group ontological concepts, without pre-definition in the template.</p>
+<section id="difference-from-enumerated" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="difference-from-enumerated"><span class="header-section-number">1.10.1</span> Difference from ENUMERATED</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 35%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Characteristic</th>
+<th>ENUMERATED</th>
+<th>TOPIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Allowed values</td>
+<td>Pre-defined closed list</td>
+<td>Open, dynamic</td>
+</tr>
+<tr class="even">
+<td>Usage</td>
+<td>Controlled categorization</td>
+<td>Emergent grouping</td>
+</tr>
+<tr class="odd">
+<td>Validation</td>
+<td>Rejects values outside list</td>
+<td>Accepts any string</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="annotated-example-1" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="annotated-example-1"><span class="header-section-number">1.10.2</span> Annotated Example</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics              <span class="co"># ← Emergent category (not pre-defined)</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public Acceptance</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social Factors         <span class="co"># ← Another emergent category</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Result: two topics dynamically created (Economics, Social Factors)</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># The compiler accepts any string as TOPIC value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="compilation-pipeline" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="compilation-pipeline"><span class="header-section-number">1.11</span> Compilation Pipeline</h2>
+<section id="mandatory-steps" class="level3" data-number="1.11.1">
+<h3 data-number="1.11.1" class="anchored" data-anchor-id="mandatory-steps"><span class="header-section-number">1.11.1</span> Mandatory Steps</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 51%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Step</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Discovery</td>
+<td>Read .synp, resolve paths, list files</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Template Loading</td>
+<td>Parse and validate .synt (defines rules)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>BibTeX Loading</td>
+<td>Load .bib, build reference index</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Syntactic Parsing</td>
+<td>Lark processes each .syn and .syno file</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Transformation</td>
+<td>Convert concrete trees to typed AST</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Semantic Validation</td>
+<td>Verify references, types, required fields</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Normalization</td>
+<td>Apply defaults, value canonicalization</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Linking</td>
+<td>Associate ITEMs to SOURCEs, CODEs and CHAINs to ONTOLOGYs</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Export</td>
+<td>Generate JSON, CSV, as defined in template</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dependency-order" class="level3" data-number="1.11.2">
+<h3 data-number="1.11.2" class="anchored" data-anchor-id="dependency-order"><span class="header-section-number">1.11.2</span> Dependency Order</h3>
+<pre><code>Project → Template → BibTeX → Annotations → Ontology</code></pre>
+<p>Each phase depends on the previous one. Errors interrupt the pipeline.</p>
+<hr>
+</section>
+</section>
+<section id="pedagogical-error-handling" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="pedagogical-error-handling"><span class="header-section-number">1.12</span> Pedagogical Error Handling</h2>
+<section id="design-principle" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="design-principle"><span class="header-section-number">1.12.1</span> Design Principle</h3>
+<p>The compiler prioritizes educational error messages that teach correct syntax without requiring manual reading.</p>
+</section>
+<section id="missing-comma-detector-in-code-lists" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="missing-comma-detector-in-code-lists"><span class="header-section-number">1.12.2</span> “Missing Comma” Detector in CODE Lists</h3>
+<p><strong>Common error:</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Climate Belief Risk Perception  <span class="co"># ERROR: missing comma</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Suggested message:</strong></p>
+<pre><code>error: file.syn:3:26: Multiple codes must be separated by comma.
+    code: Climate Belief Risk Perception
+                         ^~~~ missing comma before "Risk"
 
-    
-  
-    
-  </div>
-  
+Use comma to separate codes:
+    code: Climate Belief, Risk Perception
+
+OR specify each code on separate line:
+    code: Climate Belief
+    code: Risk Perception</code></pre>
+</section>
+<section id="malformed-chain-detector-in-chain" class="level3" data-number="1.12.3">
+<h3 data-number="1.12.3" class="anchored" data-anchor-id="malformed-chain-detector-in-chain"><span class="header-section-number">1.12.3</span> “Malformed Chain” Detector in CHAIN</h3>
+<p><strong>Common error:</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate Belief INFLUENCES Support  <span class="co"># ERROR: missing -&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Suggested message:</strong></p>
+<pre><code>error: file.syn:2:27: Causal chain requires '-&gt;' operator between elements.
+    chain: Climate Belief INFLUENCES Support
+                          ^~~~~~~~~~~ missing '-&gt;' before "INFLUENCES"
+
+Use '-&gt;' to connect elements:
+    chain: Climate Belief -&gt; INFLUENCES -&gt; Support</code></pre>
+<hr>
+</section>
+</section>
+<section id="keyword-quick-reference" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="keyword-quick-reference"><span class="header-section-number">1.13</span> Keyword Quick Reference</h2>
+<section id="structure-keywords" class="level3" data-number="1.13.1">
+<h3 data-number="1.13.1" class="anchored" data-anchor-id="structure-keywords"><span class="header-section-number">1.13.1</span> Structure Keywords</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Keyword</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PROJECT</code></td>
+<td>Starts project definition</td>
+</tr>
+<tr class="even">
+<td><code>TEMPLATE</code></td>
+<td>Reference to template file or start of definition</td>
+</tr>
+<tr class="odd">
+<td><code>SOURCE</code></td>
+<td>Bibliographic source block</td>
+</tr>
+<tr class="even">
+<td><code>ITEM</code></td>
+<td>Analytical unit</td>
+</tr>
+<tr class="odd">
+<td><code>ONTOLOGY</code></td>
+<td>Concept definition</td>
+</tr>
+<tr class="even">
+<td><code>FIELD</code></td>
+<td>Field definition</td>
+</tr>
+<tr class="odd">
+<td><code>END</code></td>
+<td>Closes any block</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="inclusion-keywords" class="level3" data-number="1.13.2">
+<h3 data-number="1.13.2" class="anchored" data-anchor-id="inclusion-keywords"><span class="header-section-number">1.13.2</span> Inclusion Keywords</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Keyword</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>INCLUDE</code></td>
+<td>Includes external file</td>
+</tr>
+<tr class="even">
+<td><code>BIBLIOGRAPHY</code></td>
+<td>Inclusion type for .bib</td>
+</tr>
+<tr class="odd">
+<td><code>ANNOTATIONS</code></td>
+<td>Inclusion type for .syn</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="field-modifiers" class="level3" data-number="1.13.3">
+<h3 data-number="1.13.3" class="anchored" data-anchor-id="field-modifiers"><span class="header-section-number">1.13.3</span> Field Modifiers</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Modifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>REQUIRED</code></td>
+<td>Mandatory field</td>
+</tr>
+<tr class="even">
+<td><code>OPTIONAL</code></td>
+<td>Optional field</td>
+</tr>
+<tr class="odd">
+<td><code>BUNDLE</code></td>
+<td>Group of mandatory fields as unit</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="field-specifiers" class="level3" data-number="1.13.4">
+<h3 data-number="1.13.4" class="anchored" data-anchor-id="field-specifiers"><span class="header-section-number">1.13.4</span> Field Specifiers</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Specifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>TYPE</code></td>
+<td>Defines field type</td>
+</tr>
+<tr class="even">
+<td><code>SCOPE</code></td>
+<td>Defines scope (SOURCE, ITEM, ONTOLOGY)</td>
+</tr>
+<tr class="odd">
+<td><code>DESCRIPTION</code></td>
+<td>Field descriptive text</td>
+</tr>
+<tr class="even">
+<td><code>ARITY</code></td>
+<td>Arity restriction for CHAIN</td>
+</tr>
+<tr class="odd">
+<td><code>RELATIONS</code></td>
+<td>Relation list for CHAIN</td>
+</tr>
+<tr class="even">
+<td><code>VALUES</code></td>
+<td>Value list for ORDERED/ENUMERATED</td>
+</tr>
+<tr class="odd">
+<td><code>FORMAT</code></td>
+<td>Format for SCALE</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="suggested-sections-for-expansion" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="suggested-sections-for-expansion"><span class="header-section-number">1.14</span> Suggested Sections for Expansion</h2>
+<p><em>The sections below are indicated as topics for future development of the guide, based on functionality implied in source documents.</em></p>
+<section id="bibliographic-reference-validation" class="level3" data-number="1.14.1">
+<h3 data-number="1.14.1" class="anchored" data-anchor-id="bibliographic-reference-validation"><span class="header-section-number">1.14.1</span> Bibliographic Reference Validation</h3>
+<blockquote class="blockquote">
+<p>How the compiler validates that each <code>@bibref</code> exists in the included .bib file.</p>
+</blockquote>
+</section>
+<section id="normalization-and-canonicalization" class="level3" data-number="1.14.2">
+<h3 data-number="1.14.2" class="anchored" data-anchor-id="normalization-and-canonicalization"><span class="header-section-number">1.14.2</span> Normalization and Canonicalization</h3>
+<blockquote class="blockquote">
+<p>Rules for normalizing values and concepts via template.</p>
+</blockquote>
+</section>
+<section id="json-export" class="level3" data-number="1.14.3">
+<h3 data-number="1.14.3" class="anchored" data-anchor-id="json-export"><span class="header-section-number">1.14.3</span> JSON Export</h3>
+<blockquote class="blockquote">
+<p>Structure of generated JSON, including <code>location</code> fields for traceability.</p>
+</blockquote>
+</section>
+<section id="csv-export" class="level3" data-number="1.14.4">
+<h3 data-number="1.14.4" class="anchored" data-anchor-id="csv-export"><span class="header-section-number">1.14.4</span> CSV Export</h3>
+<blockquote class="blockquote">
+<p>Format of flat tables by block type, traceability columns.</p>
+</blockquote>
+</section>
+<section id="excel-export" class="level3" data-number="1.14.5">
+<h3 data-number="1.14.5" class="anchored" data-anchor-id="excel-export"><span class="header-section-number">1.14.5</span> EXCEL Export</h3>
+<blockquote class="blockquote">
+<p>Tab organization by block type.</p>
+</blockquote>
+</section>
+<section id="integration-with-lark-parser" class="level3" data-number="1.14.6">
+<h3 data-number="1.14.6" class="anchored" data-anchor-id="integration-with-lark-parser"><span class="header-section-number">1.14.6</span> Integration with Lark Parser</h3>
+<blockquote class="blockquote">
+<p>Technical details of the parser used for syntactic processing.</p>
+</blockquote>
+</section>
+<section id="complete-project-examples" class="level3" data-number="1.14.7">
+<h3 data-number="1.14.7" class="anchored" data-anchor-id="complete-project-examples"><span class="header-section-number">1.14.7</span> Complete Project Examples</h3>
+<blockquote class="blockquote">
+<p>Example projects demonstrating integrated use of all components.</p>
+</blockquote>
+</section>
+<section id="annotation-best-practices" class="level3" data-number="1.14.8">
+<h3 data-number="1.14.8" class="anchored" data-anchor-id="annotation-best-practices"><span class="header-section-number">1.14.8</span> Annotation Best Practices</h3>
+<blockquote class="blockquote">
+<p>Recommendations for consistent structuring of qualitative annotations.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="appendix-a-consolidated-syntax" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="appendix-a-consolidated-syntax"><span class="header-section-number">1.15</span> Appendix A: Consolidated Syntax</h2>
+<section id="project-.synp" class="level3" data-number="1.15.1">
+<h3 data-number="1.15.1" class="anchored" data-anchor-id="project-.synp"><span class="header-section-number">1.15.1</span> Project (.synp)</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> project_name              <span class="co"># ← Project name (mandatory)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"filename.synt"</span>          <span class="co"># ← Template file (mandatory)</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"filename.bib"</span>   <span class="co"># ← BibTeX references</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"filename.syn"</span>    <span class="co"># ← Annotation files</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"filename.syno"</span>      <span class="co"># ← Ontology files</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span>                         <span class="co"># ← Optional block</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]               <span class="co"># ← Optional field within block</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span>                      <span class="co"># ← Optional block</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    Free <span class="at">text</span> describing the project...</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>]</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span>                               <span class="co"># ← Closes PROJECT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="template-.synt" class="level3" data-number="1.15.2">
+<h3 data-number="1.15.2" class="anchored" data-anchor-id="template-.synt"><span class="header-section-number">1.15.2</span> Template (.synt)</h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name                     <span class="co"># ← Template name (mandatory)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]               <span class="co"># ← Optional metadata</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span>                     <span class="co"># ← Valid fields in SOURCE blocks</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span>                       <span class="co"># ← Valid fields in ITEM blocks</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span>                   <span class="co"># ← Valid fields in ONTOLOGY blocks</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span>  <span class="co"># ← Where field can be used</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span>       <span class="co"># ← Only for CHAIN</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span>                    <span class="co"># ← Only for CHAIN</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span>                       <span class="co"># ← Only for ORDERED/ENUMERATED</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span>]</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]           <span class="co"># ← Only for SCALE</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="annotations-.syn" class="level3" data-number="1.15.3">
+<h3 data-number="1.15.3" class="anchored" data-anchor-id="annotations-.syn"><span class="header-section-number">1.15.3</span> Annotations (.syn)</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                    <span class="co"># ← Reference to .bib (mandatory)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]           <span class="co"># ← SOURCE fields (per template)</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span>                          <span class="co"># ← One or more ITEMs</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">field_name:</span> value         <span class="co"># ← Mandatory fields</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Optional fields</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ontology-.syno" class="level3" data-number="1.15.4">
+<h3 data-number="1.15.4" class="anchored" data-anchor-id="ontology-.syno"><span class="header-section-number">1.15.4</span> Ontology (.syno)</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name             <span class="co"># ← Concept name (can have spaces)</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value             <span class="co"># ← Mandatory fields</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...       <span class="co"># ← Optional fields</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chains-chain" class="level3" data-number="1.15.5">
+<h3 data-number="1.15.5" class="anchored" data-anchor-id="chains-chain"><span class="header-section-number">1.15.5</span> Chains (CHAIN)</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Qualified chain (with RELATIONS defined in template)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co">#      code    relation    code (mandatory alternating pattern)</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple chain (without RELATIONS in template)</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">#      origin  destination (implicit relationship)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><em>Document generated from Synesis v1.1 specification</em></p>
 
 
-</header>
-
-
-<section id="reference-guide" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Reference guide</h1>
-<p>English content coming soon.</p>
-
-
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
