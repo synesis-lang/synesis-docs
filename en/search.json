@@ -612,13 +612,6 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
     "objectID": "ecossistema/guia_synesis_explorer.html",
     "href": "ecossistema/guia_synesis_explorer.html",
     "title": "1 Quick Guide: Synesis Explorer (VS Code)",
@@ -748,6 +741,193 @@
       "Introduction",
       "Ecosystem",
       "Quick Guide: Synesis Explorer (VS Code)"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html",
+    "href": "ecossistema/synesis2neo4j_en.html",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "Version 0.1.0\n\n\n\nsynesis2neo4j is the official ingestion pipeline from the Synesis language to Neo4j graph databases. It transforms structured qualitative analyses into navigable knowledge graphs ready for AI (GraphRAG).\n\n\n\n\n\n\n\ngraph TD\n    %% --- Synesis 2.0 Palette ---\n    %% Primary: #084C54 (Deep Teal)\n    %% Accent: #00BFA5 (Mint/Cyan)\n\n    classDef files fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C54\n    classDef engine fill:#fff,stroke:#084C54,stroke-width:3px,color:#084C54,font-weight:bold\n    classDef data fill:#E0F7FA,stroke:#084C54,stroke-width:1px,color:#084C54\n    classDef graphDb fill:#E0F7FA,stroke:#00BFA5,stroke-width:2px,color:#084C54\n    classDef agent fill:#084C54,stroke:#00BFA5,stroke-width:2px,color:#fff\n    classDef metrics fill:#F8FAFC,stroke:#00BFA5,stroke-width:1px,color:#084C54\n\n    subgraph INPUT[\"1. Input: Research as Code\"]\n        SYN[\"Annotated Corpus (.syn)\"]:::files\n        SYNO[\"Ontology (.syno)\"]:::files\n        SYNP[\"Project (.synp)\"]:::files\n        SYNT[\"Template (.synt)\"]:::files\n    end\n\n    subgraph ENGINE[\"2. Synesis Engine\"]\n        COMPILER[/\"synesis.load\"/]:::engine\n        VALIDATOR(\"Semantic Validation\"):::engine\n    end\n\n    SYNP --&gt; COMPILER\n    SYN --&gt; COMPILER\n    SYNO --&gt; COMPILER\n    SYNT --&gt; COMPILER\n    COMPILER --&gt; VALIDATOR\n\n    subgraph STRUCTURED[\"3. Structured Data\"]\n        JSON[\"Canonical Object (Traceable)\"]:::data\n        SCHEMA[\"Dynamic Schema (from Template)\"]:::data\n    end\n\n    VALIDATOR --&gt;|Success| JSON\n    SYNT -.-&gt;|Defines| SCHEMA\n\n    subgraph GRAPH[\"4. Knowledge Graph\"]\n        NEO4J[(\"Neo4j\")]:::graphDb\n        NATIVE[\"Native Metrics (Cypher)\"]:::graphDb\n        GDS[\"GDS Metrics (Optional)\"]:::graphDb\n        DEG[\"Degree Centrality\"]:::metrics\n        PR[\"PageRank Relevance\"]:::metrics\n        BC[\"Betweenness Bridges\"]:::metrics\n        COM[\"Louvain Communities\"]:::metrics\n    end\n\n    JSON --&gt;|Sync| NEO4J\n    SCHEMA --&gt;|Sync| NEO4J\n    NEO4J --&gt; NATIVE\n    NATIVE --&gt; GDS\n    NATIVE -.-&gt; DEG\n    GDS -.-&gt; PR\n    GDS -.-&gt; BC\n    GDS -.-&gt; COM\n\n    subgraph CONSUMPTION[\"5. Intelligent Consumption\"]\n        MCP[\"MCP Agent\"]:::agent\n        LLM[\"LLMs / Claude\"]:::agent\n    end\n\n    NEO4J --&gt;|GraphRAG| MCP\n    MCP --&gt;|GraphRAG| NEO4J\n    MCP --&gt;|Queries| LLM\n    LLM --&gt;|Queries| MCP\n\n    %% Subgraph Styles\n    style INPUT fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style ENGINE fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style STRUCTURED fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style GRAPH fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style CONSUMPTION fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n\n    linkStyle default stroke:#64748B,stroke-width:1px\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeature\nDescription\n\n\n\n\nZero-IO\nCompiles in memory via synesis.load(), no intermediate files\n\n\nUniversal\nReads Template (.synt) and creates graph structure dynamically\n\n\nAutomatic Metrics\nCalculates native (Cypher) and advanced (GDS) metrics\n\n\nTraceability\nMaintains origin metadata on all nodes and edges\n\n\nAtomicity\nSynchronization via single transaction\n\n\n\n\n\n\n\nQualitative Research: Visualize and navigate concept networks\nBibliometric Analysis: Map relationships between factors in literature\nGraphRAG: Feed AI agents with structured knowledge\nData Science: Apply network algorithms (PageRank, Louvain, Betweenness)\n\n\n\n\n\n\n\n\n\n\n\nSoftware\nVersion\nLink\n\n\n\n\nPython\n3.11+\npython.org\n\n\nNeo4j\n5.x\nNeo4j Download\n\n\n\n\n\n\n\n\nComplete graphical interface to manage multiple local databases.\n\nDownload at: neo4j.com/download\nInstall and create a new project\nAdd a local database (DBMS)\nStart the database and note the password\n\n\n\n\nFor servers or headless environments.\n# Docker (simplest)\ndocker run -d \\\n    --name neo4j \\\n    -p 7474:7474 -p 7687:7687 \\\n    -e NEO4J_AUTH=neo4j/your_secure_password \\\n    neo4j:5\n\n\n\nManaged cloud database, ideal for production.\n\nAccess: console.neo4j.io\nCreate a Free or Professional instance\nCopy connection credentials\n\n\n\n\n\n\n\n\n\npip install synesis neo4j rich tomli\n\n\n\ngit clone https://github.com/synesis-lang/synesis2neo4j.git\ncd synesis2neo4j\n\n\n\npython synesis2neo4j.py --version\n# synesis2neo4j 0.1.0\n\n\n\nFor advanced metrics (PageRank, Betweenness, Louvain), install Neo4j Graph Data Science:\nNeo4j Desktop: 1. Open your project 2. Click “Plugins” in the database panel 3. Install “Graph Data Science Library”\nNeo4j Server:\n# Download the JAR matching your version\n# Copy to Neo4j's plugins/ folder\n# Restart the server\n\n\n\n\n\n\n\nCreate a config.toml file in the project root:\n[neo4j]\nuri = \"bolt://localhost:7687\"\nuser = \"neo4j\"\npassword = \"your_secret_password\"\ndatabase = \"neo4j\"  # Optional, default is 'neo4j'\n\n\n\n\n\n\nParameter\nType\nRequired\nDescription\n\n\n\n\nuri\nstr\nYes\nConnection URI (bolt:// or neo4j://)\n\n\nuser\nstr\nYes\nDatabase user\n\n\npassword\nstr\nYes\nDatabase password\n\n\ndatabase\nstr\nNo\nDatabase name (default: neo4j)\n\n\n\n\n\n\n\n\n\nEnvironment\nURI\n\n\n\n\nLocal (Desktop/Docker)\nbolt://localhost:7687\n\n\nNeo4j Aura\nneo4j+s://xxxx.databases.neo4j.io\n\n\nRemote server\nbolt://192.168.1.100:7687\n\n\n\n\n\n\n\n\n\n\npython synesis2neo4j.py --project ./my_project/analysis.synp\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\n--project\nPath to .synp file (required)\n\n\n--config\nConfiguration file (default: config.toml)\n\n\n--version, -v\nDisplay script version\n\n\n\n\n\n\n# With default configuration\npython synesis2neo4j.py --project ./research/bibliometrics.synp\n\n# With custom configuration\npython synesis2neo4j.py --project ./analysis.synp --config production.toml\n\n\n\n\n\nThe pipeline executes the following steps in sequence:\n\n\n[&gt;] Starting Synesis compiler at: ./project.synp\n[+] Compilation OK. 150 items processed.\nThe Synesis compiler validates syntax and semantics. Errors stop the process without touching the database.\n\n\n\n[&gt;] Loading Configuration\n[+] Loading Configuration completed.\nReads credentials from config.toml.\n\n\n\n[&gt;] Target database: my-project\n[&gt;] Checking/Creating Database\n[+] Database already exists: my-project\nCreates database automatically if it doesn’t exist (requires Neo4j Enterprise/Aura).\n\n\n\n[&gt;] Synchronizing Graph (Transactional)\n[+] Synchronizing Graph (Transactional) completed.\nClears previous database and injects new data in atomic transaction.\n\n\n\n[&gt;] Calculating Native Metrics\n[+] Calculating Native Metrics completed.\nCalculates degree, mention_count, source_count via pure Cypher.\n\n\n\n[&gt;] GDS graph strategy: RELATES_TO\n[&gt;] GDS projection: 45 nodes, 120 relationships\n[+] PageRank calculated\n[+] Betweenness calculated\n[+] Communities (Louvain) calculated\nIf GDS plugin is not installed, displays warning and continues:\n[!] GDS not installed. Install the Graph Data Science plugin for\n    advanced metrics (PageRank, Betweenness, Communities).\n\n\n\n\n\n\n\nThe pipeline automatically translates Template field types to graph structures:\n\n\n\nTemplate Type\nGraph Element\nRelationship Created\n\n\n\n\nCODE\nConcept Node (dynamic label)\nMENTIONS (Item → Concept)\n\n\nTOPIC\nTaxonomy Node\nGROUPED_BY\n\n\nASPECT\nTaxonomy Node\nQUALIFIED_BY\n\n\nDIMENSION\nTaxonomy Node\nBELONGS_TO\n\n\nCHAIN\nExplicit Relationship\nRELATES_TO\n\n\nTEXT / MEMO\nProperty\n—\n\n\nENUMERATED\nProperty\n—\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNode\nDescription\nMain Properties\n\n\n\n\nSource\nBibliographic source\nbibtex, title, author, year, doi\n\n\nItem\nCitation unit\nitem_id, citation, description\n\n\n\n\n\n\n\n\n\nRelationship\nSource\nTarget\nDescription\n\n\n\n\nFROM_SOURCE\nItem\nSource\nCitation traceability\n\n\nMENTIONS\nItem\nConcept\nCitation mentions concept\n\n\nGROUPED_BY\nConcept\nTopic\nThematic classification\n\n\nQUALIFIED_BY\nConcept\nAspect\nDimensional qualification\n\n\nBELONGS_TO\nConcept\nDimension\nHigh-level aggregation\n\n\nRELATES_TO\nConcept\nConcept\nExplicit relationship (CHAIN)\n\n\nIS_LINKED_TO\nTopic\nTopic\nWeighted co-taxonomy\n\n\nMAPPED_TO_ASPECT\nTopic\nAspect\nTaxonomy mapping\n\n\nMAPPED_TO_DIMENSION\nTopic\nDimension\nTaxonomy mapping\n\n\n\n\n\n\n\n\n\n\nCalculated via pure Cypher, no external dependencies.\n\n\n\n\n\n\n\n\n\n\nMetric\nDescription\nAnalytical Use\n\n\n\n\ndegree\nTotal degree (in + out)\nOverall connectivity\n\n\nin_degree\nIncoming relationships\nConcepts referencing this one\n\n\nout_degree\nOutgoing relationships\nConcepts referenced by this one\n\n\nmention_count\nCitations that mention\nFrequency in primary data\n\n\nsource_count\nDistinct sources\nDispersion/generalization\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nDescription\nAnalytical Use\n\n\n\n\nconcept_count\nClassified concepts\nCategory coverage\n\n\nweighted_degree\nSum of IS_LINKED_TO weights\nInter-taxonomy relationship strength\n\n\naspect_diversity\nDistinct aspects\nQualitative diversity\n\n\ndimension_diversity\nDistinct dimensions\nDimensional dispersion\n\n\n\n\n\n\n\n\n\nMetric\nDescription\nAnalytical Use\n\n\n\n\nitem_count\nExtracted citations\nSource data volume\n\n\nconcept_count\nMentioned concepts\nConceptual richness\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nAlgorithm\nDescription\n\n\n\n\npagerank\nPageRank\nConnection-based relevance\n\n\nbetweenness\nBetweenness Centrality\n“Bridge” role between clusters\n\n\ncommunity\nLouvain\nThematic community detection\n\n\n\n\n\n\n\n\n\n\n\n\n\nStrategy\nWhen Used\nDescription\n\n\n\n\nRELATES_TO\nTemplates with CHAIN\nUses explicit relationships\n\n\nCO_TAXONOMY\nTemplates with CODE + TOPIC\nConnects via shared taxonomy\n\n\nCO_CITATION\nFallback\nConnects via co-occurrence in sources\n\n\n\n\n\n\n\n\n\n\n\nMATCH (c:Concept)\nWHERE c.pagerank IS NOT NULL\nRETURN c.name, c.pagerank, c.mention_count, c.community\nORDER BY c.pagerank DESC\nLIMIT 10\n\n\n\nMATCH (c:Concept)\nWHERE c.community = 1\nRETURN c.name, c.pagerank, c.degree\nORDER BY c.pagerank DESC\n\n\n\nMATCH (s:Concept)-[r:RELATES_TO]-&gt;(t:Concept)\nRETURN s.name AS source, r.type AS relation, t.name AS target\nORDER BY s.name\n\n\n\nMATCH (i:Item)-[:MENTIONS]-&gt;(c:Concept)\nMATCH (i)-[:FROM_SOURCE]-&gt;(s:Source)\nWHERE c.name = \"Cost\"\nRETURN s.title, i.citation, c.name\n\n\n\nMATCH (t1:Topic)-[r:IS_LINKED_TO]-&gt;(t2:Topic)\nRETURN t1.name, t2.name, r.strength\nORDER BY r.strength DESC\nLIMIT 20\n\n\n\n\n\n\n\nThe Model Context Protocol (MCP) allows LLMs (like Claude) to interact with external data sources. With the Neo4j MCP server, Claude can query your graph directly.\n\n\n\n\nDownload at: claude.ai/download\nInstall and log in with your Anthropic account\nConfigure the MCP server (next section)\n\n\n\n\nInstall the uv package manager:\npip install uv\nEdit the claude_desktop_config.json file:\nWindows: %APPDATA%\\Claude\\claude_desktop_config.json\nmacOS: ~/Library/Application Support/Claude/claude_desktop_config.json\n{\n  \"mcpServers\": {\n    \"synesis-neo4j\": {\n      \"command\": \"uvx\",\n      \"args\": [\"mcp-neo4j-cypher@0.5.2\", \"--read-only\"],\n      \"env\": {\n        \"NEO4J_URI\": \"bolt://localhost:7687\",\n        \"NEO4J_USERNAME\": \"neo4j\",\n        \"NEO4J_PASSWORD\": \"your_password\",\n        \"NEO4J_DATABASE\": \"database_name\"\n      }\n    }\n  }\n}\n\n\n\n\n\n\n\n\n\n\nQuestion\nWhat it Returns\n\n\n\n\n“Which concepts have the highest PageRank?”\nTop concepts by relevance\n\n\n“Show sources mentioning ‘Acceptance’”\nItem → Source traceability\n\n\n“Which concepts belong to community 1?”\nCluster analysis\n\n\n“Compare metrics of main concepts”\nComparative table\n\n\n“What is the graph structure?”\nSchema and counts\n\n\n\n\n\n\n\n\n\n\n[x] Compiling Project (In-Memory) failed: ...\n\n┌─────────────────────────────────┐\n│ Compilation Diagnostics         │\n├─────────────────────────────────┤\n│ error: sample.syn:15:8          │\n│ Undefined reference '@missing'  │\n└─────────────────────────────────┘\nThe database is not modified if compilation errors occur.\n\n\n\n[x] [connection] Failed to connect to Neo4j\n    Details: Unable to retrieve routing information\nCheck: - Neo4j is running - URI and credentials are correct - Firewall allows connection on port 7687\n\n\n\n[x] [sync] Synchronization failed\n    Details: Transaction timeout\nFor very large graphs, consider increasing Neo4j timeout.\n\n\n\n\n\nsynesis2neo4j/\n├── synesis2neo4j.py      # Main script\n├── config.toml           # Configuration (create)\n├── README.md             # English documentation\n├── README.pt.md          # Portuguese documentation\n└── mcp/\n    ├── SETUP.md          # MCP configuration guide\n    ├── QUERIES_REFERENCE.md  # Query reference\n    └── claude_desktop_config.template.json\n\n\n\n\n\n\npip install synesis neo4j rich tomli\ngit clone https://github.com/synesis-lang/synesis2neo4j.git\n\n\n\n# config.toml\n[neo4j]\nuri = \"bolt://localhost:7687\"\nuser = \"neo4j\"\npassword = \"password\"\n\n\n\npython synesis2neo4j.py --project ./project.synp\n\n\n\n// Count nodes\nMATCH (n) RETURN labels(n)[0] AS label, count(*) AS count\n\n// View metrics\nMATCH (c:Concept) RETURN c.name, c.pagerank, c.community LIMIT 10\n\n\n\n\n\n\n\n\nResource\nURL\n\n\n\n\nSynesis Language\nsynesis-lang.github.io/synesis-docs\n\n\nNeo4j Download\nneo4j.com/download\n\n\nNeo4j Aura (Cloud)\nconsole.neo4j.io\n\n\nNeo4j GDS Docs\nneo4j.com/docs/graph-data-science\n\n\nClaude Desktop\nclaude.ai/download\n\n\nMCP Neo4j Server\ngithub.com/neo4j-contrib/mcp-neo4j\n\n\n\n\nDocumentation generated for synesis2neo4j v0.1.0",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#introduction",
+    "href": "ecossistema/synesis2neo4j_en.html#introduction",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "synesis2neo4j is the official ingestion pipeline from the Synesis language to Neo4j graph databases. It transforms structured qualitative analyses into navigable knowledge graphs ready for AI (GraphRAG).\n\n\n\n\n\n\n\ngraph TD\n    %% --- Synesis 2.0 Palette ---\n    %% Primary: #084C54 (Deep Teal)\n    %% Accent: #00BFA5 (Mint/Cyan)\n\n    classDef files fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C54\n    classDef engine fill:#fff,stroke:#084C54,stroke-width:3px,color:#084C54,font-weight:bold\n    classDef data fill:#E0F7FA,stroke:#084C54,stroke-width:1px,color:#084C54\n    classDef graphDb fill:#E0F7FA,stroke:#00BFA5,stroke-width:2px,color:#084C54\n    classDef agent fill:#084C54,stroke:#00BFA5,stroke-width:2px,color:#fff\n    classDef metrics fill:#F8FAFC,stroke:#00BFA5,stroke-width:1px,color:#084C54\n\n    subgraph INPUT[\"1. Input: Research as Code\"]\n        SYN[\"Annotated Corpus (.syn)\"]:::files\n        SYNO[\"Ontology (.syno)\"]:::files\n        SYNP[\"Project (.synp)\"]:::files\n        SYNT[\"Template (.synt)\"]:::files\n    end\n\n    subgraph ENGINE[\"2. Synesis Engine\"]\n        COMPILER[/\"synesis.load\"/]:::engine\n        VALIDATOR(\"Semantic Validation\"):::engine\n    end\n\n    SYNP --&gt; COMPILER\n    SYN --&gt; COMPILER\n    SYNO --&gt; COMPILER\n    SYNT --&gt; COMPILER\n    COMPILER --&gt; VALIDATOR\n\n    subgraph STRUCTURED[\"3. Structured Data\"]\n        JSON[\"Canonical Object (Traceable)\"]:::data\n        SCHEMA[\"Dynamic Schema (from Template)\"]:::data\n    end\n\n    VALIDATOR --&gt;|Success| JSON\n    SYNT -.-&gt;|Defines| SCHEMA\n\n    subgraph GRAPH[\"4. Knowledge Graph\"]\n        NEO4J[(\"Neo4j\")]:::graphDb\n        NATIVE[\"Native Metrics (Cypher)\"]:::graphDb\n        GDS[\"GDS Metrics (Optional)\"]:::graphDb\n        DEG[\"Degree Centrality\"]:::metrics\n        PR[\"PageRank Relevance\"]:::metrics\n        BC[\"Betweenness Bridges\"]:::metrics\n        COM[\"Louvain Communities\"]:::metrics\n    end\n\n    JSON --&gt;|Sync| NEO4J\n    SCHEMA --&gt;|Sync| NEO4J\n    NEO4J --&gt; NATIVE\n    NATIVE --&gt; GDS\n    NATIVE -.-&gt; DEG\n    GDS -.-&gt; PR\n    GDS -.-&gt; BC\n    GDS -.-&gt; COM\n\n    subgraph CONSUMPTION[\"5. Intelligent Consumption\"]\n        MCP[\"MCP Agent\"]:::agent\n        LLM[\"LLMs / Claude\"]:::agent\n    end\n\n    NEO4J --&gt;|GraphRAG| MCP\n    MCP --&gt;|GraphRAG| NEO4J\n    MCP --&gt;|Queries| LLM\n    LLM --&gt;|Queries| MCP\n\n    %% Subgraph Styles\n    style INPUT fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style ENGINE fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style STRUCTURED fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style GRAPH fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n    style CONSUMPTION fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5,color:#084C54\n\n    linkStyle default stroke:#64748B,stroke-width:1px\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeature\nDescription\n\n\n\n\nZero-IO\nCompiles in memory via synesis.load(), no intermediate files\n\n\nUniversal\nReads Template (.synt) and creates graph structure dynamically\n\n\nAutomatic Metrics\nCalculates native (Cypher) and advanced (GDS) metrics\n\n\nTraceability\nMaintains origin metadata on all nodes and edges\n\n\nAtomicity\nSynchronization via single transaction\n\n\n\n\n\n\n\nQualitative Research: Visualize and navigate concept networks\nBibliometric Analysis: Map relationships between factors in literature\nGraphRAG: Feed AI agents with structured knowledge\nData Science: Apply network algorithms (PageRank, Louvain, Betweenness)",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#prerequisites",
+    "href": "ecossistema/synesis2neo4j_en.html#prerequisites",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "Software\nVersion\nLink\n\n\n\n\nPython\n3.11+\npython.org\n\n\nNeo4j\n5.x\nNeo4j Download\n\n\n\n\n\n\n\n\nComplete graphical interface to manage multiple local databases.\n\nDownload at: neo4j.com/download\nInstall and create a new project\nAdd a local database (DBMS)\nStart the database and note the password\n\n\n\n\nFor servers or headless environments.\n# Docker (simplest)\ndocker run -d \\\n    --name neo4j \\\n    -p 7474:7474 -p 7687:7687 \\\n    -e NEO4J_AUTH=neo4j/your_secure_password \\\n    neo4j:5\n\n\n\nManaged cloud database, ideal for production.\n\nAccess: console.neo4j.io\nCreate a Free or Professional instance\nCopy connection credentials",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#installation",
+    "href": "ecossistema/synesis2neo4j_en.html#installation",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "pip install synesis neo4j rich tomli\n\n\n\ngit clone https://github.com/synesis-lang/synesis2neo4j.git\ncd synesis2neo4j\n\n\n\npython synesis2neo4j.py --version\n# synesis2neo4j 0.1.0\n\n\n\nFor advanced metrics (PageRank, Betweenness, Louvain), install Neo4j Graph Data Science:\nNeo4j Desktop: 1. Open your project 2. Click “Plugins” in the database panel 3. Install “Graph Data Science Library”\nNeo4j Server:\n# Download the JAR matching your version\n# Copy to Neo4j's plugins/ folder\n# Restart the server",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#configuration",
+    "href": "ecossistema/synesis2neo4j_en.html#configuration",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "Create a config.toml file in the project root:\n[neo4j]\nuri = \"bolt://localhost:7687\"\nuser = \"neo4j\"\npassword = \"your_secret_password\"\ndatabase = \"neo4j\"  # Optional, default is 'neo4j'\n\n\n\n\n\n\nParameter\nType\nRequired\nDescription\n\n\n\n\nuri\nstr\nYes\nConnection URI (bolt:// or neo4j://)\n\n\nuser\nstr\nYes\nDatabase user\n\n\npassword\nstr\nYes\nDatabase password\n\n\ndatabase\nstr\nNo\nDatabase name (default: neo4j)\n\n\n\n\n\n\n\n\n\nEnvironment\nURI\n\n\n\n\nLocal (Desktop/Docker)\nbolt://localhost:7687\n\n\nNeo4j Aura\nneo4j+s://xxxx.databases.neo4j.io\n\n\nRemote server\nbolt://192.168.1.100:7687",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#usage",
+    "href": "ecossistema/synesis2neo4j_en.html#usage",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "python synesis2neo4j.py --project ./my_project/analysis.synp\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\n--project\nPath to .synp file (required)\n\n\n--config\nConfiguration file (default: config.toml)\n\n\n--version, -v\nDisplay script version\n\n\n\n\n\n\n# With default configuration\npython synesis2neo4j.py --project ./research/bibliometrics.synp\n\n# With custom configuration\npython synesis2neo4j.py --project ./analysis.synp --config production.toml",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#execution-flow",
+    "href": "ecossistema/synesis2neo4j_en.html#execution-flow",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "The pipeline executes the following steps in sequence:\n\n\n[&gt;] Starting Synesis compiler at: ./project.synp\n[+] Compilation OK. 150 items processed.\nThe Synesis compiler validates syntax and semantics. Errors stop the process without touching the database.\n\n\n\n[&gt;] Loading Configuration\n[+] Loading Configuration completed.\nReads credentials from config.toml.\n\n\n\n[&gt;] Target database: my-project\n[&gt;] Checking/Creating Database\n[+] Database already exists: my-project\nCreates database automatically if it doesn’t exist (requires Neo4j Enterprise/Aura).\n\n\n\n[&gt;] Synchronizing Graph (Transactional)\n[+] Synchronizing Graph (Transactional) completed.\nClears previous database and injects new data in atomic transaction.\n\n\n\n[&gt;] Calculating Native Metrics\n[+] Calculating Native Metrics completed.\nCalculates degree, mention_count, source_count via pure Cypher.\n\n\n\n[&gt;] GDS graph strategy: RELATES_TO\n[&gt;] GDS projection: 45 nodes, 120 relationships\n[+] PageRank calculated\n[+] Betweenness calculated\n[+] Communities (Louvain) calculated\nIf GDS plugin is not installed, displays warning and continues:\n[!] GDS not installed. Install the Graph Data Science plugin for\n    advanced metrics (PageRank, Betweenness, Communities).",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#data-modeling",
+    "href": "ecossistema/synesis2neo4j_en.html#data-modeling",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "The pipeline automatically translates Template field types to graph structures:\n\n\n\nTemplate Type\nGraph Element\nRelationship Created\n\n\n\n\nCODE\nConcept Node (dynamic label)\nMENTIONS (Item → Concept)\n\n\nTOPIC\nTaxonomy Node\nGROUPED_BY\n\n\nASPECT\nTaxonomy Node\nQUALIFIED_BY\n\n\nDIMENSION\nTaxonomy Node\nBELONGS_TO\n\n\nCHAIN\nExplicit Relationship\nRELATES_TO\n\n\nTEXT / MEMO\nProperty\n—\n\n\nENUMERATED\nProperty\n—\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNode\nDescription\nMain Properties\n\n\n\n\nSource\nBibliographic source\nbibtex, title, author, year, doi\n\n\nItem\nCitation unit\nitem_id, citation, description\n\n\n\n\n\n\n\n\n\nRelationship\nSource\nTarget\nDescription\n\n\n\n\nFROM_SOURCE\nItem\nSource\nCitation traceability\n\n\nMENTIONS\nItem\nConcept\nCitation mentions concept\n\n\nGROUPED_BY\nConcept\nTopic\nThematic classification\n\n\nQUALIFIED_BY\nConcept\nAspect\nDimensional qualification\n\n\nBELONGS_TO\nConcept\nDimension\nHigh-level aggregation\n\n\nRELATES_TO\nConcept\nConcept\nExplicit relationship (CHAIN)\n\n\nIS_LINKED_TO\nTopic\nTopic\nWeighted co-taxonomy\n\n\nMAPPED_TO_ASPECT\nTopic\nAspect\nTaxonomy mapping\n\n\nMAPPED_TO_DIMENSION\nTopic\nDimension\nTaxonomy mapping",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#graph-metrics",
+    "href": "ecossistema/synesis2neo4j_en.html#graph-metrics",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "Calculated via pure Cypher, no external dependencies.\n\n\n\n\n\n\n\n\n\n\nMetric\nDescription\nAnalytical Use\n\n\n\n\ndegree\nTotal degree (in + out)\nOverall connectivity\n\n\nin_degree\nIncoming relationships\nConcepts referencing this one\n\n\nout_degree\nOutgoing relationships\nConcepts referenced by this one\n\n\nmention_count\nCitations that mention\nFrequency in primary data\n\n\nsource_count\nDistinct sources\nDispersion/generalization\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nDescription\nAnalytical Use\n\n\n\n\nconcept_count\nClassified concepts\nCategory coverage\n\n\nweighted_degree\nSum of IS_LINKED_TO weights\nInter-taxonomy relationship strength\n\n\naspect_diversity\nDistinct aspects\nQualitative diversity\n\n\ndimension_diversity\nDistinct dimensions\nDimensional dispersion\n\n\n\n\n\n\n\n\n\nMetric\nDescription\nAnalytical Use\n\n\n\n\nitem_count\nExtracted citations\nSource data volume\n\n\nconcept_count\nMentioned concepts\nConceptual richness\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nAlgorithm\nDescription\n\n\n\n\npagerank\nPageRank\nConnection-based relevance\n\n\nbetweenness\nBetweenness Centrality\n“Bridge” role between clusters\n\n\ncommunity\nLouvain\nThematic community detection\n\n\n\n\n\n\n\n\n\n\n\n\n\nStrategy\nWhen Used\nDescription\n\n\n\n\nRELATES_TO\nTemplates with CHAIN\nUses explicit relationships\n\n\nCO_TAXONOMY\nTemplates with CODE + TOPIC\nConnects via shared taxonomy\n\n\nCO_CITATION\nFallback\nConnects via co-occurrence in sources",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#cypher-queries",
+    "href": "ecossistema/synesis2neo4j_en.html#cypher-queries",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "MATCH (c:Concept)\nWHERE c.pagerank IS NOT NULL\nRETURN c.name, c.pagerank, c.mention_count, c.community\nORDER BY c.pagerank DESC\nLIMIT 10\n\n\n\nMATCH (c:Concept)\nWHERE c.community = 1\nRETURN c.name, c.pagerank, c.degree\nORDER BY c.pagerank DESC\n\n\n\nMATCH (s:Concept)-[r:RELATES_TO]-&gt;(t:Concept)\nRETURN s.name AS source, r.type AS relation, t.name AS target\nORDER BY s.name\n\n\n\nMATCH (i:Item)-[:MENTIONS]-&gt;(c:Concept)\nMATCH (i)-[:FROM_SOURCE]-&gt;(s:Source)\nWHERE c.name = \"Cost\"\nRETURN s.title, i.citation, c.name\n\n\n\nMATCH (t1:Topic)-[r:IS_LINKED_TO]-&gt;(t2:Topic)\nRETURN t1.name, t2.name, r.strength\nORDER BY r.strength DESC\nLIMIT 20",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#mcp-agent-integration",
+    "href": "ecossistema/synesis2neo4j_en.html#mcp-agent-integration",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "The Model Context Protocol (MCP) allows LLMs (like Claude) to interact with external data sources. With the Neo4j MCP server, Claude can query your graph directly.\n\n\n\n\nDownload at: claude.ai/download\nInstall and log in with your Anthropic account\nConfigure the MCP server (next section)\n\n\n\n\nInstall the uv package manager:\npip install uv\nEdit the claude_desktop_config.json file:\nWindows: %APPDATA%\\Claude\\claude_desktop_config.json\nmacOS: ~/Library/Application Support/Claude/claude_desktop_config.json\n{\n  \"mcpServers\": {\n    \"synesis-neo4j\": {\n      \"command\": \"uvx\",\n      \"args\": [\"mcp-neo4j-cypher@0.5.2\", \"--read-only\"],\n      \"env\": {\n        \"NEO4J_URI\": \"bolt://localhost:7687\",\n        \"NEO4J_USERNAME\": \"neo4j\",\n        \"NEO4J_PASSWORD\": \"your_password\",\n        \"NEO4J_DATABASE\": \"database_name\"\n      }\n    }\n  }\n}\n\n\n\n\n\n\n\n\n\n\nQuestion\nWhat it Returns\n\n\n\n\n“Which concepts have the highest PageRank?”\nTop concepts by relevance\n\n\n“Show sources mentioning ‘Acceptance’”\nItem → Source traceability\n\n\n“Which concepts belong to community 1?”\nCluster analysis\n\n\n“Compare metrics of main concepts”\nComparative table\n\n\n“What is the graph structure?”\nSchema and counts",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#error-handling",
+    "href": "ecossistema/synesis2neo4j_en.html#error-handling",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "[x] Compiling Project (In-Memory) failed: ...\n\n┌─────────────────────────────────┐\n│ Compilation Diagnostics         │\n├─────────────────────────────────┤\n│ error: sample.syn:15:8          │\n│ Undefined reference '@missing'  │\n└─────────────────────────────────┘\nThe database is not modified if compilation errors occur.\n\n\n\n[x] [connection] Failed to connect to Neo4j\n    Details: Unable to retrieve routing information\nCheck: - Neo4j is running - URI and credentials are correct - Firewall allows connection on port 7687\n\n\n\n[x] [sync] Synchronization failed\n    Details: Transaction timeout\nFor very large graphs, consider increasing Neo4j timeout.",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#project-structure",
+    "href": "ecossistema/synesis2neo4j_en.html#project-structure",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "synesis2neo4j/\n├── synesis2neo4j.py      # Main script\n├── config.toml           # Configuration (create)\n├── README.md             # English documentation\n├── README.pt.md          # Portuguese documentation\n└── mcp/\n    ├── SETUP.md          # MCP configuration guide\n    ├── QUERIES_REFERENCE.md  # Query reference\n    └── claude_desktop_config.template.json",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#quick-reference",
+    "href": "ecossistema/synesis2neo4j_en.html#quick-reference",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "pip install synesis neo4j rich tomli\ngit clone https://github.com/synesis-lang/synesis2neo4j.git\n\n\n\n# config.toml\n[neo4j]\nuri = \"bolt://localhost:7687\"\nuser = \"neo4j\"\npassword = \"password\"\n\n\n\npython synesis2neo4j.py --project ./project.synp\n\n\n\n// Count nodes\nMATCH (n) RETURN labels(n)[0] AS label, count(*) AS count\n\n// View metrics\nMATCH (c:Concept) RETURN c.name, c.pagerank, c.community LIMIT 10",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
+    ]
+  },
+  {
+    "objectID": "ecossistema/synesis2neo4j_en.html#useful-links",
+    "href": "ecossistema/synesis2neo4j_en.html#useful-links",
+    "title": "1 Synesis2Neo4j: Knowledge Graph Pipeline",
+    "section": "",
+    "text": "Resource\nURL\n\n\n\n\nSynesis Language\nsynesis-lang.github.io/synesis-docs\n\n\nNeo4j Download\nneo4j.com/download\n\n\nNeo4j Aura (Cloud)\nconsole.neo4j.io\n\n\nNeo4j GDS Docs\nneo4j.com/docs/graph-data-science\n\n\nClaude Desktop\nclaude.ai/download\n\n\nMCP Neo4j Server\ngithub.com/neo4j-contrib/mcp-neo4j\n\n\n\n\nDocumentation generated for synesis2neo4j v0.1.0",
+    "crumbs": [
+      "Introduction",
+      "Ecosystem",
+      "Synesis2Neo4j: Knowledge Graph Pipeline"
     ]
   },
   {
