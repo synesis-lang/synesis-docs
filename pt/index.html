@@ -100,9 +100,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Procurar"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -182,6 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="./reference/synesis_load.html">
  <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./reference/fluxo_compilacao.html">
+ <span class="dropdown-text">O fluxo de compilação</span></a>
   </li>  
     </ul>
   </li>
@@ -267,8 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#como-funciona" id="toc-como-funciona" class="nav-link" data-scroll-target="#como-funciona"><span class="header-section-number">1.5</span> Como funciona</a>
   <ul class="collapse">
-  <li><a href="#o-fluxo-de-compilação" id="toc-o-fluxo-de-compilação" class="nav-link" data-scroll-target="#o-fluxo-de-compilação"><span class="header-section-number">1.5.1</span> O Fluxo de Compilação</a></li>
-  <li><a href="#o-poder-da-integração" id="toc-o-poder-da-integração" class="nav-link" data-scroll-target="#o-poder-da-integração"><span class="header-section-number">1.5.2</span> O Poder da Integração</a></li>
+  <li><a href="#o-poder-da-integração" id="toc-o-poder-da-integração" class="nav-link" data-scroll-target="#o-poder-da-integração"><span class="header-section-number">1.5.1</span> O Poder da Integração</a></li>
   </ul></li>
   <li><a href="#a-origem-do-nome" id="toc-a-origem-do-nome" class="nav-link" data-scroll-target="#a-origem-do-nome"><span class="header-section-number">1.6</span> A Origem do Nome</a></li>
   </ul></li>
@@ -425,103 +425,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 3</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Enquanto os arquivos de anotação e ontologia se assemelham a textos estruturados em blocos, é no arquivo de template que Synesis verdadeiramente se manifesta como linguagem. Por meio de comandos declarativos, o arquivo <em>.synt</em> define a gramática estrutural que governa todo o <em>corpora</em>, transformando um conjunto de textos em um corpo de conhecimento formalmente organizado.</p>
-<section id="o-fluxo-de-compilação" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="o-fluxo-de-compilação"><span class="header-section-number">1.5.1</span> O Fluxo de Compilação</h3>
-<p>A compilação no Synesis ocorre em múltiplas fases, assegurando a integridade formal e conceitual do corpo de conhecimento.</p>
-<p>Na fase sintática, o compilador verifica se os comandos de abertura e fechamento de blocos estão corretamente declarados, se os nomes dos campos correspondem ao padrão definido e se a sequência estrutural dos elementos respeita o template (<em>.synt</em>). Essa etapa garante conformidade gramatical com a linguagem.</p>
-<p>Em seguida, ocorre a validação estrutural e de vínculos. O compilador verifica se:</p>
-<ul>
-<li>Os itens estão corretamente associados às fontes declaradas;</li>
-<li>A ordem dos campos nos blocos segue o padrão estabelecido;</li>
-<li>As palavras-chave (códigos) utilizadas nos itens correspondem às categorias previamente definidas na ontologia;</li>
-<li>As relações declaradas são semanticamente válidas dentro das regras configuradas.</li>
-</ul>
-<p>Todos esses critérios — nomes de campos, tipagem, obrigatoriedade, sequência e regras de relacionamento — são definidos no arquivo de template, que pode ser adaptado pelo usuário conforme seus próprios parâmetros metodológicos.</p>
-<p>Esse processo em camadas garante que os arquivos de saída sejam estruturalmente íntegros e que o corpo de conhecimento permaneça logicamente consistente e computacionalmente confiável.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    %% --- CORES (Paleta Synesis 2.0) ---
-    classDef compiler fill:#fff,stroke:#084C54,stroke-width:3px,color:#084C54,font-weight:bold;
-    classDef highValue fill:#E0F7FA,stroke:#00BFA5,stroke-width:2px,color:#084C54;
-    classDef defaultNode fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C84;
-    classDef bridge fill:#F1F5F9,stroke:#00BFA5,stroke-width:1px,color:#084C54,font-weight:600;
-
-    %% --- CAMADA 1: ENTRYPOINT ---
-    P["Projeto (.synp)&lt;br/&gt;entrypoint do projeto"]:::defaultNode
-
-    %% --- CAMADA 2: INPUTS HORIZONTAIS ---
-    subgraph Input ["Arquivos de Entrada"]
-        direction LR
-        D["Template&lt;br/&gt;(.synt)"]:::defaultNode
-        A["Fontes&lt;br/&gt;(.bib)"]:::defaultNode
-        B["Anotações&lt;br/&gt;(.syn)"]:::defaultNode
-        E["Ontologia&lt;br/&gt;(.syno)"]:::defaultNode
-    end
-
-    %% --- CAMADA 3: COMPILADOR ---
-    C["Compilador Synesis&lt;br/&gt;• Parsing • Vínculos &lt;br/&gt;• Validação • Exportação ."]:::compiler
-
-    %% --- CAMADA 4: OUTPUTS HORIZONTAIS ---
-    subgraph Output ["Formatos de Intercâmbio"]
-        direction LR
-        F["JSON"]:::defaultNode
-        G["CSV/Excel"]:::defaultNode
-        H["DOCX/REFI-QDA"]:::defaultNode
-    end
-
-    %% --- CAMADA 5: API/BRIDGE ---
-    subgraph Bridge ["Camada de Interface"]
-        direction LR
-        API["API do Compilador ."]:::bridge
-        S["Connector para Grafos"]:::bridge
-    end
-
-    %% --- CAMADA 6: ECOSSISTEMA ---
-    subgraph Ecosystem ["Ecossistema de Aplicação"]
-        direction LR
-        I["Bancos de Grafos&lt;br/&gt;Neo4j • Memgraph"]:::highValue
-        J["Agentes de IA&lt;br/&gt;MCP"]:::highValue
-        K["Data Science&lt;br/&gt;R • Python • Jupyter"]:::highValue
-    end
-
-    %% --- ESTILO DOS SUBGRAPHS ---
-    style Input fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5
-    style Output fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5
-    style Bridge fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5
-    style Ecosystem fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5
-
-    %% --- FLUXO VERTICAL PRINCIPAL ---
-    P ==&gt; Input
-    Input ==&gt; C
-    C ==&gt; Output
-    C ==&gt; API
-    API --&gt; S
-
-    %% --- CONEXÕES INTERNAS CAMADA 2 ---
-    D -. "define estrutura" .-&gt; B
-    D -. "define estrutura" .-&gt; E
-    A -. "referenciadas em" .-&gt; B
-
-    %% --- CONSUMO DO ECOSSISTEMA ---
-    Output -.-&gt; K
-    S --&gt; I
-    I --&gt; J
-    API --&gt; K
-
-    linkStyle default stroke:#64748B,stroke-width:1.5px;
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="o-poder-da-integração" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="o-poder-da-integração"><span class="header-section-number">1.5.2</span> O Poder da Integração</h3>
+<section id="o-poder-da-integração" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="o-poder-da-integração"><span class="header-section-number">1.5.1</span> O Poder da Integração</h3>
 <p>O resultado da compilação Synesis vai muito além de documentos estruturados. O compilador converte seu corpo de conhecimento em formatos universais de intercâmbio — como JSON, Excel, DOCX, CSV e REFI-QDA — tornando-o interoperável com outras <em>stacks</em> tecnológicas.</p>
 <p>Mais do que exportar dados, Synesis transforma conhecimento estruturado em infraestrutura computacional.</p>
 <ul>
@@ -530,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Integração nativa com Neo4j e Memgraph, permitindo materializar a topologia conceitual do seu conhecimento em grafos navegáveis, consultáveis e visualmente exploráveis.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/neo4jFactors.png" class="img-fluid figure-img"></p>
+<p><img src="../images/neo4jFactors.png" class="img-fluid figure-img"></p>
 <figcaption>Neo4j Dektop with Synesis generated data.</figcaption>
 </figure>
 </div>
@@ -540,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Por meio do protocolo MCP (Model Context Protocol), seus dados podem ser conectados a assistentes como Claude Desktop, viabilizando interações em linguagem natural com respostas rastreáveis e fundamentadas diretamente em bancos de grafos Neo4j/Memgraph — sua fonte formal de verdade.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/claude_mcp_pt.png" class="img-fluid figure-img"></p>
+<p><img src="../images/claude_mcp_pt.png" class="img-fluid figure-img"></p>
 <figcaption>Acesso a dados compilados via chat com linguagem natural.</figcaption>
 </figure>
 </div>
@@ -550,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Geração de datasets estruturados prontos para análises estatísticas em R, exploração computacional em Python ou visualizações interativas em Jupyter Lab.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/jupyter_labs.png" class="img-fluid figure-img"></p>
+<p><img src="../images/jupyter_labs.png" class="img-fluid figure-img"></p>
 <figcaption>Conexão com Jupyter Labs.</figcaption>
 </figure>
 </div>
@@ -560,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Através de um Language Server Protocol (LSP), o editor reconhece a sintaxe Synesis e realiza validações em tempo real. O ambiente oferece navegação estruturada, inspeção de vínculos e visualizações gráficas básicas para apoio analítico.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/10_full_view.png" class="img-fluid figure-img"></p>
+<p><img src="../images/10_full_view.png" class="img-fluid figure-img"></p>
 <figcaption>Fluxo completo (arquivo aberto + explorer + viewer).</figcaption>
 </figure>
 </div>
@@ -570,7 +475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Permite exportar bibliografias e anotações destacadas diretamente para o formato Synesis, integrando pesquisa acadêmica ao fluxo de compilação.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/zotero_preferences.png" class="img-fluid figure-img"></p>
+<p><img src="../images/zotero_preferences.png" class="img-fluid figure-img"></p>
 <figcaption>Configuração para exportação no Zotero.</figcaption>
 </figure>
 </div>
@@ -580,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Extensão VSCode para codificação exegética do texto bíblico completo, com suporte a relações semânticas em cadeia (ex: Palavra → POSSIBILITA → Criação). Destacamentos do texto canônico podem ser agregados via compilador com anotações de corpus clássicos, filosóficos ou patrísticos, gerando grafos integrados de redes conceituais.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/Bible_Coder.png" class="img-fluid figure-img"></p>
+<p><img src="../images/Bible_Coder.png" class="img-fluid figure-img"></p>
 <figcaption>Bible Coder view.</figcaption>
 </figure>
 </div>
