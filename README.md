@@ -4,7 +4,7 @@ Static HTML documentation for the [Synesis](https://github.com/synesis-lang) lan
 
 ## Live site
 
-**[https://synesis-lang.github.io/synesis-docs/landing/](https://synesis-lang.github.io/synesis-docs/)**
+**[https://synesis-lang.github.io/synesis-docs/](https://synesis-lang.github.io/synesis-docs/)**
 
 ## Structure
 
