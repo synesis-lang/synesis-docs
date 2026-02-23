@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ideas – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.qmd">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Why not Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.qmd">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideas</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#synesis-ideas" id="toc-synesis-ideas" class="nav-link active" data-scroll-target="#synesis-ideas"><span class="header-section-number">1</span> Synesis: Ideas</a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-extensions" id="toc-introduction-to-extensions" class="nav-link" data-scroll-target="#introduction-to-extensions"><span class="header-section-number">1.1</span> Introduction to Extensions</a></li>
+  <li><a href="#output-artifact-configuration-render" id="toc-output-artifact-configuration-render" class="nav-link" data-scroll-target="#output-artifact-configuration-render"><span class="header-section-number">1.2</span> Output Artifact Configuration (RENDER)</a>
+  <ul class="collapse">
+  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">1.2.1</span> Syntax</a></li>
+  </ul></li>
+  <li><a href="#advanced-semantic-analysis" id="toc-advanced-semantic-analysis" class="nav-link" data-scroll-target="#advanced-semantic-analysis"><span class="header-section-number">1.3</span> Advanced Semantic Analysis</a>
+  <ul class="collapse">
+  <li><a href="#ontological-redundancy-detection-fuzzy-matching" id="toc-ontological-redundancy-detection-fuzzy-matching" class="nav-link" data-scroll-target="#ontological-redundancy-detection-fuzzy-matching"><span class="header-section-number">1.3.1</span> Ontological Redundancy Detection (Fuzzy Matching)</a></li>
+  <li><a href="#hierarchical-cycle-validation" id="toc-hierarchical-cycle-validation" class="nav-link" data-scroll-target="#hierarchical-cycle-validation"><span class="header-section-number">1.3.2</span> Hierarchical Cycle Validation</a></li>
+  <li><a href="#dead-code-elimination-ghost-concepts" id="toc-dead-code-elimination-ghost-concepts" class="nav-link" data-scroll-target="#dead-code-elimination-ghost-concepts"><span class="header-section-number">1.3.3</span> Dead Code Elimination (Ghost Concepts)</a></li>
+  </ul></li>
+  <li><a href="#new-structural-commands" id="toc-new-structural-commands" class="nav-link" data-scroll-target="#new-structural-commands"><span class="header-section-number">1.4</span> New Structural Commands</a>
+  <ul class="collapse">
+  <li><a href="#taxonomy-rigid-hierarchy" id="toc-taxonomy-rigid-hierarchy" class="nav-link" data-scroll-target="#taxonomy-rigid-hierarchy"><span class="header-section-number">1.4.1</span> TAXONOMY (Rigid Hierarchy)</a></li>
+  <li><a href="#constraint-business-rules" id="toc-constraint-business-rules" class="nav-link" data-scroll-target="#constraint-business-rules"><span class="header-section-number">1.4.2</span> CONSTRAINT (Business Rules)</a></li>
+  <li><a href="#crossref-citation-network" id="toc-crossref-citation-network" class="nav-link" data-scroll-target="#crossref-citation-network"><span class="header-section-number">1.4.3</span> CROSSREF (Citation Network)</a></li>
+  </ul></li>
+  <li><a href="#knowledge-management-zettelkasten" id="toc-knowledge-management-zettelkasten" class="nav-link" data-scroll-target="#knowledge-management-zettelkasten"><span class="header-section-number">1.5</span> Knowledge Management (Zettelkasten)</a>
+  <ul class="collapse">
+  <li><a href="#zettel-block" id="toc-zettel-block" class="nav-link" data-scroll-target="#zettel-block"><span class="header-section-number">1.5.1</span> 4.1 ZETTEL Block</a></li>
+  <li><a href="#exclusive-fields-zettel-fields" id="toc-exclusive-fields-zettel-fields" class="nav-link" data-scroll-target="#exclusive-fields-zettel-fields"><span class="header-section-number">1.5.2</span> Exclusive Fields (ZETTEL FIELDS)</a></li>
+  </ul></li>
+  <li><a href="#canonical-annotation-biblicalexegetical" id="toc-canonical-annotation-biblicalexegetical" class="nav-link" data-scroll-target="#canonical-annotation-biblicalexegetical"><span class="header-section-number">1.6</span> Canonical Annotation (Biblical/Exegetical)</a>
+  <ul class="collapse">
+  <li><a href="#bible-block" id="toc-bible-block" class="nav-link" data-scroll-target="#bible-block"><span class="header-section-number">1.6.1</span> BIBLE Block</a></li>
+  <li><a href="#addressing-rules-parsing" id="toc-addressing-rules-parsing" class="nav-link" data-scroll-target="#addressing-rules-parsing"><span class="header-section-number">1.6.2</span> Addressing Rules (Parsing)</a></li>
+  <li><a href="#canon-template-example" id="toc-canon-template-example" class="nav-link" data-scroll-target="#canon-template-example"><span class="header-section-number">1.6.3</span> Canon Template Example</a></li>
+  </ul></li>
+  <li><a href="#immediate-visualization" id="toc-immediate-visualization" class="nav-link" data-scroll-target="#immediate-visualization"><span class="header-section-number">1.7</span> Immediate Visualization</a></li>
+  <li><a href="#data-science-integration" id="toc-data-science-integration" class="nav-link" data-scroll-target="#data-science-integration"><span class="header-section-number">1.8</span> Data Science Integration</a></li>
+  <li><a href="#possible-workflow" id="toc-possible-workflow" class="nav-link" data-scroll-target="#possible-workflow"><span class="header-section-number">1.9</span> Possible Workflow</a>
+  <ul class="collapse">
+  <li><a href="#step-1-io-decoupling-inputoutput" id="toc-step-1-io-decoupling-inputoutput" class="nav-link" data-scroll-target="#step-1-io-decoupling-inputoutput"><span class="header-section-number">1.9.1</span> Step 1: I/O Decoupling (Input/Output)</a></li>
+  <li><a href="#step-2-public-core-api-exposure" id="toc-step-2-public-core-api-exposure" class="nav-link" data-scroll-target="#step-2-public-core-api-exposure"><span class="header-section-number">1.9.2</span> Step 2: Public Core API Exposure</a></li>
+  <li><a href="#step-3-python-adapter-creation-data-science" id="toc-step-3-python-adapter-creation-data-science" class="nav-link" data-scroll-target="#step-3-python-adapter-creation-data-science"><span class="header-section-number">1.9.3</span> Step 3: Python Adapter Creation (Data Science)</a></li>
+  <li><a href="#step-4-lsp-adaptation-editor-intelligence" id="toc-step-4-lsp-adaptation-editor-intelligence" class="nav-link" data-scroll-target="#step-4-lsp-adaptation-editor-intelligence"><span class="header-section-number">1.9.4</span> Step 4: LSP Adaptation (Editor Intelligence)</a></li>
+  <li><a href="#step-5-cli-as-thin-client" id="toc-step-5-cli-as-thin-client" class="nav-link" data-scroll-target="#step-5-cli-as-thin-client"><span class="header-section-number">1.9.5</span> Step 5: CLI as “Thin Client”</a></li>
+  <li><a href="#data-flow-summary" id="toc-data-flow-summary" class="nav-link" data-scroll-target="#data-flow-summary"><span class="header-section-number">1.9.6</span> Data Flow Summary</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="synesis-ideas" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis: Ideas</h1>
+<p><strong>Ideas:</strong> Language Extension Specification Proposals</p>
+<hr>
+<section id="introduction-to-extensions" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction-to-extensions"><span class="header-section-number">1.1</span> Introduction to Extensions</h2>
+<p>This specification details the new features planned for version 1.2 of the Synesis language. The focus of this update is to evolve the language from a linear annotation system to a <strong>qualitative inference engine</strong> and knowledge management (Zettelkasten), as well as introduce native support for canonical loci (sacred texts).</p>
+<hr>
+</section>
+<section id="output-artifact-configuration-render" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="output-artifact-configuration-render"><span class="header-section-number">1.2</span> Output Artifact Configuration (RENDER)</h2>
+<p>The <code>RENDER</code> command allows explicitly declaring, within the project file, which file formats should be generated and where they should be saved. This ensures compilation reproducibility without relying on command-line parameters.</p>
+<section id="syntax" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="syntax"><span class="header-section-number">1.2.1</span> Syntax</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RENDER AS <span class="bn">[JSON | CSV | EXCEL]</span> INTO <span class="st">"path/to/filename"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="semantics" class="level4" data-number="1.2.1.1">
+<h4 data-number="1.2.1.1" class="anchored" data-anchor-id="semantics"><span class="header-section-number">1.2.1.1</span> Semantics</h4>
+<ul>
+<li><p><strong>RENDER</strong>: Command verb that initiates compilation target definition. Indicates creation of a structured representation (artifact) from interpreted data.</p></li>
+<li><p><strong>AS</strong>: Clause that specifies serialization format.</p></li>
+<li><p><code>JSON</code>: Generates complete abstract syntax tree with traceability metadata.</p></li>
+<li><p><code>CSV</code>: Generates flat relational tables (separated by block type).</p></li>
+<li><p><code>EXCEL</code>: Generates <code>.xlsx</code> file with tabs corresponding to CSV tables.</p></li>
+<li><p><strong>INTO</strong>: Clause that defines destination path.</p></li>
+<li><p>Must be a string in double quotes.</p></li>
+<li><p><strong>Relative paths</strong> to the project root are recommended to ensure portability across different machines.</p></li>
+<li><p>If destination directory doesn’t exist, compiler will attempt to create it.</p></li>
+</ul>
+</section>
+<section id="example-in-context-.synp" class="level4" data-number="1.2.1.2">
+<h4 data-number="1.2.1.2" class="anchored" data-anchor-id="example-in-context-.synp"><span class="header-section-number">1.2.1.2</span> Example in Context (.synp)</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> <span class="st">"Phenomenological Study 2026"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"templates/research_v1.synt"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"data/references.bib"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"data/interviews/*.syn"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology/main.syno"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Declarative Output Configuration</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generates multiple formats simultaneously in organized directories</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>RENDER AS JSON  INTO <span class="st">"dist/full_data.json"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>RENDER AS EXCEL INTO <span class="st">"reports/human_readable/matrix.xlsx"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>RENDER AS CSV   INTO <span class="st">"reports/raw_data/export.csv"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="validation-rules" class="level4" data-number="1.2.1.3">
+<h4 data-number="1.2.1.3" class="anchored" data-anchor-id="validation-rules"><span class="header-section-number">1.2.1.3</span> Validation Rules</h4>
+<ol type="1">
+<li><strong>Multiplicity</strong>: Multiple <code>RENDER</code> commands are allowed in the same project. The compiler will process all sequentially.</li>
+<li><strong>Write Permission</strong>: Compiler must have write permission to target directory. If destination file is locked (e.g., open in Excel), compilation will fail with I/O error.</li>
+<li><strong>Absolute Paths</strong>: Using absolute paths (e.g., <code>C:/Users/...</code>) will emit a <em>Warning</em>, as it breaks project portability.</li>
+</ol>
+<hr>
+</section>
+</section>
+</section>
+<section id="advanced-semantic-analysis" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="advanced-semantic-analysis"><span class="header-section-number">1.3</span> Advanced Semantic Analysis</h2>
+<p>The compiler now acts as a methodological assistant, not just a syntactic validator.</p>
+<section id="ontological-redundancy-detection-fuzzy-matching" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="ontological-redundancy-detection-fuzzy-matching"><span class="header-section-number">1.3.1</span> Ontological Redundancy Detection (Fuzzy Matching)</h3>
+<p>The compiler will analyze the ontology for concepts with similar spelling (Lexical Similarity), preventing knowledge graph fragmentation.</p>
+<ul>
+<li><strong>Algorithm:</strong> Levenshtein / Jaro-Winkler distance.</li>
+<li><strong>Behavior:</strong> Warning during compilation.</li>
+<li><strong>Detection Example:</strong> <code>SocialInteraction</code> vs <code>Social_Interaction</code>.</li>
+</ul>
+</section>
+<section id="hierarchical-cycle-validation" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="hierarchical-cycle-validation"><span class="header-section-number">1.3.2</span> Hierarchical Cycle Validation</h3>
+<p>Prevents creation of logical loops in taxonomic definitions. * <strong>Rule:</strong> A concept cannot be an ancestor of itself. * <strong>Fatal Error:</strong> Compilation is aborted if a cycle is detected (e.g., A &gt; B &gt; C &gt; A).</p>
+</section>
+<section id="dead-code-elimination-ghost-concepts" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="dead-code-elimination-ghost-concepts"><span class="header-section-number">1.3.3</span> Dead Code Elimination (Ghost Concepts)</h3>
+<p>Identifies concepts defined in ontology that were never applied to any <code>ITEM</code> or <code>ZETTEL</code>. * <strong>Behavior:</strong> Warning (Codebook cleanup report).</p>
+<hr>
+</section>
+</section>
+<section id="new-structural-commands" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="new-structural-commands"><span class="header-section-number">1.4</span> New Structural Commands</h2>
+<section id="taxonomy-rigid-hierarchy" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="taxonomy-rigid-hierarchy"><span class="header-section-number">1.4.1</span> TAXONOMY (Rigid Hierarchy)</h3>
+<p>Replaces loose use of <code>TOPIC</code> for strict “is-a” relationship definitions. Allows property inheritance.</p>
+<p><strong>Syntax:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>TAXONOMY</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Emotions</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        &gt; Negative</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            &gt; Anger</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            &gt; Fear</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        &gt; Positive</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            &gt; Joy</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="constraint-business-rules" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="constraint-business-rules"><span class="header-section-number">1.4.2</span> CONSTRAINT (Business Rules)</h3>
+<p>Defines logical invariants to ensure methodological consistency of annotations.</p>
+<p><strong>Syntax:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CONSTRAINT</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mutual exclusion: An item cannot have both codes simultaneously</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    FORBID Code <span class="st">"Sentiment: Positive"</span> WITH Code <span class="st">"Risk: Critical"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Logical dependency: Code B requires presence of Code A</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    REQUIRE Code <span class="st">"Solution"</span> IF Code <span class="st">"Problem"</span> PRESENT</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="crossref-citation-network" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="crossref-citation-network"><span class="header-section-number">1.4.3</span> CROSSREF (Citation Network)</h3>
+<p>Formalizes rhetorical relationships between bibliographic sources (Source-to-Source), independent of internal annotations.</p>
+<p><strong>Syntax:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>CROSSREF</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@smith2019</span> <span class="op">-&gt;</span> REFUTES <span class="op">-&gt;</span> <span class="fu">@doe2018</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@jones2020</span> <span class="op">-&gt;</span> EXTENDS <span class="op">-&gt;</span> <span class="fu">@smith2019</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="knowledge-management-zettelkasten" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="knowledge-management-zettelkasten"><span class="header-section-number">1.5</span> Knowledge Management (Zettelkasten)</h2>
+<p>Introduces capability to create “Permanent Notes” that synthesize knowledge independent of a specific bibliographic source.</p>
+<section id="zettel-block" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="zettel-block"><span class="header-section-number">1.5.1</span> 4.1 ZETTEL Block</h3>
+<p>Top-level entity, sibling of <code>SOURCE</code> and <code>ONTOLOGY</code>. Does not require <code>@bibref</code>.</p>
+<p><strong>Syntax:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Syntax: ZETTEL [UNIQUE_ID]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ZETTEL 2026011401</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">title:</span> <span class="st">"The Atomicity Principle"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">body:</span> <span class="st">"A DSL should force concept breakdown..."</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Explicit connections (Rhizome)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">links:</span> 2026011205, 2025123001</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Metadata</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tags:</span> DSL Design</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">origin:</span> <span class="fu">@turing1936</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exclusive-fields-zettel-fields" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="exclusive-fields-zettel-fields"><span class="header-section-number">1.5.2</span> Exclusive Fields (ZETTEL FIELDS)</h3>
+<p>In the <code>.synt</code> template file, new field types are supported:</p>
+<ul>
+<li><strong>LINK (Type REFERENCE):</strong> Creates bidirectional edges between ZETTEL nodes.</li>
+<li><strong>ORIGIN (Type REFERENCE):</strong> Creates citation edge to a SOURCE.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="canonical-annotation-biblicalexegetical" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="canonical-annotation-biblicalexegetical"><span class="header-section-number">1.6</span> Canonical Annotation (Biblical/Exegetical)</h2>
+<p>Specialized addressing system for texts that use the Locus pattern (Book, Chapter, Verse) instead of author-date bibliographic reference.</p>
+<section id="bible-block" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="bible-block"><span class="header-section-number">1.6.1</span> BIBLE Block</h3>
+<p>Replaces <code>SOURCE</code> block for sacred texts. Uses USX standard for book identification.</p>
+<p><strong>Syntax:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Syntax: BIBLE [USX_CODE] [CHAP:VERSE] [(VERSION)]</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>BIBLE ROM <span class="fu">8:</span>28-30 (ESV)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pericope title (String with mandatory quotes to support punctuation)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pericope:</span> <span class="st">"The efficacy of calling: The eternal purpose."</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quote:</span> <span class="st">"And we know that for those who love God all things work together..."</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">code:</span> Providence</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="addressing-rules-parsing" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="addressing-rules-parsing"><span class="header-section-number">1.6.2</span> Addressing Rules (Parsing)</h3>
+<p>Parser applies strict rules to avoid ambiguity:</p>
+<ol type="1">
+<li><strong>USX Code:</strong> Exactly 3 uppercase letters (e.g., <code>MAT</code>, <code>GEN</code>, <code>PSA</code>).</li>
+<li><strong>Separators:</strong> Mandatory use of <code>:</code> to separate chapter/verse and <code>-</code> for ranges.</li>
+<li><strong>Pericope:</strong> Must be delimited by double quotes <code>""</code> or triple <code>"""</code> to allow special characters, commas, and line breaks without breaking the parser.</li>
+</ol>
+</section>
+<section id="canon-template-example" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="canon-template-example"><span class="header-section-number">1.6.3</span> Canon Template Example</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> biblical_exegesis</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>BIBLE <span class="kw">FIELDS</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> pericope</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> code</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> original_term  <span class="co"># E.g.: Greek/Hebrew</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="appendix-a-implementation-notes-lark-grammar" class="level4" data-number="1.6.3.1">
+<h4 data-number="1.6.3.1" class="anchored" data-anchor-id="appendix-a-implementation-notes-lark-grammar"><span class="header-section-number">1.6.3.1</span> Appendix A: Implementation Notes (Lark Grammar)</h4>
+<p>Grammar snippet to support <code>BIBLE</code> header:</p>
+<pre class="lark"><code>// Canon Block Definition
+canon_block: "BIBLE" usx_code bible_ref version? block_body "END"
+
+// USX Codes (strict 3 uppercase letters)
+usx_code: UCASE_LETTER UCASE_LETTER UCASE_LETTER
+
+// Supported references: 8, 8:28, 8:28-30, 8:28-9:1
+bible_ref: chapter
+         | chapter ":" verse
+         | chapter ":" verse "-" verse
+         | chapter ":" verse "-" chapter ":" verse
+
+chapter: INT
+verse: INT | "END"
+version: "(" UCASE_LETTER+ ")" | "@" LCASE_LETTER+ DIGIT+</code></pre>
+<hr>
+</section>
+</section>
+</section>
+<section id="immediate-visualization" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="immediate-visualization"><span class="header-section-number">1.7</span> Immediate Visualization</h2>
+<p>JSON output is useful for processing, but humans need to see the graph.</p>
+<p>Idea: Create a <code>synesis serve</code> command that starts a simple local server showing the connection graph (using D3.js or Cytoscape) generated from exported JSON.</p>
+<hr>
+</section>
+<section id="data-science-integration" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="data-science-integration"><span class="header-section-number">1.8</span> Data Science Integration</h2>
+<p>CSV/Excel export support is good, but direct Pandas integration would be killer.</p>
+<p>Example: A Python library <code>import synesis</code> that allows loading the project directly into a DataFrame without going through the terminal, facilitating use in Jupyter Notebooks.</p>
+</section>
+<section id="possible-workflow" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="possible-workflow"><span class="header-section-number">1.9</span> Possible Workflow</h2>
+<p>Correct. The premise is exact: the <strong>Compiler Core</strong> (Parser + Semantic Analysis) acts as the single source of truth. Both file export, the Python library (<code>synesis.load</code>), and the LSP server consume the same <strong>Abstract Syntax Tree (AST)</strong> and the same <strong>Symbol Table</strong>.</p>
+<p>Here is the objective workflow for this implementation, focusing on the “Compiler as a Library” architecture:</p>
+<section id="step-1-io-decoupling-inputoutput" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="step-1-io-decoupling-inputoutput"><span class="header-section-number">1.9.1</span> Step 1: I/O Decoupling (Input/Output)</h3>
+<p>The first step is to ensure the compiler doesn’t “know” it’s writing files.</p>
+<ul>
+<li><strong>Action:</strong> Separate export functions. Today, there’s probably a <code>export_csv(ast, filepath)</code> function.</li>
+<li><strong>Refactoring:</strong> Split into two:</li>
+</ul>
+<ol type="1">
+<li><code>transform_to_tabular_data(ast)</code>: Receives AST and returns lists of dictionaries/objects in memory (without touching disk).</li>
+<li><code>write_csv(data, filepath)</code>: Receives data and only writes the file.</li>
+</ol>
+</section>
+<section id="step-2-public-core-api-exposure" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="step-2-public-core-api-exposure"><span class="header-section-number">1.9.2</span> Step 2: Public Core API Exposure</h3>
+<p>The main Synesis module should expose programmatic access to compilation.</p>
+<ul>
+<li><strong>Action:</strong> Make orchestration function externally accessible.</li>
+<li><strong>Definition:</strong> Create/Adjust a method (e.g., <code>Synesis.compile_source()</code>) that accepts a string or file path and returns the <code>Project</code> object (the semantic validation result containing all linked structures).</li>
+</ul>
+</section>
+<section id="step-3-python-adapter-creation-data-science" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="step-3-python-adapter-creation-data-science"><span class="header-section-number">1.9.3</span> Step 3: Python Adapter Creation (Data Science)</h3>
+<p>This is the consumer you suggested (<code>synesis.load</code>).</p>
+<ul>
+<li><strong>Dependency:</strong> Define Pandas as optional dependency.</li>
+<li><strong>Flow:</strong></li>
+</ul>
+<ol type="1">
+<li>Calls Step 2 API to get <code>Project</code> object in memory.</li>
+<li>Calls Step 1 transformation function (<code>transform_to_tabular_data</code>).</li>
+<li>Instantiates Pandas DataFrames using this data.</li>
+<li>Applies typing (converts strings to <code>datetime</code> objects, categories, etc.) based on AST types.</li>
+</ol>
+</section>
+<section id="step-4-lsp-adaptation-editor-intelligence" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="step-4-lsp-adaptation-editor-intelligence"><span class="header-section-number">1.9.4</span> Step 4: LSP Adaptation (Editor Intelligence)</h3>
+<p>LSP consumes same AST, but needs different data (location instead of value).</p>
+<ul>
+<li><strong>Action:</strong> Ensure AST nodes (Item, Source, Field) preserve origin metadata (<code>line</code>, <code>column</code>, <code>file</code>).</li>
+<li><strong>Flow:</strong></li>
+</ul>
+<ol type="1">
+<li>LSP sends current file text (even incomplete).</li>
+<li>Core attempts parsing (with error tolerance).</li>
+<li>Core returns <strong>Symbol Table</strong> (list of available ontologies and definitions).</li>
+<li>LSP uses this table to provide <em>Autocomplete</em> and <em>Go to Definition</em>.</li>
+</ol>
+</section>
+<section id="step-5-cli-as-thin-client" class="level3" data-number="1.9.5">
+<h3 data-number="1.9.5" class="anchored" data-anchor-id="step-5-cli-as-thin-client"><span class="header-section-number">1.9.5</span> Step 5: CLI as “Thin Client”</h3>
+<p>The <code>synesis compile</code> terminal command becomes just another client, like Python or LSP.</p>
+<ul>
+<li><strong>Action:</strong> CLI only collects arguments, calls Step 2 API, and uses file writing functions (<code>write_csv</code>, <code>write_json</code>) defined in Step 1.</li>
+</ul>
+</section>
+<section id="data-flow-summary" class="level3" data-number="1.9.6">
+<h3 data-number="1.9.6" class="anchored" data-anchor-id="data-flow-summary"><span class="header-section-number">1.9.6</span> Data Flow Summary</h3>
+<ol type="1">
+<li><strong>Input:</strong> <code>.syn</code> / <code>.synt</code> files</li>
+<li><strong>Central Engine (Synesis Core):</strong> Generates AST + Semantic Validation.</li>
+<li><strong>Distribution:</strong></li>
+</ol>
+<ul>
+<li>via <strong>CLI</strong> -&gt; Writes to Disk (JSON/CSV).</li>
+<li>via <strong>Python SDK</strong> -&gt; Delivers Objects/DataFrames in Memory.</li>
+<li>via <strong>LSP</strong> -&gt; Delivers Position Metadata and Errors to Editor.</li>
+<li></li>
+</ul>
+<hr>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

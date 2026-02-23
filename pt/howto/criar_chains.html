@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Como Criar e Validar Chains – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Sinesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#como-criar-e-validar-chains" id="toc-como-criar-e-validar-chains" class="nav-link active" data-scroll-target="#como-criar-e-validar-chains"><span class="header-section-number">1</span> Como Criar e Validar Chains</a>
+  <ul class="collapse">
+  <li><a href="#o-que-é-uma-chain" id="toc-o-que-é-uma-chain" class="nav-link" data-scroll-target="#o-que-é-uma-chain"><span class="header-section-number">1.1</span> O que é uma Chain?</a>
+  <ul class="collapse">
+  <li><a href="#sintaxe-básica" id="toc-sintaxe-básica" class="nav-link" data-scroll-target="#sintaxe-básica"><span class="header-section-number">1.1.1</span> Sintaxe Básica</a></li>
+  </ul></li>
+  <li><a href="#como-criar-chains-simples" id="toc-como-criar-chains-simples" class="nav-link" data-scroll-target="#como-criar-chains-simples"><span class="header-section-number">1.2</span> Como Criar Chains Simples</a>
+  <ul class="collapse">
+  <li><a href="#chain-de-dois-elementos" id="toc-chain-de-dois-elementos" class="nav-link" data-scroll-target="#chain-de-dois-elementos"><span class="header-section-number">1.2.1</span> Chain de Dois Elementos</a></li>
+  <li><a href="#chains-com-múltiplas-relações" id="toc-chains-com-múltiplas-relações" class="nav-link" data-scroll-target="#chains-com-múltiplas-relações"><span class="header-section-number">1.2.2</span> Chains com Múltiplas Relações</a></li>
+  </ul></li>
+  <li><a href="#como-escolher-relações-apropriadas" id="toc-como-escolher-relações-apropriadas" class="nav-link" data-scroll-target="#como-escolher-relações-apropriadas"><span class="header-section-number">1.3</span> Como Escolher Relações Apropriadas</a></li>
+  <li><a href="#como-construir-chains-complexas" id="toc-como-construir-chains-complexas" class="nav-link" data-scroll-target="#como-construir-chains-complexas"><span class="header-section-number">1.4</span> Como Construir Chains Complexas</a>
+  <ul class="collapse">
+  <li><a href="#chains-divergentes-um-causa-vários" id="toc-chains-divergentes-um-causa-vários" class="nav-link" data-scroll-target="#chains-divergentes-um-causa-vários"><span class="header-section-number">1.4.1</span> Chains Divergentes (Um Causa Vários)</a></li>
+  <li><a href="#chains-convergentes-vários-causam-um" id="toc-chains-convergentes-vários-causam-um" class="nav-link" data-scroll-target="#chains-convergentes-vários-causam-um"><span class="header-section-number">1.4.2</span> Chains Convergentes (Vários Causam Um)</a></li>
+  <li><a href="#chains-com-mediadores" id="toc-chains-com-mediadores" class="nav-link" data-scroll-target="#chains-com-mediadores"><span class="header-section-number">1.4.3</span> Chains com Mediadores</a></li>
+  </ul></li>
+  <li><a href="#como-validar-chains" id="toc-como-validar-chains" class="nav-link" data-scroll-target="#como-validar-chains"><span class="header-section-number">1.5</span> Como Validar Chains</a>
+  <ul class="collapse">
+  <li><a href="#validação-automática-pelo-compilador" id="toc-validação-automática-pelo-compilador" class="nav-link" data-scroll-target="#validação-automática-pelo-compilador"><span class="header-section-number">1.5.1</span> Validação Automática pelo Compilador</a></li>
+  <li><a href="#validação-semântica-manual" id="toc-validação-semântica-manual" class="nav-link" data-scroll-target="#validação-semântica-manual"><span class="header-section-number">1.5.2</span> Validação Semântica Manual</a></li>
+  </ul></li>
+  <li><a href="#como-extrair-e-analisar-chains" id="toc-como-extrair-e-analisar-chains" class="nav-link" data-scroll-target="#como-extrair-e-analisar-chains"><span class="header-section-number">1.6</span> Como Extrair e Analisar Chains</a>
+  <ul class="collapse">
+  <li><a href="#csv" id="toc-csv" class="nav-link" data-scroll-target="#csv"><span class="header-section-number">1.6.1</span> CSV</a></li>
+  <li><a href="#json" id="toc-json" class="nav-link" data-scroll-target="#json"><span class="header-section-number">1.6.2</span> JSON</a></li>
+  </ul></li>
+  <li><a href="#como-visualizar-chains" id="toc-como-visualizar-chains" class="nav-link" data-scroll-target="#como-visualizar-chains"><span class="header-section-number">1.7</span> Como Visualizar Chains</a>
+  <ul class="collapse">
+  <li><a href="#grafos-no-synesis-explorer-vscode" id="toc-grafos-no-synesis-explorer-vscode" class="nav-link" data-scroll-target="#grafos-no-synesis-explorer-vscode"><span class="header-section-number">1.7.1</span> Grafos no Synesis Explorer (VSCode)</a></li>
+  <li><a href="#exportar-para-neo4j" id="toc-exportar-para-neo4j" class="nav-link" data-scroll-target="#exportar-para-neo4j"><span class="header-section-number">1.7.2</span> Exportar para Neo4j</a></li>
+  </ul></li>
+  <li><a href="#padrões-comuns-de-chains" id="toc-padrões-comuns-de-chains" class="nav-link" data-scroll-target="#padrões-comuns-de-chains"><span class="header-section-number">1.8</span> Padrões Comuns de Chains</a>
+  <ul class="collapse">
+  <li><a href="#padrão-barreira-inibição" id="toc-padrão-barreira-inibição" class="nav-link" data-scroll-target="#padrão-barreira-inibição"><span class="header-section-number">1.8.1</span> Padrão “Barreira-Inibição”</a></li>
+  <li><a href="#padrão-facilitador-promoção" id="toc-padrão-facilitador-promoção" class="nav-link" data-scroll-target="#padrão-facilitador-promoção"><span class="header-section-number">1.8.2</span> Padrão “Facilitador-Promoção”</a></li>
+  <li><a href="#padrão-feedback-loop" id="toc-padrão-feedback-loop" class="nav-link" data-scroll-target="#padrão-feedback-loop"><span class="header-section-number">1.8.3</span> Padrão “Feedback Loop”</a></li>
+  <li><a href="#padrão-trade-off" id="toc-padrão-trade-off" class="nav-link" data-scroll-target="#padrão-trade-off"><span class="header-section-number">1.8.4</span> Padrão “Trade-off”</a></li>
+  </ul></li>
+  <li><a href="#como-iterar-sobre-chains" id="toc-como-iterar-sobre-chains" class="nav-link" data-scroll-target="#como-iterar-sobre-chains"><span class="header-section-number">1.9</span> Como Iterar Sobre Chains</a>
+  <ul class="collapse">
+  <li><a href="#passo-1-rascunho-inicial" id="toc-passo-1-rascunho-inicial" class="nav-link" data-scroll-target="#passo-1-rascunho-inicial"><span class="header-section-number">1.9.1</span> Passo 1: Rascunho Inicial</a></li>
+  <li><a href="#passo-2-refinamento" id="toc-passo-2-refinamento" class="nav-link" data-scroll-target="#passo-2-refinamento"><span class="header-section-number">1.9.2</span> Passo 2: Refinamento</a></li>
+  <li><a href="#passo-3-validação-cruzada" id="toc-passo-3-validação-cruzada" class="nav-link" data-scroll-target="#passo-3-validação-cruzada"><span class="header-section-number">1.9.3</span> Passo 3: Validação Cruzada</a></li>
+  </ul></li>
+  <li><a href="#como-documentar-decisões-sobre-chains" id="toc-como-documentar-decisões-sobre-chains" class="nav-link" data-scroll-target="#como-documentar-decisões-sobre-chains"><span class="header-section-number">1.10</span> Como Documentar Decisões sobre Chains</a></li>
+  <li><a href="#quando-não-usar-chains" id="toc-quando-não-usar-chains" class="nav-link" data-scroll-target="#quando-não-usar-chains"><span class="header-section-number">1.11</span> Quando NÃO Usar Chains</a></li>
+  <li><a href="#exercício-prático" id="toc-exercício-prático" class="nav-link" data-scroll-target="#exercício-prático"><span class="header-section-number">1.12</span> Exercício Prático</a>
+  <ul class="collapse">
+  <li><a href="#cenário" id="toc-cenário" class="nav-link" data-scroll-target="#cenário"><span class="header-section-number">1.12.1</span> Cenário</a></li>
+  <li><a href="#tarefa" id="toc-tarefa" class="nav-link" data-scroll-target="#tarefa"><span class="header-section-number">1.12.2</span> Tarefa</a></li>
+  <li><a href="#solução-proposta" id="toc-solução-proposta" class="nav-link" data-scroll-target="#solução-proposta"><span class="header-section-number">1.12.3</span> Solução Proposta</a></li>
+  </ul></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">1.13</span> Referências</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Como Criar e Validar Chains</h1>
+<p class="subtitle lead">Guia prático para modelar relações causais estruturadas</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="como-criar-e-validar-chains" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Como Criar e Validar Chains</h1>
+<p>Este guia mostra <strong>como construir chains (cadeias causais)</strong> para expressar relações entre conceitos de forma sistemática e auditável.</p>
+<p><strong>Você deve usar este guia se:</strong></p>
+<ul>
+<li>Precisa expressar relações de causalidade, influência ou mediação</li>
+<li>Quer construir mapas de relações entre códigos</li>
+<li>Precisa validar a consistência lógica de suas chains</li>
+<li>Quer extrair redes de relações para análise ou visualização</li>
+</ul>
+<hr>
+<section id="o-que-é-uma-chain" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="o-que-é-uma-chain"><span class="header-section-number">1.1</span> O que é uma Chain?</h2>
+<p>Uma <strong>chain</strong> (cadeia) é uma sequência de códigos conectados por relações, expressando como conceitos se influenciam mutuamente.</p>
+<section id="sintaxe-básica" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="sintaxe-básica"><span class="header-section-number">1.1.1</span> Sintaxe Básica</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Código A <span class="op">-&gt;</span> RELAÇÃO <span class="op">-&gt;</span> Código B</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Custo Alto <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lê-se: “Custo Alto INIBE a Adoção”</p>
+<hr>
+</section>
+</section>
+<section id="como-criar-chains-simples" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="como-criar-chains-simples"><span class="header-section-number">1.2</span> Como Criar Chains Simples</h2>
+<section id="chain-de-dois-elementos" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="chain-de-dois-elementos"><span class="header-section-number">1.2.1</span> Chain de Dois Elementos</h3>
+<p>A forma mais básica: um código influencia outro diretamente.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_01</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"O preço elevado desestimula a compra"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Barreira econômica identificada</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Preço Elevado <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Decisão de Compra</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Quando usar:</strong> Para relações diretas e não mediadas.</p>
+</section>
+<section id="chains-com-múltiplas-relações" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="chains-com-múltiplas-relações"><span class="header-section-number">1.2.2</span> Chains com Múltiplas Relações</h3>
+<p>Para expressar cadeias causais complexas:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Treinamento <span class="op">-&gt;</span> GERA <span class="op">-&gt;</span> Baixa Competência <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lê-se: “Falta de Treinamento GERA Baixa Competência, que INIBE Adoção”</p>
+<p><strong>Quando usar:</strong> Para capturar mecanismos causais com elementos intermediários.</p>
+<hr>
+</section>
+</section>
+<section id="como-escolher-relações-apropriadas" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="como-escolher-relações-apropriadas"><span class="header-section-number">1.3</span> Como Escolher Relações Apropriadas</h2>
+<p>As relações devem estar <strong>definidas na ontologia</strong>. Tipos comuns:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relação</th>
+<th>Significado</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CAUSA</code></td>
+<td>X é causa direta de Y</td>
+<td><code>Erro de Software -&gt; CAUSA -&gt; Falha do Sistema</code></td>
+</tr>
+<tr class="even">
+<td><code>INIBE</code></td>
+<td>X reduz ou impede Y</td>
+<td><code>Custo Alto -&gt; INIBE -&gt; Adoção</code></td>
+</tr>
+<tr class="odd">
+<td><code>FAVORECE</code></td>
+<td>X promove ou facilita Y</td>
+<td><code>Treinamento -&gt; FAVORECE -&gt; Usabilidade</code></td>
+</tr>
+<tr class="even">
+<td><code>MEDIA</code></td>
+<td>X é intermediário entre A e Y</td>
+<td><code>Suporte Técnico -&gt; MEDIA -&gt; Satisfação</code></td>
+</tr>
+<tr class="odd">
+<td><code>CORRELACIONA</code></td>
+<td>X e Y ocorrem juntos (sem direção)</td>
+<td><code>Alta Rotatividade -&gt; CORRELACIONA -&gt; Baixo Engajamento</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Defina relações na ontologia:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> relations</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Relações Causais"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"CAUSA"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"X é causa direta e necessária de Y"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"INIBE"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"X reduz probabilidade ou intensidade de Y"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="como-construir-chains-complexas" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="como-construir-chains-complexas"><span class="header-section-number">1.4</span> Como Construir Chains Complexas</h2>
+<section id="chains-divergentes-um-causa-vários" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="chains-divergentes-um-causa-vários"><span class="header-section-number">1.4.1</span> Chains Divergentes (Um Causa Vários)</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Recursos <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Investimento em IA</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Recursos <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Treinamento de Equipe</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 3</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Recursos <span class="op">-&gt;</span> CAUSA <span class="op">-&gt;</span> Priorização de Curto Prazo</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Quando usar:</strong> Para identificar causas de múltiplos efeitos.</p>
+</section>
+<section id="chains-convergentes-vários-causam-um" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="chains-convergentes-vários-causam-um"><span class="header-section-number">1.4.2</span> Chains Convergentes (Vários Causam Um)</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Facilidade de Uso <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Suporte Responsivo <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 3</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Custo Acessível <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Quando usar:</strong> Para identificar fatores múltiplos contribuindo para mesmo resultado.</p>
+</section>
+<section id="chains-com-mediadores" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="chains-com-mediadores"><span class="header-section-number">1.4.3</span> Chains com Mediadores</h3>
+<p>Quando há elementos intermediários:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Investimento em Capacitação <span class="op">-&gt;</span> AUMENTA <span class="op">-&gt;</span> Competência da Equipe <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Qualidade do Output</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Quando usar:</strong> Para explicar “o porquê” de uma relação (mecanismo causal).</p>
+<hr>
+</section>
+</section>
+<section id="como-validar-chains" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="como-validar-chains"><span class="header-section-number">1.5</span> Como Validar Chains</h2>
+<section id="validação-automática-pelo-compilador" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="validação-automática-pelo-compilador"><span class="header-section-number">1.5.1</span> Validação Automática pelo Compilador</h3>
+<p>Ao compilar, o Synesis valida automaticamente:</p>
+<ol type="1">
+<li>✅ Todos os códigos existem na ontologia</li>
+<li>✅ Todas as relações existem na ontologia</li>
+<li>✅ Estrutura sintática está correta</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check analysis.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Erros comuns:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 31%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Erro</th>
+<th>Causa</th>
+<th>Solução</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Code 'X' not found in ontology</code></td>
+<td>Código não definido</td>
+<td>Adicione o código em <code>.syno</code></td>
+</tr>
+<tr class="even">
+<td><code>Relation 'Y' not found</code></td>
+<td>Relação não definida</td>
+<td>Adicione a relação em <code>.syno</code></td>
+</tr>
+<tr class="odd">
+<td><code>Invalid chain syntax</code></td>
+<td>Estrutura malformada</td>
+<td>Verifique formato: <code>A -&gt; REL -&gt; B</code></td>
+</tr>
+<tr class="even">
+<td><code>Chain must have odd number of elements</code></td>
+<td>Faltou código ou relação</td>
+<td>Chains têm formato: <code>C -&gt; R -&gt; C -&gt; R -&gt; C</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="validação-semântica-manual" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="validação-semântica-manual"><span class="header-section-number">1.5.2</span> Validação Semântica Manual</h3>
+<p>Perguntas para revisar suas chains:</p>
+<ol type="1">
+<li><strong>Direcionalidade</strong>: A ordem A → B faz sentido? Ou deveria ser B → A?</li>
+<li><strong>Tipo de relação</strong>: “INIBE” é a relação correta, ou deveria ser “CAUSA”?</li>
+<li><strong>Completude</strong>: Faltam elementos intermediários importantes?</li>
+<li><strong>Evidência</strong>: A citação realmente suporta esta chain?</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="como-extrair-e-analisar-chains" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="como-extrair-e-analisar-chains"><span class="header-section-number">1.6</span> Como Extrair e Analisar Chains</h2>
+<p>Após compilar, as chains ficam disponíveis em:</p>
+<section id="csv" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="csv"><span class="header-section-number">1.6.1</span> CSV</h3>
+<p><code>output/chains.csv</code>:</p>
+<pre class="csv"><code>source,item_id,chain_type,elements
+entrevista_01,1,qualified,"Custo Alto,INIBE,Adoção"
+entrevista_02,3,qualified,"Treinamento,FAVORECE,Competência,FAVORECE,Qualidade"</code></pre>
+<p><strong>Use para:</strong> Análise quantitativa (contagem, frequência de relações).</p>
+</section>
+<section id="json" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="json"><span class="header-section-number">1.6.2</span> JSON</h3>
+<p><code>output/analysis.json</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"chains"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"codes"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"Custo Alto"</span><span class="ot">,</span> <span class="st">"Adoção"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"relations"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"INIBE"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"source"</span><span class="fu">:</span> <span class="st">"@entrevista_01"</span><span class="fu">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"quote"</span><span class="fu">:</span> <span class="st">"..."</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Use para:</strong> Integração com ferramentas de visualização ou Neo4j.</p>
+<hr>
+</section>
+</section>
+<section id="como-visualizar-chains" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="como-visualizar-chains"><span class="header-section-number">1.7</span> Como Visualizar Chains</h2>
+<section id="grafos-no-synesis-explorer-vscode" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="grafos-no-synesis-explorer-vscode"><span class="header-section-number">1.7.1</span> Grafos no Synesis Explorer (VSCode)</h3>
+<ol type="1">
+<li>Abra projeto no VSCode com extensão Synesis Explorer instalada</li>
+<li>Pressione <code>Ctrl+Alt+G</code> (Show Relation Graph)</li>
+<li>Visualize grafo interativo Mermaid.js</li>
+</ol>
+</section>
+<section id="exportar-para-neo4j" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="exportar-para-neo4j"><span class="header-section-number">1.7.2</span> Exportar para Neo4j</h3>
+<p>Para análises avançadas de rede:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> synesis2neo4j.py <span class="at">--project</span> analysis.synp <span class="at">--config</span> neo4j.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Consulte <a href="../ecossistema/synesis2neo4j_pt.qmd">Como exportar para Neo4j</a> para detalhes.</p>
+<hr>
+</section>
+</section>
+<section id="padrões-comuns-de-chains" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="padrões-comuns-de-chains"><span class="header-section-number">1.8</span> Padrões Comuns de Chains</h2>
+<section id="padrão-barreira-inibição" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="padrão-barreira-inibição"><span class="header-section-number">1.8.1</span> Padrão “Barreira-Inibição”</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Barreira X <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Comportamento Desejado</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Informação <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Confiança <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="padrão-facilitador-promoção" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="padrão-facilitador-promoção"><span class="header-section-number">1.8.2</span> Padrão “Facilitador-Promoção”</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Facilitador X <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Comportamento Desejado</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo:</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Demonstração Prática <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Compreensão <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="padrão-feedback-loop" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="padrão-feedback-loop"><span class="header-section-number">1.8.3</span> Padrão “Feedback Loop”</h3>
+<p>Expresse ciclos usando múltiplas chains:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1: Ida</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Alta Satisfação <span class="op">-&gt;</span> AUMENTA <span class="op">-&gt;</span> Engajamento</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2: Volta</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Alto Engajamento <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Nota:</strong> Chains individuais não podem ter ciclos diretos (A → B → A). Use chains separadas.</p>
+</section>
+<section id="padrão-trade-off" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="padrão-trade-off"><span class="header-section-number">1.8.4</span> Padrão “Trade-off”</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Automação Completa <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Eficiência</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Automação Completa <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Flexibilidade</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Quando usar:</strong> Para expressar dilemas ou tensões entre objetivos.</p>
+<hr>
+</section>
+</section>
+<section id="como-iterar-sobre-chains" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="como-iterar-sobre-chains"><span class="header-section-number">1.9</span> Como Iterar Sobre Chains</h2>
+<section id="passo-1-rascunho-inicial" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="passo-1-rascunho-inicial"><span class="header-section-number">1.9.1</span> Passo 1: Rascunho Inicial</h3>
+<p>Na primeira leitura, crie chains exploratórias:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doc_01</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"A tecnologia ajuda, mas é cara"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Tecnologia <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Eficiência</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Custo <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="passo-2-refinamento" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="passo-2-refinamento"><span class="header-section-number">1.9.2</span> Passo 2: Refinamento</h3>
+<p>Após revisar várias fontes, consolide padrões recorrentes:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Versão refinada</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Utilidade Percebida <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Intenção de Uso</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Custo Percebido <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Intenção de Uso</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Intenção de Uso <span class="op">-&gt;</span> ANTECEDE <span class="op">-&gt;</span> Comportamento de Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="passo-3-validação-cruzada" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="passo-3-validação-cruzada"><span class="header-section-number">1.9.3</span> Passo 3: Validação Cruzada</h3>
+<p>Compare chains extraídas de fontes diferentes:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonte A</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Treinamento <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Competência <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Adoção</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonte B</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Mentoria <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Competência <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Adoção</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Insight: "Competência" é mediador recorrente</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="como-documentar-decisões-sobre-chains" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="como-documentar-decisões-sobre-chains"><span class="header-section-number">1.10</span> Como Documentar Decisões sobre Chains</h2>
+<p>Adicione notas explicativas:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@policy_doc</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Investimento em infraestrutura digital reduziu custos operacionais"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Relação causal direta confirmada por dados quantitativos (Tabela 3)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Infraestrutura Digital <span class="op">-&gt;</span> REDUZ <span class="op">-&gt;</span> Custos Operacionais</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># DECISÃO 2026-02-04: Escolhemos REDUZ em vez de CAUSA para</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># refletir natureza gradual (não binária) do efeito</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="quando-não-usar-chains" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="quando-não-usar-chains"><span class="header-section-number">1.11</span> Quando NÃO Usar Chains</h2>
+<p>Chains não são apropriadas para:</p>
+<ol type="1">
+<li><p><strong>Descrições simples</strong>: Use <code>code</code> em vez de forçar uma chain</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ❌ Forçado</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Custo <span class="op">-&gt;</span> DESCREVE <span class="op">-&gt;</span> Entrevista</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ✅ Apropriado</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Custo</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Relações ambíguas</strong>: Se você não tem certeza da direção ou tipo, deixe como código isolado e anote sua incerteza no campo <code>note</code>.</p></li>
+<li><p><strong>Taxonomias</strong>: Use <code>SUBCODE</code> na ontologia em vez de chains hierárquicas.</p></li>
+</ol>
+<hr>
+</section>
+<section id="exercício-prático" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="exercício-prático"><span class="header-section-number">1.12</span> Exercício Prático</h2>
+<section id="cenário" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="cenário"><span class="header-section-number">1.12.1</span> Cenário</h3>
+<p>Você tem esta citação:</p>
+<blockquote class="blockquote">
+<p>“A falta de suporte técnico adequado gerou frustração na equipe, o que levou à baixa adesão ao novo sistema.”</p>
+</blockquote>
+</section>
+<section id="tarefa" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="tarefa"><span class="header-section-number">1.12.2</span> Tarefa</h3>
+<p>Construa uma chain que capture esta relação causal.</p>
+</section>
+<section id="solução-proposta" class="level3" data-number="1.12.3">
+<h3 data-number="1.12.3" class="anchored" data-anchor-id="solução-proposta"><span class="header-section-number">1.12.3</span> Solução Proposta</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_gerente</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"A falta de suporte técnico adequado gerou frustração na equipe, o que levou à baixa adesão ao novo sistema."</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Cadeia causal <span class="fu">clara:</span> suporte insuficiente <span class="op">-&gt;</span> frustração <span class="op">-&gt;</span> baixa adoção</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Suporte Técnico</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Frustração</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Adoção</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Suporte Técnico Inadequado <span class="op">-&gt;</span> GERA <span class="op">-&gt;</span> Frustração <span class="op">-&gt;</span> CAUSA <span class="op">-&gt;</span> Baixa Adesão</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Validação:</strong> - ✅ Três códigos, duas relações (estrutura válida) - ✅ Relações GERA e CAUSA devem estar na ontologia - ✅ Cadeia reflete sequência temporal da citação - ✅ Campo <code>note</code> explicita interpretação</p>
+<hr>
+</section>
+</section>
+<section id="referências" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="referências"><span class="header-section-number">1.13</span> Referências</h2>
+<p>Para informações complementares:</p>
+<ul>
+<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a> — Sintaxe formal de chains</li>
+<li><a href="../howto/definir_ontologia.html">Como definir uma ontologia</a> — Criar relações reutilizáveis</li>
+<li><a href="../tutorials/getting-started.html">Tutorial Getting Started</a> — Exemplos básicos de chains</li>
+</ul>
+<hr>
+<p><strong>Ficou com dúvidas?</strong> Consulte <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a> ou abra uma issue específica.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

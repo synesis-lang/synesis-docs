@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Synesis para Pesquisa Qualitativa – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Sinesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#bem-vindo-pesquisador" id="toc-bem-vindo-pesquisador" class="nav-link active" data-scroll-target="#bem-vindo-pesquisador"><span class="header-section-number">1</span> Bem-vindo, Pesquisador!</a>
+  <ul class="collapse">
+  <li><a href="#nosso-cenário-de-pesquisa" id="toc-nosso-cenário-de-pesquisa" class="nav-link" data-scroll-target="#nosso-cenário-de-pesquisa"><span class="header-section-number">1.1</span> Nosso Cenário de Pesquisa</a></li>
+  <li><a href="#passo-1-preparar-nossas-fontes" id="toc-passo-1-preparar-nossas-fontes" class="nav-link" data-scroll-target="#passo-1-preparar-nossas-fontes"><span class="header-section-number">1.2</span> Passo 1: Preparar Nossas Fontes</a></li>
+  <li><a href="#passo-2-definir-nosso-template" id="toc-passo-2-definir-nosso-template" class="nav-link" data-scroll-target="#passo-2-definir-nosso-template"><span class="header-section-number">1.3</span> Passo 2: Definir Nosso Template</a></li>
+  <li><a href="#passo-3-construir-nossa-ontologia" id="toc-passo-3-construir-nossa-ontologia" class="nav-link" data-scroll-target="#passo-3-construir-nossa-ontologia"><span class="header-section-number">1.4</span> Passo 3: Construir Nossa Ontologia</a></li>
+  <li><a href="#passo-4-anotar-nossa-primeira-entrevista" id="toc-passo-4-anotar-nossa-primeira-entrevista" class="nav-link" data-scroll-target="#passo-4-anotar-nossa-primeira-entrevista"><span class="header-section-number">1.5</span> Passo 4: Anotar Nossa Primeira Entrevista</a></li>
+  <li><a href="#passo-5-anotar-a-terceira-entrevista-perspectiva-profissional" id="toc-passo-5-anotar-a-terceira-entrevista-perspectiva-profissional" class="nav-link" data-scroll-target="#passo-5-anotar-a-terceira-entrevista-perspectiva-profissional"><span class="header-section-number">1.6</span> Passo 5: Anotar a Terceira Entrevista (Perspectiva Profissional)</a></li>
+  <li><a href="#passo-6-criar-o-arquivo-de-projeto" id="toc-passo-6-criar-o-arquivo-de-projeto" class="nav-link" data-scroll-target="#passo-6-criar-o-arquivo-de-projeto"><span class="header-section-number">1.7</span> Passo 6: Criar o Arquivo de Projeto</a></li>
+  <li><a href="#passo-7-compilar-e-analisar" id="toc-passo-7-compilar-e-analisar" class="nav-link" data-scroll-target="#passo-7-compilar-e-analisar"><span class="header-section-number">1.8</span> Passo 7: Compilar e Analisar</a>
+  <ul class="collapse">
+  <li><a href="#análise-no-excel" id="toc-análise-no-excel" class="nav-link" data-scroll-target="#análise-no-excel"><span class="header-section-number">1.8.1</span> Análise no Excel</a></li>
+  </ul></li>
+  <li><a href="#passo-8-refinar-análise-processo-iterativo" id="toc-passo-8-refinar-análise-processo-iterativo" class="nav-link" data-scroll-target="#passo-8-refinar-análise-processo-iterativo"><span class="header-section-number">1.9</span> Passo 8: Refinar Análise (Processo Iterativo)</a>
+  <ul class="collapse">
+  <li><a href="#adicionar-novos-códigos" id="toc-adicionar-novos-códigos" class="nav-link" data-scroll-target="#adicionar-novos-códigos"><span class="header-section-number">1.9.1</span> 8.1 Adicionar Novos Códigos</a></li>
+  <li><a href="#refinar-códigos-existentes" id="toc-refinar-códigos-existentes" class="nav-link" data-scroll-target="#refinar-códigos-existentes"><span class="header-section-number">1.9.2</span> 8.2 Refinar Códigos Existentes</a></li>
+  <li><a href="#adicionar-mais-anotações" id="toc-adicionar-mais-anotações" class="nav-link" data-scroll-target="#adicionar-mais-anotações"><span class="header-section-number">1.9.3</span> 8.3 Adicionar Mais Anotações</a></li>
+  <li><a href="#recompilar" id="toc-recompilar" class="nav-link" data-scroll-target="#recompilar"><span class="header-section-number">1.9.4</span> 8.4 Recompilar</a></li>
+  </ul></li>
+  <li><a href="#passo-9-exportar-para-visualização" id="toc-passo-9-exportar-para-visualização" class="nav-link" data-scroll-target="#passo-9-exportar-para-visualização"><span class="header-section-number">1.10</span> Passo 9: Exportar para Visualização</a></li>
+  <li><a href="#parabéns" id="toc-parabéns" class="nav-link" data-scroll-target="#parabéns"><span class="header-section-number">1.11</span> 🎉 Parabéns!</a></li>
+  <li><a href="#boas-práticas-para-pesquisadores" id="toc-boas-práticas-para-pesquisadores" class="nav-link" data-scroll-target="#boas-práticas-para-pesquisadores"><span class="header-section-number">1.12</span> Boas Práticas para Pesquisadores</a>
+  <ul class="collapse">
+  <li><a href="#anote-progressivamente" id="toc-anote-progressivamente" class="nav-link" data-scroll-target="#anote-progressivamente"><span class="header-section-number">1.12.1</span> 1. Anote Progressivamente</a></li>
+  <li><a href="#use-memos-analiticamente" id="toc-use-memos-analiticamente" class="nav-link" data-scroll-target="#use-memos-analiticamente"><span class="header-section-number">1.12.2</span> 2. Use Memos Analiticamente</a></li>
+  <li><a href="#documente-decisões" id="toc-documente-decisões" class="nav-link" data-scroll-target="#documente-decisões"><span class="header-section-number">1.12.3</span> 3. Documente Decisões</a></li>
+  <li><a href="#revise-sistematicamente" id="toc-revise-sistematicamente" class="nav-link" data-scroll-target="#revise-sistematicamente"><span class="header-section-number">1.12.4</span> 4. Revise Sistematicamente</a></li>
+  <li><a href="#valide-com-pares" id="toc-valide-com-pares" class="nav-link" data-scroll-target="#valide-com-pares"><span class="header-section-number">1.12.5</span> 5. Valide com Pares</a></li>
+  </ul></li>
+  <li><a href="#diferenças-de-abordagens-metodológicas" id="toc-diferenças-de-abordagens-metodológicas" class="nav-link" data-scroll-target="#diferenças-de-abordagens-metodológicas"><span class="header-section-number">1.13</span> Diferenças de Abordagens Metodológicas</a>
+  <ul class="collapse">
+  <li><a href="#teoria-fundamentada-grounded-theory" id="toc-teoria-fundamentada-grounded-theory" class="nav-link" data-scroll-target="#teoria-fundamentada-grounded-theory"><span class="header-section-number">1.13.1</span> Teoria Fundamentada (Grounded Theory)</a></li>
+  <li><a href="#análise-temática" id="toc-análise-temática" class="nav-link" data-scroll-target="#análise-temática"><span class="header-section-number">1.13.2</span> Análise Temática</a></li>
+  <li><a href="#análise-de-conteúdo" id="toc-análise-de-conteúdo" class="nav-link" data-scroll-target="#análise-de-conteúdo"><span class="header-section-number">1.13.3</span> Análise de Conteúdo</a></li>
+  <li><a href="#análise-crítica-do-discurso" id="toc-análise-crítica-do-discurso" class="nav-link" data-scroll-target="#análise-crítica-do-discurso"><span class="header-section-number">1.13.4</span> Análise Crítica do Discurso</a></li>
+  </ul></li>
+  <li><a href="#recursos-para-aprofundamento" id="toc-recursos-para-aprofundamento" class="nav-link" data-scroll-target="#recursos-para-aprofundamento"><span class="header-section-number">1.14</span> Recursos para Aprofundamento</a>
+  <ul class="collapse">
+  <li><a href="#para-melhorar-sua-codificação" id="toc-para-melhorar-sua-codificação" class="nav-link" data-scroll-target="#para-melhorar-sua-codificação"><span class="header-section-number">1.14.1</span> Para Melhorar sua Codificação</a></li>
+  <li><a href="#para-entender-o-porquê" id="toc-para-entender-o-porquê" class="nav-link" data-scroll-target="#para-entender-o-porquê"><span class="header-section-number">1.14.2</span> Para Entender o “Porquê”</a></li>
+  <li><a href="#para-consultar-sintaxe" id="toc-para-consultar-sintaxe" class="nav-link" data-scroll-target="#para-consultar-sintaxe"><span class="header-section-number">1.14.3</span> Para Consultar Sintaxe</a></li>
+  </ul></li>
+  <li><a href="#próximo-projeto" id="toc-próximo-projeto" class="nav-link" data-scroll-target="#próximo-projeto"><span class="header-section-number">1.15</span> Próximo Projeto</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Synesis para Pesquisa Qualitativa</h1>
+<p class="subtitle lead">Tutorial prático para pesquisadores de humanidades</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="bem-vindo-pesquisador" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Bem-vindo, Pesquisador!</h1>
+<p>Neste tutorial, <strong>nós vamos</strong> criar juntos um projeto de análise qualitativa usando Synesis. Se você trabalha com entrevistas, análise documental, teoria fundamentada ou análise temática, este guia é para você.</p>
+<p><strong>O que você vai construir:</strong></p>
+<ul>
+<li>Um projeto de análise de entrevistas</li>
+<li>Um sistema de codificação conceitual</li>
+<li>Relações causais entre conceitos</li>
+<li>Exportações para análise quantitativa</li>
+</ul>
+<p><strong>Pré-requisitos:</strong></p>
+<ul>
+<li>Python 3.10+ instalado</li>
+<li>Um gerenciador de referências (Zotero recomendado, mas opcional)</li>
+<li>Familiaridade básica com pesquisa qualitativa</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Novo no Synesis?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se você nunca usou Synesis, comece com <a href="../tutorials/getting-started.html">Getting Started</a> primeiro. Este tutorial assume que você já conhece os comandos básicos.</p>
+</div>
+</div>
+<hr>
+<section id="nosso-cenário-de-pesquisa" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="nosso-cenário-de-pesquisa"><span class="header-section-number">1.1</span> Nosso Cenário de Pesquisa</h2>
+<p>Vamos trabalhar com um estudo fictício sobre <strong>resistência à adoção de telemedicina</strong> em comunidades rurais. Imagine que você conduziu 3 entrevistas semiestruturadas e agora precisa analisar os dados.</p>
+<hr>
+</section>
+<section id="passo-1-preparar-nossas-fontes" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="passo-1-preparar-nossas-fontes"><span class="header-section-number">1.2</span> Passo 1: Preparar Nossas Fontes</h2>
+<p>Primeiro, crie uma pasta para o projeto:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> analise-telemedicina</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> analise-telemedicina</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agora, crie um arquivo <code>referencias.bib</code> com suas entrevistas:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_dona_maria,</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {Maria da Silva},</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista sobre acesso à saúde},</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">  location = {Vila Rural X},</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">  type = {Entrevista semiestruturada},</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">  duration = {45 minutos}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_sr_joao,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {João Santos},</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista sobre tecnologia e saúde},</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">  location = {Vila Rural Y},</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">  type = {Entrevista em profundidade},</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">  duration = {60 minutos}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_dra_ana,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {Ana Costa},</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista - perspectiva profissional},</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">  role = {Médica rural},</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">  type = {Entrevista semiestruturada},</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">  duration = {40 minutos}</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Salve este arquivo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checkpoint ✓
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Você deve ter agora: - Pasta <code>analise-telemedicina/</code> criada - Arquivo <code>referencias.bib</code> com 3 entrevistas</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="passo-2-definir-nosso-template" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="passo-2-definir-nosso-template"><span class="header-section-number">1.3</span> Passo 2: Definir Nosso Template</h2>
+<p>Vamos criar um template adaptado para análise qualitativa. Crie <code>template.synt</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> analise_qualitativa</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DESCRIPTION:</span> <span class="st">"Template para análise temática de entrevistas"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>BLOCK <span class="kw">SOURCE</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> bibref : BIBREF <span class="kw">REQUIRED</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Referência bibliográfica da fonte"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> BLOCK</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>BLOCK <span class="kw">ITEM</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> <span class="at">quote</span> : <span class="dt">TEXT</span> <span class="kw">REQUIRED</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Citação literal do participante"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> memo : <span class="dt">TEXT</span> <span class="kw">OPTIONAL</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Memo analítico: reflexões sobre o trecho"</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> code : <span class="dt">CODE</span> <span class="kw">OPTIONAL</span> MULTIPLE</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Códigos conceituais atribuídos"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> <span class="at">chain</span> : CHAIN <span class="kw">OPTIONAL</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Relações causais identificadas"</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> context : <span class="dt">TEXT</span> <span class="kw">OPTIONAL</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Contexto da fala (situação, emoção, hesitação)"</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> BLOCK</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Observe:</strong> Adicionamos o campo <code>context</code> — isso é útil para registrar nuances qualitativas (como hesitações, emoções, mudanças de tom).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checkpoint ✓
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Valide o template:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check template.synt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Deve retornar: <code>✓ Template is valid</code></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="passo-3-construir-nossa-ontologia" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="passo-3-construir-nossa-ontologia"><span class="header-section-number">1.4</span> Passo 3: Construir Nossa Ontologia</h2>
+<p>Agora vamos definir os códigos conceituais. Em pesquisa qualitativa, esses códigos emergem dos dados, mas vamos criar alguns iniciais baseados em leitura prévia. Crie <code>ontologia.syno</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> codigos_telemedicina</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Barreiras à Adoção"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Desconfiança Tecnológica"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Receio ou incredulidade em relação à eficácia de tecnologias médicas remotas"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Falta de Infraestrutura"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Ausência ou precariedade de internet, equipamentos ou eletricidade"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Preferência por Contato Presencial"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Valorização do encontro face-a-face com o profissional de saúde"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Letramento Digital Baixo"</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Dificuldade ou falta de familiaridade com uso de tecnologias digitais"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Facilitadores"</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Necessidade Urgente"</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Situação de emergência ou falta de alternativas viáveis presenciais"</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Apoio Comunitário"</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Suporte de vizinhos, familiares ou agentes de saúde no uso da tecnologia"</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Relações Causais"</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"GERA"</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator produz ou resulta em outro"</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"INIBE"</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator dificulta, impede ou reduz outro"</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"FAVORECE"</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator promove, facilita ou aumenta outro"</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"MEDIA"</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator age como intermediário entre dois outros"</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Valide:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check ontologia.syno</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checkpoint ✓
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Você agora tem 6 códigos conceituais definidos. À medida que analisar os dados, você pode adicionar mais.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="passo-4-anotar-nossa-primeira-entrevista" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="passo-4-anotar-nossa-primeira-entrevista"><span class="header-section-number">1.5</span> Passo 4: Anotar Nossa Primeira Entrevista</h2>
+<p>Agora vem a parte principal: vamos anotar trechos das entrevistas. Crie <code>anotacoes.syn</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dona_maria</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu não confio nessas coisas de conversar com médico pelo computador. Como ele vai saber o que eu tenho se não me tocar, não me examinar?"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Participante expressa desconfiança na eficácia diagnóstica da telemedicina. Associa qualidade do atendimento à presença física e ao exame clínico presencial. Fala com tom de incredulidade.</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Desconfiança Tecnológica</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Preferência por Contato Presencial</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Desconfiança Tecnológica <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção de Telemedicina</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Disse isso logo no início da conversa, antes mesmo de eu perguntar diretamente sobre telemedicina</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Aqui a internet cai toda hora. Às vezes fica dois, três dias sem. Como vou marcar consulta se nem WiFi tenho direito?"</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Infraestrutura precária como barreira concreta. Frustração evidente na fala. O termo <span class="st">"nem WiFi tenho direito"</span> sugere percepção de exclusão ou injustiça.</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Falta de Infraestrutura</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Falta de Infraestrutura <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Acesso à Telemedicina</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Falou com voz mais alta, demonstrando irritação</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Agora é sua vez!</strong> Continue anotando. Vamos adicionar trechos da segunda entrevista:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_sr_joao</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_sr_joao</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu tentei usar uma vez que minha neta me ajudou. Foi bom, resolvi sem sair de casa. Mas sozinho eu não consigo não, preciso de alguém pra mexer no celular pra mim."</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Experiência positiva quando mediada por familiar. Reconhece benefício (evitar deslocamento) mas identifica dependência de suporte técnico informal. Dicotomia entre percepção de utilidade e capacidade de uso autônomo.</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Letramento Digital Baixo</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Apoio Comunitário</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Apoio Comunitário <span class="op">-&gt;</span> MEDIA <span class="op">-&gt;</span> Letramento Digital Baixo <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Uso de Telemedicina</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Falou com gratidão ao mencionar a neta, mas com resignação ao admitir a dependência</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_sr_joao</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Quando meu filho ficou internado na capital, a médica daqui falou com o médico de lá pelo vídeo. Foi uma bênção, porque ela pôde explicar o caso dele direitinho."</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Exemplo concreto de uso bem-sucedido entre profissionais (comunicação inter-hospitalar). Contextualiza telemedicina como ferramenta para continuidade de cuidado, não apenas para primeira consulta. Termo religioso (<span class="st">"bênção"</span>) indica forte impacto emocional positivo.</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Necessidade Urgente</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Necessidade Urgente <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Aceitação de Telemedicina</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Única vez na entrevista em que sorriu ao falar do tema</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica de Pesquisador
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observe como o campo <code>context</code> captura nuances qualitativas importantes (tom de voz, emoções, linguagem corporal). Essas anotações serão valiosas na fase de interpretação mais profunda.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="passo-5-anotar-a-terceira-entrevista-perspectiva-profissional" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="passo-5-anotar-a-terceira-entrevista-perspectiva-profissional"><span class="header-section-number">1.6</span> Passo 5: Anotar a Terceira Entrevista (Perspectiva Profissional)</h2>
+<p>Agora vamos adicionar a perspectiva da profissional de saúde:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dra_ana</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dra_ana</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Os pacientes têm dificuldade, mas é mais a internet do que a vontade. Quando funciona, eles gostam. O problema é que nem sempre funciona."</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Profissional identifica infraestrutura como barreira principal, não resistência cultural. Reconhece aceitação dos pacientes quando condições técnicas são adequadas. Importante contraponto à narrativa de <span class="st">"resistência ao novo"</span>.</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Falta de Infraestrutura</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Falta de Infraestrutura <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Uso Efetivo de Telemedicina</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Disse isso com frustração visível, gesticulando ao mencionar a internet</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dra_ana</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu prefiro presencial quando posso, porque consigo ver coisas que não aparecem na tela. Mas para retorno, para tirar dúvida rápida, telemedicina é perfeita."</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Profissional diferencia contextos de uso apropriado vs inapropriado. Nuança <span class="fu">importante:</span> não é rejeição binária, mas uso contextualizado. Sugere que telemedicina complementa, não substitui presencial.</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Preferência por Contato Presencial</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Tom pragmático, não emotivo. Fala de quem avalia prós e contras tecnicamente</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Salve o arquivo <code>anotacoes.syn</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checkpoint ✓
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Você anotou 6 trechos de 3 entrevistas diferentes. Validate:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check anotacoes.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="passo-6-criar-o-arquivo-de-projeto" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="passo-6-criar-o-arquivo-de-projeto"><span class="header-section-number">1.7</span> Passo 6: Criar o Arquivo de Projeto</h2>
+<p>Agora vamos conectar tudo. Crie <code>analise.synp</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> analise_telemedicina_rural</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"referencias.bib"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontologia.syno"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"anotacoes.syn"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">DESCRIPTION</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    Análise qualitativa sobre barreiras e facilitadores</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    à adoção de telemedicina em comunidades rurais.</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Abordagem:</span> Análise temática</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Período:</span> Janeiro-Fevereiro 2026</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="kw">METADATA</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">researcher:</span> <span class="st">"Seu Nome"</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">institution:</span> <span class="st">"Sua Universidade"</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ethics_approval:</span> <span class="st">"CEP-2025-XXX"</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="passo-7-compilar-e-analisar" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="passo-7-compilar-e-analisar"><span class="header-section-number">1.8</span> Passo 7: Compilar e Analisar</h2>
+<p>Compile o projeto:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile analise.synp <span class="at">--output</span> resultados/</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Verifique os arquivos gerados:</strong></p>
+<pre><code>resultados/
+├── analise.json          # Estrutura completa
+├── sources.csv          # Lista de fontes
+├── items.csv            # Todas as anotações
+├── codes.csv            # Frequência de códigos
+├── chains.csv           # Relações causais
+├── memos.csv            # Todos os memos
+└── analise.xlsx         # Excel multi-aba</code></pre>
+<section id="análise-no-excel" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="análise-no-excel"><span class="header-section-number">1.8.1</span> Análise no Excel</h3>
+<p>Abra <code>analise.xlsx</code>. Você verá:</p>
+<p><strong>Aba “Codes”:</strong> | Código | Frequência | Fontes | |——–|————|——–| | Falta de Infraestrutura | 3 | dona_maria, sr_joao, dra_ana | | Desconfiança Tecnológica | 1 | dona_maria | | Preferência por Contato Presencial | 2 | dona_maria, dra_ana | | … | … | … |</p>
+<p><strong>Aba “Chains”:</strong> | Relação | Código A | Código B | Frequência | |———|———-|———-|————| | INIBE | Desconfiança Tecnológica | Adoção de Telemedicina | 1 | | INIBE | Falta de Infraestrutura | Acesso à Telemedicina | 2 | | … | … | … | … |</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insight de Análise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observe que “Falta de Infraestrutura” aparece em todas as 3 entrevistas (pacientes E profissional). Isso sugere que a barreira não é apenas “resistência cultural”, mas concreta e sistêmica.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="passo-8-refinar-análise-processo-iterativo" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="passo-8-refinar-análise-processo-iterativo"><span class="header-section-number">1.9</span> Passo 8: Refinar Análise (Processo Iterativo)</h2>
+<p>Agora que você viu os padrões iniciais, volte aos dados. Você pode:</p>
+<section id="adicionar-novos-códigos" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="adicionar-novos-códigos"><span class="header-section-number">1.9.1</span> 8.1 Adicionar Novos Códigos</h3>
+<p>Se você identifica um padrão recorrente, adicione à ontologia:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Percepção de Exclusão Digital"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DEFINITION:</span> <span class="st">"Sentimento de estar à margem devido a falta de acesso tecnológico"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">CODE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="refinar-códigos-existentes" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="refinar-códigos-existentes"><span class="header-section-number">1.9.2</span> 8.2 Refinar Códigos Existentes</h3>
+<p>Se um código está ambíguo, divida:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Antes:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Desconfiança Tecnológica"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Depois:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Desconfiança na Eficácia Diagnóstica"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DEFINITION:</span> <span class="st">"Dúvida sobre capacidade de diagnóstico sem exame físico"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">CODE</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Desconfiança na Segurança de Dados"</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DEFINITION:</span> <span class="st">"Receio sobre privacidade e vazamento de informações médicas"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">CODE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="adicionar-mais-anotações" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="adicionar-mais-anotações"><span class="header-section-number">1.9.3</span> 8.3 Adicionar Mais Anotações</h3>
+<p>Volte às entrevistas originais e anote trechos adicionais que você não havia percebido na primeira leitura.</p>
+</section>
+<section id="recompilar" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="recompilar"><span class="header-section-number">1.9.4</span> 8.4 Recompilar</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile analise.synp <span class="at">--output</span> resultados/</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Veja como os números mudaram!</p>
+<hr>
+</section>
+</section>
+<section id="passo-9-exportar-para-visualização" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="passo-9-exportar-para-visualização"><span class="header-section-number">1.10</span> Passo 9: Exportar para Visualização</h2>
+<p>Para criar um grafo visual das relações:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se você tem a extensão Synesis Explorer instalada</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Abra o projeto no VSCode e pressione Ctrl+Alt+G</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ou exporte para Neo4j para análise de rede:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> synesis2neo4j.py <span class="at">--project</span> analise.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Consulte <a href="../ecossistema/synesis2neo4j_pt.qmd">Como exportar para Neo4j</a> para detalhes.</p>
+<hr>
+</section>
+<section id="parabéns" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="parabéns"><span class="header-section-number">1.11</span> 🎉 Parabéns!</h2>
+<p>Você acabou de completar uma análise qualitativa estruturada com Synesis! Você:</p>
+<ul>
+<li>✅ Preparou fontes bibliográficas</li>
+<li>✅ Criou um template adaptado para pesquisa qualitativa</li>
+<li>✅ Definiu uma ontologia de códigos conceituais</li>
+<li>✅ Anotou 6 trechos de 3 entrevistas com memos analíticos</li>
+<li>✅ Capturou nuances qualitativas (contexto, emoções)</li>
+<li>✅ Identificou relações causais entre conceitos</li>
+<li>✅ Compilou e analisou padrões quantitativos</li>
+<li>✅ Aprendeu o processo iterativo de refinamento</li>
+</ul>
+<hr>
+</section>
+<section id="boas-práticas-para-pesquisadores" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="boas-práticas-para-pesquisadores"><span class="header-section-number">1.12</span> Boas Práticas para Pesquisadores</h2>
+<section id="anote-progressivamente" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="anote-progressivamente"><span class="header-section-number">1.12.1</span> 1. Anote Progressivamente</h3>
+<p>Não espere terminar todas as entrevistas para começar a anotar. Analise à medida que coleta dados — isso permite ajustar roteiro de entrevistas.</p>
+</section>
+<section id="use-memos-analiticamente" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="use-memos-analiticamente"><span class="header-section-number">1.12.2</span> 2. Use Memos Analiticamente</h3>
+<p>O campo <code>memo</code> não é para repetir a citação. Use para: - Interpretar o significado - Identificar contradições ou nuances - Levantar hipóteses - Conectar com teoria</p>
+</section>
+<section id="documente-decisões" class="level3" data-number="1.12.3">
+<h3 data-number="1.12.3" class="anchored" data-anchor-id="documente-decisões"><span class="header-section-number">1.12.3</span> 3. Documente Decisões</h3>
+<p>No campo <code>context</code> ou em memos, registre POR QUE você atribuiu determinado código. Isso será crucial na fase de escrita.</p>
+</section>
+<section id="revise-sistematicamente" class="level3" data-number="1.12.4">
+<h3 data-number="1.12.4" class="anchored" data-anchor-id="revise-sistematicamente"><span class="header-section-number">1.12.4</span> 4. Revise Sistematicamente</h3>
+<p>A cada 5-10 anotações, compile e veja a distribuição de códigos. Pergunte: - Algum código está superabundante (muito genérico)? - Algum código aparece uma única vez (muito específico)? - Há padrões emergentes não capturados?</p>
+</section>
+<section id="valide-com-pares" class="level3" data-number="1.12.5">
+<h3 data-number="1.12.5" class="anchored" data-anchor-id="valide-com-pares"><span class="header-section-number">1.12.5</span> 5. Valide com Pares</h3>
+<p>Compartilhe seu arquivo <code>.syno</code> (ontologia) com colegas. Peça para eles: - Verificarem se as definições são claras - Identificarem sobreposições conceituais - Sugerirem códigos ausentes</p>
+<hr>
+</section>
+</section>
+<section id="diferenças-de-abordagens-metodológicas" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="diferenças-de-abordagens-metodológicas"><span class="header-section-number">1.13</span> Diferenças de Abordagens Metodológicas</h2>
+<section id="teoria-fundamentada-grounded-theory" class="level3" data-number="1.13.1">
+<h3 data-number="1.13.1" class="anchored" data-anchor-id="teoria-fundamentada-grounded-theory"><span class="header-section-number">1.13.1</span> Teoria Fundamentada (Grounded Theory)</h3>
+<ul>
+<li>Comece com ontologia vazia</li>
+<li>Adicione códigos conforme emergem dos dados (codificação aberta)</li>
+<li>Use <code>chain</code> para capturar categorias centrais e relações entre categorias</li>
+<li>Itere até saturação teórica</li>
+</ul>
+</section>
+<section id="análise-temática" class="level3" data-number="1.13.2">
+<h3 data-number="1.13.2" class="anchored" data-anchor-id="análise-temática"><span class="header-section-number">1.13.2</span> Análise Temática</h3>
+<ul>
+<li>Defina temas iniciais (dedutivos) ou deixe emergir (indutivos)</li>
+<li>Use <code>CODE</code> para temas e subtemas</li>
+<li>Use <code>TOPIC</code> na ontologia para agrupar temas</li>
+<li>Campo <code>memo</code> para reflexões sobre temas recorrentes</li>
+</ul>
+</section>
+<section id="análise-de-conteúdo" class="level3" data-number="1.13.3">
+<h3 data-number="1.13.3" class="anchored" data-anchor-id="análise-de-conteúdo"><span class="header-section-number">1.13.3</span> Análise de Conteúdo</h3>
+<ul>
+<li>Template mais rígido, com campos predefinidos</li>
+<li>Ontologia criada a priori baseada em literatura</li>
+<li>Foco em frequência (use output CSV para quantificação)</li>
+<li>Menos uso de <code>chain</code>, mais uso de <code>code</code></li>
+</ul>
+</section>
+<section id="análise-crítica-do-discurso" class="level3" data-number="1.13.4">
+<h3 data-number="1.13.4" class="anchored" data-anchor-id="análise-crítica-do-discurso"><span class="header-section-number">1.13.4</span> Análise Crítica do Discurso</h3>
+<ul>
+<li>Use <code>context</code> extensivamente (prosódia, hesitações, silêncios)</li>
+<li>Campo <code>memo</code> para identificar estratégias discursivas</li>
+<li><code>chain</code> para capturar pressupostos ideológicos</li>
+<li>Anote o que NÃO foi dito (silêncios significativos)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="recursos-para-aprofundamento" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="recursos-para-aprofundamento"><span class="header-section-number">1.14</span> Recursos para Aprofundamento</h2>
+<section id="para-melhorar-sua-codificação" class="level3" data-number="1.14.1">
+<h3 data-number="1.14.1" class="anchored" data-anchor-id="para-melhorar-sua-codificação"><span class="header-section-number">1.14.1</span> Para Melhorar sua Codificação</h3>
+<ul>
+<li><a href="../howto/definir_ontologia.html">Como definir uma ontologia</a></li>
+<li><a href="../howto/criar_chains.html">Como criar e validar chains</a></li>
+</ul>
+</section>
+<section id="para-entender-o-porquê" class="level3" data-number="1.14.2">
+<h3 data-number="1.14.2" class="anchored" data-anchor-id="para-entender-o-porquê"><span class="header-section-number">1.14.2</span> Para Entender o “Porquê”</h3>
+<ul>
+<li><a href="../explanation/por_que_estrutura_importa.html">Por que estrutura importa</a></li>
+<li><a href="../explanation/guia_sincero.html">Por que não Excel?</a></li>
+</ul>
+</section>
+<section id="para-consultar-sintaxe" class="level3" data-number="1.14.3">
+<h3 data-number="1.14.3" class="anchored" data-anchor-id="para-consultar-sintaxe"><span class="header-section-number">1.14.3</span> Para Consultar Sintaxe</h3>
+<ul>
+<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="próximo-projeto" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="próximo-projeto"><span class="header-section-number">1.15</span> Próximo Projeto</h2>
+<p>Agora que você domina o básico, experimente:</p>
+<ol type="1">
+<li><strong>Projeto com múltiplos tipos de fonte</strong>: Combine entrevistas + documentos + observações</li>
+<li><strong>Análise longitudinal</strong>: Anote dados coletados em diferentes momentos</li>
+<li><strong>Análise comparativa</strong>: Use <code>TOPIC</code> na ontologia para separar subcasos</li>
+<li><strong>Integração com Zotero</strong>: Use o plugin <a href="https://github.com/synesis-lang/zotero-synesis-export">zotero-synesis-export</a> para exportar highlights de PDFs diretamente como <code>.syn</code></li>
+</ol>
+<hr>
+<p><strong>Ficou com dúvidas metodológicas?</strong> Abra uma discussão em <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a> ou consulte a comunidade de pesquisadores Synesis.</p>
+<p><strong>Boa pesquisa!</strong> 📚🔍✨</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

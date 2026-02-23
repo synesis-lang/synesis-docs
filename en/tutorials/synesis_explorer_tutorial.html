@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About Synesis – Synesis Language</title>
+<title>synesis_explorer_tutorial – Synesis Language</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Synesis Language</span>
     </a>
   </div>
@@ -122,7 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -131,11 +97,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
-    <a class="dropdown-item" href="./tutorials/guia_pesquisadores.html">
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
  <span class="dropdown-text">Guide for Researchers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tutorials/synesis_explorer_tutorial.html">
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
  <span class="dropdown-text">Synesis Explorer</span></a>
   </li>  
     </ul>
@@ -146,11 +112,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
         <li>
-    <a class="dropdown-item" href="./howto/guia_profissionais.html">
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
  <span class="dropdown-text">Guide for Professionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./howto/exportar_neo4j.qmd">
+    <a class="dropdown-item" href="../howto/exportar_neo4j.qmd">
  <span class="dropdown-text">Export to Neo4j</span></a>
   </li>  
     </ul>
@@ -161,11 +127,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
         <li>
-    <a class="dropdown-item" href="./reference/guia_referencia.html">
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
  <span class="dropdown-text">Language Reference</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./reference/synesis_load.html">
+    <a class="dropdown-item" href="../reference/synesis_load.html">
  <span class="dropdown-text">Synesis API</span></a>
   </li>  
     </ul>
@@ -176,21 +142,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
         <li>
-    <a class="dropdown-item" href="./explanation/guia_sincero.html">
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
  <span class="dropdown-text">Why not Excel?</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./explanation/knowledge_graphs.qmd">
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.qmd">
  <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./explanation/ideas.html">
+    <a class="dropdown-item" href="../explanation/ideas.html">
  <span class="dropdown-text">Roadmap &amp; Ideas</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -201,11 +167,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
         <li>
-    <a class="dropdown-item" href="./../pt/">
+    <a class="dropdown-item" href="../../pt/">
  <span class="dropdown-text">🇧🇷 Português</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../en/">
+    <a class="dropdown-item" href="../../en/">
  <span class="dropdown-text">🇬🇧 English</span></a>
   </li>  
     </ul>
@@ -226,206 +192,215 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about-the-project" id="toc-about-the-project" class="nav-link active" data-scroll-target="#about-the-project"><span class="header-section-number">1</span> About the Project</a>
+  <li><a href="#quick-guide-synesis-explorer-vs-code" id="toc-quick-guide-synesis-explorer-vs-code" class="nav-link active" data-scroll-target="#quick-guide-synesis-explorer-vs-code"><span class="header-section-number">1</span> Quick Guide: Synesis Explorer (VS Code)</a>
   <ul class="collapse">
-  <li><a href="#vision" id="toc-vision" class="nav-link" data-scroll-target="#vision"><span class="header-section-number">1.1</span> Vision</a></li>
-  <li><a href="#design-principles" id="toc-design-principles" class="nav-link" data-scroll-target="#design-principles"><span class="header-section-number">1.2</span> Design Principles</a></li>
-  </ul></li>
-  <li><a href="#synesis-ecosystem" id="toc-synesis-ecosystem" class="nav-link" data-scroll-target="#synesis-ecosystem"><span class="header-section-number">2</span> Synesis Ecosystem</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license"><span class="header-section-number">3</span> License</a></li>
-  <li><a href="#how-to-contribute" id="toc-how-to-contribute" class="nav-link" data-scroll-target="#how-to-contribute"><span class="header-section-number">4</span> How to Contribute</a>
+  <li><a href="#what-the-extension-does" id="toc-what-the-extension-does" class="nav-link" data-scroll-target="#what-the-extension-does"><span class="header-section-number">1.1</span> What the extension does</a></li>
+  <li><a href="#basic-requirements" id="toc-basic-requirements" class="nav-link" data-scroll-target="#basic-requirements"><span class="header-section-number">1.2</span> Basic requirements</a></li>
+  <li><a href="#installation-vsix-file" id="toc-installation-vsix-file" class="nav-link" data-scroll-target="#installation-vsix-file"><span class="header-section-number">1.3</span> Installation (VSIX file)</a></li>
+  <li><a href="#how-to-open-your-project" id="toc-how-to-open-your-project" class="nav-link" data-scroll-target="#how-to-open-your-project"><span class="header-section-number">1.4</span> How to open your project</a></li>
+  <li><a href="#where-to-find-synesis-explorer" id="toc-where-to-find-synesis-explorer" class="nav-link" data-scroll-target="#where-to-find-synesis-explorer"><span class="header-section-number">1.5</span> Where to find Synesis Explorer</a></li>
+  <li><a href="#using-the-explorers" id="toc-using-the-explorers" class="nav-link" data-scroll-target="#using-the-explorers"><span class="header-section-number">1.6</span> Using the Explorers</a>
   <ul class="collapse">
-  <li><a href="#contribution-guidelines" id="toc-contribution-guidelines" class="nav-link" data-scroll-target="#contribution-guidelines"><span class="header-section-number">4.1</span> Contribution Guidelines</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.6.1</span> References</a></li>
+  <li><a href="#codes" id="toc-codes" class="nav-link" data-scroll-target="#codes"><span class="header-section-number">1.6.2</span> Codes</a></li>
+  <li><a href="#relations" id="toc-relations" class="nav-link" data-scroll-target="#relations"><span class="header-section-number">1.6.3</span> Relations</a></li>
   </ul></li>
-  <li><a href="#academic-citation" id="toc-academic-citation" class="nav-link" data-scroll-target="#academic-citation"><span class="header-section-number">5</span> Academic Citation</a>
+  <li><a href="#using-the-viewers" id="toc-using-the-viewers" class="nav-link" data-scroll-target="#using-the-viewers"><span class="header-section-number">1.7</span> Using the Viewers</a>
   <ul class="collapse">
-  <li><a href="#bibtex" id="toc-bibtex" class="nav-link" data-scroll-target="#bibtex"><span class="header-section-number">5.1</span> BibTeX</a></li>
-  <li><a href="#apa-7" id="toc-apa-7" class="nav-link" data-scroll-target="#apa-7"><span class="header-section-number">5.2</span> APA 7</a></li>
+  <li><a href="#graph-viewer" id="toc-graph-viewer" class="nav-link" data-scroll-target="#graph-viewer"><span class="header-section-number">1.7.1</span> Graph Viewer</a></li>
+  <li><a href="#abstract-viewer" id="toc-abstract-viewer" class="nav-link" data-scroll-target="#abstract-viewer"><span class="header-section-number">1.7.2</span> Abstract Viewer</a></li>
   </ul></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="header-section-number">6</span> Acknowledgments</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact"><span class="header-section-number">7</span> Contact</a></li>
-  <li><a href="#version-history" id="toc-version-history" class="nav-link" data-scroll-target="#version-history"><span class="header-section-number">8</span> Version History</a></li>
+  <li><a href="#quick-tips" id="toc-quick-tips" class="nav-link" data-scroll-target="#quick-tips"><span class="header-section-number">1.8</span> Quick tips</a></li>
+  <li><a href="#common-problems" id="toc-common-problems" class="nav-link" data-scroll-target="#common-problems"><span class="header-section-number">1.9</span> Common problems</a></li>
+  <li><a href="#ready-to-use" id="toc-ready-to-use" class="nav-link" data-scroll-target="#ready-to-use"><span class="header-section-number">1.10</span> Ready to use</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About Synesis</h1>
+
+
+
+<section id="quick-guide-synesis-explorer-vs-code" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Quick Guide: Synesis Explorer (VS Code)</h1>
+<p><strong>Goal:</strong> help you install and use the extension to navigate your Synesis files (.syn, .synt, .synp, .syno) easily.</p>
+<hr>
+<section id="what-the-extension-does" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-the-extension-does"><span class="header-section-number">1.1</span> What the extension does</h2>
+<ul>
+<li>Shows your references, codes, and relations in side panels</li>
+<li>Opens a relationship graph and the abstract summary of references</li>
+<li>Helps you find excerpts easily</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/01_tela_inicial.png" class="img-fluid figure-img"></p>
+<figcaption>VS Code initial screen with the extension installed.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="basic-requirements" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="basic-requirements"><span class="header-section-number">1.2</span> Basic requirements</h2>
+<ul>
+<li>VS Code installed</li>
+<li>Synesis files on your computer</li>
+</ul>
+<hr>
+</section>
+<section id="installation-vsix-file" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="installation-vsix-file"><span class="header-section-number">1.3</span> Installation (VSIX file)</h2>
+<ol type="1">
+<li>Open VS Code</li>
+<li>Click on the extensions icon (sidebar)</li>
+<li>Click on the three dots (menu) and choose “Install from VSIX…”</li>
+<li>Select the <code>.vsix</code> extension file</li>
+<li>Wait for installation and restart VS Code if prompted</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/02_install.png" class="img-fluid figure-img"></p>
+<figcaption>Menu “Install from VSIX…”</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="how-to-open-your-project" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="how-to-open-your-project"><span class="header-section-number">1.4</span> How to open your project</h2>
+<ol type="1">
+<li>Open your project folder in VS Code</li>
+<li>Make sure your <code>.syn</code> files and the <code>.synp</code> project are in the folder</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/03_projeto_synesis.png" class="img-fluid figure-img"></p>
+<figcaption>Project folder open in VS Code.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="where-to-find-synesis-explorer" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="where-to-find-synesis-explorer"><span class="header-section-number">1.5</span> Where to find Synesis Explorer</h2>
+<ol type="1">
+<li>On the left sidebar, click the “Synesis Explorer” icon</li>
+<li>You will see three sections:
+<ul>
+<li>References</li>
+<li>Codes</li>
+<li>Relations (appears when there are relations)</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/04_painel_synesis.png" class="img-fluid figure-img"></p>
+<figcaption>Synesis Explorer panel with the three sections.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="using-the-explorers" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="using-the-explorers"><span class="header-section-number">1.6</span> Using the Explorers</h2>
+<section id="references" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="references"><span class="header-section-number">1.6.1</span> References</h3>
+<ul>
+<li>Lists your sources (SOURCE)</li>
+<li>Use the refresh button when files change</li>
+<li>Use the filter to quickly find a reference</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/05_references.png" class="img-fluid figure-img"></p>
+<figcaption>References with list and buttons at the top.</figcaption>
+</figure>
+</div>
+</section>
+<section id="codes" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="codes"><span class="header-section-number">1.6.2</span> Codes</h3>
+<ul>
+<li>Shows codes found in your data</li>
+<li>Use refresh and filter the same way</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/06_codes.png" class="img-fluid figure-img"></p>
+<figcaption>Codes with code list.</figcaption>
+</figure>
+</div>
+</section>
+<section id="relations" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="relations"><span class="header-section-number">1.6.3</span> Relations</h3>
+<ul>
+<li>Shows relations (chains) found</li>
+<li>If it doesn’t appear, check if there are <code>chain:</code> fields in annotation files (.syn)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/07_relations.png" class="img-fluid figure-img"></p>
+<figcaption>Relations with some listed relations.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="using-the-viewers" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="using-the-viewers"><span class="header-section-number">1.7</span> Using the Viewers</h2>
+<section id="graph-viewer" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="graph-viewer"><span class="header-section-number">1.7.1</span> Graph Viewer</h3>
+<ul>
+<li>Shows a graph of relations</li>
+<li>Shortcut: <code>Ctrl+Alt+G</code> (Windows/Linux) or <code>Cmd+Shift+G</code> (Mac)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/08_graph_viewer.png" class="img-fluid figure-img"></p>
+<figcaption>Graph open in a tab.</figcaption>
+</figure>
+</div>
+</section>
+<section id="abstract-viewer" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="abstract-viewer"><span class="header-section-number">1.7.2</span> Abstract Viewer</h3>
+<ul>
+<li>Shows the abstract of BibTeX references</li>
+<li>Shortcut: <code>Ctrl+Shift+A</code> (Windows/Linux) or <code>Cmd+Shift+A</code> (Mac)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/09_abstract_viewer.png" class="img-fluid figure-img"></p>
+<figcaption>Abstract open in a tab.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="quick-tips" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="quick-tips"><span class="header-section-number">1.8</span> Quick tips</h2>
+<ul>
+<li>If something doesn’t update, click refresh</li>
+<li>Word Wrap is automatically enabled for easier reading</li>
+<li>Use the filter to reduce large lists</li>
+</ul>
+<hr>
+</section>
+<section id="common-problems" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="common-problems"><span class="header-section-number">1.9</span> Common problems</h2>
+<p><strong>I don’t see anything in the panel</strong> - Check if the project folder was opened in VS Code - Check if there are <code>.syn</code> files in the folder</p>
+<p><strong>Relations don’t appear</strong> - Check if there are <code>chain:</code> lines in the files</p>
+<hr>
+</section>
+<section id="ready-to-use" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="ready-to-use"><span class="header-section-number">1.10</span> Ready to use</h2>
+<p>With this, you can now navigate, filter, and visualize your Synesis data directly in VS Code.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/10_full_view.png" class="img-fluid figure-img"></p>
+<figcaption>Complete flow (file open + explorer + viewer).</figcaption>
+</figure>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="about-the-project" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="about-the-project"><span class="header-section-number">1</span> About the Project</h2>
-<p><strong>Synesis</strong> is an open-source domain-specific language (DSL) for systematic consolidation of qualitative knowledge. Developed for researchers, knowledge professionals, and analysts who need to transform interpretations into auditable and technically interoperable structures.</p>
-<section id="vision" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="vision"><span class="header-section-number">1.1</span> Vision</h3>
-<p>To eliminate the gap between the interpretive richness of the humanities and the structural rigor of data science, without sacrificing analytical depth or technical precision.</p>
 </section>
-<section id="design-principles" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="design-principles"><span class="header-section-number">1.2</span> Design Principles</h3>
-<ol type="1">
-<li><p><strong>Template as Source of Truth</strong>: All validation structure is derived from the template file (<code>.synt</code>) at runtime. No hardcoded fields.</p></li>
-<li><p><strong>Text-First &amp; Interoperable</strong>: Plain text files, versionable with Git, compilable to JSON/CSV/Excel, integrable with any tech stack.</p></li>
-<li><p><strong>Rigorous Semantic Validation</strong>: The compiler validates conceptual consistency, bidirectional traceability, and compliance with defined ontologies.</p></li>
-<li><p><strong>Integrated Ecosystem</strong>: Compiler, Language Server Protocol (LSP), VSCode extension, Neo4j pipeline, and Zotero plugin function as a cohesive system.</p></li>
-</ol>
-<hr>
-</section>
-</section>
-<section id="synesis-ecosystem" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="synesis-ecosystem"><span class="header-section-number">2</span> Synesis Ecosystem</h2>
-<p>The project consists of 7 integrated repositories:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Project</th>
-<th>Description</th>
-<th>Technology</th>
-<th>Version</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="https://github.com/synesis-lang/synesis"><strong>synesis</strong></a></td>
-<td>Core Compiler (LALR parser, semantic validator, exporters)</td>
-<td>Python 3.10+</td>
-<td>0.2.6</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/synesis-lang/synesis-lsp"><strong>synesis-lsp</strong></a></td>
-<td>Language Server Protocol (diagnostics, completions, hover)</td>
-<td>Python 3.10+</td>
-<td>0.14.6</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/synesis-lang/synesis-explorer"><strong>synesis-explorer</strong></a></td>
-<td>VSCode Extension (syntax highlighting, tree views, graph viewer)</td>
-<td>TypeScript/Node</td>
-<td>0.5.2</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/synesis-lang/synesis2neo4j"><strong>synesis2neo4j</strong></a></td>
-<td>Neo4j Pipeline (GraphRAG, knowledge graphs)</td>
-<td>Python 3.11+</td>
-<td>0.1.2</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/synesis-lang/zotero-synesis-export"><strong>zotero-synesis-export</strong></a></td>
-<td>Zotero 7 Plugin (exports PDF annotations as <code>.syn</code>)</td>
-<td>JavaScript</td>
-<td>0.1.4</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/synesis-lang/synesis-docs-sources"><strong>synesis-docs-sources</strong></a></td>
-<td>Documentation Sources (Quarto Publishing)</td>
-<td>Quarto/QMD</td>
-<td>—</td>
-</tr>
-<tr class="odd">
-<td><a href="https://synesis-lang.github.io/synesis-docs"><strong>synesis-docs</strong></a></td>
-<td>Published Documentation (GitHub Pages)</td>
-<td>HTML</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="license" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="license"><span class="header-section-number">3</span> License</h2>
-<p>The Synesis ecosystem is free software distributed under <strong>MIT</strong> license (compiler, LSP, VSCode extension) and <strong>MPL-2.0</strong> (Zotero plugin), allowing commercial use, modification, and redistribution with proper attribution.</p>
-<p>Documentation is licensed under <strong>Creative Commons BY 4.0</strong>.</p>
-<hr>
-</section>
-<section id="how-to-contribute" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="how-to-contribute"><span class="header-section-number">4</span> How to Contribute</h2>
-<p>Contributions are welcome! To report bugs, propose improvements, or submit code contributions:</p>
-<ol type="1">
-<li><strong>Issues</strong>: Open an issue in the specific repository</li>
-<li><strong>Pull Requests</strong>: Fork the repository, create a branch, and send PR with clear description</li>
-<li><strong>Discussions</strong>: For conceptual questions or feature proposals, use <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a></li>
-</ol>
-<section id="contribution-guidelines" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="contribution-guidelines"><span class="header-section-number">4.1</span> Contribution Guidelines</h3>
-<ul>
-<li>Follow project code conventions (see <code>CONTRIBUTING.md</code> in each repository)</li>
-<li>Add tests for new features</li>
-<li>Document changes in <code>CHANGELOG.md</code> (<code>[Unreleased]</code> section)</li>
-<li>Use semantic commits: <code>feat:</code>, <code>fix:</code>, <code>docs:</code>, <code>refactor:</code>, <code>test:</code></li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="academic-citation" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="academic-citation"><span class="header-section-number">5</span> Academic Citation</h2>
-<p>If you use Synesis in academic research, cite as follows:</p>
-<section id="bibtex" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="bibtex"><span class="header-section-number">5.1</span> BibTeX</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">@software{synesis2026,</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {De Britto, Márcio},</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Synesis: A Domain-Specific Language for Structured Qualitative Analysis},</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  url = {https://github.com/synesis-lang/synesis},</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  version = {0.2.6},</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  note = {Open-source software for systematic qualitative knowledge consolidation}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="apa-7" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="apa-7"><span class="header-section-number">5.2</span> APA 7</h3>
-<p>De Britto, M. (2026). <em>Synesis: A Domain-Specific Language for Structured Qualitative Analysis</em> (Version 0.2.6) [Software]. https://github.com/synesis-lang/synesis</p>
-<hr>
-</section>
-</section>
-<section id="acknowledgments" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="acknowledgments"><span class="header-section-number">6</span> Acknowledgments</h2>
-<p>Synesis development was made possible thanks to:</p>
-<ul>
-<li><strong>Lark Parser</strong> (Erez Shinan) — Foundation for the LALR(1) parser</li>
-<li><strong>pygls</strong> (Open Law Library) — Language Server Protocol framework</li>
-<li><strong>VSCode Extension API</strong> (Microsoft) — Extension infrastructure</li>
-<li><strong>Quarto</strong> (Posit PBC) — Technical documentation system</li>
-<li><strong>Open Source Community</strong> — For tools, libraries, and inspiration</li>
-</ul>
-<hr>
-</section>
-<section id="contact" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="contact"><span class="header-section-number">7</span> Contact</h2>
-<ul>
-<li><strong>Official Documentation</strong>: <a href="https://synesis-lang.github.io/synesis-docs">synesis-lang.github.io/synesis-docs</a></li>
-<li><strong>Main Repository</strong>: <a href="https://github.com/synesis-lang/synesis">github.com/synesis-lang/synesis</a></li>
-<li><strong>Discussions</strong>: <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a></li>
-<li><strong>Issues</strong>: Report in specific repository</li>
-</ul>
-<hr>
-</section>
-<section id="version-history" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="version-history"><span class="header-section-number">8</span> Version History</h2>
-<ul>
-<li><strong>v0.2.6</strong> (2026-02) — Compiler and LSP refinements</li>
-<li><strong>v0.2.0</strong> (2025-12) — Ontology support added (<code>.syno</code>)</li>
-<li><strong>v0.1.0</strong> (2025-09) — Initial release of compiler and VSCode extension</li>
-</ul>
-<p>For complete changelog, see <code>CHANGELOG.md</code> in each repository.</p>
-<hr>
-<p><em>This documentation follows <a href="https://diataxis.fr/">Diátaxis</a> principles for systematic technical documentation.</em></p>
-
-
 </section>
 
 </main> <!-- /main -->

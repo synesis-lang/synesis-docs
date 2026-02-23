@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Por Que Anotações Estruturadas Importam – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Sinesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#por-que-anotações-estruturadas-importam" id="toc-por-que-anotações-estruturadas-importam" class="nav-link active" data-scroll-target="#por-que-anotações-estruturadas-importam"><span class="header-section-number">1</span> Por Que Anotações Estruturadas Importam</a>
+  <ul class="collapse">
+  <li><a href="#o-problema-das-anotações-livres" id="toc-o-problema-das-anotações-livres" class="nav-link" data-scroll-target="#o-problema-das-anotações-livres"><span class="header-section-number">1.1</span> O Problema das Anotações Livres</a>
+  <ul class="collapse">
+  <li><a href="#ambiguidade-acumulada" id="toc-ambiguidade-acumulada" class="nav-link" data-scroll-target="#ambiguidade-acumulada"><span class="header-section-number">1.1.1</span> Ambiguidade Acumulada</a></li>
+  <li><a href="#inconsistência-terminológica" id="toc-inconsistência-terminológica" class="nav-link" data-scroll-target="#inconsistência-terminológica"><span class="header-section-number">1.1.2</span> Inconsistência Terminológica</a></li>
+  <li><a href="#perda-de-rastreabilidade" id="toc-perda-de-rastreabilidade" class="nav-link" data-scroll-target="#perda-de-rastreabilidade"><span class="header-section-number">1.1.3</span> Perda de Rastreabilidade</a></li>
+  </ul></li>
+  <li><a href="#o-que-anotações-estruturadas-resolvem" id="toc-o-que-anotações-estruturadas-resolvem" class="nav-link" data-scroll-target="#o-que-anotações-estruturadas-resolvem"><span class="header-section-number">1.2</span> O Que Anotações Estruturadas Resolvem</a>
+  <ul class="collapse">
+  <li><a href="#clareza-forçada" id="toc-clareza-forçada" class="nav-link" data-scroll-target="#clareza-forçada"><span class="header-section-number">1.2.1</span> Clareza Forçada</a></li>
+  <li><a href="#consistência-garantida" id="toc-consistência-garantida" class="nav-link" data-scroll-target="#consistência-garantida"><span class="header-section-number">1.2.2</span> Consistência Garantida</a></li>
+  <li><a href="#rastreabilidade-bidirecional" id="toc-rastreabilidade-bidirecional" class="nav-link" data-scroll-target="#rastreabilidade-bidirecional"><span class="header-section-number">1.2.3</span> Rastreabilidade Bidirecional</a></li>
+  </ul></li>
+  <li><a href="#o-paradoxo-da-liberdade-através-da-disciplina" id="toc-o-paradoxo-da-liberdade-através-da-disciplina" class="nav-link" data-scroll-target="#o-paradoxo-da-liberdade-através-da-disciplina"><span class="header-section-number">1.3</span> O Paradoxo da Liberdade através da Disciplina</a>
+  <ul class="collapse">
+  <li><a href="#estrutura-teoria-prévia" id="toc-estrutura-teoria-prévia" class="nav-link" data-scroll-target="#estrutura-teoria-prévia"><span class="header-section-number">1.3.1</span> Estrutura ≠ Teoria Prévia</a></li>
+  <li><a href="#liberdade-real-vs-pseudoliberdade" id="toc-liberdade-real-vs-pseudoliberdade" class="nav-link" data-scroll-target="#liberdade-real-vs-pseudoliberdade"><span class="header-section-number">1.3.2</span> Liberdade Real vs Pseudoliberdade</a></li>
+  </ul></li>
+  <li><a href="#comparação-synesis-vs-outras-abordagens" id="toc-comparação-synesis-vs-outras-abordagens" class="nav-link" data-scroll-target="#comparação-synesis-vs-outras-abordagens"><span class="header-section-number">1.4</span> Comparação: Synesis vs Outras Abordagens</a>
+  <ul class="collapse">
+  <li><a href="#vs.-anotações-livres-highlights-em-pdf" id="toc-vs.-anotações-livres-highlights-em-pdf" class="nav-link" data-scroll-target="#vs.-anotações-livres-highlights-em-pdf"><span class="header-section-number">1.4.1</span> vs.&nbsp;Anotações Livres (Highlights em PDF)</a></li>
+  <li><a href="#vs.-software-caqdas-atlas.ti-nvivo-maxqda" id="toc-vs.-software-caqdas-atlas.ti-nvivo-maxqda" class="nav-link" data-scroll-target="#vs.-software-caqdas-atlas.ti-nvivo-maxqda"><span class="header-section-number">1.4.2</span> vs.&nbsp;Software CAQDAS (Atlas.ti, NVivo, MAXQDA)</a></li>
+  <li><a href="#vs.-planilhas-excel-google-sheets" id="toc-vs.-planilhas-excel-google-sheets" class="nav-link" data-scroll-target="#vs.-planilhas-excel-google-sheets"><span class="header-section-number">1.4.3</span> vs.&nbsp;Planilhas (Excel, Google Sheets)</a></li>
+  </ul></li>
+  <li><a href="#o-valor-de-longo-prazo-conhecimento-como-ativo-durável" id="toc-o-valor-de-longo-prazo-conhecimento-como-ativo-durável" class="nav-link" data-scroll-target="#o-valor-de-longo-prazo-conhecimento-como-ativo-durável"><span class="header-section-number">1.5</span> O Valor de Longo Prazo: Conhecimento Como Ativo Durável</a>
+  <ul class="collapse">
+  <li><a href="#problema-1-onde-eu-anotei-isso" id="toc-problema-1-onde-eu-anotei-isso" class="nav-link" data-scroll-target="#problema-1-onde-eu-anotei-isso"><span class="header-section-number">1.5.1</span> Problema 1: “Onde eu anotei isso?”</a></li>
+  <li><a href="#problema-2-quem-vai-continuar-isso" id="toc-problema-2-quem-vai-continuar-isso" class="nav-link" data-scroll-target="#problema-2-quem-vai-continuar-isso"><span class="header-section-number">1.5.2</span> Problema 2: “Quem vai continuar isso?”</a></li>
+  <li><a href="#problema-3-como-eu-valido-isso" id="toc-problema-3-como-eu-valido-isso" class="nav-link" data-scroll-target="#problema-3-como-eu-valido-isso"><span class="header-section-number">1.5.3</span> Problema 3: “Como eu valido isso?”</a></li>
+  </ul></li>
+  <li><a href="#quando-anotações-estruturadas-não-são-a-resposta" id="toc-quando-anotações-estruturadas-não-são-a-resposta" class="nav-link" data-scroll-target="#quando-anotações-estruturadas-não-são-a-resposta"><span class="header-section-number">1.6</span> Quando Anotações Estruturadas NÃO São a Resposta</a></li>
+  <li><a href="#conclusão-estrutura-como-ferramenta-de-pensamento" id="toc-conclusão-estrutura-como-ferramenta-de-pensamento" class="nav-link" data-scroll-target="#conclusão-estrutura-como-ferramenta-de-pensamento"><span class="header-section-number">1.7</span> Conclusão: Estrutura Como Ferramenta de Pensamento</a></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">1.8</span> Referências</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Por Que Anotações Estruturadas Importam</h1>
+<p class="subtitle lead">Uma reflexão sobre rigor, liberdade e o futuro do conhecimento qualitativo</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="por-que-anotações-estruturadas-importam" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Por Que Anotações Estruturadas Importam</h1>
+<p>A primeira reação de muitos pesquisadores ao ver Synesis é:</p>
+<blockquote class="blockquote">
+<p>“Por que devo seguir regras tão rígidas? Isso não vai limitar minha criatividade analítica?”</p>
+</blockquote>
+<p>Esta é uma pergunta legítima. E a resposta curta é: <strong>não, o contrário é verdadeiro.</strong> A estrutura não limita a criatividade — ela a libera. Mas para entender por quê, precisamos primeiro entender o problema que anotações estruturadas resolvem.</p>
+<hr>
+<section id="o-problema-das-anotações-livres" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="o-problema-das-anotações-livres"><span class="header-section-number">1.1</span> O Problema das Anotações Livres</h2>
+<p>Anotações livres (highlights em PDF, notas no Word, sticky notes) têm uma vantagem óbvia: <strong>velocidade</strong>. Você captura pensamentos no momento, sem interrupções, sem pensar em formato. Isso é valioso.</p>
+<p>Mas essa liberdade tem um custo escondido que só aparece depois:</p>
+<section id="ambiguidade-acumulada" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="ambiguidade-acumulada"><span class="header-section-number">1.1.1</span> Ambiguidade Acumulada</h3>
+<p>Você anota “Custo” em uma entrevista. Três meses depois, ao revisar, você não lembra:</p>
+<ul>
+<li>Custo de quê? Aquisição? Manutenção? Oportunidade?</li>
+<li>É custo percebido ou custo real?</li>
+<li>É uma barreira ou apenas uma menção descritiva?</li>
+</ul>
+<p><strong>Anotações livres não te forçam a decidir no momento.</strong> Você empurra a decisão para o futuro, quando sua memória estará mais fraca e o contexto menos claro.</p>
+</section>
+<section id="inconsistência-terminológica" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="inconsistência-terminológica"><span class="header-section-number">1.1.2</span> Inconsistência Terminológica</h3>
+<p>Ao longo de um projeto, você vai chamando o mesmo conceito de formas ligeiramente diferentes:</p>
+<ul>
+<li>“Custo elevado”</li>
+<li>“Preço alto”</li>
+<li>“Barreira financeira”</li>
+<li>“Investimento proibitivo”</li>
+</ul>
+<p>São sinônimos? São nuances? <strong>Anotações livres não te obrigam a decidir.</strong> O resultado é um vocabulário conceitual que parece rico, mas na verdade é apenas desorganizado.</p>
+</section>
+<section id="perda-de-rastreabilidade" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="perda-de-rastreabilidade"><span class="header-section-number">1.1.3</span> Perda de Rastreabilidade</h3>
+<p>Quando você finalmente precisa justificar uma interpretação (para um orientador, parecerista, ou para si mesmo), você precisa voltar à evidência original. Mas como?</p>
+<ul>
+<li>Onde estava aquela citação sobre “resistência organizacional”?</li>
+<li>Eu realmente codifiquei 15 casos como “Barreira Cultural” ou estou me enganando?</li>
+<li>Esta cadeia causal que estou propondo está realmente suportada pelos dados?</li>
+</ul>
+<p><strong>Anotações livres não mantêm links bidirecionais automáticos</strong> entre interpretação e evidência. Você perde tempo (muito tempo) procurando, ou pior, você confia na memória e comete erros.</p>
+<hr>
+</section>
+</section>
+<section id="o-que-anotações-estruturadas-resolvem" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="o-que-anotações-estruturadas-resolvem"><span class="header-section-number">1.2</span> O Que Anotações Estruturadas Resolvem</h2>
+<p>Synesis, como sistema de anotações estruturadas, não é sobre burocracia. É sobre <strong>externalizar decisões cognitivas para um sistema confiável</strong> para que sua mente fique livre para o trabalho realmente importante: interpretar, refletir, teorizar.</p>
+<section id="clareza-forçada" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="clareza-forçada"><span class="header-section-number">1.2.1</span> Clareza Forçada</h3>
+<p>Quando você escreve:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_01</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"O preço é muito alto"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Entrevistado expressa barreira econômica à adoção</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Custo de Aquisição</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Custo de Aquisição <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Decisão de Adoção</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Você é <strong>forçado a decidir</strong>, no momento da anotação:</p>
+<ol type="1">
+<li>Qual é a evidência literal? (<code>quote</code>)</li>
+<li>Qual é minha interpretação? (<code>note</code>)</li>
+<li>Como eu categorizo isso conceitualmente? (<code>code</code>)</li>
+<li>Qual relação causal estou inferindo? (<code>chain</code>)</li>
+</ol>
+<p>Isso parece trabalhoso, mas considere a alternativa: você vai ter que fazer essas decisões de qualquer forma — ou na hora da anotação (com contexto fresco) ou três meses depois (sem contexto). <strong>A estrutura apenas antecipa o inevitável.</strong></p>
+</section>
+<section id="consistência-garantida" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="consistência-garantida"><span class="header-section-number">1.2.2</span> Consistência Garantida</h3>
+<p>O compilador Synesis valida que:</p>
+<ul>
+<li>Se você usa o código “Custo de Aquisição”, ele deve estar definido na ontologia</li>
+<li>Se você muda o nome de um código, você precisa atualizar a definição ou usar um alias</li>
+<li>Se você cita uma fonte bibliográfica, ela deve existir no arquivo <code>.bib</code></li>
+</ul>
+<p><strong>Isso não é burocracia, é auditoria automática.</strong> É a diferença entre:</p>
+<ul>
+<li><strong>Sistema frágil</strong>: Você esquece que renomeou “Custo” para “Custo de Aquisição” em algumas anotações e esquece outras. Sua análise final está inconsistente e você nem percebe.</li>
+<li><strong>Sistema robusto</strong>: O compilador rejeita a compilação e te diz exatamente onde está o problema. Você corrige uma vez e segue confiante.</li>
+</ul>
+</section>
+<section id="rastreabilidade-bidirecional" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="rastreabilidade-bidirecional"><span class="header-section-number">1.2.3</span> Rastreabilidade Bidirecional</h3>
+<p>Com Synesis, você pode responder instantaneamente:</p>
+<ul>
+<li><p><strong>Dado um código</strong>, quais são todas as citações que o suportam?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No CSV gerado</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"Custo de Aquisição"</span> output/codes.csv</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Dada uma citação</strong>, quais códigos e relações foram atribuídos?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No JSON gerado</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.items[] | select(.quote | contains("preço"))'</span> output/analysis.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Dada uma relação causal</strong>, qual é a evidência original?</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No CSV gerado</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"INIBE"</span> output/chains.csv</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p><strong>Isso não é mágica, é estrutura.</strong>Quando você nomeia campos (<code>quote</code>, <code>code</code>, <code>chain</code>), você cria índices naturais que ferramentas podem explorar.</p>
+<hr>
+</section>
+</section>
+<section id="o-paradoxo-da-liberdade-através-da-disciplina" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="o-paradoxo-da-liberdade-através-da-disciplina"><span class="header-section-number">1.3</span> O Paradoxo da Liberdade através da Disciplina</h2>
+<p>Há uma objeção comum aqui:</p>
+<blockquote class="blockquote">
+<p>“Mas se eu tenho que pré-definir códigos e relações, não estou impondo uma estrutura teórica antes de ver os dados? Isso não viola os princípios da pesquisa qualitativa?”</p>
+</blockquote>
+<p>Esta é uma confusão legítima, mas vem de mal-entendido sobre o que “estrutura” significa em Synesis.</p>
+<section id="estrutura-teoria-prévia" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="estrutura-teoria-prévia"><span class="header-section-number">1.3.1</span> Estrutura ≠ Teoria Prévia</h3>
+<p><strong>Synesis não te obriga a definir TODOS os códigos antecipadamente.</strong> Você pode:</p>
+<ol type="1">
+<li>Começar com ontologia vazia</li>
+<li>Anotar livremente criando códigos conforme emergem</li>
+<li>Periódicamente consolidar: “Esses três códigos são na verdade o mesmo conceito”</li>
+<li>Atualizar a ontologia</li>
+<li>Recompilar para validar consistência</li>
+</ol>
+<p><strong>A estrutura não está nos códigos específicos</strong> (esses podem emergir indutivamente). <strong>A estrutura está no contrato</strong>: se você usar um código, ele deve estar documentado na ontologia com definição explícita.</p>
+</section>
+<section id="liberdade-real-vs-pseudoliberdade" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="liberdade-real-vs-pseudoliberdade"><span class="header-section-number">1.3.2</span> Liberdade Real vs Pseudoliberdade</h3>
+<ul>
+<li><p><strong>Pseudoliberdade</strong>: Não ter regras sobre terminologia. Resultado: você fica preso tentando lembrar o que cada termo significa três meses depois.</p></li>
+<li><p><strong>Liberdade real</strong>: Ter um sistema que valida sua consistência automaticamente. Resultado: sua mente fica livre para o trabalho interpretativo, confiando que o sistema cuida da integridade estrutural.</p></li>
+</ul>
+<p>Analogia: músicos de jazz improvisam livremente — mas sobre estruturas harmônicas bem definidas (II-V-I, blues de 12 compassos). <strong>A estrutura não limita a criatividade, ela a canaliza.</strong></p>
+<hr>
+</section>
+</section>
+<section id="comparação-synesis-vs-outras-abordagens" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="comparação-synesis-vs-outras-abordagens"><span class="header-section-number">1.4</span> Comparação: Synesis vs Outras Abordagens</h2>
+<section id="vs.-anotações-livres-highlights-em-pdf" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="vs.-anotações-livres-highlights-em-pdf"><span class="header-section-number">1.4.1</span> vs.&nbsp;Anotações Livres (Highlights em PDF)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>Anotações Livres</th>
+<th>Synesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Velocidade inicial</strong></td>
+<td>Muito rápida</td>
+<td>Ligeiramente mais lenta</td>
+</tr>
+<tr class="even">
+<td><strong>Consistência</strong></td>
+<td>Não garantida</td>
+<td>Validada automaticamente</td>
+</tr>
+<tr class="odd">
+<td><strong>Rastreabilidade</strong></td>
+<td>Manual e frágil</td>
+<td>Automática e bidirecional</td>
+</tr>
+<tr class="even">
+<td><strong>Escalabilidade</strong></td>
+<td>Colapsa com muitos dados</td>
+<td>Cresce linearmente</td>
+</tr>
+<tr class="odd">
+<td><strong>Auditabilidade</strong></td>
+<td>Difícil de justificar</td>
+<td>Totalmente transparente</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusão:</strong> Anotações livres são melhores para <strong>exploração inicial</strong> (primeiras leituras, brainstorms). Synesis é melhor para <strong>consolidação sistemática</strong> (análise formal, artigos, relatórios).</p>
+</section>
+<section id="vs.-software-caqdas-atlas.ti-nvivo-maxqda" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="vs.-software-caqdas-atlas.ti-nvivo-maxqda"><span class="header-section-number">1.4.2</span> vs.&nbsp;Software CAQDAS (Atlas.ti, NVivo, MAXQDA)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 53%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>CAQDAS Tradicional</th>
+<th>Synesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Interface</strong></td>
+<td>GUI visual</td>
+<td>Text-first</td>
+</tr>
+<tr class="even">
+<td><strong>Portabilidade</strong></td>
+<td>Formato proprietário</td>
+<td>Arquivos de texto puro</td>
+</tr>
+<tr class="odd">
+<td><strong>Versionamento</strong></td>
+<td>Limitado</td>
+<td>Git nativo</td>
+</tr>
+<tr class="even">
+<td><strong>Automação</strong></td>
+<td>Limitada</td>
+<td>Full API (Python)</td>
+</tr>
+<tr class="odd">
+<td><strong>Curva de aprendizado</strong></td>
+<td>Média</td>
+<td>Média-Alta</td>
+</tr>
+<tr class="even">
+<td><strong>Interoperabilidade</strong></td>
+<td>Exportação limitada</td>
+<td>JSON/CSV/Excel universais</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusão:</strong> CAQDAS são excelentes para pesquisadores que preferem interfaces visuais e fluxos guiados. Synesis é melhor para pesquisadores que valorizam <strong>portabilidade</strong>, <strong>reprodutibilidade</strong> e <strong>integração</strong> com ferramentas de ciência de dados.</p>
+</section>
+<section id="vs.-planilhas-excel-google-sheets" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="vs.-planilhas-excel-google-sheets"><span class="header-section-number">1.4.3</span> vs.&nbsp;Planilhas (Excel, Google Sheets)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>Planilhas</th>
+<th>Synesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Flexibilidade</strong></td>
+<td>Total</td>
+<td>Limitada por template</td>
+</tr>
+<tr class="even">
+<td><strong>Validação</strong></td>
+<td>Nenhuma</td>
+<td>Compilador rigoroso</td>
+</tr>
+<tr class="odd">
+<td><strong>Expressividade</strong></td>
+<td>Linhas e colunas</td>
+<td>Blocos semânticos</td>
+</tr>
+<tr class="even">
+<td><strong>Chains/Relações</strong></td>
+<td>Difícil de expressar</td>
+<td>Sintaxe nativa</td>
+</tr>
+<tr class="odd">
+<td><strong>Ontologias</strong></td>
+<td>Não suportado</td>
+<td>Primeira classe</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusão:</strong> Planilhas são melhores para dados <strong>já estruturados</strong> e análises <strong>quantitativas simples</strong>. Synesis é melhor para <strong>modelar relações complexas</strong> e <strong>garantir consistência conceitual</strong>. (Veja também: <a href="../explanation/guia_sincero.html">Por que não Excel?</a>)</p>
+<hr>
+</section>
+</section>
+<section id="o-valor-de-longo-prazo-conhecimento-como-ativo-durável" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="o-valor-de-longo-prazo-conhecimento-como-ativo-durável"><span class="header-section-number">1.5</span> O Valor de Longo Prazo: Conhecimento Como Ativo Durável</h2>
+<p>A razão mais profunda para usar anotações estruturadas não é eficiência imediata — é <strong>sustentabilidade de longo prazo</strong>.</p>
+<section id="problema-1-onde-eu-anotei-isso" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="problema-1-onde-eu-anotei-isso"><span class="header-section-number">1.5.1</span> Problema 1: “Onde eu anotei isso?”</h3>
+<p>Sem estrutura, seu conhecimento fica fragmentado em:</p>
+<ul>
+<li>Highlights no Zotero</li>
+<li>Comentários em documentos Word</li>
+<li>Notas em cadernos físicos</li>
+<li>Memórias não registradas</li>
+</ul>
+<p><strong>Resultado:</strong> Cinco anos depois, quando você quer escrever um segundo artigo sobre o mesmo tema, você começa quase do zero. Seu conhecimento passado está inacessível.</p>
+</section>
+<section id="problema-2-quem-vai-continuar-isso" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="problema-2-quem-vai-continuar-isso"><span class="header-section-number">1.5.2</span> Problema 2: “Quem vai continuar isso?”</h3>
+<p>Pesquisa não é individual — é cumulativa. Mas como outro pesquisador (ou você mesmo daqui a anos) vai entender suas decisões analíticas se elas estão apenas na sua cabeça ou em formatos proprietários?</p>
+<p><strong>Anotações estruturadas em texto puro</strong> são:</p>
+<ul>
+<li><strong>Versionáveis</strong> (Git mostra evolução das suas interpretações)</li>
+<li><strong>Portáveis</strong> (funcionam em qualquer OS, agora e em 20 anos)</li>
+<li><strong>Auditáveis</strong> (decisões analíticas são explícitas, não implícitas)</li>
+<li><strong>Reutilizáveis</strong> (outros podem estender, sem reinventar a roda)</li>
+</ul>
+</section>
+<section id="problema-3-como-eu-valido-isso" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="problema-3-como-eu-valido-isso"><span class="header-section-number">1.5.3</span> Problema 3: “Como eu valido isso?”</h3>
+<p>A crise de reprodutibilidade não é só nas ciências experimentais — existe também nas qualitativas. Como você prova que suas conclusões são suportadas pelos dados se o processo é opaco?</p>
+<p><strong>Synesis gera trilhas de auditoria automáticas:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"interpretation"</span><span class="fu">:</span> <span class="st">"Custo é a principal barreira"</span><span class="fu">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"supporting_evidence"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"source"</span><span class="fu">:</span> <span class="st">"@entrevista_01"</span><span class="fu">,</span> <span class="dt">"quote"</span><span class="fu">:</span> <span class="st">"O preço é proibitivo"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"source"</span><span class="fu">:</span> <span class="st">"@entrevista_03"</span><span class="fu">,</span> <span class="dt">"quote"</span><span class="fu">:</span> <span class="st">"Não cabe no orçamento"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"source"</span><span class="fu">:</span> <span class="st">"@relatorio_2025"</span><span class="fu">,</span> <span class="dt">"quote"</span><span class="fu">:</span> <span class="st">"Investimento inviável"</span><span class="fu">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Qualquer um pode verificar: “Esta interpretação é justificada por estas três evidências”. Isso é <strong>transparência metodológica</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="quando-anotações-estruturadas-não-são-a-resposta" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="quando-anotações-estruturadas-não-são-a-resposta"><span class="header-section-number">1.6</span> Quando Anotações Estruturadas NÃO São a Resposta</h2>
+<p>Synesis não é para todos nem para todas as fases. <strong>Não use anotações estruturadas quando:</strong></p>
+<ol type="1">
+<li><strong>Você está explorando inicialmente</strong>: Primeiras leituras, ainda não sabe o que procura. Use highlights livres.</li>
+<li><strong>Você está fazendo brainstorm criativo</strong>: Conexões selvagens, associações livres. Use mapas mentais.</li>
+<li><strong>Você tem pouquíssimos dados</strong>: Se é só uma entrevista curta, estrutura é overhead desnecessário.</li>
+<li><strong>Você não vai revisitar os dados</strong>: Se é análise descartável (relatório único, não reutilizável), não vale o investimento.</li>
+</ol>
+<p><strong>Use anotações estruturadas quando:</strong></p>
+<ol type="1">
+<li><strong>Você tem muitos dados</strong>: 10+ entrevistas, dezenas de documentos</li>
+<li><strong>Você precisa de consistência</strong>: Projeto longo, múltiplos colaboradores</li>
+<li><strong>Você vai publicar formalmente</strong>: Artigos, dissertações, relatórios que exigem justificação rigorosa</li>
+<li><strong>Você quer integração avançada</strong>: Neo4j, R, Python, dashboards interativos</li>
+</ol>
+<hr>
+</section>
+<section id="conclusão-estrutura-como-ferramenta-de-pensamento" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="conclusão-estrutura-como-ferramenta-de-pensamento"><span class="header-section-number">1.7</span> Conclusão: Estrutura Como Ferramenta de Pensamento</h2>
+<p>O filósofo Andy Clark argumenta que ferramentas externas (papel, calculadoras, computadores) não são apenas auxiliares — são <strong>extensões da mente</strong>. Quando você escreve uma lista de tarefas, você não está apenas “registrando” o que estava na sua cabeça; você está <strong>externalizando processos cognitivos</strong> para que sua mente finita possa lidar com complexidade maior.</p>
+<p><strong>Anotações estruturadas são extensões cognitivas.</strong></p>
+<p>Quando você define um código na ontologia com definição explícita, você não está “burocratizando” — você está <strong>externalizando decisões de categorização</strong> para que, três meses depois, você não precise confiar em memória frágil.</p>
+<p>Quando você escreve uma chain explícita (<code>A -&gt; INIBE -&gt; B</code>), você não está “complicando” — você está <strong>externalizando inferências causais</strong> para que, ao revisar, você possa questionar: “Eu realmente tenho evidência para isso?”</p>
+<p><strong>A estrutura não substitui pensamento — ela amplifica pensamento.</strong> Assim como um pianista pratica escalas (estrutura rígida) para poder improvisar livremente, um pesquisador estrutura suas anotações para poder teorizar livremente.</p>
+<p>No final, a pergunta não é:</p>
+<blockquote class="blockquote">
+<p>“Por que eu deveria me limitar com estrutura?”</p>
+</blockquote>
+<p>A pergunta certa é:</p>
+<blockquote class="blockquote">
+<p>“Por que eu confiaria em um sistema que não valida minha consistência?”</p>
+</blockquote>
+<hr>
+</section>
+<section id="referências" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="referências"><span class="header-section-number">1.8</span> Referências</h2>
+<p>Para explorar mais:</p>
+<ul>
+<li><a href="../explanation/guia_sincero.html">Por que não Excel?</a> — Comparação honesta com alternativas</li>
+<li><a href="../tutorials/getting-started.html">Tutorial Getting Started</a> — Experimente na prática</li>
+<li><a href="../howto/definir_ontologia.html">Como definir uma ontologia</a> — Crie vocabulários reutilizáveis</li>
+</ul>
+<hr>
+<p><strong>Discordou de algo aqui?</strong> Ótimo! Abra uma discussão em <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a> — estas reflexões só melhoram com confronto crítico.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

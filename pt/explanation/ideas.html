@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ideas – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Sinesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#synesis-ideias" id="toc-synesis-ideias" class="nav-link active" data-scroll-target="#synesis-ideias"><span class="header-section-number">1</span> Synesis: Ideias</a>
+  <ul class="collapse">
+  <li><a href="#introdução-às-extensões" id="toc-introdução-às-extensões" class="nav-link" data-scroll-target="#introdução-às-extensões"><span class="header-section-number">1.1</span> Introdução às Extensões</a></li>
+  <li><a href="#anotação-canônica-bíblicaexegética" id="toc-anotação-canônica-bíblicaexegética" class="nav-link" data-scroll-target="#anotação-canônica-bíblicaexegética"><span class="header-section-number">1.2</span> Anotação Canônica (Bíblica/Exegética)</a>
+  <ul class="collapse">
+  <li><a href="#tipo-de-campo-pericope" id="toc-tipo-de-campo-pericope" class="nav-link" data-scroll-target="#tipo-de-campo-pericope"><span class="header-section-number">1.2.1</span> Tipo de Campo PERICOPE</a></li>
+  <li><a href="#regras-de-endereçamento-parsing" id="toc-regras-de-endereçamento-parsing" class="nav-link" data-scroll-target="#regras-de-endereçamento-parsing"><span class="header-section-number">1.2.2</span> Regras de Endereçamento (Parsing)</a></li>
+  <li><a href="#exemplo-de-template-para-exegese" id="toc-exemplo-de-template-para-exegese" class="nav-link" data-scroll-target="#exemplo-de-template-para-exegese"><span class="header-section-number">1.2.3</span> Exemplo de Template para Exegese</a></li>
+  </ul></li>
+  <li><a href="#apêndice-b-estratégias-para-exegese-comparativa" id="toc-apêndice-b-estratégias-para-exegese-comparativa" class="nav-link" data-scroll-target="#apêndice-b-estratégias-para-exegese-comparativa"><span class="header-section-number">1.3</span> Apêndice B: Estratégias para Exegese Comparativa</a>
+  <ul class="collapse">
+  <li><a href="#abordagem-1-o-join-relacional-múltiplos-items" id="toc-abordagem-1-o-join-relacional-múltiplos-items" class="nav-link" data-scroll-target="#abordagem-1-o-join-relacional-múltiplos-items"><span class="header-section-number">1.3.1</span> Abordagem 1: O “Join” Relacional (Múltiplos ITEMs)</a></li>
+  <li><a href="#abordagem-2-a-comparação-direta-via-bundle-item-único" id="toc-abordagem-2-a-comparação-direta-via-bundle-item-único" class="nav-link" data-scroll-target="#abordagem-2-a-comparação-direta-via-bundle-item-único"><span class="header-section-number">1.3.2</span> Abordagem 2: A Comparação Direta via BUNDLE (Item Único)</a></li>
+  </ul></li>
+  <li><a href="#apêndice-c" id="toc-apêndice-c" class="nav-link" data-scroll-target="#apêndice-c"><span class="header-section-number">1.4</span> Apêndice C</a>
+  <ul class="collapse">
+  <li><a href="#no-compilador-core-synesis" id="toc-no-compilador-core-synesis" class="nav-link" data-scroll-target="#no-compilador-core-synesis"><span class="header-section-number">1.4.1</span> 1. No Compilador (Core Synesis)</a></li>
+  </ul></li>
+  <li><a href="#anotação-jurídica-e-normativa-extensão-de-domínio" id="toc-anotação-jurídica-e-normativa-extensão-de-domínio" class="nav-link" data-scroll-target="#anotação-jurídica-e-normativa-extensão-de-domínio"><span class="header-section-number">1.5</span> Anotação Jurídica e Normativa (Extensão de Domínio)</a>
+  <ul class="collapse">
+  <li><a href="#endereçamento-topográfico-legislação" id="toc-endereçamento-topográfico-legislação" class="nav-link" data-scroll-target="#endereçamento-topográfico-legislação"><span class="header-section-number">1.5.1</span> 1. Endereçamento Topográfico (Legislação)</a></li>
+  <li><a href="#ontologia-jurisprudencial" id="toc-ontologia-jurisprudencial" class="nav-link" data-scroll-target="#ontologia-jurisprudencial"><span class="header-section-number">1.5.2</span> 2. Ontologia Jurisprudencial</a></li>
+  <li><a href="#redes-de-precedentes-chain" id="toc-redes-de-precedentes-chain" class="nav-link" data-scroll-target="#redes-de-precedentes-chain"><span class="header-section-number">1.5.3</span> 3. Redes de Precedentes (CHAIN)</a></li>
+  <li><a href="#exemplo-de-implementação-template-e-anotação" id="toc-exemplo-de-implementação-template-e-anotação" class="nav-link" data-scroll-target="#exemplo-de-implementação-template-e-anotação"><span class="header-section-number">1.5.4</span> Exemplo de Implementação (Template e Anotação)</a></li>
+  </ul></li>
+  <li><a href="#gestão-de-conhecimento-zettelkasten" id="toc-gestão-de-conhecimento-zettelkasten" class="nav-link" data-scroll-target="#gestão-de-conhecimento-zettelkasten"><span class="header-section-number">1.6</span> Gestão de Conhecimento (Zettelkasten)</a>
+  <ul class="collapse">
+  <li><a href="#o-zettelkasten-como-source" id="toc-o-zettelkasten-como-source" class="nav-link" data-scroll-target="#o-zettelkasten-como-source"><span class="header-section-number">1.6.1</span> O Zettelkasten como SOURCE</a></li>
+  <li><a href="#campos-exclusivos-zettel-fields" id="toc-campos-exclusivos-zettel-fields" class="nav-link" data-scroll-target="#campos-exclusivos-zettel-fields"><span class="header-section-number">1.6.2</span> Campos Exclusivos (ZETTEL FIELDS)</a></li>
+  <li><a href="#o-impacto-na-exportação-neo4j" id="toc-o-impacto-na-exportação-neo4j" class="nav-link" data-scroll-target="#o-impacto-na-exportação-neo4j"><span class="header-section-number">1.6.3</span> O Impacto na Exportação (Neo4j)</a></li>
+  </ul></li>
+  <li><a href="#configuração-de-artefatos-de-saída-render" id="toc-configuração-de-artefatos-de-saída-render" class="nav-link" data-scroll-target="#configuração-de-artefatos-de-saída-render"><span class="header-section-number">1.7</span> Configuração de Artefatos de Saída (RENDER)</a>
+  <ul class="collapse">
+  <li><a href="#sintaxe" id="toc-sintaxe" class="nav-link" data-scroll-target="#sintaxe"><span class="header-section-number">1.7.1</span> Sintaxe</a></li>
+  </ul></li>
+  <li><a href="#análise-semântica-avançada" id="toc-análise-semântica-avançada" class="nav-link" data-scroll-target="#análise-semântica-avançada"><span class="header-section-number">1.8</span> Análise Semântica Avançada</a>
+  <ul class="collapse">
+  <li><a href="#detecção-de-redundância-ontológica-fuzzy-matching" id="toc-detecção-de-redundância-ontológica-fuzzy-matching" class="nav-link" data-scroll-target="#detecção-de-redundância-ontológica-fuzzy-matching"><span class="header-section-number">1.8.1</span> Detecção de Redundância Ontológica (Fuzzy Matching)</a></li>
+  <li><a href="#validação-de-ciclos-hierárquicos" id="toc-validação-de-ciclos-hierárquicos" class="nav-link" data-scroll-target="#validação-de-ciclos-hierárquicos"><span class="header-section-number">1.8.2</span> Validação de Ciclos Hierárquicos</a></li>
+  <li><a href="#eliminação-de-código-morto-ghost-concepts" id="toc-eliminação-de-código-morto-ghost-concepts" class="nav-link" data-scroll-target="#eliminação-de-código-morto-ghost-concepts"><span class="header-section-number">1.8.3</span> Eliminação de Código Morto (Ghost Concepts)</a></li>
+  </ul></li>
+  <li><a href="#novos-comandos-estruturais" id="toc-novos-comandos-estruturais" class="nav-link" data-scroll-target="#novos-comandos-estruturais"><span class="header-section-number">1.9</span> Novos Comandos Estruturais</a>
+  <ul class="collapse">
+  <li><a href="#taxonomy-hierarquia-rígida" id="toc-taxonomy-hierarquia-rígida" class="nav-link" data-scroll-target="#taxonomy-hierarquia-rígida"><span class="header-section-number">1.9.1</span> TAXONOMY (Hierarquia Rígida)</a></li>
+  <li><a href="#constraint-regras-de-negócio" id="toc-constraint-regras-de-negócio" class="nav-link" data-scroll-target="#constraint-regras-de-negócio"><span class="header-section-number">1.9.2</span> CONSTRAINT (Regras de Negócio)</a></li>
+  <li><a href="#crossref-rede-de-citações" id="toc-crossref-rede-de-citações" class="nav-link" data-scroll-target="#crossref-rede-de-citações"><span class="header-section-number">1.9.3</span> CROSSREF (Rede de Citações)</a></li>
+  </ul></li>
+  <li><a href="#visualização-imediata" id="toc-visualização-imediata" class="nav-link" data-scroll-target="#visualização-imediata"><span class="header-section-number">1.10</span> Visualização Imediata</a></li>
+  <li><a href="#integração-com-data-science" id="toc-integração-com-data-science" class="nav-link" data-scroll-target="#integração-com-data-science"><span class="header-section-number">1.11</span> Integração com Data Science</a></li>
+  <li><a href="#possível-workflow" id="toc-possível-workflow" class="nav-link" data-scroll-target="#possível-workflow"><span class="header-section-number">1.12</span> Possível Workflow</a>
+  <ul class="collapse">
+  <li><a href="#passo-1-desacoplamento-de-io-entradasaída" id="toc-passo-1-desacoplamento-de-io-entradasaída" class="nav-link" data-scroll-target="#passo-1-desacoplamento-de-io-entradasaída"><span class="header-section-number">1.12.1</span> Passo 1: Desacoplamento de I/O (Entrada/Saída)</a></li>
+  <li><a href="#passo-2-exposição-da-api-pública-do-core" id="toc-passo-2-exposição-da-api-pública-do-core" class="nav-link" data-scroll-target="#passo-2-exposição-da-api-pública-do-core"><span class="header-section-number">1.12.2</span> Passo 2: Exposição da API Pública do Core</a></li>
+  <li><a href="#passo-3-criação-do-adaptador-python-data-science" id="toc-passo-3-criação-do-adaptador-python-data-science" class="nav-link" data-scroll-target="#passo-3-criação-do-adaptador-python-data-science"><span class="header-section-number">1.12.3</span> Passo 3: Criação do Adaptador Python (Data Science)</a></li>
+  <li><a href="#passo-4-adaptação-para-o-lsp-editor-intelligence" id="toc-passo-4-adaptação-para-o-lsp-editor-intelligence" class="nav-link" data-scroll-target="#passo-4-adaptação-para-o-lsp-editor-intelligence"><span class="header-section-number">1.12.4</span> Passo 4: Adaptação para o LSP (Editor Intelligence)</a></li>
+  <li><a href="#passo-5-cli-como-cliente-magro" id="toc-passo-5-cli-como-cliente-magro" class="nav-link" data-scroll-target="#passo-5-cli-como-cliente-magro"><span class="header-section-number">1.12.5</span> Passo 5: CLI como “Cliente Magro”</a></li>
+  <li><a href="#resumo-do-fluxo-de-dados" id="toc-resumo-do-fluxo-de-dados" class="nav-link" data-scroll-target="#resumo-do-fluxo-de-dados"><span class="header-section-number">1.12.6</span> Resumo do Fluxo de Dados</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="synesis-ideias" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis: Ideias</h1>
+<p><strong>Ideias:</strong> Propostas de especificação de Extensões da Linguagem</p>
+<hr>
+<section id="introdução-às-extensões" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introdução-às-extensões"><span class="header-section-number">1.1</span> Introdução às Extensões</h2>
+<p>Esta especificação detalha os novos recursos planejados para a versão 1.2 da linguagem Synesis. O foco desta atualização é evoluir a linguagem de um sistema de anotação linear para um <strong>motor de inferência qualitativa</strong> e gestão de conhecimento (Zettelkasten), além de introduzir suporte nativo para loci canônicos (textos sagrados).</p>
+<hr>
+</section>
+<section id="anotação-canônica-bíblicaexegética" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="anotação-canônica-bíblicaexegética"><span class="header-section-number">1.2</span> Anotação Canônica (Bíblica/Exegética)</h2>
+<p>Sistema de endereçamento especializado para textos sagrados que utilizam o padrão Locus (Livro, Capítulo, Versículo). Para manter a integridade da gramática, o endereçamento canônico é implementado no Synesis através de um tipo de campo específico (<code>TYPE PERICOPE</code>), mantendo intacta a estrutura padrão de blocos analíticos.</p>
+<section id="tipo-de-campo-pericope" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="tipo-de-campo-pericope"><span class="header-section-number">1.2.1</span> Tipo de Campo PERICOPE</h3>
+<p>Não há substituição de blocos. O bloco <code>SOURCE</code> continua sendo utilizado para referenciar a obra bibliográfica (a Tradução ou o Manuscrito específico via BibTeX). A unidade analítica (<code>ITEM</code>) recebe um campo tipado como <code>PERICOPE</code> para identificar a passagem exata.</p>
+<p><strong>Sintaxe no arquivo <code>.syn</code>:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ara1993</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">translation_type:</span> Formal equivalence</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># O bloco ITEM referencia a tradução e especifica o locus no campo</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ara1993</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>28-30, 32a</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Sabemos que todas as coisas cooperam para o bem..."</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Providência</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="regras-de-endereçamento-parsing" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="regras-de-endereçamento-parsing"><span class="header-section-number">1.2.2</span> Regras de Endereçamento (Parsing)</h3>
+<p>O parser aplica regras estritas para a identificação dos livros, mas oferece flexibilidade ergonômica na pontuação dos versículos:</p>
+<ol type="1">
+<li><strong>Código USX (Estrito):</strong> Exigência de exatamente 3 letras maiúsculas para o livro (ex: <code>MAT</code>, <code>GEN</code>, <code>ROM</code>). Nomes por extenso não são permitidos pelo compilador para evitar ambiguidades.</li>
+<li><strong>Separador de Capítulo (Flexível):</strong> O compilador aceita nativamente tanto dois-pontos (<code>:</code>) quanto ponto (<code>.</code>) para separar capítulo e versículo (ex: <code>ROM 8:1</code> ou <code>ROM 8.1</code>). A árvore sintática (AST) normaliza essa variação automaticamente.</li>
+<li><strong>Versículos e Subdivisões:</strong> Uso de hífen <code>-</code> para intervalos e vírgula <code>,</code> para listas. O parser suporta letras minúsculas anexadas aos números para subdivisões exegéticas (ex: <code>6a</code>, <code>6b</code>).</li>
+</ol>
+</section>
+<section id="exemplo-de-template-para-exegese" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="exemplo-de-template-para-exegese"><span class="header-section-number">1.2.3</span> Exemplo de Template para Exegese</h3>
+<p>No arquivo <code>.synt</code>, o campo deve ser declarado com o tipo <code>PERICOPE</code> e escopo <code>ITEM</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> biblical_exegesis</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> passage, <span class="at">quote</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> code</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> passage <span class="kw">TYPE</span> <span class="dt">PERICOPE</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Endereçamento Locus canônico (Livro <span class="fu">Cap:</span>Versos)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto textual extraído da fonte bibliográfica</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="apêndice-a-notas-de-implementação-lark-grammar" class="level4" data-number="1.2.3.1">
+<h4 data-number="1.2.3.1" class="anchored" data-anchor-id="apêndice-a-notas-de-implementação-lark-grammar"><span class="header-section-number">1.2.3.1</span> Apêndice A: Notas de Implementação (Lark Grammar)</h4>
+<p>Snippet da gramática demonstrando o processamento do valor do campo <code>PERICOPE</code> nas regras da linguagem:</p>
+<pre class="lark"><code>// A regra rigorosa que processa o valor do campo Locus
+pericope_value: usx_code WS INT separator verse_list
+
+// Códigos USX (3 letras maiúsculas estritas)
+usx_code: UCASE_LETTER~3
+
+// O separador mágico (aceita os dois formatos acadêmicos comuns)
+separator: ":" | "."
+
+// Lista de versículos com suporte a vírgulas e espaços opcionais
+verse_list: verse_node ("," WS? verse_node)*
+
+// Um nó pode ser um versículo isolado ou um intervalo
+verse_node: verse_single | verse_single "-" verse_single
+
+// O versículo: Um número seguido de uma letra minúscula opcional (ex: 6a)
+verse_single: INT /[a-z]?/
+</code></pre>
+<p>Aqui está a proposta de apêndice formatada para o seu Guia de Referência, utilizando ilustrações conceituais para consolidar o entendimento das duas arquiteturas.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="apêndice-b-estratégias-para-exegese-comparativa" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="apêndice-b-estratégias-para-exegese-comparativa"><span class="header-section-number">1.3</span> Apêndice B: Estratégias para Exegese Comparativa</h2>
+<p>A linguagem Synesis oferece flexibilidade estrutural para pesquisadores que necessitam comparar diferentes manuscritos ou traduções de uma mesma passagem. Como a invariante estrutural da linguagem estabelece que um bloco <code>ITEM</code> pertence a exatamente um <code>SOURCE</code>, existem duas abordagens arquiteturais recomendadas, dependendo de como os dados serão analisados nas etapas seguintes da pesquisa.</p>
+<section id="abordagem-1-o-join-relacional-múltiplos-items" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="abordagem-1-o-join-relacional-múltiplos-items"><span class="header-section-number">1.3.1</span> Abordagem 1: O “Join” Relacional (Múltiplos ITEMs)</h3>
+<p>Neste modelo, prioriza-se o rigor bibliográfico absoluto. Cada texto base (ex: Grego original e Tradução em Português) é tratado como uma obra separada no bloco <code>SOURCE</code>. A correlação entre os diferentes blocos de anotação ocorre organicamente porque o campo <code>locus</code> atua como uma chave universal de relacionamento (Foreign Key).</p>
+<p><strong>Sintaxe na Anotação (<code>.syn</code>):</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@na28</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">language:</span> <span class="st">"grc"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@na28</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>1</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Οὐδὲν ἄρα νῦν κατάκριμα..."</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ara1993</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">language:</span> <span class="st">"pt-BR"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ara1993</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>1</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Agora, pois, já nenhuma condenação há..."</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Vantagem Analítica:</strong> Esta abordagem gera tabelas planas altamente normalizadas. É a arquitetura ideal para fluxos de trabalho de Data Science, pois permite agrupar as traduções dinamicamente via scripts em Python (Pandas) ou realizar consultas complexas de travessia em bancos de grafos como o Neo4j, conectando os nós através da propriedade <code>locus</code>.</p>
+<hr>
+</section>
+<section id="abordagem-2-a-comparação-direta-via-bundle-item-único" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="abordagem-2-a-comparação-direta-via-bundle-item-único"><span class="header-section-number">1.3.2</span> Abordagem 2: A Comparação Direta via BUNDLE (Item Único)</h3>
+<p>Se o foco epistemológico é a justaposição visual e hermenêutica direta, e o texto-base da pesquisa é uma Bíblia Interlinear ou Paralela, utiliza-se o modificador <code>BUNDLE</code>. O <code>BUNDLE</code> garante a correspondência posicional obrigatória entre a versão da tradução e o excerto analisado, formando uma unidade analítica indivisível.</p>
+<p><strong>Sintaxe no Template (<code>.synt</code>):</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> passage</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> version, <span class="at">quote</span>  <span class="co"># Campos atrelados posicionalmente</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> passage <span class="kw">TYPE</span> <span class="dt">PERICOPE</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Endereçamento canônico</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> version <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Sigla da tradução bibliográfica</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">NA28:</span> Nestle-Aland (Grego)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ARA:</span> Almeida Rev. Atualizada</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">NVI:</span> Nova Versão Internacional</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto correspondente à versão</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Sintaxe na Anotação (<code>.syn</code>):</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@biblia_interlinear2025</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>1</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Análise cruzada das escolhas de tradução.</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -- Par 1 do Bundle --</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> NA28</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Οὐδὲν ἄρα νῦν κατάκριμα..."</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -- Par 2 do Bundle --</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> ARA</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Agora, pois, já nenhuma condenação há..."</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Vantagem Analítica:</strong> Mantém a comparação coesa e de fácil leitura humana dentro do mesmo bloco de anotação. Além disso, o compilador protegerá a integridade dos dados, emitindo um erro de compilação caso o pesquisador anote uma versão sem o respectivo excerto textual, ou vice-versa. O uso do tipo <code>ENUMERATED</code> também assegura que apenas as versões declaradas no <code>VALUES</code> sejam aceitas pelo compilador.</p>
+</section>
+</section>
+<section id="apêndice-c" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="apêndice-c"><span class="header-section-number">1.4</span> Apêndice C</h2>
+<p>Aqui está o mapa exato de quão cirúrgica e mínima será essa intervenção:</p>
+<section id="no-compilador-core-synesis" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="no-compilador-core-synesis"><span class="header-section-number">1.4.1</span> 1. No Compilador (Core Synesis)</h3>
+<section id="o-que-muda-mínimo" class="level4" data-number="1.4.1.1">
+<h4 data-number="1.4.1.1" class="anchored" data-anchor-id="o-que-muda-mínimo"><span class="header-section-number">1.4.1.1</span> O que muda (Mínimo)</h4>
+<p><strong>Template Parser:</strong> Adicionar a palavra <code>PERICOPE</code> na lista de palavras reservadas de tipos de dados válidos, ao lado de <code>TEXT</code>, <code>QUOTATION</code>, <code>MEMO</code>, <code>CHAIN</code>, etc..</p>
+<ul>
+<li><strong>Lark Grammar:</strong> Criar a regra <code>pericope_value</code> para capturar a string <code>USX INT:INT</code>.</li>
+<li><strong>Transformer (Python):</strong> Escrever a funçãozinha de 10 linhas que desmembra a string em dicionário (<code>book</code>, <code>chapter</code>, <code>verses</code>).</li>
+</ul>
+</section>
+<section id="o-que-não-muda" class="level4" data-number="1.4.1.2">
+<h4 data-number="1.4.1.2" class="anchored" data-anchor-id="o-que-não-muda"><span class="header-section-number">1.4.1.2</span> O que NÃO muda</h4>
+<p><strong>Árvore Estrutural:</strong> A lógica de que blocos <code>ITEM</code> pertencem a blocos <code>SOURCE</code> permanece intacta.</p>
+<p><strong>Validador de BibTeX:</strong> O sistema continuará exigindo e validando referências <code>@bibref</code> exatamente como já faz hoje.</p>
+<p><strong>Motor de Validação do BUNDLE:</strong> A complexa verificação de arrays, correspondência posicional e obrigatoriedade não precisará de uma única linha nova de código.</p>
+<p><strong>Exportadores:</strong> Os geradores de JSON e tabelas planas em CSV vão simplesmente iterar sobre a nova chave <code>PERICOPE</code> do dicionário, como fariam com qualquer campo dinâmico definido no template <code>.synt</code>.</p>
+</section>
+<section id="no-lsp-extensão-synesis-explorer-para-vscode" class="level4" data-number="1.4.1.3">
+<h4 data-number="1.4.1.3" class="anchored" data-anchor-id="no-lsp-extensão-synesis-explorer-para-vscode"><span class="header-section-number">1.4.1.3</span> No LSP (Extensão Synesis-Explorer para VSCode)</h4>
+<p>A atualização na extensão também será pontual e isolada.</p>
+<p><strong>O que muda:</strong></p>
+<ul>
+<li><strong>Highlighter (<code>.tmLanguage.json</code>):</strong> Adicionar um regex simples para capturar o padrão canônico (ex: <code>\b[A-Z]{3}\s\d+[:.]\d+[\d\-,a-z\s]*\b</code>) e aplicar uma cor de destaque bacana (ex: <code>entity.name.class</code>).</li>
+<li><strong>Snippets:</strong> Criar um atalho rápido para autocompletar o bloco <code>ITEM</code> já com o campo <code>locus</code>.</li>
+<li><strong>Code Actions (Opcional/Futuro):</strong> O script para transformar “Romanos 8, 1 a 3” em <code>ROM 8:1-3</code> fica totalmente isolado na camada de interface do usuário, como uma sugestão de Quick Fix (Lâmpada amarela do VSCode), sem nunca tocar no motor do compilador.</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="anotação-jurídica-e-normativa-extensão-de-domínio" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="anotação-jurídica-e-normativa-extensão-de-domínio"><span class="header-section-number">1.5</span> Anotação Jurídica e Normativa (Extensão de Domínio)</h2>
+<p>O ecossistema Synesis é agnóstico em relação ao domínio de pesquisa. A arquitetura baseada em tipos de campo configuráveis permite a modelagem nativa da alta complexidade de textos jurídicos (legislação e jurisprudência) sem necessidade de alteração na gramática central ou na estrutura de blocos <code>SOURCE</code> e <code>ITEM</code> da linguagem .</p>
+<section id="endereçamento-topográfico-legislação" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="endereçamento-topográfico-legislação"><span class="header-section-number">1.5.1</span> 1. Endereçamento Topográfico (Legislação)</h3>
+<p>Textos normativos exigem um sistema de endereçamento estruturado e não-linear, fatiado em normativas menores. Semelhante à anotação canônica, isso é implementado via um tipo de campo específico no template.</p>
+<ul>
+<li><strong>Tipo de Campo Sugerido:</strong> <code>TYPE LEGAL_LOCUS</code></li>
+<li><strong>Comportamento do Parser:</strong> Captura e estrutura a topografia da lei (Lei, Artigo, Parágrafo, Inciso, Alínea). Exemplo de sintaxe alvo: <code>CF/88 Art. 5, inc. X</code>.</li>
+</ul>
+</section>
+<section id="ontologia-jurisprudencial" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="ontologia-jurisprudencial"><span class="header-section-number">1.5.2</span> 2. Ontologia Jurisprudencial</h3>
+<p>Decisões judiciais (acórdãos e sentenças) possuem categorias ontológicas estritas. A classificação do texto anotado é garantida pelo compilador através da tipagem <code>ENUMERATED</code> , restringindo a anotação a partes formais da sentença.</p>
+<ul>
+<li><strong>Categorias Comuns:</strong> <em>Ratio Decidendi</em> (tese principal), <em>Obiter Dictum</em> (comentário marginal) e <em>Ementa</em> (resumo oficial).</li>
+</ul>
+</section>
+<section id="redes-de-precedentes-chain" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="redes-de-precedentes-chain"><span class="header-section-number">1.5.3</span> 3. Redes de Precedentes (CHAIN)</h3>
+<p>O mapeamento topológico de como decisões judiciais se relacionam ao longo do tempo (ex: tribunais superiores derrubando sentenças de instâncias inferiores) é resolvido nativamente utilizando as cadeias semânticas qualificadas (<code>CHAIN</code>) do Synesis .</p>
+</section>
+<section id="exemplo-de-implementação-template-e-anotação" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="exemplo-de-implementação-template-e-anotação"><span class="header-section-number">1.5.4</span> Exemplo de Implementação (Template e Anotação)</h3>
+<p><strong>Definição no arquivo de template (<code>.synt</code>):</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> legal_analysis</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> locus, <span class="at">quote</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> legal_concept, <span class="at">chain</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> locus <span class="kw">TYPE</span> LEGAL_LOCUS</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Endereço topográfico normativo ou jurisprudencial</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> legal_concept <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Classificação estrutural da decisão judicial</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RATIO:</span> Ratio Decidendi (Tese principal)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">OBITER:</span> Obiter Dictum (Argumento marginal)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">EMENTA:</span> Resumo oficial</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">OVERRULES:</span> Tribunal superior derruba a tese anterior</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CITES_PRECEDENT:</span> Decisão baseia-se em caso passado</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DISTINGUISHES:</span> Distinção do caso atual em relação à regra geral</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Aplicação no arquivo de anotação (<code>.syn</code>):</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@stj_peticao_1234</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2026-02-17</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@stj_peticao_1234</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">locus:</span> CF<span class="co">/88 Art. 5, inc. X</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">legal_concept:</span> RATIO</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"são invioláveis a intimidade, a vida privada, a honra e a imagem..."</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mapeamento do grafo de precedentes entre obras bibliográficas (Acórdãos)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> <span class="fu">@stj_peticao_1234</span> <span class="op">-&gt;</span> OVERRULES <span class="op">-&gt;</span> <span class="fu">@tj_decisao_999</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Vantagem Arquitetural:</strong> Ao exportar este projeto para formatos relacionais (CSV) ou bases de grafos (JSON processado via Neo4j) , o pesquisador obtém automaticamente o rizoma completo da jurisprudência e da topologia legal. Essa rastreabilidade absoluta é alcançada apenas recombinando os modificadores e escopos nativos da versão 1.1 da linguagem .</p>
+<hr>
+</section>
+</section>
+<section id="gestão-de-conhecimento-zettelkasten" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="gestão-de-conhecimento-zettelkasten"><span class="header-section-number">1.6</span> Gestão de Conhecimento (Zettelkasten)</h2>
+<p>Introduz a capacidade de criar “Notas Permanentes” que sintetizam conhecimento. Para manter a estabilidade do parser e as invariantes da linguagem, o Zettelkasten é implementado não como um novo bloco, mas através de campos especializados dentro da unidade analítica padrão (<code>ITEM</code>).</p>
+<section id="o-zettelkasten-como-source" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="o-zettelkasten-como-source"><span class="header-section-number">1.6.1</span> O Zettelkasten como SOURCE</h3>
+<p>Como a linguagem exige que cada <code>ITEM</code> pertença a exatamente um <code>SOURCE</code> referenciado no arquivo <code>.bib</code>, recomenda-se a criação de uma entrada BibTeX representando o próprio repositório de notas do autor (ex: <code>@zettel_vault</code>).</p>
+<p><strong>Sintaxe na Anotação (<code>.syn</code>):</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A "Fonte" é o próprio cérebro/repositório do pesquisador</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@zettel_vault</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2026-02-17</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># O ITEM atua como a Nota Permanente (Zettel)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@zettel_vault</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">zettel_id:</span> 2026011401</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">title:</span> <span class="st">"O Princípio da Atomicidade"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">body:</span> <span class="st">"Uma DSL deve forçar a quebra de conceitos..."</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Conexões explícitas (Rizoma)</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">links:</span> 2026011205, 2025123001</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Metadados e Rastreabilidade</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> DSL_Design</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">origin:</span> <span class="fu">@turing1936</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="campos-exclusivos-zettel-fields" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="campos-exclusivos-zettel-fields"><span class="header-section-number">1.6.2</span> Campos Exclusivos (ZETTEL FIELDS)</h3>
+<p>No arquivo de template <code>.synt</code>, novos tipos de dados (<code>TYPE</code>) são introduzidos para suportar a topologia de grafos típica de um Zettelkasten, permitindo validação cruzada durante a Etapa de Vinculação (Etapa 8).</p>
+<ul>
+<li><strong><code>ZETTEL_ID</code>:</strong> Identificador único da nota (geralmente um timestamp numérico). O compilador garante que não existam IDs duplicados no projeto.</li>
+<li><strong><code>ZETTEL_LINK</code>:</strong> Cria arestas direcionais entre nós ZETTEL. O compilador verifica se os IDs referenciados existem.</li>
+<li><strong><code>BIB_REF</code>:</strong> Permite referenciar uma fonte externa diretamente no campo, criando uma aresta de citação da nota permanente para um autor externo.</li>
+</ul>
+<p><strong>Exemplo de Template (<code>.synt</code>):</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> zettel_knowledge_base</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> zettel_id, title, body</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> links, topic, origin</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> zettel_id <span class="kw">TYPE</span> ZETTEL_ID</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador cronológico único do Zettel</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> links <span class="kw">TYPE</span> ZETTEL_LINK</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Lista de conexões para outros Zettels (IDs separados por vírgula)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> origin <span class="kw">TYPE</span> BIB_REF</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Referência bibliográfica que inspirou a nota permanente</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="apêndice-a-notas-de-implementação-lark-grammar-1" class="level4" data-number="1.6.2.1">
+<h4 data-number="1.6.2.1" class="anchored" data-anchor-id="apêndice-a-notas-de-implementação-lark-grammar-1"><span class="header-section-number">1.6.2.1</span> Apêndice A: Notas de Implementação (Lark Grammar)</h4>
+<p>Snippet da gramática demonstrando como o Lark processa os novos tipos de valores como propriedades de campo (<code>field_value</code>), sem alterar a estrutura de blocos:</p>
+<pre class="lark"><code>// A regra de campo genérica absorve os novos tipos
+field_value: text_value 
+           | chain_value 
+           | zettel_id_value
+           | zettel_link_value
+           | bib_ref_value
+
+// Regras rigorosas para os valores Zettel
+// ID deve ser uma string estritamente numérica (ex: YYYYMMDDHH)
+zettel_id_value: INT 
+
+// Lista de IDs separados por vírgula (similar à regra de versículos)
+zettel_link_value: INT ("," WS? INT)*
+
+// O parser valida o formato de citação com '@'
+bib_ref_value: "@" LCASE_LETTER+ DIGIT+
+</code></pre>
+<hr>
+</section>
+</section>
+<section id="o-impacto-na-exportação-neo4j" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="o-impacto-na-exportação-neo4j"><span class="header-section-number">1.6.3</span> O Impacto na Exportação (Neo4j)</h3>
+<p>A beleza de usar <code>zettel_link</code> e <code>bib_ref</code> como tipos de campo no <code>ITEM</code> é que a sua infraestrutura de grafos vai herdar isso perfeitamente.</p>
+<p>Quando o compilador exportar o JSON, você terá arrays limpos de <code>links</code> contendo os timestamps e o <code>origin</code> contendo a chave BibTeX. Um script simples em Python usando a biblioteca do Neo4j poderá ler esse JSON gerado pela Synesis e plotar o seu rizoma inteiro de notas permanentes com duas ou três linhas de Cypher Query!</p>
+<hr>
+</section>
+</section>
+<section id="configuração-de-artefatos-de-saída-render" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="configuração-de-artefatos-de-saída-render"><span class="header-section-number">1.7</span> Configuração de Artefatos de Saída (RENDER)</h2>
+<p>O comando <code>RENDER</code> permite declarar explicitamente, dentro do arquivo de projeto, quais formatos de arquivo devem ser gerados e onde devem ser salvos. Isso garante a reprodutibilidade da compilação sem depender de parâmetros de linha de comando.</p>
+<section id="sintaxe" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="sintaxe"><span class="header-section-number">1.7.1</span> Sintaxe</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>RENDER AS <span class="bn">[JSON | CSV | EXCEL]</span> INTO <span class="st">"path/to/filename"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="semântica" class="level4" data-number="1.7.1.1">
+<h4 data-number="1.7.1.1" class="anchored" data-anchor-id="semântica"><span class="header-section-number">1.7.1.1</span> Semântica</h4>
+<ul>
+<li><p><strong>RENDER</strong>: Verbo de comando que inicia a definição de um alvo de compilação. Indica a criação de uma representação estruturada (artefato) a partir dos dados interpretados.</p></li>
+<li><p><strong>AS</strong>: Cláusula que especifica o formato de serialização.</p></li>
+<li><p><code>JSON</code>: Gera a árvore de sintaxe abstrata completa com metadados de rastreabilidade.</p></li>
+<li><p><code>CSV</code>: Gera tabelas relacionais planas (separadas por tipo de bloco).</p></li>
+<li><p><code>EXCEL</code>: Gera um arquivo <code>.xlsx</code> com abas correspondentes às tabelas CSV.</p></li>
+<li><p><strong>INTO</strong>: Cláusula que define o caminho de destino.</p></li>
+<li><p>Deve ser uma string entre aspas duplas.</p></li>
+<li><p>Recomenda-se o uso de <strong>caminhos relativos</strong> à raiz do projeto para garantir portabilidade entre diferentes máquinas.</p></li>
+<li><p>Se o diretório de destino não existir, o compilador tentará criá-lo.</p></li>
+</ul>
+</section>
+<section id="exemplo-no-contexto-.synp" class="level4" data-number="1.7.1.2">
+<h4 data-number="1.7.1.2" class="anchored" data-anchor-id="exemplo-no-contexto-.synp"><span class="header-section-number">1.7.1.2</span> Exemplo no Contexto (.synp)</h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> <span class="st">"Estudo Fenomenológico 2026"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"templates/research_v1.synt"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"data/references.bib"</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"data/interviews/*.syn"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology/main.syno"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuração Declarativa de Saída</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Gera múltiplos formatos simultaneamente em diretórios organizados</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>RENDER AS JSON  INTO <span class="st">"dist/full_data.json"</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>RENDER AS EXCEL INTO <span class="st">"reports/human_readable/matrix.xlsx"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>RENDER AS CSV   INTO <span class="st">"reports/raw_data/export.csv"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="regras-de-validação" class="level4" data-number="1.7.1.3">
+<h4 data-number="1.7.1.3" class="anchored" data-anchor-id="regras-de-validação"><span class="header-section-number">1.7.1.3</span> Regras de Validação</h4>
+<ol type="1">
+<li><strong>Multiplicidade</strong>: É permitido declarar múltiplos comandos <code>RENDER</code> no mesmo projeto. O compilador processará todos sequencialmente.</li>
+<li><strong>Permissão de Escrita</strong>: O compilador deve ter permissão de escrita no diretório alvo. Se o arquivo de destino estiver bloqueado (ex: aberto no Excel), a compilação falhará com erro de E/S.</li>
+<li><strong>Caminhos Absolutos</strong>: O uso de caminhos absolutos (ex: <code>C:/Users/...</code>) emitirá um <em>Warning</em>, pois quebra a portabilidade do projeto.</li>
+</ol>
+<hr>
+</section>
+</section>
+</section>
+<section id="análise-semântica-avançada" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="análise-semântica-avançada"><span class="header-section-number">1.8</span> Análise Semântica Avançada</h2>
+<p>O compilador passa a atuar como assistente metodológico, não apenas validador sintático.</p>
+<section id="detecção-de-redundância-ontológica-fuzzy-matching" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="detecção-de-redundância-ontológica-fuzzy-matching"><span class="header-section-number">1.8.1</span> Detecção de Redundância Ontológica (Fuzzy Matching)</h3>
+<p>O compilador analisará a ontologia em busca de conceitos com grafia similar (Lexical Similarity), prevenindo a fragmentação do grafo de conhecimento.</p>
+<ul>
+<li><strong>Algoritmo:</strong> Distância de Levenshtein / Jaro-Winkler.</li>
+<li><strong>Comportamento:</strong> Warning (Aviso) durante a compilação.</li>
+<li><strong>Exemplo de Detecção:</strong> <code>InteracaoSocial</code> vs <code>Interacao_Social</code>.</li>
+</ul>
+</section>
+<section id="validação-de-ciclos-hierárquicos" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="validação-de-ciclos-hierárquicos"><span class="header-section-number">1.8.2</span> Validação de Ciclos Hierárquicos</h3>
+<p>Impede a criação de loops lógicos nas definições taxonômicas. * <strong>Regra:</strong> Um conceito não pode ser ancestral de si mesmo. * <strong>Erro Fatal:</strong> A compilação é abortada se um ciclo for detectado (ex: A &gt; B &gt; C &gt; A).</p>
+</section>
+<section id="eliminação-de-código-morto-ghost-concepts" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="eliminação-de-código-morto-ghost-concepts"><span class="header-section-number">1.8.3</span> Eliminação de Código Morto (Ghost Concepts)</h3>
+<p>Identifica conceitos definidos na ontologia que nunca foram aplicados em nenhum <code>ITEM</code> ou <code>ZETTEL</code>. * <strong>Comportamento:</strong> Warning (Relatório de limpeza de Codebook).</p>
+<hr>
+</section>
+</section>
+<section id="novos-comandos-estruturais" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="novos-comandos-estruturais"><span class="header-section-number">1.9</span> Novos Comandos Estruturais</h2>
+<section id="taxonomy-hierarquia-rígida" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="taxonomy-hierarquia-rígida"><span class="header-section-number">1.9.1</span> TAXONOMY (Hierarquia Rígida)</h3>
+<p>Substitui o uso solto de <code>TOPIC</code> para definições estritas de relacionamento “é-um” (is-a). Permite herança de propriedades.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>TAXONOMY</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    Emoções</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        &gt; Negativas</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            &gt; Raiva</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            &gt; Medo</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        &gt; Positivas</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            &gt; Alegria</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> TAXONOMY</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="constraint-regras-de-negócio" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="constraint-regras-de-negócio"><span class="header-section-number">1.9.2</span> CONSTRAINT (Regras de Negócio)</h3>
+<p>Define invariantes lógicas para garantir a consistência metodológica das anotações.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>CONSTRAINT</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclusão mútua: Um item não pode ter ambos os códigos simultaneamente</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    FORBID Code <span class="st">"Sentimento: Positivo"</span> WITH Code <span class="st">"Risco: Crítico"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dependência lógica: O código B exige a presença do código A</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    REQUIRE Code <span class="st">"Solução"</span> IF Code <span class="st">"Problema"</span> PRESENT</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> CONSTRAINT</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="crossref-rede-de-citações" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="crossref-rede-de-citações"><span class="header-section-number">1.9.3</span> CROSSREF (Rede de Citações)</h3>
+<p>Formaliza as relações retóricas entre fontes bibliográficas (Source-to-Source), independente de anotações internas.</p>
+<p><strong>Sintaxe:</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>CROSSREF</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@smith2019</span> <span class="op">-&gt;</span> REFUTES <span class="op">-&gt;</span> <span class="fu">@doe2018</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@jones2020</span> <span class="op">-&gt;</span> EXTENDS <span class="op">-&gt;</span> <span class="fu">@smith2019</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> CROSSREF</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="visualização-imediata" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="visualização-imediata"><span class="header-section-number">1.10</span> Visualização Imediata</h2>
+<p>O output JSON é útil para processamento, mas humanos precisam ver o grafo.</p>
+<p>Ideia: Criar um comando synesis serve que sobe um servidor local simples mostrando o grafo de conexões (usando D3.js ou Cytoscape) gerado a partir do JSON exportado.</p>
+<hr>
+</section>
+<section id="integração-com-data-science" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="integração-com-data-science"><span class="header-section-number">1.11</span> Integração com Data Science</h2>
+<p>O suporte a exportação CSV/Excel é bom, mas uma integração direta com Pandas seria matadora.</p>
+<p>Exemplo: Uma biblioteca Python import synesis que permite carregar o projeto diretamente em um DataFrame sem passar pelo terminal, facilitando o uso em Jupyter Notebooks.</p>
+</section>
+<section id="possível-workflow" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="possível-workflow"><span class="header-section-number">1.12</span> Possível Workflow</h2>
+<p>Correto. A premissa é exata: o <strong>Core do Compilador</strong> (Parser + Análise Semântica) atua como a única fonte da verdade. Tanto a exportação de arquivos, quanto a biblioteca Python (<code>synesis.load</code>), quanto o servidor LSP consomem a mesma <strong>Árvore Sintática Abstrata (AST)</strong> e a mesma <strong>Tabela de Símbolos</strong>.</p>
+<p>Aqui está o workflow objetivo para essa implementação, focando na arquitetura “Compiler as a Library” (Compilador como Biblioteca):</p>
+<section id="passo-1-desacoplamento-de-io-entradasaída" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="passo-1-desacoplamento-de-io-entradasaída"><span class="header-section-number">1.12.1</span> Passo 1: Desacoplamento de I/O (Entrada/Saída)</h3>
+<p>O primeiro passo é garantir que o compilador não “saiba” que está escrevendo arquivos.</p>
+<ul>
+<li><strong>Ação:</strong> Separar as funções de exportação. Hoje, provável que exista uma função <code>export_csv(ast, filepath)</code>.</li>
+<li><strong>Refatoração:</strong> Dividir em duas:</li>
+</ul>
+<ol type="1">
+<li><code>transform_to_tabular_data(ast)</code>: Recebe a AST e retorna listas de dicionários/objetos em memória (sem tocar no disco).</li>
+<li><code>write_csv(data, filepath)</code>: Recebe os dados e apenas grava o arquivo.</li>
+</ol>
+</section>
+<section id="passo-2-exposição-da-api-pública-do-core" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="passo-2-exposição-da-api-pública-do-core"><span class="header-section-number">1.12.2</span> Passo 2: Exposição da API Pública do Core</h3>
+<p>O módulo principal do Synesis deve expor o acesso programático à compilação.</p>
+<ul>
+<li><strong>Ação:</strong> Tornar a função de orquestração acessível externamente.</li>
+<li><strong>Definição:</strong> Criar/Ajustar um método (ex: <code>Synesis.compile_source()</code>) que aceita uma string ou caminho de arquivo e retorna o objeto <code>Project</code> (o resultado da validação semântica contendo todas as estruturas ligadas).</li>
+</ul>
+</section>
+<section id="passo-3-criação-do-adaptador-python-data-science" class="level3" data-number="1.12.3">
+<h3 data-number="1.12.3" class="anchored" data-anchor-id="passo-3-criação-do-adaptador-python-data-science"><span class="header-section-number">1.12.3</span> Passo 3: Criação do Adaptador Python (Data Science)</h3>
+<p>Este é o consumidor que você sugeriu (<code>synesis.load</code>).</p>
+<ul>
+<li><strong>Dependência:</strong> Definir Pandas como dependência opcional.</li>
+<li><strong>Fluxo:</strong></li>
+</ul>
+<ol type="1">
+<li>Chama a API do Passo 2 para obter o objeto <code>Project</code> em memória.</li>
+<li>Chama a função de transformação do Passo 1 (<code>transform_to_tabular_data</code>).</li>
+<li>Instancia DataFrames do Pandas usando esses dados.</li>
+<li>Aplica tipagem (converte strings para <code>datetime</code> objects, categorias, etc.) baseada nos tipos da AST.</li>
+</ol>
+</section>
+<section id="passo-4-adaptação-para-o-lsp-editor-intelligence" class="level3" data-number="1.12.4">
+<h3 data-number="1.12.4" class="anchored" data-anchor-id="passo-4-adaptação-para-o-lsp-editor-intelligence"><span class="header-section-number">1.12.4</span> Passo 4: Adaptação para o LSP (Editor Intelligence)</h3>
+<p>O LSP consome a mesma AST, mas precisa de dados diferentes (localização em vez de valor).</p>
+<ul>
+<li><strong>Ação:</strong> Garantir que os nós da AST (Item, Source, Field) preservem metadados de origem (<code>linha</code>, <code>coluna</code>, <code>arquivo</code>).</li>
+<li><strong>Fluxo:</strong></li>
+</ul>
+<ol type="1">
+<li>O LSP envia o texto do arquivo atual (mesmo incompleto).</li>
+<li>O Core tenta fazer o parse (com tolerância a erros).</li>
+<li>O Core retorna a <strong>Tabela de Símbolos</strong> (lista de ontologias e definições disponíveis).</li>
+<li>O LSP usa essa tabela para fornecer <em>Autocomplete</em> e <em>Go to Definition</em>.</li>
+</ol>
+</section>
+<section id="passo-5-cli-como-cliente-magro" class="level3" data-number="1.12.5">
+<h3 data-number="1.12.5" class="anchored" data-anchor-id="passo-5-cli-como-cliente-magro"><span class="header-section-number">1.12.5</span> Passo 5: CLI como “Cliente Magro”</h3>
+<p>O comando <code>synesis compile</code> no terminal passa a ser apenas mais um cliente, igual ao Python ou ao LSP.</p>
+<ul>
+<li><strong>Ação:</strong> O CLI apenas coleta argumentos, chama a API do Passo 2 e usa as funções de escrita de arquivo (<code>write_csv</code>, <code>write_json</code>) definidas no Passo 1.</li>
+</ul>
+</section>
+<section id="resumo-do-fluxo-de-dados" class="level3" data-number="1.12.6">
+<h3 data-number="1.12.6" class="anchored" data-anchor-id="resumo-do-fluxo-de-dados"><span class="header-section-number">1.12.6</span> Resumo do Fluxo de Dados</h3>
+<ol type="1">
+<li><strong>Entrada:</strong> Arquivos <code>.syn</code> / <code>.synt</code></li>
+<li><strong>Motor Central (Synesis Core):</strong> Gera AST + Validação Semântica.</li>
+<li><strong>Distribuição:</strong></li>
+</ol>
+<ul>
+<li>via <strong>CLI</strong> -&gt; Escreve no Disco (JSON/CSV).</li>
+<li>via <strong>Python SDK</strong> -&gt; Entrega Objetos/DataFrames em Memória.</li>
+<li>via <strong>LSP</strong> -&gt; Entrega Metadados de Posição e Erros para o Editor.</li>
+<li></li>
+</ul>
+<hr>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
