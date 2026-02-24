@@ -353,9 +353,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Com a Reforma e a proliferação das traduções vernáculas, novas ferramentas se tornaram necessárias. Em 1550, John Marbeck publicou a primeira concordância completa em inglês. Mas foi nos séculos XIX e XX que o projeto de organização temática das Escrituras atingiu sua maior sofisticação:</p>
-<p><strong>Treasury of Scripture Knowledge</strong> (1836) — compilada por R. A. Torrey a partir de trabalhos anteriores, reúne mais de 500.000 referências cruzadas, organizadas versículo por versículo. Permanece até hoje uma das obras de referência mais densas já produzidas para o estudo bíblico.</p>
 <p><strong>Nave’s Topical Bible</strong> (1896) — o Rev.&nbsp;Orville James Nave levou 23 anos compilando esta obra durante seu serviço como capelão militar. Organizada por tópicos em vez de por versículos, ela lista mais de 20.000 temas e subtemas com as respectivas passagens, totalizando mais de 100.000 referências.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/nave_topics.png" class="img-fluid figure-img"></p>
+<figcaption>Nave’s Topical Bible em linguagem Synesis.</figcaption>
+</figure>
+</div>
 <p><strong>Thompson Chain-Reference Bible</strong> (1908) — o Dr.&nbsp;Frank Charles Thompson desenvolveu um sistema diferente dos anteriores: em vez de obras separadas, integrou as referências diretamente nas margens da Bíblia, organizadas em cadeias temáticas numeradas que conduzem o leitor de versículo em versículo ao longo de todo o cânon.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/thompson_chain_references.png" class="img-fluid figure-img"></p>
+<figcaption>Thompson Chain-Reference Bible em linguagem Synesis.</figcaption>
+</figure>
+</div>
 <p>O que estas obras têm em comum é o problema que tentam resolver: as Escrituras formam uma rede densa de relações temáticas, tipológicas e teológicas que nenhum leitor consegue mapear integralmente de memória. Cada sistema representa uma solução manual para esse problema — e cada um carrega as limitações do suporte em que foi construído. Um livro impresso não pode ser consultado por múltiplos critérios simultaneamente, não pode ser atualizado sem uma nova edição, e não pode ser integrado a outros sistemas de análise.</p>
 <p>Synesis parte exatamente desse ponto: a tradição já estabeleceu que o problema vale ser resolvido. O que muda é o meio.</p>
 <section id="o-que-fazer-com-essas-anotações" class="level3" data-number="1.3.1">
@@ -366,7 +377,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="um-problema-comum" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="um-problema-comum"><span class="header-section-number">1.4</span> Um problema comum</h2>
 <p>É interessante observar que tanto as concordâncias, quanto a codificação qualitativa moderna respondem ao mesmo desafio epistemológico: como extrair padrões de um corpus textual extenso e heterogêneo, preservando a ligação entre o padrão identificado e o texto de origem.</p>
-<p>Em ambos os casos, o pesquisador precisa: <strong>(1)</strong> ler o texto, <strong>(2)</strong> identificar unidades de significado, <strong>(3)</strong> atribuir categorias a essas unidades, e <strong>(4)</strong> recuperar posteriormente todos os trechos associados a uma categoria. A estrutura do processo é idêntica.</p>
+<p>Em ambos os casos, o pesquisador precisa:</p>
+<ul>
+<li><strong>(1)</strong> ler o texto,</li>
+<li><strong>(2)</strong> identificar unidades de significado,</li>
+<li><strong>(3)</strong> atribuir categorias a essas unidades, e</li>
+<li><strong>(4)</strong> recuperar posteriormente todos os trechos associados a uma categoria.</li>
+</ul>
+<p>A estrutura do processo é idêntica.</p>
 <p>A codificação qualitativa e a organização sistemática das Escrituras compartilham uma estrutura profunda comum: identificar unidades de significado em um corpus textual, atribuir categorias e recuperar conexões.</p>
 <p>Synesis não aplica métodos de pesquisa a um domínio novo — reconhece uma continuidade que sempre existiu entre essas duas tradições e oferece um instrumento formal para ambas.</p>
 </section>
@@ -385,16 +403,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="o-campo-chain-como-ferramenta-de-teologia-sistemática" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="o-campo-chain-como-ferramenta-de-teologia-sistemática"><span class="header-section-number">2.1.2</span> O campo <code>chain</code> como ferramenta de teologia sistemática</h3>
 <p>A teologia sistemática trabalha com relações entre conceitos doutrinários — e Synesis tem primitivas formais para representá-las:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@teologia_sistematica</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@teologia_sistematica2026</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Relações doutrinárias fundamentais"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@teologia_sistematica</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@teologia_sistematica2026</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Relação entre graça, fé e justificação na soteriologia paulina</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Graca <span class="op">-&gt;</span> PRODUZ <span class="op">-&gt;</span> Fe <span class="op">-&gt;</span> PRODUZ <span class="op">-&gt;</span> Justificacao</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@teologia_sistematica</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@teologia_sistematica2026</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Tensão estrutural entre os paradigmas da Lei e do Evangelho</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Lei <span class="op">-&gt;</span> CONTRASTA_COM <span class="op">-&gt;</span> Evangelho</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -421,22 +439,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Institutas da Religião Cristã, João Calvino"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@arminius_works</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Obras Completas, Jacó Armínio"</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@calvino_institutes</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Jo 6:37 — Tudo o que o Pai me dá virá a mim"</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Prova da soberania divina na eleição incondicional</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Soberania_Divina <span class="op">-&gt;</span> PRODUZ <span class="op">-&gt;</span> Eleicao_Incondicional</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@calvino_institutes</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Jo 6:37 — Tudo o que o Pai me dá virá a mim"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Prova da soberania divina na eleição incondicional</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Soberania_Divina <span class="op">-&gt;</span> PRODUZ <span class="op">-&gt;</span> Eleicao_Incondicional</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@arminius_works</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Obras Completas, Jacó Armínio"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@arminius_works</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Jo 6:37 — Tudo o que o Pai me dá virá a mim"</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> A eleição é fundada no preconhecimento divino da fé futura</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Preconhecimento_Divino <span class="op">-&gt;</span> PRODUZ <span class="op">-&gt;</span> Eleicao_Condicional</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A mesma passagem, dois sistemas teológicos, dados estruturados e comparáveis. O debate doutrinário deixa de ser apenas narrativo e passa a ser analítico.</p>
+<p>A mesma passagem, dois sistemas teológicos, dados estruturados e comparáveis.</p>
 <hr>
 <p><em>Synesis não transforma o texto sagrado em dado — transforma o <strong>trabalho humano inspirado de interpretação</strong> em dado. O Thompson e o Nave são a camada de indexação. O que se constrói acima — comentários, relações doutrinárias, tradições interpretativas — é onde a linguagem revela seu potencial pleno</em>.</p>
 
