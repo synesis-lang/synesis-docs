@@ -352,10 +352,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Uma <strong>chain</strong> (cadeia) é uma sequência de códigos conectados por relações, expressando como conceitos se influenciam mutuamente.</p>
 <section id="sintaxe-básica" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="sintaxe-básica"><span class="header-section-number">1.1.1</span> Sintaxe Básica</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Código A <span class="op">-&gt;</span> RELAÇÃO <span class="op">-&gt;</span> Código B</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> conceito_a <span class="op">-&gt;</span> RELACAO <span class="op">-&gt;</span> conceito_b</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Exemplo:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Custo Alto <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Lê-se: “Custo Alto INIBE a Adoção”</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> custo_alto <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lê-se: “custo_alto INIBE adocao”</p>
 <hr>
 </section>
 </section>
@@ -366,23 +366,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A forma mais básica: um código influencia outro diretamente.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_01</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"O preço elevado desestimula a compra"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Barreira econômica identificada</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Preço Elevado <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Decisão de Compra</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Barreira econômica identificada</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> preco_elevado <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> decisao_de_compra</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Quando usar:</strong> Para relações diretas e não mediadas.</p>
 </section>
 <section id="chains-com-múltiplas-relações" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="chains-com-múltiplas-relações"><span class="header-section-number">1.2.2</span> Chains com Múltiplas Relações</h3>
 <p>Para expressar cadeias causais complexas:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Treinamento <span class="op">-&gt;</span> GERA <span class="op">-&gt;</span> Baixa Competência <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Lê-se: “Falta de Treinamento GERA Baixa Competência, que INIBE Adoção”</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> falta_de_treinamento <span class="op">-&gt;</span> CAUSA <span class="op">-&gt;</span> baixa_competencia <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lê-se: “Falta de Treinamento CAUSA Baixa Competência, que INIBE Adoção”</p>
 <p><strong>Quando usar:</strong> Para capturar mecanismos causais com elementos intermediários.</p>
 <hr>
 </section>
 </section>
 <section id="como-escolher-relações-apropriadas" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="como-escolher-relações-apropriadas"><span class="header-section-number">1.3</span> Como Escolher Relações Apropriadas</h2>
-<p>As relações devem estar <strong>definidas na ontologia</strong>. Tipos comuns:</p>
+<p>As relações devem estar <strong>declaradas no template do projeto</strong> (campo <code>chain</code>). Tipos comuns:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 29%">
@@ -400,45 +400,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><code>CAUSA</code></td>
 <td>X é causa direta de Y</td>
-<td><code>Erro de Software -&gt; CAUSA -&gt; Falha do Sistema</code></td>
+<td><code>erro_de_software -&gt; CAUSA -&gt; falha_do_sistema</code></td>
 </tr>
 <tr class="even">
 <td><code>INIBE</code></td>
 <td>X reduz ou impede Y</td>
-<td><code>Custo Alto -&gt; INIBE -&gt; Adoção</code></td>
+<td><code>custo_alto -&gt; INIBE -&gt; adocao</code></td>
 </tr>
 <tr class="odd">
 <td><code>FAVORECE</code></td>
 <td>X promove ou facilita Y</td>
-<td><code>Treinamento -&gt; FAVORECE -&gt; Usabilidade</code></td>
+<td><code>treinamento -&gt; FAVORECE -&gt; usabilidade</code></td>
 </tr>
 <tr class="even">
 <td><code>MEDIA</code></td>
 <td>X é intermediário entre A e Y</td>
-<td><code>Suporte Técnico -&gt; MEDIA -&gt; Satisfação</code></td>
+<td><code>suporte_tecnico -&gt; MEDIA -&gt; satisfacao</code></td>
 </tr>
 <tr class="odd">
 <td><code>CORRELACIONA</code></td>
 <td>X e Y ocorrem juntos (sem direção)</td>
-<td><code>Alta Rotatividade -&gt; CORRELACIONA -&gt; Baixo Engajamento</code></td>
+<td><code>alta_rotatividade -&gt; CORRELACIONA -&gt; baixo_engajamento</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Defina relações na ontologia:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> relations</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Relações Causais"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"CAUSA"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"X é causa direta e necessária de Y"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"INIBE"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"X reduz probabilidade ou intensidade de Y"</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Declare relações no template do projeto:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal entre conceitos</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CAUSA:</span> X é causa direta e necessária de Y</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INIBE:</span> X reduz probabilidade ou intensidade de Y</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">FAVORECE:</span> X promove ou facilita Y</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">MEDIA:</span> X é elemento intermediário entre A e Y</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CORRELACIONA:</span> X e Y ocorrem juntos, sem direção causal definida</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="como-construir-chains-complexas" class="level2" data-number="1.4">
@@ -446,31 +443,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="chains-divergentes-um-causa-vários" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="chains-divergentes-um-causa-vários"><span class="header-section-number">1.4.1</span> Chains Divergentes (Um Causa Vários)</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Recursos <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Investimento em IA</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> falta_de_recursos <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> investimento_em_ia</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Recursos <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Treinamento de Equipe</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> falta_de_recursos <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> treinamento_de_equipe</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 3</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Recursos <span class="op">-&gt;</span> CAUSA <span class="op">-&gt;</span> Priorização de Curto Prazo</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> falta_de_recursos <span class="op">-&gt;</span> CAUSA <span class="op">-&gt;</span> priorizacao_de_curto_prazo</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Quando usar:</strong> Para identificar causas de múltiplos efeitos.</p>
 </section>
 <section id="chains-convergentes-vários-causam-um" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="chains-convergentes-vários-causam-um"><span class="header-section-number">1.4.2</span> Chains Convergentes (Vários Causam Um)</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Facilidade de Uso <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> facilidade_de_uso <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> satisfacao</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Suporte Responsivo <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> suporte_responsivo <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> satisfacao</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 3</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Custo Acessível <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> custo_acessivel <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> satisfacao</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Quando usar:</strong> Para identificar fatores múltiplos contribuindo para mesmo resultado.</p>
 </section>
 <section id="chains-com-mediadores" class="level3" data-number="1.4.3">
 <h3 data-number="1.4.3" class="anchored" data-anchor-id="chains-com-mediadores"><span class="header-section-number">1.4.3</span> Chains com Mediadores</h3>
 <p>Quando há elementos intermediários:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Investimento em Capacitação <span class="op">-&gt;</span> AUMENTA <span class="op">-&gt;</span> Competência da Equipe <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Qualidade do Output</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> investimento_em_capacitacao <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> competencia_da_equipe <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> qualidade_do_output</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Quando usar:</strong> Para explicar “o porquê” de uma relação (mecanismo causal).</p>
 <hr>
 </section>
@@ -577,8 +574,8 @@ entrevista_02,3,qualified,"Treinamento,FAVORECE,Competência,FAVORECE,Qualidade"
 <section id="exportar-para-neo4j" class="level3" data-number="1.7.2">
 <h3 data-number="1.7.2" class="anchored" data-anchor-id="exportar-para-neo4j"><span class="header-section-number">1.7.2</span> Exportar para Neo4j</h3>
 <p>Para análises avançadas de rede:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> synesis2neo4j.py <span class="at">--project</span> analysis.synp <span class="at">--config</span> neo4j.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Consulte <a href="../ecossistema/synesis2neo4j_pt.qmd">Como exportar para Neo4j</a> para detalhes.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> synesis2graph.py <span class="at">--project</span> analysis.synp <span class="at">--config</span> neo4j.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Consulte <a href="../howto/exportar_neo4j.html">Como exportar para Neo4j</a> para detalhes.</p>
 <hr>
 </section>
 </section>
@@ -586,33 +583,33 @@ entrevista_02,3,qualified,"Treinamento,FAVORECE,Competência,FAVORECE,Qualidade"
 <h2 data-number="1.8" class="anchored" data-anchor-id="padrões-comuns-de-chains"><span class="header-section-number">1.8</span> Padrões Comuns de Chains</h2>
 <section id="padrão-barreira-inibição" class="level3" data-number="1.8.1">
 <h3 data-number="1.8.1" class="anchored" data-anchor-id="padrão-barreira-inibição"><span class="header-section-number">1.8.1</span> Padrão “Barreira-Inibição”</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Barreira X <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Comportamento Desejado</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> barreira_x <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> comportamento_desejado</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Exemplo:</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Falta de Informação <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Confiança <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> falta_de_informacao <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> confianca <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="padrão-facilitador-promoção" class="level3" data-number="1.8.2">
 <h3 data-number="1.8.2" class="anchored" data-anchor-id="padrão-facilitador-promoção"><span class="header-section-number">1.8.2</span> Padrão “Facilitador-Promoção”</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Facilitador X <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Comportamento Desejado</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> facilitador_x <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> comportamento_desejado</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Exemplo:</strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Demonstração Prática <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Compreensão <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> demonstracao_pratica <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> compreensao <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> adocao</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="padrão-feedback-loop" class="level3" data-number="1.8.3">
 <h3 data-number="1.8.3" class="anchored" data-anchor-id="padrão-feedback-loop"><span class="header-section-number">1.8.3</span> Padrão “Feedback Loop”</h3>
 <p>Expresse ciclos usando múltiplas chains:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1: Ida</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Alta Satisfação <span class="op">-&gt;</span> AUMENTA <span class="op">-&gt;</span> Engajamento</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> alta_satisfacao <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> engajamento</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2: Volta</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Alto Engajamento <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Satisfação</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> alto_engajamento <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> satisfacao</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Nota:</strong> Chains individuais não podem ter ciclos diretos (A → B → A). Use chains separadas.</p>
 </section>
 <section id="padrão-trade-off" class="level3" data-number="1.8.4">
 <h3 data-number="1.8.4" class="anchored" data-anchor-id="padrão-trade-off"><span class="header-section-number">1.8.4</span> Padrão “Trade-off”</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 1</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Automação Completa <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Eficiência</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> automacao_completa <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> eficiencia</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain 2</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Automação Completa <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Flexibilidade</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> automacao_completa <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> flexibilidade</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Quando usar:</strong> Para expressar dilemas ou tensões entre objetivos.</p>
 <hr>
 </section>
@@ -624,28 +621,28 @@ entrevista_02,3,qualified,"Treinamento,FAVORECE,Competência,FAVORECE,Qualidade"
 <p>Na primeira leitura, crie chains exploratórias:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doc_01</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"A tecnologia ajuda, mas é cara"</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Tecnologia <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Eficiência</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Custo <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> tecnologia <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> eficiencia</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> custo <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="passo-2-refinamento" class="level3" data-number="1.9.2">
 <h3 data-number="1.9.2" class="anchored" data-anchor-id="passo-2-refinamento"><span class="header-section-number">1.9.2</span> Passo 2: Refinamento</h3>
 <p>Após revisar várias fontes, consolide padrões recorrentes:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Versão refinada</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Utilidade Percebida <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Intenção de Uso</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Custo Percebido <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Intenção de Uso</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Intenção de Uso <span class="op">-&gt;</span> ANTECEDE <span class="op">-&gt;</span> Comportamento de Adoção</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> utilidade_percebida <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> intencao_de_uso</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> custo_percebido <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> intencao_de_uso</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> intencao_de_uso <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> comportamento_de_adocao</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="passo-3-validação-cruzada" class="level3" data-number="1.9.3">
 <h3 data-number="1.9.3" class="anchored" data-anchor-id="passo-3-validação-cruzada"><span class="header-section-number">1.9.3</span> Passo 3: Validação Cruzada</h3>
 <p>Compare chains extraídas de fontes diferentes:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonte A</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Treinamento <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Competência <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Adoção</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> treinamento <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> competencia <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> adocao</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonte B</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Mentoria <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Competência <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Adoção</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> mentoria <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> competencia <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> adocao</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Insight: "Competência" é mediador recorrente</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Insight: "competencia" é mediador recorrente</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -654,11 +651,14 @@ entrevista_02,3,qualified,"Treinamento,FAVORECE,Competência,FAVORECE,Qualidade"
 <p>Adicione notas explicativas:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@policy_doc</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Investimento em infraestrutura digital reduziu custos operacionais"</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Relação causal direta confirmada por dados quantitativos (Tabela 3)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Infraestrutura Digital <span class="op">-&gt;</span> REDUZ <span class="op">-&gt;</span> Custos Operacionais</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># DECISÃO 2026-02-04: Escolhemos REDUZ em vez de CAUSA para</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># refletir natureza gradual (não binária) do efeito</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Relação causal direta confirmada por dados quantitativos (Tabela 3)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> infraestrutura_digital <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> custos_operacionais</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># DECISÃO 2026-02-04: Escolhemos INIBE em vez de CAUSA para</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># refletir natureza gradual (não binária) do efeito</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="quando-não-usar-chains" class="level2" data-number="1.11">
@@ -671,8 +671,8 @@ entrevista_02,3,qualified,"Treinamento,FAVORECE,Competência,FAVORECE,Qualidade"
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ✅ Apropriado</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Custo</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Relações ambíguas</strong>: Se você não tem certeza da direção ou tipo, deixe como código isolado e anote sua incerteza no campo <code>note</code>.</p></li>
-<li><p><strong>Taxonomias</strong>: Use <code>SUBCODE</code> na ontologia em vez de chains hierárquicas.</p></li>
+<li><p><strong>Relações ambíguas</strong>: Se você não tem certeza da direção ou tipo, deixe como código isolado e anote sua incerteza no campo <code>MEMO</code>.</p></li>
+<li><p><strong>Taxonomias</strong>: Use <code>TOPIC</code> na ontologia em vez de chains hierárquicas.</p></li>
 </ol>
 <hr>
 </section>
@@ -693,13 +693,16 @@ entrevista_02,3,qualified,"Treinamento,FAVORECE,Competência,FAVORECE,Qualidade"
 <h3 data-number="1.12.3" class="anchored" data-anchor-id="solução-proposta"><span class="header-section-number">1.12.3</span> Solução Proposta</h3>
 <div class="sourceCode" id="cb24"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_gerente</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"A falta de suporte técnico adequado gerou frustração na equipe, o que levou à baixa adesão ao novo sistema."</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Cadeia causal <span class="fu">clara:</span> suporte insuficiente <span class="op">-&gt;</span> frustração <span class="op">-&gt;</span> baixa adoção</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Suporte Técnico</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Frustração</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Adoção</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Suporte Técnico Inadequado <span class="op">-&gt;</span> GERA <span class="op">-&gt;</span> Frustração <span class="op">-&gt;</span> CAUSA <span class="op">-&gt;</span> Baixa Adesão</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Validação:</strong> - ✅ Três códigos, duas relações (estrutura válida) - ✅ Relações GERA e CAUSA devem estar na ontologia - ✅ Cadeia reflete sequência temporal da citação - ✅ Campo <code>note</code> explicita interpretação</p>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Cadeia causal <span class="fu">clara:</span> suporte insuficiente <span class="op">-&gt;</span> frustração <span class="op">-&gt;</span> baixa adoção</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> suporte_tecnico_inadequado</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> frustracao</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> baixa_adesao</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> suporte_tecnico_inadequado <span class="op">-&gt;</span> CAUSA <span class="op">-&gt;</span> frustracao <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adesao_ao_sistema</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Validação:</strong> - ✅ Três códigos, duas relações (estrutura válida) - ✅ Relações CAUSA e INIBE declaradas no template - ✅ Cadeia reflete sequência temporal da citação - ✅ Campo <code>memo</code> explicita interpretação</p>
 <hr>
 </section>
 </section>

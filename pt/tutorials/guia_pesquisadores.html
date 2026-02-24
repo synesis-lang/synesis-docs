@@ -365,8 +365,8 @@ Novo no Synesis?
 <p>Primeiro, crie uma pasta para o projeto:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> analise-telemedicina</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> analise-telemedicina</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Agora, crie um arquivo <code>referencias.bib</code> com suas entrevistas:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_dona_maria,</span></span>
+<p>Agora, crie um arquivo texto chamado <code>referencias.bib</code> com as referências de suas entrevistas:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_dona_maria2026,</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {Maria da Silva},</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista sobre acesso à saúde},</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
@@ -375,7 +375,7 @@ Novo no Synesis?
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">  duration = {45 minutos}</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_sr_joao,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_sr_joao2026,</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {João Santos},</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista sobre tecnologia e saúde},</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
@@ -384,7 +384,7 @@ Novo no Synesis?
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">  duration = {60 minutos}</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_dra_ana,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_dra_ana2026,</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {Ana Costa},</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista - perspectiva profissional},</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
@@ -412,32 +412,69 @@ Checkpoint ✓
 <h2 data-number="1.3" class="anchored" data-anchor-id="passo-2-definir-nosso-template"><span class="header-section-number">1.3</span> Passo 2: Definir Nosso Template</h2>
 <p>Vamos criar um template adaptado para análise qualitativa. Crie <code>template.synt</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> analise_qualitativa</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DESCRIPTION:</span> <span class="st">"Template para análise temática de entrevistas"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># VERSION 1.0</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DESCRIPTION: "Template para análise temática de entrevistas"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>BLOCK <span class="kw">SOURCE</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> bibref : BIBREF <span class="kw">REQUIRED</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Referência bibliográfica da fonte"</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> BLOCK</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>BLOCK <span class="kw">ITEM</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE SOURCE</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> tipo_ref</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span>    </span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> <span class="at">quote</span> : <span class="dt">TEXT</span> <span class="kw">REQUIRED</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Citação literal do participante"</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> memo : <span class="dt">TEXT</span> <span class="kw">OPTIONAL</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Memo analítico: reflexões sobre o trecho"</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> code : <span class="dt">CODE</span> <span class="kw">OPTIONAL</span> MULTIPLE</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Códigos conceituais atribuídos"</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> <span class="at">chain</span> : CHAIN <span class="kw">OPTIONAL</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Relações causais identificadas"</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> context : <span class="dt">TEXT</span> <span class="kw">OPTIONAL</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DESCRIPTION:</span> <span class="st">"Contexto da fala (situação, emoção, hesitação)"</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> BLOCK</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> tipo_ref <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DESCRIPTION:</span> <span class="st">"Tipo de referência"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">PRIM:</span> Fonte primária, entrevistas</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">SEC:</span> Fonte secundária, páginas da WEB</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">REF:</span> Fonte referêncial, especialistas</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ITEM</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span>, memo, <span class="at">chain</span>, context</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto textual extraído das entrevistas</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> memo <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Memo analítico explicando a interpretação e mecanismo causal identificado</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal<span class="co">/relacional entre conceitos da ontologia</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        <span class="fu">MEDIA:</span> Condição facilitadora (A facilita que B ocorra)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">FAVORECE:</span> Efeito causal direto (A afeta positivamente B)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INIBE:</span> Limita ou restringe (A reduz opções ou viabilidade de B)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="fu">HABILITA:</span> Torna possível ou cria condição para (A viabiliza B)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> context <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Nuances qualitativas do momento da <span class="fu">fala:</span> tom, emoção, linguagem corporal, hesitações</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="co"># ONTOLOGIA</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> descricao, grupo</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Observe:</strong> Adicionamos o campo <code>context</code> — isso é útil para registrar nuances qualitativas (como hesitações, emoções, mudanças de tom).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -459,56 +496,65 @@ Checkpoint ✓
 <section id="passo-3-construir-nossa-ontologia" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="passo-3-construir-nossa-ontologia"><span class="header-section-number">1.4</span> Passo 3: Construir Nossa Ontologia</h2>
 <p>Agora vamos definir os códigos conceituais. Em pesquisa qualitativa, esses códigos emergem dos dados, mas vamos criar alguns iniciais baseados em leitura prévia. Crie <code>ontologia.syno</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> codigos_telemedicina</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Barreiras à Adoção"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Desconfiança Tecnológica"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Receio ou incredulidade em relação à eficácia de tecnologias médicas remotas"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Falta de Infraestrutura"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Ausência ou precariedade de internet, equipamentos ou eletricidade"</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Preferência por Contato Presencial"</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Valorização do encontro face-a-face com o profissional de saúde"</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Letramento Digital Baixo"</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Dificuldade ou falta de familiaridade com uso de tecnologias digitais"</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Facilitadores"</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Necessidade Urgente"</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Situação de emergência ou falta de alternativas viáveis presenciais"</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Apoio Comunitário"</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Suporte de vizinhos, familiares ou agentes de saúde no uso da tecnologia"</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Relações Causais"</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"GERA"</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator produz ou resulta em outro"</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"INIBE"</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator dificulta, impede ou reduz outro"</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> desconfianca_tecnologica</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Receio ou incredulidade em relação à eficácia de tecnologias médicas remotas. Ex.: dúvida sobre capacidade diagnóstica sem exame físico presencial."</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> falta_de_infraestrutura</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Ausência ou precariedade de internet, equipamentos ou eletricidade que inviabilizam o uso de telemedicina."</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preferencia_por_contato_presencial</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Valorização do encontro face-a-face com o profissional de saúde, associando qualidade do atendimento à presença física."</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> letramento_digital_baixo</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Dificuldade ou falta de familiaridade com uso de tecnologias digitais, gerando dependência de suporte externo para uso."</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> necessidade_urgente</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Situação de emergência ou falta de alternativas viáveis presenciais que impulsiona a aceitação da telemedicina."</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> facilitadores</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> apoio_comunitario</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Suporte de vizinhos, familiares ou agentes de saúde que media o acesso de pacientes com baixo letramento digital."</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> facilitadores</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> adocao_de_telemedicina</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Decisão ou disposição do paciente de utilizar serviços médicos mediados por tecnologia remota."</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> desfechos</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> acesso_a_telemedicina</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Capacidade concreta de conectar-se e utilizar serviços de telemedicina, condicionada à infraestrutura disponível."</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> desfechos</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"FAVORECE"</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator promove, facilita ou aumenta outro"</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"MEDIA"</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator age como intermediário entre dois outros"</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> uso_de_telemedicina</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Utilização efetiva de consultas ou serviços médicos remotos, seja autônoma ou mediada por terceiros."</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> desfechos</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> aceitacao_de_telemedicina</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Aprovação ou receptividade do paciente à telemedicina após experiência direta ou percepção de necessidade."</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> desfechos</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> uso_efetivo_de_telemedicina</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Realização de consultas ou atendimentos remotos com sucesso técnico e clínico, dependente de conectividade estável."</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> desfechos</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> diagnostico_aprofundado</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Processo diagnóstico que requer exame físico presencial, identificado como contexto de uso inapropriado para telemedicina."</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> desfechos</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Valide:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check ontologia.syno</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -521,7 +567,7 @@ Checkpoint ✓
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Você agora tem 6 códigos conceituais definidos. À medida que analisar os dados, você pode adicionar mais.</p>
+<p>Você agora tem 12 conceitos definidos na ontologia, organizados em 3 grupos (<code>barreiras_a_adocao</code>, <code>facilitadores</code>, <code>desfechos</code>). À medida que analisar os dados, você pode adicionar mais.</p>
 </div>
 </div>
 <hr>
@@ -529,45 +575,41 @@ Checkpoint ✓
 <section id="passo-4-anotar-nossa-primeira-entrevista" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="passo-4-anotar-nossa-primeira-entrevista"><span class="header-section-number">1.5</span> Passo 4: Anotar Nossa Primeira Entrevista</h2>
 <p>Agora vem a parte principal: vamos anotar trechos das entrevistas. Crie <code>anotacoes.syn</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dona_maria</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu não confio nessas coisas de conversar com médico pelo computador. Como ele vai saber o que eu tenho se não me tocar, não me examinar?"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Participante expressa desconfiança na eficácia diagnóstica da telemedicina. Associa qualidade do atendimento à presença física e ao exame clínico presencial. Fala com tom de incredulidade.</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Desconfiança Tecnológica</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Preferência por Contato Presencial</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Desconfiança Tecnológica <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção de Telemedicina</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Disse isso logo no início da conversa, antes mesmo de eu perguntar diretamente sobre telemedicina</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Aqui a internet cai toda hora. Às vezes fica dois, três dias sem. Como vou marcar consulta se nem WiFi tenho direito?"</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Infraestrutura precária como barreira concreta. Frustração evidente na fala. O termo <span class="st">"nem WiFi tenho direito"</span> sugere percepção de exclusão ou injustiça.</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Falta de Infraestrutura</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Falta de Infraestrutura <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Acesso à Telemedicina</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Falou com voz mais alta, demonstrando irritação</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dona_maria2026</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tipo_ref:</span> PRIM</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria2026</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu não confio nessas coisas de conversar com médico pelo computador. Como ele vai saber o que eu tenho se não me tocar, não me examinar?"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Participante expressa desconfiança na eficácia diagnóstica da telemedicina. Associa qualidade do atendimento à presença física e ao exame clínico presencial. Fala com tom de incredulidade.</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> desconfianca_tecnologica <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao_de_telemedicina</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Disse isso logo no início da conversa, antes mesmo de eu perguntar diretamente sobre telemedicina</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria2026</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Aqui a internet cai toda hora. Às vezes fica dois, três dias sem. Como vou marcar consulta se nem WiFi tenho direito?"</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Infraestrutura precária como barreira concreta. Frustração evidente na fala. O termo <span class="st">"nem WiFi tenho direito"</span> sugere percepção de exclusão ou injustiça.</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> falta_de_infraestrutura <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> acesso_a_telemedicina</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Falou com voz mais alta, demonstrando irritação</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Agora é sua vez!</strong> Continue anotando. Vamos adicionar trechos da segunda entrevista:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_sr_joao</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_sr_joao</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu tentei usar uma vez que minha neta me ajudou. Foi bom, resolvi sem sair de casa. Mas sozinho eu não consigo não, preciso de alguém pra mexer no celular pra mim."</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Experiência positiva quando mediada por familiar. Reconhece benefício (evitar deslocamento) mas identifica dependência de suporte técnico informal. Dicotomia entre percepção de utilidade e capacidade de uso autônomo.</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Letramento Digital Baixo</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Apoio Comunitário</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Apoio Comunitário <span class="op">-&gt;</span> MEDIA <span class="op">-&gt;</span> Letramento Digital Baixo <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Uso de Telemedicina</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Falou com gratidão ao mencionar a neta, mas com resignação ao admitir a dependência</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_sr_joao</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Quando meu filho ficou internado na capital, a médica daqui falou com o médico de lá pelo vídeo. Foi uma bênção, porque ela pôde explicar o caso dele direitinho."</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Exemplo concreto de uso bem-sucedido entre profissionais (comunicação inter-hospitalar). Contextualiza telemedicina como ferramenta para continuidade de cuidado, não apenas para primeira consulta. Termo religioso (<span class="st">"bênção"</span>) indica forte impacto emocional positivo.</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Necessidade Urgente</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Necessidade Urgente <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Aceitação de Telemedicina</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Única vez na entrevista em que sorriu ao falar do tema</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_sr_joao2026</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tipo_ref:</span> PRIM</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_sr_joao2026</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu tentei usar uma vez que minha neta me ajudou. Foi bom, resolvi sem sair de casa. Mas sozinho eu não consigo não, preciso de alguém pra mexer no celular pra mim."</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Experiência positiva quando mediada por familiar. Reconhece benefício (evitar deslocamento) mas identifica dependência de suporte técnico informal. Dicotomia entre percepção de utilidade e capacidade de uso autônomo.</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> apoio_comunitario <span class="op">-&gt;</span> MEDIA <span class="op">-&gt;</span> letramento_digital_baixo <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> uso_de_telemedicina</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Falou com gratidão ao mencionar a neta, mas com resignação ao admitir a dependência</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_sr_joao2026</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Quando meu filho ficou internado na capital, a médica daqui falou com o médico de lá pelo vídeo. Foi uma bênção, porque ela pôde explicar o caso dele direitinho."</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Exemplo concreto de uso bem-sucedido entre profissionais (comunicação inter-hospitalar). Contextualiza telemedicina como ferramenta para continuidade de cuidado, não apenas para primeira consulta. Termo religioso (<span class="st">"bênção"</span>) indica forte impacto emocional positivo.</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> necessidade_urgente <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> aceitacao_de_telemedicina</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Única vez na entrevista em que sorriu ao falar do tema</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -586,21 +628,21 @@ Dica de Pesquisador
 <section id="passo-5-anotar-a-terceira-entrevista-perspectiva-profissional" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="passo-5-anotar-a-terceira-entrevista-perspectiva-profissional"><span class="header-section-number">1.6</span> Passo 5: Anotar a Terceira Entrevista (Perspectiva Profissional)</h2>
 <p>Agora vamos adicionar a perspectiva da profissional de saúde:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dra_ana</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dra_ana</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Os pacientes têm dificuldade, mas é mais a internet do que a vontade. Quando funciona, eles gostam. O problema é que nem sempre funciona."</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Profissional identifica infraestrutura como barreira principal, não resistência cultural. Reconhece aceitação dos pacientes quando condições técnicas são adequadas. Importante contraponto à narrativa de <span class="st">"resistência ao novo"</span>.</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Falta de Infraestrutura</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Falta de Infraestrutura <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Uso Efetivo de Telemedicina</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dra_ana2026</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tipo_ref:</span> REF</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dra_ana2026</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Os pacientes têm dificuldade, mas é mais a internet do que a vontade. Quando funciona, eles gostam. O problema é que nem sempre funciona."</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Profissional identifica infraestrutura como barreira principal, não resistência cultural. Reconhece aceitação dos pacientes quando condições técnicas são adequadas. Importante contraponto à narrativa de <span class="st">"resistência ao novo"</span>.</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> falta_de_infraestrutura <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> uso_efetivo_de_telemedicina</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Disse isso com frustração visível, gesticulando ao mencionar a internet</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dra_ana</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dra_ana2026</span></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Eu prefiro presencial quando posso, porque consigo ver coisas que não aparecem na tela. Mas para retorno, para tirar dúvida rápida, telemedicina é perfeita."</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Profissional diferencia contextos de uso apropriado vs inapropriado. Nuança <span class="fu">importante:</span> não é rejeição binária, mas uso contextualizado. Sugere que telemedicina complementa, não substitui presencial.</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Preferência por Contato Presencial</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> preferencia_por_contato_presencial <span class="op">-&gt;</span> HABILITA <span class="op">-&gt;</span> diagnostico_aprofundado</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">context:</span> Tom pragmático, não emotivo. Fala de quem avalia prós e contras tecnicamente</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Salve o arquivo <code>anotacoes.syn</code>.</p>
@@ -624,7 +666,7 @@ Checkpoint ✓
 <h2 data-number="1.7" class="anchored" data-anchor-id="passo-6-criar-o-arquivo-de-projeto"><span class="header-section-number">1.7</span> Passo 6: Criar o Arquivo de Projeto</h2>
 <p>Agora vamos conectar tudo. Crie <code>analise.synp</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> analise_telemedicina_rural</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># VERSION 1.0</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -637,13 +679,13 @@ Checkpoint ✓
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    à adoção de telemedicina em comunidades rurais.</span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Abordagem:</span> Análise temática</span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Período:</span> Janeiro-Fevereiro 2026</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">DESCRIPTION</span></span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="kw">METADATA</span></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">researcher:</span> <span class="st">"Seu Nome"</span></span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">institution:</span> <span class="st">"Sua Universidade"</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ethics_approval:</span> <span class="st">"CEP-2025-XXX"</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">METADATA</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
@@ -664,8 +706,8 @@ Checkpoint ✓
 <section id="análise-no-excel" class="level3" data-number="1.8.1">
 <h3 data-number="1.8.1" class="anchored" data-anchor-id="análise-no-excel"><span class="header-section-number">1.8.1</span> Análise no Excel</h3>
 <p>Abra <code>analise.xlsx</code>. Você verá:</p>
-<p><strong>Aba “Codes”:</strong> | Código | Frequência | Fontes | |——–|————|——–| | Falta de Infraestrutura | 3 | dona_maria, sr_joao, dra_ana | | Desconfiança Tecnológica | 1 | dona_maria | | Preferência por Contato Presencial | 2 | dona_maria, dra_ana | | … | … | … |</p>
-<p><strong>Aba “Chains”:</strong> | Relação | Código A | Código B | Frequência | |———|———-|———-|————| | INIBE | Desconfiança Tecnológica | Adoção de Telemedicina | 1 | | INIBE | Falta de Infraestrutura | Acesso à Telemedicina | 2 | | … | … | … | … |</p>
+<p><strong>Aba “Codes”:</strong> | Código | Frequência | Fontes | |——–|————|——–| | falta_de_infraestrutura | 2 | dona_maria, dra_ana | | desconfianca_tecnologica | 1 | dona_maria | | preferencia_por_contato_presencial | 1 | dra_ana | | apoio_comunitario | 1 | sr_joao | | necessidade_urgente | 1 | sr_joao | | … | … | … |</p>
+<p><strong>Aba “Chains”:</strong> | Relação | Conceito A | Conceito B | Frequência | |———|————|————|————| | INIBE | desconfianca_tecnologica | adocao_de_telemedicina | 1 | | INIBE | falta_de_infraestrutura | acesso_a_telemedicina | 1 | | INIBE | falta_de_infraestrutura | uso_efetivo_de_telemedicina | 1 | | FAVORECE | necessidade_urgente | aceitacao_de_telemedicina | 1 | | HABILITA | preferencia_por_contato_presencial | diagnostico_aprofundado | 1 | | … | … | … | … |</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -688,24 +730,30 @@ Insight de Análise
 <section id="adicionar-novos-códigos" class="level3" data-number="1.9.1">
 <h3 data-number="1.9.1" class="anchored" data-anchor-id="adicionar-novos-códigos"><span class="header-section-number">1.9.1</span> 8.1 Adicionar Novos Códigos</h3>
 <p>Se você identifica um padrão recorrente, adicione à ontologia:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Percepção de Exclusão Digital"</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DEFINITION:</span> <span class="st">"Sentimento de estar à margem devido a falta de acesso tecnológico"</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">CODE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> percepcao_de_exclusao_digital</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Sentimento de estar à margem da sociedade devido à falta de acesso ou domínio de tecnologias digitais."</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="refinar-códigos-existentes" class="level3" data-number="1.9.2">
 <h3 data-number="1.9.2" class="anchored" data-anchor-id="refinar-códigos-existentes"><span class="header-section-number">1.9.2</span> 8.2 Refinar Códigos Existentes</h3>
 <p>Se um código está ambíguo, divida:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Antes:</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Desconfiança Tecnológica"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Depois:</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Desconfiança na Eficácia Diagnóstica"</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DEFINITION:</span> <span class="st">"Dúvida sobre capacidade de diagnóstico sem exame físico"</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="dt">CODE</span> <span class="st">"Desconfiança na Segurança de Dados"</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DEFINITION:</span> <span class="st">"Receio sobre privacidade e vazamento de informações médicas"</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">CODE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> desconfianca_tecnologica</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Receio ou incredulidade em relação à eficácia de tecnologias médicas remotas."</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Depois (dividido em dois):</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> desconfianca_na_eficacia_diagnostica</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Dúvida sobre a capacidade de diagnóstico sem exame físico presencial."</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> desconfianca_na_seguranca_de_dados</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Receio sobre privacidade e vazamento de informações médicas em plataformas digitais."</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> barreiras_a_adocao</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="adicionar-mais-anotações" class="level3" data-number="1.9.3">
 <h3 data-number="1.9.3" class="anchored" data-anchor-id="adicionar-mais-anotações"><span class="header-section-number">1.9.3</span> 8.3 Adicionar Mais Anotações</h3>
@@ -724,8 +772,8 @@ Insight de Análise
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se você tem a extensão Synesis Explorer instalada</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Abra o projeto no VSCode e pressione Ctrl+Alt+G</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ou exporte para Neo4j para análise de rede:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> synesis2neo4j.py <span class="at">--project</span> analise.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Consulte <a href="../ecossistema/synesis2neo4j_pt.qmd">Como exportar para Neo4j</a> para detalhes.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> synesis2graph.py <span class="at">--project</span> analise.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Consulte <a href="../howto/exportar_neo4j.html">Como exportar para Neo4j</a> para detalhes.</p>
 <hr>
 </section>
 <section id="parabéns" class="level2" data-number="1.11">
@@ -782,8 +830,7 @@ Insight de Análise
 <h3 data-number="1.13.2" class="anchored" data-anchor-id="análise-temática"><span class="header-section-number">1.13.2</span> Análise Temática</h3>
 <ul>
 <li>Defina temas iniciais (dedutivos) ou deixe emergir (indutivos)</li>
-<li>Use <code>CODE</code> para temas e subtemas</li>
-<li>Use <code>TOPIC</code> na ontologia para agrupar temas</li>
+<li>Use <code>ONTOLOGY</code> para temas e subtemas, agrupando pelo campo <code>grupo</code></li>
 <li>Campo <code>memo</code> para reflexões sobre temas recorrentes</li>
 </ul>
 </section>
@@ -793,7 +840,7 @@ Insight de Análise
 <li>Template mais rígido, com campos predefinidos</li>
 <li>Ontologia criada a priori baseada em literatura</li>
 <li>Foco em frequência (use output CSV para quantificação)</li>
-<li>Menos uso de <code>chain</code>, mais uso de <code>code</code></li>
+<li>Menos uso de <code>chain</code>, mais uso de conceitos de <code>ONTOLOGY</code></li>
 </ul>
 </section>
 <section id="análise-crítica-do-discurso" class="level3" data-number="1.13.4">
@@ -837,7 +884,7 @@ Insight de Análise
 <ol type="1">
 <li><strong>Projeto com múltiplos tipos de fonte</strong>: Combine entrevistas + documentos + observações</li>
 <li><strong>Análise longitudinal</strong>: Anote dados coletados em diferentes momentos</li>
-<li><strong>Análise comparativa</strong>: Use <code>TOPIC</code> na ontologia para separar subcasos</li>
+<li><strong>Análise comparativa</strong>: Use o campo <code>grupo</code> na ontologia para separar subcasos e comparar distribuições entre grupos</li>
 <li><strong>Integração com Zotero</strong>: Use o plugin <a href="https://github.com/synesis-lang/zotero-synesis-export">zotero-synesis-export</a> para exportar highlights de PDFs diretamente como <code>.syn</code></li>
 </ol>
 <hr>

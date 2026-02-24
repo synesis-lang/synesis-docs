@@ -360,31 +360,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="gestão-de-recursos-humanos"><span class="header-section-number">1.4.1</span> Gestão de Recursos Humanos</h3>
 <p><strong>Cenário:</strong> A área de RH precisa recomendar iniciativas para melhorar engajamento, mas cada departamento tem características diferentes.</p>
 <p><strong>Com Synesis:</strong> - Documente relações causais da literatura de comportamento organizacional - Registre observações das pesquisas de engajamento com interpretações estruturadas - Identifique quais fatores (oportunidades de carreira, clareza de visão, trabalho em equipe) causam quais resultados (motivação, satisfação, retenção) - Recomende iniciativas com base em evidências documentadas</p>
-<pre><code>Exemplo de registro:
-- Fonte: Pesquisa de Engajamento Q4/2024, Departamento Comercial
-- Observação: "Sinto que não tenho oportunidades de crescimento aqui"
-- Interpretação: Funcionário expressa frustração com limitação de carreira
-- Relação identificada: Falta de Oportunidades → REDUZ → Motivação</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@pesquisa_engajamento_q4_2024_comercial</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2024-12-15</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@pesquisa_engajamento_q4_2024_comercial</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Sinto que não tenho oportunidades de crescimento aqui"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Funcionário expressa frustração com limitação de carreira; associa falta de progressão à queda de motivação.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> falta_de_oportunidades_de_carreira <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> motivacao</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="análise-de-falhas-e-incidentes" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="análise-de-falhas-e-incidentes"><span class="header-section-number">1.4.2</span> Análise de Falhas e Incidentes</h3>
 <p><strong>Cenário:</strong> Equipe de operações precisa identificar causas-raiz de falhas em sistemas complexos.</p>
 <p><strong>Com Synesis:</strong> - Extraia relações causais de manuais técnicos e guias de troubleshooting - Documente cada incidente com a cadeia causal identificada - Construa uma base de conhecimento que acelere diagnósticos futuros</p>
-<pre><code>Exemplo de registro:
-- Fonte: Relatório de Incidente #2024-0892
-- Observação: Desconexão intermitente durante download de arquivos
-- Interpretação: Padrão consistente com erro de configuração de MAC
-- Relação identificada: Erro de Configuração → CAUSA → Desconexão</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@relatorio_incidente_2024_0892</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2024-11-10</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@relatorio_incidente_2024_0892</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Desconexão intermitente durante download de arquivos"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Padrão consistente com erro de configuração de MAC; comportamento reproduzível sob as mesmas condições de rede.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> erro_de_configuracao_de_mac <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> conectividade_estavel</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="análise-de-mercado-e-negociações" class="level3" data-number="1.4.3">
 <h3 data-number="1.4.3" class="anchored" data-anchor-id="análise-de-mercado-e-negociações"><span class="header-section-number">1.4.3</span> Análise de Mercado e Negociações</h3>
 <p><strong>Cenário:</strong> Equipe comercial quer entender por que algumas negociações são bem-sucedidas e outras não.</p>
 <p><strong>Com Synesis:</strong> - Registre observações de cada negociação (reuniões, objeções, decisões) - Identifique padrões causais entre ações e resultados - Combine com dados de engajamento para entender como fatores internos afetam performance externa</p>
-<pre><code>Exemplo de registro:
-- Fonte: Análise de Negociação #2024-156 (Sucesso)
-- Observação: Cliente mencionou confiança na equipe técnica
-- Interpretação: Demonstração de competência técnica influenciou decisão
-- Relação identificada: Competência Técnica → INFLUENCIA → Confiança → INFLUENCIA → Fechamento</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@analise_negociacao_2024_156</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2024-10-22</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@analise_negociacao_2024_156</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Cliente mencionou confiança na equipe técnica como fator decisivo"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Demonstração de competência técnica durante a proposta influenciou a percepção de confiança, que por sua vez viabilizou o fechamento.</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> competencia_tecnica <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> confianca_do_cliente <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> fechamento_da_negociacao</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -393,24 +405,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="você-documenta-a-fonte" class="level3" data-number="1.5.1">
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="você-documenta-a-fonte"><span class="header-section-number">1.5.1</span> 1. Você documenta a fonte</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@pesquisa_engajamento_2024</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2024-12-15</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2024-12-15</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Todo conhecimento é rastreável até sua origem — um documento, uma entrevista, um relatório.</p>
 </section>
 <section id="você-registra-observações-e-interpretações" class="level3" data-number="1.5.2">
 <h3 data-number="1.5.2" class="anchored" data-anchor-id="você-registra-observações-e-interpretações"><span class="header-section-number">1.5.2</span> 2. Você registra observações e interpretações</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@pesquisa_engajamento_2024</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Não sei para onde a empresa está indo"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Funcionário expressa falta de clareza sobre direção estratégica</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Falta de Clareza → REDUZ → Engajamento</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Funcionário expressa falta de clareza sobre direção estratégica</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> falta_de_clareza_estrategica <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> engajamento</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cada item conecta a evidência textual à sua interpretação e à relação causal identificada.</p>
 </section>
 <section id="você-define-seu-vocabulário-conceitual" class="level3" data-number="1.5.3">
 <h3 data-number="1.5.3" class="anchored" data-anchor-id="você-define-seu-vocabulário-conceitual"><span class="header-section-number">1.5.3</span> 3. Você define seu vocabulário conceitual</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Engajamento</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Comportamento Organizacional</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Nível de comprometimento e conexão emocional do funcionário</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> engajamento</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Nível de comprometimento e conexão emocional do funcionário com a organização."</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> resultados_organizacionais</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> falta_de_clareza_estrategica</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Ausência de comunicação clara sobre direção, objetivos ou visão da organização."</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> fatores_organizacionais</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Conceitos são definidos explicitamente, garantindo consistência ao longo do projeto.</p>
 </section>
 <section id="o-sistema-valida-e-estrutura" class="level3" data-number="1.5.4">

@@ -262,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local" id="toc-opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local" class="nav-link" data-scroll-target="#opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local"><span class="header-section-number">1.2.1</span> Opção A: Neo4j Desktop (Recomendado para desenvolvimento local)</a></li>
   <li><a href="#opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós" id="toc-opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós" class="nav-link" data-scroll-target="#opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós"><span class="header-section-number">1.2.2</span> Opção B: Neo4j AuraDB (Cloud - Gratuito até 200K nós)</a></li>
   </ul></li>
-  <li><a href="#passo-2-instalar-synesis2neo4j" id="toc-passo-2-instalar-synesis2neo4j" class="nav-link" data-scroll-target="#passo-2-instalar-synesis2neo4j"><span class="header-section-number">1.3</span> Passo 2: Instalar synesis2neo4j</a></li>
+  <li><a href="#passo-2-instalar-synesis2graph" id="toc-passo-2-instalar-synesis2graph" class="nav-link" data-scroll-target="#passo-2-instalar-synesis2graph"><span class="header-section-number">1.3</span> Passo 2: Instalar synesis2graph</a></li>
   <li><a href="#passo-3-criar-arquivo-de-configuração" id="toc-passo-3-criar-arquivo-de-configuração" class="nav-link" data-scroll-target="#passo-3-criar-arquivo-de-configuração"><span class="header-section-number">1.4</span> Passo 3: Criar Arquivo de Configuração</a>
   <ul class="collapse">
   <li><a href="#para-neo4j-desktop" id="toc-para-neo4j-desktop" class="nav-link" data-scroll-target="#para-neo4j-desktop"><span class="header-section-number">1.4.1</span> Para Neo4j Desktop:</a></li>
@@ -399,12 +399,12 @@ Checkpoint ✓
 <hr>
 </section>
 </section>
-<section id="passo-2-instalar-synesis2neo4j" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="passo-2-instalar-synesis2neo4j"><span class="header-section-number">1.3</span> Passo 2: Instalar synesis2neo4j</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis2neo4j</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="passo-2-instalar-synesis2graph" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="passo-2-instalar-synesis2graph"><span class="header-section-number">1.3</span> Passo 2: Instalar synesis2graph</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis2graph</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Verifique a instalação:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2neo4j</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Deve retornar: <code>synesis2neo4j version 0.1.2</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2graph</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Deve retornar: <code>synesis2graph version 0.1.2</code></p>
 <hr>
 </section>
 <section id="passo-3-criar-arquivo-de-configuração" class="level2" data-number="1.4">
@@ -416,15 +416,7 @@ Checkpoint ✓
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"bolt://localhost:7687"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">user</span> <span class="op">=</span> <span class="st">"neo4j"</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">password</span> <span class="op">=</span> <span class="st">"SuaSenhaAqui"</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"neo4j"</span>  <span class="co"># ou nome customizado</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">[sync]</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">mode</span> <span class="op">=</span> <span class="st">"replace"</span>  <span class="co"># Opções: replace, merge, append</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">batch_size</span> <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[metrics]</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dt">native</span> <span class="op">=</span> <span class="cn">true</span>       <span class="co"># Métricas básicas (Cypher)</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dt">gds</span> <span class="op">=</span> <span class="cn">false</span>         <span class="co"># Graph Data Science (requer plugin)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"neo4j"</span>  <span class="co"># ou nome customizado</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="para-neo4j-auradb" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="para-neo4j-auradb"><span class="header-section-number">1.4.2</span> Para Neo4j AuraDB:</h3>
@@ -432,15 +424,7 @@ Checkpoint ✓
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"neo4j+s://xxxxx.databases.neo4j.io"</span>  <span class="co"># Copie da suas credenciais</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">user</span> <span class="op">=</span> <span class="st">"neo4j"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">password</span> <span class="op">=</span> <span class="st">"SuaSenhaAuraDB"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"neo4j"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">[sync]</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dt">mode</span> <span class="op">=</span> <span class="st">"replace"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dt">batch_size</span> <span class="op">=</span> <span class="dv">500</span>  <span class="co"># Menor para conexão cloud</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[metrics]</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="dt">native</span> <span class="op">=</span> <span class="cn">true</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="dt">gds</span> <span class="op">=</span> <span class="cn">false</span>  <span class="co"># GDS não disponível em AuraDB Free</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"neo4j"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -460,12 +444,12 @@ Segurança
 </section>
 <section id="passo-4-executar-a-exportação" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="passo-4-executar-a-exportação"><span class="header-section-number">1.5</span> Passo 4: Executar a Exportação</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2neo4j</span> <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2graph</span> <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Output esperado:</strong></p>
 <pre><code>🔍 Carregando projeto Synesis...
 ✓ Projeto válido: meu_projeto
 ✓ Template carregado: template.synt
-✓ Ontologia carregada: 15 códigos, 4 relações
+✓ Ontologia carregada: 15 conceitos, 4 relações
 
 🔗 Conectando ao Neo4j...
 ✓ Conectado: bolt://localhost:7687
@@ -574,7 +558,7 @@ Interpretação
 <section id="modo-replace-padrão" class="level3" data-number="1.8.1">
 <h3 data-number="1.8.1" class="anchored" data-anchor-id="modo-replace-padrão"><span class="header-section-number">1.8.1</span> Modo Replace (Padrão)</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apaga tudo e recria</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2neo4j</span> <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2graph</span> <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="modo-merge-atualização-incremental" class="level3" data-number="1.8.2">
 <h3 data-number="1.8.2" class="anchored" data-anchor-id="modo-merge-atualização-incremental"><span class="header-section-number">1.8.2</span> Modo Merge (Atualização Incremental)</h3>
@@ -582,7 +566,7 @@ Interpretação
 <div class="sourceCode" id="cb19"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[sync]</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dt">mode</span> <span class="op">=</span> <span class="st">"merge"</span>  <span class="co"># Atualiza apenas o que mudou</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Execute novamente:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2neo4j</span> <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis2graph</span> <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> neo4j_config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Quando usar cada modo:</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -735,7 +719,7 @@ RETURN date(time) AS data, count(i) AS anotacoes_por_dia</code></pre>
 <p>Para detalhes da API Synesis: - <a href="../reference/synesis_load.html">API Synesis (synesis.load)</a></p>
 <p>Para Cypher Query Language: - <a href="https://neo4j.com/docs/cypher-manual/">Neo4j Cypher Manual</a></p>
 <hr>
-<p><strong>Ficou com dúvidas?</strong> Abra uma issue no <a href="https://github.com/synesis-lang/synesis2neo4j">repositório synesis2neo4j</a> ou consulte <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a>.</p>
+<p><strong>Ficou com dúvidas?</strong> Abra uma issue no <a href="https://github.com/synesis-lang/synesis2graph">repositório synesis2graph</a> ou consulte <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a>.</p>
 
 
 </section>

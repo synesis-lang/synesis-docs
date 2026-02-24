@@ -404,27 +404,45 @@ Checkpoint ✓
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> template.synt  <span class="co"># se você tem VSCode</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Você verá algo assim:</strong></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> analysis</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">version:</span> <span class="st">"1.0"</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>BLOCK <span class="kw">SOURCE</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> bibref : BIBREF <span class="kw">REQUIRED</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> BLOCK</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>BLOCK <span class="kw">ITEM</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> <span class="at">quote</span> : <span class="dt">TEXT</span> <span class="kw">REQUIRED</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> <span class="at">note</span> : <span class="dt">TEXT</span> <span class="kw">OPTIONAL</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> code : <span class="dt">CODE</span> <span class="kw">OPTIONAL</span> MULTIPLE</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FIELD</span> <span class="at">chain</span> : CHAIN <span class="kw">OPTIONAL</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> BLOCK</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> memo</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> code</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> <span class="at">chain</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Citação literal extraída da fonte</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> memo <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Sua interpretação e análise do trecho</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> code <span class="kw">TYPE</span> <span class="dt">CODE</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Código conceitual da ontologia</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Relação causal entre conceitos</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INIBE:</span> Um fator reduz ou impede outro</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="fu">FAVORECE:</span> Um fator promove ou facilita outro</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>O que isso significa?</strong></p>
 <ul>
-<li><code>BLOCK SOURCE</code>: Define um bloco para identificar fontes bibliográficas</li>
-<li><code>BLOCK ITEM</code>: Define um bloco para anotações individuais</li>
-<li><code>FIELD quote : TEXT REQUIRED</code>: Campo obrigatório para citações literais</li>
-<li><code>FIELD note : TEXT OPTIONAL</code>: Campo opcional para suas interpretações</li>
-<li><code>FIELD code : CODE OPTIONAL MULTIPLE</code>: Campo para códigos conceituais (pode ter vários)</li>
-<li><code>FIELD chain : CHAIN OPTIONAL</code>: Campo para relações causais</li>
+<li><code>ITEM FIELDS</code>: Declara quais campos o bloco ITEM aceita e se são obrigatórios ou opcionais</li>
+<li><code>FIELD quote TYPE QUOTATION</code>: Campo obrigatório para citações literais</li>
+<li><code>FIELD memo TYPE MEMO</code>: Campo para sua interpretação analítica</li>
+<li><code>FIELD code TYPE CODE</code>: Campo para códigos conceituais (pode aparecer várias vezes no mesmo ITEM)</li>
+<li><code>FIELD chain TYPE CHAIN</code>: Campo para relações causais, com as relações válidas declaradas</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -446,34 +464,25 @@ Regra de Ouro
 <p>Agora vamos definir os códigos conceituais que vamos usar. Abra <code>ontology/codes.syno</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ontology/codes.syno  <span class="co"># ou seu editor preferido</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Substitua o conteúdo por:</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> codes</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>VERSION 1.0</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Fatores de Adoção"</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Custo"</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Fatores econômicos relacionados ao preço e investimento"</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Facilidade de Uso"</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Percepção de complexidade ou simplicidade da tecnologia"</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CODE</span> <span class="st">"Utilidade Percebida"</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Crença de que a tecnologia trará benefícios práticos"</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="dt">CODE</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="dt">TOPIC</span> <span class="st">"Relações Causais"</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"INIBE"</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator reduz ou impede outro"</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    RELATION <span class="st">"FAVORECE"</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DEFINITION:</span> <span class="st">"Um fator promove ou facilita outro"</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> RELATION</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="dt">TOPIC</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> custo</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Fatores econômicos relacionados ao preço e investimento necessário"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> fatores_de_adocao</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> facilidade_de_uso</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Percepção de complexidade ou simplicidade da tecnologia"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> fatores_de_adocao</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> utilidade_percebida</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Crença de que a tecnologia trará benefícios práticos"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> fatores_de_adocao</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> adocao_de_ia</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Decisão de incorporar inteligência artificial nos processos da organização"</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> desfechos</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Salve o arquivo.</strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -497,7 +506,7 @@ Checkpoint ✓
 <p>Vamos adicionar uma referência fictícia à nossa bibliografia. Abra <code>references.bib</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> references.bib</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Adicione:</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_joao,</span></span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_joao2026,</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {João Silva},</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista sobre adoção de IA},</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
@@ -505,7 +514,7 @@ Checkpoint ✓
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">  note = {Gerente de TI, empresa de médio porte}</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_maria,</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">@interview{entrevista_maria2026,</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {Maria Santos},</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {Entrevista sobre resistência tecnológica},</span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
@@ -520,33 +529,33 @@ Checkpoint ✓
 <p>Agora vem a parte emocionante! Vamos criar anotações interpretativas. Crie um novo arquivo <code>annotations/entrevistas.syn</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> annotations/entrevistas.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Digite o seguinte:</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_joao</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_joao2026</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_joao</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_joao2026</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"O custo inicial é proibitivo para nossa escala de operação"</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Entrevistado expressa barreira econômica clara à adoção de IA</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Custo</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Custo <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção de IA</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Entrevistado expressa barreira econômica clara à adoção de IA</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> custo</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> custo <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao_de_ia</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_joao</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_joao2026</span></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Parece muito complexo, não temos expertise interna"</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Falta de capacitação técnica percebida como obstáculo</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Facilidade de Uso</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Facilidade de Uso <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção de IA</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Falta de capacitação técnica percebida como obstáculo</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> facilidade_de_uso</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> facilidade_de_uso <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao_de_ia</span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_maria</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_maria2026</span></span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_maria</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_maria2026</span></span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Se fosse mais barato, a gente testaria. A tecnologia parece boa"</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Reconhecimento de utilidade, mas custo como fator limitante</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Custo</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Utilidade Percebida</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Utilidade Percebida <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> Adoção de IA</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Custo <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> Adoção de IA</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Reconhecimento de utilidade, mas custo como fator limitante</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> custo</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> utilidade_percebida</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> utilidade_percebida <span class="op">-&gt;</span> FAVORECE <span class="op">-&gt;</span> adocao_de_ia</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> custo <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> adocao_de_ia</span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Salve o arquivo.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -559,7 +568,7 @@ Observe o padrão
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Cada <code>ITEM</code> conecta: 1. Uma citação literal (<code>quote</code>) 2. Sua interpretação (<code>note</code>) 3. Códigos conceituais (<code>code</code>) 4. Relações causais (<code>chain</code>)</p>
+<p>Cada <code>ITEM</code> conecta: 1. Uma citação literal (<code>quote</code>) 2. Sua interpretação (<code>memo</code>) 3. Códigos conceituais (<code>code</code>) 4. Relações causais (<code>chain</code>)</p>
 <p>Isso é <strong>rastreabilidade bidirecional</strong>: da evidência à interpretação e vice-versa.</p>
 </div>
 </div>
@@ -629,10 +638,10 @@ Explore os resultados
 <section id="passo-9-adicionar-mais-uma-anotação" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="passo-9-adicionar-mais-uma-anotação"><span class="header-section-number">1.9</span> Passo 9: Adicionar Mais Uma Anotação</h2>
 <p>Vamos praticar! Abra novamente <code>annotations/entrevistas.syn</code> e adicione:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_maria</span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_maria2026</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"A interface é intuitiva, mas precisaríamos de treinamento"</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Reconhece facilidade de uso, mas identifica necessidade de capacitação</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Facilidade de Uso</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">memo:</span> Reconhece facilidade de uso, mas identifica necessidade de capacitação</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> facilidade_de_uso</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Salve, valide e compile novamente:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check analysis.synp</span>
@@ -705,14 +714,14 @@ Checkpoint ✓
 <ul>
 <li><a href="../howto/definir_ontologia.html">Como definir uma ontologia complexa</a></li>
 <li><a href="../howto/criar_chains.html">Como criar chains qualificadas</a></li>
-<li><a href="../ecossistema/synesis2neo4j_pt.qmd">Como exportar para Neo4j</a></li>
+<li><a href="../howto/exportar_neo4j.html">Como exportar para Neo4j</a></li>
 </ul>
 </section>
 <section id="entender-conceitos" class="level3" data-number="1.12.3">
 <h3 data-number="1.12.3" class="anchored" data-anchor-id="entender-conceitos"><span class="header-section-number">1.12.3</span> Entender Conceitos</h3>
 <ul>
 <li><a href="../explanation/guia_sincero.html">Por que não Excel?</a></li>
-<li><a href="../explanation/template_philosophy.qmd">Template como Fonte da Verdade</a></li>
+<li><a href="../reference/guia_referencia.html">Template como Fonte da Verdade</a></li>
 </ul>
 <hr>
 </section>
@@ -737,7 +746,7 @@ Checkpoint ✓
 <section id="erro-code-xyz-not-defined-in-ontology" class="level3" data-number="1.13.3">
 <h3 data-number="1.13.3" class="anchored" data-anchor-id="erro-code-xyz-not-defined-in-ontology"><span class="header-section-number">1.13.3</span> Erro: <code>Code 'XYZ' not defined in ontology</code></h3>
 <p><strong>Causa:</strong> Você usou um código em <code>annotations/entrevistas.syn</code> que não existe em <code>ontology/codes.syno</code>.</p>
-<p><strong>Solução:</strong> 1. Abra <code>ontology/codes.syno</code> 2. Adicione o código faltante dentro de um <code>TOPIC</code> 3. Salve e valide novamente</p>
+<p><strong>Solução:</strong> 1. Abra <code>ontology/codes.syno</code> 2. Adicione um bloco <code>ONTOLOGY conceito_novo ... END ONTOLOGY</code> com <code>descricao:</code> e <code>grupo:</code> 3. Salve e valide novamente</p>
 </section>
 <section id="erro-bibref-abc-not-found-in-bibliography" class="level3" data-number="1.13.4">
 <h3 data-number="1.13.4" class="anchored" data-anchor-id="erro-bibref-abc-not-found-in-bibliography"><span class="header-section-number">1.13.4</span> Erro: <code>Bibref '@abc' not found in bibliography</code></h3>
