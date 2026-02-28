@@ -847,6 +847,132 @@
     "text": "5.1 Emoção + Processo\nA Codificação de Emoção rotula sentimentos do participante. A Codificação de Processo captura ações em andamento (gerúndios). Quando usadas em conjunto via BUNDLE, cada emoção é pareada com o processo que a provoca.\nNo template (.synt):\nITEM FIELDS\n    REQUIRED citacao\n    REQUIRED BUNDLE emocao, processo\nEND ITEM FIELDS\n\nFIELD citacao TYPE QUOTATION\n    SCOPE ITEM\n    DESCRIPTION Excerto textual\nEND FIELD\n\nFIELD emocao TYPE ENUMERATED\n    SCOPE ITEM\n    DESCRIPTION Estado emocional do participante\n    VALUES\n        medo: Receio ou temor\n        frustracão: Irritação por obstáculo\n        esperanca: Expectativa positiva\n        resignacao: Aceitação passiva\n    END VALUES\nEND FIELD\n\nFIELD processo TYPE CODE\n    SCOPE ITEM\n    DESCRIPTION Ação ou processo observado (gerúndio conceitual)\nEND FIELD\nNo arquivo de anotação (.syn):\nITEM @entrevista_dona_maria2026\n    citacao: \"Tenho medo de apertar o botão errado e perder a consulta. Já tentei três vezes e desisti\"\n\n    emocao: medo\n    processo: Tentando_Usar_Sistema\n\n    emocao: frustracão\n    processo: Desistindo_do_Atendimento\nEND ITEM\n\n\n\n\n\n\nDuas leituras do mesmo excerto\n\n\n\nO BUNDLE garante a correspondência posicional: o primeiro par (medo + Tentando_Usar_Sistema) captura a experiência durante a tentativa; o segundo par (frustração + Desistindo_do_Atendimento) captura a consequência emocional da falha. Sem o BUNDLE, essas associações seriam ambíguas."
   },
   {
+    "objectID": "explanation/como_surgiu.html",
+    "href": "explanation/como_surgiu.html",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "O problema original\n\nSynesis surgiu de uma pesquisa concreta: a investigação sobre aceitação social de tecnologias de energia offshore, conduzida no âmbito do OTIC (Offshore Technology Innovation Centre) da Universidade de São Paulo (USP). O objetivo era identificar e organizar os fatores que influenciam a percepção pública sobre inovações tecnológicas no contexto da transição energética — um problema ao mesmo tempo empírico e interpretativo.\nPara dar conta desse problema, foi necessário construir um fluxo de trabalho integrado que combinasse técnicas bibliométricas, codificação qualitativa e inteligência artificial. Ferramentas como RStudio, o pacote Bibliometrix e VOSviewer eram usadas para identificar os artigos científicos mais relevantes por contagem de citações, exportados de bases como Web of Science e Scopus. Zotero centralizava o gerenciamento das referências e servia, também, como ambiente de anotação qualitativa inicial.\n\n\nO Zotero não foi projetado para análise qualitativa. Ainda assim, revelou-se útil para uma primeira fase de codificação aberta: era possível anotar PDFs com marcadores e comentários, associar tags a trechos destacados e exportar essas anotações em um formato customizado.\nPara isso, o Zotero foi configurado com templates personalizados nas preferências avançadas. Cada anotação exportada seguia uma estrutura com delimitadores específicos:\n[-begin_header-]\nreferencia_bibtex: burke2018\ndescricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\nmodelo_epistemico: Energy democracy, political power theory\nmetodo: Conceptual review\n[-end_header-]\n\n[-begin-][@burke2018@][!Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.!][%Distributed energy systems can reorganize political power structures%][#Energy System#][&correlates-with&][#Governance#][-end-]\nO formato funcionava para volumes pequenos, revisados manualmente. Mas já carregava uma fragilidade estrutural: os delimitadores eram convenções textuais, não gramática formal. E o próprio pesquisador humano dependia desse mesmo formato informal para registrar suas interpretações.\n\n\n\nÀ medida que o corpus crescia — centenas de abstracts exportados em BibTeX, convertidos para CSV pelo script bib2csv.py —, tornou-se inviável processar tudo manualmente. A solução foi incorporar modelos de linguagem via API para automatizar a extração de fatores e relações.\nO script abstract_processor9.py enviava cada abstract ao modelo, com um prompt estruturado em cinco partes (system_prompt, task, instructions, relation_types, critical_reminders), e recebia de volta o mesmo formato de TAGs já usado no Zotero. A escala aumentou. O problema também.\nModelos de linguagem produzem texto probabilístico. REGEX pressupõe padrões estáveis. Pequenas variações no output — um espaço extra, uma TAG mal fechada, uma cadeia de relações fora da ordem esperada — quebravam o parsing. Cada ajuste exigia novas expressões regulares. O sistema dependia de um equilíbrio cada vez mais frágil entre a estabilidade do modelo, a disciplina no formato e a complexidade crescente das anotações.\n\n\n\nPara contornar as limitações, o toolkit foi crescendo. O editor.py surgiu como interface visual para revisar e corrigir manualmente os arquivos .txt gerados pela IA — com suporte a clique direito para editar fatores, relações e cadeias. O compare_annotations.py foi criado para medir a distância entre o que a IA produzia e o que o pesquisador pretendia dizer, usando métricas de similaridade Levenshtein, sobreposição de palavras e contagem de blocos:\nINFO: burke2018:\nINFO:   Exact Match: 60.0%\nINFO:   Levenshtein Similarity: 99.8%\nINFO:   Word Overlap: 98.2%\nINFO:   Blocks: File1=5, File2=4\nO docs2txt.py ampliou o escopo para além de abstracts científicos: PDFs, documentos Word e páginas HTML podiam agora ser convertidos e processados pelo mesmo fluxo — entrevistas, relatórios técnicos, conteúdo web. O menu interativo menu_txt.py foi criado apenas para coordenar a sequência de execução dos demais scripts.\nQuando foi necessário criar uma ferramenta só para medir a distância entre o output da IA e a intenção do pesquisador, o diagnóstico tornou-se inegável: o problema não era técnico. Era estrutural.\n\n\n\nÀ medida que a análise avançava, os dados deixaram de ser registros tabulares. Passaram a incluir cadeias semânticas:\nA → influencia → B → habilita → C\nA representação em banco relacional tornou-se artificial. A migração para um banco de grafos foi natural. Mas mesmo com armazenamento adequado, o problema persistia: a entrada continuava sendo texto frágil, não estrutura formal. O grafo era robusto; a linguagem que o alimentava, não.\n\n\n\nA análise gerada por IA era estruturada, mas rígida. A anotação humana era flexível, mas informal. Era necessário adicionar novos campos, registrar interpretações, revisar códigos, expandir cadeias, evoluir a ontologia. O sistema baseado em TAGs dificultava essa evolução: cada mudança estrutural exigia modificar o parsing, o armazenamento e frequentemente o prompt.\nO problema ficou claro: como integrar análise estruturada gerada por IA e anotação humana orgânica sem sacrificar consistência ou flexibilidade?\n\n\n\nA resposta não estava em melhorar o banco de dados. Nem em sofisticar o uso de REGEX. Era necessário introduzir sintaxe explícita, parsing formal, validação semântica e separação entre linguagem e configuração.\nAssim surgiu a ideia de transformar o formato de anotação em uma linguagem propriamente dita, uma linguagem de domínio específico (DSL):\nSOURCE @burke2018\n    descricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\n    modelo_epistemico: Energy democracy, political power theory\n    metodo: Conceptual review\nEND SOURCE\n\nITEM @burke2018@\n    text: Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.\n\n    note: Distributed energy systems can reorganize political power structures\n\n    chain: Energy_System -&gt; influences -&gt; Governance\nEND ITEM\nEsta nova abordagem permitiu que\n\n\n\nSynesis não é uma camada intermediária entre IA e banco de dados.\nEla é o ponto de convergência entre dois processos: geração estruturada e escalável por IA, e interpretação humana contextual e evolutiva. Ambos operam na mesma linguagem.\nA IA pode produzir anotações em Synesis. O pesquisador pode editar, expandir e reinterpretar essas anotações. O compilador garante consistência e rastreabilidade.\nA estrutura não elimina a interpretação. Ela a organiza.\n\n\n\nSynesis responde a um problema contemporâneo: modelos de IA geram texto estruturado, mas texto não é estrutura confiável. Sem gramática, validação e ontologia controlada, a análise torna-se difícil de manter, versionar e auditar.\nSynesis formaliza essa estrutura sem impedir evolução.\nEla nasceu de uma fricção prática — em um problema de pesquisa real, com dados reais, em um fluxo que cresceu até o ponto em que seus próprios remendos se tornaram o obstáculo. E continua evoluindo a partir dessa mesma fricção."
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#o-zotero-como-ponto-de-partida",
+    "href": "explanation/como_surgiu.html#o-zotero-como-ponto-de-partida",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "O Zotero não foi projetado para análise qualitativa. Ainda assim, revelou-se útil para uma primeira fase de codificação aberta: era possível anotar PDFs com marcadores e comentários, associar tags a trechos destacados e exportar essas anotações em um formato customizado.\nPara isso, o Zotero foi configurado com templates personalizados nas preferências avançadas. Cada anotação exportada seguia uma estrutura com delimitadores específicos:\n[-begin_header-]\nreferencia_bibtex: burke2018\ndescricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\nmodelo_epistemico: Energy democracy, political power theory\nmetodo: Conceptual review\n[-end_header-]\n\n[-begin-][@burke2018@][!Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.!][%Distributed energy systems can reorganize political power structures%][#Energy System#][&correlates-with&][#Governance#][-end-]\nO formato funcionava para volumes pequenos, revisados manualmente. Mas já carregava uma fragilidade estrutural: os delimitadores eram convenções textuais, não gramática formal. E o próprio pesquisador humano dependia desse mesmo formato informal para registrar suas interpretações."
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#a-ia-entra-no-fluxo",
+    "href": "explanation/como_surgiu.html#a-ia-entra-no-fluxo",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "À medida que o corpus crescia — centenas de abstracts exportados em BibTeX, convertidos para CSV pelo script bib2csv.py —, tornou-se inviável processar tudo manualmente. A solução foi incorporar modelos de linguagem via API para automatizar a extração de fatores e relações.\nO script abstract_processor9.py enviava cada abstract ao modelo, com um prompt estruturado em cinco partes (system_prompt, task, instructions, relation_types, critical_reminders), e recebia de volta o mesmo formato de TAGs já usado no Zotero. A escala aumentou. O problema também.\nModelos de linguagem produzem texto probabilístico. REGEX pressupõe padrões estáveis. Pequenas variações no output — um espaço extra, uma TAG mal fechada, uma cadeia de relações fora da ordem esperada — quebravam o parsing. Cada ajuste exigia novas expressões regulares. O sistema dependia de um equilíbrio cada vez mais frágil entre a estabilidade do modelo, a disciplina no formato e a complexidade crescente das anotações."
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#a-proliferação-de-remendos",
+    "href": "explanation/como_surgiu.html#a-proliferação-de-remendos",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "Para contornar as limitações, o toolkit foi crescendo. O editor.py surgiu como interface visual para revisar e corrigir manualmente os arquivos .txt gerados pela IA — com suporte a clique direito para editar fatores, relações e cadeias. O compare_annotations.py foi criado para medir a distância entre o que a IA produzia e o que o pesquisador pretendia dizer, usando métricas de similaridade Levenshtein, sobreposição de palavras e contagem de blocos:\nINFO: burke2018:\nINFO:   Exact Match: 60.0%\nINFO:   Levenshtein Similarity: 99.8%\nINFO:   Word Overlap: 98.2%\nINFO:   Blocks: File1=5, File2=4\nO docs2txt.py ampliou o escopo para além de abstracts científicos: PDFs, documentos Word e páginas HTML podiam agora ser convertidos e processados pelo mesmo fluxo — entrevistas, relatórios técnicos, conteúdo web. O menu interativo menu_txt.py foi criado apenas para coordenar a sequência de execução dos demais scripts.\nQuando foi necessário criar uma ferramenta só para medir a distância entre o output da IA e a intenção do pesquisador, o diagnóstico tornou-se inegável: o problema não era técnico. Era estrutural."
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#a-insuficiência-do-modelo-relacional",
+    "href": "explanation/como_surgiu.html#a-insuficiência-do-modelo-relacional",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "À medida que a análise avançava, os dados deixaram de ser registros tabulares. Passaram a incluir cadeias semânticas:\nA → influencia → B → habilita → C\nA representação em banco relacional tornou-se artificial. A migração para um banco de grafos foi natural. Mas mesmo com armazenamento adequado, o problema persistia: a entrada continuava sendo texto frágil, não estrutura formal. O grafo era robusto; a linguagem que o alimentava, não."
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#a-tensão-entre-automação-e-interpretação",
+    "href": "explanation/como_surgiu.html#a-tensão-entre-automação-e-interpretação",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "A análise gerada por IA era estruturada, mas rígida. A anotação humana era flexível, mas informal. Era necessário adicionar novos campos, registrar interpretações, revisar códigos, expandir cadeias, evoluir a ontologia. O sistema baseado em TAGs dificultava essa evolução: cada mudança estrutural exigia modificar o parsing, o armazenamento e frequentemente o prompt.\nO problema ficou claro: como integrar análise estruturada gerada por IA e anotação humana orgânica sem sacrificar consistência ou flexibilidade?"
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#o-insight-texto-precisa-de-gramática",
+    "href": "explanation/como_surgiu.html#o-insight-texto-precisa-de-gramática",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "A resposta não estava em melhorar o banco de dados. Nem em sofisticar o uso de REGEX. Era necessário introduzir sintaxe explícita, parsing formal, validação semântica e separação entre linguagem e configuração.\nAssim surgiu a ideia de transformar o formato de anotação em uma linguagem propriamente dita, uma linguagem de domínio específico (DSL):\nSOURCE @burke2018\n    descricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\n    modelo_epistemico: Energy democracy, political power theory\n    metodo: Conceptual review\nEND SOURCE\n\nITEM @burke2018@\n    text: Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.\n\n    note: Distributed energy systems can reorganize political power structures\n\n    chain: Energy_System -&gt; influences -&gt; Governance\nEND ITEM\nEsta nova abordagem permitiu que"
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#synesis-como-síntese",
+    "href": "explanation/como_surgiu.html#synesis-como-síntese",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "Synesis não é uma camada intermediária entre IA e banco de dados.\nEla é o ponto de convergência entre dois processos: geração estruturada e escalável por IA, e interpretação humana contextual e evolutiva. Ambos operam na mesma linguagem.\nA IA pode produzir anotações em Synesis. O pesquisador pode editar, expandir e reinterpretar essas anotações. O compilador garante consistência e rastreabilidade.\nA estrutura não elimina a interpretação. Ela a organiza."
+  },
+  {
+    "objectID": "explanation/como_surgiu.html#o-papel-atual-da-synesis",
+    "href": "explanation/como_surgiu.html#o-papel-atual-da-synesis",
+    "title": "1 Como a Synesis surgiu?",
+    "section": "",
+    "text": "Synesis responde a um problema contemporâneo: modelos de IA geram texto estruturado, mas texto não é estrutura confiável. Sem gramática, validação e ontologia controlada, a análise torna-se difícil de manter, versionar e auditar.\nSynesis formaliza essa estrutura sem impedir evolução.\nEla nasceu de uma fricção prática — em um problema de pesquisa real, com dados reais, em um fluxo que cresceu até o ponto em que seus próprios remendos se tornaram o obstáculo. E continua evoluindo a partir dessa mesma fricção."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre o Synesis",
+    "section": "",
+    "text": "Synesis é uma linguagem de domínio específico (DSL) de código aberto para consolidação sistemática de conhecimento qualitativo. Desenvolvida para pesquisadores, profissionais do conhecimento e analistas que precisam transformar interpretações em estruturas auditáveis e tecnicamente interoperáveis.\n\n\nEliminar a lacuna entre a riqueza interpretativa das ciências humanas e o rigor estrutural da ciência de dados, sem sacrificar a profundidade analítica nem a precisão técnica.\n\n\n\n\nTemplate como Fonte da Verdade: Toda estrutura de validação é derivada do arquivo de template (.synt) em tempo de execução. Nenhum campo é hardcoded.\nText-First & Interoperável: Arquivos de texto puro, versionáveis com Git, compiláveis para JSON/CSV/Excel, integráveis com qualquer stack tecnológica.\nValidação Semântica Rigorosa: O compilador valida consistência conceitual, rastreabilidade bidirecional e conformidade com ontologias definidas.\nEcossistema Integrado: Compilador, Language Server Protocol (LSP), extensão VSCode, pipeline Neo4j e plugin Zotero funcionam como sistema coeso."
+  },
+  {
+    "objectID": "about.html#sobre-o-projeto",
+    "href": "about.html#sobre-o-projeto",
+    "title": "Sobre o Synesis",
+    "section": "",
+    "text": "Synesis é uma linguagem de domínio específico (DSL) de código aberto para consolidação sistemática de conhecimento qualitativo. Desenvolvida para pesquisadores, profissionais do conhecimento e analistas que precisam transformar interpretações em estruturas auditáveis e tecnicamente interoperáveis.\n\n\nEliminar a lacuna entre a riqueza interpretativa das ciências humanas e o rigor estrutural da ciência de dados, sem sacrificar a profundidade analítica nem a precisão técnica.\n\n\n\n\nTemplate como Fonte da Verdade: Toda estrutura de validação é derivada do arquivo de template (.synt) em tempo de execução. Nenhum campo é hardcoded.\nText-First & Interoperável: Arquivos de texto puro, versionáveis com Git, compiláveis para JSON/CSV/Excel, integráveis com qualquer stack tecnológica.\nValidação Semântica Rigorosa: O compilador valida consistência conceitual, rastreabilidade bidirecional e conformidade com ontologias definidas.\nEcossistema Integrado: Compilador, Language Server Protocol (LSP), extensão VSCode, pipeline Neo4j e plugin Zotero funcionam como sistema coeso."
+  },
+  {
+    "objectID": "about.html#ecossistema-synesis",
+    "href": "about.html#ecossistema-synesis",
+    "title": "Sobre o Synesis",
+    "section": "2 Ecossistema Synesis",
+    "text": "2 Ecossistema Synesis\nO projeto é composto por 7 repositórios integrados:\n\n\n\nProjeto\nDescrição\nTecnologia\nVersão\n\n\n\n\nsynesis\nCompilador Core (LALR parser, validador semântico, exporters)\nPython 3.10+\n0.2.6\n\n\nsynesis-lsp\nLanguage Server Protocol (diagnostics, completions, hover)\nPython 3.10+\n0.14.6\n\n\nsynesis-explorer\nExtensão VSCode (syntax highlighting, tree views, graph viewer)\nTypeScript/Node\n0.5.2\n\n\nsynesis2neo4j\nPipeline para Neo4j (GraphRAG, knowledge graphs)\nPython 3.11+\n0.1.2\n\n\nzotero-synesis-export\nPlugin Zotero 7 (exporta anotações PDF como .syn)\nJavaScript\n0.1.4\n\n\nsynesis-docs-sources\nFontes da documentação (Quarto Publishing)\nQuarto/QMD\n—\n\n\nsynesis-docs\nDocumentação publicada (GitHub Pages)\nHTML\n—"
+  },
+  {
+    "objectID": "about.html#licença",
+    "href": "about.html#licença",
+    "title": "Sobre o Synesis",
+    "section": "3 Licença",
+    "text": "3 Licença\nO ecossistema Synesis é software livre distribuído sob licença MIT (compilador, LSP, extensão VSCode) e MPL-2.0 (plugin Zotero), permitindo uso comercial, modificação e redistribuição com atribuição apropriada.\nA documentação está licenciada sob Creative Commons BY 4.0."
+  },
+  {
+    "objectID": "about.html#como-contribuir",
+    "href": "about.html#como-contribuir",
+    "title": "Sobre o Synesis",
+    "section": "4 Como Contribuir",
+    "text": "4 Como Contribuir\nContribuições são bem-vindas! Para reportar bugs, propor melhorias ou submeter code contributions:\n\nIssues: Abra uma issue no repositório específico\nPull Requests: Fork o repositório, crie uma branch, e envie PR com descrição clara\nDiscussions: Para dúvidas conceituais ou propostas de features, use GitHub Discussions\n\n\n4.1 Guias de Contribuição\n\nSiga as convenções de código do projeto (veja CONTRIBUTING.md em cada repositório)\nAdicione testes para novas funcionalidades\nDocumente mudanças em CHANGELOG.md (seção [Unreleased])\nUse commits semânticos: feat:, fix:, docs:, refactor:, test:"
+  },
+  {
+    "objectID": "about.html#citação-acadêmica",
+    "href": "about.html#citação-acadêmica",
+    "title": "Sobre o Synesis",
+    "section": "5 Citação Acadêmica",
+    "text": "5 Citação Acadêmica\nSe você utiliza Synesis em pesquisas acadêmicas, cite da seguinte forma:\n\n5.1 BibTeX\n@software{synesis2026,\n  author = {De Britto, Márcio},\n  title = {Synesis: A Domain-Specific Language for Structured Qualitative Analysis},\n  year = {2026},\n  url = {https://github.com/synesis-lang/synesis},\n  version = {0.2.6},\n  note = {Software de código aberto para consolidação sistemática de conhecimento qualitativo}\n}\n\n\n5.2 APA 7\nDe Britto, M. (2026). Synesis: A Domain-Specific Language for Structured Qualitative Analysis (Versão 0.2.6) [Software]. https://github.com/synesis-lang/synesis"
+  },
+  {
+    "objectID": "about.html#agradecimentos",
+    "href": "about.html#agradecimentos",
+    "title": "Sobre o Synesis",
+    "section": "6 Agradecimentos",
+    "text": "6 Agradecimentos\nO desenvolvimento do Synesis foi possível graças a:\n\nLark Parser (Erez Shinan) — Base do parser LALR(1)\npygls (Open Law Library) — Framework do Language Server Protocol\nVSCode Extension API (Microsoft) — Infraestrutura da extensão\nQuarto (Posit PBC) — Sistema de documentação técnica\nComunidade Open Source — Por ferramentas, bibliotecas e inspiração"
+  },
+  {
+    "objectID": "about.html#contato",
+    "href": "about.html#contato",
+    "title": "Sobre o Synesis",
+    "section": "7 Contato",
+    "text": "7 Contato\n\nDocumentação Oficial: synesis-lang.github.io/synesis-docs\nRepositório Principal: github.com/synesis-lang/synesis\nDiscussões: GitHub Discussions\nIssues: Reportar no repositório específico"
+  },
+  {
+    "objectID": "about.html#histórico-de-versões",
+    "href": "about.html#histórico-de-versões",
+    "title": "Sobre o Synesis",
+    "section": "8 Histórico de Versões",
+    "text": "8 Histórico de Versões\n\nv0.2.6 (2026-02) — Refinamentos no compilador e LSP\nv0.2.0 (2025-12) — Adição de suporte a ontologias (.syno)\nv0.1.0 (2025-09) — Release inicial do compilador e extensão VSCode\n\nPara changelog completo, consulte CHANGELOG.md em cada repositório.\n\nEsta documentação segue os princípios Diátaxis para documentação técnica sistemática."
+  },
+  {
     "objectID": "explanation/codificacao_assistida_IA.html",
     "href": "explanation/codificacao_assistida_IA.html",
     "title": "Codificação Assistida por IA",
@@ -917,130 +1043,74 @@
     "text": "4.3 ONTOLOGY: classificação multidimensional\nCada conceito mencionado nas cadeias é definido na ontologia com classificação em múltiplas dimensões. Vejamos dois conceitos contrastantes:\n\n4.3.1 Conceito de alta confiança\nONTOLOGY Cost\n    topic: Economics\n    aspect: 11\n    dimension: 2\n    confidence: HIGH\n\n    reasoning: Aspect 11: Core economic factor representing financial\n               expenditure. Mainly constrains deployment/technology\n               development while enabling market penetration when\n               reduced. Co-occurs with Deployment and Acceptance,\n               indicating market-consumer relevance. Dimension 2:\n               Directly affects investors, consumers, and market\n               competitiveness. High frequency (96) across broad\n               sources (66) confirms central role.\n\n    description: Economic factor representing financial expenditure\n                 associated with energy technologies and systems.\n                 Acts as primary barrier constraining technology\n                 development, site selection, and deployment when\n                 high, while enabling market penetration, technology\n                 transition, and sustainable solutions when reduced.\n\n    rgt_element_a: Low_Cost\n    rgt_element_b: High_Cost\n    theoretical_significance: 0\nEND ONTOLOGY\n\ntopic Economics — agrupamento temático emergente (TOPIC, valores abertos)\naspect 11 (Economic) — classificação modal de Dooyeweerd (ORDERED, 16 valores)\ndimension 2 (Market_Acceptance) — dimensão de Wüstenhagen (ORDERED, 5 valores)\nconfidence HIGH — frequência 96, em 66 fontes diferentes (ENUMERATED)\nreasoning — justificativa da classificação, incluindo evidência estatística (TEXT)\nrgt_element_a/b — construto bipolar: Low_Cost vs High_Cost (TEXT)\ntheoretical_significance — escala 0-5 (SCALE)\n\n\n\n4.3.2 Conceito de baixa confiança\nONTOLOGY Climate_Belief\n    topic: Worldview\n    aspect: 15\n    dimension: 1\n    confidence: LOW\n\n    reasoning: Aspect 15 (Fiducial): Climate belief represents\n               worldview and conviction about climate change causation.\n               Relations show influences on acceptability and support.\n               Co-occurs with CCS support and acceptability factors.\n               Dimension 1: Affects community-level acceptance of\n               technologies like tidal and CCS. Low frequency (2)\n               and sources (2) limit robustness.\n\n    description: Climate belief refers to individuals' conviction\n                 regarding the existence and anthropogenic causation\n                 of climate change. In energy transition contexts,\n                 this worldview shapes acceptance of low-carbon\n                 technologies, with believers in human-induced\n                 climate change showing differential support patterns.\n\n    rgt_element_a: Strong_Climate_Belief\n    rgt_element_b: Weak_Climate_Belief\n    theoretical_significance: 0\nEND ONTOLOGY\nO contraste é instrutivo:\n\n\n\n\n\n\n\n\n\nCost\nClimate_Belief\n\n\n\n\nconfidence\nHIGH (96 ocorrências, 66 fontes)\nLOW (2 ocorrências, 2 fontes)\n\n\naspect\n11 Economic\n15 Fiducial\n\n\ndimension\n2 Market\n1 Community\n\n\ntopic\nEconomics\nWorldview\n\n\n\nCost é um conceito central do corpus — aparece em 66 artigos diferentes. Climate_Belief é periférico — emerge em apenas 2 fontes. Ambos recebem a mesma estrutura de classificação, mas o campo confidence sinaliza ao pesquisador qual merece mais peso na análise."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Sobre o Synesis",
+    "objectID": "explanation/dsap.html",
+    "href": "explanation/dsap.html",
+    "title": "Diagnóstico Socioambiental Participativo",
     "section": "",
-    "text": "Synesis é uma linguagem de domínio específico (DSL) de código aberto para consolidação sistemática de conhecimento qualitativo. Desenvolvida para pesquisadores, profissionais do conhecimento e analistas que precisam transformar interpretações em estruturas auditáveis e tecnicamente interoperáveis.\n\n\nEliminar a lacuna entre a riqueza interpretativa das ciências humanas e o rigor estrutural da ciência de dados, sem sacrificar a profundidade analítica nem a precisão técnica.\n\n\n\n\nTemplate como Fonte da Verdade: Toda estrutura de validação é derivada do arquivo de template (.synt) em tempo de execução. Nenhum campo é hardcoded.\nText-First & Interoperável: Arquivos de texto puro, versionáveis com Git, compiláveis para JSON/CSV/Excel, integráveis com qualquer stack tecnológica.\nValidação Semântica Rigorosa: O compilador valida consistência conceitual, rastreabilidade bidirecional e conformidade com ontologias definidas.\nEcossistema Integrado: Compilador, Language Server Protocol (LSP), extensão VSCode, pipeline Neo4j e plugin Zotero funcionam como sistema coeso."
+    "text": "Este documento mostra como usar Synesis para estruturar um Diagnóstico Socioambiental Participativo (DSAP) — um processo que combina dados técnicos e percepções comunitárias para avaliar a sustentabilidade de uma localidade. O template proposto integra codificação qualitativa, análise SWOT e dimensões da sustentabilidade em uma única estrutura compilável."
   },
   {
-    "objectID": "about.html#sobre-o-projeto",
-    "href": "about.html#sobre-o-projeto",
-    "title": "Sobre o Synesis",
-    "section": "",
-    "text": "Synesis é uma linguagem de domínio específico (DSL) de código aberto para consolidação sistemática de conhecimento qualitativo. Desenvolvida para pesquisadores, profissionais do conhecimento e analistas que precisam transformar interpretações em estruturas auditáveis e tecnicamente interoperáveis.\n\n\nEliminar a lacuna entre a riqueza interpretativa das ciências humanas e o rigor estrutural da ciência de dados, sem sacrificar a profundidade analítica nem a precisão técnica.\n\n\n\n\nTemplate como Fonte da Verdade: Toda estrutura de validação é derivada do arquivo de template (.synt) em tempo de execução. Nenhum campo é hardcoded.\nText-First & Interoperável: Arquivos de texto puro, versionáveis com Git, compiláveis para JSON/CSV/Excel, integráveis com qualquer stack tecnológica.\nValidação Semântica Rigorosa: O compilador valida consistência conceitual, rastreabilidade bidirecional e conformidade com ontologias definidas.\nEcossistema Integrado: Compilador, Language Server Protocol (LSP), extensão VSCode, pipeline Neo4j e plugin Zotero funcionam como sistema coeso."
+    "objectID": "explanation/dsap.html#fontes-quem-disse",
+    "href": "explanation/dsap.html#fontes-quem-disse",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "2.1 Fontes: quem disse",
+    "text": "2.1 Fontes: quem disse\nSOURCE FIELDS\n    REQUIRED tipo_ref\nEND SOURCE FIELDS\n\nFIELD tipo_ref TYPE ENUMERATED\n    SCOPE SOURCE\n    DESCRIPTION Define o tipo de referência utilizada\n    VALUES\n        pri: Referência primária, entrevistas\n        sec: Referência secundária, blogs, jornais, revistas, podcasts\n        ref: Artigos científicos, documentos oficiais\n    END VALUES\nEND FIELD\nA distinção entre pri, sec e ref permite filtrar resultados por tipo de evidência. Dados de oficinas comunitárias (pri) podem ser analisados separadamente de relatórios técnicos (ref)."
   },
   {
-    "objectID": "about.html#ecossistema-synesis",
-    "href": "about.html#ecossistema-synesis",
-    "title": "Sobre o Synesis",
-    "section": "2 Ecossistema Synesis",
-    "text": "2 Ecossistema Synesis\nO projeto é composto por 7 repositórios integrados:\n\n\n\nProjeto\nDescrição\nTecnologia\nVersão\n\n\n\n\nsynesis\nCompilador Core (LALR parser, validador semântico, exporters)\nPython 3.10+\n0.2.6\n\n\nsynesis-lsp\nLanguage Server Protocol (diagnostics, completions, hover)\nPython 3.10+\n0.14.6\n\n\nsynesis-explorer\nExtensão VSCode (syntax highlighting, tree views, graph viewer)\nTypeScript/Node\n0.5.2\n\n\nsynesis2neo4j\nPipeline para Neo4j (GraphRAG, knowledge graphs)\nPython 3.11+\n0.1.2\n\n\nzotero-synesis-export\nPlugin Zotero 7 (exporta anotações PDF como .syn)\nJavaScript\n0.1.4\n\n\nsynesis-docs-sources\nFontes da documentação (Quarto Publishing)\nQuarto/QMD\n—\n\n\nsynesis-docs\nDocumentação publicada (GitHub Pages)\nHTML\n—"
+    "objectID": "explanation/dsap.html#itens-o-que-foi-dito-e-como-se-interpreta",
+    "href": "explanation/dsap.html#itens-o-que-foi-dito-e-como-se-interpreta",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "2.2 Itens: o que foi dito e como se interpreta",
+    "text": "2.2 Itens: o que foi dito e como se interpreta\nITEM FIELDS\n    REQUIRED citação, resumo, fator, swot, importância\nEND ITEM FIELDS\n\nFIELD citação TYPE QUOTATION\n    SCOPE ITEM\n    DESCRIPTION Excerto textual extraído da fonte bibliográfica\nEND FIELD\n\nFIELD resumo TYPE MEMO\n    SCOPE ITEM\n    DESCRIPTION Memo analítico explicando a interpretação\nEND FIELD\n\nFIELD fator TYPE CODE\n    SCOPE ITEM\n    DESCRIPTION Palavra-chave temática\nEND FIELD\n\nFIELD swot TYPE ENUMERATED\n    SCOPE ITEM\n    DESCRIPTION Elementos da matriz SWOT\n    VALUES\n        fo: Força (perspectiva interna)\n        fr: Fraqueza (perspectiva interna)\n        op: Oportunidade (perspectiva externa)\n        am: Ameaça (perspectiva externa)\n    END VALUES\nEND FIELD\n\nFIELD importância TYPE SCALE\n    SCOPE ITEM\n    FORMAT [0..1]\n    DESCRIPTION Importância do fator (0=nula ou baixa, 0.5=moderada, 1=alta)\nEND FIELD\nCada item combina cinco tipos de campo: QUOTATION (o dado bruto), MEMO (interpretação), CODE (fator temático vinculado à ontologia), ENUMERATED (classificação SWOT) e SCALE (significância)."
   },
   {
-    "objectID": "about.html#licença",
-    "href": "about.html#licença",
-    "title": "Sobre o Synesis",
-    "section": "3 Licença",
-    "text": "3 Licença\nO ecossistema Synesis é software livre distribuído sob licença MIT (compilador, LSP, extensão VSCode) e MPL-2.0 (plugin Zotero), permitindo uso comercial, modificação e redistribuição com atribuição apropriada.\nA documentação está licenciada sob Creative Commons BY 4.0."
+    "objectID": "explanation/dsap.html#ontologia-o-que-cada-fator-significa",
+    "href": "explanation/dsap.html#ontologia-o-que-cada-fator-significa",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "2.3 Ontologia: o que cada fator significa",
+    "text": "2.3 Ontologia: o que cada fator significa\nONTOLOGY FIELDS\n    REQUIRED description, dimensão_sustentabilidade\nEND ONTOLOGY FIELDS\n\nFIELD description TYPE TEXT\n    SCOPE ONTOLOGY\n    DESCRIPTION Descrição do fator\nEND FIELD\n\nFIELD dimensão_sustentabilidade TYPE ENUMERATED\n    SCOPE ONTOLOGY\n    DESCRIPTION Dimensões da sustentabilidade\n    VALUES\n        ambiental: Ecossistemas, recursos naturais, fauna, flora\n        sociocultural: Qualidade de vida, valores culturais, intergeracionalidade\n        econômica: Investimentos, comércio, empregabilidade\n        governamental: Infraestrutura, sustentabilidade jurídica, justiça social\n    END VALUES\nEND FIELD\n\n\n\n\n\n\nComposição de tipos\n\n\n\nEste template usa 5 tipos de campo em um único projeto: QUOTATION, MEMO, CODE, ENUMERATED e SCALE. Juntos, eles expressam o pipeline completo do nosso DSAP: extração → interpretação → codificação → classificação → pontuação."
   },
   {
-    "objectID": "about.html#como-contribuir",
-    "href": "about.html#como-contribuir",
-    "title": "Sobre o Synesis",
-    "section": "4 Como Contribuir",
-    "text": "4 Como Contribuir\nContribuições são bem-vindas! Para reportar bugs, propor melhorias ou submeter code contributions:\n\nIssues: Abra uma issue no repositório específico\nPull Requests: Fork o repositório, crie uma branch, e envie PR com descrição clara\nDiscussions: Para dúvidas conceituais ou propostas de features, use GitHub Discussions\n\n\n4.1 Guias de Contribuição\n\nSiga as convenções de código do projeto (veja CONTRIBUTING.md em cada repositório)\nAdicione testes para novas funcionalidades\nDocumente mudanças em CHANGELOG.md (seção [Unreleased])\nUse commits semânticos: feat:, fix:, docs:, refactor:, test:"
+    "objectID": "explanation/dsap.html#força",
+    "href": "explanation/dsap.html#força",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "4.1 Força",
+    "text": "4.1 Força\nITEM @oficina_coqueiros2026\n    citação: \"A pesca artesanal aqui sustenta mais da metade\n              das famílias. Meu avô já pescava nesse mesmo\n              canto, meu pai também.\"\n\n    resumo: A pesca artesanal é a principal atividade\n            econômica da comunidade, com continuidade\n            intergeracional que reforça tanto a economia\n            local quanto a identidade cultural.\n\n    fator: Pesca_Artesanal\n    swot: fo\n    importância: 1\nEND ITEM\nFator interno positivo: a pesca artesanal sustenta famílias e carrega significado cultural. Importância alta (1)."
   },
   {
-    "objectID": "about.html#citação-acadêmica",
-    "href": "about.html#citação-acadêmica",
-    "title": "Sobre o Synesis",
-    "section": "5 Citação Acadêmica",
-    "text": "5 Citação Acadêmica\nSe você utiliza Synesis em pesquisas acadêmicas, cite da seguinte forma:\n\n5.1 BibTeX\n@software{synesis2026,\n  author = {De Britto, Márcio},\n  title = {Synesis: A Domain-Specific Language for Structured Qualitative Analysis},\n  year = {2026},\n  url = {https://github.com/synesis-lang/synesis},\n  version = {0.2.6},\n  note = {Software de código aberto para consolidação sistemática de conhecimento qualitativo}\n}\n\n\n5.2 APA 7\nDe Britto, M. (2026). Synesis: A Domain-Specific Language for Structured Qualitative Analysis (Versão 0.2.6) [Software]. https://github.com/synesis-lang/synesis"
+    "objectID": "explanation/dsap.html#fraqueza",
+    "href": "explanation/dsap.html#fraqueza",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "4.2 Fraqueza",
+    "text": "4.2 Fraqueza\nITEM @oficina_coqueiros2026\n    citação: \"O pessoal joga o lixo no manguezal porque\n              não tem coleta. A prefeitura não vem aqui.\"\n\n    resumo: Ausência de coleta de resíduos leva ao descarte\n            inadequado no ecossistema de mangue, gerando\n            impacto ambiental direto.\n\n    fator: Descarte_Residuos\n    swot: fr\n    importância: 0.5\nEND ITEM\nFator interno negativo: prática local de descarte inadequado, agravada pela ausência de serviço público. Importância moderada (0.5)."
   },
   {
-    "objectID": "about.html#agradecimentos",
-    "href": "about.html#agradecimentos",
-    "title": "Sobre o Synesis",
-    "section": "6 Agradecimentos",
-    "text": "6 Agradecimentos\nO desenvolvimento do Synesis foi possível graças a:\n\nLark Parser (Erez Shinan) — Base do parser LALR(1)\npygls (Open Law Library) — Framework do Language Server Protocol\nVSCode Extension API (Microsoft) — Infraestrutura da extensão\nQuarto (Posit PBC) — Sistema de documentação técnica\nComunidade Open Source — Por ferramentas, bibliotecas e inspiração"
+    "objectID": "explanation/dsap.html#oportunidade",
+    "href": "explanation/dsap.html#oportunidade",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "4.3 Oportunidade",
+    "text": "4.3 Oportunidade\nITEM @jornal_litoral2026\n    citação: \"Programa federal de turismo de base comunitária\n              selecionou cinco vilas do litoral para receber\n              capacitação e infraestrutura.\"\n\n    resumo: Programa governamental pode diversificar a\n            economia local e valorizar ativos culturais\n            da comunidade.\n\n    fator: Turismo_Comunitario\n    swot: op\n    importância: 1\nEND ITEM\nFator externo positivo: oportunidade de diversificação econômica vinda de política pública. Importância alta (1)."
   },
   {
-    "objectID": "about.html#contato",
-    "href": "about.html#contato",
-    "title": "Sobre o Synesis",
-    "section": "7 Contato",
-    "text": "7 Contato\n\nDocumentação Oficial: synesis-lang.github.io/synesis-docs\nRepositório Principal: github.com/synesis-lang/synesis\nDiscussões: GitHub Discussions\nIssues: Reportar no repositório específico"
+    "objectID": "explanation/dsap.html#ameaça",
+    "href": "explanation/dsap.html#ameaça",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "4.4 Ameaça",
+    "text": "4.4 Ameaça\nITEM @relatorio_ambiental2025\n    citação: \"O monitoramento identificou taxa de assoreamento\n              acelerado na foz do rio Coqueiros, com redução\n              de 30% na profundidade do canal principal nos\n              últimos cinco anos.\"\n\n    resumo: Assoreamento compromete a navegabilidade e os\n            estoques pesqueiros, ameaçando a principal\n            atividade econômica da comunidade.\n\n    fator: Assoreamento\n    swot: am\n    importância: 1\nEND ITEM\nFator externo negativo: processo ambiental que independe da ação da comunidade, mas afeta diretamente sua sustentabilidade. Importância alta (1)."
   },
   {
-    "objectID": "about.html#histórico-de-versões",
-    "href": "about.html#histórico-de-versões",
-    "title": "Sobre o Synesis",
-    "section": "8 Histórico de Versões",
-    "text": "8 Histórico de Versões\n\nv0.2.6 (2026-02) — Refinamentos no compilador e LSP\nv0.2.0 (2025-12) — Adição de suporte a ontologias (.syno)\nv0.1.0 (2025-09) — Release inicial do compilador e extensão VSCode\n\nPara changelog completo, consulte CHANGELOG.md em cada repositório.\n\nEsta documentação segue os princípios Diátaxis para documentação técnica sistemática."
+    "objectID": "explanation/dsap.html#mais-itens",
+    "href": "explanation/dsap.html#mais-itens",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "4.5 Mais itens",
+    "text": "4.5 Mais itens\nOs fatores Patrimonio_Cultural e Saneamento_Basico, presentes na ontologia, também aparecem como itens:\nITEM @oficina_coqueiros2026\n    citação: \"As festas de São Pedro e a farinhada são\n              tradição antiga. Todo mundo participa, até\n              quem já saiu da vila volta pra isso.\"\n\n    resumo: Festividades tradicionais e práticas coletivas\n            de produção reforçam coesão social e identidade\n            cultural da comunidade.\n\n    fator: Patrimonio_Cultural\n    swot: fo\n    importância: 0.5\nEND ITEM\n\nITEM @oficina_coqueiros2026\n    citação: \"Não tem rede de esgoto. Cada um resolve do\n              seu jeito --- fossa, vala, ou vai direto pro\n              rio.\"\n\n    resumo: Ausência de esgotamento sanitário gera soluções\n            improvisadas com risco de contaminação hídrica.\n\n    fator: Saneamento_Basico\n    swot: fr\n    importância: 1\nEND ITEM"
   },
   {
-    "objectID": "explanation/como_surgiu.html",
-    "href": "explanation/como_surgiu.html",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "O problema original\n\nSynesis surgiu de uma pesquisa concreta: a investigação sobre aceitação social de tecnologias de energia offshore, conduzida no âmbito do OTIC (Offshore Technology Innovation Centre) da Universidade de São Paulo (USP). O objetivo era identificar e organizar os fatores que influenciam a percepção pública sobre inovações tecnológicas no contexto da transição energética — um problema ao mesmo tempo empírico e interpretativo.\nPara dar conta desse problema, foi necessário construir um fluxo de trabalho integrado que combinasse técnicas bibliométricas, codificação qualitativa e inteligência artificial. Ferramentas como RStudio, o pacote Bibliometrix e VOSviewer eram usadas para identificar os artigos científicos mais relevantes por contagem de citações, exportados de bases como Web of Science e Scopus. Zotero centralizava o gerenciamento das referências e servia, também, como ambiente de anotação qualitativa inicial.\n\n\nO Zotero não foi projetado para análise qualitativa. Ainda assim, revelou-se útil para uma primeira fase de codificação aberta: era possível anotar PDFs com marcadores e comentários, associar tags a trechos destacados e exportar essas anotações em um formato customizado.\nPara isso, o Zotero foi configurado com templates personalizados nas preferências avançadas. Cada anotação exportada seguia uma estrutura com delimitadores específicos:\n[-begin_header-]\nreferencia_bibtex: burke2018\ndescricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\nmodelo_epistemico: Energy democracy, political power theory\nmetodo: Conceptual review\n[-end_header-]\n\n[-begin-][@burke2018@][!Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.!][%Distributed energy systems can reorganize political power structures%][#Energy System#][&correlates-with&][#Governance#][-end-]\nO formato funcionava para volumes pequenos, revisados manualmente. Mas já carregava uma fragilidade estrutural: os delimitadores eram convenções textuais, não gramática formal. E o próprio pesquisador humano dependia desse mesmo formato informal para registrar suas interpretações.\n\n\n\nÀ medida que o corpus crescia — centenas de abstracts exportados em BibTeX, convertidos para CSV pelo script bib2csv.py —, tornou-se inviável processar tudo manualmente. A solução foi incorporar modelos de linguagem via API para automatizar a extração de fatores e relações.\nO script abstract_processor9.py enviava cada abstract ao modelo, com um prompt estruturado em cinco partes (system_prompt, task, instructions, relation_types, critical_reminders), e recebia de volta o mesmo formato de TAGs já usado no Zotero. A escala aumentou. O problema também.\nModelos de linguagem produzem texto probabilístico. REGEX pressupõe padrões estáveis. Pequenas variações no output — um espaço extra, uma TAG mal fechada, uma cadeia de relações fora da ordem esperada — quebravam o parsing. Cada ajuste exigia novas expressões regulares. O sistema dependia de um equilíbrio cada vez mais frágil entre a estabilidade do modelo, a disciplina no formato e a complexidade crescente das anotações.\n\n\n\nPara contornar as limitações, o toolkit foi crescendo. O editor.py surgiu como interface visual para revisar e corrigir manualmente os arquivos .txt gerados pela IA — com suporte a clique direito para editar fatores, relações e cadeias. O compare_annotations.py foi criado para medir a distância entre o que a IA produzia e o que o pesquisador pretendia dizer, usando métricas de similaridade Levenshtein, sobreposição de palavras e contagem de blocos:\nINFO: burke2018:\nINFO:   Exact Match: 60.0%\nINFO:   Levenshtein Similarity: 99.8%\nINFO:   Word Overlap: 98.2%\nINFO:   Blocks: File1=5, File2=4\nO docs2txt.py ampliou o escopo para além de abstracts científicos: PDFs, documentos Word e páginas HTML podiam agora ser convertidos e processados pelo mesmo fluxo — entrevistas, relatórios técnicos, conteúdo web. O menu interativo menu_txt.py foi criado apenas para coordenar a sequência de execução dos demais scripts.\nQuando foi necessário criar uma ferramenta só para medir a distância entre o output da IA e a intenção do pesquisador, o diagnóstico tornou-se inegável: o problema não era técnico. Era estrutural.\n\n\n\nÀ medida que a análise avançava, os dados deixaram de ser registros tabulares. Passaram a incluir cadeias semânticas:\nA → influencia → B → habilita → C\nA representação em banco relacional tornou-se artificial. A migração para um banco de grafos foi natural. Mas mesmo com armazenamento adequado, o problema persistia: a entrada continuava sendo texto frágil, não estrutura formal. O grafo era robusto; a linguagem que o alimentava, não.\n\n\n\nA análise gerada por IA era estruturada, mas rígida. A anotação humana era flexível, mas informal. Era necessário adicionar novos campos, registrar interpretações, revisar códigos, expandir cadeias, evoluir a ontologia. O sistema baseado em TAGs dificultava essa evolução: cada mudança estrutural exigia modificar o parsing, o armazenamento e frequentemente o prompt.\nO problema ficou claro: como integrar análise estruturada gerada por IA e anotação humana orgânica sem sacrificar consistência ou flexibilidade?\n\n\n\nA resposta não estava em melhorar o banco de dados. Nem em sofisticar o uso de REGEX. Era necessário introduzir sintaxe explícita, parsing formal, validação semântica e separação entre linguagem e configuração.\nAssim surgiu a ideia de transformar o formato de anotação em uma linguagem propriamente dita, uma linguagem de domínio específico (DSL):\nSOURCE @burke2018\n    descricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\n    modelo_epistemico: Energy democracy, political power theory\n    metodo: Conceptual review\nEND SOURCE\n\nITEM @burke2018@\n    text: Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.\n\n    note: Distributed energy systems can reorganize political power structures\n\n    chain: Energy_System -&gt; influences -&gt; Governance\nEND ITEM\nEsta nova abordagem permitiu que\n\n\n\nSynesis não é uma camada intermediária entre IA e banco de dados.\nEla é o ponto de convergência entre dois processos: geração estruturada e escalável por IA, e interpretação humana contextual e evolutiva. Ambos operam na mesma linguagem.\nA IA pode produzir anotações em Synesis. O pesquisador pode editar, expandir e reinterpretar essas anotações. O compilador garante consistência e rastreabilidade.\nA estrutura não elimina a interpretação. Ela a organiza.\n\n\n\nSynesis responde a um problema contemporâneo: modelos de IA geram texto estruturado, mas texto não é estrutura confiável. Sem gramática, validação e ontologia controlada, a análise torna-se difícil de manter, versionar e auditar.\nSynesis formaliza essa estrutura sem impedir evolução.\nEla nasceu de uma fricção prática — em um problema de pesquisa real, com dados reais, em um fluxo que cresceu até o ponto em que seus próprios remendos se tornaram o obstáculo. E continua evoluindo a partir dessa mesma fricção."
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#o-zotero-como-ponto-de-partida",
-    "href": "explanation/como_surgiu.html#o-zotero-como-ponto-de-partida",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "O Zotero não foi projetado para análise qualitativa. Ainda assim, revelou-se útil para uma primeira fase de codificação aberta: era possível anotar PDFs com marcadores e comentários, associar tags a trechos destacados e exportar essas anotações em um formato customizado.\nPara isso, o Zotero foi configurado com templates personalizados nas preferências avançadas. Cada anotação exportada seguia uma estrutura com delimitadores específicos:\n[-begin_header-]\nreferencia_bibtex: burke2018\ndescricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\nmodelo_epistemico: Energy democracy, political power theory\nmetodo: Conceptual review\n[-end_header-]\n\n[-begin-][@burke2018@][!Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.!][%Distributed energy systems can reorganize political power structures%][#Energy System#][&correlates-with&][#Governance#][-end-]\nO formato funcionava para volumes pequenos, revisados manualmente. Mas já carregava uma fragilidade estrutural: os delimitadores eram convenções textuais, não gramática formal. E o próprio pesquisador humano dependia desse mesmo formato informal para registrar suas interpretações."
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#a-ia-entra-no-fluxo",
-    "href": "explanation/como_surgiu.html#a-ia-entra-no-fluxo",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "À medida que o corpus crescia — centenas de abstracts exportados em BibTeX, convertidos para CSV pelo script bib2csv.py —, tornou-se inviável processar tudo manualmente. A solução foi incorporar modelos de linguagem via API para automatizar a extração de fatores e relações.\nO script abstract_processor9.py enviava cada abstract ao modelo, com um prompt estruturado em cinco partes (system_prompt, task, instructions, relation_types, critical_reminders), e recebia de volta o mesmo formato de TAGs já usado no Zotero. A escala aumentou. O problema também.\nModelos de linguagem produzem texto probabilístico. REGEX pressupõe padrões estáveis. Pequenas variações no output — um espaço extra, uma TAG mal fechada, uma cadeia de relações fora da ordem esperada — quebravam o parsing. Cada ajuste exigia novas expressões regulares. O sistema dependia de um equilíbrio cada vez mais frágil entre a estabilidade do modelo, a disciplina no formato e a complexidade crescente das anotações."
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#a-proliferação-de-remendos",
-    "href": "explanation/como_surgiu.html#a-proliferação-de-remendos",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "Para contornar as limitações, o toolkit foi crescendo. O editor.py surgiu como interface visual para revisar e corrigir manualmente os arquivos .txt gerados pela IA — com suporte a clique direito para editar fatores, relações e cadeias. O compare_annotations.py foi criado para medir a distância entre o que a IA produzia e o que o pesquisador pretendia dizer, usando métricas de similaridade Levenshtein, sobreposição de palavras e contagem de blocos:\nINFO: burke2018:\nINFO:   Exact Match: 60.0%\nINFO:   Levenshtein Similarity: 99.8%\nINFO:   Word Overlap: 98.2%\nINFO:   Blocks: File1=5, File2=4\nO docs2txt.py ampliou o escopo para além de abstracts científicos: PDFs, documentos Word e páginas HTML podiam agora ser convertidos e processados pelo mesmo fluxo — entrevistas, relatórios técnicos, conteúdo web. O menu interativo menu_txt.py foi criado apenas para coordenar a sequência de execução dos demais scripts.\nQuando foi necessário criar uma ferramenta só para medir a distância entre o output da IA e a intenção do pesquisador, o diagnóstico tornou-se inegável: o problema não era técnico. Era estrutural."
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#a-insuficiência-do-modelo-relacional",
-    "href": "explanation/como_surgiu.html#a-insuficiência-do-modelo-relacional",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "À medida que a análise avançava, os dados deixaram de ser registros tabulares. Passaram a incluir cadeias semânticas:\nA → influencia → B → habilita → C\nA representação em banco relacional tornou-se artificial. A migração para um banco de grafos foi natural. Mas mesmo com armazenamento adequado, o problema persistia: a entrada continuava sendo texto frágil, não estrutura formal. O grafo era robusto; a linguagem que o alimentava, não."
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#a-tensão-entre-automação-e-interpretação",
-    "href": "explanation/como_surgiu.html#a-tensão-entre-automação-e-interpretação",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "A análise gerada por IA era estruturada, mas rígida. A anotação humana era flexível, mas informal. Era necessário adicionar novos campos, registrar interpretações, revisar códigos, expandir cadeias, evoluir a ontologia. O sistema baseado em TAGs dificultava essa evolução: cada mudança estrutural exigia modificar o parsing, o armazenamento e frequentemente o prompt.\nO problema ficou claro: como integrar análise estruturada gerada por IA e anotação humana orgânica sem sacrificar consistência ou flexibilidade?"
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#o-insight-texto-precisa-de-gramática",
-    "href": "explanation/como_surgiu.html#o-insight-texto-precisa-de-gramática",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "A resposta não estava em melhorar o banco de dados. Nem em sofisticar o uso de REGEX. Era necessário introduzir sintaxe explícita, parsing formal, validação semântica e separação entre linguagem e configuração.\nAssim surgiu a ideia de transformar o formato de anotação em uma linguagem propriamente dita, uma linguagem de domínio específico (DSL):\nSOURCE @burke2018\n    descricao: Explores the relationship between renewable energy systems and political power distribution, examining energy democracy as a framework for energy transitions.\n    modelo_epistemico: Energy democracy, political power theory\n    metodo: Conceptual review\nEND SOURCE\n\nITEM @burke2018@\n    text: Distributed energy-politics posits that distributed energy sources and technologies enable and organize distributed political power and vice versa.\n\n    note: Distributed energy systems can reorganize political power structures\n\n    chain: Energy_System -&gt; influences -&gt; Governance\nEND ITEM\nEsta nova abordagem permitiu que"
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#synesis-como-síntese",
-    "href": "explanation/como_surgiu.html#synesis-como-síntese",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "Synesis não é uma camada intermediária entre IA e banco de dados.\nEla é o ponto de convergência entre dois processos: geração estruturada e escalável por IA, e interpretação humana contextual e evolutiva. Ambos operam na mesma linguagem.\nA IA pode produzir anotações em Synesis. O pesquisador pode editar, expandir e reinterpretar essas anotações. O compilador garante consistência e rastreabilidade.\nA estrutura não elimina a interpretação. Ela a organiza."
-  },
-  {
-    "objectID": "explanation/como_surgiu.html#o-papel-atual-da-synesis",
-    "href": "explanation/como_surgiu.html#o-papel-atual-da-synesis",
-    "title": "1 Como a Synesis surgiu?",
-    "section": "",
-    "text": "Synesis responde a um problema contemporâneo: modelos de IA geram texto estruturado, mas texto não é estrutura confiável. Sem gramática, validação e ontologia controlada, a análise torna-se difícil de manter, versionar e auditar.\nSynesis formaliza essa estrutura sem impedir evolução.\nEla nasceu de uma fricção prática — em um problema de pesquisa real, com dados reais, em um fluxo que cresceu até o ponto em que seus próprios remendos se tornaram o obstáculo. E continua evoluindo a partir dessa mesma fricção."
+    "objectID": "explanation/dsap.html#sec-escala",
+    "href": "explanation/dsap.html#sec-escala",
+    "title": "Diagnóstico Socioambiental Participativo",
+    "section": "6.1 Escala de sustentabilidade local",
+    "text": "6.1 Escala de sustentabilidade local\nApós a exportação dos dados, os pontos de importância podem ser combinados em uma escala de sustentabilidade de 0 a 10, onde 0 é muito desfavorável e 10 é muito favorável. A fórmula normaliza a razão entre fatores positivos e negativos:\n\\[\n\\text{Escala} = \\frac{(F + O) - (Fr + A)}{(F + O) + (Fr + A)} \\times 5 + 5\n\\]\nOnde \\(F\\), \\(O\\), \\(Fr\\) e \\(A\\) são as somas dos pontos de importância de forças, oportunidades, fraquezas e ameaças, respectivamente.\nPropriedades da fórmula:\n\nSe todos os fatores forem positivos (\\(Fr + A = 0\\)): resultado = 10\nSe todos forem negativos (\\(F + O = 0\\)): resultado = 0\nSe positivos e negativos se equilibram (\\(F + O = Fr + A\\)): resultado = 5\nO resultado está sempre no intervalo [0, 10]\n\n\n6.1.1 Exemplo com os dados da Vila dos Coqueiros\nSomando os pontos de importância dos itens apresentados:\n\nPontos de importância por categoria SWOT\n\n\n\n\n\n\n\nCategoria\nFatores\nImportância\n\n\n\n\nForças (F)\nPesca_Artesanal (1) + Patrimonio_Cultural (0.5)\n1.5\n\n\nOportunidades (O)\nTurismo_Comunitario (1)\n1.0\n\n\nFraquezas (Fr)\nDescarte_Residuos (0.5) + Saneamento_Basico (1)\n1.5\n\n\nAmeaças (A)\nAssoreamento (1)\n1.0\n\n\n\nAplicando a fórmula:\n\\[\n\\text{Escala} = \\frac{(1{,}5 + 1{,}0) - (1{,}5 + 1{,}0)}{(1{,}5 + 1{,}0) + (1{,}5 + 1{,}0)} \\times 5 + 5 = \\frac{0}{5} \\times 5 + 5 = 5{,}0\n\\]\nO resultado 5,0 situa a Vila dos Coqueiros na faixa de Estagnação — os fatores positivos e negativos se equilibram.\n\n\n6.1.2 Classes da escala\n\nEscala de sustentabilidade local\n\n\nClasse\nDe\nAté\n\n\n\n\nMuito desfavorável\n0,00\n2,50\n\n\nDesfavorável\n2,51\n4,25\n\n\nEstagnação\n4,26\n5,75\n\n\nFavorável\n5,76\n7,50\n\n\nMuito favorável\n7,51\n10,00\n\n\n\n\n\n\n\n\n\nLimitações da fórmula\n\n\n\nA fórmula exige que ao menos um fator tenha sido identificado (\\(F + O + Fr + A &gt; 0\\)), caso contrário ocorre divisão por zero. Além disso, o resultado é sensível ao número de fatores: uma comunidade com muitos fatores pontuados tende a convergir para 5, enquanto comunidades com poucos fatores podem oscilar mais. Para comparações entre comunidades, é importante manter critérios de codificação consistentes."
   },
   {
     "objectID": "explanation/guia_sincero.html",
