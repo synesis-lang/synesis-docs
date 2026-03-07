@@ -276,14 +276,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#sec-visao-geral" id="toc-sec-visao-geral" class="nav-link active" data-scroll-target="#sec-visao-geral"><span class="header-section-number">1</span> Visão geral do projeto</a></li>
   <li><a href="#sec-template" id="toc-sec-template" class="nav-link" data-scroll-target="#sec-template"><span class="header-section-number">2</span> O template: estrutura analítica avançada</a></li>
-  <li><a href="#sec-prompts" id="toc-sec-prompts" class="nav-link" data-scroll-target="#sec-prompts"><span class="header-section-number">3</span> Os prompts: o cerne da metodologia</a>
+  <li><a href="#sec-prompts" id="toc-sec-prompts" class="nav-link" data-scroll-target="#sec-prompts"><span class="header-section-number">3</span> As instruções metodológicas no template</a>
   <ul class="collapse">
   <li><a href="#seleção-de-excertos" id="toc-seleção-de-excertos" class="nav-link" data-scroll-target="#seleção-de-excertos"><span class="header-section-number">3.1</span> Seleção de excertos</a></li>
   <li><a href="#controle-de-granularidade-conceitual" id="toc-controle-de-granularidade-conceitual" class="nav-link" data-scroll-target="#controle-de-granularidade-conceitual"><span class="header-section-number">3.2</span> Controle de granularidade conceitual</a></li>
-  <li><a href="#critério-de-mensurabilidade-pelo-stakeholder" id="toc-critério-de-mensurabilidade-pelo-stakeholder" class="nav-link" data-scroll-target="#critério-de-mensurabilidade-pelo-stakeholder"><span class="header-section-number">3.3</span> Critério de Mensurabilidade pelo Stakeholder</a></li>
-  <li><a href="#pontuação-de-valor-analítico" id="toc-pontuação-de-valor-analítico" class="nav-link" data-scroll-target="#pontuação-de-valor-analítico"><span class="header-section-number">3.4</span> Pontuação de valor analítico</a></li>
-  <li><a href="#separação-de-caminhos-sequenciais-e-paralelos" id="toc-separação-de-caminhos-sequenciais-e-paralelos" class="nav-link" data-scroll-target="#separação-de-caminhos-sequenciais-e-paralelos"><span class="header-section-number">3.5</span> Separação de caminhos sequenciais e paralelos</a></li>
-  <li><a href="#classificação-ontológica" id="toc-classificação-ontológica" class="nav-link" data-scroll-target="#classificação-ontológica"><span class="header-section-number">3.6</span> Classificação ontológica</a></li>
+  <li><a href="#separação-de-caminhos-sequenciais-e-paralelos" id="toc-separação-de-caminhos-sequenciais-e-paralelos" class="nav-link" data-scroll-target="#separação-de-caminhos-sequenciais-e-paralelos"><span class="header-section-number">3.3</span> Separação de caminhos sequenciais e paralelos</a></li>
+  <li><a href="#classificação-ontológica" id="toc-classificação-ontológica" class="nav-link" data-scroll-target="#classificação-ontológica"><span class="header-section-number">3.4</span> Classificação ontológica</a></li>
   </ul></li>
   <li><a href="#sec-exemplos" id="toc-sec-exemplos" class="nav-link" data-scroll-target="#sec-exemplos"><span class="header-section-number">4</span> Exemplos reais</a>
   <ul class="collapse">
@@ -379,137 +377,219 @@ Dados reais
 <li><strong>BUNDLE de note + chain</strong>: cada interpretação analítica (memo) é obrigatoriamente pareada com sua formalização em cadeia causal</li>
 <li><strong>ONTOLOGY multidimensional</strong>: cada conceito recebe classificação modal (Dooyeweerd), dimensional (Wüstenhagen), nível de confiança e construto bipolar (Repertory Grid Theory)</li>
 </ol>
-<p>Vejamos as definições completas dos campos mais relevantes:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<p>Vejamos as definições completas dos campos mais relevantes. A partir da versão 2.0 do template, cada campo incorpora um bloco <code>GUIDELINES</code> com as instruções metodológicas que antes eram fornecidas em prompts externos:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">text</span> <span class="kw">TYPE</span> QUOTATION</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal<span class="co">/relacional entre conceitos da ontologia</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Condição necessária ou facilitadora</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Efeito causal direto</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> Limita ou restringe</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONTESTED-BY:</span> Oposição ativa</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RELATES-TO:</span> Associação significativa genérica</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> aspect <span class="kw">TYPE</span> <span class="kw">ORDERED</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Aspectos modais de Dooyeweerd</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[0]</span> <span class="fu">Undefined:</span> Not available</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[1]</span> <span class="fu">Quantitative:</span> Medições, estatísticas</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[2]</span> <span class="fu">Spatial:</span> Localização, geografia</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[3]</span> <span class="fu">Kinematic:</span> Movimento, fluxo, dinâmica</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[4]</span> <span class="fu">Physical:</span> Propriedades materiais, sistemas energéticos</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[5]</span> <span class="fu">Biotic:</span> Ecológico, ambiental, impactos na saúde</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[6]</span> <span class="fu">Sensitive:</span> Percepção, consciência, respostas emocionais</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[7]</span> <span class="fu">Analytical:</span> Pesquisa, análise, elementos metodológicos</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[8]</span> <span class="fu">Formative:</span> Planejamento, design, inovação</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[9]</span> <span class="fu">Lingual:</span> Comunicação, documentação</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[10]</span> <span class="fu">Social:</span> Relações comunitárias, dinâmicas coletivas</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[11]</span> <span class="fu">Economic:</span> Custos, mercados, finanças</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[12]</span> <span class="fu">Aesthetic:</span> Qualidades visuais, estética</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[13]</span> <span class="fu">Juridical:</span> Legal, regulatório, governança</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[14]</span> <span class="fu">Ethical:</span> Responsabilidade moral, equidade</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[15]</span> <span class="fu">Fiducial:</span> Confiança, crença, valores, cosmovisão</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> confidence <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Nível de confiança baseado em frequência e fontes</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">LOW:</span> Baixa frequência ou fontes limitadas</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">MEDIUM:</span> Frequência moderada com suporte razoável</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">HIGH:</span> Alta frequência e amplo suporte empírico</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> theoretical_significance <span class="kw">TYPE</span> <span class="kw">SCALE</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FORMAT</span> <span class="bn">[0..5]</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Significância teórica do conceito</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto textual extraído da fonte bibliográfica</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    GUIDELINES</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        Extract COMPLETE, SELF-CONTAINED semantic units (1-3 sentences).</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        Each excerpt must <span class="fu">include:</span> subject + verb + object + qualifiers.</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        The excerpt must be intelligible without surrounding context.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">GOOD:</span> 'Community trust and environmental concern are the most important</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        factors determining willingness to participate in renewable energy projects'</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">BAD:</span> 'determining such willingness' (lacks subject<span class="co">/context)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        Score analytical value 1-5 BEFORE extraction. Extract only score <span class="fu">3-5:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">5:</span> Reveals causal mechanism or multi-step pathway (explains HOW acceptance works)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">4:</span> Shows enabling<span class="co">/shaping relationship with clear mechanism</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">3:</span> Theoretically significant association (flag as *borderline*)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">2:</span> Simple association without mechanism (SKIP)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">1:</span> Trivial<span class="co">/obvious/redundant (SKIP)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">TEST:</span> 'Does this explain HOW or WHY social acceptance occurs?'</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        YES + mechanism visible = Extract. Otherwise SKIP.</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> GUIDELINES</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Memo analítico explicando a interpretação e mecanismo causal identificado</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    GUIDELINES</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        Write an analytical description of the mechanism, significance, or rationale</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        revealed by the excerpt. Do NOT merely restate the excerpt.</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        Maximum 25 words (up to 50 words if flagged *complex*).</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        State the causal mechanism or theoretical insight, not a description of the <span class="at">text</span>.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="fu">GOOD:</span> 'Reveals dual <span class="fu">mechanism:</span> Integration and Engagement independently</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        enable transition via complementary pathways'</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">BAD:</span> 'The excerpt describes how factors influence willingness'</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        Add *borderline* flag if analytical value score is 3.</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        Add *complex* flag if 4+ factors converge on the same outcome.</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> GUIDELINES</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal<span class="co">/relacional entre conceitos da ontologia</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Condição necessária ou facilitadora (A permite que B ocorra)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Efeito causal direto (A afeta ou muda B)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> Limita ou restringe (A reduz opções ou viabilidade de B)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONTESTED-BY:</span> Oposição ativa (A é contestado ou desafiado por B)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RELATES-TO:</span> Associação significativa genérica (A está relacionado a B)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    GUIDELINES</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        RELATION SELECTION <span class="fu">PRIORITY:</span> ENABLES &gt; INFLUENCES &gt; CONSTRAINS &gt; CONTESTED-BY &gt; RELATES-TO</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        Selection tests for each relation <span class="fu">type:</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> 'Can B exist without A?' If NO, use ENABLES.</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> 'Does A increase<span class="co">/decrease/modify B?' If YES, use INFLUENCES.</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> 'Does A impose boundaries on B?' If YES, use CONSTRAINS.</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RELATES-TO:</span> Theoretically significant association. LAST RESORT — use in less than 5% of relations.</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        SEQUENTIAL vs PARALLEL CHAINS <span class="fu">(CRITICAL):</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        SEQUENTIAL <span class="fu">(A-&gt;B-&gt;C):</span> Keep in ONE <span class="at">chain</span> when factors form a causal pathway.</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        'Ownership enables financing which enables deployment'</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="op">-&gt;</span> Ownership <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financing <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        PARALLEL <span class="fu">(X,Y,Z-&gt;A):</span> Create SEPARATE <span class="kw">ITEM</span> blocks when multiple factors</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        independently affect the same outcome.</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>        'Environmental concern, education, trust determine participation'</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        <span class="op">-&gt;</span> Three separate <span class="kw">ITEM</span> blocks, each with its own <span class="at">note</span> and <span class="at">chain</span>.</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>        FACTOR GRANULARITY <span class="fu">(target:</span> fewer than 150 unique factors across the full <span class="fu">corpus):</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        Level 1 - Core <span class="fu">concept:</span> Acceptance, Deployment, Policy, Trust, Cost</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        Level 2 - Qualified concept (when distinction <span class="fu">matters):</span> Public_Acceptance, Community_Trust</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        Level 3 - Full specification (only when Level 2 loses critical <span class="fu">meaning):</span> Offshore_Wind_Acceptance</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DECISION:</span> 'Will this term appear in 5+ abstracts?' If unlikely, generalize to Level 1-2.</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> GUIDELINES</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> aspect <span class="kw">TYPE</span> <span class="kw">ORDERED</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Aspectos modais de Dooyeweerd (ordem é significativa)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[0]</span> <span class="fu">Undefined:</span> Not available</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[1]</span> <span class="fu">Quantitative:</span> Medições, estatísticas</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[2]</span> <span class="fu">Spatial:</span> Localização, geografia</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[3]</span> <span class="fu">Kinematic:</span> Movimento, fluxo, dinâmica</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[4]</span> <span class="fu">Physical:</span> Propriedades materiais, sistemas energéticos</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[5]</span> <span class="fu">Biotic:</span> Ecológico, ambiental, impactos na saúde</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[6]</span> <span class="fu">Sensitive:</span> Percepção, consciência, respostas emocionais</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[7]</span> <span class="fu">Analytical:</span> Pesquisa, análise, elementos metodológicos</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[8]</span> <span class="fu">Formative:</span> Planejamento, design, inovação</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[9]</span> <span class="fu">Lingual:</span> Comunicação, documentação</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[10]</span> <span class="fu">Social:</span> Relações comunitárias, dinâmicas coletivas</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[11]</span> <span class="fu">Economic:</span> Custos, mercados, finanças</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[12]</span> <span class="fu">Aesthetic:</span> Qualidades visuais, estética</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[13]</span> <span class="fu">Juridical:</span> Legal, regulatório, governança</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[14]</span> <span class="fu">Ethical:</span> Responsabilidade moral, equidade</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[15]</span> <span class="fu">Fiducial:</span> Confiança, crença, valores, cosmovisão</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    GUIDELINES</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        Classify the factor's primary modal nature using the Dooyeweerd framework.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        The semantic domain of the factor name determines the base classification.</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        PRIMARY classification <span class="fu">mapping:</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        Economic terms <span class="op">-&gt;</span> aspect 11</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        Governance<span class="co">/regulation -&gt; aspect 13</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        Psychological<span class="co">/trust/attitudes -&gt; aspect 15 or 6</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        Environmental<span class="co">/impact/ecology -&gt; aspect 5</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        Technical<span class="co">/method/assessment -&gt; aspect 7</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        Social<span class="co">/community/participation -&gt; aspect 10</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        Critical <span class="fu">rule:</span> Semantic meaning &gt; relations &gt; co-occurrence &gt; statistics.</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> GUIDELINES</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> confidence <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Nível de confiança baseado em frequência e fontes</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">LOW:</span> Baixa frequência ou fontes limitadas</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">MEDIUM:</span> Frequência moderada com suporte razoável</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">HIGH:</span> Alta frequência e amplo suporte empírico</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    GUIDELINES</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        Assign confidence based on statistical <span class="fu">evidence:</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">HIGH:</span> frequency &gt; 10 AND sources &gt; 5</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="fu">MEDIUM:</span> frequency 5-10 OR sources 3-5</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">LOW:</span> frequency &lt; 5 OR sources &lt; 3</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> GUIDELINES</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> theoretical_significance <span class="kw">TYPE</span> <span class="kw">SCALE</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FORMAT</span> <span class="bn">[0..5]</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Significância teórica do conceito (0=baixa, 5=alta)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    GUIDELINES</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        Rate based on frequency, source diversity, and centrality in causal chains.</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">0:</span> No theoretical significance identified</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">3:</span> Moderate significance, appears in multiple chains across several sources</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>        <span class="fu">5:</span> Core concept, foundational to the theoretical framework</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> GUIDELINES</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Composição de tipos
+Composição de tipos e GUIDELINES
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Este template usa <strong>7 tipos de campo diferentes</strong> em um único projeto: TEXT, QUOTATION, MEMO, CHAIN (com RELATIONS e ARITY), TOPIC, ORDERED (com VALUES indexados), ENUMERATED (com VALUES), e SCALE (com FORMAT). É um exemplo realista de como os tipos se compõem para expressar uma metodologia complexa.</p>
+<p>Este template usa <strong>7 tipos de campo diferentes</strong> em um único projeto: TEXT, QUOTATION, MEMO, CHAIN (com RELATIONS e ARITY), TOPIC, ORDERED (com VALUES indexados), ENUMERATED (com VALUES), e SCALE (com FORMAT). A partir da versão 2.0, cada campo incorpora também um bloco <code>GUIDELINES</code> com as instruções metodológicas que governam o comportamento da IA — o template deixa de ser apenas esquema de dados e passa a ser o <strong>playbook completo</strong> da análise.</p>
 </div>
 </div>
 <hr>
 </section>
 <section id="sec-prompts" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Os prompts: o cerne da metodologia</h1>
-<p>A IA não codifica livremente — ela segue instruções metodológicas precisas, codificadas em prompts estruturados. Esses prompts constituem, na prática, o <strong>método de pesquisa formalizado</strong>. A qualidade dos resultados depende inteiramente da qualidade dessas instruções.</p>
+<h1 data-number="3"><span class="header-section-number">3</span> As instruções metodológicas no template</h1>
+<p>A IA não codifica livremente — ela segue instruções metodológicas precisas que governam cada decisão de extração e classificação. Na versão 1.0 do projeto, essas instruções eram fornecidas em prompts externos ao template. Na versão 2.0, foram migradas para dentro do próprio template usando o bloco <code>GUIDELINES</code>, tornando o <code>.synt</code> o repositório único e versionado de toda a metodologia.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Template como playbook metodológico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Com <code>GUIDELINES</code>, o template deixa de ser um esquema de dados e passa a ser um <strong>playbook executável</strong>: cada campo define não apenas <em>o que</em> guardar, mas <em>como</em> a IA deve decidir o que extrair. As instruções ficam junto à estrutura, versionadas no mesmo arquivo, auditáveis por qualquer colaborador.</p>
+</div>
+</div>
 <section id="seleção-de-excertos" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="seleção-de-excertos"><span class="header-section-number">3.1</span> Seleção de excertos</h2>
-<p>O prompt exige que cada excerto seja uma <strong>unidade semântica completa</strong> (1-3 sentenças) contendo sujeito, verbo, objeto e qualificadores:</p>
+<p>O campo <code>text</code> instrui a IA a extrair apenas <strong>unidades semânticas completas</strong> (1-3 sentenças) com sujeito, verbo, objeto e qualificadores. Cada excerto potencial recebe uma pontuação de valor analítico antes da extração — apenas pontuações 3-5 são incluídas:</p>
 <blockquote class="blockquote">
-<p><em>“Extract COMPLETE, SELF-CONTAINED semantic units. Must include: subject + verb + object + qualifiers.”</em></p>
+<p>Score 5: Revela mecanismo causal ou caminho multi-etapa (explica <em>como</em> a aceitação funciona)</p>
+<p>Score 4: Mostra habilitação/moldagem com mecanismo claro</p>
+<p>Score 3: Associação teoricamente significativa (<code>*borderline*</code>)</p>
+<p>Score 2: Associação simples sem mecanismo (PULAR)</p>
+<p>Score 1: Trivial, óbvio ou redundante (PULAR)</p>
 </blockquote>
-<p>Excertos truncados ou descontextualizados são explicitamente rejeitados:</p>
-<blockquote class="blockquote">
-<p>GOOD: <em>“Community trust and environmental concern are the most important factors determining willingness to participate in renewable energy projects”</em></p>
-<p>BAD: <em>“determining such willingness”</em> (falta sujeito e contexto)</p>
-</blockquote>
+<p>O teste decisivo, inscrito no <code>GUIDELINES</code> do campo: <em>“Does this explain HOW or WHY social acceptance occurs?”</em></p>
 </section>
 <section id="controle-de-granularidade-conceitual" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="controle-de-granularidade-conceitual"><span class="header-section-number">3.2</span> Controle de granularidade conceitual</h2>
-<p>Um dos maiores riscos da codificação automatizada é a <strong>proliferação de conceitos</strong> — cada artigo gerando rótulos ligeiramente diferentes para o mesmo fenômeno. O prompt combate isso com uma hierarquia de generalização:</p>
+<p>O <code>GUIDELINES</code> do campo <code>chain</code> combate a <strong>proliferação de conceitos</strong> — o maior risco da codificação automatizada — com uma hierarquia de generalização e uma regra de decisão pragmática:</p>
 <blockquote class="blockquote">
-<p><strong>Nível 1</strong> — Conceito nuclear: <code>Acceptance</code>, <code>Deployment</code>, <code>Policy</code>, <code>Trust</code>, <code>Cost</code></p>
-<p><strong>Nível 2</strong> — Conceito qualificado (quando a distinção importa): <code>Public Acceptance</code>, <code>Community Trust</code></p>
-<p><strong>Nível 3</strong> — Especificação completa (somente quando Nível 2 perde significado crítico): <code>Offshore Wind Acceptance</code></p>
+<p>Nível 1 — Conceito nuclear: <code>Acceptance</code>, <code>Deployment</code>, <code>Policy</code>, <code>Trust</code>, <code>Cost</code></p>
+<p>Nível 2 — Conceito qualificado (quando a distinção importa): <code>Public_Acceptance</code>, <code>Community_Trust</code></p>
+<p>Nível 3 — Especificação completa (somente quando Nível 2 perde significado crítico): <code>Offshore_Wind_Acceptance</code></p>
+<p><em>“Will this specific term appear in 5+ abstracts? Likely 1-2 uses → Generalize to Level 1-2.”</em></p>
 </blockquote>
-<p>A regra de decisão é pragmática:</p>
-<blockquote class="blockquote">
-<p><em>“Ask: Will this specific term appear in 5+ abstracts, or is it unique to this one? Likely 1-2 uses → Generalize to Level 1-2.”</em></p>
-</blockquote>
-<p>A meta é manter menos de <strong>150 conceitos únicos</strong> ao longo de 450 artigos.</p>
+<p>A meta: menos de <strong>150 conceitos únicos</strong> ao longo de 450 artigos.</p>
 </section>
-<section id="critério-de-mensurabilidade-pelo-stakeholder" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="critério-de-mensurabilidade-pelo-stakeholder"><span class="header-section-number">3.3</span> Critério de Mensurabilidade pelo Stakeholder</h2>
-<p>Conceitos abstratos são generalizados quando o stakeholder não consegue percebê-los diretamente:</p>
-<blockquote class="blockquote">
-<p><em>“Can a stakeholder directly perceive, measure, or act upon this concept without specialized knowledge?”</em></p>
-<p>SIM → Manter termo específico: <code>Risk Perception</code>, <code>Procedural Justice</code></p>
-<p>NÃO → Generalizar: <code>institutional trust</code> + <code>interpersonal trust</code> → <code>Trust</code></p>
-</blockquote>
-</section>
-<section id="pontuação-de-valor-analítico" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="pontuação-de-valor-analítico"><span class="header-section-number">3.4</span> Pontuação de valor analítico</h2>
-<p>Cada cadeia potencial recebe uma pontuação de 1 a 5 antes da extração. Somente cadeias com pontuação 3-5 são extraídas:</p>
-<blockquote class="blockquote">
-<p><strong>5</strong>: Revela mecanismo causal ou caminho multi-etapa (explica <em>como</em> a aceitação funciona)</p>
-<p><strong>4</strong>: Mostra habilitação/moldagem com mecanismo claro</p>
-<p><strong>3</strong>: Associação teoricamente significativa (<em>borderline</em>)</p>
-<p><strong>2</strong>: Associação simples sem mecanismo (PULAR)</p>
-<p><strong>1</strong>: Trivial, óbvio ou redundante (PULAR)</p>
-</blockquote>
-<p>O teste decisivo: <em>“Does this explain HOW or WHY social acceptance occurs?”</em></p>
-</section>
-<section id="separação-de-caminhos-sequenciais-e-paralelos" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="separação-de-caminhos-sequenciais-e-paralelos"><span class="header-section-number">3.5</span> Separação de caminhos sequenciais e paralelos</h2>
-<p>O prompt distingue explicitamente entre cadeias sequenciais e caminhos paralelos:</p>
-<p><strong>Cadeia sequencial</strong> (A causa B, que causa C) → um único bloco:</p>
-<pre><code>chain: Ownership -&gt; ENABLES -&gt; Financing -&gt; ENABLES -&gt; Deployment</code></pre>
-<p><strong>Caminhos paralelos</strong> (A e B independentemente afetam C) → blocos separados:</p>
-<pre><code>chain: Trust -&gt; INFLUENCES -&gt; Acceptance
-chain: Cost -&gt; INFLUENCES -&gt; Acceptance
-chain: Policy -&gt; INFLUENCES -&gt; Acceptance</code></pre>
+<section id="separação-de-caminhos-sequenciais-e-paralelos" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="separação-de-caminhos-sequenciais-e-paralelos"><span class="header-section-number">3.3</span> Separação de caminhos sequenciais e paralelos</h2>
+<p>O <code>GUIDELINES</code> do campo <code>chain</code> distingue explicitamente os dois padrões estruturais:</p>
+<p><strong>Cadeia sequencial</strong> (A causa B, que causa C) → um único bloco <code>chain</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Ownership <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financing <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Caminhos paralelos</strong> (A, B e C independentemente afetam D) → blocos <code>ITEM</code> separados, cada um com seu par <code>note</code>/<code>chain</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Trust <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Cost <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Policy <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Esta distinção é crítica para a qualidade do grafo resultante: caminhos paralelos misturados em uma única cadeia criariam relações espúrias.</p>
 </section>
-<section id="classificação-ontológica" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="classificação-ontológica"><span class="header-section-number">3.6</span> Classificação ontológica</h2>
-<p>Um segundo prompt classifica cada conceito extraído em múltiplas dimensões, seguindo uma hierarquia de prioridade:</p>
+<section id="classificação-ontológica" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="classificação-ontológica"><span class="header-section-number">3.4</span> Classificação ontológica</h2>
+<p>O <code>GUIDELINES</code> dos campos <code>aspect</code>, <code>dimension</code> e <code>confidence</code> instrui a IA a classificar cada conceito extraído seguindo uma hierarquia de prioridade explícita:</p>
 <ol type="1">
 <li><strong>Significado semântico</strong> do conceito (primário)</li>
 <li><strong>Perfil relacional</strong> — tipos de relação dominantes (secundário)</li>
@@ -527,56 +607,56 @@ chain: Policy -&gt; INFLUENCES -&gt; Acceptance</code></pre>
 <section id="source-metadados-epistêmicos" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="source-metadados-epistêmicos"><span class="header-section-number">4.1</span> SOURCE: metadados epistêmicos</h2>
 <p>Cada fonte registra não apenas <em>o que</em> o estudo investiga, mas <em>como</em> investiga — modelo epistemológico e método de coleta.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ashworth2019</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Comparative study of public attitudes toward CCS and</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 low-carbon energy technologies in Australia and China,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 examining factors associated with support levels.</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Social acceptance of energy technologies,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                     comparative public opinion research</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Online survey (Australia n=2383, China n=1266)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ashworth2019</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Comparative study of public attitudes toward CCS and</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 low-carbon energy technologies in Australia and China,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                 examining factors associated with support levels.</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Social acceptance of energy technologies,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                     comparative public opinion research</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Online survey (Australia n=2383, China n=1266)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>O campo <code>epistemic_model</code> permite filtrar resultados por tradição teórica. Ao final da análise, o pesquisador pode perguntar: <em>“As relações causais identificadas por pesquisadores usando Difusão de Inovações diferem das identificadas por quem usa Teoria da Justiça?”</em></p>
 <p>Outro exemplo mostra um estudo com abordagem diferente:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@aly2019</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Investigates institutional, financial, and technological</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 barriers to large-scale solar power deployment in Tanzania</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                 through stakeholder interviews.</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Stakeholder analysis, barrier identification framework</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Semi-structured interviews (30 experts from public institutions,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            research, private sector, civil society, development partners,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            financial institutions)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@aly2019</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Investigates institutional, financial, and technological</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                 barriers to large-scale solar power deployment in Tanzania</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                 through stakeholder interviews.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Stakeholder analysis, barrier identification framework</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Semi-structured interviews (30 experts from public institutions,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            research, private sector, civil society, development partners,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            financial institutions)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="item-cadeias-causais-com-bundle" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="item-cadeias-causais-com-bundle"><span class="header-section-number">4.2</span> ITEM: cadeias causais com BUNDLE</h2>
 <p>Cada item contém um excerto e uma ou mais duplas nota/cadeia em BUNDLE. Veja um exemplo com <strong>convergência multi-fator</strong> — quatro fatores independentes afetam o mesmo resultado:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ashworth2019</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> However, male respondents, those who perceived themselves to</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          have higher knowledge of CCS, and those who valued economic</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>          outcomes over environmental protection were more likely to</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>          support CCS - as long as the risks were not perceived to</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>          outweigh the benefits.</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> *complex* Four-factor convergence (gender, knowledge,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>          economic values, risk perception) reveals multi-domain</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>          determinants requiring integrated communication strategies</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Gender <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Self-assessed knowledge increases support, revealing</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>          information deficit mechanism where perceived understanding</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>          drives acceptance</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Knowledge <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Economic prioritization over environmental values predicts</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>          support, indicating value-based acceptance mechanism</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Economic_Value <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Risk-benefit assessment constrains support, revealing</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>          conditional acceptance mechanism where perceived risks</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>          override other positive factors</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Risk_Perception <span class="op">-&gt;</span> CONSTRAINS <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ashworth2019</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> However, male respondents, those who perceived themselves to</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          have higher knowledge of CCS, and those who valued economic</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          outcomes over environmental protection were more likely to</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          support CCS - as long as the risks were not perceived to</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          outweigh the benefits.</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> *complex* Four-factor convergence (gender, knowledge,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>          economic values, risk perception) reveals multi-domain</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>          determinants requiring integrated communication strategies</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Gender <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Self-assessed knowledge increases support, revealing</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>          information deficit mechanism where perceived understanding</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>          drives acceptance</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Knowledge <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Economic prioritization over environmental values predicts</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>          support, indicating value-based acceptance mechanism</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Economic_Value <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Risk-benefit assessment constrains support, revealing</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>          conditional acceptance mechanism where perceived risks</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>          override other positive factors</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Risk_Perception <span class="op">-&gt;</span> CONSTRAINS <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Observe:</p>
 <ul>
 <li><strong>4 pares nota/cadeia</strong> para o mesmo excerto — o BUNDLE garante correspondência posicional</li>
@@ -585,17 +665,17 @@ chain: Policy -&gt; INFLUENCES -&gt; Acceptance</code></pre>
 <li>Os 4 caminhos são <strong>paralelos</strong> (cada fator afeta independentemente <code>CCS_Support</code>), então estão em blocos separados dentro do mesmo ITEM</li>
 </ul>
 <p>Agora um exemplo de <strong>cadeia sequencial</strong> — um fator desencadeia outro em cascata:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@aly2019</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> Institutional barriers for the diffusion of large-scale solar</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          power technologies are found to be predominant, and they often</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          trigger financial and technological barriers.</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Reveals sequential triggering mechanism where institutional</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>          barriers activate downstream financial and technological</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>          constraints</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Institutional_Barrier <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financial_Barrier</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Technological_Barrier</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@aly2019</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> Institutional barriers for the diffusion of large-scale solar</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          power technologies are found to be predominant, and they often</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>          trigger financial and technological barriers.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Reveals sequential triggering mechanism where institutional</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          barriers activate downstream financial and technological</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>          constraints</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Institutional_Barrier <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financial_Barrier</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Technological_Barrier</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Aqui, uma única cadeia de 3 conceitos expressa o mecanismo sequencial: barreiras institucionais <em>habilitam</em> (tornam possíveis) barreiras financeiras, que por sua vez <em>habilitam</em> barreiras tecnológicas. A relação <code>ENABLES</code> é usada no sentido de condição necessária — sem a barreira institucional, as demais não se manifestariam.</p>
 <hr>
 </section>
@@ -604,32 +684,32 @@ chain: Policy -&gt; INFLUENCES -&gt; Acceptance</code></pre>
 <p>Cada conceito mencionado nas cadeias é definido na ontologia com classificação em múltiplas dimensões. Vejamos dois conceitos contrastantes:</p>
 <section id="conceito-de-alta-confiança" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="conceito-de-alta-confiança"><span class="header-section-number">4.3.1</span> Conceito de alta confiança</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect <span class="fu">11:</span> Core economic factor representing financial</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>               expenditure. Mainly constrains deployment<span class="co">/technology</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>               development while enabling market penetration when</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>               reduced. Co-occurs with Deployment and Acceptance,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>               indicating market-consumer relevance. Dimension <span class="fu">2:</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>               Directly affects investors, consumers, and market</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>               competitiveness. High frequency (96) across broad</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>               sources (66) confirms central role.</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                 associated with energy technologies and systems.</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                 Acts as primary barrier constraining technology</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                 development, site selection, and deployment when</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                 high, while enabling market penetration, technology</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                 transition, and sustainable solutions when reduced.</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Low_Cost</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> High_Cost</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 0</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect <span class="fu">11:</span> Core economic factor representing financial</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>               expenditure. Mainly constrains deployment<span class="co">/technology</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>               development while enabling market penetration when</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>               reduced. Co-occurs with Deployment and Acceptance,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>               indicating market-consumer relevance. Dimension <span class="fu">2:</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>               Directly affects investors, consumers, and market</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               competitiveness. High frequency (96) across broad</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>               sources (66) confirms central role.</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                 associated with energy technologies and systems.</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                 Acts as primary barrier constraining technology</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                 development, site selection, and deployment when</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                 high, while enabling market penetration, technology</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                 transition, and sustainable solutions when reduced.</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Low_Cost</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> High_Cost</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 0</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>topic</strong> <code>Economics</code> — agrupamento temático emergente (TOPIC, valores abertos)</li>
 <li><strong>aspect</strong> <code>11</code> (Economic) — classificação modal de Dooyeweerd (ORDERED, 16 valores)</li>
@@ -642,31 +722,31 @@ chain: Policy -&gt; INFLUENCES -&gt; Acceptance</code></pre>
 </section>
 <section id="conceito-de-baixa-confiança" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="conceito-de-baixa-confiança"><span class="header-section-number">4.3.2</span> Conceito de baixa confiança</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Climate_Belief</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Worldview</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 15</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 1</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> LOW</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect 15 <span class="fu">(Fiducial):</span> Climate belief represents</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>               worldview and conviction about climate change causation.</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>               Relations show influences on acceptability and support.</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>               Co-occurs with CCS support and acceptability factors.</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>               Dimension <span class="fu">1:</span> Affects community-level acceptance of</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>               technologies like tidal and CCS. Low frequency (2)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               and sources (2) limit robustness.</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Climate belief refers to individuals' conviction</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>                 regarding the existence and anthropogenic causation</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                 of climate change. In energy transition contexts,</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                 this worldview shapes acceptance of low-carbon</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                 technologies, with believers in human-induced</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                 climate change showing differential support patterns.</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Strong_Climate_Belief</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> Weak_Climate_Belief</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 0</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Climate_Belief</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Worldview</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 15</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 1</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> LOW</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect 15 <span class="fu">(Fiducial):</span> Climate belief represents</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>               worldview and conviction about climate change causation.</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>               Relations show influences on acceptability and support.</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>               Co-occurs with CCS support and acceptability factors.</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>               Dimension <span class="fu">1:</span> Affects community-level acceptance of</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>               technologies like tidal and CCS. Low frequency (2)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>               and sources (2) limit robustness.</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Climate belief refers to individuals' conviction</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                 regarding the existence and anthropogenic causation</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                 of climate change. In energy transition contexts,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                 this worldview shapes acceptance of low-carbon</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                 technologies, with believers in human-induced</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                 climate change showing differential support patterns.</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Strong_Climate_Belief</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> Weak_Climate_Belief</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 0</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>O contraste é instrutivo:</p>
 <table class="caption-top table">
 <colgroup>
@@ -759,35 +839,43 @@ A IA codifica, o template valida, o pesquisador decide
 <tr class="even">
 <td>Design do template</td>
 <td>Pesquisador</td>
-<td><code>.synt</code> com estrutura analítica e frameworks teóricos</td>
+<td><code>.synt</code> com estrutura analítica, frameworks teóricos e <code>GUIDELINES</code> por campo</td>
 </tr>
 <tr class="odd">
-<td>Design dos prompts</td>
-<td>Pesquisador</td>
-<td>Instruções metodológicas formalizadas para a IA</td>
-</tr>
-<tr class="even">
 <td>Codificação</td>
 <td>IA (LLM)</td>
 <td><code>.syn</code> (anotações) e <code>.syno</code> (ontologia)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Validação estrutural</td>
 <td>Compilador Synesis</td>
 <td>Erros de referência, BUNDLE, ARITY, tipos</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Revisão de conteúdo</td>
 <td>Pesquisador</td>
 <td>Correções de generalização, relações e duplicatas</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Exportação</td>
 <td>Compilador Synesis</td>
 <td>JSON, Neo4j, Excel para análise quantitativa</td>
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+De prompts externos a GUIDELINES no template
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Na versão 1.0 do projeto, “Design dos prompts” era uma etapa separada: as instruções metodológicas existiam em documentos externos e precisavam ser incluídas manualmente em cada chamada ao LLM. Na versão 2.0, essa etapa foi incorporada ao template via <code>GUIDELINES</code> — o <code>.synt</code> passou a ser o repositório único de estrutura <strong>e</strong> metodologia, versionado junto ao projeto.</p>
+</div>
+</div>
 
 
 </section>
