@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Synesis para Usuários do IRaMuTeQ – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis para Usuários do IRaMuTeQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">O fluxo de compilação</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Sinesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/show_case.html">
+ <span class="dropdown-text">O que Synesis pode expressar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/exemplos_codificacao.html">
+ <span class="dropdown-text">Métodos de Codificação em Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA.html">
+ <span class="dropdown-text">Codificação Assistida por IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_metricas.html">
+ <span class="dropdown-text">Métricas da Pesquisa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/dsap.html">
+ <span class="dropdown-text">Diagnóstico Socioambiental Participativo</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#synesis-para-usuários-do-iramuteq" id="toc-synesis-para-usuários-do-iramuteq" class="nav-link active" data-scroll-target="#synesis-para-usuários-do-iramuteq"><span class="header-section-number">1</span> Synesis para Usuários do IRaMuTeQ</a>
+  <ul class="collapse">
+  <li><a href="#o-problema-o-corpus-iramuteq-é-um-destino-não-uma-fonte" id="toc-o-problema-o-corpus-iramuteq-é-um-destino-não-uma-fonte" class="nav-link" data-scroll-target="#o-problema-o-corpus-iramuteq-é-um-destino-não-uma-fonte"><span class="header-section-number">1.1</span> O Problema: o Corpus IRaMuTeQ é um Destino, não uma Fonte</a></li>
+  <li><a href="#parte-1-o-corpus-iramuteq-e-sua-estrutura" id="toc-parte-1-o-corpus-iramuteq-e-sua-estrutura" class="nav-link" data-scroll-target="#parte-1-o-corpus-iramuteq-e-sua-estrutura"><span class="header-section-number">1.2</span> Parte 1 — O Corpus IRaMuTeQ e sua Estrutura</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-corpus-aids" id="toc-exemplo-corpus-aids" class="nav-link" data-scroll-target="#exemplo-corpus-aids"><span class="header-section-number">1.2.1</span> Exemplo: corpus “aids”</a></li>
+  </ul></li>
+  <li><a href="#parte-2-criando-o-template-synesis" id="toc-parte-2-criando-o-template-synesis" class="nav-link" data-scroll-target="#parte-2-criando-o-template-synesis"><span class="header-section-number">1.3</span> Parte 2 — Criando o Template Synesis</a></li>
+  <li><a href="#parte-3-estruturando-o-corpus-em-synesis" id="toc-parte-3-estruturando-o-corpus-em-synesis" class="nav-link" data-scroll-target="#parte-3-estruturando-o-corpus-em-synesis"><span class="header-section-number">1.4</span> Parte 3 — Estruturando o Corpus em Synesis</a></li>
+  <li><a href="#parte-4-exportando-para-iramuteq" id="toc-parte-4-exportando-para-iramuteq" class="nav-link" data-scroll-target="#parte-4-exportando-para-iramuteq"><span class="header-section-number">1.5</span> Parte 4 — Exportando para IRaMuTeQ</a></li>
+  <li><a href="#parte-5-synesis-como-hub-de-análise" id="toc-parte-5-synesis-como-hub-de-análise" class="nav-link" data-scroll-target="#parte-5-synesis-como-hub-de-análise"><span class="header-section-number">1.6</span> Parte 5 — Synesis como Hub de Análise</a>
+  <ul class="collapse">
+  <li><a href="#adicionando-anotações-ao-corpus" id="toc-adicionando-anotações-ao-corpus" class="nav-link" data-scroll-target="#adicionando-anotações-ao-corpus"><span class="header-section-number">1.6.1</span> Adicionando anotações ao corpus</a></li>
+  <li><a href="#acesso-programático-via-api" id="toc-acesso-programático-via-api" class="nav-link" data-scroll-target="#acesso-programático-via-api"><span class="header-section-number">1.6.2</span> Acesso programático via API</a></li>
+  </ul></li>
+  <li><a href="#parte-6-synesis-como-camada-de-governança" id="toc-parte-6-synesis-como-camada-de-governança" class="nav-link" data-scroll-target="#parte-6-synesis-como-camada-de-governança"><span class="header-section-number">1.7</span> Parte 6 — Synesis como Camada de Governança</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">1.8</span> Resumo</a></li>
+  <li><a href="#próximos-passos" id="toc-próximos-passos" class="nav-link" data-scroll-target="#próximos-passos"><span class="header-section-number">1.9</span> Próximos Passos</a></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">1.10</span> Referências</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Synesis para Usuários do IRaMuTeQ</h1>
+<p class="subtitle lead">Como usar Synesis como camada de governança do corpus qualitativo</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="synesis-para-usuários-do-iramuteq" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Synesis para Usuários do IRaMuTeQ</h1>
+<p>Este tutorial é destinado a pesquisadores que já conhecem o IRaMuTeQ e querem entender como a linguagem Synesis pode complementar — e ampliar — seu fluxo de análise qualitativa.</p>
+<p><strong>Você vai aprender a:</strong></p>
+<ul>
+<li>Estruturar um corpus diretamente em Synesis, desde a coleta</li>
+<li>Criar um template tipado com validação automática</li>
+<li>Exportar o corpus Synesis para o formato IRaMuTeQ</li>
+<li>Acrescentar camadas de anotação que alimentam análises além do IRaMuTeQ</li>
+</ul>
+<p><strong>Pré-requisito:</strong> familiaridade com o formato de corpus do IRaMuTeQ (linhas <code>****</code>, variáveis e modalidades).</p>
+<hr>
+<section id="o-problema-o-corpus-iramuteq-é-um-destino-não-uma-fonte" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="o-problema-o-corpus-iramuteq-é-um-destino-não-uma-fonte"><span class="header-section-number">1.1</span> O Problema: o Corpus IRaMuTeQ é um Destino, não uma Fonte</h2>
+<p>O fluxo tradicional com o IRaMuTeQ começa fora do software: o pesquisador prepara um arquivo <code>.txt</code> com as linhas <code>****</code> — geralmente no Word ou em um editor de texto — e o insere para análise. Não há validação automática: um erro tipográfico em uma linha <code>****</code>, uma modalidade inexistente ou um campo faltante produzem ruído silencioso nos resultados.</p>
+<p>Para corpus pequenos e pesquisadores solo, isso é administrável. Para corpus com centenas de textos, múltiplos codificadores ou fases de coleta distintas, torna-se um risco metodológico real.</p>
+<p>O Synesis propõe uma inversão desse fluxo: o corpus é estruturado e mantido em Synesis desde o início, validado pelo compilador a cada edição, e exportado para IRaMuTeQ (ou qualquer outro destino) sob demanda. O arquivo <code>.txt</code> do IRaMuTeQ passa a ser um <strong>artefato derivado</strong> — gerado automaticamente a partir da fonte canônica — e não mais o ponto de partida.</p>
+<hr>
+</section>
+<section id="parte-1-o-corpus-iramuteq-e-sua-estrutura" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="parte-1-o-corpus-iramuteq-e-sua-estrutura"><span class="header-section-number">1.2</span> Parte 1 — O Corpus IRaMuTeQ e sua Estrutura</h2>
+<p>O IRaMuTeQ organiza corpus textuais com <strong>linhas de comando</strong> que precedem cada texto. Cada linha começa com <code>****</code> e lista variáveis no formato <code>*nome_valor</code>.</p>
+<section id="exemplo-corpus-aids" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="exemplo-corpus-aids"><span class="header-section-number">1.2.1</span> Exemplo: corpus “aids”</h3>
+<p>Este corpus é formado pelas respostas à questão <em>“O que você pensa a respeito da Aids?”</em>, coletadas de 300 estudantes do ensino médio (Antunes, 2012). É um dos exemplos canônicos para uso da Classificação Hierárquica Descendente (CHD) com respostas curtas de questionários.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tutorial Iramuteq
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os exemplos deste tutorial foram extraídos do Manual de uso do software Iramuteq <span class="citation" data-cites="camargo2021">(<a href="#ref-camargo2021" role="doc-biblioref">Camargo &amp; Justo, 2021</a>)</span>.</p>
+<p>O <a href="https://github.com/synesis-lang/case-studies/tree/main/Sociology/iramuteq_aids_corpus">repositório de estudos de caso do projeto</a> contém versões prontas para uso</p>
+</div>
+</div>
+<p>As variáveis utilizadas são:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 32%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variável</th>
+<th>Descrição</th>
+<th>Modalidades</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*ind</code></td>
+<td>Indivíduo participante</td>
+<td>001 a 312</td>
+</tr>
+<tr class="even">
+<td><code>*sex</code></td>
+<td>Sexo</td>
+<td>1 = masculino, 2 = feminino</td>
+</tr>
+<tr class="odd">
+<td><code>*esc</code></td>
+<td>Tipo de escola</td>
+<td>1 = pública, 2 = particular</td>
+</tr>
+<tr class="even">
+<td><code>*pes</code></td>
+<td>Conhece soropositivo</td>
+<td>1 = conhece, 2 = não conhece</td>
+</tr>
+<tr class="odd">
+<td><code>*conh</code></td>
+<td>Conhecimento sobre transmissão</td>
+<td>1 = bom, 2 = pouco</td>
+</tr>
+<tr class="even">
+<td><code>*ati</code></td>
+<td>Atitude frente ao soropositivo</td>
+<td>1 = favorável, 2 = neutra, 3 = desfavorável</td>
+</tr>
+</tbody>
+</table>
+<p>O corpus no formato IRaMuTeQ tem esta aparência:</p>
+<pre class="text"><code>**** *ind_001 *sex_1 *esc_2 *pes_2 *conh_1 *ati_3
+A aids é um vírus que tem que tomar muito cuidado. É importante conhecer
+seu parceiro na hora de realizar atos sexuais. O vírus pode ser transmitido
+por causa de um ato irresponsável, transar sem o uso de um preservativo,
+ou através de um estupro.
+**** *ind_002 *sex_2 *esc_2 *pes_1 *conh_2 *ati_1
+Aids: quando citado, me vem na cabeça a quantidade de pessoas que possuem
+o vírus e que sofrem preconceito diante disto, por terem a doença, muitas
+vezes por descuido, muitas vezes por falta de instrução. Estas pessoas,
+em vez de sofrerem com isso, pelas pessoas que diziam ser suas amigas,
+deveriam na verdade ganhar o apoio e a ajuda de amigos e família para
+combater o vírus e o preconceito que há no assunto.
+**** *ind_003 *sex_2 *esc_2 *pes_2 *conh_2 *ati_3
+Eu penso que é uma questão complicada, porque a pessoa fica mal e tem que
+viver de remédios e tem medo de passar pra outra.
+**** *ind_004 *sex_2 *esc_2 *pes_2 *conh_2 *ati_1
+Uma dst, devido a falta de prevenção do casal. Hoje já existe tratamento,
+porém pessoas que sofrem desta doença sofrem também de um grande preconceito
+da sociedade.
+**** *ind_005 *sex_2 *esc_2 *pes_2 *conh_2 *ati_1
+É uma doença séria, que sofre muito preconceito. Mas que tem que passar a
+ser respeitada mais, pois sendo cuidado e tendo proteção, não faz mal algum.</code></pre>
+<p>Cada bloco <code>****</code> é a unidade de análise — o IRaMuTeQ chama isso de <strong>unidade de contexto inicial (UCI)</strong>. Os valores após <code>****</code> são os metadados do respondente; o texto que segue é o conteúdo analisado.</p>
+<hr>
+</section>
+</section>
+<section id="parte-2-criando-o-template-synesis" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="parte-2-criando-o-template-synesis"><span class="header-section-number">1.3</span> Parte 2 — Criando o Template Synesis</h2>
+<p>O template (<code>.synt</code>) é o coração do projeto Synesis. Ele declara os campos, seus tipos e suas regras — é a partir dele que o compilador valida cada anotação.</p>
+<p>Para o corpus “aids”, o template seria:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> aids_corpus</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesquisa: Representações Sociais da Aids</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escopo: Respostas à questão: "O que você pensa a respeito da Aids?" </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Corpus: Respostas de 300 estudantes do ensino médio (Antunes, 2012). </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE SOURCE</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> ind, sex, esc, pes, conh, ati</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> ind <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Identificador único do participante"</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> sex <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Sexo do participante"</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Masculino"</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Feminino"</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> esc <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Tipo de escola"</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Pública"</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Particular"</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> pes <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Conhece pessoa soropositiva"</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Conhece"</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Não conhece"</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> conh <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Conhecimento sobre transmissão do HIV"</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Bom conhecimento"</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Pouco conhecimento"</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> ati <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Atitude frente ao soropositivo"</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Favorável"</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Neutra"</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">3:</span> <span class="st">"Desfavorável"</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ITEM</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> resposta</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> resposta <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Resposta à questão aberta sobre a Aids"</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Por que isso importa:</strong> qualquer tentativa de registrar <code>ati: 4</code> ou <code>sex: 3</code> será rejeitada pelo compilador antes que os dados cheguem ao IRaMuTeQ. Com 300 participantes e múltiplos digitadores, esse tipo de verificação automática elimina uma categoria inteira de erros.</p>
+<hr>
+</section>
+<section id="parte-3-estruturando-o-corpus-em-synesis" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="parte-3-estruturando-o-corpus-em-synesis"><span class="header-section-number">1.4</span> Parte 3 — Estruturando o Corpus em Synesis</h2>
+<p>Com o template definido, cada respondente é registrado diretamente em Synesis como um par <code>SOURCE</code> + <code>ITEM</code>. Esta é a etapa de entrada de dados — o equivalente a preparar o arquivo <code>.txt</code> para o IRaMuTeQ, mas com validação automática a cada registro.</p>
+<p>O corpus dos primeiros cinco participantes em Synesis:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_001</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 001</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 1</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 1</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 3</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_001</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> A aids é um vírus que tem que tomar muito cuidado. É importante conhecer seu parceiro na hora de realizar atos sexuais. O vírus pode ser transmitido por causa de um ato irresponsável, transar sem o uso de um preservativo, ou através de um estupro.</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_002</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 002</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 1</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 1</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_002</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Quando citado, me vem na cabeça a quantidade de pessoas</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    que possuem o vírus e que sofrem preconceito diante disto, por terem a doença, muitas vezes por descuido, muitas vezes por falta de instrução. Estas pessoas, em vez de sofrerem com isso, pelas pessoas que diziam ser suas amigas, deveriam na verdade ganhar o apoio e a ajuda de amigos e família para combater o vírus e o preconceito que há no assunto.</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_003</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 003</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 3</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_003</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Eu penso que é uma questão complicada, porque a pessoa fica mal e tem que viver de remédios e tem medo de passar pra outra.</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_004</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 004</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 1</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_004</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Uma dst, devido a falta de prevenção do casal. Hoje já existe tratamento, porém pessoas que sofrem desta doença sofrem também de um grande preconceito da sociedade.</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_005</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 005</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 1</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_005</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> É uma doença séria, que sofre muito preconceito. Mas que tem que passar a ser respeitada mais, pois sendo cuidado e tendo proteção, não faz mal algum.</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada vez que um novo registro é adicionado, o compilador verifica os valores contra o template. Tentar registrar <code>ati: 4</code> ou <code>sex: 3</code> gera um erro imediato — antes que o dado malformado entre no corpus.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/iramuteq_exemplo.png" class="img-fluid figure-img"></p>
+<figcaption>Projeto de exemplo no Synesis Explorer.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="parte-4-exportando-para-iramuteq" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="parte-4-exportando-para-iramuteq"><span class="header-section-number">1.5</span> Parte 4 — Exportando para IRaMuTeQ</h2>
+<p>Com o corpus em Synesis, a exportação para o formato IRaMuTeQ é um único comando:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> export <span class="at">--format</span> iramuteq corpus.synp <span class="at">--output</span> aids_iramuteq.txt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O arquivo gerado é diretamente compatível com o IRaMuTeQ:</p>
+<pre class="text"><code>**** *ind_001 *sex_1 *esc_2 *pes_2 *conh_1 *ati_3
+A aids é um vírus que tem que tomar muito cuidado. É importante conhecer
+seu parceiro na hora de realizar atos sexuais. O vírus pode ser transmitido
+por causa de um ato irresponsável, transar sem o uso de um preservativo,
+ou através de um estupro.
+**** *ind_002 *sex_2 *esc_2 *pes_1 *conh_2 *ati_1
+Aids: quando citado, me vem na cabeça a quantidade de pessoas que possuem
+o vírus e que sofrem preconceito diante disto...</code></pre>
+<p>A correspondência entre os dois formatos é direta:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Synesis</th>
+<th>IRaMuTeQ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bloco <code>SOURCE</code></td>
+<td>Linha <code>****</code> com variáveis</td>
+</tr>
+<tr class="even">
+<td>Campo <code>ind: 001</code></td>
+<td><code>*ind_001</code></td>
+</tr>
+<tr class="odd">
+<td>Campo <code>sex: 1</code></td>
+<td><code>*sex_1</code></td>
+</tr>
+<tr class="even">
+<td>Campo <code>ati: 3</code></td>
+<td><code>*ati_3</code></td>
+</tr>
+<tr class="odd">
+<td>Campo <code>QUOTATION</code> no <code>ITEM</code></td>
+<td>Texto que segue a linha <code>****</code></td>
+</tr>
+</tbody>
+</table>
+<p>O arquivo <code>.txt</code> pode então ser aberto no IRaMuTeQ para CHD, análise de similitude, AFC, nuvem de palavras ou qualquer outra análise disponível no software — exatamente como no fluxo tradicional, mas com a garantia de que o corpus foi validado antes de chegar ali.</p>
+<hr>
+</section>
+<section id="parte-5-synesis-como-hub-de-análise" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="parte-5-synesis-como-hub-de-análise"><span class="header-section-number">1.6</span> Parte 5 — Synesis como Hub de Análise</h2>
+<p>A principal vantagem de manter o corpus em Synesis não é a exportação para IRaMuTeQ — é que o mesmo corpus pode alimentar múltiplos destinos simultaneamente:</p>
+<pre><code>Corpus Synesis (.synp + .bib + .syn + .synt)
+        │
+        ├──► Compilador valida contra template (.synt)
+        │       │
+        │       └── Erros reportados antes da análise
+        │
+        ├──► Exportação IRaMuTeQ (.txt)
+        │       └── CHD, similitude, AFC, nuvem de palavras
+        │
+        ├──► Exportação CSV/JSON
+        │       └── Jupyter, R, análise estatística
+        ├──► synesis.load() no Jupyter, R
+        │         ├──  df_metadata   → variáveis do SOURCE (sex, esc, ati...)
+        │         ├── df_items      → textos + campos do ITEM
+        │         ├── df_codes      → códigos atribuídos
+        │         └── df_chains     → relações causais   
+        │              
+        ├──► Exportação REFI-QDA
+        │       └── Atlas.ti, NVivo, MAXQDA
+        │
+        └──► Codificação adicional no próprio corpus
+                ├── CODE    (categorias temáticas)
+                ├── CHAIN   (relações causais entre conceitos)
+                ├── MEMO    (notas analíticas do pesquisador)
+                └── SCALE   (scores numéricos por item)</code></pre>
+<section id="adicionando-anotações-ao-corpus" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="adicionando-anotações-ao-corpus"><span class="header-section-number">1.6.1</span> Adicionando anotações ao corpus</h3>
+<p>Após rodar a CHD no IRaMuTeQ e identificar classes temáticas, o pesquisador pode voltar ao corpus Synesis e enriquecer as anotações. Por exemplo, marcar os textos que pertencem à Classe 2 da CHD com um código explícito:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_002</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Quando citado, me vem na cabeça a quantidade de pessoas</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    que possuem o vírus e que sofrem preconceito diante disto</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> preconceito_social <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> apoio_familiar</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Essas anotações não interferem na exportação para IRaMuTeQ — mas ficam disponíveis para exportação para Neo4j, para análise de co-ocorrência de códigos em Jupyter, ou para uma segunda rodada no IRaMuTeQ com variáveis adicionais derivadas da codificação.</p>
+</section>
+<section id="acesso-programático-via-api" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="acesso-programático-via-api"><span class="header-section-number">1.6.2</span> Acesso programático via API</h3>
+<p>O corpus compilado também pode ser carregado diretamente em um notebook Jupyter:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> synesis</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> synesis.load(<span class="st">"aids.synp"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de metadados dos participantes</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df_meta <span class="op">=</span> corpus.sources()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de textos com metadados vinculados</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>df_items <span class="op">=</span> corpus.items()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de códigos atribuídos</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>df_codes <span class="op">=</span> corpus.codes()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de cadeias causais</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>df_chains <span class="op">=</span> corpus.chains()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada <code>DataFrame</code> já respeita os tipos declarados no template — <code>ati</code> chega como inteiro com valores 1, 2 ou 3; nunca como string ou valor fora do intervalo.</p>
+<hr>
+</section>
+</section>
+<section id="parte-6-synesis-como-camada-de-governança" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="parte-6-synesis-como-camada-de-governança"><span class="header-section-number">1.7</span> Parte 6 — Synesis como Camada de Governança</h2>
+<p>Para pesquisadores solo com corpus pequenos, o IRaMuTeQ sozinho é suficiente. O Synesis passa a fazer diferença em três cenários:</p>
+<p><strong>Corpus volumosos.</strong> Com 300 ou mais participantes, a probabilidade de erro de digitação nas linhas <code>****</code> é alta. O compilador Synesis captura esses erros antes da análise, eliminando o risco de resultados contaminados por dados malformados.</p>
+<p><strong>Trabalho em equipe.</strong> Quando múltiplos pesquisadores digitam ou codificam o mesmo corpus, o template funciona como contrato: todos os campos, todos os valores permitidos e todas as relações declaradas estão em um único arquivo versionável. Discrepâncias entre codificadores são detectadas na compilação, não na reunião de orientação.</p>
+<p><strong>Pesquisa longitudinal ou multi-etapas.</strong> Quando o corpus cresce ao longo do tempo — novas coletas, novos participantes, novas variáveis — o Synesis mantém a integridade entre versões. O histórico de decisões ontológicas pode ser documentado diretamente nos arquivos <code>.syno</code> com comentários datados:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DECISÃO 2026-03-01: separamos "preconceito" em dois conceitos após</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># identificar distinção entre preconceito declarado e comportamento relatado</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nas entrevistas 45-60.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preconceito_declarado</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Expressão verbal de atitude discriminatória"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preconceito_comportamental</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Ação discriminatória relatada pelo participante"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="resumo" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="resumo"><span class="header-section-number">1.8</span> Resumo</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 25%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>IRaMuTeQ</th>
+<th>Synesis + IRaMuTeQ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validação de corpus</td>
+<td>Nenhuma</td>
+<td>Compilador verifica tipos e modalidades</td>
+</tr>
+<tr class="even">
+<td>Fonte canônica dos dados</td>
+<td>Arquivo <code>.txt</code></td>
+<td>Corpus <code>.syn</code> + template <code>.synt</code></td>
+</tr>
+<tr class="odd">
+<td>Destinos de exportação</td>
+<td>Resultados internos</td>
+<td>IRaMuTeQ, CSV, JSON, REFI-QDA, Neo4j</td>
+</tr>
+<tr class="even">
+<td>Anotação interpretativa</td>
+<td>Não suportada</td>
+<td>CODE, CHAIN, MEMO, SCALE</td>
+</tr>
+<tr class="odd">
+<td>Trabalho em equipe</td>
+<td>Manual</td>
+<td>Template como contrato compartilhado</td>
+</tr>
+<tr class="even">
+<td>Acesso programático</td>
+<td>Não disponível</td>
+<td><code>synesis.load()</code> no Jupyter/R</td>
+</tr>
+</tbody>
+</table>
+<p>O IRaMuTeQ continua sendo a ferramenta indicada para CHD, análise de similitude e AFC. O Synesis não substitui essas análises — ele governa o corpus que as alimenta, e abre o mesmo corpus para análises que o IRaMuTeQ não realiza.</p>
+<hr>
+</section>
+<section id="próximos-passos" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="próximos-passos"><span class="header-section-number">1.9</span> Próximos Passos</h2>
+<ul>
+<li><a href="definir_ontologia.qmd">Como Definir uma Ontologia</a> — criar vocabulário de códigos para anotação</li>
+<li><a href="criar_chains.qmd">Como Criar Chains</a> — declarar relações causais entre conceitos</li>
+<li><a href="exportacoes.qmd">Exportações Disponíveis</a> — referência completa dos formatos de saída</li>
+<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a> — especificação formal da sintaxe Synesis</li>
+</ul>
+<hr>
+<p><strong>Ficou com dúvidas?</strong> Consulte <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a> ou abra uma issue no repositório.</p>
+<hr>
+</section>
+<section id="referências" class="level2" data-number="1.10">
+
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">1.10 Referências</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-camargo2021" class="csl-entry" role="listitem">
+Camargo, B. V., &amp; Justo, A. M. (2021). <em>Tutorial de uso do software IRaMuTeQ</em>. <a href="https://pratinaud.gitpages.huma-num.fr/iramuteq-website/documentation/Tutorial-iramuteq-em-portugues-22-11-2021.pdf">https://pratinaud.gitpages.huma-num.fr/iramuteq-website/documentation/Tutorial-iramuteq-em-portugues-22-11-2021.pdf</a>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
