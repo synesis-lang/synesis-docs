@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Por Dentro do Compilador – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis para Usuários do IRaMuTeQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Gramática da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Guia de Erros</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">O fluxo de compilação</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li class="dropdown-header">— Visão Geral —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/show_case.html">
+ <span class="dropdown-text">O que Synesis pode expressar</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Pesquisadores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/exemplos_codificacao.html">
+ <span class="dropdown-text">Métodos de Codificação em Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA.html">
+ <span class="dropdown-text">Codificação Assistida por IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_metricas.html">
+ <span class="dropdown-text">Métricas da Pesquisa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Synesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/dsap.html">
+ <span class="dropdown-text">Diagnóstico Socioambiental Participativo</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Desenvolvedores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/fluxo_compilacao_interno.html">
+ <span class="dropdown-text">Por Dentro do Compilador</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/interface_lsp.html">
+ <span class="dropdown-text">A Interface LSP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#o-que-o-compilador-faz" id="toc-o-que-o-compilador-faz" class="nav-link active" data-scroll-target="#o-que-o-compilador-faz"><span class="header-section-number">1</span> O que o compilador faz</a></li>
+  <li><a href="#sec-projeto-exemplo" id="toc-sec-projeto-exemplo" class="nav-link" data-scroll-target="#sec-projeto-exemplo"><span class="header-section-number">2</span> O projeto de exemplo</a>
+  <ul class="collapse">
+  <li><a href="#project.synp-ponto-de-entrada" id="toc-project.synp-ponto-de-entrada" class="nav-link" data-scroll-target="#project.synp-ponto-de-entrada"><span class="header-section-number">2.1</span> <code>project.synp</code> — Ponto de entrada</a></li>
+  <li><a href="#template.synt-esquema-de-campos" id="toc-template.synt-esquema-de-campos" class="nav-link" data-scroll-target="#template.synt-esquema-de-campos"><span class="header-section-number">2.2</span> <code>template.synt</code> — Esquema de campos</a></li>
+  <li><a href="#references.bib-bibliografia" id="toc-references.bib-bibliografia" class="nav-link" data-scroll-target="#references.bib-bibliografia"><span class="header-section-number">2.3</span> <code>references.bib</code> — Bibliografia</a></li>
+  <li><a href="#annotations.syn-dados-codificados" id="toc-annotations.syn-dados-codificados" class="nav-link" data-scroll-target="#annotations.syn-dados-codificados"><span class="header-section-number">2.4</span> <code>annotations.syn</code> — Dados codificados</a></li>
+  <li><a href="#ontology.syno-dicionário-de-códigos" id="toc-ontology.syno-dicionário-de-códigos" class="nav-link" data-scroll-target="#ontology.syno-dicionário-de-códigos"><span class="header-section-number">2.5</span> <code>ontology.syno</code> — Dicionário de códigos</a></li>
+  </ul></li>
+  <li><a href="#sec-pipeline" id="toc-sec-pipeline" class="nav-link" data-scroll-target="#sec-pipeline"><span class="header-section-number">3</span> Visão geral do pipeline</a></li>
+  <li><a href="#estágio-1-parsing-do-projeto" id="toc-estágio-1-parsing-do-projeto" class="nav-link" data-scroll-target="#estágio-1-parsing-do-projeto"><span class="header-section-number">4</span> Estágio 1 — Parsing do Projeto</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra" id="toc-o-que-entra" class="nav-link" data-scroll-target="#o-que-entra"><span class="header-section-number">4.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece" id="toc-o-que-acontece" class="nav-link" data-scroll-target="#o-que-acontece"><span class="header-section-number">4.2</span> O que acontece</a></li>
+  <li><a href="#o-que-sai" id="toc-o-que-sai" class="nav-link" data-scroll-target="#o-que-sai"><span class="header-section-number">4.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#estágio-2-carregamento-do-template" id="toc-estágio-2-carregamento-do-template" class="nav-link" data-scroll-target="#estágio-2-carregamento-do-template"><span class="header-section-number">5</span> Estágio 2 — Carregamento do Template</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra-1" id="toc-o-que-entra-1" class="nav-link" data-scroll-target="#o-que-entra-1"><span class="header-section-number">5.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece-1" id="toc-o-que-acontece-1" class="nav-link" data-scroll-target="#o-que-acontece-1"><span class="header-section-number">5.2</span> O que acontece</a></li>
+  <li><a href="#o-que-sai-1" id="toc-o-que-sai-1" class="nav-link" data-scroll-target="#o-que-sai-1"><span class="header-section-number">5.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#estágio-3-carregamento-da-bibliografia" id="toc-estágio-3-carregamento-da-bibliografia" class="nav-link" data-scroll-target="#estágio-3-carregamento-da-bibliografia"><span class="header-section-number">6</span> Estágio 3 — Carregamento da Bibliografia</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra-2" id="toc-o-que-entra-2" class="nav-link" data-scroll-target="#o-que-entra-2"><span class="header-section-number">6.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece-2" id="toc-o-que-acontece-2" class="nav-link" data-scroll-target="#o-que-acontece-2"><span class="header-section-number">6.2</span> O que acontece</a></li>
+  <li><a href="#o-que-sai-2" id="toc-o-que-sai-2" class="nav-link" data-scroll-target="#o-que-sai-2"><span class="header-section-number">6.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#estágio-4-parsing-da-ontologia" id="toc-estágio-4-parsing-da-ontologia" class="nav-link" data-scroll-target="#estágio-4-parsing-da-ontologia"><span class="header-section-number">7</span> Estágio 4 — Parsing da Ontologia</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra-3" id="toc-o-que-entra-3" class="nav-link" data-scroll-target="#o-que-entra-3"><span class="header-section-number">7.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece-3" id="toc-o-que-acontece-3" class="nav-link" data-scroll-target="#o-que-acontece-3"><span class="header-section-number">7.2</span> O que acontece</a></li>
+  <li><a href="#o-que-sai-3" id="toc-o-que-sai-3" class="nav-link" data-scroll-target="#o-que-sai-3"><span class="header-section-number">7.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#estágio-5-parsing-das-anotações" id="toc-estágio-5-parsing-das-anotações" class="nav-link" data-scroll-target="#estágio-5-parsing-das-anotações"><span class="header-section-number">8</span> Estágio 5 — Parsing das Anotações</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra-4" id="toc-o-que-entra-4" class="nav-link" data-scroll-target="#o-que-entra-4"><span class="header-section-number">8.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece-4" id="toc-o-que-acontece-4" class="nav-link" data-scroll-target="#o-que-acontece-4"><span class="header-section-number">8.2</span> O que acontece</a></li>
+  <li><a href="#o-que-sai-4" id="toc-o-que-sai-4" class="nav-link" data-scroll-target="#o-que-sai-4"><span class="header-section-number">8.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#estágio-6-validação-semântica" id="toc-estágio-6-validação-semântica" class="nav-link" data-scroll-target="#estágio-6-validação-semântica"><span class="header-section-number">9</span> Estágio 6 — Validação Semântica</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra-5" id="toc-o-que-entra-5" class="nav-link" data-scroll-target="#o-que-entra-5"><span class="header-section-number">9.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece-5" id="toc-o-que-acontece-5" class="nav-link" data-scroll-target="#o-que-acontece-5"><span class="header-section-number">9.2</span> O que acontece</a></li>
+  <li><a href="#o-que-sai-5" id="toc-o-que-sai-5" class="nav-link" data-scroll-target="#o-que-sai-5"><span class="header-section-number">9.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#estágio-7-linkagem" id="toc-estágio-7-linkagem" class="nav-link" data-scroll-target="#estágio-7-linkagem"><span class="header-section-number">10</span> Estágio 7 — Linkagem</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra-6" id="toc-o-que-entra-6" class="nav-link" data-scroll-target="#o-que-entra-6"><span class="header-section-number">10.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece-passo-a-passo" id="toc-o-que-acontece-passo-a-passo" class="nav-link" data-scroll-target="#o-que-acontece-passo-a-passo"><span class="header-section-number">10.2</span> O que acontece — passo a passo</a></li>
+  <li><a href="#o-que-sai-6" id="toc-o-que-sai-6" class="nav-link" data-scroll-target="#o-que-sai-6"><span class="header-section-number">10.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#estágio-8-exportação" id="toc-estágio-8-exportação" class="nav-link" data-scroll-target="#estágio-8-exportação"><span class="header-section-number">11</span> Estágio 8 — Exportação</a>
+  <ul class="collapse">
+  <li><a href="#o-que-entra-7" id="toc-o-que-entra-7" class="nav-link" data-scroll-target="#o-que-entra-7"><span class="header-section-number">11.1</span> O que entra</a></li>
+  <li><a href="#o-que-acontece-6" id="toc-o-que-acontece-6" class="nav-link" data-scroll-target="#o-que-acontece-6"><span class="header-section-number">11.2</span> O que acontece</a></li>
+  <li><a href="#o-que-sai-7" id="toc-o-que-sai-7" class="nav-link" data-scroll-target="#o-que-sai-7"><span class="header-section-number">11.3</span> O que sai</a></li>
+  </ul></li>
+  <li><a href="#sec-orquestrador" id="toc-sec-orquestrador" class="nav-link" data-scroll-target="#sec-orquestrador"><span class="header-section-number">12</span> O orquestrador</a></li>
+  <li><a href="#sec-lark" id="toc-sec-lark" class="nav-link" data-scroll-target="#sec-lark"><span class="header-section-number">13</span> Nos bastidores: o parser Lark</a>
+  <ul class="collapse">
+  <li><a href="#como-o-texto-vira-árvore" id="toc-como-o-texto-vira-árvore" class="nav-link" data-scroll-target="#como-o-texto-vira-árvore"><span class="header-section-number">13.1</span> Como o texto vira árvore</a></li>
+  <li><a href="#como-a-árvore-vira-objetos-python" id="toc-como-a-árvore-vira-objetos-python" class="nav-link" data-scroll-target="#como-a-árvore-vira-objetos-python"><span class="header-section-number">13.2</span> Como a árvore vira objetos Python</a></li>
+  <li><a href="#normalização-de-nomes-de-campo" id="toc-normalização-de-nomes-de-campo" class="nav-link" data-scroll-target="#normalização-de-nomes-de-campo"><span class="header-section-number">13.3</span> Normalização de nomes de campo</a></li>
+  <li><a href="#erros-de-sintaxe" id="toc-erros-de-sintaxe" class="nav-link" data-scroll-target="#erros-de-sintaxe"><span class="header-section-number">13.4</span> Erros de sintaxe</a></li>
+  </ul></li>
+  <li><a href="#sec-mapa-dados" id="toc-sec-mapa-dados" class="nav-link" data-scroll-target="#sec-mapa-dados"><span class="header-section-number">14</span> Mapa de dados entre estágios</a></li>
+  <li><a href="#sec-nos-ast" id="toc-sec-nos-ast" class="nav-link" data-scroll-target="#sec-nos-ast"><span class="header-section-number">15</span> Referência rápida dos nós AST</a></li>
+  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">16</span> Erros mais comuns</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Por Dentro do Compilador</h1>
+<p class="subtitle lead">Como o Synesis transforma texto em conhecimento estruturado — estágio por estágio</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Para quem é este documento?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Devs e técnicos que querem entender o que acontece internamente quando o compilador Synesis processa um projeto. Não é necessário conhecimento prévio do código-fonte.</p>
+<p>Se você procura uma visão geral de alto nível, veja <a href="../reference/fluxo_compilacao.html">O Fluxo de Compilação</a>. Para entender como o compilador se conecta ao editor via LSP, veja <a href="../explanation/interface_lsp.html">A Interface LSP</a>.</p>
+</div>
+</div>
+<section id="o-que-o-compilador-faz" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="o-que-o-compilador-faz"><span class="header-section-number">1</span> O que o compilador faz</h2>
+<p>O compilador Synesis recebe um conjunto de arquivos de texto com uma sintaxe própria (<code>.synp</code>, <code>.synt</code>, <code>.syn</code>, <code>.syno</code>, <code>.bib</code>) e:</p>
+<ol type="1">
+<li>Lê e valida cada arquivo</li>
+<li>Verifica a consistência entre eles (ex: todo código usado existe no dicionário?)</li>
+<li>Liga as peças (fontes, excertos, códigos, ontologia) num grafo semântico</li>
+<li>Exporta o resultado em JSON, CSV ou Excel</li>
+</ol>
+<p>Para acompanhar cada estágio com exemplos concretos, usamos o projeto <code>Basic</code> — um projeto mínimo mas completo.</p>
+</section>
+<section id="sec-projeto-exemplo" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-projeto-exemplo"><span class="header-section-number">2</span> O projeto de exemplo</h2>
+<p>Antes de mergulhar no compilador, veja os arquivos que serão processados. São simples de propósito — servem como referência ao longo de todo o documento.</p>
+<section id="project.synp-ponto-de-entrada" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="project.synp-ponto-de-entrada"><span class="header-section-number">2.1</span> <code>project.synp</code> — Ponto de entrada</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> demo</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"references.bib"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations.syn"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology.syno"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>É o “arquivo de projeto”. Diz quais outros arquivos existem e como se relacionam.</p>
+</section>
+<section id="template.synt-esquema-de-campos" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="template.synt-esquema-de-campos"><span class="header-section-number">2.2</span> <code>template.synt</code> — Esquema de campos</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> description</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> description <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> citation, <span class="at">note</span>, code</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> citation <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> code <span class="kw">TYPE</span> <span class="dt">CODE</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> definition, group</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> definition <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> group <span class="kw">TYPE</span> <span class="dt">TOPIC</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Define quais campos existem, quais são obrigatórios e de qual tipo. É o contrato que todo o restante do projeto deve respeitar.</p>
+</section>
+<section id="references.bib-bibliografia" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="references.bib-bibliografia"><span class="header-section-number">2.3</span> <code>references.bib</code> — Bibliografia</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">smith2024</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Smith, Jane},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>  = {Understanding Community Resilience},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Journal of Social Research},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>   = {2024},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">volume</span> = {12},</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pages</span>  = {45--67}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lista as referências bibliográficas. Cada chave (<code>smith2024</code>) identifica uma fonte de dados.</p>
+</section>
+<section id="annotations.syn-dados-codificados" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="annotations.syn-dados-codificados"><span class="header-section-number">2.4</span> <code>annotations.syn</code> — Dados codificados</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@smith2024</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Qualitative study on community resilience</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        strategies in urban contexts.</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2024</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">citation:</span> <span class="st">"People here look out for each other. When the flood</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        came, nobody waited for official help — neighbors just</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        organized themselves.<span class="st">"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Participant describes spontaneous collective action as a</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        primary resilience mechanism, bypassing formal institutions.</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        Suggests strong bonding social capital.</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Social_Cohesion, Collective_Action</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Contém os excertos de dados e as anotações do pesquisador. Cada ITEM referencia uma SOURCE pela chave <code>@bibref</code>.</p>
+</section>
+<section id="ontology.syno-dicionário-de-códigos" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="ontology.syno-dicionário-de-códigos"><span class="header-section-number">2.5</span> <code>ontology.syno</code> — Dicionário de códigos</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Social_Cohesion</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">definition:</span> The degree to which community members trust,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        support, and cooperate with one another. Applies when</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        participants describe solidarity, mutual aid, or a shared</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        sense of belonging.</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group:</span> Community_Resilience</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Collective_Action</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">definition:</span> Coordinated efforts by community members to address</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        shared challenges without formal institutional direction.</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        Applies when groups self-organize in response to a problem</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        or crisis.</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group:</span> Community_Resilience</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Define o significado de cada código usado nas anotações. É o vocabulário controlado do projeto.</p>
+</section>
+</section>
+<section id="sec-pipeline" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-pipeline"><span class="header-section-number">3</span> Visão geral do pipeline</h2>
+<p>O compilador executa 8 estágios em sequência. Cada estágio recebe dados do anterior e produz uma estrutura mais rica:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    classDef stage fill:#E0F7FA,stroke:#084C54,stroke-width:2px,color:#084C54,font-weight:bold;
+    classDef data fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C84;
+
+    S1["1. Parsing do Projeto"]:::stage
+    D1["ProjectNode"]:::data
+
+    S2["2. Carregamento do Template"]:::stage
+    D2["TemplateNode"]:::data
+
+    S3["3. Carregamento da Bibliografia"]:::stage
+    D3["Dict de BibEntry"]:::data
+
+    S4["4. Parsing da Ontologia"]:::stage
+    D4["List de OntologyNode"]:::data
+
+    S5["5. Parsing das Anotações"]:::stage
+    D5["List de SourceNode + ItemNode"]:::data
+
+    S6["6. Validação Semântica"]:::stage
+    D6["ValidationResult"]:::data
+
+    S7["7. Linkagem"]:::stage
+    D7["LinkedProject"]:::data
+
+    S8["8. Exportação"]:::stage
+    D8["JSON / CSV / Excel"]:::data
+
+    S1 --&gt; D1 --&gt; S2 --&gt; D2 --&gt; S3 --&gt; D3 --&gt; S4 --&gt; D4 --&gt; S5 --&gt; D5 --&gt; S6 --&gt; D6 --&gt; S7 --&gt; D7 --&gt; S8 --&gt; D8
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="estágio-1-parsing-do-projeto" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="estágio-1-parsing-do-projeto"><span class="header-section-number">4</span> Estágio 1 — Parsing do Projeto</h2>
+<p><strong>Onde:</strong> <code>compiler.py</code> → <code>SynesisCompiler.parse_project()</code></p>
+<section id="o-que-entra" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="o-que-entra"><span class="header-section-number">4.1</span> O que entra</h3>
+<p>O caminho do arquivo <code>project.synp</code>, passado ao criar o compilador.</p>
+</section>
+<section id="o-que-acontece" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="o-que-acontece"><span class="header-section-number">4.2</span> O que acontece</h3>
+<ol type="1">
+<li><code>parse_file("project.synp")</code> lê o arquivo e aciona o <strong>parser Lark</strong> — um parser LALR(1) que transforma o texto bruto em uma árvore sintática concreta (<code>lark.Tree</code>).</li>
+<li><code>SynesisTransformer.transform(tree)</code> percorre essa árvore e constrói um objeto Python tipado: o <code>ProjectNode</code>.</li>
+</ol>
+</section>
+<section id="o-que-sai" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="o-que-sai"><span class="header-section-number">4.3</span> O que sai</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ProjectNode(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    name          <span class="op">=</span> <span class="st">"demo"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    template_path <span class="op">=</span> Path(<span class="st">"template.synt"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    includes      <span class="op">=</span> [</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        IncludeNode(include_type<span class="op">=</span><span class="st">"BIBLIOGRAPHY"</span>, path<span class="op">=</span><span class="st">"references.bib"</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        IncludeNode(include_type<span class="op">=</span><span class="st">"ANNOTATIONS"</span>,  path<span class="op">=</span><span class="st">"annotations.syn"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        IncludeNode(include_type<span class="op">=</span><span class="st">"ONTOLOGY"</span>,      path<span class="op">=</span><span class="st">"ontology.syno"</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    metadata    <span class="op">=</span> {},</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    description <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    location    <span class="op">=</span> SourceLocation(<span class="bu">file</span><span class="op">=</span><span class="st">"project.synp"</span>, line<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+SourceLocation — rastreabilidade total
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada nó do AST carrega um <code>SourceLocation</code> com o arquivo, a linha e a coluna de onde ele veio. Isso permite que mensagens de erro apontem para o local exato no código-fonte — mesmo em projetos com dezenas de arquivos.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="estágio-2-carregamento-do-template" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="estágio-2-carregamento-do-template"><span class="header-section-number">5</span> Estágio 2 — Carregamento do Template</h2>
+<p><strong>Onde:</strong> <code>parser/template_loader.py</code> → <code>load_template()</code></p>
+<section id="o-que-entra-1" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="o-que-entra-1"><span class="header-section-number">5.1</span> O que entra</h3>
+<p>O caminho do <code>template.synt</code>, extraído do <code>ProjectNode.template_path</code>.</p>
+</section>
+<section id="o-que-acontece-1" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="o-que-acontece-1"><span class="header-section-number">5.2</span> O que acontece</h3>
+<ol type="1">
+<li>O arquivo <code>.synt</code> é parseado da mesma forma que o <code>.synp</code> — via Lark + Transformer.</li>
+<li>É construído um <code>TemplateNode</code> que organiza os campos em categorias:
+<ul>
+<li><strong><code>field_specs</code></strong> — dicionário com todas as definições de campo (nome, tipo, escopo)</li>
+<li><strong><code>required_fields</code></strong> — quais campos são obrigatórios por escopo (SOURCE, ITEM, ONTOLOGY)</li>
+<li><strong><code>optional_fields</code></strong> — quais são opcionais</li>
+<li><strong><code>forbidden_fields</code></strong> — quais são proibidos</li>
+<li><strong><code>bundled_fields</code></strong> — quais devem aparecer juntos</li>
+</ul></li>
+<li><code>validate_template()</code> verifica inconsistências estruturais — por exemplo, um campo listado como REQUIRED mas sem definição de FIELD.</li>
+</ol>
+</section>
+<section id="o-que-sai-1" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="o-que-sai-1"><span class="header-section-number">5.3</span> O que sai</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>TemplateNode(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"demo"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    field_specs <span class="op">=</span> {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"description"</span>: FieldSpec(<span class="bu">type</span><span class="op">=</span>TEXT,      scope<span class="op">=</span>SOURCE),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"citation"</span>:    FieldSpec(<span class="bu">type</span><span class="op">=</span>QUOTATION, scope<span class="op">=</span>ITEM),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"note"</span>:        FieldSpec(<span class="bu">type</span><span class="op">=</span>MEMO,      scope<span class="op">=</span>ITEM),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"code"</span>:        FieldSpec(<span class="bu">type</span><span class="op">=</span>CODE,      scope<span class="op">=</span>ITEM),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"definition"</span>:  FieldSpec(<span class="bu">type</span><span class="op">=</span>TEXT,       scope<span class="op">=</span>ONTOLOGY),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"group"</span>:       FieldSpec(<span class="bu">type</span><span class="op">=</span>TOPIC,      scope<span class="op">=</span>ONTOLOGY),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    required_fields <span class="op">=</span> {</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        SOURCE:   [],</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        ITEM:     [<span class="st">"citation"</span>, <span class="st">"note"</span>, <span class="st">"code"</span>],</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        ONTOLOGY: [<span class="st">"definition"</span>, <span class="st">"group"</span>],</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    optional_fields <span class="op">=</span> {</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        SOURCE: [<span class="st">"description"</span>],</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        ITEM:     [],</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        ONTOLOGY: [],</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O template funciona como um <strong>contrato</strong>: a partir daqui, toda validação se baseia nele.</p>
+</section>
+</section>
+<section id="estágio-3-carregamento-da-bibliografia" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="estágio-3-carregamento-da-bibliografia"><span class="header-section-number">6</span> Estágio 3 — Carregamento da Bibliografia</h2>
+<p><strong>Onde:</strong> <code>parser/bib_loader.py</code> → <code>load_bibliography()</code></p>
+<section id="o-que-entra-2" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="o-que-entra-2"><span class="header-section-number">6.1</span> O que entra</h3>
+<p>O caminho do arquivo <code>.bib</code>.</p>
+</section>
+<section id="o-que-acontece-2" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="o-que-acontece-2"><span class="header-section-number">6.2</span> O que acontece</h3>
+<p>Usa a biblioteca <code>bibtexparser</code> para parsear o BibTeX. Normaliza todas as chaves para minúsculas, garantindo comparação case-insensitive.</p>
+</section>
+<section id="o-que-sai-2" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="o-que-sai-2"><span class="header-section-number">6.3</span> O que sai</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"smith2024"</span>: {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ID"</span>:            <span class="st">"smith2024"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ENTRYTYPE"</span>:     <span class="st">"article"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>:        <span class="st">"Smith, Jane"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>:         <span class="st">"Understanding Community Resilience"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"journal"</span>:       <span class="st">"Journal of Social Research"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"year"</span>:          <span class="st">"2024"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_original_key"</span>: <span class="st">"smith2024"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que normalizar as chaves?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para que <code>@Smith2024</code>, <code>@smith2024</code> e <code>@SMITH2024</code> sejam tratados como a mesma referência. O campo <code>_original_key</code> preserva a grafia original para uso nos exports.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="estágio-4-parsing-da-ontologia" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="estágio-4-parsing-da-ontologia"><span class="header-section-number">7</span> Estágio 4 — Parsing da Ontologia</h2>
+<p><strong>Onde:</strong> <code>compiler.py</code> → <code>SynesisCompiler.parse_ontologies()</code></p>
+<section id="o-que-entra-3" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="o-que-entra-3"><span class="header-section-number">7.1</span> O que entra</h3>
+<p>Lista de caminhos <code>.syno</code>, extraída dos <code>IncludeNode</code> do <code>ProjectNode</code>.</p>
+</section>
+<section id="o-que-acontece-3" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="o-que-acontece-3"><span class="header-section-number">7.2</span> O que acontece</h3>
+<p>Para cada arquivo <code>.syno</code>, o mesmo processo dos estágios anteriores:</p>
+<ol type="1">
+<li><code>parse_file()</code> gera uma <code>lark.Tree</code></li>
+<li><code>SynesisTransformer.transform()</code> converte em objetos Python</li>
+</ol>
+<p>Se houver mais de 2 arquivos de ontologia, o parsing é feito <strong>em paralelo</strong> via <code>ThreadPoolExecutor</code> — cada thread usa sua própria instância do parser (via <code>threading.local</code>), garantindo segurança.</p>
+</section>
+<section id="o-que-sai-3" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="o-que-sai-3"><span class="header-section-number">7.3</span> O que sai</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    OntologyNode(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        concept     <span class="op">=</span> <span class="st">"Social_Cohesion"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="st">"The degree to which community members trust..."</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        fields      <span class="op">=</span> {<span class="st">"group"</span>: <span class="st">"Community_Resilience"</span>},</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        field_names <span class="op">=</span> [<span class="st">"definition"</span>, <span class="st">"group"</span>],</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        location    <span class="op">=</span> SourceLocation(<span class="st">"ontology.syno"</span>, line<span class="op">=</span><span class="dv">1</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    OntologyNode(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        concept     <span class="op">=</span> <span class="st">"Collective_Action"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="st">"Coordinated efforts by community members..."</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        fields      <span class="op">=</span> {<span class="st">"group"</span>: <span class="st">"Community_Resilience"</span>},</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        field_names <span class="op">=</span> [<span class="st">"definition"</span>, <span class="st">"group"</span>],</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        location    <span class="op">=</span> SourceLocation(<span class="st">"ontology.syno"</span>, line<span class="op">=</span><span class="dv">8</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="estágio-5-parsing-das-anotações" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="estágio-5-parsing-das-anotações"><span class="header-section-number">8</span> Estágio 5 — Parsing das Anotações</h2>
+<p><strong>Onde:</strong> <code>compiler.py</code> → <code>SynesisCompiler.parse_annotations()</code></p>
+<section id="o-que-entra-4" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="o-que-entra-4"><span class="header-section-number">8.1</span> O que entra</h3>
+<p>Lista de caminhos <code>.syn</code>.</p>
+</section>
+<section id="o-que-acontece-4" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="o-que-acontece-4"><span class="header-section-number">8.2</span> O que acontece</h3>
+<p>Mesmo processo do Estágio 4. Um arquivo <code>.syn</code> pode conter múltiplos blocos SOURCE e ITEM. O Transformer os separa em <strong>listas distintas</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ITEMs não são aninhados em SOURCEs — ainda
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Neste estágio, os ITEMs são retornados numa lista plana, separados dos SOURCEs. A ligação ITEM → SOURCE só acontece no <strong>Estágio 7 (Linkagem)</strong>, baseada na chave <code>@bibref</code> compartilhada. Isso permite que SOURCE e ITEM estejam em arquivos diferentes.</p>
+</div>
+</div>
+</section>
+<section id="o-que-sai-4" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="o-que-sai-4"><span class="header-section-number">8.3</span> O que sai</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SourceNode</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>SourceNode(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    bibref   <span class="op">=</span> <span class="st">"smith2024"</span>,       <span class="co"># sem o "@"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    fields   <span class="op">=</span> {<span class="st">"description"</span>: <span class="st">"Qualitative study on community resilience..."</span>},</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    items    <span class="op">=</span> [],                 <span class="co"># vazio agora — preenchido no Estágio 7</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> SourceLocation(<span class="st">"annotations.syn"</span>, line<span class="op">=</span><span class="dv">1</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ItemNode</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ItemNode(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    bibref           <span class="op">=</span> <span class="st">"smith2024"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    quote            <span class="op">=</span> <span class="st">"People here look out for each other..."</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    codes            <span class="op">=</span> [<span class="st">"Social_Cohesion"</span>, <span class="st">"Collective_Action"</span>],</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    notes            <span class="op">=</span> [<span class="st">"Participant describes spontaneous..."</span>],</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    chains           <span class="op">=</span> [],</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    extra_fields     <span class="op">=</span> {},</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    code_locations   <span class="op">=</span> {},         <span class="co"># vazio agora — preenchido no Estágio 7</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    field_line_tokens <span class="op">=</span> {...},     <span class="co"># tokens brutos para resolução posterior</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> SourceLocation(<span class="st">"annotations.syn"</span>, line<span class="op">=</span><span class="dv">5</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="estágio-6-validação-semântica" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="estágio-6-validação-semântica"><span class="header-section-number">9</span> Estágio 6 — Validação Semântica</h2>
+<p><strong>Onde:</strong> <code>semantic/validator.py</code> → <code>SemanticValidator</code></p>
+<section id="o-que-entra-5" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="o-que-entra-5"><span class="header-section-number">9.1</span> O que entra</h3>
+<p>Todos os nós já parseados: <code>ProjectNode</code>, <code>TemplateNode</code>, <code>Dict[BibEntry]</code>, listas de <code>SourceNode</code>, <code>ItemNode</code> e <code>OntologyNode</code>.</p>
+<p>Também recebe um <code>norm_cache: dict</code> — um dicionário compartilhado que memoiza resultados de normalização de strings, evitando recalcular a mesma conversão várias vezes.</p>
+</section>
+<section id="o-que-acontece-5" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="o-que-acontece-5"><span class="header-section-number">9.2</span> O que acontece</h3>
+<p>O <code>SemanticValidator</code> percorre <strong>cada nó</strong> e aplica regras que vão além da sintaxe. Exemplos concretos com o projeto Basic:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Verificação</th>
+<th>Resultado no Basic</th>
+<th>Se falhasse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>@smith2024</code> existe no <code>.bib</code>?</td>
+<td>Sim</td>
+<td>E001: UnregisteredSource</td>
+</tr>
+<tr class="even">
+<td>O ITEM tem SOURCE com mesmo bibref?</td>
+<td>Sim</td>
+<td>E002: OrphanItem</td>
+</tr>
+<tr class="odd">
+<td>A SOURCE tem pelo menos um ITEM?</td>
+<td>Sim</td>
+<td>W003: SourceWithoutItems</td>
+</tr>
+<tr class="even">
+<td><code>Social_Cohesion</code> existe na ontologia?</td>
+<td>Sim</td>
+<td>W004: UndefinedCode</td>
+</tr>
+<tr class="odd">
+<td>Campos obrigatórios (citation, note, code) presentes no ITEM?</td>
+<td>Sim</td>
+<td>MissingRequiredField</td>
+</tr>
+<tr class="even">
+<td>Algum campo não declarado no template foi usado?</td>
+<td>Não</td>
+<td>UndeclaredField</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="o-que-sai-5" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="o-que-sai-5"><span class="header-section-number">9.3</span> O que sai</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ValidationResult(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    errors   <span class="op">=</span> [],    <span class="co"># bloqueia exportação</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    warnings <span class="op">=</span> [],    <span class="co"># não bloqueia, mas é reportado</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    info     <span class="op">=</span> [],    <span class="co"># puramente informativo</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>No projeto Basic, tudo está correto — as três listas saem vazias.</p>
+</section>
+</section>
+<section id="estágio-7-linkagem" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="estágio-7-linkagem"><span class="header-section-number">10</span> Estágio 7 — Linkagem</h2>
+<p><strong>Onde:</strong> <code>semantic/linker.py</code> → <code>Linker.link()</code></p>
+<p>Este é o estágio mais importante: <strong>transforma uma coleção de nós soltos em um grafo semântico coerente</strong>.</p>
+<section id="o-que-entra-6" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="o-que-entra-6"><span class="header-section-number">10.1</span> O que entra</h3>
+<p>Todas as listas de nós + o <code>ValidationResult</code> do Estágio 6. O Linker pode adicionar mais erros durante a linkagem.</p>
+</section>
+<section id="o-que-acontece-passo-a-passo" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="o-que-acontece-passo-a-passo"><span class="header-section-number">10.2</span> O que acontece — passo a passo</h3>
+<ol type="1">
+<li><strong>Verificação de duplicatas</strong> — bibrefs e conceitos repetidos geram erros (E070, E068).</li>
+<li><strong>Associação ITEM → SOURCE</strong> — cada ITEM é ligado ao SOURCE com o mesmo <code>bibref</code>. A lista <code>SourceNode.items</code>, que estava vazia, agora é preenchida.</li>
+<li><strong>Construção do <code>ontology_index</code></strong> — dicionário <code>{código_normalizado → OntologyNode}</code> para lookup rápido.</li>
+<li><strong>Construção do <code>code_usage</code></strong> — dicionário <code>{código → [ItemNode, ...]}</code> que responde: “quais itens usaram este código?”</li>
+<li><strong>Verificação de códigos</strong> — cada código usado em ITEMs é buscado no <code>ontology_index</code>. Ausentes geram aviso W004.</li>
+<li><strong>Extração de triples</strong> — CHAINs (sequências como <code>A → B → C</code>) viram triples <code>(A, relação, B)</code>, <code>(B, relação, C)</code>.</li>
+<li><strong>Construção da hierarquia</strong> — CHAINs na ontologia com relações IS_A viram <code>{filho → pai}</code>.</li>
+<li><strong>Construção do <code>topic_index</code></strong> — campos TOPIC das ontologias viram <code>{tema → [códigos]}</code>.</li>
+</ol>
+</section>
+<section id="o-que-sai-6" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="o-que-sai-6"><span class="header-section-number">10.3</span> O que sai</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>LinkedProject(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    project <span class="op">=</span> ProjectNode(...),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fontes agora com seus itens associados</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    sources <span class="op">=</span> {</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"smith2024"</span>: SourceNode(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            bibref <span class="op">=</span> <span class="st">"smith2024"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            items  <span class="op">=</span> [ItemNode(...)]   <span class="co"># preenchido!</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lookup de código → definição</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    ontology_index <span class="op">=</span> {</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"social_cohesion"</span>:   OntologyNode(concept<span class="op">=</span><span class="st">"Social_Cohesion"</span>, ...),</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"collective_action"</span>: OntologyNode(concept<span class="op">=</span><span class="st">"Collective_Action"</span>, ...),</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Quais ITEMs usaram cada código</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    code_usage <span class="op">=</span> {</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"social_cohesion"</span>:   [ItemNode(...)],</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"collective_action"</span>: [ItemNode(...)],</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Hierarquia IS_A (vazia no Basic — não há CHAINs)</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    hierarchy <span class="op">=</span> {},</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Triples de CHAINs (vazia no Basic)</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    all_triples <span class="op">=</span> [],</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Temas → códigos (do campo TOPIC nas ontologias)</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    topic_index <span class="op">=</span> {</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Community_Resilience"</span>: [<span class="st">"Social_Cohesion"</span>, <span class="st">"Collective_Action"</span>]</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="estágio-8-exportação" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="estágio-8-exportação"><span class="header-section-number">11</span> Estágio 8 — Exportação</h2>
+<p><strong>Onde:</strong> <code>exporters/json_export.py</code>, <code>exporters/csv_export.py</code>, <code>exporters/xls_export.py</code></p>
+<section id="o-que-entra-7" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="o-que-entra-7"><span class="header-section-number">11.1</span> O que entra</h3>
+<p>O <code>LinkedProject</code> completo + <code>TemplateNode</code> + <code>Dict[BibEntry]</code>.</p>
+</section>
+<section id="o-que-acontece-6" class="level3" data-number="11.2">
+<h3 data-number="11.2" class="anchored" data-anchor-id="o-que-acontece-6"><span class="header-section-number">11.2</span> O que acontece</h3>
+<p>Cada exportador percorre o <code>LinkedProject</code> e serializa os dados no formato alvo. A exportação só ocorre se <strong>não houver erros</strong> (ou se o flag <code>--force</code> for usado no CLI).</p>
+</section>
+<section id="o-que-sai-7" class="level3" data-number="11.3">
+<h3 data-number="11.3" class="anchored" data-anchor-id="o-que-sai-7"><span class="header-section-number">11.3</span> O que sai</h3>
+<ul>
+<li><strong>JSON</strong> — Estrutura hierárquica: sources → items → codes → ontology</li>
+<li><strong>CSV</strong> — Múltiplos arquivos relacionais: <code>sources.csv</code>, <code>items.csv</code>, <code>codes.csv</code>, <code>chains.csv</code></li>
+<li><strong>Excel</strong> — Planilha com múltiplas abas correspondendo às tabelas CSV</li>
+</ul>
+</section>
+</section>
+<section id="sec-orquestrador" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="sec-orquestrador"><span class="header-section-number">12</span> O orquestrador</h2>
+<p><strong>Onde:</strong> <code>compiler.py</code> → <code>SynesisCompiler</code></p>
+<p>O compilador é o maestro — chama cada estágio na ordem certa e decide o que fazer com erros:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplificado para clareza</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="bu">compile</span>(<span class="va">self</span>) <span class="op">-&gt;</span> CompilationResult:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    project, validation <span class="op">=</span> <span class="va">self</span>.parse_project()           <span class="co"># Estágio 1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    template, tv <span class="op">=</span> <span class="va">self</span>._safe_load_template()            <span class="co"># Estágio 2</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    bibliography <span class="op">=</span> <span class="va">self</span>.load_bibliography(project)       <span class="co"># Estágio 3</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    ontologies <span class="op">=</span> <span class="va">self</span>.parse_ontologies(project)          <span class="co"># Estágio 4</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    sources, items <span class="op">=</span> <span class="va">self</span>.parse_annotations(project)     <span class="co"># Estágio 5</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    validation <span class="op">+=</span> <span class="va">self</span>.validate_all(...)                 <span class="co"># Estágio 6</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    linked <span class="op">=</span> <span class="va">self</span>.link_all(...)                          <span class="co"># Estágio 7</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Estágio 8 é acionado externamente via result.to_json(), etc.</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CompilationResult(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        success           <span class="op">=</span> <span class="kw">not</span> validation.has_errors(),</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        linked_project    <span class="op">=</span> linked,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        validation_result <span class="op">=</span> validation,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        stats             <span class="op">=</span> <span class="va">self</span>._compute_stats(linked),</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O resultado final é um <code>CompilationResult</code> com todas as informações:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CompilationResult(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    success <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    linked_project    <span class="op">=</span> LinkedProject(...),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    validation_result <span class="op">=</span> ValidationResult(errors<span class="op">=</span>[], warnings<span class="op">=</span>[]),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    stats <span class="op">=</span> CompilationStats(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        source_count   <span class="op">=</span> <span class="dv">1</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        item_count     <span class="op">=</span> <span class="dv">1</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        ontology_count <span class="op">=</span> <span class="dv">2</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        code_count     <span class="op">=</span> <span class="dv">2</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        chain_count    <span class="op">=</span> <span class="dv">0</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        triple_count   <span class="op">=</span> <span class="dv">0</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    template     <span class="op">=</span> TemplateNode(...),</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    bibliography <span class="op">=</span> {<span class="st">"smith2024"</span>: BibEntry(...)},</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sec-lark" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="sec-lark"><span class="header-section-number">13</span> Nos bastidores: o parser Lark</h2>
+<p>Todos os estágios de parsing (1, 2, 4, 5) compartilham o mesmo mecanismo interno.</p>
+<section id="como-o-texto-vira-árvore" class="level3" data-number="13.1">
+<h3 data-number="13.1" class="anchored" data-anchor-id="como-o-texto-vira-árvore"><span class="header-section-number">13.1</span> Como o texto vira árvore</h3>
+<pre><code>Texto bruto (.syn, .synt, etc.)
+        │
+        ▼
+  SynesisIndenter        ← converte tabs em 4 espaços,
+        │                   gera tokens INDENT/DEDENT (como Python)
+        ▼
+  Lexer LALR(1)          ← tokeniza: KEYWORD, STRING, IDENTIFIER, NEWLINE...
+        │
+        ▼
+  Parser LALR(1)         ← aplica a gramática (synesis.lark)
+        │
+        ▼
+  lark.Tree              ← árvore sintática concreta
+        │
+        ▼
+  SynesisTransformer     ← converte árvore em nós AST tipados
+        │
+        ▼
+  ProjectNode / SourceNode / ItemNode / OntologyNode / ...</code></pre>
+<p>O Synesis usa o <strong>Lark</strong> — uma biblioteca Python de parsing que aceita gramáticas no formato EBNF e gera parsers LALR(1) eficientes. A gramática completa, comentada regra por regra, está em <a href="../reference/gramatica.html">Gramática da Linguagem</a>.</p>
+</section>
+<section id="como-a-árvore-vira-objetos-python" class="level3" data-number="13.2">
+<h3 data-number="13.2" class="anchored" data-anchor-id="como-a-árvore-vira-objetos-python"><span class="header-section-number">13.2</span> Como a árvore vira objetos Python</h3>
+<p>O <code>SynesisTransformer</code> estende <code>lark.Transformer</code>. Cada método corresponde a uma regra da gramática:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SynesisTransformer(Transformer):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> source_block(<span class="va">self</span>, items) <span class="op">-&gt;</span> SourceNode:</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extrai bibref, constrói dict de campos</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Retorna SourceNode</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> item_block(<span class="va">self</span>, items) <span class="op">-&gt;</span> ItemNode:</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Separa campos por tipo (citation→quote, note→notes, code→codes)</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Preserva tokens brutos em field_line_tokens</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Retorna ItemNode</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> ontology_block(<span class="va">self</span>, items) <span class="op">-&gt;</span> OntologyNode:</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Constrói OntologyNode com concept, description e campos extras</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="normalização-de-nomes-de-campo" class="level3" data-number="13.3">
+<h3 data-number="13.3" class="anchored" data-anchor-id="normalização-de-nomes-de-campo"><span class="header-section-number">13.3</span> Normalização de nomes de campo</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>_normalize_field_name(<span class="st">"CODE"</span>)     <span class="co"># → "code"    (todo maiúsculo → minúsculo)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>_normalize_field_name(<span class="st">"citation"</span>) <span class="co"># → "citation" (sem mudança)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>_normalize_field_name(<span class="st">"MyField"</span>)  <span class="co"># → "MyField"  (misto → sem mudança)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Isso garante que <code>CODE</code> e <code>code</code> nos arquivos <code>.syn</code> sejam tratados como o mesmo campo.</p>
+</section>
+<section id="erros-de-sintaxe" class="level3" data-number="13.4">
+<h3 data-number="13.4" class="anchored" data-anchor-id="erros-de-sintaxe"><span class="header-section-number">13.4</span> Erros de sintaxe</h3>
+<p>Quando o parser encontra um erro, <code>parse_string()</code> intercepta a exceção do Lark e gera uma <code>SynesisSyntaxError</code> com:</p>
+<ul>
+<li><strong>Localização precisa</strong> — arquivo, linha e coluna</li>
+<li><strong>Mensagem pedagógica</strong> — via <code>create_pedagogical_error()</code>, que traduz tokens Lark em sugestões legíveis</li>
+<li><strong>Tokens esperados</strong> — o que o parser esperava encontrar naquele ponto</li>
+</ul>
+</section>
+</section>
+<section id="sec-mapa-dados" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="sec-mapa-dados"><span class="header-section-number">14</span> Mapa de dados entre estágios</h2>
+<p>Esta tabela mostra onde cada estrutura é criada e onde é consumida:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Estrutura</th>
+<th>Criada no</th>
+<th>Consumida nos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ProjectNode</code></td>
+<td>Estágio 1</td>
+<td>2, 3, 4, 5, 6, 7</td>
+</tr>
+<tr class="even">
+<td><code>TemplateNode</code></td>
+<td>Estágio 2</td>
+<td>6, 7, 8</td>
+</tr>
+<tr class="odd">
+<td><code>Dict[BibEntry]</code></td>
+<td>Estágio 3</td>
+<td>6, 7, 8</td>
+</tr>
+<tr class="even">
+<td><code>List[OntologyNode]</code></td>
+<td>Estágio 4</td>
+<td>6, 7</td>
+</tr>
+<tr class="odd">
+<td><code>List[SourceNode]</code></td>
+<td>Estágio 5</td>
+<td>6, 7</td>
+</tr>
+<tr class="even">
+<td><code>List[ItemNode]</code></td>
+<td>Estágio 5</td>
+<td>6, 7</td>
+</tr>
+<tr class="odd">
+<td><code>ValidationResult</code></td>
+<td>Estágios 1–7</td>
+<td>CLI</td>
+</tr>
+<tr class="even">
+<td><code>LinkedProject</code></td>
+<td>Estágio 7</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td><code>CompilationResult</code></td>
+<td>Orquestrador</td>
+<td>CLI</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-nos-ast" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="sec-nos-ast"><span class="header-section-number">15</span> Referência rápida dos nós AST</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nó</th>
+<th>Campos principais</th>
+<th>Criado por</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ProjectNode</code></td>
+<td><code>name</code>, <code>template_path</code>, <code>includes</code></td>
+<td>Transformer</td>
+</tr>
+<tr class="even">
+<td><code>IncludeNode</code></td>
+<td><code>include_type</code>, <code>path</code></td>
+<td>Transformer</td>
+</tr>
+<tr class="odd">
+<td><code>TemplateNode</code></td>
+<td><code>field_specs</code>, <code>required_fields</code>, <code>optional_fields</code></td>
+<td>template_loader</td>
+</tr>
+<tr class="even">
+<td><code>FieldSpec</code></td>
+<td><code>name</code>, <code>type</code>, <code>scope</code>, <code>arity</code>, <code>values</code>, <code>relations</code></td>
+<td>Transformer</td>
+</tr>
+<tr class="odd">
+<td><code>SourceNode</code></td>
+<td><code>bibref</code>, <code>fields</code>, <code>items</code></td>
+<td>Transformer</td>
+</tr>
+<tr class="even">
+<td><code>ItemNode</code></td>
+<td><code>bibref</code>, <code>quote</code>, <code>codes</code>, <code>notes</code>, <code>chains</code>, <code>code_locations</code></td>
+<td>Transformer + Linker</td>
+</tr>
+<tr class="odd">
+<td><code>OntologyNode</code></td>
+<td><code>concept</code>, <code>description</code>, <code>fields</code>, <code>parent_chains</code></td>
+<td>Transformer</td>
+</tr>
+<tr class="even">
+<td><code>ChainNode</code></td>
+<td><code>nodes</code>, <code>relations</code>, <code>node_locations</code></td>
+<td>Transformer</td>
+</tr>
+<tr class="odd">
+<td><code>SourceLocation</code></td>
+<td><code>file</code>, <code>line</code>, <code>column</code></td>
+<td>Transformer</td>
+</tr>
+<tr class="even">
+<td><code>BibEntry</code></td>
+<td><code>ID</code>, <code>ENTRYTYPE</code>, <code>author</code>, <code>title</code>, <code>year</code></td>
+<td>bib_loader</td>
+</tr>
+<tr class="odd">
+<td><code>LinkedProject</code></td>
+<td><code>sources</code>, <code>ontology_index</code>, <code>code_usage</code>, <code>hierarchy</code>, <code>all_triples</code></td>
+<td>Linker</td>
+</tr>
+<tr class="even">
+<td><code>ValidationResult</code></td>
+<td><code>errors</code>, <code>warnings</code>, <code>info</code></td>
+<td>Validator + Linker</td>
+</tr>
+<tr class="odd">
+<td><code>CompilationResult</code></td>
+<td><code>success</code>, <code>linked_project</code>, <code>validation_result</code>, <code>stats</code></td>
+<td>Compiler</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-erros" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="sec-erros"><span class="header-section-number">16</span> Erros mais comuns</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Erro</th>
+<th>Nome</th>
+<th>Quando acontece</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E001</td>
+<td>UnregisteredSource</td>
+<td>O bibref do SOURCE não existe no arquivo <code>.bib</code></td>
+</tr>
+<tr class="even">
+<td>E002</td>
+<td>OrphanItem</td>
+<td>O ITEM referencia um bibref sem SOURCE correspondente</td>
+</tr>
+<tr class="odd">
+<td>W003</td>
+<td>SourceWithoutItems</td>
+<td>Uma SOURCE foi declarada mas nenhum ITEM a referencia</td>
+</tr>
+<tr class="even">
+<td>W004</td>
+<td>UndefinedCode</td>
+<td>Um código usado no ITEM não está definido na ontologia</td>
+</tr>
+<tr class="odd">
+<td>E005</td>
+<td>OntologyWithoutTemplateFields</td>
+<td>Há arquivos de ontologia mas o template não define <code>ONTOLOGY FIELDS</code></td>
+</tr>
+<tr class="even">
+<td>E013</td>
+<td>ChainWithoutArrowOperator</td>
+<td>Um CHAIN foi declarado sem o operador <code>→</code></td>
+</tr>
+<tr class="odd">
+<td>E023</td>
+<td>EmptyItemBlock</td>
+<td>Um bloco ITEM está vazio (sem campos)</td>
+</tr>
+<tr class="even">
+<td>E061</td>
+<td>UnreferencedAnnotations</td>
+<td>Arquivo <code>.syn</code> existe no diretório mas não está listado no <code>project.synp</code></td>
+</tr>
+<tr class="odd">
+<td>E065</td>
+<td>MissingTemplateDeclaration</td>
+<td>O projeto não tem declaração TEMPLATE</td>
+</tr>
+<tr class="even">
+<td>E068</td>
+<td>DuplicateOntologyConcept</td>
+<td>O mesmo conceito foi definido duas vezes na ontologia</td>
+</tr>
+<tr class="odd">
+<td>E070</td>
+<td>DuplicateSourceBibref</td>
+<td>O mesmo bibref aparece em dois blocos SOURCE</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

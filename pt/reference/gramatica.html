@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Gramática da Linguagem – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis para Usuários do IRaMuTeQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Gramática da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Guia de Erros</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">O fluxo de compilação</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li class="dropdown-header">— Visão Geral —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/show_case.html">
+ <span class="dropdown-text">O que Synesis pode expressar</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Pesquisadores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/exemplos_codificacao.html">
+ <span class="dropdown-text">Métodos de Codificação em Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA.html">
+ <span class="dropdown-text">Codificação Assistida por IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_metricas.html">
+ <span class="dropdown-text">Métricas da Pesquisa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Synesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/dsap.html">
+ <span class="dropdown-text">Diagnóstico Socioambiental Participativo</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Desenvolvedores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/fluxo_compilacao_interno.html">
+ <span class="dropdown-text">Por Dentro do Compilador</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/interface_lsp.html">
+ <span class="dropdown-text">A Interface LSP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#como-ler-este-documento" id="toc-como-ler-este-documento" class="nav-link active" data-scroll-target="#como-ler-este-documento"><span class="header-section-number">1</span> Como ler este documento</a></li>
+  <li><a href="#sec-start" id="toc-sec-start" class="nav-link" data-scroll-target="#sec-start"><span class="header-section-number">2</span> Ponto de partida</a></li>
+  <li><a href="#sec-keywords" id="toc-sec-keywords" class="nav-link" data-scroll-target="#sec-keywords"><span class="header-section-number">3</span> Keywords</a></li>
+  <li><a href="#sec-project" id="toc-sec-project" class="nav-link" data-scroll-target="#sec-project"><span class="header-section-number">4</span> Bloco PROJECT</a>
+  <ul class="collapse">
+  <li><a href="#declarações-include-e-template" id="toc-declarações-include-e-template" class="nav-link" data-scroll-target="#declarações-include-e-template"><span class="header-section-number">4.1</span> Declarações INCLUDE e TEMPLATE</a></li>
+  <li><a href="#metadata-e-description" id="toc-metadata-e-description" class="nav-link" data-scroll-target="#metadata-e-description"><span class="header-section-number">4.2</span> Metadata e Description</a></li>
+  </ul></li>
+  <li><a href="#sec-annotation" id="toc-sec-annotation" class="nav-link" data-scroll-target="#sec-annotation"><span class="header-section-number">5</span> Blocos de anotação</a></li>
+  <li><a href="#sec-fields" id="toc-sec-fields" class="nav-link" data-scroll-target="#sec-fields"><span class="header-section-number">6</span> Campos e valores</a>
+  <ul class="collapse">
+  <li><a href="#chaves-de-campo" id="toc-chaves-de-campo" class="nav-link" data-scroll-target="#chaves-de-campo"><span class="header-section-number">6.1</span> Chaves de campo</a></li>
+  <li><a href="#tipos-de-valor" id="toc-tipos-de-valor" class="nav-link" data-scroll-target="#tipos-de-valor"><span class="header-section-number">6.2</span> Tipos de valor</a></li>
+  <li><a href="#listas-de-código-e-expressões-de-cadeia" id="toc-listas-de-código-e-expressões-de-cadeia" class="nav-link" data-scroll-target="#listas-de-código-e-expressões-de-cadeia"><span class="header-section-number">6.3</span> Listas de código e expressões de cadeia</a></li>
+  <li><a href="#texto-multilinha" id="toc-texto-multilinha" class="nav-link" data-scroll-target="#texto-multilinha"><span class="header-section-number">6.4</span> Texto multilinha</a></li>
+  </ul></li>
+  <li><a href="#sec-template" id="toc-sec-template" class="nav-link" data-scroll-target="#sec-template"><span class="header-section-number">7</span> Bloco TEMPLATE</a>
+  <ul class="collapse">
+  <li><a href="#cabeçalho" id="toc-cabeçalho" class="nav-link" data-scroll-target="#cabeçalho"><span class="header-section-number">7.1</span> Cabeçalho</a></li>
+  <li><a href="#especificação-de-campos-por-escopo" id="toc-especificação-de-campos-por-escopo" class="nav-link" data-scroll-target="#especificação-de-campos-por-escopo"><span class="header-section-number">7.2</span> Especificação de campos por escopo</a></li>
+  <li><a href="#definição-de-campo-individual" id="toc-definição-de-campo-individual" class="nav-link" data-scroll-target="#definição-de-campo-individual"><span class="header-section-number">7.3</span> Definição de campo individual</a></li>
+  <li><a href="#values-e-relations" id="toc-values-e-relations" class="nav-link" data-scroll-target="#values-e-relations"><span class="header-section-number">7.4</span> VALUES e RELATIONS</a></li>
+  <li><a href="#format-e-arity" id="toc-format-e-arity" class="nav-link" data-scroll-target="#format-e-arity"><span class="header-section-number">7.5</span> FORMAT e ARITY</a></li>
+  <li><a href="#bloco-guidelines" id="toc-bloco-guidelines" class="nav-link" data-scroll-target="#bloco-guidelines"><span class="header-section-number">7.6</span> Bloco GUIDELINES</a></li>
+  </ul></li>
+  <li><a href="#sec-tokens" id="toc-sec-tokens" class="nav-link" data-scroll-target="#sec-tokens"><span class="header-section-number">8</span> Tokens</a>
+  <ul class="collapse">
+  <li><a href="#identificadores-e-referências" id="toc-identificadores-e-referências" class="nav-link" data-scroll-target="#identificadores-e-referências"><span class="header-section-number">8.1</span> Identificadores e referências</a></li>
+  <li><a href="#elementos-de-código-e-cadeia" id="toc-elementos-de-código-e-cadeia" class="nav-link" data-scroll-target="#elementos-de-código-e-cadeia"><span class="header-section-number">8.2</span> Elementos de código e cadeia</a></li>
+  <li><a href="#valores-e-texto" id="toc-valores-e-texto" class="nav-link" data-scroll-target="#valores-e-texto"><span class="header-section-number">8.3</span> Valores e texto</a></li>
+  <li><a href="#tokens-especiais" id="toc-tokens-especiais" class="nav-link" data-scroll-target="#tokens-especiais"><span class="header-section-number">8.4</span> Tokens especiais</a></li>
+  </ul></li>
+  <li><a href="#sec-prioridades" id="toc-sec-prioridades" class="nav-link" data-scroll-target="#sec-prioridades"><span class="header-section-number">9</span> Prioridades — como ambiguidades são resolvidas</a></li>
+  <li><a href="#sec-indentacao" id="toc-sec-indentacao" class="nav-link" data-scroll-target="#sec-indentacao"><span class="header-section-number">10</span> Indentação significativa</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gramática da Linguagem</h1>
+<p class="subtitle lead">A especificação formal LALR(1) do Synesis — comentada regra por regra</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Para quem é este documento?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Devs que precisam entender, estender ou depurar a sintaxe do Synesis. A gramática abaixo é a <strong>especificação canônica</strong> — o compilador a executa literalmente. Se o compilador aceita ou rejeita algo, a resposta está aqui.</p>
+<p>Para entender o fluxo completo de compilação (não apenas a gramática), veja <a href="../explanation/fluxo_compilacao_interno.html">Por Dentro do Compilador</a>.</p>
+</div>
+</div>
+<section id="como-ler-este-documento" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="como-ler-este-documento"><span class="header-section-number">1</span> Como ler este documento</h2>
+<p>A gramática usa o formato <strong>Lark EBNF</strong>, que funciona assim:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sintaxe</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>regra: A B C</code></td>
+<td><code>regra</code> é composta por <code>A</code>, depois <code>B</code>, depois <code>C</code>, nessa ordem</td>
+</tr>
+<tr class="even">
+<td><code>A \| B</code></td>
+<td><code>A</code> ou <code>B</code> (alternativa)</td>
+</tr>
+<tr class="odd">
+<td><code>A*</code></td>
+<td>Zero ou mais repetições de <code>A</code></td>
+</tr>
+<tr class="even">
+<td><code>A+</code></td>
+<td>Uma ou mais repetições de <code>A</code></td>
+</tr>
+<tr class="odd">
+<td><code>A?</code></td>
+<td><code>A</code> é opcional (zero ou uma vez)</td>
+</tr>
+<tr class="even">
+<td><code>"texto"</code></td>
+<td>Literal exato</td>
+</tr>
+<tr class="odd">
+<td><code>/regex/</code></td>
+<td>Padrão regex</td>
+</tr>
+<tr class="even">
+<td><code>/regex/i</code></td>
+<td>Regex case-insensitive</td>
+</tr>
+<tr class="odd">
+<td><code>TOKEN.N</code></td>
+<td>Token com prioridade <code>N</code> (maior = preferido em caso de ambiguidade)</td>
+</tr>
+<tr class="even">
+<td><code>_INDENT</code> / <code>_DEDENT</code></td>
+<td>Tokens de indentação gerados automaticamente</td>
+</tr>
+</tbody>
+</table>
+<p>Regras em <strong>minúsculas</strong> (<code>project_block</code>) são regras gramaticais — produzem nós na árvore sintática. Regras em <strong>MAIÚSCULAS</strong> (<code>IDENTIFIER</code>) são tokens — unidades atômicas reconhecidas pelo lexer.</p>
+</section>
+<section id="sec-start" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-start"><span class="header-section-number">2</span> Ponto de partida</h2>
+<p>Toda compilação começa aqui. A regra <code>start</code> aceita uma sequência de blocos separados por linhas em branco:</p>
+<pre class="lark"><code>start: (block | NEWLINE)* block (block | NEWLINE)*
+
+block: project_block
+     | source_block
+     | item_block
+     | ontology_block
+     | template_header
+     | field_spec_block
+     | field_def_block</code></pre>
+<p>Um arquivo Synesis é uma lista de blocos. Quais blocos são válidos depende do tipo de arquivo:</p>
+<ul>
+<li><strong><code>.synp</code></strong> contém um <code>project_block</code></li>
+<li><strong><code>.syn</code></strong> contém <code>source_block</code> e <code>item_block</code></li>
+<li><strong><code>.syno</code></strong> contém <code>ontology_block</code></li>
+<li><strong><code>.synt</code></strong> contém <code>template_header</code>, <code>field_spec_block</code> e <code>field_def_block</code></li>
+</ul>
+<p>A gramática não impõe essa regra — ela aceita qualquer combinação. É o <strong>validador semântico</strong> (estágio posterior) que verifica se os blocos fazem sentido no contexto do tipo de arquivo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que <code>(block | NEWLINE)*</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As linhas em branco (<code>NEWLINE</code>) entre blocos precisam ser aceitas explicitamente. Sem isso, o parser exigiria que os blocos fossem colados uns nos outros.</p>
+</div>
+</div>
+</section>
+<section id="sec-keywords" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-keywords"><span class="header-section-number">3</span> Keywords</h2>
+<p>Todas as palavras-chave são <strong>case-insensitive</strong> — <code>PROJECT</code>, <code>project</code> e <code>Project</code> são equivalentes:</p>
+<pre class="lark"><code>KW_PROJECT.5: /project/i
+KW_SOURCE.5: /source/i
+KW_ITEM.5: /item/i
+KW_ONTOLOGY.5: /ontology/i
+KW_TEMPLATE.5: /template/i
+KW_FIELD.5: /field/i
+KW_END.5: /end/i
+KW_INCLUDE.5: /include/i
+KW_BIBLIOGRAPHY.5: /bibliography/i
+KW_ANNOTATIONS.5: /annotations/i
+KW_FIELDS.5: /fields/i
+KW_REQUIRED.5: /required/i
+KW_OPTIONAL.5: /optional/i
+KW_FORBIDDEN.5: /forbidden/i
+KW_BUNDLE.5: /bundle/i
+KW_TYPE.5: /type/i
+KW_SCOPE.5: /scope/i
+KW_FORMAT.5: /format/i
+KW_DESCRIPTION.5: /description/i
+KW_ARITY.5: /arity/i
+KW_VALUES.5: /values/i
+KW_RELATIONS.5: /relations/i
+KW_METADATA.5: /metadata/i
+KW_QUOTATION.5: /quotation/i
+KW_MEMO.5: /memo/i
+KW_CODE.5: /code/i
+KW_CHAIN.5: /chain/i
+KW_TEXT.5: /text/i
+KW_DATE.5: /date/i
+KW_SCALE.5: /scale/i
+KW_ENUMERATED.5: /enumerated/i
+KW_ORDERED.5: /ordered/i
+KW_TOPIC.5: /topic/i
+KW_GUIDELINES.5: /guidelines/i</code></pre>
+<p>A prioridade <code>.5</code> garante que keywords tenham preferência sobre <code>IDENTIFIER</code> e <code>FIELD_NAME</code> (prioridade <code>.1</code>) quando há ambiguidade. Isso é crítico — sem essa prioridade, <code>SOURCE</code> seria reconhecido como um identificador genérico em vez de uma keyword.</p>
+</section>
+<section id="sec-project" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-project"><span class="header-section-number">4</span> Bloco PROJECT</h2>
+<p>O bloco PROJECT é o ponto de entrada de todo projeto Synesis:</p>
+<pre class="lark"><code>project_block: KW_PROJECT IDENTIFIER NEWLINE project_body KW_END KW_PROJECT
+
+project_body: _INDENT project_items _DEDENT
+            | project_items
+
+project_items: (include_stmt | metadata | description | NEWLINE)+</code></pre>
+<p>Aceita um nome (<code>IDENTIFIER</code>), seguido de declarações internas: includes, metadata e description.</p>
+<section id="declarações-include-e-template" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="declarações-include-e-template"><span class="header-section-number">4.1</span> Declarações INCLUDE e TEMPLATE</h3>
+<pre class="lark"><code>include_stmt: KW_TEMPLATE STRING NEWLINE
+            | KW_INCLUDE include_type STRING NEWLINE
+include_type: KW_BIBLIOGRAPHY | KW_ANNOTATIONS | KW_ONTOLOGY</code></pre>
+<p>O TEMPLATE é declarado diretamente; os demais arquivos usam <code>INCLUDE tipo "caminho"</code>.</p>
+<p>Exemplo de uso:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> demo</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"references.bib"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations.syn"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology.syno"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="metadata-e-description" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="metadata-e-description"><span class="header-section-number">4.2</span> Metadata e Description</h3>
+<pre class="lark"><code>metadata: KW_METADATA NEWLINE _INDENT (metadata_line | NEWLINE)+ _DEDENT
+          KW_END KW_METADATA NEWLINE
+metadata_line: TEXT_LINE NEWLINE
+
+description: KW_DESCRIPTION NEWLINE description_lines
+             KW_END KW_DESCRIPTION NEWLINE?
+description_lines: (TEXT_LINE NEWLINE | NEWLINE)+</code></pre>
+<p>Metadata e description são blocos de texto livre, delimitados por <code>END METADATA</code> e <code>END DESCRIPTION</code>.</p>
+</section>
+</section>
+<section id="sec-annotation" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-annotation"><span class="header-section-number">5</span> Blocos de anotação</h2>
+<p>Os três blocos de anotação compartilham a mesma estrutura interna — apenas a keyword de abertura/fechamento muda:</p>
+<pre class="lark"><code>source_block: KW_SOURCE BIBREF NEWLINE
+              (_INDENT (field_entry | NEWLINE)* _DEDENT)?
+              KW_END KW_SOURCE
+
+item_block: KW_ITEM BIBREF NEWLINE
+            (_INDENT (field_entry | NEWLINE)* _DEDENT)?
+            KW_END KW_ITEM
+
+ontology_block: KW_ONTOLOGY concept_name NEWLINE
+                (_INDENT (field_entry | NEWLINE)* _DEDENT)?
+                KW_END KW_ONTOLOGY
+
+concept_name: CONCEPT_NAME</code></pre>
+<p>Aspectos importantes:</p>
+<ul>
+<li><strong>SOURCE</strong> e <strong>ITEM</strong> recebem um <code>BIBREF</code> (ex: <code>@smith2024</code>).</li>
+<li><strong>ONTOLOGY</strong> recebe um <code>concept_name</code> — que é mais flexível (pode conter espaços; veja a seção de <a href="#sec-tokens">Tokens</a>).</li>
+<li>O corpo <code>(field_entry | NEWLINE)*</code> é <strong>opcional</strong> — blocos vazios são sintaticamente válidos (mas o validador semântico pode rejeitá-los, como E023: EmptyItemBlock).</li>
+<li>A indentação (<code>_INDENT</code>/<code>_DEDENT</code>) delimita o corpo do bloco.</li>
+</ul>
+</section>
+<section id="sec-fields" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-fields"><span class="header-section-number">6</span> Campos e valores</h2>
+<p>Os campos (<code>field_entry</code>) aparecem dentro dos blocos de anotação. São o coração dos dados:</p>
+<pre class="lark"><code>field_entry: field_key ":" value NEWLINE continuation_block?
+           | field_key ":" NEWLINE _INDENT text_block _DEDENT NEWLINE?</code></pre>
+<p>Duas formas: valor na mesma linha (com continuação opcional), ou valor multilinha indentado.</p>
+<section id="chaves-de-campo" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="chaves-de-campo"><span class="header-section-number">6.1</span> Chaves de campo</h3>
+<pre class="lark"><code>field_key: FIELD_NAME
+         | KW_TOPIC | KW_DESCRIPTION | KW_CODE | KW_CHAIN
+         | KW_TEXT | KW_MEMO | KW_QUOTATION | KW_DATE
+         | KW_SCALE | KW_ENUMERATED | KW_ORDERED</code></pre>
+<p>O <code>field_key</code> aceita tanto nomes definidos pelo usuário (<code>FIELD_NAME</code>) quanto keywords que podem ser usadas como nomes de campo. Isso permite campos como <code>code:</code>, <code>chain:</code> e <code>description:</code> — que são simultaneamente keywords e nomes de campo.</p>
+</section>
+<section id="tipos-de-valor" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="tipos-de-valor"><span class="header-section-number">6.2</span> Tipos de valor</h3>
+<pre class="lark"><code>value: STRING
+     | NUMBER TEXT_LINE
+     | NUMBER
+     | chain_expr
+     | code_list
+     | TEXT_LINE</code></pre>
+<p>O parser tenta cada alternativa na ordem acima. A prioridade dos tokens (<code>.2</code>, <code>.3</code>, <code>.4</code>) resolve ambiguidades:</p>
+<ul>
+<li><code>NUMBER.4</code> tem prioridade máxima — <code>42</code> é reconhecido como número, não como texto</li>
+<li><code>CHAIN_ELEMENT.2</code> e <code>CODE_ELEMENT.2</code> têm prioridade intermediária</li>
+<li><code>TEXT_LINE.3</code> captura todo o resto</li>
+</ul>
+</section>
+<section id="listas-de-código-e-expressões-de-cadeia" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="listas-de-código-e-expressões-de-cadeia"><span class="header-section-number">6.3</span> Listas de código e expressões de cadeia</h3>
+<pre class="lark"><code>code_list: CODE_ELEMENT ("," CODE_ELEMENT)*
+
+chain_expr: CHAIN_ELEMENT ("-&gt;" CHAIN_ELEMENT)+</code></pre>
+<p>Códigos são separados por vírgula; elementos de cadeia são separados por <code>-&gt;</code>.</p>
+<p>Exemplos:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Social_Cohesion, Collective_Action</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Trust <span class="op">-&gt;</span> Cooperation <span class="op">-&gt;</span> Collective_Action</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="texto-multilinha" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="texto-multilinha"><span class="header-section-number">6.4</span> Texto multilinha</h3>
+<pre class="lark"><code>continuation_block: _INDENT text_block _DEDENT
+text_block: TEXT_LINE (NEWLINE TEXT_LINE)* NEWLINE?</code></pre>
+<p>Quando o valor de um campo não cabe numa linha, o texto continua nas linhas seguintes com indentação:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">note:</span> Participant describes spontaneous collective action as a</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    primary resilience mechanism, bypassing formal institutions.</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    Suggests strong bonding social capital.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O <code>_INDENT</code> e <code>_DEDENT</code> são gerados pelo <code>SynesisIndenter</code> — funciona como a indentação significativa do Python.</p>
+</section>
+</section>
+<section id="sec-template" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-template"><span class="header-section-number">7</span> Bloco TEMPLATE</h2>
+<p>O template define a estrutura que todos os blocos de anotação devem seguir:</p>
+<section id="cabeçalho" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="cabeçalho"><span class="header-section-number">7.1</span> Cabeçalho</h3>
+<pre class="lark"><code>template_header: KW_TEMPLATE IDENTIFIER template_meta*
+template_meta: IDENTIFIER ":" value</code></pre>
+</section>
+<section id="especificação-de-campos-por-escopo" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="especificação-de-campos-por-escopo"><span class="header-section-number">7.2</span> Especificação de campos por escopo</h3>
+<pre class="lark"><code>field_spec_block: scope_type KW_FIELDS NEWLINE _INDENT field_list _DEDENT
+                  KW_END scope_type KW_FIELDS
+scope_type: KW_SOURCE | KW_ITEM | KW_ONTOLOGY
+
+field_list: (requirement_clause | NEWLINE)*
+requirement_clause: KW_REQUIRED bundle_modifier? field_names
+                  | KW_OPTIONAL field_names
+                  | KW_FORBIDDEN field_names
+
+bundle_modifier: KW_BUNDLE
+field_names: field_key ("," field_key)*</code></pre>
+<p>Define quais campos são obrigatórios, opcionais ou proibidos para cada escopo. O modificador <code>BUNDLE</code> indica que os campos devem aparecer sempre juntos.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> citation, <span class="at">note</span>, code</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="definição-de-campo-individual" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="definição-de-campo-individual"><span class="header-section-number">7.3</span> Definição de campo individual</h3>
+<pre class="lark"><code>field_def_block: KW_FIELD field_key KW_TYPE type_spec
+                 (field_props | NEWLINE)*
+                 (_INDENT (field_props | NEWLINE)* _DEDENT)?
+                 KW_END KW_FIELD
+
+type_spec: simple_type | KW_CHAIN | KW_ENUMERATED | KW_ORDERED | KW_TOPIC
+simple_type: KW_QUOTATION | KW_MEMO | KW_CODE | KW_TEXT | KW_DATE | KW_SCALE</code></pre>
+<p>Cada campo tem um nome, um tipo, e propriedades opcionais:</p>
+<pre class="lark"><code>field_props: KW_SCOPE scope_type
+           | KW_FORMAT format_spec
+           | KW_DESCRIPTION TEXT_LINE
+           | KW_ARITY COMPARATOR NUMBER
+           | KW_VALUES value_list KW_END KW_VALUES
+           | KW_RELATIONS relation_list KW_END KW_RELATIONS
+           | guidelines_block</code></pre>
+<p>Cada tipo de campo usa propriedades diferentes:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Propriedades típicas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>QUOTATION</code>, <code>MEMO</code>, <code>TEXT</code></td>
+<td>SCOPE, DESCRIPTION</td>
+</tr>
+<tr class="even">
+<td><code>CODE</code></td>
+<td>SCOPE, DESCRIPTION</td>
+</tr>
+<tr class="odd">
+<td><code>CHAIN</code></td>
+<td>SCOPE, ARITY, RELATIONS, DESCRIPTION</td>
+</tr>
+<tr class="even">
+<td><code>SCALE</code></td>
+<td>SCOPE, FORMAT (<code>[min..max]</code>), DESCRIPTION</td>
+</tr>
+<tr class="odd">
+<td><code>ORDERED</code></td>
+<td>SCOPE, VALUES (com <code>[N]</code> prefixo), DESCRIPTION</td>
+</tr>
+<tr class="even">
+<td><code>ENUMERATED</code></td>
+<td>SCOPE, VALUES, DESCRIPTION</td>
+</tr>
+<tr class="odd">
+<td><code>TOPIC</code></td>
+<td>SCOPE, DESCRIPTION</td>
+</tr>
+<tr class="even">
+<td><code>DATE</code></td>
+<td>SCOPE, DESCRIPTION</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="values-e-relations" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="values-e-relations"><span class="header-section-number">7.4</span> VALUES e RELATIONS</h3>
+<pre class="lark"><code>value_list: (value_entry | NEWLINE)+
+          | NEWLINE _INDENT (value_entry | NEWLINE)+ _DEDENT
+          | _INDENT (value_entry | NEWLINE)+ _DEDENT
+value_entry: index_prefix? IDENTIFIER ":" TEXT_LINE
+index_prefix: "[" NUMBER "]"
+
+relation_list: (relation_entry | NEWLINE)+
+             | NEWLINE _INDENT (relation_entry | NEWLINE)+ _DEDENT
+             | _INDENT (relation_entry | NEWLINE)+ _DEDENT
+relation_entry: IDENTIFIER ":" TEXT_LINE</code></pre>
+<p>VALUES aceita um prefixo de índice opcional (<code>[1]</code>, <code>[2]</code>, etc.) para campos <code>ORDERED</code>.</p>
+</section>
+<section id="format-e-arity" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="format-e-arity"><span class="header-section-number">7.5</span> FORMAT e ARITY</h3>
+<pre class="lark"><code>format_spec: IDENTIFIER | scale_format
+scale_format: "[" NUMBER ".." NUMBER "]"</code></pre>
+<p>FORMAT define o intervalo para campos SCALE: <code>[0..10]</code>, <code>[1..5]</code>, etc.</p>
+<pre class="lark"><code>KW_ARITY COMPARATOR NUMBER</code></pre>
+<p>ARITY define quantos elementos um CHAIN deve ter: <code>&gt;=2</code>, <code>=3</code>, <code>&lt;5</code>, etc.</p>
+</section>
+<section id="bloco-guidelines" class="level3" data-number="7.6">
+<h3 data-number="7.6" class="anchored" data-anchor-id="bloco-guidelines"><span class="header-section-number">7.6</span> Bloco GUIDELINES</h3>
+<pre class="lark"><code>guidelines_block: KW_GUIDELINES NEWLINE guidelines_lines
+                  KW_END KW_GUIDELINES
+guidelines_lines: (_INDENT | _DEDENT | guideline_line | NEWLINE)*
+guideline_line: guideline_token+ NEWLINE</code></pre>
+<p>O GUIDELINES é um bloco de texto livre dentro de uma definição de FIELD. Aceita praticamente qualquer token — incluindo keywords, identificadores, strings, números e operadores — porque seu conteúdo é documentação em prosa, não código estruturado.</p>
+<pre class="lark"><code>guideline_token: TEXT_LINE | IDENTIFIER | FIELD_NAME | BIBREF | STRING
+               | NUMBER | COMPARATOR
+               | KW_PROJECT | KW_SOURCE | KW_ITEM | KW_ONTOLOGY
+               | KW_TEMPLATE | KW_FIELD | KW_INCLUDE | KW_BIBLIOGRAPHY
+               | KW_ANNOTATIONS | KW_FIELDS | KW_REQUIRED | KW_OPTIONAL
+               | KW_FORBIDDEN | KW_BUNDLE | KW_TYPE | KW_SCOPE | KW_FORMAT
+               | KW_DESCRIPTION | KW_ARITY | KW_VALUES | KW_RELATIONS
+               | KW_METADATA | KW_QUOTATION | KW_MEMO | KW_CODE | KW_CHAIN
+               | KW_TEXT | KW_DATE | KW_SCALE | KW_ENUMERATED | KW_ORDERED
+               | KW_TOPIC | KW_GUIDELINES
+               | COLON | "," | "-&gt;"
+
+COLON: ":"</code></pre>
+</section>
+</section>
+<section id="sec-tokens" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-tokens"><span class="header-section-number">8</span> Tokens</h2>
+<p>Os tokens são as unidades atômicas reconhecidas pelo lexer, antes de qualquer regra gramatical ser aplicada.</p>
+<section id="identificadores-e-referências" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="identificadores-e-referências"><span class="header-section-number">8.1</span> Identificadores e referências</h3>
+<pre class="lark"><code>BIBREF: "@" /[a-zA-Z][a-zA-Z0-9_-]*/
+
+IDENTIFIER.1: /[\p{L}_][\p{L}\p{N}_\-]*/u
+
+FIELD_NAME.1: /(?![eE][nN][dD]\b)[\p{L}_][\p{L}\p{N}_\-]*/u
+
+CONCEPT_NAME.0: /[^\s#\n\r][^#\n\r]*/u</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Token</th>
+<th>Aceita</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BIBREF</code></td>
+<td><code>@</code> + letra + alfanumérico/underline/hífen</td>
+<td><code>@smith2024</code>, <code>@WHO-2023</code></td>
+</tr>
+<tr class="even">
+<td><code>IDENTIFIER</code></td>
+<td>Letra/underline + alfanumérico/underline/hífen</td>
+<td><code>demo</code>, <code>Social_Cohesion</code></td>
+</tr>
+<tr class="odd">
+<td><code>FIELD_NAME</code></td>
+<td>Como IDENTIFIER, mas exclui <code>END</code></td>
+<td><code>code</code>, <code>citation</code> (nunca <code>end</code>)</td>
+</tr>
+<tr class="even">
+<td><code>CONCEPT_NAME</code></td>
+<td>Qualquer texto até <code>#</code> ou fim de linha</td>
+<td><code>Social Cohesion</code>, <code>Trust-Based Cooperation</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+FIELD_NAME vs END
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <code>FIELD_NAME</code> usa um lookahead negativo <code>(?![eE][nN][dD]\b)</code> para evitar que a keyword <code>END</code> seja capturada como nome de campo. Sem isso, <code>END ITEM</code> seria parseado como um campo chamado <code>END</code> com valor <code>ITEM</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+CONCEPT_NAME e espaços
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>CONCEPT_NAME</code> tem prioridade <code>.0</code> (a mais baixa) e aceita espaços. Isso permite conceitos como <code>Social Cohesion</code> na ontologia. Os outros tokens (<code>IDENTIFIER</code>, <code>FIELD_NAME</code>) não aceitam espaços, garantindo que a gramática não seja ambígua nos demais contextos.</p>
+</div>
+</div>
+</section>
+<section id="elementos-de-código-e-cadeia" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="elementos-de-código-e-cadeia"><span class="header-section-number">8.2</span> Elementos de código e cadeia</h3>
+<pre class="lark"><code>CHAIN_ELEMENT.2: /[\p{L}_](?:(?!-&gt;)[\p{L}\p{N}_\- ])*/u
+
+CODE_ELEMENT.2: /[\p{L}_](?:(?!,)[\p{L}\p{N}_\- ])*/u</code></pre>
+<p>Ambos aceitam espaços internos, mas param antes do seu delimitador:</p>
+<ul>
+<li><code>CHAIN_ELEMENT</code> para antes de <code>-&gt;</code> (operador de cadeia)</li>
+<li><code>CODE_ELEMENT</code> para antes de <code>,</code> (separador de lista)</li>
+</ul>
+<p>Isso permite códigos com espaços como <code>Social Cohesion</code> em listas: <code>Social Cohesion, Collective Action</code>.</p>
+</section>
+<section id="valores-e-texto" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="valores-e-texto"><span class="header-section-number">8.3</span> Valores e texto</h3>
+<pre class="lark"><code>STRING: /"[^"]*"/
+NUMBER.4: /[0-9]+(\.[0-9]+)?/
+COMPARATOR: "&gt;=" | "&lt;=" | "=" | "&gt;" | "&lt;"
+
+TEXT_LINE.3: /[^\s\n\r:][^\n\r]*/</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Token</th>
+<th>Aceita</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>STRING</code></td>
+<td>Texto entre aspas duplas</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>NUMBER</code></td>
+<td>Inteiro ou decimal</td>
+<td><code>.4</code> (alta)</td>
+</tr>
+<tr class="odd">
+<td><code>COMPARATOR</code></td>
+<td>Operadores de comparação</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>TEXT_LINE</code></td>
+<td>Qualquer texto que não começa com espaço/<code>:</code></td>
+<td><code>.3</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>TEXT_LINE</code> é o token “coringa” — captura tudo que não foi reconhecido por tokens mais específicos. A restrição <code>[^\s\n\r:]</code> no primeiro caractere evita conflito com o <code>:</code> dos campos e com indentação.</p>
+</section>
+<section id="tokens-especiais" class="level3" data-number="8.4">
+<h3 data-number="8.4" class="anchored" data-anchor-id="tokens-especiais"><span class="header-section-number">8.4</span> Tokens especiais</h3>
+<pre class="lark"><code>COMMENT: "#" /[^\n]*/
+
+NEWLINE: /(\r?\n[ \t]*)+/
+%declare _INDENT _DEDENT
+
+%ignore /[ \t]+/
+%ignore COMMENT</code></pre>
+<ul>
+<li><strong>Comentários</strong> (<code>#</code>) são ignorados pelo parser — podem aparecer em qualquer lugar.</li>
+<li><strong>NEWLINE</strong> captura quebras de linha junto com espaços/tabs iniciais da linha seguinte — isso alimenta o <code>SynesisIndenter</code> que gera os tokens <code>_INDENT</code>/<code>_DEDENT</code>.</li>
+<li><strong>Espaços e tabs</strong> são ignorados (fora do contexto de NEWLINE), tornando a indentação de conteúdo flexível.</li>
+</ul>
+</section>
+</section>
+<section id="sec-prioridades" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-prioridades"><span class="header-section-number">9</span> Prioridades — como ambiguidades são resolvidas</h2>
+<p>A tabela abaixo resume as prioridades e por que cada uma é necessária:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Token</th>
+<th>Prioridade</th>
+<th>Por que</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Keywords (<code>KW_*</code>)</td>
+<td><code>.5</code></td>
+<td>Sempre prevalecem sobre identificadores</td>
+</tr>
+<tr class="even">
+<td><code>NUMBER</code></td>
+<td><code>.4</code></td>
+<td><code>42</code> é número, não texto</td>
+</tr>
+<tr class="odd">
+<td><code>TEXT_LINE</code></td>
+<td><code>.3</code></td>
+<td>Captura texto genérico, mas cede a tokens mais específicos</td>
+</tr>
+<tr class="even">
+<td><code>CHAIN_ELEMENT</code>, <code>CODE_ELEMENT</code></td>
+<td><code>.2</code></td>
+<td>Prevalecem sobre <code>IDENTIFIER</code> em contexto de valor</td>
+</tr>
+<tr class="odd">
+<td><code>IDENTIFIER</code>, <code>FIELD_NAME</code></td>
+<td><code>.1</code></td>
+<td>Prioridade base para nomes</td>
+</tr>
+<tr class="even">
+<td><code>CONCEPT_NAME</code></td>
+<td><code>.0</code></td>
+<td>Menor prioridade — só usado quando nada mais encaixa</td>
+</tr>
+</tbody>
+</table>
+<p>Se um trecho de texto casa com múltiplos tokens, o de maior prioridade vence. Isso é o que permite à gramática LALR(1) funcionar sem ambiguidade.</p>
+</section>
+<section id="sec-indentacao" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-indentacao"><span class="header-section-number">10</span> Indentação significativa</h2>
+<p>O Synesis usa indentação significativa (como Python). O <code>SynesisIndenter</code> — um componente do lexer — processa as linhas e gera tokens <code>_INDENT</code> e <code>_DEDENT</code>:</p>
+<ol type="1">
+<li>Tabs são convertidos em 4 espaços</li>
+<li>Se uma linha tem mais indentação que a anterior → gera <code>_INDENT</code></li>
+<li>Se tem menos → gera <code>_DEDENT</code></li>
+<li>Se tem a mesma → nada</li>
+</ol>
+<p>Os tokens <code>_INDENT</code>/<code>_DEDENT</code> são declarados com <code>%declare</code> e geridos pelo Lark, não pela gramática em si. Eles aparecem nas regras como delimitadores de bloco:</p>
+<pre class="lark"><code>project_body: _INDENT project_items _DEDENT
+source_block: KW_SOURCE BIBREF NEWLINE (_INDENT ... _DEDENT)? KW_END KW_SOURCE</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Indentação inconsistente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se um arquivo mistura tabs e espaços de forma inconsistente, o <code>SynesisIndenter</code> pode gerar tokens <code>_INDENT</code>/<code>_DEDENT</code> inesperados, resultando em erros de sintaxe difíceis de diagnosticar. A normalização de tabs para 4 espaços ameniza, mas não elimina completamente esse risco.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
