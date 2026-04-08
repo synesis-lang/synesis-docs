@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Comparação de Modelos de IA para Codificação Qualitativa – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.35.2.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis para Usuários do IRaMuTeQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">Codificação com IA (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Gramática da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Guia de Erros</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">O fluxo de compilação</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li class="dropdown-header">— Visão Geral —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/show_case.html">
+ <span class="dropdown-text">O que Synesis pode expressar</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Pesquisadores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/exemplos_codificacao.html">
+ <span class="dropdown-text">Métodos de Codificação em Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA.html">
+ <span class="dropdown-text">Codificação Assistida por IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_metricas.html">
+ <span class="dropdown-text">Métricas da Pesquisa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_comparacao.html">
+ <span class="dropdown-text">Comparação de Modelos de IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Synesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/dsap.html">
+ <span class="dropdown-text">Diagnóstico Socioambiental Participativo</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Desenvolvedores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/fluxo_compilacao_interno.html">
+ <span class="dropdown-text">Por Dentro do Compilador</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/interface_lsp.html">
+ <span class="dropdown-text">A Interface LSP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#sec-caso-teste" id="toc-sec-caso-teste" class="nav-link active" data-scroll-target="#sec-caso-teste"><span class="header-section-number">1</span> O caso de teste</a>
+  <ul class="collapse">
+  <li><a href="#abstract-original-na-íntegra" id="toc-abstract-original-na-íntegra" class="nav-link" data-scroll-target="#abstract-original-na-íntegra"><span class="header-section-number">1.1</span> Abstract original (na íntegra)</a></li>
+  </ul></li>
+  <li><a href="#sec-questoes-metodologicas" id="toc-sec-questoes-metodologicas" class="nav-link" data-scroll-target="#sec-questoes-metodologicas"><span class="header-section-number">2</span> Questões metodológicas</a>
+  <ul class="collapse">
+  <li><a href="#variação-não-é-erro" id="toc-variação-não-é-erro" class="nav-link" data-scroll-target="#variação-não-é-erro"><span class="header-section-number">2.1</span> Variação não é erro</a></li>
+  <li><a href="#o-problema-da-granularidade-ontológica" id="toc-o-problema-da-granularidade-ontológica" class="nav-link" data-scroll-target="#o-problema-da-granularidade-ontológica"><span class="header-section-number">2.2</span> O problema da granularidade ontológica</a></li>
+  <li><a href="#codificação-como-processo-interpretativo" id="toc-codificação-como-processo-interpretativo" class="nav-link" data-scroll-target="#codificação-como-processo-interpretativo"><span class="header-section-number">2.3</span> Codificação como processo interpretativo</a></li>
+  <li><a href="#fatores-como-conceitos-fuzzy" id="toc-fatores-como-conceitos-fuzzy" class="nav-link" data-scroll-target="#fatores-como-conceitos-fuzzy"><span class="header-section-number">2.4</span> Fatores como conceitos fuzzy</a></li>
+  <li><a href="#critérios-de-rigor-para-a-codificação-assistida-por-ia" id="toc-critérios-de-rigor-para-a-codificação-assistida-por-ia" class="nav-link" data-scroll-target="#critérios-de-rigor-para-a-codificação-assistida-por-ia"><span class="header-section-number">2.5</span> Critérios de rigor para a codificação assistida por IA</a></li>
+  <li><a href="#trilha-de-auditoria-como-diferencial" id="toc-trilha-de-auditoria-como-diferencial" class="nav-link" data-scroll-target="#trilha-de-auditoria-como-diferencial"><span class="header-section-number">2.6</span> Trilha de auditoria como diferencial</a></li>
+  <li><a href="#limitações-técnicas" id="toc-limitações-técnicas" class="nav-link" data-scroll-target="#limitações-técnicas"><span class="header-section-number">2.7</span> Limitações técnicas</a></li>
+  </ul></li>
+  <li><a href="#sec-referencia" id="toc-sec-referencia" class="nav-link" data-scroll-target="#sec-referencia"><span class="header-section-number">3</span> A anotação de referência</a>
+  <ul class="collapse">
+  <li><a href="#eixos-temáticos-e-chains-de-referência" id="toc-eixos-temáticos-e-chains-de-referência" class="nav-link" data-scroll-target="#eixos-temáticos-e-chains-de-referência"><span class="header-section-number">3.1</span> Eixos temáticos e chains de referência</a>
+  <ul class="collapse">
+  <li><a href="#eixo-1-barreiras-à-adoção-convergência-de-3-fatores" id="toc-eixo-1-barreiras-à-adoção-convergência-de-3-fatores" class="nav-link" data-scroll-target="#eixo-1-barreiras-à-adoção-convergência-de-3-fatores"><span class="header-section-number">3.1.1</span> Eixo 1 — Barreiras à adoção (convergência de 3 fatores)</a></li>
+  <li><a href="#eixo-2-benefício-econômico-e-aceitação-social" id="toc-eixo-2-benefício-econômico-e-aceitação-social" class="nav-link" data-scroll-target="#eixo-2-benefício-econômico-e-aceitação-social"><span class="header-section-number">3.1.2</span> Eixo 2 — Benefício econômico e aceitação social</a></li>
+  <li><a href="#eixo-3-efeitos-ambientais-da-eletrificação" id="toc-eixo-3-efeitos-ambientais-da-eletrificação" class="nav-link" data-scroll-target="#eixo-3-efeitos-ambientais-da-eletrificação"><span class="header-section-number">3.1.3</span> Eixo 3 — Efeitos ambientais da eletrificação</a></li>
+  <li><a href="#eixo-4-fatores-habilitadores-da-adoção-convergência-de-4-fatores" id="toc-eixo-4-fatores-habilitadores-da-adoção-convergência-de-4-fatores" class="nav-link" data-scroll-target="#eixo-4-fatores-habilitadores-da-adoção-convergência-de-4-fatores"><span class="header-section-number">3.1.4</span> Eixo 4 — Fatores habilitadores da adoção (convergência de 4 fatores)</a></li>
+  <li><a href="#eixo-5-energia-renovável-e-sustentabilidade" id="toc-eixo-5-energia-renovável-e-sustentabilidade" class="nav-link" data-scroll-target="#eixo-5-energia-renovável-e-sustentabilidade"><span class="header-section-number">3.1.5</span> Eixo 5 — Energia renovável e sustentabilidade</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-modelos" id="toc-sec-modelos" class="nav-link" data-scroll-target="#sec-modelos"><span class="header-section-number">4</span> Modelos testados</a></li>
+  <li><a href="#sec-metodologia" id="toc-sec-metodologia" class="nav-link" data-scroll-target="#sec-metodologia"><span class="header-section-number">5</span> Metodologia de avaliação</a>
+  <ul class="collapse">
+  <li><a href="#métricas" id="toc-métricas" class="nav-link" data-scroll-target="#métricas"><span class="header-section-number">5.1</span> Métricas</a></li>
+  <li><a href="#eixos-temáticos-de-referência-checklist" id="toc-eixos-temáticos-de-referência-checklist" class="nav-link" data-scroll-target="#eixos-temáticos-de-referência-checklist"><span class="header-section-number">5.2</span> Eixos temáticos de referência (checklist)</a></li>
+  </ul></li>
+  <li><a href="#sec-analise" id="toc-sec-analise" class="nav-link" data-scroll-target="#sec-analise"><span class="header-section-number">6</span> Análise detalhada por modelo</a>
+  <ul class="collapse">
+  <li><a href="#sec-haiku" id="toc-sec-haiku" class="nav-link" data-scroll-target="#sec-haiku"><span class="header-section-number">6.1</span> Claude Haiku 4.5</a></li>
+  <li><a href="#sec-sonnet" id="toc-sec-sonnet" class="nav-link" data-scroll-target="#sec-sonnet"><span class="header-section-number">6.2</span> Claude Sonnet 4.6</a></li>
+  <li><a href="#sec-opus" id="toc-sec-opus" class="nav-link" data-scroll-target="#sec-opus"><span class="header-section-number">6.3</span> Claude Opus 4.6</a></li>
+  <li><a href="#sec-gemma4" id="toc-sec-gemma4" class="nav-link" data-scroll-target="#sec-gemma4"><span class="header-section-number">6.4</span> Gemma4:31b-cloud</a></li>
+  <li><a href="#sec-qwen" id="toc-sec-qwen" class="nav-link" data-scroll-target="#sec-qwen"><span class="header-section-number">6.5</span> Qwen 3.5:397b-cloud</a></li>
+  </ul></li>
+  <li><a href="#sec-comparacao" id="toc-sec-comparacao" class="nav-link" data-scroll-target="#sec-comparacao"><span class="header-section-number">7</span> Comparação consolidada</a>
+  <ul class="collapse">
+  <li><a href="#tabela-resumida" id="toc-tabela-resumida" class="nav-link" data-scroll-target="#tabela-resumida"><span class="header-section-number">7.1</span> Tabela resumida</a></li>
+  <li><a href="#cobertura-por-eixo-temático" id="toc-cobertura-por-eixo-temático" class="nav-link" data-scroll-target="#cobertura-por-eixo-temático"><span class="header-section-number">7.2</span> Cobertura por eixo temático</a></li>
+  <li><a href="#desempenho-comparativo-por-dimensão" id="toc-desempenho-comparativo-por-dimensão" class="nav-link" data-scroll-target="#desempenho-comparativo-por-dimensão"><span class="header-section-number">7.3</span> Desempenho comparativo por dimensão</a></li>
+  </ul></li>
+  <li><a href="#sec-observacoes" id="toc-sec-observacoes" class="nav-link" data-scroll-target="#sec-observacoes"><span class="header-section-number">8</span> Observações qualitativas</a>
+  <ul class="collapse">
+  <li><a href="#seleção-de-relações" id="toc-seleção-de-relações" class="nav-link" data-scroll-target="#seleção-de-relações"><span class="header-section-number">8.1</span> Seleção de relações</a></li>
+  <li><a href="#decomposição-paralela-vs.-compressão" id="toc-decomposição-paralela-vs.-compressão" class="nav-link" data-scroll-target="#decomposição-paralela-vs.-compressão"><span class="header-section-number">8.2</span> Decomposição paralela vs.&nbsp;compressão</a></li>
+  <li><a href="#formato-e-encoding" id="toc-formato-e-encoding" class="nav-link" data-scroll-target="#formato-e-encoding"><span class="header-section-number">8.3</span> Formato e encoding</a></li>
+  </ul></li>
+  <li><a href="#sec-ranking" id="toc-sec-ranking" class="nav-link" data-scroll-target="#sec-ranking"><span class="header-section-number">9</span> Ranking final</a></li>
+  <li><a href="#sec-conclusoes" id="toc-sec-conclusoes" class="nav-link" data-scroll-target="#sec-conclusoes"><span class="header-section-number">10</span> Conclusões</a>
+  <ul class="collapse">
+  <li><a href="#recomendações-práticas" id="toc-recomendações-práticas" class="nav-link" data-scroll-target="#recomendações-práticas"><span class="header-section-number">10.1</span> Recomendações práticas</a></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Comparação de Modelos de IA para Codificação Qualitativa</h1>
+<p class="subtitle lead">Avaliação sistemática de cinco modelos LLM na geração de anotações Synesis</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A codificação qualitativa assistida por IA depende criticamente do modelo de linguagem utilizado. Modelos diferentes produzem anotações com níveis distintos de precisão relacional, cobertura temática e conformidade sintática. Este documento apresenta uma avaliação comparativa de cinco modelos LLM aplicados ao mesmo abstract científico, usando como referência uma anotação-padrão revisada manualmente.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dados reais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todos os dados apresentados aqui são reais — extraídos de um artigo científico publicado e processados pelo <code>synesis-coder</code> com os mesmos prompts e template. A anotação de referência foi revisada manualmente por um pesquisador.</p>
+</div>
+</div>
+<hr>
+<section id="sec-caso-teste" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> O caso de teste</h1>
+<p>O abstract utilizado como caso de teste pertence ao artigo de <span class="citation" data-cites="agaton2020">Agaton et al. (<a href="#ref-agaton2020" role="doc-biblioref">2020</a>)</span> sobre análises socioeconômicas e ambientais de transporte público sustentável nas Filipinas.</p>
+<section id="abstract-original-na-íntegra" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="abstract-original-na-íntegra"><span class="header-section-number">1.1</span> Abstract original (na íntegra)</h2>
+<blockquote class="blockquote">
+<p>Electric vehicles are regarded as energy transition technology towards more sustainable and environment-friendly transportation systems. Despite the benefits of reducing the dependence on fossil fuels and greenhouse gas emissions, the adoption of electric vehicles faces several obstacles ranging from financing issues, government policies, and public acceptance. This study aims to identify the economic, environmental, and social impact of the adoption of electric vehicles for public transportation. Using the Philippines as a case study, the findings highlight the economic advantage of investing in electric public transportation with high public acceptance. The results further identify significant decrease in air pollution, reduction of greenhouse gas emissions and encourage lowering the reliance on imported fossil fuels by shifting the public transport from conventional to electric transport system. This study recommends stricter implementation of government policies on modernized public transportation, stronger government support on financing mechanisms, establishment of charging stations in public and private terminals, and boosting programs for developing local-made electric vehicles. To make electric vehicle more environment-friendly, the government must accelerate the energy transition by increasing the electricity share from renewable sources and investing in more sustainable sources of energy.</p>
+</blockquote>
+<p>Este abstract foi escolhido por conter múltiplos mecanismos causais — barreiras à adoção, relações habilitadoras, efeitos ambientais e recomendações políticas — oferecendo um campo de teste rico para avaliar a capacidade analítica de cada modelo.</p>
+<hr>
+</section>
+</section>
+<section id="sec-questoes-metodologicas" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Questões metodológicas</h1>
+<p>Antes de apresentar os resultados comparativos, é necessário contextualizar o que significa “variação” na codificação qualitativa — e por que diferenças entre modelos (ou entre codificadores humanos) não invalidam necessariamente a análise.</p>
+<section id="variação-não-é-erro" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="variação-não-é-erro"><span class="header-section-number">2.1</span> Variação não é erro</h2>
+<p>A pesquisa qualitativa e, consequentemente, a busca por objetividade e rigor, envolve uma série de questões. Em primeiro lugar, é preciso considerar que o fato de haverem destaques e codificações diferenciadas <strong>não invalida o esforço de análise qualitativa</strong>. Um dos pontos principais, como veremos a seguir, é a transparência e a rastreabilidade dos dados. Assim como toda pesquisa — seja ela qualitativa ou quantitativa — requer ciclos de revisão constantes, a codificação qualitativa assistida por IA não está isenta da mesma abordagem.</p>
+<p>A análise dos itens extraídos pelos modelos revela um esforço sofisticado para traduzir o texto em cadeias de relações causais e lógicas (chains), conforme as instruções de busca por relações causais no prompt (GUIDELINES). No entanto, embora a extração capture os temas do abstract, a precisão analítica oscila. Em vários momentos, a interpretação extrapola o texto original, forçando relações de causalidade e sequenciamento onde o texto apresenta apenas correlação ou listas paralelas.</p>
+</section>
+<section id="o-problema-da-granularidade-ontológica" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="o-problema-da-granularidade-ontológica"><span class="header-section-number">2.2</span> O problema da granularidade ontológica</h2>
+<p>O ideal seria que os códigos (fatores) atribuídos ao texto fossem retirados com a mesma nomenclatura utilizada no contexto original. Todavia, em um corpus extenso isso geraria alto grau de granularidade dos fatores, inviabilizando a análise. Neste caso, a aplicação de técnicas de <em>topic modelling</em> é fundamental para agrupar conceitos semanticamente próximos sob rótulos que preservem o sentido sem proliferar indefinidamente.</p>
+<p>No Synesis, o template define regras de <strong>controle de granularidade</strong> (<em>Factor Granularity Control</em>) que orientam tanto o pesquisador humano quanto o modelo de IA sobre quando preservar a especificidade de um termo e quando generalizá-lo. Ainda assim, como veremos nos resultados, cada modelo toma decisões diferentes sobre onde traçar essa fronteira.</p>
+</section>
+<section id="codificação-como-processo-interpretativo" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="codificação-como-processo-interpretativo"><span class="header-section-number">2.3</span> Codificação como processo interpretativo</h2>
+<p>Segundo <span class="citation" data-cites="saldana2009">Saldaña (<a href="#ref-saldana2009" role="doc-biblioref">2009, p. 3</a>)</span>, “na investigação qualitativa um código é na maioria das vezes uma palavra ou frase curta que simbolicamente confere um sumativo, uma saliência, que captura a essência, e/ou evoca um atributo para uma porção de dados visuais ou baseados em linguagem.” É neste sentido que utilizamos o termo <em>fator</em> no Synesis.</p>
+<p>Crucialmente, o processo de codificação é diretamente influenciado pela perspectiva analítica de cada pesquisador; um mesmo conjunto de dados pode ser codificado de diversas maneiras diferentes <span class="citation" data-cites="saldana2009">(<a href="#ref-saldana2009" role="doc-biblioref">Saldaña, 2009, p. 7–8</a>)</span>. Isso se aplica igualmente a modelos de IA: cada modelo possui vieses interpretativos próprios que afetam a seleção de excertos, a nomeação de conceitos e a escolha de relações.</p>
+</section>
+<section id="fatores-como-conceitos-fuzzy" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="fatores-como-conceitos-fuzzy"><span class="header-section-number">2.4</span> Fatores como conceitos fuzzy</h2>
+<p>A lógica de conjuntos difusos (<em>fuzzy sets</em>), introduzida por <span class="citation" data-cites="zadeh1965">Zadeh (<a href="#ref-zadeh1965" role="doc-biblioref">1965</a>)</span>, oferece uma base teórica para compreender por que a variação na codificação não é arbitrária. Segundo Zadeh, “as classes de objetos encontrados no mundo físico real não apresentam critérios de agrupamento precisamente definidos” <span class="citation" data-cites="zadeh1965">(<a href="#ref-zadeh1965" role="doc-biblioref">Zadeh, 1965, p. 338</a>)</span>. Diferente da álgebra booleana (onde um elemento pertence ou não a um conjunto), na lógica difusa o grau de pertença é um continuum.</p>
+<p>Na codificação qualitativa, termos similares — como <em>uso balneário</em>, <em>acesso à praia</em>, <em>banho de mar</em> — podem ser associados ao mesmo fator (Balneabilidade) com graus de afinidade variáveis, sem que isso constitua arbitrariedade. <span class="citation" data-cites="ragin2008">Ragin (<a href="#ref-ragin2008" role="doc-biblioref">2008</a>)</span>, aplicando essa lógica à sociologia, argumenta que “a análise qualitativa trata fundamentalmente de se estabelecer relações” <span class="citation" data-cites="ragin2008">(<a href="#ref-ragin2008" role="doc-biblioref">Ragin, 2008, p. 2</a>)</span> entre conjuntos teóricos, e que a atenção a conexões consistentes é a “pedra angular da técnica comumente conhecida como indução analítica” <span class="citation" data-cites="ragin2008">(<a href="#ref-ragin2008" role="doc-biblioref">Ragin, 2008, p. 2</a>)</span>.</p>
+<p>Isso é diretamente relevante para esta comparação: quando dois modelos atribuem nomes diferentes a um mesmo conceito (e.g., <code>Financial_Barrier</code> vs.&nbsp;<code>Financing</code>), a questão não é qual nome está “certo”, mas sim qual preserva melhor a função do conceito dentro da rede de relações do projeto.</p>
+</section>
+<section id="critérios-de-rigor-para-a-codificação-assistida-por-ia" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="critérios-de-rigor-para-a-codificação-assistida-por-ia"><span class="header-section-number">2.5</span> Critérios de rigor para a codificação assistida por IA</h2>
+<p><span class="citation" data-cites="shenton2004">Shenton (<a href="#ref-shenton2004" role="doc-biblioref">2004</a>)</span> propõe quatro critérios para fundamentar a pesquisa qualitativa, adaptados dos critérios tradicionais das ciências naturais:</p>
+<ul>
+<li><strong>Credibilidade</strong> (em vez de validade): quão congruentes são os achados com a realidade? Na codificação assistida por IA, isso se manifesta na <strong>rastreabilidade</strong> de cada chain ao texto-fonte — nenhum dos modelos testados alucionou, o que é um indicador positivo de credibilidade.</li>
+<li><strong>Transferibilidade</strong> (em vez de generalização): os resultados são aplicáveis a outros contextos? A comparação com múltiplos modelos demonstra que os achados estruturais (barreiras, habilitadores, efeitos ambientais) são consistentes entre modelos, mesmo que a granularidade varie.</li>
+<li><strong>Confiabilidade</strong> (em vez de reprodutibilidade): o processo é explícito o suficiente para ser replicado? O uso de prompts padronizados, templates declarativos e linhas de comando documentadas garante confiabilidade processual.</li>
+<li><strong>Confirmabilidade</strong> (em vez de objetividade): as descobertas refletem os dados e não o viés do pesquisador? Nas palavras de Shenton, “as crenças que sustentam as decisões tomadas e os métodos adotados devem ser reconhecidas no relatório de pesquisa” <span class="citation" data-cites="shenton2004">(<a href="#ref-shenton2004" role="doc-biblioref">Shenton, 2004, p. 72</a>)</span>. No contexto de IA, isso se traduz na <strong>trilha de auditoria</strong> — o registro de cada decisão interpretativa, que no Synesis é materializado pelo campo <code>note</code> de cada ITEM.</li>
+</ul>
+</section>
+<section id="trilha-de-auditoria-como-diferencial" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="trilha-de-auditoria-como-diferencial"><span class="header-section-number">2.6</span> Trilha de auditoria como diferencial</h2>
+<p>A trilha de auditoria é central para conferir rigor à codificação:</p>
+<blockquote class="blockquote">
+<p>Os pesquisadores qualitativos usam a trilha de auditoria para estabelecer o rigor de um estudo, fornecendo os detalhes da análise de dados e algumas das decisões que os levaram aos resultados. […] Este registro fornece evidências de que os dados brutos utilizados passaram por um processo de análise, redução e síntese. <span class="citation" data-cites="wolf2003">(<a href="#ref-wolf2003" role="doc-biblioref">Wolf, 2003, p. 175</a>)</span></p>
+</blockquote>
+<p>No Synesis, a trilha de auditoria opera em múltiplos níveis: no campo <code>note</code> de cada ITEM (justificando a interpretação), nos memorandos de fatores (documentando fusões e divisões), e na ontologia (registrando a classificação modal de cada conceito). Isso significa que mesmo quando dois modelos produzem anotações diferentes, <strong>ambas são auditáveis</strong> — o pesquisador pode rastrear cada decisão e avaliá-la criticamente.</p>
+</section>
+<section id="limitações-técnicas" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="limitações-técnicas"><span class="header-section-number">2.7</span> Limitações técnicas</h2>
+<p>A codificação assistida por IA envolve a aplicação de modelos avançados de LLM que ainda precisam ser calibrados para domínios específicos. Uma estratégia futura pode envolver a criação de corpus amplamente revisados por pesquisadores competentes, utilizados para calibrar modelos, promovendo melhoras significativas em termos de acurácia hermenêutica. É preciso, portanto, considerar as conquistas em termos de qualidade ao mesmo tempo em que se busca aprimoramento constante.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Implicação para a leitura dos resultados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As diferenças quantitativas entre modelos (número de ITEMs, cobertura de chains) devem ser lidas à luz desta discussão: <strong>mais ITEMs não significa necessariamente melhor análise</strong>, assim como <strong>menos chains não significa necessariamente pior cobertura</strong>. O critério decisivo é a <strong>qualidade interpretativa</strong> — a capacidade de identificar mecanismos causais corretos, selecionar relações adequadas e produzir notas analíticas que agreguem valor ao pesquisador.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-referencia" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> A anotação de referência</h1>
+<p>A anotação-padrão (<code>Padrão/agaton2020.syn</code>) foi produzida revisada manualmente e contém <strong>12 ITEMs</strong> com <strong>13 cadeias causais (chains)</strong>, organizadas em cinco eixos temáticos.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que 12 ITEMs?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A anotação de referência segue rigorosamente as GUIDELINES do template: fatores paralelos que convergem independentemente sobre o mesmo resultado são decompostos em ITEMs separados, cada um com seu próprio <code>note</code> descrevendo o mecanismo individual. Isso reflete o princípio de <strong>cadeias paralelas vs.&nbsp;sequenciais</strong> definido no template.</p>
+</div>
+</div>
+<section id="eixos-temáticos-e-chains-de-referência" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="eixos-temáticos-e-chains-de-referência"><span class="header-section-number">3.1</span> Eixos temáticos e chains de referência</h2>
+<section id="eixo-1-barreiras-à-adoção-convergência-de-3-fatores" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="eixo-1-barreiras-à-adoção-convergência-de-3-fatores"><span class="header-section-number">3.1.1</span> Eixo 1 — Barreiras à adoção (convergência de 3 fatores)</h3>
+<p>Três fatores independentes restringem a adoção de veículos elétricos. O primeiro ITEM carrega a flag <code>*complex*</code> indicando a convergência:</p>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 36%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Chain</th>
+<th>Relação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>Financial_Barrier -&gt; CONSTRAINS -&gt; Technology_Adoption</code></td>
+<td>CONSTRAINS</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>Policy -&gt; CONSTRAINS -&gt; Technology_Adoption</code></td>
+<td>CONSTRAINS</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>Public_Acceptance -&gt; CONSTRAINS -&gt; Technology_Adoption</code></td>
+<td>CONSTRAINS</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="eixo-2-benefício-econômico-e-aceitação-social" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="eixo-2-benefício-econômico-e-aceitação-social"><span class="header-section-number">3.1.2</span> Eixo 2 — Benefício econômico e aceitação social</h3>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 36%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Chain</th>
+<th>Relação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td><code>Economic_Benefit -&gt; RELATES-TO -&gt; Public_Acceptance</code></td>
+<td>RELATES-TO</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td><code>Economic_Advantage -&gt; RELATES-TO -&gt; Public_Acceptance</code></td>
+<td>RELATES-TO</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="eixo-3-efeitos-ambientais-da-eletrificação" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="eixo-3-efeitos-ambientais-da-eletrificação"><span class="header-section-number">3.1.3</span> Eixo 3 — Efeitos ambientais da eletrificação</h3>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 36%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Chain</th>
+<th>Relação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6</td>
+<td><code>Transport_Electrification -&gt; INFLUENCES -&gt; Air_Pollution_Reduction</code></td>
+<td>INFLUENCES</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td><code>Transport_Electrification -&gt; INFLUENCES -&gt; Fossil_Fuel_Dependence_Reduction</code></td>
+<td>INFLUENCES</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="eixo-4-fatores-habilitadores-da-adoção-convergência-de-4-fatores" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="eixo-4-fatores-habilitadores-da-adoção-convergência-de-4-fatores"><span class="header-section-number">3.1.4</span> Eixo 4 — Fatores habilitadores da adoção (convergência de 4 fatores)</h3>
+<p>O primeiro ITEM deste eixo carrega a flag <code>*complex*</code>:</p>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 36%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Chain</th>
+<th>Relação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8</td>
+<td><code>Policy_Implementation -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>ENABLES</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td><code>Financing_Support -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>ENABLES</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td><code>Charging_Infrastructure -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>ENABLES</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td><code>Local_Production -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>ENABLES</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="eixo-5-energia-renovável-e-sustentabilidade" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="eixo-5-energia-renovável-e-sustentabilidade"><span class="header-section-number">3.1.5</span> Eixo 5 — Energia renovável e sustentabilidade</h3>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 36%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Chain</th>
+<th>Relação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>12</td>
+<td><code>Renewable_Electricity -&gt; ENABLES -&gt; Environmental_Sustainability</code></td>
+<td>ENABLES</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td><code>Sustainable_Energy_Investment -&gt; ENABLES -&gt; Renewable_Electricity</code></td>
+<td>ENABLES (<em>borderline</em>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="sec-modelos" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Modelos testados</h1>
+<p>Cinco modelos de linguagem foram avaliados, cobrindo três famílias:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Modelo</th>
+<th>Família</th>
+<th>Tipo</th>
+<th>Acesso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Claude Haiku 4.5</td>
+<td>Anthropic</td>
+<td>Proprietário</td>
+<td>API</td>
+</tr>
+<tr class="even">
+<td>Claude Sonnet 4.6</td>
+<td>Anthropic</td>
+<td>Proprietário</td>
+<td>API</td>
+</tr>
+<tr class="odd">
+<td>Claude Opus 4.6</td>
+<td>Anthropic</td>
+<td>Proprietário</td>
+<td>API</td>
+</tr>
+<tr class="even">
+<td>Gemma4:31b-cloud</td>
+<td>Google (Ollama)</td>
+<td>Open-weight</td>
+<td>Ollama Cloud</td>
+</tr>
+<tr class="odd">
+<td>Qwen 3.5:397b-cloud</td>
+<td>Alibaba (Ollama)</td>
+<td>Open-weight</td>
+<td>Ollama Cloud</td>
+</tr>
+</tbody>
+</table>
+<p>Todos os modelos receberam exatamente o mesmo input: o abstract completo, o mesmo <code>--project</code> (com ontologia e template idênticos), e a mesma <code>--bibref</code>. O comando utilizado foi <code>synesis-coder item --format plain</code>.</p>
+<hr>
+</section>
+<section id="sec-metodologia" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Metodologia de avaliação</h1>
+<section id="métricas" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="métricas"><span class="header-section-number">5.1</span> Métricas</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 39%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Definição</th>
+<th>Escala</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cobertura temática</strong></td>
+<td>Quantos dos 5 eixos temáticos da referência foram identificados</td>
+<td>0–5</td>
+</tr>
+<tr class="even">
+<td><strong>Cobertura de chains</strong></td>
+<td>Quantas das 13 chains da referência foram reproduzidas (relação + direção corretas)</td>
+<td>0–13</td>
+</tr>
+<tr class="odd">
+<td><strong>Precisão relacional</strong></td>
+<td>Percentual de chains geradas pelo modelo que estão corretas (relação + direção)</td>
+<td>0–100%</td>
+</tr>
+<tr class="even">
+<td><strong>Decomposição paralela</strong></td>
+<td>O modelo decompôs fatores paralelos em ITEMs separados (como a referência)?</td>
+<td>Sim/Parcial/Não</td>
+</tr>
+<tr class="odd">
+<td><strong>Cadeias multi-hop</strong></td>
+<td>Capacidade de gerar cadeias sequenciais (A -&gt; R -&gt; B -&gt; R -&gt; C)</td>
+<td>Contagem</td>
+</tr>
+<tr class="even">
+<td><strong>Formato válido</strong></td>
+<td>Conformidade com a sintaxe Synesis (sem aspas indevidas, campos corretos)</td>
+<td>Válido/Inválido</td>
+</tr>
+<tr class="odd">
+<td><strong>Qualidade analítica</strong></td>
+<td>Profundidade interpretativa nos campos <code>note</code></td>
+<td>1–5</td>
+</tr>
+<tr class="even">
+<td><strong>Alucinação</strong></td>
+<td>Informação ausente no texto-fonte mas presente na anotação</td>
+<td>Contagem</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="eixos-temáticos-de-referência-checklist" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="eixos-temáticos-de-referência-checklist"><span class="header-section-number">5.2</span> Eixos temáticos de referência (checklist)</h2>
+<ol type="1">
+<li>Barreiras à adoção (Financial_Barrier, Policy, Public_Acceptance → CONSTRAINS)</li>
+<li>Relação benefício econômico ↔︎ aceitação social (RELATES-TO)</li>
+<li>Efeitos ambientais da eletrificação (INFLUENCES)</li>
+<li>Fatores habilitadores (Policy, Financing, Infrastructure, Local_Production → ENABLES)</li>
+<li>Energia renovável → sustentabilidade (ENABLES)</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="sec-analise" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Análise detalhada por modelo</h1>
+<section id="sec-haiku" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-haiku"><span class="header-section-number">6.1</span> Claude Haiku 4.5</h2>
+<p><strong>ITEMs gerados:</strong> 5 | <strong>Chains geradas:</strong> 5</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-haiku" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-haiku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-haiku">graph LR
+    FB[Financing_Barrier] --&gt;|CONSTRAINS| EA[EV_Adoption]
+    GS[Government_Support] --&gt;|ENABLES| CI[Charging_Infrastructure]
+    CI --&gt;|ENABLES| EA
+    PA[Public_Acceptance] --&gt;|INFLUENCES| EA
+    RE[Renewable_Energy] --&gt;|ENABLES| EB[Environmental_Benefit]
+    EA --&gt;|INFLUENCES| ER[Emission_Reduction]
+    style PA stroke:#e74c3c,stroke-width:2px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-haiku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Grafo de relações — Claude Haiku 4.5
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chain gerada</th>
+<th>Eixo correspondente</th>
+<th>Avaliação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Financing_Barrier -&gt; CONSTRAINS -&gt; EV_Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Government_Support -&gt; ENABLES -&gt; Charging_Infrastructure -&gt; ENABLES -&gt; EV_Adoption</code></td>
+<td>Eixo 4 (parcial)</td>
+<td>Parcial — captura 2 de 4 fatores habilitadores</td>
+</tr>
+<tr class="odd">
+<td><code>Public_Acceptance -&gt; INFLUENCES -&gt; EV_Adoption</code></td>
+<td>Eixo 1 (relação errada)</td>
+<td><strong>Incorreto</strong> — deveria ser CONSTRAINS</td>
+</tr>
+<tr class="even">
+<td><code>Renewable_Energy -&gt; ENABLES -&gt; Environmental_Benefit</code></td>
+<td>Eixo 5</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>EV_Adoption -&gt; INFLUENCES -&gt; Emission_Reduction</code></td>
+<td>Eixo 3 (variante)</td>
+<td>Válido</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cobertura temática:</strong> 4/5 eixos (falta Eixo 2: benefício econômico ↔︎ aceitação) <strong>Cobertura de chains:</strong> 3/13 chains exatas <strong>Precisão relacional:</strong> 3/5 chains corretas = 60% <strong>Decomposição paralela:</strong> Não — agrupou barreiras em ITEM único <strong>Formato:</strong> Válido <strong>Qualidade analítica:</strong> 3/5 — notas descritivas mas pouco interpretativas <strong>Alucinação:</strong> 0</p>
+<hr>
+</section>
+<section id="sec-sonnet" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-sonnet"><span class="header-section-number">6.2</span> Claude Sonnet 4.6</h2>
+<p><strong>ITEMs gerados:</strong> 5 | <strong>Chains geradas:</strong> 5</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-sonnet" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sonnet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-sonnet">graph LR
+    FB[Financial_Barrier] --&gt;|CONSTRAINS| A[Adoption]
+    EB1[Economic_Benefit] --&gt;|INFLUENCES| A
+    A --&gt;|INFLUENCES| ER[Emission_Reduction]
+    GS[Government_Support] --&gt;|ENABLES| A
+    RE[Renewable_Energy] --&gt;|ENABLES| EVB[Environmental_Benefit]
+    EVB --&gt;|INFLUENCES| A
+    EB2[Economic_Benefit] --&gt;|INFLUENCES| PA[Public_Acceptance]
+    style GS stroke:#e74c3c,stroke-width:2px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sonnet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Grafo de relações — Claude Sonnet 4.6
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chain gerada</th>
+<th>Eixo correspondente</th>
+<th>Avaliação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Financial_Barrier -&gt; CONSTRAINS -&gt; Adoption</code></td>
+<td>Eixo 1 (1 de 3)</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Economic_Benefit -&gt; INFLUENCES -&gt; Adoption -&gt; INFLUENCES -&gt; Emission_Reduction</code></td>
+<td>Eixo 2+3 (mistura)</td>
+<td>Parcial — relação econômica correta mas encadeia com emissões</td>
+</tr>
+<tr class="odd">
+<td><code>Government_Support -&gt; ENABLES -&gt; Adoption</code></td>
+<td>Eixo 4 (simplificada)</td>
+<td>Parcial — perde a cadeia sequencial e 3 dos 4 fatores</td>
+</tr>
+<tr class="even">
+<td><code>Renewable_Energy -&gt; ENABLES -&gt; Environmental_Benefit -&gt; INFLUENCES -&gt; Adoption</code></td>
+<td>Eixo 5 (estendida)</td>
+<td>Correto + extensão válida</td>
+</tr>
+<tr class="odd">
+<td><code>Economic_Benefit -&gt; INFLUENCES -&gt; Public_Acceptance</code></td>
+<td>Eixo 2</td>
+<td>Correto (mas RELATES-TO na referência)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cobertura temática:</strong> 4/5 eixos (Eixo 1 incompleto: só Financial_Barrier) <strong>Cobertura de chains:</strong> 2/13 chains exatas <strong>Precisão relacional:</strong> 3/5 chains corretas = 60% <strong>Decomposição paralela:</strong> Não — não decompôs barreiras nem fatores habilitadores <strong>Formato:</strong> <strong>Inválido</strong> — aspas duplas no campo <code>text</code>; caracteres em-dash corrompidos (ÔÇö) <strong>Qualidade analítica:</strong> 4/5 — notas interpretativas ricas; uso adequado de <code>*complex*</code> e <code>*borderline*</code> <strong>Alucinação:</strong> 0</p>
+<hr>
+</section>
+<section id="sec-opus" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-opus"><span class="header-section-number">6.3</span> Claude Opus 4.6</h2>
+<p><strong>ITEMs gerados:</strong> 12 | <strong>Chains geradas:</strong> 13</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-opus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-opus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-opus">graph LR
+    FB[Financial_Barrier] --&gt;|CONSTRAINS| TA[Technology_Adoption]
+    PO[Policy] --&gt;|CONSTRAINS| TA
+    PA[Public_Acceptance] --&gt;|CONSTRAINS| TA
+    EB[Economic_Benefit] --&gt;|RELATES-TO| PA
+    EA[Economic_Advantage] --&gt;|RELATES-TO| PA
+    TE1[Transport_Electrification] --&gt;|INFLUENCES| APR[Air_Pollution_Reduction]
+    TE2[Transport_Electrification] --&gt;|INFLUENCES| FFR[Fossil_Fuel_Dependence_Reduction]
+    PI[Policy_Implementation] --&gt;|ENABLES| TA
+    FS[Financing_Support] --&gt;|ENABLES| TA
+    ChI[Charging_Infrastructure] --&gt;|ENABLES| TA
+    LP[Local_Production] --&gt;|ENABLES| TA
+    REl[Renewable_Electricity] --&gt;|ENABLES| ES[Environmental_Sustainability]
+    SEI[Sustainable_Energy_Investment] --&gt;|ENABLES| REl
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-opus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Grafo de relações — Claude Opus 4.6
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Correspondência com a referência
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O Opus 4.6 é o <strong>único modelo que reproduziu a estrutura completa da anotação de referência</strong>: 12 ITEMs, 13 chains, decomposição paralela em todos os eixos, e uso correto de RELATES-TO para a relação benefício econômico ↔︎ aceitação social.</p>
+</div>
+</div>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chain gerada</th>
+<th>Eixo correspondente</th>
+<th>Avaliação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Financial_Barrier -&gt; CONSTRAINS -&gt; Technology_Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Policy -&gt; CONSTRAINS -&gt; Technology_Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Public_Acceptance -&gt; CONSTRAINS -&gt; Technology_Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Economic_Benefit -&gt; RELATES-TO -&gt; Public_Acceptance</code></td>
+<td>Eixo 2</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Economic_Advantage -&gt; RELATES-TO -&gt; Public_Acceptance</code></td>
+<td>Eixo 2</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Transport_Electrification -&gt; INFLUENCES -&gt; Air_Pollution_Reduction</code></td>
+<td>Eixo 3</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Transport_Electrification -&gt; INFLUENCES -&gt; Fossil_Fuel_Dependence_Reduction</code></td>
+<td>Eixo 3</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Policy_Implementation -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>Eixo 4</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Financing_Support -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>Eixo 4</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Charging_Infrastructure -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>Eixo 4</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Local_Production -&gt; ENABLES -&gt; Technology_Adoption</code></td>
+<td>Eixo 4</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Renewable_Electricity -&gt; ENABLES -&gt; Environmental_Sustainability</code></td>
+<td>Eixo 5</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Sustainable_Energy_Investment -&gt; ENABLES -&gt; Renewable_Electricity</code></td>
+<td>Eixo 5</td>
+<td>Correto</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cobertura temática:</strong> 5/5 eixos (100%) <strong>Cobertura de chains:</strong> 13/13 chains (100%) <strong>Precisão relacional:</strong> 13/13 = 100% <strong>Decomposição paralela:</strong> Sim — decomposição completa em todos os eixos <strong>Formato:</strong> Válido <strong>Qualidade analítica:</strong> 5/5 — notas densas, uso correto de <code>*complex*</code> e <code>*borderline*</code> <strong>Alucinação:</strong> 0</p>
+<hr>
+</section>
+<section id="sec-gemma4" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-gemma4"><span class="header-section-number">6.4</span> Gemma4:31b-cloud</h2>
+<p><strong>ITEMs gerados:</strong> 5 | <strong>Chains geradas:</strong> 5 (sendo 1 multi-hop)</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-gemma4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gemma4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-gemma4">graph LR
+    F[Financing] --&gt;|CONSTRAINS| A[Adoption]
+    PO[Policy] --&gt;|CONSTRAINS| A
+    PA[Public_Acceptance] --&gt;|ENABLES| A
+    PO2[Policy] --&gt;|ENABLES| FI[Financing]
+    FI --&gt;|ENABLES| D[Deployment]
+    RE[Renewable_Energy] --&gt;|ENABLES| EB[Environmental_Benefit]
+    style PA stroke:#e74c3c,stroke-width:2px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gemma4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4: Grafo de relações — Gemma4:31b-cloud
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chain gerada</th>
+<th>Eixo correspondente</th>
+<th>Avaliação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Financing -&gt; CONSTRAINS -&gt; Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Policy -&gt; CONSTRAINS -&gt; Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Public_Acceptance -&gt; ENABLES -&gt; Adoption</code></td>
+<td>Eixo 1 (relação invertida)</td>
+<td><strong>Incorreto</strong> — o texto fala de obstáculos; deveria ser CONSTRAINS</td>
+</tr>
+<tr class="even">
+<td><code>Policy -&gt; ENABLES -&gt; Financing -&gt; ENABLES -&gt; Deployment</code></td>
+<td>Eixo 4 (parcial, multi-hop)</td>
+<td>Parcial — captura 2 de 4 fatores habilitadores</td>
+</tr>
+<tr class="odd">
+<td><code>Renewable_Energy -&gt; ENABLES -&gt; Environmental_Benefit</code></td>
+<td>Eixo 5</td>
+<td>Correto</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cobertura temática:</strong> 3/5 eixos (faltam Eixos 2 e 3) <strong>Cobertura de chains:</strong> 3/13 chains exatas <strong>Precisão relacional:</strong> 4/5 chains corretas = 80% (mas o erro em Public_Acceptance é grave) <strong>Decomposição paralela:</strong> Parcial — decompôs barreiras (3 ITEMs) mas não os fatores habilitadores <strong>Formato:</strong> <strong>Inválido</strong> — aspas simples no campo <code>text</code> <strong>Qualidade analítica:</strong> 3.5/5 — notas competentes; referência a convergência adequada <strong>Alucinação:</strong> 0</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Erro semântico crítico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O Gemma4 classificou <code>Public_Acceptance -&gt; ENABLES -&gt; Adoption</code> quando o texto original afirma explicitamente que a aceitação pública é um <strong>obstáculo</strong> (“faces several obstacles ranging from… public acceptance”). Este erro inverte o sentido analítico da relação.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-qwen" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="sec-qwen"><span class="header-section-number">6.5</span> Qwen 3.5:397b-cloud</h2>
+<p><strong>ITEMs gerados:</strong> 6 | <strong>Chains geradas:</strong> 6</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-qwen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qwen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-qwen">graph LR
+    F[Financing] --&gt;|CONSTRAINS| A[Adoption]
+    PO[Policy] --&gt;|CONSTRAINS| A
+    PA[Public_Acceptance] --&gt;|CONSTRAINS| A
+    PA --&gt;|ENABLES| I[Investment]
+    TS[Technology_Substitution] --&gt;|INFLUENCES| ER[Emission_Reduction]
+    RE[Renewable_Energy] --&gt;|ENABLES| EB[Environmental_Benefit]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qwen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5: Grafo de relações — Qwen 3.5:397b-cloud
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="small">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chain gerada</th>
+<th>Eixo correspondente</th>
+<th>Avaliação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Financing -&gt; CONSTRAINS -&gt; Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Policy -&gt; CONSTRAINS -&gt; Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="odd">
+<td><code>Public_Acceptance -&gt; CONSTRAINS -&gt; Adoption</code></td>
+<td>Eixo 1</td>
+<td>Correto</td>
+</tr>
+<tr class="even">
+<td><code>Public_Acceptance -&gt; ENABLES -&gt; Investment</code></td>
+<td>Eixo 2 (variante)</td>
+<td>Parcial — captura a relação social→econômica mas inverte a direção</td>
+</tr>
+<tr class="odd">
+<td><code>Technology_Substitution -&gt; INFLUENCES -&gt; Emission_Reduction</code></td>
+<td>Eixo 3 (variante)</td>
+<td>Válido</td>
+</tr>
+<tr class="even">
+<td><code>Renewable_Energy -&gt; ENABLES -&gt; Environmental_Benefit</code></td>
+<td>Eixo 5</td>
+<td>Correto</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cobertura temática:</strong> 4/5 eixos (falta Eixo 4: fatores habilitadores) <strong>Cobertura de chains:</strong> 4/13 chains exatas <strong>Precisão relacional:</strong> 5/6 chains corretas = 83% <strong>Decomposição paralela:</strong> Sim para barreiras (3 ITEMs com CONSTRAINS) — não para habilitadores <strong>Formato:</strong> Válido <strong>Qualidade analítica:</strong> 3.5/5 — notas competentes mas nenhuma cadeia multi-hop <strong>Alucinação:</strong> 0</p>
+<hr>
+</section>
+</section>
+<section id="sec-comparacao" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Comparação consolidada</h1>
+<section id="tabela-resumida" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="tabela-resumida"><span class="header-section-number">7.1</span> Tabela resumida</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 16%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th style="text-align: center;">Haiku</th>
+<th style="text-align: center;">Sonnet</th>
+<th style="text-align: center;"><strong>Opus</strong></th>
+<th style="text-align: center;">Gemma4</th>
+<th style="text-align: center;">Qwen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ITEMs gerados</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>12</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td><strong>Chains geradas</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>13</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td><strong>Cobertura de eixos</strong> (0–5)</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td><strong>Cobertura de chains</strong> (0–13)</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><strong>13</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td><strong>Precisão relacional</strong></td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;"><strong>100%</strong></td>
+<td style="text-align: center;">80%</td>
+<td style="text-align: center;">83%</td>
+</tr>
+<tr class="even">
+<td><strong>Decomposição paralela</strong></td>
+<td style="text-align: center;">Não</td>
+<td style="text-align: center;">Não</td>
+<td style="text-align: center;"><strong>Sim</strong></td>
+<td style="text-align: center;">Parcial</td>
+<td style="text-align: center;">Parcial</td>
+</tr>
+<tr class="odd">
+<td><strong>Cadeias multi-hop</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td><strong>Formato válido</strong></td>
+<td style="text-align: center;">Sim</td>
+<td style="text-align: center;"><strong>Não</strong></td>
+<td style="text-align: center;"><strong>Sim</strong></td>
+<td style="text-align: center;"><strong>Não</strong></td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="odd">
+<td><strong>Qualidade analítica</strong> (1–5)</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: center;">3.5</td>
+<td style="text-align: center;">3.5</td>
+</tr>
+<tr class="even">
+<td><strong>Alucinação</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cobertura-por-eixo-temático" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="cobertura-por-eixo-temático"><span class="header-section-number">7.2</span> Cobertura por eixo temático</h2>
+<p>O mapa de calor abaixo mostra o grau de cobertura de cada eixo temático por modelo. Valores: <strong>2</strong> = cobertura completa, <strong>1</strong> = parcial, <strong>0</strong> = ausente, <strong>−1</strong> = presente mas com erro semântico grave.</p>
+<div id="cell-fig-heatmap-cobertura" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>modelos <span class="op">=</span> [<span class="st">"Haiku 4.5"</span>, <span class="st">"Sonnet 4.6"</span>, <span class="st">"Opus 4.6 ★"</span>, <span class="st">"Gemma4:31b"</span>, <span class="st">"Qwen 3.5:397b"</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>eixos <span class="op">=</span> [</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1. Barreiras&lt;br&gt;(CONSTRAINS)"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2. Benefício ↔ Aceitação&lt;br&gt;(RELATES-TO)"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"3. Efeitos ambientais&lt;br&gt;(INFLUENCES)"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"4. Habilitadores&lt;br&gt;(ENABLES)"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"5. Renovável → Sustent.&lt;br&gt;(ENABLES)"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Linhas = eixos, Colunas = modelos</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2=completo, 1=parcial, 0=ausente, -1=erro semântico grave</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eixo 1: Barreiras (3 chains: Financial, Policy, Public_Acc → CONSTRAINS)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Gemma4 = -1: acerta 2/3 mas inverte Public_Acc (ENABLES em vez de CONSTRAINS)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eixo 2: Benefício ↔ Aceitação (RELATES-TO)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eixo 3: Efeitos ambientais (INFLUENCES)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eixo 4: Habilitadores (4 chains → ENABLES)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eixo 5: Renovável → Sustentabilidade (ENABLES)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>],</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Textos descritivos por célula</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> [</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"1/3 chains&lt;br&gt;CONSTRAINS"</span>, <span class="st">"1/3 chains&lt;br&gt;CONSTRAINS"</span>, <span class="st">"3/3 chains&lt;br&gt;CONSTRAINS"</span>, <span class="st">"2/3 (1 ENABLES!)&lt;br&gt;erro semântico"</span>, <span class="st">"3/3 chains&lt;br&gt;CONSTRAINS"</span>],</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"ausente"</span>, <span class="st">"parcial&lt;br&gt;(INFLUENCES)"</span>, <span class="st">"2 chains&lt;br&gt;RELATES-TO"</span>, <span class="st">"ausente"</span>, <span class="st">"parcial&lt;br&gt;(invertida)"</span>],</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"1/2 chains"</span>, <span class="st">"1/2 chains"</span>, <span class="st">"2/2 chains&lt;br&gt;INFLUENCES"</span>, <span class="st">"ausente"</span>, <span class="st">"1/2 chains"</span>],</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"1/4 fatores&lt;br&gt;multi-hop"</span>, <span class="st">"1/4 fatores&lt;br&gt;simplificado"</span>, <span class="st">"4/4 fatores&lt;br&gt;completo"</span>, <span class="st">"1/4 fatores&lt;br&gt;multi-hop"</span>, <span class="st">"ausente"</span>],</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"completo"</span>, <span class="st">"completo&lt;br&gt;+extensão"</span>, <span class="st">"completo&lt;br&gt;+cadeia invest."</span>, <span class="st">"completo"</span>, <span class="st">"completo"</span>],</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>colorscale <span class="op">=</span> [</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0</span>,  <span class="st">"#d73027"</span>],   <span class="co"># -1 → vermelho (erro grave)</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.25</span>, <span class="st">"#d73027"</span>],</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.25</span>, <span class="st">"#f7f7f7"</span>],   <span class="co"># 0 → cinza claro (ausente)</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.5</span>,  <span class="st">"#f7f7f7"</span>],</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.5</span>,  <span class="st">"#fee090"</span>],   <span class="co"># 1 → amarelo (parcial)</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.75</span>, <span class="st">"#fee090"</span>],</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.75</span>, <span class="st">"#4575b4"</span>],   <span class="co"># 2 → azul (completo)</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>,  <span class="st">"#4575b4"</span>],</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(data<span class="op">=</span>go.Heatmap(</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>z,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>modelos,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>eixos,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>text,</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    texttemplate<span class="op">=</span><span class="st">"%</span><span class="sc">{text}</span><span class="st">"</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    colorscale<span class="op">=</span>colorscale,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    zmin<span class="op">=-</span><span class="dv">1</span>, zmax<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    showscale<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    colorbar<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        tickvals<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        ticktext<span class="op">=</span>[<span class="st">"Erro grave"</span>, <span class="st">"Ausente"</span>, <span class="st">"Parcial"</span>, <span class="st">"Completo"</span>],</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"Cobertura"</span>,</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    hoverongaps<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Cobertura dos Eixos Temáticos por Modelo"</span>,</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    xaxis_title<span class="op">=</span><span class="st">"Modelo"</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    yaxis_title<span class="op">=</span><span class="st">"Eixo Temático"</span>,</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">380</span>,</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">220</span>, r<span class="op">=</span><span class="dv">60</span>, t<span class="op">=</span><span class="dv">60</span>, b<span class="op">=</span><span class="dv">40</span>),</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>),</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(autorange<span class="op">=</span><span class="st">"reversed"</span>),</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-heatmap-cobertura" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-heatmap-cobertura-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>                            <div id="a17d331b-5647-4f44-8ba5-1c0ef7b47af8" class="plotly-graph-div" style="height:380px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a17d331b-5647-4f44-8ba5-1c0ef7b47af8")) {                    Plotly.newPlot(                        "a17d331b-5647-4f44-8ba5-1c0ef7b47af8",                        [{"colorbar":{"ticktext":["Erro grave","Ausente","Parcial","Completo"],"tickvals":[-1,0,1,2],"title":{"text":"Cobertura"}},"colorscale":[[0.0,"#d73027"],[0.25,"#d73027"],[0.25,"#f7f7f7"],[0.5,"#f7f7f7"],[0.5,"#fee090"],[0.75,"#fee090"],[0.75,"#4575b4"],[1.0,"#4575b4"]],"hoverongaps":false,"showscale":true,"text":[["1\u002f3 chains\u003cbr\u003eCONSTRAINS","1\u002f3 chains\u003cbr\u003eCONSTRAINS","3\u002f3 chains\u003cbr\u003eCONSTRAINS","2\u002f3 (1 ENABLES!)\u003cbr\u003eerro semântico","3\u002f3 chains\u003cbr\u003eCONSTRAINS"],["ausente","parcial\u003cbr\u003e(INFLUENCES)","2 chains\u003cbr\u003eRELATES-TO","ausente","parcial\u003cbr\u003e(invertida)"],["1\u002f2 chains","1\u002f2 chains","2\u002f2 chains\u003cbr\u003eINFLUENCES","ausente","1\u002f2 chains"],["1\u002f4 fatores\u003cbr\u003emulti-hop","1\u002f4 fatores\u003cbr\u003esimplificado","4\u002f4 fatores\u003cbr\u003ecompleto","1\u002f4 fatores\u003cbr\u003emulti-hop","ausente"],["completo","completo\u003cbr\u003e+extensão","completo\u003cbr\u003e+cadeia invest.","completo","completo"]],"texttemplate":"%{text}","x":["Haiku 4.5","Sonnet 4.6","Opus 4.6 ★","Gemma4:31b","Qwen 3.5:397b"],"y":["1. Barreiras\u003cbr\u003e(CONSTRAINS)","2. Benefício ↔ Aceitação\u003cbr\u003e(RELATES-TO)","3. Efeitos ambientais\u003cbr\u003e(INFLUENCES)","4. Habilitadores\u003cbr\u003e(ENABLES)","5. Renovável → Sustent.\u003cbr\u003e(ENABLES)"],"z":[[1,1,2,-1,2],[0,1,2,0,1],[1,1,2,0,1],[1,1,2,1,0],[2,2,2,2,2]],"zmax":2,"zmin":-1,"type":"heatmap"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"margin":{"l":220,"r":60,"t":60,"b":40},"font":{"size":12},"yaxis":{"title":{"text":"Eixo Temático"},"autorange":"reversed"},"title":{"text":"Cobertura dos Eixos Temáticos por Modelo"},"xaxis":{"title":{"text":"Modelo"}},"height":380},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('a17d331b-5647-4f44-8ba5-1c0ef7b47af8');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heatmap-cobertura-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6: Cobertura dos eixos temáticos por modelo (2=completo, 1=parcial, 0=ausente, −1=erro semântico)
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="desempenho-comparativo-por-dimensão" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="desempenho-comparativo-por-dimensão"><span class="header-section-number">7.3</span> Desempenho comparativo por dimensão</h2>
+<p>O gráfico abaixo compara os cinco modelos em seis dimensões de qualidade, todas normalizadas para a escala 0–10. Cada grupo de barras representa uma dimensão; cada barra representa um modelo.</p>
+<div id="cell-fig-barras-desempenho" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dimensoes <span class="op">=</span> [</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cobertura&lt;br&gt;de chains"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Precisão&lt;br&gt;relacional"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Decomposição&lt;br&gt;paralela"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Formato&lt;br&gt;válido"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Qualidade&lt;br&gt;analítica"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cobertura&lt;br&gt;de eixos"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados normalizados 0–10</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Cobertura chains: n/13 * 10</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Precisão relacional: já em escala 0–100, dividir por 10</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Decomposição: Sim=10, Parcial=5, Não=0</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Formato: Válido=10, Inválido=0</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Qualidade analítica: /5 * 10</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Cobertura eixos: /5 * 10</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>modelos <span class="op">=</span> [<span class="st">"Haiku 4.5"</span>, <span class="st">"Sonnet 4.6"</span>, <span class="st">"Opus 4.6 ★"</span>, <span class="st">"Gemma4:31b"</span>, <span class="st">"Qwen 3.5:397b"</span>]</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cobertura&lt;br&gt;de chains"</span>:    [ <span class="dv">3</span><span class="op">/</span><span class="dv">13</span><span class="op">*</span><span class="dv">10</span>,  <span class="dv">2</span><span class="op">/</span><span class="dv">13</span><span class="op">*</span><span class="dv">10</span>, <span class="fl">10.0</span>,  <span class="dv">3</span><span class="op">/</span><span class="dv">13</span><span class="op">*</span><span class="dv">10</span>,  <span class="dv">4</span><span class="op">/</span><span class="dv">13</span><span class="op">*</span><span class="dv">10</span>],</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Precisão&lt;br&gt;relacional"</span>:    [      <span class="fl">6.0</span>,      <span class="fl">6.0</span>, <span class="fl">10.0</span>,      <span class="fl">8.0</span>,      <span class="fl">8.3</span>],</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Decomposição&lt;br&gt;paralela"</span>:  [      <span class="fl">0.0</span>,      <span class="fl">0.0</span>, <span class="fl">10.0</span>,      <span class="fl">5.0</span>,      <span class="fl">5.0</span>],</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Formato&lt;br&gt;válido"</span>:         [     <span class="fl">10.0</span>,      <span class="fl">0.0</span>, <span class="fl">10.0</span>,      <span class="fl">0.0</span>,     <span class="fl">10.0</span>],</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Qualidade&lt;br&gt;analítica"</span>:    [      <span class="fl">6.0</span>,      <span class="fl">8.0</span>, <span class="fl">10.0</span>,      <span class="fl">7.0</span>,      <span class="fl">7.0</span>],</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cobertura&lt;br&gt;de eixos"</span>:     [      <span class="fl">8.0</span>,      <span class="fl">8.0</span>, <span class="fl">10.0</span>,      <span class="fl">6.0</span>,      <span class="fl">8.0</span>],</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgb(31, 119, 180)"</span>,   <span class="co"># Haiku</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgb(255, 127, 14)"</span>,   <span class="co"># Sonnet</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgb(44, 160, 44)"</span>,    <span class="co"># Opus</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgb(214, 39, 40)"</span>,    <span class="co"># Gemma4</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgb(148, 103, 189)"</span>,  <span class="co"># Qwen</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, modelo <span class="kw">in</span> <span class="bu">enumerate</span>(modelos):</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    valores <span class="op">=</span> [dados[dim][i] <span class="cf">for</span> dim <span class="kw">in</span> dimensoes]</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    fig.add_trace(go.Bar(</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span>modelo,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>dimensoes,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>valores,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        marker_color<span class="op">=</span>cores[i],</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        text<span class="op">=</span>[<span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.1f}</span><span class="ss">"</span> <span class="cf">for</span> v <span class="kw">in</span> valores],</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        textposition<span class="op">=</span><span class="st">"outside"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        textfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">10</span>),</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    barmode<span class="op">=</span><span class="st">"group"</span>,</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Desempenho por Dimensão (0–10)"</span>,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">""</span>, tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">11</span>)),</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Pontuação (0–10)"</span>, <span class="bu">range</span><span class="op">=</span>[<span class="dv">0</span>, <span class="dv">12</span>], tickvals<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>]),</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(orientation<span class="op">=</span><span class="st">"h"</span>, yanchor<span class="op">=</span><span class="st">"bottom"</span>, y<span class="op">=-</span><span class="fl">0.35</span>, xanchor<span class="op">=</span><span class="st">"center"</span>, x<span class="op">=</span><span class="fl">0.5</span>),</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">480</span>,</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(t<span class="op">=</span><span class="dv">60</span>, b<span class="op">=</span><span class="dv">120</span>, l<span class="op">=</span><span class="dv">50</span>, r<span class="op">=</span><span class="dv">20</span>),</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    bargap<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    bargroupgap<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-barras-desempenho" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-barras-desempenho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>                            <div id="ee28c3c6-7b2f-48ff-9779-789695882424" class="plotly-graph-div" style="height:480px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("ee28c3c6-7b2f-48ff-9779-789695882424")) {                    Plotly.newPlot(                        "ee28c3c6-7b2f-48ff-9779-789695882424",                        [{"marker":{"color":"rgb(31, 119, 180)"},"name":"Haiku 4.5","text":["2.3","6.0","0.0","10.0","6.0","8.0"],"textfont":{"size":10},"textposition":"outside","x":["Cobertura\u003cbr\u003ede chains","Precisão\u003cbr\u003erelacional","Decomposição\u003cbr\u003eparalela","Formato\u003cbr\u003eválido","Qualidade\u003cbr\u003eanalítica","Cobertura\u003cbr\u003ede eixos"],"y":[2.307692307692308,6.0,0.0,10.0,6.0,8.0],"type":"bar"},{"marker":{"color":"rgb(255, 127, 14)"},"name":"Sonnet 4.6","text":["1.5","6.0","0.0","0.0","8.0","8.0"],"textfont":{"size":10},"textposition":"outside","x":["Cobertura\u003cbr\u003ede chains","Precisão\u003cbr\u003erelacional","Decomposição\u003cbr\u003eparalela","Formato\u003cbr\u003eválido","Qualidade\u003cbr\u003eanalítica","Cobertura\u003cbr\u003ede eixos"],"y":[1.5384615384615385,6.0,0.0,0.0,8.0,8.0],"type":"bar"},{"marker":{"color":"rgb(44, 160, 44)"},"name":"Opus 4.6 ★","text":["10.0","10.0","10.0","10.0","10.0","10.0"],"textfont":{"size":10},"textposition":"outside","x":["Cobertura\u003cbr\u003ede chains","Precisão\u003cbr\u003erelacional","Decomposição\u003cbr\u003eparalela","Formato\u003cbr\u003eválido","Qualidade\u003cbr\u003eanalítica","Cobertura\u003cbr\u003ede eixos"],"y":[10.0,10.0,10.0,10.0,10.0,10.0],"type":"bar"},{"marker":{"color":"rgb(214, 39, 40)"},"name":"Gemma4:31b","text":["2.3","8.0","5.0","0.0","7.0","6.0"],"textfont":{"size":10},"textposition":"outside","x":["Cobertura\u003cbr\u003ede chains","Precisão\u003cbr\u003erelacional","Decomposição\u003cbr\u003eparalela","Formato\u003cbr\u003eválido","Qualidade\u003cbr\u003eanalítica","Cobertura\u003cbr\u003ede eixos"],"y":[2.307692307692308,8.0,5.0,0.0,7.0,6.0],"type":"bar"},{"marker":{"color":"rgb(148, 103, 189)"},"name":"Qwen 3.5:397b","text":["3.1","8.3","5.0","10.0","7.0","8.0"],"textfont":{"size":10},"textposition":"outside","x":["Cobertura\u003cbr\u003ede chains","Precisão\u003cbr\u003erelacional","Decomposição\u003cbr\u003eparalela","Formato\u003cbr\u003eválido","Qualidade\u003cbr\u003eanalítica","Cobertura\u003cbr\u003ede eixos"],"y":[3.076923076923077,8.3,5.0,10.0,7.0,8.0],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"tickfont":{"size":11},"title":{"text":""}},"yaxis":{"title":{"text":"Pontuação (0–10)"},"range":[0,12],"tickvals":[0,2,4,6,8,10]},"legend":{"orientation":"h","yanchor":"bottom","y":-0.35,"xanchor":"center","x":0.5},"margin":{"t":60,"b":120,"l":50,"r":20},"barmode":"group","title":{"text":"Desempenho por Dimensão (0–10)"},"height":480,"bargap":0.15,"bargroupgap":0.05},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('ee28c3c6-7b2f-48ff-9779-789695882424');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-barras-desempenho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7: Desempenho por dimensão — comparação entre modelos (escala 0–10)
+</figcaption>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-observacoes" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Observações qualitativas</h1>
+<section id="seleção-de-relações" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="seleção-de-relações"><span class="header-section-number">8.1</span> Seleção de relações</h2>
+<p>O diferencial mais importante entre os modelos está na escolha da <strong>relação</strong> (CONSTRAINS vs.&nbsp;ENABLES vs.&nbsp;INFLUENCES vs.&nbsp;RELATES-TO). A referência utiliza:</p>
+<ul>
+<li><strong>CONSTRAINS</strong> para os três fatores-barreira (financiamento, política, aceitação pública)</li>
+<li><strong>RELATES-TO</strong> para a associação benefício econômico ↔︎ aceitação social (associação genérica, não causal)</li>
+<li><strong>INFLUENCES</strong> para os efeitos da eletrificação sobre o ambiente</li>
+<li><strong>ENABLES</strong> para os fatores habilitadores e a cadeia energética</li>
+</ul>
+<p>O <strong>Opus</strong> reproduziu esta seleção com exatidão. Os demais modelos cometeram erros de polaridade:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 26%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modelo</th>
+<th>Erro</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Haiku</td>
+<td><code>Public_Acceptance -&gt; INFLUENCES</code> (deveria ser CONSTRAINS)</td>
+<td>Perde a semântica de barreira</td>
+</tr>
+<tr class="even">
+<td>Sonnet</td>
+<td><code>Economic_Benefit -&gt; INFLUENCES</code> (referência usa RELATES-TO)</td>
+<td>Impõe causalidade onde há associação</td>
+</tr>
+<tr class="odd">
+<td>Gemma4</td>
+<td><code>Public_Acceptance -&gt; ENABLES</code> (deveria ser CONSTRAINS)</td>
+<td><strong>Inverte o sentido</strong> do texto-fonte</td>
+</tr>
+<tr class="even">
+<td>Qwen</td>
+<td><code>Public_Acceptance -&gt; ENABLES -&gt; Investment</code></td>
+<td>Captura mecanismo diferente (válido, mas não corresponde à referência)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="decomposição-paralela-vs.-compressão" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="decomposição-paralela-vs.-compressão"><span class="header-section-number">8.2</span> Decomposição paralela vs.&nbsp;compressão</h2>
+<p>A referência decompõe fatores paralelos em ITEMs separados — três ITEMs para as barreiras (Eixo 1) e quatro ITEMs para os habilitadores (Eixo 4). Isso segue as GUIDELINES do template, que instruem:</p>
+<blockquote class="blockquote">
+<p><em>PARALLEL (X,Y,Z→A): Create SEPARATE ITEM blocks when multiple factors independently affect the same outcome.</em></p>
+</blockquote>
+<ul>
+<li><strong>Opus:</strong> Decomposição completa (12 ITEMs) — idêntica à referência</li>
+<li><strong>Qwen:</strong> Decomposição parcial — decompôs barreiras (3 ITEMs) mas não habilitadores</li>
+<li><strong>Gemma4:</strong> Decomposição parcial — decompôs barreiras mas com erro relacional</li>
+<li><strong>Haiku e Sonnet:</strong> Comprimiram tudo em 5 ITEMs — não decompostos</li>
+</ul>
+</section>
+<section id="formato-e-encoding" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="formato-e-encoding"><span class="header-section-number">8.3</span> Formato e encoding</h2>
+<p>Dois modelos produziram saída com problemas de formato:</p>
+<ul>
+<li><strong>Sonnet:</strong> Adicionou aspas duplas (<code>"..."</code>) no campo <code>text</code>, o que pode causar erro no compilador Synesis. Também apresentou caracteres em-dash corrompidos (<code>ÔÇö</code> em vez de <code>---</code>).</li>
+<li><strong>Gemma4:</strong> Adicionou aspas simples (<code>'...'</code>) no campo <code>text</code>, inconsistente com a convenção Synesis.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Encoding UTF-16
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todos os arquivos de saída dos modelos Anthropic apresentaram encoding UTF-16LE BOM. Isso é um artefato do redirecionamento PowerShell (<code>&gt;&gt;</code>), não do modelo em si.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-ranking" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Ranking final</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Posição</th>
+<th>Modelo</th>
+<th style="text-align: center;">Nota</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td><strong>Claude Opus 4.6</strong></td>
+<td style="text-align: center;">10/10</td>
+<td>Reproduziu integralmente a anotação de referência: 12 ITEMs, 13 chains, 100% de precisão relacional, decomposição paralela completa, formato válido, notas analíticas de alta qualidade.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td><strong>Qwen 3.5:397b</strong></td>
+<td style="text-align: center;">6.5/10</td>
+<td>Boa decomposição das barreiras (CONSTRAINS correto nos 3 fatores), cobertura de 4/5 eixos. Perdeu completamente o Eixo 4 (habilitadores) e não gerou cadeias multi-hop.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td><strong>Claude Haiku 4.5</strong></td>
+<td style="text-align: center;">5.5/10</td>
+<td>Formato limpo, zero alucinação, 1 cadeia multi-hop. Comprimiu tudo em 5 ITEMs sem decomposição; errou a relação Public_Acceptance (INFLUENCES em vez de CONSTRAINS).</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td><strong>Gemma4:31b-cloud</strong></td>
+<td style="text-align: center;">5.0/10</td>
+<td>Boa cobertura parcial e cadeia multi-hop. Erro semântico grave (ENABLES em vez de CONSTRAINS para Public_Acceptance) e aspas no campo <code>text</code>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td><strong>Claude Sonnet 4.6</strong></td>
+<td style="text-align: center;">4.5/10</td>
+<td>Notas analíticas de alta qualidade (4/5), mas comprimiu excessivamente (5 ITEMs), perdeu múltiplos eixos, e produziu formato inválido (aspas duplas, encoding corrompido).</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota sobre o ranking
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A posição do Sonnet 4.6 (5.o lugar) pode surpreender, pois suas notas analíticas são de alta qualidade. O baixo ranking reflete a <strong>cobertura de chains</strong> (2/13) e os problemas de formato — critérios que impactam diretamente a usabilidade das anotações no compilador Synesis. Em contextos onde a qualidade interpretativa das notas é mais importante que a completude estrutural, o Sonnet seria melhor posicionado.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-conclusoes" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Conclusões</h1>
+<ol type="1">
+<li><p><strong>O Opus 4.6 é o único modelo que reproduziu a estratégia analítica da referência humana.</strong> A decomposição paralela, a seleção correta de relações, e o uso de flags <code>*complex*</code>/<code>*borderline*</code> demonstram compreensão profunda das GUIDELINES do template.</p></li>
+<li><p><strong>Nenhum modelo alucionou.</strong> Todos os cinco modelos geraram anotações rastreáveis ao texto-fonte — um indicador positivo da confiabilidade dos prompts do <code>synesis-coder</code>.</p></li>
+<li><p><strong>A relação CONSTRAINS vs.&nbsp;ENABLES é o diferencial de qualidade.</strong> Modelos que erraram a polaridade da relação (Haiku: INFLUENCES; Gemma4: ENABLES) demonstram compreensão superficial do contexto de barreiras descrito no texto.</p></li>
+<li><p><strong>Modelos menores comprimem em vez de decompor.</strong> A tendência a gerar 5–6 ITEMs (em vez dos 12 da referência) indica que modelos menores priorizam síntese sobre decomposição analítica — o oposto do que as GUIDELINES instruem para fatores paralelos.</p></li>
+<li><p><strong>Formato é um critério eliminatório.</strong> Aspas no campo <code>text</code> (Sonnet, Gemma4) podem causar erros de parsing no compilador. Para uso em produção, apenas Opus, Haiku e Qwen produziram saída diretamente compilável.</p></li>
+</ol>
+<section id="recomendações-práticas" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="recomendações-práticas"><span class="header-section-number">10.1</span> Recomendações práticas</h2>
+<ul>
+<li><strong>Para produção (corpus final):</strong> Claude Opus 4.6 — precisão relacional e cobertura estrutural superiores.</li>
+<li><strong>Para rascunho rápido / triagem:</strong> Claude Haiku 4.5 — formato limpo, velocidade alta, custo baixo; requer revisão humana de relações e decomposição.</li>
+<li><strong>Para ambientes sem API comercial:</strong> Qwen 3.5:397b — melhor modelo open-weight testado, com boa decomposição de barreiras; requer revisão dos eixos habilitadores.</li>
+</ul>
+<hr>
+</section>
+<section id="referências" class="level2 unnumbered">
+
+
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referências</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-agaton2020" class="csl-entry" role="listitem">
+Agaton, C. B., Collera, A. A., &amp; Guno, C. S. (2020). Socio-Economic and Environmental Analyses of Sustainable Public Transport in the Philippines. <em>Sustainability</em>, <em>12</em>(4720). <a href="https://doi.org/10.3390/su12114720">https://doi.org/10.3390/su12114720</a>
+</div>
+<div id="ref-ragin2008" class="csl-entry" role="listitem">
+Ragin, C. C. (2008). <em>Redesigning Social Inquiry: Fuzzy Sets and Beyond</em> (p. 225). University of Chicago Press.
+</div>
+<div id="ref-saldana2009" class="csl-entry" role="listitem">
+Saldaña, J. (2009). <em>The Coding Manual for Qualitative Researchers</em>. Sage.
+</div>
+<div id="ref-shenton2004" class="csl-entry" role="listitem">
+Shenton, A. K. (2004). Strategies for Ensuring Trustworthiness in Qualitative Research Projects. <em>Education for Information</em>, <em>22</em>, 63–75. <a href="https://pdfs.semanticscholar.org/452e/3393e3ecc34f913e8c49d8faf19b9f89b75d.pdf">https://pdfs.semanticscholar.org/452e/3393e3ecc34f913e8c49d8faf19b9f89b75d.pdf</a>
+</div>
+<div id="ref-wolf2003" class="csl-entry" role="listitem">
+Wolf, Z. R. (2003). Exploring the Audit Trail for Qualitative Investigations. <em>Nurse Educator</em>, <em>28</em>(4), 175–178. <a href="https://doi.org/10.1097/00006223-200307000-00008">https://doi.org/10.1097/00006223-200307000-00008</a>
+</div>
+<div id="ref-zadeh1965" class="csl-entry" role="listitem">
+Zadeh, L. A. (1965). Fuzzy Sets. <em>Information and Control</em>, <em>8</em>(3), 338–353. <a href="https://doi.org/10.1016/S0019-9958(65)90241-X">https://doi.org/10.1016/S0019-9958(65)90241-X</a>
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Notas de rodapé</h2>
+
+<ol>
+<li id="fn1"><p>O Opus utilizou a estratégia de decomposição paralela em vez de multi-hop, o que está alinhado com as GUIDELINES do template.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
