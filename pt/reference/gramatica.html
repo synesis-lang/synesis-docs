@@ -170,6 +170,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Como Criar e Validar Chains</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">Como Ligar Projetos Independentes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../howto/exportar_neo4j.html">
  <span class="dropdown-text">Exportar para Neo4j</span></a>
   </li>  
@@ -312,7 +316,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#como-ler-este-documento" id="toc-como-ler-este-documento" class="nav-link active" data-scroll-target="#como-ler-este-documento"><span class="header-section-number">1</span> Como ler este documento</a></li>
   <li><a href="#sec-start" id="toc-sec-start" class="nav-link" data-scroll-target="#sec-start"><span class="header-section-number">2</span> Ponto de partida</a></li>
-  <li><a href="#sec-keywords" id="toc-sec-keywords" class="nav-link" data-scroll-target="#sec-keywords"><span class="header-section-number">3</span> Keywords</a></li>
+  <li><a href="#sec-keywords" id="toc-sec-keywords" class="nav-link" data-scroll-target="#sec-keywords"><span class="header-section-number">3</span> Keywords</a>
+  <ul class="collapse">
+  <li><a href="#lookahead-de-fronteira" id="toc-lookahead-de-fronteira" class="nav-link" data-scroll-target="#lookahead-de-fronteira"><span class="header-section-number">3.1</span> Lookahead de fronteira</a></li>
+  </ul></li>
   <li><a href="#sec-project" id="toc-sec-project" class="nav-link" data-scroll-target="#sec-project"><span class="header-section-number">4</span> Bloco PROJECT</a>
   <ul class="collapse">
   <li><a href="#declarações-include-e-template" id="toc-declarações-include-e-template" class="nav-link" data-scroll-target="#declarações-include-e-template"><span class="header-section-number">4.1</span> Declarações INCLUDE e TEMPLATE</a></li>
@@ -331,9 +338,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cabeçalho" id="toc-cabeçalho" class="nav-link" data-scroll-target="#cabeçalho"><span class="header-section-number">7.1</span> Cabeçalho</a></li>
   <li><a href="#especificação-de-campos-por-escopo" id="toc-especificação-de-campos-por-escopo" class="nav-link" data-scroll-target="#especificação-de-campos-por-escopo"><span class="header-section-number">7.2</span> Especificação de campos por escopo</a></li>
   <li><a href="#definição-de-campo-individual" id="toc-definição-de-campo-individual" class="nav-link" data-scroll-target="#definição-de-campo-individual"><span class="header-section-number">7.3</span> Definição de campo individual</a></li>
-  <li><a href="#values-e-relations" id="toc-values-e-relations" class="nav-link" data-scroll-target="#values-e-relations"><span class="header-section-number">7.4</span> VALUES e RELATIONS</a></li>
-  <li><a href="#format-e-arity" id="toc-format-e-arity" class="nav-link" data-scroll-target="#format-e-arity"><span class="header-section-number">7.5</span> FORMAT e ARITY</a></li>
-  <li><a href="#bloco-guidelines" id="toc-bloco-guidelines" class="nav-link" data-scroll-target="#bloco-guidelines"><span class="header-section-number">7.6</span> Bloco GUIDELINES</a></li>
+  <li><a href="#modificadores-de-ligação" id="toc-modificadores-de-ligação" class="nav-link" data-scroll-target="#modificadores-de-ligação"><span class="header-section-number">7.4</span> Modificadores de ligação</a></li>
+  <li><a href="#values-e-relations" id="toc-values-e-relations" class="nav-link" data-scroll-target="#values-e-relations"><span class="header-section-number">7.5</span> VALUES e RELATIONS</a></li>
+  <li><a href="#format-e-arity" id="toc-format-e-arity" class="nav-link" data-scroll-target="#format-e-arity"><span class="header-section-number">7.6</span> FORMAT e ARITY</a></li>
+  <li><a href="#bloco-guidelines" id="toc-bloco-guidelines" class="nav-link" data-scroll-target="#bloco-guidelines"><span class="header-section-number">7.7</span> Bloco GUIDELINES</a></li>
   </ul></li>
   <li><a href="#sec-tokens" id="toc-sec-tokens" class="nav-link" data-scroll-target="#sec-tokens"><span class="header-section-number">8</span> Tokens</a>
   <ul class="collapse">
@@ -512,9 +520,19 @@ KW_DATE.5: /date/i
 KW_SCALE.5: /scale/i
 KW_ENUMERATED.5: /enumerated/i
 KW_ORDERED.5: /ordered/i
-KW_TOPIC.5: /topic/i
-KW_GUIDELINES.5: /guidelines/i</code></pre>
+KW_TOPIC.5: /topic(?![\p{L}\p{N}_-])/i
+KW_GUIDELINES.5: /guidelines/i
+KW_SHARED.5: /shared(?![\p{L}\p{N}_-])/i
+KW_IDENTIFIES.5: /identifies(?![\p{L}\p{N}_-])/i
+KW_REFERS.5: /refers(?![\p{L}\p{N}_-])/i
+KW_TO.5: /to(?![\p{L}\p{N}_-])/i
+KW_ON.5: /on(?![\p{L}\p{N}_-])/i</code></pre>
 <p>A prioridade <code>.5</code> garante que keywords tenham preferência sobre <code>IDENTIFIER</code> e <code>FIELD_NAME</code> (prioridade <code>.1</code>) quando há ambiguidade. Isso é crítico — sem essa prioridade, <code>SOURCE</code> seria reconhecido como um identificador genérico em vez de uma keyword.</p>
+<section id="lookahead-de-fronteira" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="lookahead-de-fronteira"><span class="header-section-number">3.1</span> Lookahead de fronteira</h3>
+<p>Algumas keywords trazem o sufixo <code>(?![\p{L}\p{N}_-])</code> — um <em>negative lookahead</em> que impede o token de casar como <strong>prefixo de um nome maior</strong>. Sem ele, um campo chamado <code>topic_principal</code> teria seu início consumido pela keyword <code>TOPIC</code>, e o restante (<code>_principal</code>) viraria lixo sintático.</p>
+<p>O cuidado é especialmente necessário nas palavras curtas introduzidas pela ligação entre projetos: <code>TO</code> e <code>ON</code> casariam dentro de nomes comuns como <code>to_do</code>, <code>total</code>, <code>on_hold</code> ou <code>onset</code>. Com o lookahead, <code>FIELD total TYPE TEXT</code> continua sendo um nome de campo, não a keyword <code>TO</code> seguida de <code>tal</code>.</p>
+</section>
 </section>
 <section id="sec-project" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="sec-project"><span class="header-section-number">4</span> Bloco PROJECT</h2>
@@ -530,7 +548,7 @@ project_items: (include_stmt | metadata | description | NEWLINE)+</code></pre>
 <h3 data-number="4.1" class="anchored" data-anchor-id="declarações-include-e-template"><span class="header-section-number">4.1</span> Declarações INCLUDE e TEMPLATE</h3>
 <pre class="lark"><code>include_stmt: KW_TEMPLATE STRING NEWLINE
             | KW_INCLUDE include_type STRING NEWLINE
-include_type: KW_BIBLIOGRAPHY | KW_ANNOTATIONS | KW_ONTOLOGY</code></pre>
+include_type: KW_SHARED? (KW_BIBLIOGRAPHY | KW_ANNOTATIONS | KW_ONTOLOGY)</code></pre>
 <p>O TEMPLATE é declarado diretamente; os demais arquivos usam <code>INCLUDE tipo "caminho"</code>.</p>
 <p>Exemplo de uso:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> demo</span>
@@ -538,7 +556,22 @@ include_type: KW_BIBLIOGRAPHY | KW_ANNOTATIONS | KW_ONTOLOGY</code></pre>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"references.bib"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations.syn"</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology.syno"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../compartilhado/vocabulario.syno"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que a gramática é permissiva com <code>SHARED</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>KW_SHARED?</code> aparece antes de <strong>qualquer</strong> tipo de inclusão, embora <code>SHARED</code> só seja válido para <code>ONTOLOGY</code>. A restrição é <strong>semântica</strong>, não sintática: <code>INCLUDE SHARED BIBLIOGRAPHY "..."</code> faz o parse normalmente e depois recebe o erro 84, com mensagem explicando por que a exceção existe apenas para ontologia.</p>
+<p>Codificar a restrição na gramática produziria um “token inesperado” cru — sintaticamente correto, mas pedagogicamente inútil. A escolha é deliberada: <strong>erro de gramática não ensina; erro semântico sim.</strong></p>
+</div>
+</div>
 </section>
 <section id="metadata-e-description" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="metadata-e-description"><span class="header-section-number">4.2</span> Metadata e Description</h3>
@@ -645,6 +678,8 @@ field_list: (requirement_clause | NEWLINE)*
 requirement_clause: KW_REQUIRED bundle_modifier? field_names
                   | KW_OPTIONAL field_names
                   | KW_FORBIDDEN field_names
+                  | KW_REQUIRED field_key KW_ON KW_BIBLIOGRAPHY
+                  | KW_OPTIONAL field_key KW_ON KW_BIBLIOGRAPHY
 
 bundle_modifier: KW_BUNDLE
 field_names: field_key ("," field_key)*</code></pre>
@@ -653,6 +688,11 @@ field_names: field_key ("," field_key)*</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> citation, <span class="at">note</span>, code</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O sufixo <code>ON BIBLIOGRAPHY</code> declara que o valor do campo vem da entrada <code>.bib</code> do SOURCE, não do texto do documento:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> lattes_id ON <span class="kw">BIBLIOGRAPHY</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note que as duas alternativas com <code>ON BIBLIOGRAPHY</code> usam <code>field_key</code> (singular), não <code>field_names</code> (lista). Isso é deliberado: numa lista, <code>REQUIRED a, b, c ON BIBLIOGRAPHY</code> seria ambíguo — o sufixo se aplicaria a <code>c</code> apenas, ou aos três? A gramática resolve a ambiguidade eliminando o caso: <strong>lista + <code>ON BIBLIOGRAPHY</code> é erro de sintaxe.</strong></p>
 </section>
 <section id="definição-de-campo-individual" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="definição-de-campo-individual"><span class="header-section-number">7.3</span> Definição de campo individual</h3>
@@ -670,7 +710,11 @@ simple_type: KW_QUOTATION | KW_MEMO | KW_CODE | KW_TEXT | KW_DATE | KW_SCALE</co
            | KW_ARITY COMPARATOR NUMBER
            | KW_VALUES value_list KW_END KW_VALUES
            | KW_RELATIONS relation_list KW_END KW_RELATIONS
-           | guidelines_block</code></pre>
+           | guidelines_block
+           | KW_IDENTIFIES entity_label
+           | KW_REFERS KW_TO entity_label
+
+entity_label: FIELD_NAME</code></pre>
 <p>Cada tipo de campo usa propriedades diferentes:</p>
 <table class="caption-top table">
 <thead>
@@ -715,8 +759,23 @@ simple_type: KW_QUOTATION | KW_MEMO | KW_CODE | KW_TEXT | KW_DATE | KW_SCALE</co
 </tbody>
 </table>
 </section>
-<section id="values-e-relations" class="level3" data-number="7.4">
-<h3 data-number="7.4" class="anchored" data-anchor-id="values-e-relations"><span class="header-section-number">7.4</span> VALUES e RELATIONS</h3>
+<section id="modificadores-de-ligação" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="modificadores-de-ligação"><span class="header-section-number">7.4</span> Modificadores de ligação</h3>
+<p><code>IDENTIFIES</code> e <code>REFERS TO</code> declaram a participação do campo na ligação entre projetos independentes:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher      <span class="co"># chave primária da entidade</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher       <span class="co"># chave estrangeira para a entidade</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O rótulo da entidade (<code>entity_label</code>) reusa o token <code>FIELD_NAME</code> — mesma classe léxica de um nome de campo. Como qualquer propriedade em <code>field_props</code>, os dois modificadores são aceitos pela gramática em campos de <strong>qualquer</strong> escopo; a restrição a <code>SCOPE SOURCE</code> é semântica (erro 78), pela mesma razão pedagógica do <code>SHARED</code>.</p>
+<p>Ver <a href="../reference/guia_referencia.html">Ligação entre Projetos</a> no Guia de Referência para a semântica completa.</p>
+</section>
+<section id="values-e-relations" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="values-e-relations"><span class="header-section-number">7.5</span> VALUES e RELATIONS</h3>
 <pre class="lark"><code>value_list: (value_entry | NEWLINE)+
           | NEWLINE _INDENT (value_entry | NEWLINE)+ _DEDENT
           | _INDENT (value_entry | NEWLINE)+ _DEDENT
@@ -729,16 +788,16 @@ relation_list: (relation_entry | NEWLINE)+
 relation_entry: IDENTIFIER ":" TEXT_LINE</code></pre>
 <p>VALUES aceita um prefixo de índice opcional (<code>[1]</code>, <code>[2]</code>, etc.) para campos <code>ORDERED</code>.</p>
 </section>
-<section id="format-e-arity" class="level3" data-number="7.5">
-<h3 data-number="7.5" class="anchored" data-anchor-id="format-e-arity"><span class="header-section-number">7.5</span> FORMAT e ARITY</h3>
+<section id="format-e-arity" class="level3" data-number="7.6">
+<h3 data-number="7.6" class="anchored" data-anchor-id="format-e-arity"><span class="header-section-number">7.6</span> FORMAT e ARITY</h3>
 <pre class="lark"><code>format_spec: IDENTIFIER | scale_format
 scale_format: "[" NUMBER ".." NUMBER "]"</code></pre>
 <p>FORMAT define o intervalo para campos SCALE: <code>[0..10]</code>, <code>[1..5]</code>, etc.</p>
 <pre class="lark"><code>KW_ARITY COMPARATOR NUMBER</code></pre>
 <p>ARITY define quantos elementos um CHAIN deve ter: <code>&gt;=2</code>, <code>=3</code>, <code>&lt;5</code>, etc.</p>
 </section>
-<section id="bloco-guidelines" class="level3" data-number="7.6">
-<h3 data-number="7.6" class="anchored" data-anchor-id="bloco-guidelines"><span class="header-section-number">7.6</span> Bloco GUIDELINES</h3>
+<section id="bloco-guidelines" class="level3" data-number="7.7">
+<h3 data-number="7.7" class="anchored" data-anchor-id="bloco-guidelines"><span class="header-section-number">7.7</span> Bloco GUIDELINES</h3>
 <pre class="lark"><code>guidelines_block: KW_GUIDELINES NEWLINE guidelines_lines
                   KW_END KW_GUIDELINES
 guidelines_lines: (_INDENT | _DEDENT | guideline_line | NEWLINE)*

@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>synesis-graph – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis para Usuários do IRaMuTeQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">Codificação com IA (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">Como Ligar Projetos Independentes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Gramática da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Guia de Erros</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">O fluxo de compilação</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li class="dropdown-header">— Visão Geral —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/show_case.html">
+ <span class="dropdown-text">O que Synesis pode expressar</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Pesquisadores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/exemplos_codificacao.html">
+ <span class="dropdown-text">Métodos de Codificação em Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA.html">
+ <span class="dropdown-text">Codificação Assistida por IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_metricas.html">
+ <span class="dropdown-text">Métricas da Pesquisa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_comparacao.html">
+ <span class="dropdown-text">Comparação de Modelos de IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Synesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/dsap.html">
+ <span class="dropdown-text">Diagnóstico Socioambiental Participativo</span></a>
+  </li>  
+        <li class="dropdown-header">— Para o Direito —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_para_direito.html">
+ <span class="dropdown-text">Synesis para Profissionais do Direito</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Desenvolvedores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/fluxo_compilacao_interno.html">
+ <span class="dropdown-text">Por Dentro do Compilador</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/interface_lsp.html">
+ <span class="dropdown-text">A Interface LSP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#synesis-graph" id="toc-synesis-graph" class="nav-link active" data-scroll-target="#synesis-graph"><span class="header-section-number">1</span> synesis-graph</a></li>
+  <li><a href="#sec-instalacao" id="toc-sec-instalacao" class="nav-link" data-scroll-target="#sec-instalacao"><span class="header-section-number">2</span> Instalação</a></li>
+  <li><a href="#sec-backends" id="toc-sec-backends" class="nav-link" data-scroll-target="#sec-backends"><span class="header-section-number">3</span> Os backends</a>
+  <ul class="collapse">
+  <li><a href="#fonte-dos-dados" id="toc-fonte-dos-dados" class="nav-link" data-scroll-target="#fonte-dos-dados"><span class="header-section-number">3.1</span> Fonte dos dados</a></li>
+  </ul></li>
+  <li><a href="#sec-modelo" id="toc-sec-modelo" class="nav-link" data-scroll-target="#sec-modelo"><span class="header-section-number">4</span> Modelo de dados: Template → Grafo</a>
+  <ul class="collapse">
+  <li><a href="#nós-sempre-criados" id="toc-nós-sempre-criados" class="nav-link" data-scroll-target="#nós-sempre-criados"><span class="header-section-number">4.1</span> Nós sempre criados</a></li>
+  <li><a href="#exemplo-de-tradução" id="toc-exemplo-de-tradução" class="nav-link" data-scroll-target="#exemplo-de-tradução"><span class="header-section-number">4.2</span> Exemplo de tradução</a></li>
+  <li><a href="#aresta-entre-taxonomias" id="toc-aresta-entre-taxonomias" class="nav-link" data-scroll-target="#aresta-entre-taxonomias"><span class="header-section-number">4.3</span> Aresta entre taxonomias</a></li>
+  </ul></li>
+  <li><a href="#sec-neo4j" id="toc-sec-neo4j" class="nav-link" data-scroll-target="#sec-neo4j"><span class="header-section-number">5</span> Backend Neo4j</a>
+  <ul class="collapse">
+  <li><a href="#opções" id="toc-opções" class="nav-link" data-scroll-target="#opções"><span class="header-section-number">5.1</span> Opções</a></li>
+  <li><a href="#configuração" id="toc-configuração" class="nav-link" data-scroll-target="#configuração"><span class="header-section-number">5.2</span> Configuração</a></li>
+  <li><a href="#métricas-de-rede" id="toc-métricas-de-rede" class="nav-link" data-scroll-target="#métricas-de-rede"><span class="header-section-number">5.3</span> Métricas de rede</a>
+  <ul class="collapse">
+  <li><a href="#métricas-nativas-sempre-disponíveis" id="toc-métricas-nativas-sempre-disponíveis" class="nav-link" data-scroll-target="#métricas-nativas-sempre-disponíveis"><span class="header-section-number">5.3.1</span> Métricas nativas (sempre disponíveis)</a></li>
+  <li><a href="#métricas-gds-requerem-plugin" id="toc-métricas-gds-requerem-plugin" class="nav-link" data-scroll-target="#métricas-gds-requerem-plugin"><span class="header-section-number">5.3.2</span> Métricas GDS (requerem plugin)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-html" id="toc-sec-html" class="nav-link" data-scroll-target="#sec-html"><span class="header-section-number">6</span> Backend HTML</a>
+  <ul class="collapse">
+  <li><a href="#opções-1" id="toc-opções-1" class="nav-link" data-scroll-target="#opções-1"><span class="header-section-number">6.1</span> Opções</a></li>
+  <li><a href="#por-que-há-filtros-por-padrão" id="toc-por-que-há-filtros-por-padrão" class="nav-link" data-scroll-target="#por-que-há-filtros-por-padrão"><span class="header-section-number">6.2</span> Por que há filtros por padrão</a></li>
+  <li><a href="#hiperarestas" id="toc-hiperarestas" class="nav-link" data-scroll-target="#hiperarestas"><span class="header-section-number">6.3</span> Hiperarestas</a></li>
+  <li><a href="#camadas-ontologia-e-evidência" id="toc-camadas-ontologia-e-evidência" class="nav-link" data-scroll-target="#camadas-ontologia-e-evidência"><span class="header-section-number">6.4</span> Camadas: ontologia e evidência</a></li>
+  <li><a href="#configuração-via-toml" id="toc-configuração-via-toml" class="nav-link" data-scroll-target="#configuração-via-toml"><span class="header-section-number">6.5</span> Configuração via TOML</a></li>
+  </ul></li>
+  <li><a href="#sec-multiprojeto" id="toc-sec-multiprojeto" class="nav-link" data-scroll-target="#sec-multiprojeto"><span class="header-section-number">7</span> Grafos multiprojeto</a>
+  <ul class="collapse">
+  <li><a href="#o-que-é-criado" id="toc-o-que-é-criado" class="nav-link" data-scroll-target="#o-que-é-criado"><span class="header-section-number">7.1</span> O que é criado</a></li>
+  <li><a href="#três-garantias-do-modelo" id="toc-três-garantias-do-modelo" class="nav-link" data-scroll-target="#três-garantias-do-modelo"><span class="header-section-number">7.2</span> Três garantias do modelo</a></li>
+  </ul></li>
+  <li><a href="#sec-fluxo" id="toc-sec-fluxo" class="nav-link" data-scroll-target="#sec-fluxo"><span class="header-section-number">8</span> Fluxo típico</a></li>
+  <li><a href="#sec-cypher" id="toc-sec-cypher" class="nav-link" data-scroll-target="#sec-cypher"><span class="header-section-number">9</span> Consultas Cypher úteis</a></li>
+  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">10</span> Próximos passos</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">synesis-graph</h1>
+<p class="subtitle lead">Referência do pipeline de projetos Synesis para grafos</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="synesis-graph" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> synesis-graph</h1>
+<p>O <code>synesis-graph</code> transforma um projeto Synesis compilado em um <strong>grafo navegável</strong> — seja num banco de dados Neo4j, seja numa visualização HTML interativa e autocontida.</p>
+<p>A tradução é <strong>dinâmica</strong>: a ferramenta lê o template do projeto (<code>.synt</code>) e deriva dele a estrutura do grafo. Não há nomes de campo, categorias ou rótulos fixos no código. Se você muda o template, o grafo muda junto — sem tocar na ferramenta.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zero-IO: sem arquivos intermediários
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O pipeline usa a API <code>synesis.load()</code> para compilar o projeto <strong>em memória</strong> e sincronizar direto com o destino. Não há passo de exportar JSON e depois importar. O compilador é a única fonte de verdade, e um erro de compilação interrompe o processo antes de qualquer escrita no banco.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-instalacao" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Instalação</h1>
+<p>Requer <strong>Python 3.10+</strong> e <code>synesis</code> ≥ 0.5.5.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"synesis-graph[neo4j]"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O extra <code>[neo4j]</code> traz o driver do banco. Para gerar apenas visualizações HTML, a instalação base é suficiente:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis-graph</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Verificar:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> <span class="at">--version</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># synesis-graph, version 0.3.1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="sec-backends" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Os backends</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 18%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Backend</th>
+<th>Comando</th>
+<th>Saída</th>
+<th>Quando usar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Neo4j</strong></td>
+<td><code>synesis-graph neo4j</code></td>
+<td>Banco de grafos</td>
+<td>Consultas Cypher, métricas de rede, GraphRAG, agentes MCP</td>
+</tr>
+<tr class="even">
+<td><strong>HTML</strong></td>
+<td><code>synesis-graph html</code></td>
+<td>Arquivo <code>.html</code> único</td>
+<td>Explorar visualmente, compartilhar, publicar</td>
+</tr>
+</tbody>
+</table>
+<p>Ambos consomem a mesma estrutura interna, derivada do template. O que muda é o destino e o recorte: o Neo4j recebe o grafo completo, enquanto o HTML aplica filtros de legibilidade (<a href="#sec-html" class="quarto-xref">Seção&nbsp;6</a>).</p>
+<section id="fonte-dos-dados" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="fonte-dos-dados"><span class="header-section-number">3.1</span> Fonte dos dados</h2>
+<p>Todos os backends aceitam duas formas de entrada, mutuamente exclusivas:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A partir do projeto — compila em memória</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> projeto.synp</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A partir de um JSON já exportado (schema v3.0)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--json</span> export.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="sec-modelo" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Modelo de dados: Template → Grafo</h1>
+<p>A tradução dos tipos de campo do template para elementos do grafo segue esta tabela:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Mapeamento de tipos</caption>
+<colgroup>
+<col style="width: 34%">
+<col style="width: 36%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo no template</th>
+<th>Elemento no grafo</th>
+<th>Aresta criada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CODE</code></td>
+<td>Nó de conceito</td>
+<td><code>MENTIONS</code> (Item → Conceito)</td>
+</tr>
+<tr class="even">
+<td><code>CHAIN</code></td>
+<td>Relação explícita entre conceitos</td>
+<td><code>RELATES_TO</code> (com tipo e descrição)</td>
+</tr>
+<tr class="odd">
+<td><code>TOPIC</code></td>
+<td>Nó de taxonomia</td>
+<td><code>GROUPED_BY</code></td>
+</tr>
+<tr class="even">
+<td><code>ASPECT</code></td>
+<td>Nó de taxonomia</td>
+<td><code>QUALIFIED_BY</code></td>
+</tr>
+<tr class="odd">
+<td><code>DIMENSION</code></td>
+<td>Nó de taxonomia</td>
+<td><code>BELONGS_TO</code></td>
+</tr>
+<tr class="even">
+<td><code>ENUMERATED</code></td>
+<td>Propriedade do nó</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td><code>TEXT</code> / <code>MEMO</code></td>
+<td>Propriedade do nó</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>SCOPE SOURCE</code></td>
+<td>Propriedades do nó <code>Source</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<section id="nós-sempre-criados" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="nós-sempre-criados"><span class="header-section-number">4.1</span> Nós sempre criados</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Nós base</caption>
+<colgroup>
+<col style="width: 13%">
+<col style="width: 37%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nó</th>
+<th>Representa</th>
+<th>Propriedades</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source</code></td>
+<td>A fonte (artigo, entrevista, documento)</td>
+<td><code>bibtex</code>, <code>title</code>, <code>author</code>, <code>year</code> + todos os campos <code>SCOPE SOURCE</code></td>
+</tr>
+<tr class="even">
+<td><code>Item</code></td>
+<td>A unidade analítica extraída da fonte</td>
+<td><code>item_id</code>, <code>citation</code>, <code>description</code></td>
+</tr>
+</tbody>
+</table>
+<p>Cada <code>Item</code> é ligado à sua fonte por <code>(:Item)-[:FROM_SOURCE]-&gt;(:Source)</code> — a aresta que preserva a invariante da linguagem de que todo ITEM pertence a exatamente um SOURCE.</p>
+</section>
+<section id="exemplo-de-tradução" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="exemplo-de-tradução"><span class="header-section-number">4.2</span> Exemplo de tradução</h2>
+<p>Dado este template:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> category <span class="kw">TYPE</span> <span class="dt">CODE</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> theme <span class="kw">TYPE</span> <span class="dt">TOPIC</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O grafo resultante:</p>
+<pre><code>(:Item)-[:MENTIONS]-&gt;(:Category)-[:GROUPED_BY]-&gt;(:Theme)</code></pre>
+<p>O rótulo do nó de conceito deriva do <strong>nome do campo</strong>, não de uma lista fixa: um campo <code>ordem_2a</code> gera nós com rótulo <code>Ordem_2a</code>.</p>
+</section>
+<section id="aresta-entre-taxonomias" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="aresta-entre-taxonomias"><span class="header-section-number">4.3</span> Aresta entre taxonomias</h2>
+<p>Além das arestas diretas, o pipeline deriva uma relação <code>IS_LINKED_TO</code> entre nós de taxonomia. Sua <strong>força</strong> (<code>strength</code>) é a contagem de relações <code>RELATES_TO</code> entre os conceitos das duas categorias — uma medida de quão acoplados dois temas estão no corpus.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rastreabilidade preservada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada nó e cada aresta carrega metadados de origem — <code>source_file</code>, <code>line</code>, <code>column</code>. Um conceito no grafo pode sempre ser rastreado até a linha exata do arquivo <code>.syn</code> que o originou. Isso é o que torna o grafo auditável: nenhum nó existe sem evidência textual localizável.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-neo4j" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Backend Neo4j</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> projeto.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="opções" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="opções"><span class="header-section-number">5.1</span> Opções</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Opções do backend <code>neo4j</code></caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Opção</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--project</code></td>
+<td>Caminho do <code>.synp</code>. <strong>Repetível</strong> — ver <a href="#sec-multiprojeto" class="quarto-xref">Seção&nbsp;7</a></td>
+</tr>
+<tr class="even">
+<td><code>--json</code></td>
+<td>Alternativa: JSON v3.0 já exportado</td>
+</tr>
+<tr class="odd">
+<td><code>--config</code></td>
+<td>Arquivo TOML de configuração (padrão: <code>config.toml</code>)</td>
+</tr>
+<tr class="even">
+<td><code>--database</code></td>
+<td>Nome do banco Neo4j. Também nomeia o grafo unificado numa linkagem</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="configuração" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="configuração"><span class="header-section-number">5.2</span> Configuração</h2>
+<p>Crie um <code>config.toml</code> na raiz do projeto:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[neo4j]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"bolt://127.0.0.1:7687"</span>   <span class="co"># ou neo4j+s://... para o Aura</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">user</span> <span class="op">=</span> <span class="st">"neo4j"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">password</span> <span class="op">=</span> <span class="st">"sua_senha"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"meu_corpus"</span>          <span class="co"># opcional</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nunca versione as credenciais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Adicione <code>config.toml</code> ao <code>.gitignore</code>. O repositório distribui um <code>config.toml.example</code> justamente para que o arquivo real permaneça fora do controle de versão.</p>
+</div>
+</div>
+<p>Sem <code>--database</code> e sem <code>database</code> no TOML, o nome do banco deriva do nome do <code>PROJECT</code>.</p>
+</section>
+<section id="métricas-de-rede" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="métricas-de-rede"><span class="header-section-number">5.3</span> Métricas de rede</h2>
+<p>O pipeline calcula métricas automaticamente e as grava como propriedades dos nós. Elas se dividem em dois níveis.</p>
+<section id="métricas-nativas-sempre-disponíveis" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="métricas-nativas-sempre-disponíveis"><span class="header-section-number">5.3.1</span> Métricas nativas (sempre disponíveis)</h3>
+<p>Calculadas em Cypher puro, sem dependências externas.</p>
+<p><strong>Nós de conceito:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>degree</code></td>
+<td>Grau total (entrada + saída) — conectividade geral</td>
+</tr>
+<tr class="even">
+<td><code>in_degree</code></td>
+<td>Conceitos que apontam para este</td>
+</tr>
+<tr class="odd">
+<td><code>out_degree</code></td>
+<td>Conceitos apontados por este</td>
+</tr>
+<tr class="even">
+<td><code>mention_count</code></td>
+<td>Quantas citações mencionam o conceito — frequência</td>
+</tr>
+<tr class="odd">
+<td><code>source_count</code></td>
+<td>Em quantas fontes distintas aparece — dispersão</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nós de taxonomia:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>concept_count</code></td>
+<td>Conceitos classificados nesta categoria</td>
+</tr>
+<tr class="even">
+<td><code>weighted_degree</code></td>
+<td>Soma dos pesos das conexões <code>IS_LINKED_TO</code></td>
+</tr>
+<tr class="odd">
+<td><code>aspect_diversity</code></td>
+<td>Aspectos distintos entre os conceitos-filhos</td>
+</tr>
+<tr class="even">
+<td><code>dimension_diversity</code></td>
+<td>Dimensões distintas entre os conceitos-filhos</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nós de fonte:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>item_count</code></td>
+<td>Citações extraídas da fonte</td>
+</tr>
+<tr class="even">
+<td><code>concept_count</code></td>
+<td>Conceitos distintos mencionados</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>mention_count</code> e <code>source_count</code> medem coisas diferentes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um conceito citado 40 vezes em uma única fonte tem alta frequência e baixa dispersão — é um tema daquele documento, não do corpus. Outro citado 8 vezes em 8 fontes distintas é um achado transversal. A distinção entre os dois é o que separa um padrão real de um artefato de uma fonte prolixa.</p>
+</div>
+</div>
+</section>
+<section id="métricas-gds-requerem-plugin" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="métricas-gds-requerem-plugin"><span class="header-section-number">5.3.2</span> Métricas GDS (requerem plugin)</h3>
+<p>Com o plugin <a href="https://neo4j.com/docs/graph-data-science/current/installation/">Neo4j Graph Data Science</a> instalado:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 31%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Algoritmo</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pagerank</code></td>
+<td>PageRank</td>
+<td>Relevância por conectividade</td>
+</tr>
+<tr class="even">
+<td><code>betweenness</code></td>
+<td>Betweenness Centrality</td>
+<td>Papel de “ponte” entre agrupamentos</td>
+</tr>
+<tr class="odd">
+<td><code>community</code></td>
+<td>Louvain</td>
+<td>Detecção de comunidades temáticas</td>
+</tr>
+</tbody>
+</table>
+<p>Se o GDS não estiver instalado, o pipeline <strong>avisa e continua</strong> com as métricas nativas — não é erro.</p>
+<section id="estratégia-de-projeção" class="level4" data-number="5.3.2.1">
+<h4 data-number="5.3.2.1" class="anchored" data-anchor-id="estratégia-de-projeção"><span class="header-section-number">5.3.2.1</span> Estratégia de projeção</h4>
+<p>O cálculo GDS precisa projetar o grafo, e a projeção se adapta ao tipo de template:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 38%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estratégia</th>
+<th>Quando é usada</th>
+<th>Como conecta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>RELATES_TO</code></td>
+<td>Template com <code>CHAIN</code></td>
+<td>Usa as relações explícitas entre conceitos</td>
+</tr>
+<tr class="even">
+<td><code>CO_TAXONOMY</code></td>
+<td>Template com <code>CODE</code> + <code>TOPIC</code></td>
+<td>Conecta conceitos que compartilham taxonomia</td>
+</tr>
+<tr class="odd">
+<td><code>CO_CITATION</code></td>
+<td>Fallback</td>
+<td>Conecta conceitos que co-ocorrem nas mesmas fontes</td>
+</tr>
+</tbody>
+</table>
+<p>A escolha importa para a leitura do resultado: numa projeção <code>CO_CITATION</code>, uma comunidade Louvain agrupa conceitos que <strong>aparecem juntos</strong>, não conceitos que o pesquisador declarou relacionados.</p>
+<hr>
+</section>
+</section>
+</section>
+</section>
+<section id="sec-html" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Backend HTML</h1>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> html <span class="at">--project</span> projeto.synp <span class="at">--output</span> grafo.html</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Gera um arquivo HTML <strong>único e autocontido</strong> — sem servidor, sem dependências externas. Pode ser aberto localmente, anexado a um e-mail ou publicado como material suplementar de um artigo.</p>
+<section id="opções-1" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="opções-1"><span class="header-section-number">6.1</span> Opções</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Opções do backend <code>html</code></caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Opção</th>
+<th style="text-align: center;">Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--output</code></td>
+<td style="text-align: center;"><code>./graph.html</code></td>
+<td>Caminho do arquivo de saída</td>
+</tr>
+<tr class="even">
+<td><code>--group-by</code></td>
+<td style="text-align: center;">automático</td>
+<td>Campo de taxonomia usado para colorir comunidades</td>
+</tr>
+<tr class="odd">
+<td><code>--min-frequency</code></td>
+<td style="text-align: center;"><code>3</code></td>
+<td>Oculta conceitos mencionados em menos de N itens</td>
+</tr>
+<tr class="even">
+<td><code>--min-source-count</code></td>
+<td style="text-align: center;"><code>2</code></td>
+<td>Oculta conceitos presentes em menos de N fontes</td>
+</tr>
+<tr class="odd">
+<td><code>--max-nodes</code></td>
+<td style="text-align: center;"><code>200</code></td>
+<td>Limita aos N conceitos de maior grau (<code>0</code> = sem limite)</td>
+</tr>
+<tr class="even">
+<td><code>--max-hyperedges</code></td>
+<td style="text-align: center;"><code>50</code></td>
+<td>Máximo de hiperarestas renderizadas</td>
+</tr>
+<tr class="odd">
+<td><code>--include-isolated</code></td>
+<td style="text-align: center;">desligado</td>
+<td>Inclui conceitos sem nenhuma conexão de chain</td>
+</tr>
+<tr class="even">
+<td><code>--all</code></td>
+<td style="text-align: center;">—</td>
+<td>Desliga <strong>todos</strong> os filtros de uma vez</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="por-que-há-filtros-por-padrão" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="por-que-há-filtros-por-padrão"><span class="header-section-number">6.2</span> Por que há filtros por padrão</h2>
+<p>Um corpus real produz uma cauda longa de conceitos que aparecem uma ou duas vezes. Renderizados todos, o grafo vira uma nuvem ilegível onde o padrão principal desaparece no ruído.</p>
+<p>Os padrões (<code>min_frequency: 3</code>, <code>min_source_count: 2</code>) mostram apenas conceitos que se repetem <strong>e</strong> atravessam fontes — os que sustentam alguma afirmação. Para ver o corpus inteiro, sem recorte:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> html <span class="at">--project</span> projeto.synp <span class="at">--output</span> grafo.html <span class="at">--all</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O filtro é de visualização, não de dados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nada é descartado do projeto. O recorte existe só na renderização — o backend Neo4j recebe o grafo completo, incluindo os conceitos de baixa frequência.</p>
+</div>
+</div>
+</section>
+<section id="hiperarestas" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="hiperarestas"><span class="header-section-number">6.3</span> Hiperarestas</h2>
+<p>Quando um único bloco ITEM conecta <strong>três ou mais</strong> conceitos distintos, a relação entre eles não é bem representada por arestas par a par — isso sugeriria três ligações independentes onde existe uma só observação conjunta.</p>
+<p>A visualização representa esses casos como <strong>hiperarestas</strong>: regiões sombreadas englobando os conceitos que co-ocorrem naquela unidade analítica. É a diferença entre “A e B se relacionam, B e C se relacionam” e “A, B e C aparecem juntos nesta passagem”.</p>
+</section>
+<section id="camadas-ontologia-e-evidência" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="camadas-ontologia-e-evidência"><span class="header-section-number">6.4</span> Camadas: ontologia e evidência</h2>
+<p>A visualização separa duas camadas que não devem ser confundidas:</p>
+<ul>
+<li><strong>Ontologia</strong> — conceitos e sua taxonomia, derivados dos arquivos <code>.syno</code> e do template</li>
+<li><strong>Evidência</strong> — os itens concretos (<code>.syn</code>) que sustentam cada conceito, com as citações localizáveis</li>
+</ul>
+<p>Ao selecionar um nó, o painel lateral mostra a evidência textual correspondente, com colunas adicionais derivadas dos campos do próprio projeto. Um conceito sem evidência é visível como tal — o que é uma informação metodológica relevante, não um defeito de renderização.</p>
+</section>
+<section id="configuração-via-toml" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="configuração-via-toml"><span class="header-section-number">6.5</span> Configuração via TOML</h2>
+<p>As mesmas opções podem morar no <code>config.toml</code>, evitando repetir flags:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[html]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">output_path</span> <span class="op">=</span> <span class="st">"./graph.html"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by = "topic"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">min_frequency</span> <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="dt">min_source_count</span> <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="dt">max_nodes</span> <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="dt">max_hyperedges</span> <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="dt">include_isolated</span> <span class="op">=</span> <span class="cn">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O <code>output_path</code> aceita o marcador <code>{project}</code>, substituído pelo nome do arquivo <code>.synp</code>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-multiprojeto" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Grafos multiprojeto</h1>
+<p>Quando vários projetos declaram <code>IDENTIFIES</code> / <code>REFERS TO</code> (ver <a href="../howto/ligar_projetos.html">Como Ligar Projetos Independentes</a>), o backend Neo4j <strong>reifica</strong> essas identidades como nós do grafo.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="dt">\</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> lattes.synp <span class="dt">\</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> abstracts.synp <span class="dt">\</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--database</span> Quinto_Andar</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada <code>--project</code> adicional entra na linkagem. O <code>--database</code> nomeia o grafo unificado; sem ele, o nome deriva dos membros (<code>lattes_abstracts</code>).</p>
+<section id="o-que-é-criado" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="o-que-é-criado"><span class="header-section-number">7.1</span> O que é criado</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Elementos da reificação</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 32%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Elemento</th>
+<th>Origem</th>
+<th>Forma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nó de identidade</td>
+<td>Cada valor distinto de um campo <code>IDENTIFIES</code></td>
+<td><code>(:Researcher {entity_id})</code> — rótulo derivado do nome da entidade</td>
+</tr>
+<tr class="even">
+<td><code>IDENTIFIED_AS</code></td>
+<td>O SOURCE proprietário</td>
+<td><code>(:Source)-[:IDENTIFIED_AS]-&gt;(:Researcher)</code></td>
+</tr>
+<tr class="odd">
+<td><code>REFERS_TO</code></td>
+<td>Cada valor de um campo <code>REFERS TO</code> que casa</td>
+<td><code>(:Source)-[:REFERS_TO {entity, member}]-&gt;(:Researcher)</code></td>
+</tr>
+</tbody>
+</table>
+<p>O nome da entidade viaja como <strong>propriedade</strong> (<code>entity</code>) em vez de virar parte do tipo da relação. Assim um único tipo <code>REFERS_TO</code> serve a todas as entidades, e uma consulta pode filtrar por entidade sem enumerar tipos.</p>
+</section>
+<section id="três-garantias-do-modelo" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="três-garantias-do-modelo"><span class="header-section-number">7.2</span> Três garantias do modelo</h2>
+<p><strong>O nó nasce apenas do <code>IDENTIFIES</code>.</strong> Uma referência órfã — um <code>REFERS TO</code> cujo valor não casa com nenhuma chave primária — <strong>não</strong> cria nó algum. Sem isso, um erro de digitação inventaria uma entidade que não existe no corpus.</p>
+<p><strong>O casamento é exato</strong>, após remover espaços nas pontas. Sem normalização de caixa, sem correspondência aproximada. Um valor que difere apenas em maiúsculas permanece órfão em vez de ser fundido a uma entidade que a fonte considera distinta.</p>
+<p><strong>Bibrefs e IDs são qualificados pelo alias do membro</strong> (<code>abstracts:@artigo_a</code>). Dois corpora podem legitimamente compartilhar uma chave <code>.bib</code> — o mesmo perfil citado em <code>linkedin.bib</code> e em <code>posts.bib</code>. Sem a qualificação, os dois colapsariam num único nó, afirmando uma identidade que o dado nunca declarou. Junções de identidade passam <strong>exclusivamente</strong> por <code>IDENTIFIES</code> / <code>REFERS TO</code>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O backend HTML recusa multiprojeto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>synesis-graph html</code> com mais de um <code>--project</code> falha com erro explícito. A visualização HTML é um grafo de <strong>conceitos</strong>; representar nós de identidade nela exige um design de camada próprio, ainda não decidido. Recusar é melhor do que unir os projetos silenciosamente sem reificar as identidades — o que produziria um grafo plausível e errado.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-fluxo" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Fluxo típico</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Validar o projeto antes de tocar no banco</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile projeto.synp <span class="at">--stats</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Explorar visualmente durante a análise</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> html <span class="at">--project</span> projeto.synp <span class="at">--output</span> grafo.html</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Sincronizar para consulta e métricas</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> projeto.synp <span class="at">--database</span> meu_corpus</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O passo 1 não é obrigatório — o <code>synesis-graph</code> compila o projeto de qualquer forma e aborta se houver erros. Mas rodar <code>compile</code> antes dá um retorno mais rápido enquanto o projeto ainda está sendo escrito.</p>
+<hr>
+</section>
+<section id="sec-cypher" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Consultas Cypher úteis</h1>
+<p>Conceitos mais frequentes:</p>
+<pre class="cypher"><code>MATCH (c)
+WHERE c.mention_count IS NOT NULL
+RETURN c.name, c.mention_count, c.source_count
+ORDER BY c.mention_count DESC
+LIMIT 10</code></pre>
+<p>Conceitos que atravessam mais fontes (achados transversais):</p>
+<pre class="cypher"><code>MATCH (c)
+WHERE c.source_count IS NOT NULL
+RETURN c.name, c.source_count, c.mention_count
+ORDER BY c.source_count DESC
+LIMIT 10</code></pre>
+<p>Evidência textual de um conceito:</p>
+<pre class="cypher"><code>MATCH (s:Source)&lt;-[:FROM_SOURCE]-(i:Item)-[:MENTIONS]-&gt;(c {name: "Custo"})
+RETURN s.bibtex, i.citation</code></pre>
+<p>Relações declaradas a partir de um conceito:</p>
+<pre class="cypher"><code>MATCH (a {name: "Custo"})-[r:RELATES_TO]-&gt;(b)
+RETURN a.name, r.type, b.name</code></pre>
+<p>Num grafo multiprojeto — artigos ligados a um pesquisador:</p>
+<pre class="cypher"><code>MATCH (r:Researcher)&lt;-[:REFERS_TO]-(s:Source)
+RETURN r.entity_id, collect(s.bibtex) AS fontes</code></pre>
+<hr>
+</section>
+<section id="sec-proximos" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Próximos passos</h1>
+<ul>
+<li><a href="../howto/exportar_neo4j.html">Como Exportar para Neo4j</a> — instalação do Neo4j passo a passo e solução de problemas</li>
+<li><a href="../explanation/knowledge_graphs.html">Knowledge Graphs &amp; GraphRAG</a> — por que grafos importam para pesquisa qualitativa</li>
+<li><a href="../howto/ligar_projetos.html">Como Ligar Projetos Independentes</a> — declarar as identidades que o grafo reifica</li>
+<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a> — os tipos de campo que o modelo de dados traduz</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

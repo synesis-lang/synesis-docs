@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Como Ligar Projetos Independentes – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introdução</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guia para Pesquisadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis para Usuários do IRaMuTeQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guia para Profissionais</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">Codificação com IA (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">Como Definir uma Ontologia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">Como Criar e Validar Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">Como Ligar Projetos Independentes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Exportar para Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Referência da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Gramática da Linguagem</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Guia de Erros</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">API Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">O fluxo de compilação</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li class="dropdown-header">— Visão Geral —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/posicionamento_arquitetural.html">
+ <span class="dropdown-text">Posicionamento Arquitetural</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/show_case.html">
+ <span class="dropdown-text">O que Synesis pode expressar</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Pesquisadores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/por_que_estrutura_importa.html">
+ <span class="dropdown-text">Por Que Estrutura Importa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Por que não Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/exemplos_codificacao.html">
+ <span class="dropdown-text">Métodos de Codificação em Synesis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA.html">
+ <span class="dropdown-text">Codificação Assistida por IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_metricas.html">
+ <span class="dropdown-text">Métricas da Pesquisa</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/codificacao_assistida_IA_comparacao.html">
+ <span class="dropdown-text">Comparação de Modelos de IA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.html">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_escrituras.html">
+ <span class="dropdown-text">Synesis e as Escrituras</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/dsap.html">
+ <span class="dropdown-text">Diagnóstico Socioambiental Participativo</span></a>
+  </li>  
+        <li class="dropdown-header">— Para o Direito —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/synesis_para_direito.html">
+ <span class="dropdown-text">Synesis para Profissionais do Direito</span></a>
+  </li>  
+        <li class="dropdown-header">— Para Desenvolvedores —</li>
+        <li>
+    <a class="dropdown-item" href="../explanation/fluxo_compilacao_interno.html">
+ <span class="dropdown-text">Por Dentro do Compilador</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/interface_lsp.html">
+ <span class="dropdown-text">A Interface LSP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideias</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pt" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 PT</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-pt">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#como-ligar-projetos-independentes" id="toc-como-ligar-projetos-independentes" class="nav-link active" data-scroll-target="#como-ligar-projetos-independentes"><span class="header-section-number">1</span> Como Ligar Projetos Independentes</a></li>
+  <li><a href="#sec-problema" id="toc-sec-problema" class="nav-link" data-scroll-target="#sec-problema"><span class="header-section-number">2</span> O problema</a></li>
+  <li><a href="#sec-identifies" id="toc-sec-identifies" class="nav-link" data-scroll-target="#sec-identifies"><span class="header-section-number">3</span> Passo 1: declarar quem é dono da entidade</a>
+  <ul class="collapse">
+  <li><a href="#quando-o-identificador-vive-no-.bib" id="toc-quando-o-identificador-vive-no-.bib" class="nav-link" data-scroll-target="#quando-o-identificador-vive-no-.bib"><span class="header-section-number">3.1</span> Quando o identificador vive no <code>.bib</code></a></li>
+  </ul></li>
+  <li><a href="#sec-refers-to" id="toc-sec-refers-to" class="nav-link" data-scroll-target="#sec-refers-to"><span class="header-section-number">4</span> Passo 2: apontar para a entidade</a>
+  <ul class="collapse">
+  <li><a href="#os-dois-modificadores-lado-a-lado" id="toc-os-dois-modificadores-lado-a-lado" class="nav-link" data-scroll-target="#os-dois-modificadores-lado-a-lado"><span class="header-section-number">4.1</span> Os dois modificadores lado a lado</a></li>
+  </ul></li>
+  <li><a href="#sec-shared" id="toc-sec-shared" class="nav-link" data-scroll-target="#sec-shared"><span class="header-section-number">5</span> Passo 3: compartilhar a ontologia (opcional)</a></li>
+  <li><a href="#sec-isolado" id="toc-sec-isolado" class="nav-link" data-scroll-target="#sec-isolado"><span class="header-section-number">6</span> Passo 4: compilar isolado</a></li>
+  <li><a href="#sec-link" id="toc-sec-link" class="nav-link" data-scroll-target="#sec-link"><span class="header-section-number">7</span> Passo 5: ligar os projetos</a>
+  <ul class="collapse">
+  <li><a href="#exportar-o-agregado" id="toc-exportar-o-agregado" class="nav-link" data-scroll-target="#exportar-o-agregado"><span class="header-section-number">7.1</span> Exportar o agregado</a></li>
+  <li><a href="#estatísticas-do-agregado" id="toc-estatísticas-do-agregado" class="nav-link" data-scroll-target="#estatísticas-do-agregado"><span class="header-section-number">7.2</span> Estatísticas do agregado</a></li>
+  </ul></li>
+  <li><a href="#sec-resultados" id="toc-sec-resultados" class="nav-link" data-scroll-target="#sec-resultados"><span class="header-section-number">8</span> Entendendo os resultados</a>
+  <ul class="collapse">
+  <li><a href="#bibrefs-qualificados" id="toc-bibrefs-qualificados" class="nav-link" data-scroll-target="#bibrefs-qualificados"><span class="header-section-number">8.1</span> Bibrefs qualificados</a></li>
+  <li><a href="#referências-órfãs" id="toc-referências-órfãs" class="nav-link" data-scroll-target="#referências-órfãs"><span class="header-section-number">8.2</span> Referências órfãs</a></li>
+  <li><a href="#quase-casamentos" id="toc-quase-casamentos" class="nav-link" data-scroll-target="#quase-casamentos"><span class="header-section-number">8.3</span> Quase-casamentos</a></li>
+  </ul></li>
+  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">9</span> Erros comuns</a>
+  <ul class="collapse">
+  <li><a href="#dois-projetos-declaram-a-mesma-entidade" id="toc-dois-projetos-declaram-a-mesma-entidade" class="nav-link" data-scroll-target="#dois-projetos-declaram-a-mesma-entidade"><span class="header-section-number">9.1</span> Dois projetos declaram a mesma entidade</a></li>
+  <li><a href="#tipos-divergentes" id="toc-tipos-divergentes" class="nav-link" data-scroll-target="#tipos-divergentes"><span class="header-section-number">9.2</span> Tipos divergentes</a></li>
+  <li><a href="#valor-ausente-no-.bib" id="toc-valor-ausente-no-.bib" class="nav-link" data-scroll-target="#valor-ausente-no-.bib"><span class="header-section-number">9.3</span> Valor ausente no <code>.bib</code></a></li>
+  </ul></li>
+  <li><a href="#sec-lsp" id="toc-sec-lsp" class="nav-link" data-scroll-target="#sec-lsp"><span class="header-section-number">10</span> Por que o LSP nunca carrega o agregado</a></li>
+  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">11</span> Próximos passos</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Como Ligar Projetos Independentes</h1>
+<p class="subtitle lead">Triangular corpora heterogêneos com IDENTIFIES e REFERS TO</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="como-ligar-projetos-independentes" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Como Ligar Projetos Independentes</h1>
+<p>Este guia mostra como conectar dois ou mais projetos Synesis que descrevem <strong>as mesmas entidades a partir de fontes diferentes</strong> — currículos e artigos, entrevistas e documentos institucionais, perfis e publicações.</p>
+<p><strong>Você deve usar este guia se:</strong></p>
+<ul>
+<li>Tem corpora separados que se referem às mesmas pessoas, organizações ou processos</li>
+<li>Quer cruzar esses corpora sem fundi-los num único projeto gigante</li>
+<li>Precisa que cada corpus continue compilando rápido e sendo editado de forma independente</li>
+<li>Quer compartilhar um único vocabulário conceitual entre vários projetos</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O que este guia <strong>não</strong> faz
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A ligação não funde projetos nem cria um “projeto mestre”. Cada <code>.synp</code> continua sendo uma unidade de compilação autônoma. A ligação é resolvida num passo explícito na linha de comando e nunca é carregada pelo editor.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-problema" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> O problema</h1>
+<p>Imagine um estudo com dois corpora:</p>
+<ul>
+<li><strong><code>lattes.synp</code></strong> — currículos de pesquisadores, um SOURCE por pesquisador</li>
+<li><strong><code>abstracts.synp</code></strong> — artigos científicos, um SOURCE por artigo</li>
+</ul>
+<p>Cada artigo tem um autor que também tem currículo. Você quer perguntar: <em>quais conceitos aparecem nos artigos dos pesquisadores que declararam determinada linha de pesquisa no Lattes?</em></p>
+<p>Três caminhos ruins e por que foram descartados:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tentativa</th>
+<th>Por que não funciona</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Juntar tudo num <code>.synp</code> só</td>
+<td>O editor passa a recompilar o estudo inteiro a cada gravação. Com corpora grandes, inviável.</td>
+</tr>
+<tr class="even">
+<td>Reconciliar por identidade (<code>A é B</code>)</td>
+<td>Só modela 1:1. Muitos artigos → um pesquisador <strong>não é</strong> identidade, é relação.</td>
+</tr>
+<tr class="odd">
+<td>O corpus central nomear cada periférico</td>
+<td>Adicionar um terceiro corpus exigiria editar o template do central. O oposto de autônomo.</td>
+</tr>
+</tbody>
+</table>
+<p>A solução adotada é o modelo do <strong>linker de C/C++</strong>: cada projeto compila isolado e expõe suas referências externas não resolvidas; um passo de linkagem resolve as referências entre eles.</p>
+<hr>
+</section>
+<section id="sec-identifies" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Passo 1: declarar quem é dono da entidade</h1>
+<p>Escolha o corpus <strong>proprietário</strong> da entidade — aquele em que cada valor identifica um registro único. No exemplo, o currículo: cada pesquisador tem exatamente um.</p>
+<p>No template <code>lattes.synt</code>, marque o campo identificador com <code>IDENTIFIES</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador Lattes do pesquisador</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>researcher</code> é o <strong>rótulo da entidade</strong> — um nome que você escolhe. É por ele que os outros projetos vão se referir a essa entidade, sem nunca nomear o arquivo <code>lattes.synp</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>IDENTIFIES</code> é uma chave primária
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada valor de <code>lattes_id</code> deve corresponder a um único SOURCE. Dois SOURCEs com o mesmo valor produzem o <a href="../reference/guia_erros.html#sec-erro-77">erro 77</a> já na compilação isolada do próprio projeto — antes de qualquer linkagem. Um defeito de dados que antes passaria despercebido vira erro explícito.</p>
+</div>
+</div>
+<section id="quando-o-identificador-vive-no-.bib" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="quando-o-identificador-vive-no-.bib"><span class="header-section-number">3.1</span> Quando o identificador vive no <code>.bib</code></h2>
+<p>Identificadores como ID Lattes, ORCID ou CNPJ costumam ser metadados da fonte, não algo extraído do texto. Nesse caso, declare a origem do valor com <code>ON BIBLIOGRAPHY</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> lattes_id ON <span class="kw">BIBLIOGRAPHY</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>E o valor passa a ser lido da entrada <code>.bib</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">curriculo_maria</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span>    = {Silva, Maria},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>     = {Currículo Lattes},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>      = {2026},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lattes_id</span> = {3474000000000167}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sem <code>ON BIBLIOGRAPHY</code>, o compilador exigiria o campo dentro do bloco SOURCE — o que mentiria sobre onde o dado realmente vive.</p>
+<hr>
+</section>
+</section>
+<section id="sec-refers-to" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Passo 2: apontar para a entidade</h1>
+<p>Nos templates dos corpora periféricos, declare o campo que aponta para a entidade com <code>REFERS TO</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># abstracts.synt</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador Lattes do autor do artigo</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Repare no que <strong>não</strong> está aqui: nenhuma menção a <code>lattes.synp</code>, nenhum caminho de arquivo, nenhuma ordem de compilação. O projeto periférico conhece apenas o rótulo <code>researcher</code>.</p>
+<p>É isso que torna o estudo extensível: adicionar um quarto ou quinto corpus não exige tocar em nenhum template existente.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cardinalidade livre
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>REFERS TO</code> pode repetir. Vários artigos apontando para o mesmo pesquisador (<strong>n:1</strong>) é o caso normal. Um campo multivalorado — um artigo com vários autores — gera uma aresta por valor (<strong>n:n</strong>).</p>
+</div>
+</div>
+<section id="os-dois-modificadores-lado-a-lado" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="os-dois-modificadores-lado-a-lado"><span class="header-section-number">4.1</span> Os dois modificadores lado a lado</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 31%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modificador</th>
+<th>Papel</th>
+<th style="text-align: center;">Cria nó?</th>
+<th style="text-align: center;">Valor repete?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>IDENTIFIES &lt;entidade&gt;</code></td>
+<td>Chave primária</td>
+<td style="text-align: center;">Sim</td>
+<td style="text-align: center;">Não — unicidade validada</td>
+</tr>
+<tr class="even">
+<td><code>REFERS TO &lt;entidade&gt;</code></td>
+<td>Chave estrangeira</td>
+<td style="text-align: center;">Não</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+</tbody>
+</table>
+<p>Ambos só valem em campos <code>SCOPE SOURCE</code>. A ligação opera sobre SOURCEs — as unidades de coleta —, não sobre ITEMs ou conceitos. Usá-los noutro escopo produz o <a href="../reference/guia_erros.html#sec-erro-78">erro 78</a>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-shared" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Passo 3: compartilhar a ontologia (opcional)</h1>
+<p>Para que os corpora usem o <strong>mesmo vocabulário conceitual</strong>, coloque a ontologia numa pasta comum e declare-a com <code>INCLUDE SHARED ONTOLOGY</code>:</p>
+<pre><code>estudo/
+├── compartilhado/
+│   └── vocabulario.syno
+├── lattes/
+│   ├── lattes.synp
+│   └── lattes.synt
+└── abstracts/
+    ├── abstracts.synp
+    └── abstracts.synt</code></pre>
+<p>Em cada <code>.synp</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> Lattes</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"lattes.synt"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"curriculos.bib"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"anotacoes/*.syn"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../compartilhado/vocabulario.syno"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A palavra <code>SHARED</code> é o que autoriza um alvo <strong>fora</strong> da pasta do projeto. Sem ela, o caminho <code>../compartilhado/...</code> seria recusado com o <a href="../reference/guia_erros.html#sec-erro-75">erro 75</a>.</p>
+<p>A autorização mora na <strong>declaração</strong> — versionada e auditável no <code>.synp</code> —, não na geometria do caminho. Por isso funciona também com pastas de rede e outros drives:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"\\servidor\equipe\vocabulario.syno"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"Z:/estudo/vocabulario.syno"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>SHARED</code> só vale para ONTOLOGY
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>INCLUDE SHARED BIBLIOGRAPHY</code> ou <code>INCLUDE SHARED ANNOTATIONS</code> produzem o <a href="../reference/guia_erros.html#sec-erro-84">erro 84</a>. A exceção existe para compartilhar vocabulário; estendê-la a outros tipos abriria a contenção sem motivo.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-isolado" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Passo 4: compilar isolado</h1>
+<p>Cada projeto continua compilando sozinho, normalmente:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile abstracts.synp <span class="at">--json</span> abstracts.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O compilador emite uma nota <strong>informativa</strong> registrando que há ligações pendentes:</p>
+<pre><code>INFO  abstracts.synp
+  Este projeto referencia a entidade externa `researcher` (`REFERS TO` em `autor_id`).
+  As ligacoes nao estao materializadas neste artefato. Para resolve-las,
+  compile este projeto junto com o projeto que declara `IDENTIFIES researcher`.</code></pre>
+<p>Isso é INFO — não erro, não aviso. Uma referência externa não resolvida na compilação isolada é o comportamento <strong>esperado</strong>, não um defeito. A mensagem aparece uma vez por entidade, o suficiente para documentar sem poluir o painel de problemas.</p>
+<hr>
+</section>
+<section id="sec-link" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Passo 5: ligar os projetos</h1>
+<p>Passe dois ou mais projetos ao mesmo comando <code>compile</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>SYNESIS v0.8.1  Linkando projetos.
+  compilando lattes …
+  compilando abstracts …
+
+✓ 2 projetos linkados. 7 aresta(s) resolvida(s) ['researcher'].</code></pre>
+<p>O que aconteceu:</p>
+<ol type="1">
+<li>Cada membro foi compilado <strong>isoladamente</strong>, com validação completa</li>
+<li>Cada <code>REFERS TO researcher</code> foi comparado com o <code>IDENTIFIES researcher</code> proprietário</li>
+<li>Cada casamento virou uma aresta do agregado</li>
+</ol>
+<p>O caminho de linkagem só ativa com <strong>dois ou mais</strong> projetos. Com um só, o comportamento é exatamente o de sempre.</p>
+<section id="exportar-o-agregado" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="exportar-o-agregado"><span class="header-section-number">7.1</span> Exportar o agregado</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp <span class="at">--json</span> estudo.json <span class="at">--csv</span> saida/</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Flag</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--json</code></td>
+<td>Agregado no schema <strong>v3.1</strong>: <code>kind: "link"</code>, <code>entity_owners</code>, seção <code>links</code> com arestas e órfãos</td>
+</tr>
+<tr class="even">
+<td><code>--csv</code></td>
+<td><code>links.csv</code> com as arestas resolvidas</td>
+</tr>
+<tr class="odd">
+<td><code>--stats</code></td>
+<td>Estatísticas por membro e agregadas</td>
+</tr>
+<tr class="even">
+<td><code>--xls</code></td>
+<td><strong>Não suportado</strong> — emite aviso</td>
+</tr>
+<tr class="odd">
+<td><code>--alpaca</code></td>
+<td><strong>Não suportado</strong> — emite aviso</td>
+</tr>
+</tbody>
+</table>
+<p>O JSON v3.1 é <strong>aditivo</strong>: ferramentas que consomem a v3.0 ignoram as chaves novas sem quebrar.</p>
+<p><code>--xls</code> e <code>--alpaca</code> não têm exportador no agregado porque <code>SOURCE FIELDS</code> diverge entre membros — não existe planilha ou dataset único coerente. Em vez de gerar nada em silêncio, a CLI avisa:</p>
+<pre><code>aviso: --xls ainda nao e suportado no passo de linkagem (multiplos projetos)
+— nenhum arquivo .xlsx foi gerado. Exporte cada projeto separadamente.</code></pre>
+</section>
+<section id="estatísticas-do-agregado" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="estatísticas-do-agregado"><span class="header-section-number">7.2</span> Estatísticas do agregado</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp <span class="at">--stats</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Os contadores de SOURCEs, ITEMs e CHAINs são próprios de cada membro e somam. Já a ontologia, quando compartilhada via <code>INCLUDE SHARED ONTOLOGY</code>, é <strong>deduplicada</strong> — somar 74 + 74 conceitos da mesma ontologia daria 148, um número falso. Havendo sobreposição, as linhas aparecem como <code>Shared ontology</code> / <code>Shared codes</code>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-resultados" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Entendendo os resultados</h1>
+<section id="bibrefs-qualificados" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="bibrefs-qualificados"><span class="header-section-number">8.1</span> Bibrefs qualificados</h2>
+<p>No agregado, cada bibref é prefixado pelo alias do projeto de origem:</p>
+<pre><code>lattes:@curriculo_maria
+abstracts:@artigo_silva2024</code></pre>
+<p>Isso dissolve colisões: dois corpora podem legitimamente ter a mesma chave <code>.bib</code> (o mesmo perfil aparecendo em <code>linkedin.bib</code> e <code>posts.bib</code>, por exemplo) sem que o link step os confunda.</p>
+</section>
+<section id="referências-órfãs" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="referências-órfãs"><span class="header-section-number">8.2</span> Referências órfãs</h2>
+<p>Um valor de <code>REFERS TO</code> sem <code>IDENTIFIES</code> correspondente vira <strong>aviso</strong>, não erro:</p>
+<pre><code>⚠ 1 REFERS TO orfao(s) (valor sem IDENTIFIES correspondente).</code></pre>
+<p>Isso é frequentemente legítimo — um artigo citando um autor externo, sem currículo no corpus, é exatamente isso. Nenhum nó é criado para o órfão.</p>
+</section>
+<section id="quase-casamentos" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="quase-casamentos"><span class="header-section-number">8.3</span> Quase-casamentos</h2>
+<p>Quando o valor casaria <strong>apenas</strong> sob normalização de maiúsculas/minúsculas, o aviso é enriquecido:</p>
+<pre><code>AVISO  abstracts.synp
+  Casamento proximo: `ORCID-0000-1234` difere apenas em caixa/invisiveis.
+  Se sao a mesma entidade, canonize o valor na origem (.bib/SOURCE) — o
+  compilador nao normaliza automaticamente (evita fundir entidades distintas).</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que o compilador não normaliza sozinho
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Normalizar caixa automaticamente fundiria entidades que a fonte considera distintas — <code>AB-100</code> e <code>ab-100</code> podem ser deliberadamente diferentes. O compilador <strong>detecta e sugere, mas nunca funde</strong>. A decisão é do pesquisador e fica registrada na fonte, não escondida numa heurística do compilador.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-erros" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Erros comuns</h1>
+<section id="dois-projetos-declaram-a-mesma-entidade" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="dois-projetos-declaram-a-mesma-entidade"><span class="header-section-number">9.1</span> Dois projetos declaram a mesma entidade</h2>
+<pre><code>Erro 81: A entidade `researcher` e declarada com `IDENTIFIES` por dois projetos</code></pre>
+<p>Cada rótulo tem um único corpus proprietário. Se são esquemas de identificação distintos da mesma pessoa (Lattes e ORCID), apenas um mantém o <code>IDENTIFIES</code>; o outro passa a <code>REFERS TO</code>.</p>
+</section>
+<section id="tipos-divergentes" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="tipos-divergentes"><span class="header-section-number">9.2</span> Tipos divergentes</h2>
+<pre><code>Erro 82: Os campos que participam da entidade `researcher` tem `TYPE` divergente</code></pre>
+<p>Todos os campos de uma entidade — o <code>IDENTIFIES</code> e todos os <code>REFERS TO</code> — devem ter o mesmo <code>TYPE</code>. Divergência indica que os dois lados não modelam a mesma coisa. É erro duro: comparar valores de tipos distintos produziria casamentos arbitrários.</p>
+</section>
+<section id="valor-ausente-no-.bib" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="valor-ausente-no-.bib"><span class="header-section-number">9.3</span> Valor ausente no <code>.bib</code></h2>
+<pre><code>Erro 79: Campo `lattes_id` (ON BIBLIOGRAPHY) ausente no .bib de `curriculo_maria`</code></pre>
+<p>O campo foi declarado <code>ON BIBLIOGRAPHY</code> mas a entrada <code>.bib</code> não o tem. Adicione-o à entrada ou remova a exigência do template.</p>
+<hr>
+</section>
+</section>
+<section id="sec-lsp" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Por que o LSP nunca carrega o agregado</h1>
+<p>A linkagem é <strong>exclusiva da linha de comando</strong>. O servidor LSP — o que dá autocompletar, diagnósticos e navegação no VS Code — sempre trabalha com projetos isolados.</p>
+<p>Essa fronteira é deliberada. Se o editor precisasse manter o agregado em memória, cada gravação num arquivo <code>.syn</code> recompilaria o estudo inteiro. Mantendo a linkagem fora do LSP, um estudo com seis corpora grandes edita tão rápido quanto um projeto pequeno.</p>
+<p>O preço é que as arestas não aparecem no editor — e é um preço justo: elas são um resultado de análise, produzido quando você exporta, não algo que se consulta enquanto anota.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A ontologia compartilhada <strong>é</strong> vista pelo editor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Diferente das arestas, uma ontologia declarada com <code>INCLUDE SHARED ONTOLOGY</code> é carregada normalmente pelo LSP, com autocompletar e validação de códigos. A extensão instala um observador de arquivo sobre o alvo externo, então uma alteração feita por <code>git pull</code> ou por outra janela dispara revalidação dos projetos que a incluem. Ver <a href="../explanation/interface_lsp.html">A Interface LSP</a>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-proximos" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Próximos passos</h1>
+<ul>
+<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a> — sintaxe completa de <code>IDENTIFIES</code> / <code>REFERS TO</code></li>
+<li><a href="../reference/guia_erros.html#sec-ligacao">Guia de Erros</a> — todos os diagnósticos de ligação (77–84)</li>
+<li><a href="../reference/gramatica.html">Gramática da Linguagem</a> — as regras Lark dos novos modificadores</li>
+<li><a href="../howto/exportar_neo4j.html">Exportar para Neo4j</a> — levar o agregado para um banco de grafos</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

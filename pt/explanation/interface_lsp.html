@@ -173,6 +173,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Como Criar e Validar Chains</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">Como Ligar Projetos Independentes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../howto/exportar_neo4j.html">
  <span class="dropdown-text">Exportar para Neo4j</span></a>
   </li>  
@@ -332,6 +336,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#navegação-e-compreensão" id="toc-navegação-e-compreensão" class="nav-link" data-scroll-target="#navegação-e-compreensão"><span class="header-section-number">6.2</span> Navegação e compreensão</a></li>
   <li><a href="#produtividade" id="toc-produtividade" class="nav-link" data-scroll-target="#produtividade"><span class="header-section-number">6.3</span> Produtividade</a></li>
   <li><a href="#synesis-explorer" id="toc-synesis-explorer" class="nav-link" data-scroll-target="#synesis-explorer"><span class="header-section-number">6.4</span> Synesis Explorer</a></li>
+  <li><a href="#o-contrato-lsp-extensão" id="toc-o-contrato-lsp-extensão" class="nav-link" data-scroll-target="#o-contrato-lsp-extensão"><span class="header-section-number">6.5</span> O contrato LSP ↔︎ extensão</a></li>
+  <li><a href="#tipos-de-arquivo-reconhecidos" id="toc-tipos-de-arquivo-reconhecidos" class="nav-link" data-scroll-target="#tipos-de-arquivo-reconhecidos"><span class="header-section-number">6.6</span> Tipos de arquivo reconhecidos</a></li>
   </ul></li>
   <li><a href="#sec-performance" id="toc-sec-performance" class="nav-link" data-scroll-target="#sec-performance"><span class="header-section-number">7</span> Estratégias de performance</a>
   <ul class="collapse">
@@ -340,9 +346,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#priorização-do-arquivo-em-foco" id="toc-priorização-do-arquivo-em-foco" class="nav-link" data-scroll-target="#priorização-do-arquivo-em-foco"><span class="header-section-number">7.3</span> 3. Priorização do arquivo em foco</a></li>
   <li><a href="#fingerprint-de-workspace" id="toc-fingerprint-de-workspace" class="nav-link" data-scroll-target="#fingerprint-de-workspace"><span class="header-section-number">7.4</span> 4. Fingerprint de workspace</a></li>
   </ul></li>
-  <li><a href="#sec-ciclo" id="toc-sec-ciclo" class="nav-link" data-scroll-target="#sec-ciclo"><span class="header-section-number">8</span> Ciclo de vida de um arquivo</a></li>
-  <li><a href="#sec-modulos" id="toc-sec-modulos" class="nav-link" data-scroll-target="#sec-modulos"><span class="header-section-number">9</span> Mapa dos módulos</a></li>
-  <li><a href="#sec-relacao" id="toc-sec-relacao" class="nav-link" data-scroll-target="#sec-relacao"><span class="header-section-number">10</span> Relação com o compilador</a></li>
+  <li><a href="#sec-shared-ontology" id="toc-sec-shared-ontology" class="nav-link" data-scroll-target="#sec-shared-ontology"><span class="header-section-number">8</span> O caso da ontologia compartilhada</a>
+  <ul class="collapse">
+  <li><a href="#a-premissa-quebrada-projetos-são-auto-contidos" id="toc-a-premissa-quebrada-projetos-são-auto-contidos" class="nav-link" data-scroll-target="#a-premissa-quebrada-projetos-são-auto-contidos"><span class="header-section-number">8.1</span> A premissa quebrada: projetos são auto-contidos</a></li>
+  <li><a href="#a-premissa-quebrada-tudo-que-importa-está-sob-a-raiz-do-workspace" id="toc-a-premissa-quebrada-tudo-que-importa-está-sob-a-raiz-do-workspace" class="nav-link" data-scroll-target="#a-premissa-quebrada-tudo-que-importa-está-sob-a-raiz-do-workspace"><span class="header-section-number">8.2</span> A premissa quebrada: tudo que importa está sob a raiz do workspace</a></li>
+  </ul></li>
+  <li><a href="#sec-ciclo" id="toc-sec-ciclo" class="nav-link" data-scroll-target="#sec-ciclo"><span class="header-section-number">9</span> Ciclo de vida de um arquivo</a></li>
+  <li><a href="#sec-modulos" id="toc-sec-modulos" class="nav-link" data-scroll-target="#sec-modulos"><span class="header-section-number">10</span> Mapa dos módulos</a></li>
+  <li><a href="#sec-relacao" id="toc-sec-relacao" class="nav-link" data-scroll-target="#sec-relacao"><span class="header-section-number">11</span> Relação com o compilador</a>
+  <ul class="collapse">
+  <li><a href="#a-fronteira-do-agregado-multiprojeto" id="toc-a-fronteira-do-agregado-multiprojeto" class="nav-link" data-scroll-target="#a-fronteira-do-agregado-multiprojeto"><span class="header-section-number">11.1</span> A fronteira do agregado multiprojeto</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -896,6 +910,56 @@ Mensagens pedagógicas
 </table>
 <p>Todos esses comandos dependem do <code>WorkspaceCache</code> — primeiro é necessário chamar <code>loadProject</code> para compilar e cachear o projeto.</p>
 </section>
+<section id="o-contrato-lsp-extensão" class="level3" data-number="6.5">
+<h3 data-number="6.5" class="anchored" data-anchor-id="o-contrato-lsp-extensão"><span class="header-section-number">6.5</span> O contrato LSP ↔︎ extensão</h3>
+<p>As respostas desses comandos customizados são descritas por <strong>JSON Schemas versionados</strong>. O servidor valida o que produz; a extensão valida o que consome, contra uma cópia dos mesmos schemas.</p>
+<p>O ganho é que uma mudança de formato no servidor não chega ao usuário como um painel vazio ou um erro obscuro no editor: ela quebra o CI dos <strong>dois</strong> repositórios ao mesmo tempo, no momento da mudança.</p>
+</section>
+<section id="tipos-de-arquivo-reconhecidos" class="level3" data-number="6.6">
+<h3 data-number="6.6" class="anchored" data-anchor-id="tipos-de-arquivo-reconhecidos"><span class="header-section-number">6.6</span> Tipos de arquivo reconhecidos</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Extensão</th>
+<th>Conteúdo</th>
+<th>Papel no LSP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.synp</code></td>
+<td>Projeto</td>
+<td>Ponto de entrada; salvar invalida o cache do workspace</td>
+</tr>
+<tr class="even">
+<td><code>.synt</code></td>
+<td>Template</td>
+<td>Define as regras; salvar revalida todos os arquivos abertos</td>
+</tr>
+<tr class="odd">
+<td><code>.syn</code></td>
+<td>Anotações</td>
+<td>Validação em tempo real</td>
+</tr>
+<tr class="even">
+<td><code>.syno</code></td>
+<td>Ontologia</td>
+<td>Validação e fonte das definições de conceito</td>
+</tr>
+<tr class="odd">
+<td><code>.synr</code></td>
+<td>Revisão</td>
+<td>Anotações com blocos <code># REVISION</code> produzidos pelo <code>synesis-coder</code></td>
+</tr>
+</tbody>
+</table>
+<p>O tipo <code>.synr</code> é o formato intermediário do pipeline ACT (ver <a href="../howto/synesis_coder.html#sec-act">synesis-coder</a>). Como é um <code>.syn</code> acrescido de blocos de revisão, recebe o mesmo tratamento de diagnóstico e renomeação — o pesquisador revisa as sugestões dentro do editor, com validação ativa, antes de consolidá-las.</p>
+</section>
 </section>
 <section id="sec-performance" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="sec-performance"><span class="header-section-number">7</span> Estratégias de performance</h2>
@@ -936,8 +1000,37 @@ Camada 4: Feature caches  → resultados por feature (symbols, tokens)
 <p>Em vez de calcular SHA1 de todos os arquivos do projeto, o <code>WorkspaceCache</code> usa uma fingerprint simples: <code>{contagem_de_arquivos}:{mtime_mais_recente}</code>. Isso é suficiente para detectar mudanças na maioria dos casos e custa microsegundos em vez de milissegundos.</p>
 </section>
 </section>
-<section id="sec-ciclo" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sec-ciclo"><span class="header-section-number">8</span> Ciclo de vida de um arquivo</h2>
+<section id="sec-shared-ontology" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-shared-ontology"><span class="header-section-number">8</span> O caso da ontologia compartilhada</h2>
+<p>A introdução de <code>INCLUDE SHARED ONTOLOGY</code> — uma ontologia que vive <strong>fora</strong> da pasta do projeto — quebrou duas premissas que o LSP assumia. Vale documentar porque a solução envolveu reverter uma decisão arquitetural anterior.</p>
+<section id="a-premissa-quebrada-projetos-são-auto-contidos" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="a-premissa-quebrada-projetos-são-auto-contidos"><span class="header-section-number">8.1</span> A premissa quebrada: projetos são auto-contidos</h3>
+<p>Os observadores de arquivo (<code>FileSystemWatcher</code>) haviam sido <strong>removidos</strong> do projeto por serem redundantes: <code>onDidSaveTextDocument</code> já disparava a revalidação, e tudo que um projeto lia estava dentro de sua própria pasta.</p>
+<p><code>INCLUDE SHARED ONTOLOGY</code> invalida essa premissa. O evento de salvamento só dispara para <strong>documentos abertos no editor</strong>. Uma ontologia compartilhada alterada por <code>git pull</code>, por outra janela do VS Code ou por outro processo nunca disparava nada — o projeto que a inclui ficava obsoleto <strong>em silêncio</strong>.</p>
+<p>A extensão voltou a instalar observadores, agora escopados: um por alvo externo, usando o índice reverso <code>alvo → projetos</code> que o servidor devolve. Quando um alvo muda, apenas os projetos que o declaram são recarregados, com <em>debounce</em> de 300ms — um <code>git pull</code> pode reescrever o arquivo várias vezes seguidas.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reversão consciente, não regressão
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A remoção original dos observadores estava correta <strong>para a premissa da época</strong>. O que mudou foi a premissa, não a qualidade da decisão. A reintrodução é escopada aos alvos externos, não um observador amplo sobre todo o workspace — mantém-se o ganho de performance original onde ele ainda se aplica.</p>
+</div>
+</div>
+</section>
+<section id="a-premissa-quebrada-tudo-que-importa-está-sob-a-raiz-do-workspace" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="a-premissa-quebrada-tudo-que-importa-está-sob-a-raiz-do-workspace"><span class="header-section-number">8.2</span> A premissa quebrada: tudo que importa está sob a raiz do workspace</h3>
+<p>Havia um segundo defeito, mais sutil, que o observador sozinho <strong>não</strong> resolveria. A fingerprint do workspace (<a href="#sec-performance" class="quarto-xref">Seção&nbsp;7</a>) percorria apenas a raiz do workspace. A ontologia compartilhada, morando fora dela, simplesmente não entrava no cálculo — editá-la não invalidava o cache.</p>
+<p>O resultado seria um observador inútil: ele dispararia o recarregamento, que consultaria o cache, que devolveria o dado velho. <strong>Corrigir a fingerprint é pré-requisito do observador</strong>, não um refinamento posterior.</p>
+<p>Hoje os alvos de <code>INCLUDE SHARED</code> entram na fingerprint, e uma edição puramente externa chega corretamente ao contexto do servidor.</p>
+</section>
+</section>
+<section id="sec-ciclo" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-ciclo"><span class="header-section-number">9</span> Ciclo de vida de um arquivo</h2>
 <p>Para consolidar, este é o ciclo completo quando o usuário trabalha com um arquivo <code>.syn</code>:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -975,8 +1068,8 @@ Camada 4: Feature caches  → resultados por feature (symbols, tokens)
 <li><strong>Fechamento</strong> — diagnósticos limpos, FileState removido, memória liberada</li>
 </ol>
 </section>
-<section id="sec-modulos" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-modulos"><span class="header-section-number">9</span> Mapa dos módulos</h2>
+<section id="sec-modulos" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-modulos"><span class="header-section-number">10</span> Mapa dos módulos</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1111,8 +1204,8 @@ Camada 4: Feature caches  → resultados por feature (symbols, tokens)
 </table>
 <p>Todos os módulos de feature seguem o mesmo padrão: recebem o <code>CompilationResult</code> ou o source do documento, processam, e retornam tipos LSP que o <code>server.py</code> despacha para o editor.</p>
 </section>
-<section id="sec-relacao" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="sec-relacao"><span class="header-section-number">10</span> Relação com o compilador</h2>
+<section id="sec-relacao" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="sec-relacao"><span class="header-section-number">11</span> Relação com o compilador</h2>
 <p>O <code>synesis-lsp</code> <strong>depende</strong> do compilador, mas o compilador <strong>não depende</strong> do LSP. Essa assimetria é intencional:</p>
 <pre><code>synesis (compilador)
   ├── lsp_adapter.py     ← Interface para o LSP
@@ -1126,6 +1219,12 @@ synesis-lsp (servidor)
   ├── converters.py      ← Importa de synesis.ast
   └── features/          ← Importam de synesis.*</code></pre>
 <p>O <code>lsp_adapter.py</code> foi colocado dentro do compilador (e não no LSP) porque precisa acessar internamente o parser, o transformer e o validador — componentes que não fazem parte da API pública do compilador. Ele funciona como uma <strong>fachada interna</strong>: expõe <code>validate_single_file()</code> como uma operação atômica que esconde toda a complexidade do pipeline de 8 estágios.</p>
+<section id="a-fronteira-do-agregado-multiprojeto" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="a-fronteira-do-agregado-multiprojeto"><span class="header-section-number">11.1</span> A fronteira do agregado multiprojeto</h3>
+<p>Há uma capacidade do compilador que o LSP deliberadamente <strong>não</strong> usa: o passo de linkagem entre projetos (<code>synesis compile p1.synp p2.synp</code>, ver <a href="../howto/ligar_projetos.html">Ligar Projetos</a>).</p>
+<p>O servidor sempre trabalha com projetos <strong>isolados</strong>. Se ele mantivesse o agregado em memória, cada gravação num <code>.syn</code> recompilaria o estudo inteiro — exatamente o custo que a arquitetura de dois modos (<a href="#sec-modos" class="quarto-xref">Seção&nbsp;3</a>) existe para evitar. Um estudo com seis corpora grandes ficaria inutilizável no editor.</p>
+<p>O efeito prático é que as arestas resolvidas não aparecem no editor. Isso é aceitável porque elas são um <strong>resultado de análise</strong>, produzido na exportação — não algo que se consulta enquanto se anota. Um projeto que declara <code>REFERS TO</code> recebe, na compilação isolada, apenas uma nota informativa (<code>SYNESIS_I080</code>), nunca um erro ou aviso recorrente.</p>
+<p>A ontologia compartilhada é o caso oposto e vale contrastar: ela <strong>é</strong> carregada pelo servidor, com autocompletar e validação de códigos, porque faz parte do contexto de edição de cada projeto individualmente (<a href="#sec-shared-ontology" class="quarto-xref">Seção&nbsp;8</a>).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1147,6 +1246,7 @@ Para contribuidores
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

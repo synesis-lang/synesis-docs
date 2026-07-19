@@ -170,6 +170,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Como Criar e Validar Chains</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">Como Ligar Projetos Independentes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../howto/exportar_neo4j.html">
  <span class="dropdown-text">Exportar para Neo4j</span></a>
   </li>  
@@ -396,7 +400,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-erro-66" id="toc-sec-erro-66" class="nav-link" data-scroll-target="#sec-erro-66"><span class="header-section-number">9.6</span> Erro 66 — Dois blocos PROJECT (ERRO)</a></li>
   <li><a href="#sec-erro-67" id="toc-sec-erro-67" class="nav-link" data-scroll-target="#sec-erro-67"><span class="header-section-number">9.7</span> Erro 67 — Data MODIFIED anterior a CREATED (AVISO)</a></li>
   </ul></li>
-  <li><a href="#sec-indice" id="toc-sec-indice" class="nav-link" data-scroll-target="#sec-indice"><span class="header-section-number">10</span> Índice Rápido</a></li>
+  <li><a href="#sec-caminhos" id="toc-sec-caminhos" class="nav-link" data-scroll-target="#sec-caminhos"><span class="header-section-number">10</span> Arquivos e Caminhos</a>
+  <ul class="collapse">
+  <li><a href="#sec-erro-73" id="toc-sec-erro-73" class="nav-link" data-scroll-target="#sec-erro-73"><span class="header-section-number">10.1</span> Erro 73 — Arquivo de anotações não encontrado (ERRO)</a></li>
+  <li><a href="#sec-erro-74" id="toc-sec-erro-74" class="nav-link" data-scroll-target="#sec-erro-74"><span class="header-section-number">10.2</span> Erro 74 — Arquivo de ontologia não encontrado (ERRO)</a></li>
+  <li><a href="#sec-erro-75" id="toc-sec-erro-75" class="nav-link" data-scroll-target="#sec-erro-75"><span class="header-section-number">10.3</span> Erro 75 — Caminho aponta para fora do projeto (ERRO)</a></li>
+  <li><a href="#sec-erro-76" id="toc-sec-erro-76" class="nav-link" data-scroll-target="#sec-erro-76"><span class="header-section-number">10.4</span> Erro 76 — Arquivo incluído não pode ser lido (ERRO)</a></li>
+  </ul></li>
+  <li><a href="#sec-ligacao" id="toc-sec-ligacao" class="nav-link" data-scroll-target="#sec-ligacao"><span class="header-section-number">11</span> Ligação entre Projetos</a>
+  <ul class="collapse">
+  <li><a href="#sec-erro-77" id="toc-sec-erro-77" class="nav-link" data-scroll-target="#sec-erro-77"><span class="header-section-number">11.1</span> Erro 77 — Valor de identidade duplicado (ERRO)</a></li>
+  <li><a href="#sec-erro-78" id="toc-sec-erro-78" class="nav-link" data-scroll-target="#sec-erro-78"><span class="header-section-number">11.2</span> Erro 78 — Modificador de ligação fora de SOURCE (ERRO)</a></li>
+  <li><a href="#sec-erro-79" id="toc-sec-erro-79" class="nav-link" data-scroll-target="#sec-erro-79"><span class="header-section-number">11.3</span> Erro 79 — Valor obrigatório ausente na bibliografia (ERRO)</a></li>
+  <li><a href="#sec-erro-80" id="toc-sec-erro-80" class="nav-link" data-scroll-target="#sec-erro-80"><span class="header-section-number">11.4</span> Informativo 80 — Referência externa declarada (INFO)</a></li>
+  <li><a href="#sec-erro-81" id="toc-sec-erro-81" class="nav-link" data-scroll-target="#sec-erro-81"><span class="header-section-number">11.5</span> Erro 81 — Entidade com dono duplicado (ERRO)</a></li>
+  <li><a href="#sec-erro-82" id="toc-sec-erro-82" class="nav-link" data-scroll-target="#sec-erro-82"><span class="header-section-number">11.6</span> Erro 82 — Tipos divergentes na ligação (ERRO)</a></li>
+  <li><a href="#sec-erro-83" id="toc-sec-erro-83" class="nav-link" data-scroll-target="#sec-erro-83"><span class="header-section-number">11.7</span> Aviso 83 — Referência órfã (AVISO)</a></li>
+  <li><a href="#sec-erro-84" id="toc-sec-erro-84" class="nav-link" data-scroll-target="#sec-erro-84"><span class="header-section-number">11.8</span> Erro 84 — <code>SHARED</code> usado fora de ONTOLOGY (ERRO)</a></li>
+  </ul></li>
+  <li><a href="#sec-indice" id="toc-sec-indice" class="nav-link" data-scroll-target="#sec-indice"><span class="header-section-number">12</span> Índice Rápido</a></li>
   </ul>
 </nav>
     </div>
@@ -441,8 +463,10 @@ Como usar este guia
 <ul>
 <li><strong>(ERRO)</strong> — impede a compilação e bloqueia a exportação</li>
 <li><strong>(AVISO)</strong> — algo incompleto ou incomum; não bloqueia, mas deve ser investigado</li>
+<li><strong>(INFO)</strong> — informação de contexto; não indica defeito algum. Usado quando o compilador precisa registrar uma condição esperada, como uma referência entre projetos que só se resolve na linkagem (<a href="#sec-erro-80" class="quarto-xref">Seção&nbsp;11.4</a>)</li>
 <li>Erros marcados com <strong>[implementado]</strong> já são detectados pelo compilador; <strong>[pendente]</strong> ainda não</li>
 <li>Erros de template (39–60, 69) são problemas na definição das regras do projeto, não nas anotações</li>
+<li>Erros de caminho (73–76) tratam da resolução de arquivos declarados no <code>.synp</code>; erros de ligação (77–84) tratam da conexão entre projetos independentes</li>
 </ul>
 </section>
 <section id="formato-das-mensagens" class="level2" data-number="0.2">
@@ -1660,8 +1684,376 @@ Nota para pesquisadores
 </div>
 </section>
 </section>
-<section id="sec-indice" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Índice Rápido</h1>
+<section id="sec-caminhos" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Arquivos e Caminhos</h1>
+<p>Erros na resolução dos caminhos declarados em <code>TEMPLATE</code> e <code>INCLUDE</code>. Todos os caminhos são resolvidos <strong>relativos à pasta onde está o arquivo <code>.synp</code></strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que o compilador restringe caminhos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Arquivos <code>.synp</code> e <code>.syn</code> circulam entre pesquisadores e são gerados automaticamente pelo <code>synesis-coder</code>. Um caminho como <code>"../../documentos/pessoais.txt"</code> faria o compilador ler e incorporar ao projeto um arquivo que o pesquisador nunca pretendeu publicar — e qualquer exportador o levaria adiante. Por isso o compilador só lê arquivos contidos na pasta do projeto, com uma única exceção declarada explicitamente: <code>INCLUDE SHARED ONTOLOGY</code> (ver <a href="#sec-erro-84" class="quarto-xref">Seção&nbsp;11.8</a>).</p>
+</div>
+</div>
+<section id="sec-erro-73" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-erro-73"><span class="header-section-number">10.1</span> Erro 73 — Arquivo de anotações não encontrado (ERRO)</h2>
+<p>O caminho declarado em <code>INCLUDE ANNOTATIONS</code> não existe no disco.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-58-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-58-1" role="tab" aria-controls="tabset-58-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-58-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-58-2" role="tab" aria-controls="tabset-58-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-58-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-58-1-tab">
+<div class="sourceCode" id="cb69"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> Estudo_Aceitacao</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"modelo.synt"</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"referencias.bib"</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"entrevistas/entrevista_07.syn"</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Mas o arquivo <code>entrevistas/entrevista_07.syn</code> não existe.</p>
+</div>
+<div id="tabset-58-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-58-2-tab">
+<p>Verifique o nome e o caminho, que deve ser relativo à pasta do <code>.synp</code>. Um <code>INCLUDE</code> quebrado não impede mais o parsing dos demais arquivos: o compilador reporta o arquivo ausente e segue processando o resto do projeto.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-74" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="sec-erro-74"><span class="header-section-number">10.2</span> Erro 74 — Arquivo de ontologia não encontrado (ERRO)</h2>
+<p>O caminho declarado em <code>INCLUDE ONTOLOGY</code> não existe no disco.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-59-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-59-1" role="tab" aria-controls="tabset-59-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-59-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-59-2" role="tab" aria-controls="tabset-59-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-59-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-59-1-tab">
+<div class="sourceCode" id="cb70"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> Estudo_Aceitacao</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"modelo.synt"</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"referencias.bib"</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"anotacoes.syn"</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontologia/conceitos.syno"</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Mas <code>ontologia/conceitos.syno</code> não existe.</p>
+</div>
+<div id="tabset-59-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-59-2-tab">
+<p>Verifique o nome e o caminho. Sem o arquivo de ontologia, os códigos usados nas anotações não podem ser validados — as anotações continuam sendo lidas, mas sem validação conceitual.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-75" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sec-erro-75"><span class="header-section-number">10.3</span> Erro 75 — Caminho aponta para fora do projeto (ERRO)</h2>
+<p>Um caminho em <code>TEMPLATE</code> ou <code>INCLUDE</code> escapa da pasta do projeto.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-60-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-60-1" role="tab" aria-controls="tabset-60-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-60-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-60-2" role="tab" aria-controls="tabset-60-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-60-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-60-1-tab">
+<div class="sourceCode" id="cb71"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> Estudo_Aceitacao</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"modelo.synt"</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"referencias.bib"</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"../outro_projeto/anotacoes.syn"</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O mesmo vale para padrões glob que escapem — <code>INCLUDE ANNOTATIONS "../../*.syn"</code> é recusado com o mesmo erro.</p>
+</div>
+<div id="tabset-60-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-60-2-tab">
+<p>Mova o arquivo para dentro da pasta do projeto (ou de uma subpasta) e ajuste o caminho. Subpastas são sempre válidas: <code>INCLUDE ANNOTATIONS "entrevistas/*.syn"</code>.</p>
+<p>Se o objetivo é <strong>compartilhar uma ontologia entre vários projetos</strong>, use <code>INCLUDE SHARED ONTOLOGY</code> — a única forma autorizada de apontar para fora da pasta do projeto. Ver <a href="#sec-ligacao" class="quarto-xref">Seção&nbsp;11</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-76" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="sec-erro-76"><span class="header-section-number">10.4</span> Erro 76 — Arquivo incluído não pode ser lido (ERRO)</h2>
+<p>O arquivo existe, mas o compilador não conseguiu lê-lo ou interpretá-lo.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-61-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-1" role="tab" aria-controls="tabset-61-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-2" role="tab" aria-controls="tabset-61-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-61-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-61-1-tab">
+<p>Três situações produzem este erro:</p>
+<ol type="1">
+<li><strong>Codificação inválida</strong> — o arquivo não está em UTF-8 (por exemplo, salvo em ANSI/Latin-1 com acentos)</li>
+<li><strong>Erro de sintaxe</strong> — o arquivo <code>.syn</code> ou <code>.syno</code> incluído tem sintaxe inválida</li>
+<li><strong>Arquivo grande demais</strong> — acima de 32 MB, recusado para não travar o editor</li>
+</ol>
+<div class="sourceCode" id="cb72"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># anotacoes.syn com bloco malformado</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@silva2024</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">citation:</span> Trecho da entrevista.</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co"># falta o END ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-61-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-61-2-tab">
+<p>A mensagem indica qual arquivo e qual foi a causa. Salve o arquivo em UTF-8, corrija a sintaxe apontada, ou divida um arquivo excessivamente grande em vários menores.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que o limite de 32 MB
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O servidor LSP é um processo de longa duração dentro do editor. Um arquivo de vários gigabytes — por engano ou gerado automaticamente — travaria o VS Code inteiro. O limite protege a sessão de edição.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-ligacao" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Ligação entre Projetos</h1>
+<p>Erros dos modificadores <code>IDENTIFIES</code> / <code>REFERS TO</code> e do passo de linkagem multiprojeto. Ver o guia <a href="../howto/ligar_projetos.html">Ligar Projetos Independentes</a> para o fluxo completo.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dois momentos distintos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os erros <strong>77, 78, 79 e 84</strong> e o informativo <strong>80</strong> aparecem na compilação <strong>isolada</strong> de um projeto (<code>synesis compile projeto.synp</code>). Os erros <strong>81, 82</strong> e o aviso <strong>83</strong> só aparecem no <strong>passo de linkagem</strong>, quando dois ou mais projetos são compilados juntos (<code>synesis compile p1.synp p2.synp</code>).</p>
+</div>
+</div>
+<section id="sec-erro-77" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="sec-erro-77"><span class="header-section-number">11.1</span> Erro 77 — Valor de identidade duplicado (ERRO)</h2>
+<p>Dois SOURCEs do mesmo projeto têm o mesmo valor num campo <code>IDENTIFIES</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-62-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-62-1" role="tab" aria-controls="tabset-62-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-62-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-62-2" role="tab" aria-controls="tabset-62-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-62-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-62-1-tab">
+<p>Template declarando a chave primária da entidade:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Anotação com o mesmo valor em dois SOURCEs:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@curriculo_maria</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lattes_id:</span> 3474000000000167</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@curriculo_maria_2020</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lattes_id:</span> 3474000000000167</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-62-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-62-2-tab">
+<p><code>IDENTIFIES</code> declara uma <strong>chave primária</strong>: cada valor deve identificar um único SOURCE. Se os dois blocos são a mesma entidade, unifique-os num só SOURCE. Se são entidades distintas, corrija o valor duplicado.</p>
+<p>A comparação é por igualdade exata após remover espaços nas pontas — sem normalização de maiúsculas/minúsculas.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-78" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="sec-erro-78"><span class="header-section-number">11.2</span> Erro 78 — Modificador de ligação fora de SOURCE (ERRO)</h2>
+<p><code>IDENTIFIES</code> ou <code>REFERS TO</code> usado em campo que não é <code>SCOPE SOURCE</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-63-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-63-1" role="tab" aria-controls="tabset-63-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-63-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-63-2" role="tab" aria-controls="tabset-63-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-63-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-63-1-tab">
+<div class="sourceCode" id="cb75"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_citado <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-63-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-63-2-tab">
+<p>A ligação entre projetos opera sobre <strong>SOURCEs</strong> — as unidades de coleta —, não sobre ITEMs ou conceitos da ontologia. Mova o modificador para um campo <code>SCOPE SOURCE</code>, ou remova-o:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_citado <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-79" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="sec-erro-79"><span class="header-section-number">11.3</span> Erro 79 — Valor obrigatório ausente na bibliografia (ERRO)</h2>
+<p>Um campo declarado <code>REQUIRED ... ON BIBLIOGRAPHY</code> não tem valor correspondente na entrada <code>.bib</code> do SOURCE.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-64-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-64-1" role="tab" aria-controls="tabset-64-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-64-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-64-2" role="tab" aria-controls="tabset-64-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-64-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-64-1-tab">
+<p>Template exigindo que o valor venha do <code>.bib</code>, não do texto:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> lattes_id ON <span class="kw">BIBLIOGRAPHY</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Entrada <code>.bib</code> sem o campo:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">curriculo_maria</span>,</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Silva, Maria},</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>  = {Currículo Lattes},</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>   = {2026}</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>    <span class="er">%</span> <span class="st">lattes</span><span class="er">_</span><span class="st">id</span> <span class="st">ausente</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-64-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-64-2-tab">
+<p>Adicione o campo à entrada <code>.bib</code>:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">curriculo_maria</span>,</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span>   = {Silva, Maria},</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>    = {Currículo Lattes},</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>     = {2026},</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lattes_id</span> = {3474000000000167}</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ou remova a exigência <code>ON BIBLIOGRAPHY</code> do template.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que <code>ON BIBLIOGRAPHY</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Alguns identificadores (ID Lattes, ORCID, CNPJ) são metadados da fonte, não conteúdo extraível do texto do documento. Declarar <code>ON BIBLIOGRAPHY</code> diz ao compilador que o valor vive na entrada <code>.bib</code> — exigi-lo no bloco SOURCE mentiria sobre a natureza do dado. Campos assim são excluídos da verificação do erro 21 (campo obrigatório ausente no SOURCE).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-80" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="sec-erro-80"><span class="header-section-number">11.4</span> Informativo 80 — Referência externa declarada (INFO)</h2>
+<p>O projeto declara <code>REFERS TO</code> para uma entidade que não existe nele. <strong>Não é erro nem aviso.</strong></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-65-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-65-1" role="tab" aria-controls="tabset-65-1" aria-selected="true">Quando aparece</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-65-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-65-2" role="tab" aria-controls="tabset-65-2" aria-selected="false">O que fazer</a></li></ul>
+<div class="tab-content">
+<div id="tabset-65-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-65-1-tab">
+<div class="sourceCode" id="cb80"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ao compilar este projeto sozinho:</p>
+<pre><code>INFO  abstracts.synp
+  Este projeto referencia a entidade externa `researcher` (`REFERS TO` em `autor_id`).
+  As ligacoes nao estao materializadas neste artefato. Para resolve-las,
+  compile este projeto junto com o projeto que declara `IDENTIFIES researcher`.</code></pre>
+</div>
+<div id="tabset-65-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-65-2-tab">
+<p>Nada — é o comportamento esperado. Uma referência externa só se resolve no passo de linkagem:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A mensagem é emitida <strong>uma vez por entidade</strong>, em nível INFO, justamente para documentar que há ligações a materializar sem poluir o painel de problemas com um aviso recorrente.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-81" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="sec-erro-81"><span class="header-section-number">11.5</span> Erro 81 — Entidade com dono duplicado (ERRO)</h2>
+<p>Dois projetos declaram <code>IDENTIFIES</code> do mesmo rótulo de entidade. Aparece apenas no passo de linkagem.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-66-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-66-1" role="tab" aria-controls="tabset-66-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-66-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-66-2" role="tab" aria-controls="tabset-66-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-66-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-66-1-tab">
+<p><code>lattes.synt</code>:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>orcid.synt</code>:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> orcid <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-66-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-66-2-tab">
+<p>Cada rótulo de entidade tem <strong>um único corpus proprietário</strong> — é a chave primária. Se são esquemas de identificação distintos da mesma pessoa (Lattes e ORCID), o corpus proprietário mantém o <code>IDENTIFIES</code> e o outro passa a apontar para ele:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># orcid.synt — passa a referenciar, não a identificar</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-82" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="sec-erro-82"><span class="header-section-number">11.6</span> Erro 82 — Tipos divergentes na ligação (ERRO)</h2>
+<p>Campos que participam da mesma entidade têm <code>TYPE</code> diferente. Aparece apenas no passo de linkagem.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-67-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-67-1" role="tab" aria-controls="tabset-67-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-67-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-67-2" role="tab" aria-controls="tabset-67-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-67-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-67-1-tab">
+<p><code>lattes.synt</code>:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>abstracts.synt</code>:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_id <span class="kw">TYPE</span> NUMBER</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-67-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-67-2-tab">
+<p>Todos os campos da mesma entidade — o <code>IDENTIFIES</code> e todos os <code>REFERS TO</code> — devem declarar o mesmo <code>TYPE</code>. A divergência indica que os dois lados não modelam a mesma coisa. Alinhe os tipos nos templates.</p>
+<p>Este é um <strong>erro duro</strong>: a linkagem não prossegue, porque comparar valores de tipos distintos produziria casamentos arbitrários.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-83" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="sec-erro-83"><span class="header-section-number">11.7</span> Aviso 83 — Referência órfã (AVISO)</h2>
+<p>Um valor de <code>REFERS TO</code> não casa com nenhum <code>IDENTIFIES</code>. Aparece apenas no passo de linkagem.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-68-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-68-1" role="tab" aria-controls="tabset-68-1" aria-selected="true">Quando aparece</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-68-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-68-2" role="tab" aria-controls="tabset-68-2" aria-selected="false">Quase-casamento</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-68-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-68-3" role="tab" aria-controls="tabset-68-3" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-68-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-68-1-tab">
+<pre><code>AVISO  abstracts.synp
+  O valor `3474000000000999` (`REFERS TO researcher` em `abstracts`) nao tem
+  `IDENTIFIES researcher` correspondente — e uma referencia orfa.
+  Pode ser esperado (ex. autor externo sem curriculo no corpus). Nenhum no e criado.</code></pre>
+<p>Órfãos são frequentemente <strong>legítimos</strong>: um artigo citando um autor que não tem currículo no corpus é exatamente isso. Por isso é aviso, não erro.</p>
+</div>
+<div id="tabset-68-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-68-2-tab">
+<p>Quando o valor casaria apenas sob normalização de maiúsculas/minúsculas, o aviso é enriquecido:</p>
+<pre><code>AVISO  abstracts.synp
+  O valor `orcid-0000-1234` (`REFERS TO researcher` em `abstracts`) nao tem
+  `IDENTIFIES researcher` correspondente — e uma referencia orfa.
+  Casamento proximo: `ORCID-0000-1234` difere apenas em caixa/invisiveis.
+  Se sao a mesma entidade, canonize o valor na origem (.bib/SOURCE) — o
+  compilador nao normaliza automaticamente (evita fundir entidades distintas).</code></pre>
+</div>
+<div id="tabset-68-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-68-3-tab">
+<p>Se o órfão é esperado, nada a fazer. Se o quase-casamento indica a mesma entidade, <strong>corrija o valor na origem</strong> (no <code>.bib</code> ou no bloco SOURCE).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por que o compilador não normaliza sozinho
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Normalizar caixa automaticamente fundiria entidades que a fonte considera distintas — dois códigos de projeto <code>AB-100</code> e <code>ab-100</code> podem ser deliberadamente diferentes. O compilador detecta e sugere, mas <strong>nunca funde</strong>. A decisão é do pesquisador, registrada na fonte.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-erro-84" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="sec-erro-84"><span class="header-section-number">11.8</span> Erro 84 — <code>SHARED</code> usado fora de ONTOLOGY (ERRO)</h2>
+<p>A palavra <code>SHARED</code> foi aplicada a um <code>INCLUDE</code> que não é de ontologia.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-69-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-69-1" role="tab" aria-controls="tabset-69-1" aria-selected="true">Exemplo que causa o erro</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-69-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-69-2" role="tab" aria-controls="tabset-69-2" aria-selected="false">Como corrigir</a></li></ul>
+<div class="tab-content">
+<div id="tabset-69-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-69-1-tab">
+<div class="sourceCode" id="cb90"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> Estudo_Aceitacao</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"modelo.synt"</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">BIBLIOGRAPHY</span> <span class="st">"../compartilhado/referencias.bib"</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-69-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-69-2-tab">
+<p><code>INCLUDE SHARED</code> só é válido para <code>ONTOLOGY</code>:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../compartilhado/vocabulario.syno"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A palavra <code>SHARED</code> autoriza um alvo <strong>fora</strong> da pasta do projeto. Essa exceção existe para compartilhar o <strong>vocabulário conceitual</strong> entre projetos do mesmo estudo — deixá-la valer para bibliografia ou anotações abriria a contenção para casos que a motivação não pediu. Remova o <code>SHARED</code> e mova o arquivo para dentro da pasta do projeto.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-indice" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Índice Rápido</h1>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2013,6 +2405,78 @@ Nota para pesquisadores
 <td>DuplicateOntologyDescription</td>
 <td>AVISO</td>
 <td><a href="#sec-erro-71">Ontologia</a></td>
+</tr>
+<tr class="even">
+<td>73</td>
+<td>MissingAnnotationsFile</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-73">Caminhos</a></td>
+</tr>
+<tr class="odd">
+<td>74</td>
+<td>MissingOntologyFile</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-74">Caminhos</a></td>
+</tr>
+<tr class="even">
+<td>75</td>
+<td>IncludePathEscapesProject</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-75">Caminhos</a></td>
+</tr>
+<tr class="odd">
+<td>76</td>
+<td>UnreadableIncludedFile</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-76">Caminhos</a></td>
+</tr>
+<tr class="even">
+<td>77</td>
+<td>DuplicateIdentityValue</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-77">Ligação</a></td>
+</tr>
+<tr class="odd">
+<td>78</td>
+<td>LinkageModifierOutsideSource</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-78">Ligação</a></td>
+</tr>
+<tr class="even">
+<td>79</td>
+<td>MissingBibliographyValue</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-79">Ligação</a></td>
+</tr>
+<tr class="odd">
+<td>80</td>
+<td>ExternalReferenceDeclared</td>
+<td>INFO</td>
+<td><a href="#sec-erro-80">Ligação</a></td>
+</tr>
+<tr class="even">
+<td>81</td>
+<td>DuplicateEntityOwner</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-81">Ligação</a></td>
+</tr>
+<tr class="odd">
+<td>82</td>
+<td>TypeMismatchInLinkage</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-82">Ligação</a></td>
+</tr>
+<tr class="even">
+<td>83</td>
+<td>OrphanReference</td>
+<td>AVISO</td>
+<td><a href="#sec-erro-83">Ligação</a></td>
+</tr>
+<tr class="odd">
+<td>84</td>
+<td>SharedOnlyForOntology</td>
+<td>ERRO</td>
+<td><a href="#sec-erro-84">Ligação</a></td>
 </tr>
 </tbody>
 </table>

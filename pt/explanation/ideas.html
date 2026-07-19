@@ -170,6 +170,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Como Criar e Validar Chains</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">Como Ligar Projetos Independentes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../howto/exportar_neo4j.html">
  <span class="dropdown-text">Exportar para Neo4j</span></a>
   </li>  
@@ -382,6 +386,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="synesis-ideias" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Synesis: Ideias</h1>
 <p><strong>Ideias:</strong> Propostas de especificação de Extensões da Linguagem</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O que está neste documento
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este é um documento de <strong>propostas</strong> — especificações desenhadas, mas ainda <strong>não implementadas</strong>. Nada aqui está disponível no compilador atual.</p>
+<p>Para o que já funciona, veja a <a href="../reference/guia_referencia.html">Referência da Linguagem</a> e a <a href="../reference/gramatica.html">Gramática</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Propostas que saíram do papel
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Duas necessidades tratadas historicamente como “ideias” já foram <strong>implementadas</strong> e têm documentação própria:</p>
+<ul>
+<li><strong>Agregação de projetos paralelos</strong> — a proposta original (um bloco <code>STUDY</code> / <em>master project</em> que tornaria o agregado uma unidade de compilação) foi <strong>descartada</strong> por sobrecarregar o editor. A solução adotada foi outra: projetos independentes ligados por <code>IDENTIFIES</code> / <code>REFERS TO</code>, resolvidos num passo de linkagem na CLI. Ver <a href="../howto/ligar_projetos.html">Como Ligar Projetos Independentes</a>.</li>
+<li><strong>Vocabulário compartilhado entre projetos</strong> — implementado como <code>INCLUDE SHARED ONTOLOGY</code>. Ver <a href="../reference/guia_referencia.html">Referência da Linguagem</a>.</li>
+</ul>
+<p>O registro é útil: a proposta descartada e a solução adotada resolvem a mesma necessidade, mas a segunda preserva a autonomia de compilação que a primeira sacrificava.</p>
+</div>
+</div>
 <hr>
 <section id="introdução-às-extensões" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="introdução-às-extensões"><span class="header-section-number">1.1</span> Introdução às Extensões</h2>

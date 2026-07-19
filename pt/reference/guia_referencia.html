@@ -170,6 +170,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Como Criar e Validar Chains</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">Como Ligar Projetos Independentes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../howto/exportar_neo4j.html">
  <span class="dropdown-text">Exportar para Neo4j</span></a>
   </li>  
@@ -330,6 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#sintaxe" id="toc-sintaxe" class="nav-link" data-scroll-target="#sintaxe"><span class="header-section-number">1.3.1</span> Sintaxe</a></li>
   <li><a href="#semântica" id="toc-semântica" class="nav-link" data-scroll-target="#semântica"><span class="header-section-number">1.3.2</span> Semântica</a></li>
+  <li><a href="#ontologia-compartilhada" id="toc-ontologia-compartilhada" class="nav-link" data-scroll-target="#ontologia-compartilhada"><span class="header-section-number">1.3.3</span> Ontologia compartilhada</a></li>
   </ul></li>
   <li><a href="#definição-de-template-.synt" id="toc-definição-de-template-.synt" class="nav-link" data-scroll-target="#definição-de-template-.synt"><span class="header-section-number">1.4</span> Definição de Template (.synt)</a>
   <ul class="collapse">
@@ -372,42 +377,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#diferença-de-enumerated" id="toc-diferença-de-enumerated" class="nav-link" data-scroll-target="#diferença-de-enumerated"><span class="header-section-number">1.10.1</span> Diferença de ENUMERATED</a></li>
   <li><a href="#exemplo-anotado-1" id="toc-exemplo-anotado-1" class="nav-link" data-scroll-target="#exemplo-anotado-1"><span class="header-section-number">1.10.2</span> Exemplo Anotado</a></li>
   </ul></li>
-  <li><a href="#pipeline-de-compilação" id="toc-pipeline-de-compilação" class="nav-link" data-scroll-target="#pipeline-de-compilação"><span class="header-section-number">1.11</span> Pipeline de Compilação</a>
+  <li><a href="#ligação-entre-projetos-identifies-refers-to" id="toc-ligação-entre-projetos-identifies-refers-to" class="nav-link" data-scroll-target="#ligação-entre-projetos-identifies-refers-to"><span class="header-section-number">1.11</span> Ligação entre Projetos (IDENTIFIES / REFERS TO)</a>
   <ul class="collapse">
-  <li><a href="#etapas-obrigatórias" id="toc-etapas-obrigatórias" class="nav-link" data-scroll-target="#etapas-obrigatórias"><span class="header-section-number">1.11.1</span> Etapas Obrigatórias</a></li>
-  <li><a href="#ordem-de-dependência" id="toc-ordem-de-dependência" class="nav-link" data-scroll-target="#ordem-de-dependência"><span class="header-section-number">1.11.2</span> Ordem de Dependência</a></li>
+  <li><a href="#os-dois-modificadores" id="toc-os-dois-modificadores" class="nav-link" data-scroll-target="#os-dois-modificadores"><span class="header-section-number">1.11.1</span> Os dois modificadores</a></li>
+  <li><a href="#sintaxe-4" id="toc-sintaxe-4" class="nav-link" data-scroll-target="#sintaxe-4"><span class="header-section-number">1.11.2</span> Sintaxe</a></li>
+  <li><a href="#origem-do-valor-on-bibliography" id="toc-origem-do-valor-on-bibliography" class="nav-link" data-scroll-target="#origem-do-valor-on-bibliography"><span class="header-section-number">1.11.3</span> Origem do valor: <code>ON BIBLIOGRAPHY</code></a></li>
+  <li><a href="#compilação-isolada" id="toc-compilação-isolada" class="nav-link" data-scroll-target="#compilação-isolada"><span class="header-section-number">1.11.4</span> Compilação isolada</a></li>
+  <li><a href="#passo-de-linkagem" id="toc-passo-de-linkagem" class="nav-link" data-scroll-target="#passo-de-linkagem"><span class="header-section-number">1.11.5</span> Passo de linkagem</a></li>
+  <li><a href="#saídas-do-agregado" id="toc-saídas-do-agregado" class="nav-link" data-scroll-target="#saídas-do-agregado"><span class="header-section-number">1.11.6</span> Saídas do agregado</a></li>
   </ul></li>
-  <li><a href="#error-handling-pedagógico" id="toc-error-handling-pedagógico" class="nav-link" data-scroll-target="#error-handling-pedagógico"><span class="header-section-number">1.12</span> Error Handling Pedagógico</a>
+  <li><a href="#pipeline-de-compilação" id="toc-pipeline-de-compilação" class="nav-link" data-scroll-target="#pipeline-de-compilação"><span class="header-section-number">1.12</span> Pipeline de Compilação</a>
   <ul class="collapse">
-  <li><a href="#princípio-de-design" id="toc-princípio-de-design" class="nav-link" data-scroll-target="#princípio-de-design"><span class="header-section-number">1.12.1</span> Princípio de Design</a></li>
-  <li><a href="#detector-de-vírgula-ausente-em-listas-code" id="toc-detector-de-vírgula-ausente-em-listas-code" class="nav-link" data-scroll-target="#detector-de-vírgula-ausente-em-listas-code"><span class="header-section-number">1.12.2</span> Detector de “Vírgula Ausente” em Listas CODE</a></li>
-  <li><a href="#detector-de-cadeia-malformada-em-chain" id="toc-detector-de-cadeia-malformada-em-chain" class="nav-link" data-scroll-target="#detector-de-cadeia-malformada-em-chain"><span class="header-section-number">1.12.3</span> Detector de “Cadeia Malformada” em CHAIN</a></li>
+  <li><a href="#etapas-obrigatórias" id="toc-etapas-obrigatórias" class="nav-link" data-scroll-target="#etapas-obrigatórias"><span class="header-section-number">1.12.1</span> Etapas Obrigatórias</a></li>
+  <li><a href="#ordem-de-dependência" id="toc-ordem-de-dependência" class="nav-link" data-scroll-target="#ordem-de-dependência"><span class="header-section-number">1.12.2</span> Ordem de Dependência</a></li>
   </ul></li>
-  <li><a href="#referência-rápida-de-palavras-chave" id="toc-referência-rápida-de-palavras-chave" class="nav-link" data-scroll-target="#referência-rápida-de-palavras-chave"><span class="header-section-number">1.13</span> Referência Rápida de Palavras-Chave</a>
+  <li><a href="#error-handling-pedagógico" id="toc-error-handling-pedagógico" class="nav-link" data-scroll-target="#error-handling-pedagógico"><span class="header-section-number">1.13</span> Error Handling Pedagógico</a>
   <ul class="collapse">
-  <li><a href="#palavras-chave-de-estrutura" id="toc-palavras-chave-de-estrutura" class="nav-link" data-scroll-target="#palavras-chave-de-estrutura"><span class="header-section-number">1.13.1</span> Palavras-Chave de Estrutura</a></li>
-  <li><a href="#palavras-chave-de-inclusão" id="toc-palavras-chave-de-inclusão" class="nav-link" data-scroll-target="#palavras-chave-de-inclusão"><span class="header-section-number">1.13.2</span> Palavras-Chave de Inclusão</a></li>
-  <li><a href="#modificadores-de-campo" id="toc-modificadores-de-campo" class="nav-link" data-scroll-target="#modificadores-de-campo"><span class="header-section-number">1.13.3</span> Modificadores de Campo</a></li>
-  <li><a href="#especificadores-de-campo" id="toc-especificadores-de-campo" class="nav-link" data-scroll-target="#especificadores-de-campo"><span class="header-section-number">1.13.4</span> Especificadores de Campo</a></li>
+  <li><a href="#princípio-de-design" id="toc-princípio-de-design" class="nav-link" data-scroll-target="#princípio-de-design"><span class="header-section-number">1.13.1</span> Princípio de Design</a></li>
+  <li><a href="#detector-de-vírgula-ausente-em-listas-code" id="toc-detector-de-vírgula-ausente-em-listas-code" class="nav-link" data-scroll-target="#detector-de-vírgula-ausente-em-listas-code"><span class="header-section-number">1.13.2</span> Detector de “Vírgula Ausente” em Listas CODE</a></li>
+  <li><a href="#detector-de-cadeia-malformada-em-chain" id="toc-detector-de-cadeia-malformada-em-chain" class="nav-link" data-scroll-target="#detector-de-cadeia-malformada-em-chain"><span class="header-section-number">1.13.3</span> Detector de “Cadeia Malformada” em CHAIN</a></li>
   </ul></li>
-  <li><a href="#seções-sugeridas-para-expansão-da-documentação" id="toc-seções-sugeridas-para-expansão-da-documentação" class="nav-link" data-scroll-target="#seções-sugeridas-para-expansão-da-documentação"><span class="header-section-number">1.14</span> Seções (Sugeridas para Expansão da documentação)</a>
+  <li><a href="#referência-rápida-de-palavras-chave" id="toc-referência-rápida-de-palavras-chave" class="nav-link" data-scroll-target="#referência-rápida-de-palavras-chave"><span class="header-section-number">1.14</span> Referência Rápida de Palavras-Chave</a>
   <ul class="collapse">
-  <li><a href="#validação-de-referências-bibliográficas" id="toc-validação-de-referências-bibliográficas" class="nav-link" data-scroll-target="#validação-de-referências-bibliográficas"><span class="header-section-number">1.14.1</span> Validação de Referências Bibliográficas</a></li>
-  <li><a href="#normalização-e-canonicalização" id="toc-normalização-e-canonicalização" class="nav-link" data-scroll-target="#normalização-e-canonicalização"><span class="header-section-number">1.14.2</span> Normalização e Canonicalização</a></li>
-  <li><a href="#exportação-para-json" id="toc-exportação-para-json" class="nav-link" data-scroll-target="#exportação-para-json"><span class="header-section-number">1.14.3</span> Exportação para JSON</a></li>
-  <li><a href="#exportação-para-csv" id="toc-exportação-para-csv" class="nav-link" data-scroll-target="#exportação-para-csv"><span class="header-section-number">1.14.4</span> Exportação para CSV</a></li>
-  <li><a href="#exportação-para-excel" id="toc-exportação-para-excel" class="nav-link" data-scroll-target="#exportação-para-excel"><span class="header-section-number">1.14.5</span> Exportação para Excel</a></li>
-  <li><a href="#integração-com-lark-parser" id="toc-integração-com-lark-parser" class="nav-link" data-scroll-target="#integração-com-lark-parser"><span class="header-section-number">1.14.6</span> Integração com Lark Parser</a></li>
-  <li><a href="#exemplos-completos-de-projetos" id="toc-exemplos-completos-de-projetos" class="nav-link" data-scroll-target="#exemplos-completos-de-projetos"><span class="header-section-number">1.14.7</span> Exemplos Completos de Projetos</a></li>
-  <li><a href="#boas-práticas-de-anotação" id="toc-boas-práticas-de-anotação" class="nav-link" data-scroll-target="#boas-práticas-de-anotação"><span class="header-section-number">1.14.8</span> Boas Práticas de Anotação</a></li>
+  <li><a href="#palavras-chave-de-estrutura" id="toc-palavras-chave-de-estrutura" class="nav-link" data-scroll-target="#palavras-chave-de-estrutura"><span class="header-section-number">1.14.1</span> Palavras-Chave de Estrutura</a></li>
+  <li><a href="#palavras-chave-de-inclusão" id="toc-palavras-chave-de-inclusão" class="nav-link" data-scroll-target="#palavras-chave-de-inclusão"><span class="header-section-number">1.14.2</span> Palavras-Chave de Inclusão</a></li>
+  <li><a href="#modificadores-de-campo" id="toc-modificadores-de-campo" class="nav-link" data-scroll-target="#modificadores-de-campo"><span class="header-section-number">1.14.3</span> Modificadores de Campo</a></li>
+  <li><a href="#especificadores-de-campo" id="toc-especificadores-de-campo" class="nav-link" data-scroll-target="#especificadores-de-campo"><span class="header-section-number">1.14.4</span> Especificadores de Campo</a></li>
   </ul></li>
-  <li><a href="#apêndice-a-sintaxe-consolidada" id="toc-apêndice-a-sintaxe-consolidada" class="nav-link" data-scroll-target="#apêndice-a-sintaxe-consolidada"><span class="header-section-number">1.15</span> Apêndice A: Sintaxe Consolidada</a>
+  <li><a href="#seções-sugeridas-para-expansão-da-documentação" id="toc-seções-sugeridas-para-expansão-da-documentação" class="nav-link" data-scroll-target="#seções-sugeridas-para-expansão-da-documentação"><span class="header-section-number">1.15</span> Seções (Sugeridas para Expansão da documentação)</a>
   <ul class="collapse">
-  <li><a href="#projeto-.synp" id="toc-projeto-.synp" class="nav-link" data-scroll-target="#projeto-.synp"><span class="header-section-number">1.15.1</span> Projeto (.synp)</a></li>
-  <li><a href="#template-.synt" id="toc-template-.synt" class="nav-link" data-scroll-target="#template-.synt"><span class="header-section-number">1.15.2</span> Template (.synt)</a></li>
-  <li><a href="#anotações-.syn" id="toc-anotações-.syn" class="nav-link" data-scroll-target="#anotações-.syn"><span class="header-section-number">1.15.3</span> Anotações (.syn)</a></li>
-  <li><a href="#ontologia-.syno" id="toc-ontologia-.syno" class="nav-link" data-scroll-target="#ontologia-.syno"><span class="header-section-number">1.15.4</span> Ontologia (.syno)</a></li>
-  <li><a href="#cadeias-chain" id="toc-cadeias-chain" class="nav-link" data-scroll-target="#cadeias-chain"><span class="header-section-number">1.15.5</span> Cadeias (CHAIN)</a></li>
+  <li><a href="#validação-de-referências-bibliográficas" id="toc-validação-de-referências-bibliográficas" class="nav-link" data-scroll-target="#validação-de-referências-bibliográficas"><span class="header-section-number">1.15.1</span> Validação de Referências Bibliográficas</a></li>
+  <li><a href="#normalização-e-canonicalização" id="toc-normalização-e-canonicalização" class="nav-link" data-scroll-target="#normalização-e-canonicalização"><span class="header-section-number">1.15.2</span> Normalização e Canonicalização</a></li>
+  <li><a href="#exportação-para-json" id="toc-exportação-para-json" class="nav-link" data-scroll-target="#exportação-para-json"><span class="header-section-number">1.15.3</span> Exportação para JSON</a></li>
+  <li><a href="#exportação-para-csv" id="toc-exportação-para-csv" class="nav-link" data-scroll-target="#exportação-para-csv"><span class="header-section-number">1.15.4</span> Exportação para CSV</a></li>
+  <li><a href="#exportação-para-excel" id="toc-exportação-para-excel" class="nav-link" data-scroll-target="#exportação-para-excel"><span class="header-section-number">1.15.5</span> Exportação para Excel</a></li>
+  <li><a href="#integração-com-lark-parser" id="toc-integração-com-lark-parser" class="nav-link" data-scroll-target="#integração-com-lark-parser"><span class="header-section-number">1.15.6</span> Integração com Lark Parser</a></li>
+  <li><a href="#exemplos-completos-de-projetos" id="toc-exemplos-completos-de-projetos" class="nav-link" data-scroll-target="#exemplos-completos-de-projetos"><span class="header-section-number">1.15.7</span> Exemplos Completos de Projetos</a></li>
+  <li><a href="#boas-práticas-de-anotação" id="toc-boas-práticas-de-anotação" class="nav-link" data-scroll-target="#boas-práticas-de-anotação"><span class="header-section-number">1.15.8</span> Boas Práticas de Anotação</a></li>
+  </ul></li>
+  <li><a href="#apêndice-a-sintaxe-consolidada" id="toc-apêndice-a-sintaxe-consolidada" class="nav-link" data-scroll-target="#apêndice-a-sintaxe-consolidada"><span class="header-section-number">1.16</span> Apêndice A: Sintaxe Consolidada</a>
+  <ul class="collapse">
+  <li><a href="#projeto-.synp" id="toc-projeto-.synp" class="nav-link" data-scroll-target="#projeto-.synp"><span class="header-section-number">1.16.1</span> Projeto (.synp)</a></li>
+  <li><a href="#template-.synt" id="toc-template-.synt" class="nav-link" data-scroll-target="#template-.synt"><span class="header-section-number">1.16.2</span> Template (.synt)</a></li>
+  <li><a href="#anotações-.syn" id="toc-anotações-.syn" class="nav-link" data-scroll-target="#anotações-.syn"><span class="header-section-number">1.16.3</span> Anotações (.syn)</a></li>
+  <li><a href="#ontologia-.syno" id="toc-ontologia-.syno" class="nav-link" data-scroll-target="#ontologia-.syno"><span class="header-section-number">1.16.4</span> Ontologia (.syno)</a></li>
+  <li><a href="#cadeias-chain" id="toc-cadeias-chain" class="nav-link" data-scroll-target="#cadeias-chain"><span class="header-section-number">1.16.5</span> Cadeias (CHAIN)</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -561,21 +575,24 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"filename.syn"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"filename.syno"</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Colchetes indicam que todo o bloco METADATA é opcional</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]    <span class="co"># Campo individual opcional</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]   <span class="co"># Campo individual opcional</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">METADATA</span>]</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Colchetes indicam que todo o bloco DESCRIPTION é opcional</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    Texto livre descrevendo o projeto...</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">DESCRIPTION</span>]</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ontologia compartilhada entre projetos — alvo FORA da pasta do projeto</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bn">[INCLUDE SHARED ONTOLOGY "../compartilhado/vocabulario.syno"]</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Colchetes indicam que todo o bloco METADATA é opcional</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]    <span class="co"># Campo individual opcional</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]   <span class="co"># Campo individual opcional</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">METADATA</span>]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Colchetes indicam que todo o bloco DESCRIPTION é opcional</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    Texto livre descrevendo o projeto...</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">DESCRIPTION</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="semântica" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="semântica"><span class="header-section-number">1.3.2</span> Semântica</h3>
@@ -585,9 +602,32 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 <li><strong>INCLUDE BIBLIOGRAPHY</strong>: Caminho para arquivo <code>.bib</code> com referências</li>
 <li><strong>INCLUDE ANNOTATIONS</strong>: Caminho para arquivo(s) <code>.syn</code> com anotações</li>
 <li><strong>INCLUDE ONTOLOGY</strong>: Caminho para arquivo(s) <code>.syno</code> com definições ontológicas</li>
+<li><strong>INCLUDE SHARED ONTOLOGY</strong>: Ontologia compartilhada entre projetos, localizada <strong>fora</strong> da pasta do projeto</li>
 <li><strong>METADATA</strong>: Bloco opcional com metadados do projeto</li>
 <li><strong>DESCRIPTION</strong>: Bloco opcional com descrição livre do projeto</li>
 </ul>
+<p>Todos os caminhos são resolvidos <strong>relativos à pasta onde está o arquivo <code>.synp</code></strong>. Por segurança, o compilador só lê arquivos contidos nessa pasta ou em suas subpastas — um caminho que escape produz o erro 75.</p>
+</section>
+<section id="ontologia-compartilhada" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="ontologia-compartilhada"><span class="header-section-number">1.3.3</span> Ontologia compartilhada</h3>
+<p><code>INCLUDE SHARED ONTOLOGY</code> é a <strong>única</strong> exceção à regra de contenção. Ela permite que vários projetos de um mesmo estudo usem um único vocabulário conceitual sem duplicá-lo:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../compartilhado/vocabulario.syno"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"Z:/estudo/ontologia.syno"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"\\servidor\equipe\ontologia.syno"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A autorização mora na <strong>declaração</strong> — a palavra <code>SHARED</code>, versionada e auditável no <code>.synp</code> — e não na geometria do caminho. É por isso que aceita rede, outro drive ou <code>..</code>: nenhuma âncora de pasta conseguiria autorizar esses casos.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>SHARED</code> vale apenas para ONTOLOGY
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>INCLUDE SHARED BIBLIOGRAPHY</code> ou <code>INCLUDE SHARED ANNOTATIONS</code> produzem o erro 84. A exceção existe para compartilhar vocabulário conceitual; estendê-la a outros tipos abriria a contenção para casos que a motivação não pediu.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -596,92 +636,92 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 <p>O template define a estrutura e regras de validação para anotações.</p>
 <section id="cabeçalho-do-template" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="cabeçalho-do-template"><span class="header-section-number">1.4.1</span> Cabeçalho do Template</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="blocos-de-campos" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="blocos-de-campos"><span class="header-section-number">1.4.2</span> Blocos de Campos</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exemplo-completo" class="level3" data-number="1.4.3">
 <h3 data-number="1.4.3" class="anchored" data-anchor-id="exemplo-completo"><span class="header-section-number">1.4.3</span> Exemplo Completo</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> qualitative_analysis</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">version:</span> <span class="st">"1.0"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author:</span> <span class="st">"Researcher"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE SOURCE</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> access_date</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> access_date <span class="kw">TYPE</span> DATE</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Data de acesso a fonte</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ITEM</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> <span class="at">note</span>, <span class="at">chain</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> code</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto textual extraído da fonte bibliográfica</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Memo analítico explicando a interpretação e mecanismo causal identificado</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal<span class="co">/relacional entre conceitos da ontologia</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Condição necessária ou facilitadora (A permite que B ocorra)</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Efeito causal direto (A afeta ou muda B)</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> Limita ou restringe (A reduz opções ou viabilidade de B)</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONTESTED-BY:</span> Oposição ativa (A é contestado ou desafiado por B)</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RELATES-TO:</span> Associação significativa genérica (A está relacionado a B)</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ONTOLOGY</span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> description</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> topic</span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> description <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Definição textual do conceito</span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> topic <span class="kw">TYPE</span> <span class="dt">TOPIC</span></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Tópico ou domínio temático do conceito (categoria hierárquica superior dinâmica)</span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> qualitative_analysis</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">version:</span> <span class="st">"1.0"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author:</span> <span class="st">"Researcher"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE SOURCE</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> access_date</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> access_date <span class="kw">TYPE</span> DATE</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Data de acesso a fonte</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ITEM</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> <span class="at">note</span>, <span class="at">chain</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> code</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto textual extraído da fonte bibliográfica</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Memo analítico explicando a interpretação e mecanismo causal identificado</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal<span class="co">/relacional entre conceitos da ontologia</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Condição necessária ou facilitadora (A permite que B ocorra)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Efeito causal direto (A afeta ou muda B)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> Limita ou restringe (A reduz opções ou viabilidade de B)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONTESTED-BY:</span> Oposição ativa (A é contestado ou desafiado por B)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RELATES-TO:</span> Associação significativa genérica (A está relacionado a B)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ONTOLOGY</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> description</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> topic</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> description <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Definição textual do conceito</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> topic <span class="kw">TYPE</span> <span class="dt">TOPIC</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Tópico ou domínio temático do conceito (categoria hierárquica superior dinâmica)</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -690,84 +730,88 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 <p>A declaração FIELD especifica o tipo, escopo e restrições de cada campo.</p>
 <section id="sintaxe-1" class="level3" data-number="1.5.1">
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="sintaxe-1"><span class="header-section-number">1.5.1</span> Sintaxe</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE | DATE]</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE CHAIN</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span> </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span>]</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE ORDERED ou ENUMERATED</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description  <span class="co"># Para ORDERED</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">value_name:</span> description          <span class="co"># Para ENUMERATED</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span>]</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE SCALE</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Disponível para qualquer tipo — instrução para agentes de IA</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">GUIDELINES</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        Texto livre com instruções de preenchimento para o anotador ou agente de IA.</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        Múltiplas linhas são permitidas. Recuo é ignorado.</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span>]</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE | DATE]</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Modificadores de ligação entre projetos — exclusivos de SCOPE SOURCE</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[IDENTIFIES entity_label]</span>    <span class="co"># chave primária da entidade</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REFERS TO entity_label]</span>     <span class="co"># chave estrangeira para a entidade</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE CHAIN</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span>]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE ORDERED ou ENUMERATED</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description  <span class="co"># Para ORDERED</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">value_name:</span> description          <span class="co"># Para ENUMERATED</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span>]</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propriedade exclusiva para TYPE SCALE</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Disponível para qualquer tipo — instrução para agentes de IA</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">GUIDELINES</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        Texto livre com instruções de preenchimento para o anotador ou agente de IA.</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        Múltiplas linhas são permitidas. Recuo é ignorado.</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span>]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exemplo-completo-de-field" class="level3" data-number="1.5.2">
 <h3 data-number="1.5.2" class="anchored" data-anchor-id="exemplo-completo-de-field"><span class="header-section-number">1.5.2</span> Exemplo Completo de FIELD</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal entre conceitos</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Relação de influência causal</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Relação de habilitação</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INHIBITS:</span> Relação de inibição</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> aspect <span class="kw">TYPE</span> <span class="kw">ORDERED</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Aspecto modal de Dooyeweerd</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        1 <span class="fu">quantitative:</span> Aspecto numérico</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        2 <span class="fu">spatial:</span> Aspecto espacial</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        3 <span class="fu">kinematic:</span> Aspecto cinético</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        4 <span class="fu">physical:</span> Aspecto físico</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        5 <span class="fu">biotic:</span> Aspecto biótico</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> sentiment <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Sentimento expresso no excerto</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">positive:</span> Sentimento positivo</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">negative:</span> Sentimento negativo</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">neutral:</span> Sentimento neutro</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> confidence <span class="kw">TYPE</span> <span class="kw">SCALE</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Nível de confiança da interpretação</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FORMAT</span> <span class="bn">[1..5]</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto textual extraído da fonte</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        Extract the exact verbatim <span class="at">quote</span> from the source <span class="at">text</span>.</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        Do not paraphrase or summarize — preserve the original wording.</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        Include enough context for the <span class="at">quote</span> to be self-explanatory.</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        Omit only if the passage is not quotable (e.g., tables, figures).</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Cadeia causal entre conceitos</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Relação de influência causal</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Relação de habilitação</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INHIBITS:</span> Relação de inibição</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> aspect <span class="kw">TYPE</span> <span class="kw">ORDERED</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Aspecto modal de Dooyeweerd</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        1 <span class="fu">quantitative:</span> Aspecto numérico</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        2 <span class="fu">spatial:</span> Aspecto espacial</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        3 <span class="fu">kinematic:</span> Aspecto cinético</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        4 <span class="fu">physical:</span> Aspecto físico</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        5 <span class="fu">biotic:</span> Aspecto biótico</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> sentiment <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Sentimento expresso no excerto</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">positive:</span> Sentimento positivo</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">negative:</span> Sentimento negativo</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">neutral:</span> Sentimento neutro</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> confidence <span class="kw">TYPE</span> <span class="kw">SCALE</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Nível de confiança da interpretação</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FORMAT</span> <span class="bn">[1..5]</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerto textual extraído da fonte</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>        Extract the exact verbatim <span class="at">quote</span> from the source <span class="at">text</span>.</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>        Do not paraphrase or summarize — preserve the original wording.</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>        Include enough context for the <span class="at">quote</span> to be self-explanatory.</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>        Omit only if the passage is not quotable (e.g., tables, figures).</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="bloco-guidelines" class="level3" data-number="1.5.3">
 <h3 data-number="1.5.3" class="anchored" data-anchor-id="bloco-guidelines"><span class="header-section-number">1.5.3</span> Bloco GUIDELINES</h3>
@@ -783,14 +827,14 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 </section>
 <section id="sintaxe-2" class="level4" data-number="1.5.3.2">
 <h4 data-number="1.5.3.2" class="anchored" data-anchor-id="sintaxe-2"><span class="header-section-number">1.5.3.2</span> Sintaxe</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> type</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> scope</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        Linha 1 de instrução.</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        Linha 2 de instrução.</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        Linha N de instrução.</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> type</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> scope</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        Linha 1 de instrução.</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        Linha 2 de instrução.</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        Linha N de instrução.</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="semântica-1" class="level4" data-number="1.5.3.3">
 <h4 data-number="1.5.3.3" class="anchored" data-anchor-id="semântica-1"><span class="header-section-number">1.5.3.3</span> Semântica</h4>
@@ -805,32 +849,32 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 </section>
 <section id="exemplo-de-uso-com-ia" class="level4" data-number="1.5.3.4">
 <h4 data-number="1.5.3.4" class="anchored" data-anchor-id="exemplo-de-uso-com-ia"><span class="header-section-number">1.5.3.4</span> Exemplo de uso com IA</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Memo analítico do mecanismo causal identificado</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        Identify the causal mechanism linking the <span class="at">quote</span> to the research question.</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        State the mechanism in one <span class="fu">sentence:</span> <span class="st">"[Factor] [verb] [outcome] because [reason]."</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        Ground the interpretation in the <span class="at">text</span> — do not infer beyond what is stated.</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        If causality is ambiguous, describe the relationship as associative.</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Efeito causal direto</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Condição necessária ou facilitadora</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INHIBITS:</span> Limitação ou restrição</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        Map the causal structure identified in the <span class="at">note</span> field as a formal <span class="at">chain</span>.</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        Use only concepts that exist in the ontology (<span class="kw">ONTOLOGY</span> blocks).</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        Chain elements at odd positions must be concept names; even positions must be <span class="kw">RELATIONS</span>.</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        Prefer specific relations (ENABLES, INHIBITS) over generic ones (INFLUENCES).</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Memo analítico do mecanismo causal identificado</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        Identify the causal mechanism linking the <span class="at">quote</span> to the research question.</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        State the mechanism in one <span class="fu">sentence:</span> <span class="st">"[Factor] [verb] [outcome] because [reason]."</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        Ground the interpretation in the <span class="at">text</span> — do not infer beyond what is stated.</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        If causality is ambiguous, describe the relationship as associative.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Efeito causal direto</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Condição necessária ou facilitadora</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INHIBITS:</span> Limitação ou restrição</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        Map the causal structure identified in the <span class="at">note</span> field as a formal <span class="at">chain</span>.</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        Use only concepts that exist in the ontology (<span class="kw">ONTOLOGY</span> blocks).</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        Chain elements at odd positions must be concept names; even positions must be <span class="kw">RELATIONS</span>.</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        Prefer specific relations (ENABLES, INHIBITS) over generic ones (INFLUENCES).</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -952,62 +996,62 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 <section id="source" class="level3" data-number="1.7.1">
 <h3 data-number="1.7.1" class="anchored" data-anchor-id="source"><span class="header-section-number">1.7.1</span> SOURCE</h3>
 <p>Contextualiza ITEMs com referência bibliográfica. Cada SOURCE referencia exatamente uma entrada do arquivo <code>.bib</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                <span class="co"># ← Referência obrigatória ao .bib</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]       <span class="co"># ← Campos opcionais do SOURCE</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@bibref</span>                  <span class="co"># ← Um ou mais ITEMs obrigatórios</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Exemplo anotado:</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@smith2023</span>             <span class="co"># ← Deve existir em referencias.bib</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2025-01-15   <span class="co"># ← Campo opcional definido no template</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span>                   <span class="co"># ← Fecha o bloco SOURCE</span></span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                <span class="co"># ← Referência obrigatória ao .bib</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]       <span class="co"># ← Campos opcionais do SOURCE</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2023</span>               <span class="co"># ← Primeiro item de análise</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"The technology shows promising results."</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Autor expressa otimismo sobre resultados</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Technology <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@bibref</span>                  <span class="co"># ← Um ou mais ITEMs obrigatórios</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exemplo anotado:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@smith2023</span>             <span class="co"># ← Deve existir em referencias.bib</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2025-01-15   <span class="co"># ← Campo opcional definido no template</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span>                   <span class="co"># ← Fecha o bloco SOURCE</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2023</span>               <span class="co"># ← Primeiro item de análise</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"The technology shows promising results."</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Autor expressa otimismo sobre resultados</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Technology <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="item" class="level3" data-number="1.7.2">
 <h3 data-number="1.7.2" class="anchored" data-anchor-id="item"><span class="header-section-number">1.7.2</span> ITEM</h3>
 <p>Unidade analítica fundamental. Contém excerto, memos, códigos e/ou cadeias. Pertence a exatamente um SOURCE.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="bn">[@bibref]</span>                <span class="co"># ← Referência ao SOURCE pai</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Um ou mais campos obrigatórios</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos adicionais conforme template</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="bn">[@bibref]</span>                <span class="co"># ← Referência ao SOURCE pai</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Um ou mais campos obrigatórios</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos adicionais conforme template</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Exemplo anotado:</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span>                 <span class="co"># ← Referência para rastreabilidade</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Texto extraído     <span class="co"># ← Campo obrigatório (QUOTATION)</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Primeira interp.    <span class="co"># ← Primeiro par do BUNDLE</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Segunda interp.     <span class="co"># ← Segundo par do BUNDLE (mesma quantidade)</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span>                      <span class="co"># ← Fecha o bloco ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span>                 <span class="co"># ← Referência para rastreabilidade</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Texto extraído     <span class="co"># ← Campo obrigatório (QUOTATION)</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Primeira interp.    <span class="co"># ← Primeiro par do BUNDLE</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Segunda interp.     <span class="co"># ← Segundo par do BUNDLE (mesma quantidade)</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span>                      <span class="co"># ← Fecha o bloco ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ontology" class="level3" data-number="1.7.3">
 <h3 data-number="1.7.3" class="anchored" data-anchor-id="ontology"><span class="header-section-number">1.7.3</span> ONTOLOGY</h3>
 <p>Define conceito do vocabulário controlado. Estrutura plana com possibilidade de hierarquia.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name         <span class="co"># ← Nome do conceito (não pode conter espaços)</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Um ou mais campos obrigatórios</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos adicionais conforme template</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name         <span class="co"># ← Nome do conceito (não pode conter espaços)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Um ou mais campos obrigatórios</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos adicionais conforme template</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Exemplo anotado:</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost                 <span class="co"># ← Nome simples (sem espaços)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics          <span class="co"># ← Agrupamento dinâmico (TOPIC)</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public_Acceptance    <span class="co"># ← Nome sem espaços (sem aspas)</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social_Factors     <span class="co"># ← Mesmo topic agrupa conceitos relacionados</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost                 <span class="co"># ← Nome simples (sem espaços)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics          <span class="co"># ← Agrupamento dinâmico (TOPIC)</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public_Acceptance    <span class="co"># ← Nome sem espaços (sem aspas)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social_Factors     <span class="co"># ← Mesmo topic agrupa conceitos relacionados</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -1016,39 +1060,39 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 <section id="chain-qualificada" class="level3" data-number="1.8.1">
 <h3 data-number="1.8.1" class="anchored" data-anchor-id="chain-qualificada"><span class="header-section-number">1.8.1</span> Chain Qualificada</h3>
 <p>Quando o template define RELATIONS, a cadeia usa o padrão: posições ímpares são códigos, posições pares são tipos de relação.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      código  relação     código (padrão alternado)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      código  relação     código (padrão alternado)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Exemplo anotado:</strong></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate_Belief <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Support</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^    ^^^^^^^^^^    ^^^^^^^</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      código (origem)  relação       código (destino)</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> C</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^    ^^^^^^^^^^    ^    ^^^^^^^    ^</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#      cod1 rel1          cod2 rel2       cod3 (cadeia estendida)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate_Belief <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Support</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^    ^^^^^^^^^^    ^^^^^^^</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      código (origem)  relação       código (destino)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> C</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^    ^^^^^^^^^^    ^    ^^^^^^^    ^</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#      cod1 rel1          cod2 rel2       cod3 (cadeia estendida)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="chain-simples" class="level3" data-number="1.8.2">
 <h3 data-number="1.8.2" class="anchored" data-anchor-id="chain-simples"><span class="header-section-number">1.8.2</span> Chain Simples</h3>
 <p>Quando o template NÃO define RELATIONS, apenas códigos são separados por <code>-&gt;</code>. A relação é implícita.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      origem  destino (relação implícita entre cada par)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      origem  destino (relação implícita entre cada par)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Exemplo anotado:</strong></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B             <span class="co"># ← Relação implícita: A relaciona-se com B</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B <span class="op">-&gt;</span> C        <span class="co"># ← Duas relações implícitas: A→B e B→C</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B             <span class="co"># ← Relação implícita: A relaciona-se com B</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> A <span class="op">-&gt;</span> B <span class="op">-&gt;</span> C        <span class="co"># ← Duas relações implícitas: A→B e B→C</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="conceitos-sem-aspas" class="level3" data-number="1.8.3">
 <h3 data-number="1.8.3" class="anchored" data-anchor-id="conceitos-sem-aspas"><span class="header-section-number">1.8.3</span> Conceitos sem aspas</h3>
 <p>O parser captura conceitos compostos sem exigir aspas, mas é preciso evitar espaços.</p>
 <p>Anotação incorreta:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Institutional Barrier <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financial Barrier</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^^^^              ^^^^^^^^^^^^^^^^^^</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      conceito com espaços              conceito com espaços</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Institutional Barrier <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financial Barrier</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^^^^              ^^^^^^^^^^^^^^^^^^</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      conceito com espaços              conceito com espaços</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Anotação correta</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Public_Acceptance <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^                  ^^^^^^^^^^^               ^^^^^^^^^^</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      2 palavras                         2 palavras                1 palavra</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Public_Acceptance <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^^^^^^^^^^^^^^                  ^^^^^^^^^^^               ^^^^^^^^^^</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      2 palavras                         2 palavras                1 palavra</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -1057,11 +1101,11 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 <p>O modificador BUNDLE define grupos de campos que formam unidade mínima repetível de interpretação.</p>
 <section id="sintaxe-3" class="level3" data-number="1.9.1">
 <h3 data-number="1.9.1" class="anchored" data-anchor-id="sintaxe-3"><span class="header-section-number">1.9.1</span> Sintaxe</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> field_name, field_name <span class="bn">[,field_name]</span> ...</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        ^^^^^^ ^^^^^^^^^^  ^^^^^^^^^^</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        modif. campo1      campo2 (devem aparecer juntos)</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> field_name, field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        ^^^^^^ ^^^^^^^^^^  ^^^^^^^^^^</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#        modif. campo1      campo2 (devem aparecer juntos)</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="semântica-2" class="level3" data-number="1.9.2">
 <h3 data-number="1.9.2" class="anchored" data-anchor-id="semântica-2"><span class="header-section-number">1.9.2</span> Semântica</h3>
@@ -1075,16 +1119,16 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 </section>
 <section id="exemplo-anotado" class="level3" data-number="1.9.3">
 <h3 data-number="1.9.3" class="anchored" data-anchor-id="exemplo-anotado"><span class="header-section-number">1.9.3</span> Exemplo Anotado</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Texto extraído da fonte    <span class="co"># ← Campo independente</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Primeira interpretação      <span class="co"># ← bundle[0].note</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B       <span class="co"># ← bundle[0].chain (par 1)</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Segunda interpretação       <span class="co"># ← bundle[1].note</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D          <span class="co"># ← bundle[1].chain (par 2)</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: 2 pares note+chain, correspondência posicional garantida</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ref2025</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> Texto extraído da fonte    <span class="co"># ← Campo independente</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Primeira interpretação      <span class="co"># ← bundle[0].note</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> A <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> B       <span class="co"># ← bundle[0].chain (par 1)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Segunda interpretação       <span class="co"># ← bundle[1].note</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> C <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> D          <span class="co"># ← bundle[1].chain (par 2)</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: 2 pares note+chain, correspondência posicional garantida</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="validação" class="level3" data-number="1.9.4">
 <h3 data-number="1.9.4" class="anchored" data-anchor-id="validação"><span class="header-section-number">1.9.4</span> Validação</h3>
@@ -1136,25 +1180,180 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 </section>
 <section id="exemplo-anotado-1" class="level3" data-number="1.10.2">
 <h3 data-number="1.10.2" class="anchored" data-anchor-id="exemplo-anotado-1"><span class="header-section-number">1.10.2</span> Exemplo Anotado</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics              <span class="co"># ← Categoria emergente (não pré-definida)</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public_Acceptance</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social_Factors         <span class="co"># ← Outra categoria emergente</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: dois topics criados dinamicamente (Economics, Social Factors)</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># O compilador aceita qualquer string sem espaços como valor de TOPIC</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics              <span class="co"># ← Categoria emergente (não pré-definida)</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Public_Acceptance</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Social_Factors         <span class="co"># ← Outra categoria emergente</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Community-level support for technology</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: dois topics criados dinamicamente (Economics, Social Factors)</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># O compilador aceita qualquer string sem espaços como valor de TOPIC</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
-<section id="pipeline-de-compilação" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="pipeline-de-compilação"><span class="header-section-number">1.11</span> Pipeline de Compilação</h2>
-<section id="etapas-obrigatórias" class="level3" data-number="1.11.1">
-<h3 data-number="1.11.1" class="anchored" data-anchor-id="etapas-obrigatórias"><span class="header-section-number">1.11.1</span> Etapas Obrigatórias</h3>
+<section id="ligação-entre-projetos-identifies-refers-to" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="ligação-entre-projetos-identifies-refers-to"><span class="header-section-number">1.11</span> Ligação entre Projetos (IDENTIFIES / REFERS TO)</h2>
+<p>Permite triangular corpora heterogêneos — currículos, abstracts, perfis institucionais — <strong>sem</strong> transformá-los numa única unidade de compilação. Cada projeto continua independente, rápido e autônomo; a ligação é declarada no template e resolvida num passo explícito na CLI.</p>
+<p>O modelo é o do <strong>linker de C/C++</strong>: cada projeto compila isolado e expõe suas referências externas não resolvidas; um passo de linkagem (<code>synesis compile p1.synp p2.synp</code>) resolve as referências entre eles e produz o agregado.</p>
+<section id="os-dois-modificadores" class="level3" data-number="1.11.1">
+<h3 data-number="1.11.1" class="anchored" data-anchor-id="os-dois-modificadores"><span class="header-section-number">1.11.1</span> Os dois modificadores</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 42%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modificador</th>
+<th>Papel relacional</th>
+<th>Semântica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>IDENTIFIES &lt;entidade&gt;</code></td>
+<td>Chave primária (PK)</td>
+<td>O campo <strong>identifica</strong> a entidade. Cada valor corresponde a um único SOURCE. Cria o nó.</td>
+</tr>
+<tr class="even">
+<td><code>REFERS TO &lt;entidade&gt;</code></td>
+<td>Chave estrangeira (FK)</td>
+<td>O campo <strong>aponta</strong> para a entidade. Pode repetir. Não cria nó.</td>
+</tr>
+</tbody>
+</table>
+<p>Ambos são exclusivos de campos <code>SCOPE SOURCE</code> — a ligação opera sobre SOURCEs, as unidades de coleta. Usá-los em <code>SCOPE ITEM</code> ou <code>SCOPE ONTOLOGY</code> produz o erro 78.</p>
+</section>
+<section id="sintaxe-4" class="level3" data-number="1.11.2">
+<h3 data-number="1.11.2" class="anchored" data-anchor-id="sintaxe-4"><span class="header-section-number">1.11.2</span> Sintaxe</h3>
+<p>O projeto <strong>proprietário</strong> da entidade declara a chave primária:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lattes.synt — o corpus de currículos é dono da entidade "researcher"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador Lattes do pesquisador</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Os projetos <strong>periféricos</strong> apontam para ela:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># abstracts.synt — cada artigo aponta para o pesquisador que o escreveu</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador Lattes do autor</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note que o projeto periférico <strong>não nomeia</strong> o projeto proprietário — apenas o rótulo da entidade. Adicionar um terceiro corpus ao estudo não exige editar nenhum template existente.</p>
+</section>
+<section id="origem-do-valor-on-bibliography" class="level3" data-number="1.11.3">
+<h3 data-number="1.11.3" class="anchored" data-anchor-id="origem-do-valor-on-bibliography"><span class="header-section-number">1.11.3</span> Origem do valor: <code>ON BIBLIOGRAPHY</code></h3>
+<p>Alguns identificadores são metadados da fonte, não conteúdo extraível do texto. <code>ON BIBLIOGRAPHY</code> declara que o valor vive na entrada <code>.bib</code> do SOURCE:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> lattes_id ON <span class="kw">BIBLIOGRAPHY</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> orcid ON <span class="kw">BIBLIOGRAPHY</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">curriculo_maria</span>,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span>    = {Silva, Maria},</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>     = {Currículo Lattes},</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>      = {2026},</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lattes_id</span> = {3474000000000167}</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O sufixo só é válido em cláusula de <strong>campo único</strong>. <code>REQUIRED a, b ON BIBLIOGRAPHY</code> é erro de sintaxe — numa lista, seria ambíguo a qual campo o sufixo se aplica.</p>
+<p>Campos <code>ON BIBLIOGRAPHY</code> são excluídos da verificação de campo obrigatório do bloco SOURCE (erro 21), já que o valor não vive no bloco. Se o valor faltar no <code>.bib</code>, o erro emitido é o 79.</p>
+</section>
+<section id="compilação-isolada" class="level3" data-number="1.11.4">
+<h3 data-number="1.11.4" class="anchored" data-anchor-id="compilação-isolada"><span class="header-section-number">1.11.4</span> Compilação isolada</h3>
+<p>Um projeto com <code>REFERS TO</code> compila normalmente sozinho. O compilador emite apenas uma mensagem <strong>INFO</strong> (<a href="../reference/guia_erros.html#sec-erro-80">informativo 80</a>) registrando que há ligações a materializar — nunca erro ou aviso:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile abstracts.synp <span class="at">--json</span> abstracts.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>INFO  abstracts.synp
+  Este projeto referencia a entidade externa `researcher` (`REFERS TO` em `autor_id`).</code></pre>
+</section>
+<section id="passo-de-linkagem" class="level3" data-number="1.11.5">
+<h3 data-number="1.11.5" class="anchored" data-anchor-id="passo-de-linkagem"><span class="header-section-number">1.11.5</span> Passo de linkagem</h3>
+<p>Com dois ou mais projetos, o comando <code>compile</code> resolve as ligações:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp <span class="at">--json</span> estudo.json <span class="at">--csv</span> saida/</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O passo de linkagem:</p>
+<ol type="1">
+<li>Compila cada membro <strong>isoladamente</strong> (validação completa, independente)</li>
+<li>Resolve cada <code>REFERS TO</code> contra o <code>IDENTIFIES</code> proprietário, por <strong>rótulo de entidade + igualdade exata do valor</strong></li>
+<li>Gera uma aresta por casamento — suporta <strong>n:1</strong> e <strong>n:n</strong> (campo multivalorado gera uma aresta por valor)</li>
+<li>Qualifica os bibrefs por alias de membro (<code>abstracts:@artigo_a</code>), dissolvendo colisões entre corpora</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O compilador nunca funde entidades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A comparação é por igualdade exata após remover espaços nas pontas — <strong>sem</strong> normalização de maiúsculas/minúsculas. Um valor que casaria apenas sob normalização vira aviso de <strong>quase-casamento</strong> (erro 83), com sugestão de canonizar na origem. Fundir automaticamente uniria entidades que a fonte considera distintas.</p>
+</div>
+</div>
+</section>
+<section id="saídas-do-agregado" class="level3" data-number="1.11.6">
+<h3 data-number="1.11.6" class="anchored" data-anchor-id="saídas-do-agregado"><span class="header-section-number">1.11.6</span> Saídas do agregado</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Flag</th>
+<th>Comportamento no passo de linkagem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--json</code></td>
+<td>Agregado no schema <strong>v3.1</strong> (aditivo): <code>kind: "link"</code>, <code>entity_owners</code>, seção <code>links</code> com arestas e órfãos</td>
+</tr>
+<tr class="even">
+<td><code>--csv</code></td>
+<td>Gera <code>links.csv</code> com as arestas resolvidas</td>
+</tr>
+<tr class="odd">
+<td><code>--stats</code></td>
+<td>Estatísticas por membro e agregadas (ontologia compartilhada é deduplicada, não somada)</td>
+</tr>
+<tr class="even">
+<td><code>--xls</code></td>
+<td><strong>Sem exportador</strong> — emite aviso explícito</td>
+</tr>
+<tr class="odd">
+<td><code>--alpaca</code></td>
+<td><strong>Sem exportador</strong> — emite aviso explícito</td>
+</tr>
+</tbody>
+</table>
+<p>O schema v3.1 é aditivo: consumidores da v3.0 ignoram as chaves novas.</p>
+<p><code>--xls</code> e <code>--alpaca</code> não têm exportador no agregado porque <code>SOURCE FIELDS</code> diverge entre membros — não existe tabela única coerente. A lacuna é reportada em vez de falhar em silêncio.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O LSP nunca carrega o agregado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A linkagem é exclusiva da CLI. O servidor LSP sempre trabalha com projetos isolados — é o que mantém a edição rápida mesmo em estudos com muitos corpora grandes.</p>
+</div>
+</div>
+<p>Ver o guia <a href="../howto/ligar_projetos.html">Ligar Projetos Independentes</a> para o fluxo completo com exemplos.</p>
+<hr>
+</section>
+</section>
+<section id="pipeline-de-compilação" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="pipeline-de-compilação"><span class="header-section-number">1.12</span> Pipeline de Compilação</h2>
+<section id="etapas-obrigatórias" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="etapas-obrigatórias"><span class="header-section-number">1.12.1</span> Etapas Obrigatórias</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
@@ -1232,23 +1431,23 @@ ashworth2019,Gender,INFLUENCES,CCS Support,annotations/ccs.syn,367,11</code></pr
 </tbody>
 </table>
 </section>
-<section id="ordem-de-dependência" class="level3" data-number="1.11.2">
-<h3 data-number="1.11.2" class="anchored" data-anchor-id="ordem-de-dependência"><span class="header-section-number">1.11.2</span> Ordem de Dependência</h3>
+<section id="ordem-de-dependência" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="ordem-de-dependência"><span class="header-section-number">1.12.2</span> Ordem de Dependência</h3>
 <pre><code>Projeto = Template + BibTeX + Anotações + Ontologia</code></pre>
 <p>O parser lê tudo, depois valida/resolve a consistência.</p>
 <hr>
 </section>
 </section>
-<section id="error-handling-pedagógico" class="level2" data-number="1.12">
-<h2 data-number="1.12" class="anchored" data-anchor-id="error-handling-pedagógico"><span class="header-section-number">1.12</span> Error Handling Pedagógico</h2>
-<section id="princípio-de-design" class="level3" data-number="1.12.1">
-<h3 data-number="1.12.1" class="anchored" data-anchor-id="princípio-de-design"><span class="header-section-number">1.12.1</span> Princípio de Design</h3>
+<section id="error-handling-pedagógico" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="error-handling-pedagógico"><span class="header-section-number">1.13</span> Error Handling Pedagógico</h2>
+<section id="princípio-de-design" class="level3" data-number="1.13.1">
+<h3 data-number="1.13.1" class="anchored" data-anchor-id="princípio-de-design"><span class="header-section-number">1.13.1</span> Princípio de Design</h3>
 <p>O compilador prioriza mensagens de erro educativas que ensinam a sintaxe correta sem exigir leitura do manual.</p>
 </section>
-<section id="detector-de-vírgula-ausente-em-listas-code" class="level3" data-number="1.12.2">
-<h3 data-number="1.12.2" class="anchored" data-anchor-id="detector-de-vírgula-ausente-em-listas-code"><span class="header-section-number">1.12.2</span> Detector de “Vírgula Ausente” em Listas CODE</h3>
+<section id="detector-de-vírgula-ausente-em-listas-code" class="level3" data-number="1.13.2">
+<h3 data-number="1.13.2" class="anchored" data-anchor-id="detector-de-vírgula-ausente-em-listas-code"><span class="header-section-number">1.13.2</span> Detector de “Vírgula Ausente” em Listas CODE</h3>
 <p><strong>Erro comum:</strong></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Climate_Belief Risk_Perception  <span class="co"># ERRO: falta vírgula</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Climate_Belief Risk_Perception  <span class="co"># ERRO: falta vírgula</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Mensagem sugerida:</strong></p>
 <pre><code>erro: arquivo.syn:3:26: Múltiplos códigos devem ser separados por vírgula.
     code: Climate_Belief Risk_Perception
@@ -1261,10 +1460,10 @@ OU especifique cada código em linha separada:
     code: Climate_Belief
     code: Risk_Perception</code></pre>
 </section>
-<section id="detector-de-cadeia-malformada-em-chain" class="level3" data-number="1.12.3">
-<h3 data-number="1.12.3" class="anchored" data-anchor-id="detector-de-cadeia-malformada-em-chain"><span class="header-section-number">1.12.3</span> Detector de “Cadeia Malformada” em CHAIN</h3>
+<section id="detector-de-cadeia-malformada-em-chain" class="level3" data-number="1.13.3">
+<h3 data-number="1.13.3" class="anchored" data-anchor-id="detector-de-cadeia-malformada-em-chain"><span class="header-section-number">1.13.3</span> Detector de “Cadeia Malformada” em CHAIN</h3>
 <p><strong>Erro comum:</strong></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate_Belief INFLUENCES Support  <span class="co"># ERRO: falta "-&gt;"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Climate_Belief INFLUENCES Support  <span class="co"># ERRO: falta "-&gt;"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Mensagem sugerida:</strong></p>
 <pre><code>erro: arquivo.syn:2:27: Cadeia causal exige operador '-&gt;' entre elementos.
     chain: Climate_Belief INFLUENCES Support
@@ -1275,10 +1474,10 @@ Use '-&gt;' para conectar elementos:
 <hr>
 </section>
 </section>
-<section id="referência-rápida-de-palavras-chave" class="level2" data-number="1.13">
-<h2 data-number="1.13" class="anchored" data-anchor-id="referência-rápida-de-palavras-chave"><span class="header-section-number">1.13</span> Referência Rápida de Palavras-Chave</h2>
-<section id="palavras-chave-de-estrutura" class="level3" data-number="1.13.1">
-<h3 data-number="1.13.1" class="anchored" data-anchor-id="palavras-chave-de-estrutura"><span class="header-section-number">1.13.1</span> Palavras-Chave de Estrutura</h3>
+<section id="referência-rápida-de-palavras-chave" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="referência-rápida-de-palavras-chave"><span class="header-section-number">1.14</span> Referência Rápida de Palavras-Chave</h2>
+<section id="palavras-chave-de-estrutura" class="level3" data-number="1.14.1">
+<h3 data-number="1.14.1" class="anchored" data-anchor-id="palavras-chave-de-estrutura"><span class="header-section-number">1.14.1</span> Palavras-Chave de Estrutura</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 57%">
@@ -1322,9 +1521,13 @@ Use '-&gt;' para conectar elementos:
 </tbody>
 </table>
 </section>
-<section id="palavras-chave-de-inclusão" class="level3" data-number="1.13.2">
-<h3 data-number="1.13.2" class="anchored" data-anchor-id="palavras-chave-de-inclusão"><span class="header-section-number">1.13.2</span> Palavras-Chave de Inclusão</h3>
+<section id="palavras-chave-de-inclusão" class="level3" data-number="1.14.2">
+<h3 data-number="1.14.2" class="anchored" data-anchor-id="palavras-chave-de-inclusão"><span class="header-section-number">1.14.2</span> Palavras-Chave de Inclusão</h3>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Palavra-chave</th>
@@ -1344,12 +1547,20 @@ Use '-&gt;' para conectar elementos:
 <td><code>ANNOTATIONS</code></td>
 <td>Tipo de inclusão para .syn</td>
 </tr>
+<tr class="even">
+<td><code>SHARED</code></td>
+<td>Autoriza alvo fora da pasta do projeto (apenas com <code>ONTOLOGY</code>)</td>
+</tr>
 </tbody>
 </table>
 </section>
-<section id="modificadores-de-campo" class="level3" data-number="1.13.3">
-<h3 data-number="1.13.3" class="anchored" data-anchor-id="modificadores-de-campo"><span class="header-section-number">1.13.3</span> Modificadores de Campo</h3>
+<section id="modificadores-de-campo" class="level3" data-number="1.14.3">
+<h3 data-number="1.14.3" class="anchored" data-anchor-id="modificadores-de-campo"><span class="header-section-number">1.14.3</span> Modificadores de Campo</h3>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 54%">
+<col style="width: 45%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Modificador</th>
@@ -1369,11 +1580,15 @@ Use '-&gt;' para conectar elementos:
 <td><code>BUNDLE</code></td>
 <td>Grupo de campos obrigatórios como unidade</td>
 </tr>
+<tr class="even">
+<td><code>ON BIBLIOGRAPHY</code></td>
+<td>O valor do campo vem da entrada <code>.bib</code>, não do texto (cláusula de campo único)</td>
+</tr>
 </tbody>
 </table>
 </section>
-<section id="especificadores-de-campo" class="level3" data-number="1.13.4">
-<h3 data-number="1.13.4" class="anchored" data-anchor-id="especificadores-de-campo"><span class="header-section-number">1.13.4</span> Especificadores de Campo</h3>
+<section id="especificadores-de-campo" class="level3" data-number="1.14.4">
+<h3 data-number="1.14.4" class="anchored" data-anchor-id="especificadores-de-campo"><span class="header-section-number">1.14.4</span> Especificadores de Campo</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 57%">
@@ -1418,158 +1633,172 @@ Use '-&gt;' para conectar elementos:
 <td><code>GUIDELINES</code></td>
 <td>Instruções de preenchimento para o anotador ou agente de IA (qualquer tipo)</td>
 </tr>
+<tr class="odd">
+<td><code>IDENTIFIES</code></td>
+<td>Declara o campo como chave primária de uma entidade (apenas <code>SCOPE SOURCE</code>)</td>
+</tr>
+<tr class="even">
+<td><code>REFERS TO</code></td>
+<td>Declara o campo como chave estrangeira para uma entidade (apenas <code>SCOPE SOURCE</code>)</td>
+</tr>
 </tbody>
 </table>
 <hr>
 </section>
 </section>
-<section id="seções-sugeridas-para-expansão-da-documentação" class="level2" data-number="1.14">
-<h2 data-number="1.14" class="anchored" data-anchor-id="seções-sugeridas-para-expansão-da-documentação"><span class="header-section-number">1.14</span> Seções (Sugeridas para Expansão da documentação)</h2>
+<section id="seções-sugeridas-para-expansão-da-documentação" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="seções-sugeridas-para-expansão-da-documentação"><span class="header-section-number">1.15</span> Seções (Sugeridas para Expansão da documentação)</h2>
 <p><em>As seções abaixo estão indicadas como tópicos para desenvolvimento futuro do guia.</em></p>
-<section id="validação-de-referências-bibliográficas" class="level3" data-number="1.14.1">
-<h3 data-number="1.14.1" class="anchored" data-anchor-id="validação-de-referências-bibliográficas"><span class="header-section-number">1.14.1</span> Validação de Referências Bibliográficas</h3>
+<section id="validação-de-referências-bibliográficas" class="level3" data-number="1.15.1">
+<h3 data-number="1.15.1" class="anchored" data-anchor-id="validação-de-referências-bibliográficas"><span class="header-section-number">1.15.1</span> Validação de Referências Bibliográficas</h3>
 <blockquote class="blockquote">
 <p>Como o compilador valida que cada <code>@bibref</code> existe no arquivo .bib incluído.</p>
 </blockquote>
 </section>
-<section id="normalização-e-canonicalização" class="level3" data-number="1.14.2">
-<h3 data-number="1.14.2" class="anchored" data-anchor-id="normalização-e-canonicalização"><span class="header-section-number">1.14.2</span> Normalização e Canonicalização</h3>
+<section id="normalização-e-canonicalização" class="level3" data-number="1.15.2">
+<h3 data-number="1.15.2" class="anchored" data-anchor-id="normalização-e-canonicalização"><span class="header-section-number">1.15.2</span> Normalização e Canonicalização</h3>
 <blockquote class="blockquote">
 <p>Regras para normalização de valores e conceitos via template.</p>
 </blockquote>
 </section>
-<section id="exportação-para-json" class="level3" data-number="1.14.3">
-<h3 data-number="1.14.3" class="anchored" data-anchor-id="exportação-para-json"><span class="header-section-number">1.14.3</span> Exportação para JSON</h3>
+<section id="exportação-para-json" class="level3" data-number="1.15.3">
+<h3 data-number="1.15.3" class="anchored" data-anchor-id="exportação-para-json"><span class="header-section-number">1.15.3</span> Exportação para JSON</h3>
 <blockquote class="blockquote">
 <p>Estrutura do JSON gerado, incluindo campos <code>location</code> para rastreabilidade.</p>
 </blockquote>
 </section>
-<section id="exportação-para-csv" class="level3" data-number="1.14.4">
-<h3 data-number="1.14.4" class="anchored" data-anchor-id="exportação-para-csv"><span class="header-section-number">1.14.4</span> Exportação para CSV</h3>
+<section id="exportação-para-csv" class="level3" data-number="1.15.4">
+<h3 data-number="1.15.4" class="anchored" data-anchor-id="exportação-para-csv"><span class="header-section-number">1.15.4</span> Exportação para CSV</h3>
 <blockquote class="blockquote">
 <p>Formato das tabelas planas por tipo de bloco, colunas de rastreabilidade.</p>
 </blockquote>
 </section>
-<section id="exportação-para-excel" class="level3" data-number="1.14.5">
-<h3 data-number="1.14.5" class="anchored" data-anchor-id="exportação-para-excel"><span class="header-section-number">1.14.5</span> Exportação para Excel</h3>
+<section id="exportação-para-excel" class="level3" data-number="1.15.5">
+<h3 data-number="1.15.5" class="anchored" data-anchor-id="exportação-para-excel"><span class="header-section-number">1.15.5</span> Exportação para Excel</h3>
 <blockquote class="blockquote">
 <p>Organização de abas por tipo de bloco.</p>
 </blockquote>
 </section>
-<section id="integração-com-lark-parser" class="level3" data-number="1.14.6">
-<h3 data-number="1.14.6" class="anchored" data-anchor-id="integração-com-lark-parser"><span class="header-section-number">1.14.6</span> Integração com Lark Parser</h3>
+<section id="integração-com-lark-parser" class="level3" data-number="1.15.6">
+<h3 data-number="1.15.6" class="anchored" data-anchor-id="integração-com-lark-parser"><span class="header-section-number">1.15.6</span> Integração com Lark Parser</h3>
 <blockquote class="blockquote">
 <p>Detalhes técnicos do parser utilizado para processamento sintático.</p>
 </blockquote>
 </section>
-<section id="exemplos-completos-de-projetos" class="level3" data-number="1.14.7">
-<h3 data-number="1.14.7" class="anchored" data-anchor-id="exemplos-completos-de-projetos"><span class="header-section-number">1.14.7</span> Exemplos Completos de Projetos</h3>
+<section id="exemplos-completos-de-projetos" class="level3" data-number="1.15.7">
+<h3 data-number="1.15.7" class="anchored" data-anchor-id="exemplos-completos-de-projetos"><span class="header-section-number">1.15.7</span> Exemplos Completos de Projetos</h3>
 <blockquote class="blockquote">
 <p>Projetos exemplo demonstrando uso integrado de todos os componentes.</p>
 </blockquote>
 </section>
-<section id="boas-práticas-de-anotação" class="level3" data-number="1.14.8">
-<h3 data-number="1.14.8" class="anchored" data-anchor-id="boas-práticas-de-anotação"><span class="header-section-number">1.14.8</span> Boas Práticas de Anotação</h3>
+<section id="boas-práticas-de-anotação" class="level3" data-number="1.15.8">
+<h3 data-number="1.15.8" class="anchored" data-anchor-id="boas-práticas-de-anotação"><span class="header-section-number">1.15.8</span> Boas Práticas de Anotação</h3>
 <blockquote class="blockquote">
 <p>Recomendações para estruturação consistente de anotações qualitativas.</p>
 </blockquote>
 <hr>
 </section>
 </section>
-<section id="apêndice-a-sintaxe-consolidada" class="level2" data-number="1.15">
-<h2 data-number="1.15" class="anchored" data-anchor-id="apêndice-a-sintaxe-consolidada"><span class="header-section-number">1.15</span> Apêndice A: Sintaxe Consolidada</h2>
-<section id="projeto-.synp" class="level3" data-number="1.15.1">
-<h3 data-number="1.15.1" class="anchored" data-anchor-id="projeto-.synp"><span class="header-section-number">1.15.1</span> Projeto (.synp)</h3>
-<div class="sourceCode" id="cb32"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> project_name              <span class="co"># ← Nome do projeto (obrigatório)</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"filename.synt"</span>          <span class="co"># ← Arquivo de template (obrigatório)</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"filename.bib"</span>   <span class="co"># ← Referências BibTeX</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"filename.syn"</span>    <span class="co"># ← Arquivos de anotação</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"filename.syno"</span>      <span class="co"># ← Arquivos de ontologia</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span>                         <span class="co"># ← Bloco opcional</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]               <span class="co"># ← Campo opcional dentro do bloco</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">METADATA</span>]</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span>                      <span class="co"># ← Bloco opcional</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    Texto livre descrevendo o projeto...</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">DESCRIPTION</span>]</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span>                        <span class="co"># ← Fecha o PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="apêndice-a-sintaxe-consolidada" class="level2" data-number="1.16">
+<h2 data-number="1.16" class="anchored" data-anchor-id="apêndice-a-sintaxe-consolidada"><span class="header-section-number">1.16</span> Apêndice A: Sintaxe Consolidada</h2>
+<section id="projeto-.synp" class="level3" data-number="1.16.1">
+<h3 data-number="1.16.1" class="anchored" data-anchor-id="projeto-.synp"><span class="header-section-number">1.16.1</span> Projeto (.synp)</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> project_name              <span class="co"># ← Nome do projeto (obrigatório)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"filename.synt"</span>          <span class="co"># ← Arquivo de template (obrigatório)</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"filename.bib"</span>   <span class="co"># ← Referências BibTeX</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"filename.syn"</span>    <span class="co"># ← Arquivos de anotação</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"filename.syno"</span>      <span class="co"># ← Arquivos de ontologia</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="bn">[INCLUDE SHARED ONTOLOGY "../path.syno"]</span>  <span class="co"># ← Ontologia fora da pasta do projeto</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>[<span class="kw">METADATA</span>                         <span class="co"># ← Bloco opcional</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> 1.0</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">author:</span> string</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[created:</span> date]               <span class="co"># ← Campo opcional dentro do bloco</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[modified:</span> date]</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[dataset:</span> string]</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">METADATA</span>]</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>[<span class="kw">DESCRIPTION</span>                      <span class="co"># ← Bloco opcional</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>    Texto livre descrevendo o projeto...</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">DESCRIPTION</span>]</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span>                        <span class="co"># ← Fecha o PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="template-.synt" class="level3" data-number="1.15.2">
-<h3 data-number="1.15.2" class="anchored" data-anchor-id="template-.synt"><span class="header-section-number">1.15.2</span> Template (.synt)</h3>
-<div class="sourceCode" id="cb33"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name                     <span class="co"># ← Nome do template (obrigatório)</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]               <span class="co"># ← Metadado opcional</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span>                     <span class="co"># ← Campos válidos em blocos SOURCE</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span>                       <span class="co"># ← Campos válidos em blocos ITEM</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span>                   <span class="co"># ← Campos válidos em blocos ONTOLOGY</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]</span></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span>  <span class="co"># ← Onde o campo pode ser usado</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span>       <span class="co"># ← Apenas para CHAIN</span></span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span>                    <span class="co"># ← Apenas para CHAIN</span></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span>]</span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span>                       <span class="co"># ← Apenas para ORDERED/ENUMERATED</span></span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description</span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span>]</span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]           <span class="co"># ← Apenas para SCALE</span></span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">GUIDELINES</span>                   <span class="co"># ← Qualquer tipo — instrução para anotador ou IA</span></span>
-<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>        Texto livre com instruções de preenchimento.</span>
-<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>        Múltiplas linhas permitidas.</span>
-<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span>]</span>
-<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="template-.synt" class="level3" data-number="1.16.2">
+<h3 data-number="1.16.2" class="anchored" data-anchor-id="template-.synt"><span class="header-section-number">1.16.2</span> Template (.synt)</h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> name                     <span class="co"># ← Nome do template (obrigatório)</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">[version:</span> <span class="st">"string"</span>]               <span class="co"># ← Metadado opcional</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">[author:</span> <span class="st">"string"</span>]</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span>                     <span class="co"># ← Campos válidos em blocos SOURCE</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL]</span> field_name ON <span class="kw">BIBLIOGRAPHY</span>  <span class="co"># ← Valor vem do .bib (campo único)</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span>                       <span class="co"># ← Campos válidos em blocos ITEM</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | BUNDLE | OPTIONAL]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span>                   <span class="co"># ← Campos válidos em blocos ONTOLOGY</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REQUIRED | OPTIONAL | BUNDLE]</span> field_name <span class="bn">[,field_name]</span> ...</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> field_name <span class="kw">TYPE</span> <span class="bn">[TEXT | QUOTATION | MEMO | CHAIN | CODE | TOPIC | ORDERED | ENUMERATED | SCALE]</span></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="bn">[SOURCE | ITEM | ONTOLOGY]</span>  <span class="co"># ← Onde o campo pode ser usado</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[DESCRIPTION description text]</span></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[ARITY operator number]</span>       <span class="co"># ← Apenas para CHAIN</span></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">RELATIONS</span>                    <span class="co"># ← Apenas para CHAIN</span></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">relation_name:</span> description</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span>]</span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">VALUES</span>                       <span class="co"># ← Apenas para ORDERED/ENUMERATED</span></span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[index]</span> <span class="fu">value_name:</span> description</span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span>]</span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[FORMAT [min..max]</span>]           <span class="co"># ← Apenas para SCALE</span></span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[IDENTIFIES entity_label]</span>     <span class="co"># ← Chave primária — apenas SCOPE SOURCE</span></span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>    <span class="bn">[REFERS TO entity_label]</span>      <span class="co"># ← Chave estrangeira — apenas SCOPE SOURCE</span></span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">GUIDELINES</span>                   <span class="co"># ← Qualquer tipo — instrução para anotador ou IA</span></span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>        Texto livre com instruções de preenchimento.</span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>        Múltiplas linhas permitidas.</span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span>]</span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="anotações-.syn" class="level3" data-number="1.15.3">
-<h3 data-number="1.15.3" class="anchored" data-anchor-id="anotações-.syn"><span class="header-section-number">1.15.3</span> Anotações (.syn)</h3>
-<div class="sourceCode" id="cb34"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                    <span class="co"># ← Referência ao .bib (obrigatório)</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]           <span class="co"># ← Campos do SOURCE (conforme template)        </span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@bibref</span>                  <span class="co"># ← Referência ao .bib (obrigatório)</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Campos obrigatórios</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos opcionais</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="anotações-.syn" class="level3" data-number="1.16.3">
+<h3 data-number="1.16.3" class="anchored" data-anchor-id="anotações-.syn"><span class="header-section-number">1.16.3</span> Anotações (.syn)</h3>
+<div class="sourceCode" id="cb42"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@bibref</span>                    <span class="co"># ← Referência ao .bib (obrigatório)</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value]           <span class="co"># ← Campos do SOURCE (conforme template)        </span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@bibref</span>                  <span class="co"># ← Referência ao .bib (obrigatório)</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value         <span class="co"># ← Campos obrigatórios</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...   <span class="co"># ← Campos opcionais</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="ontologia-.syno" class="level3" data-number="1.15.4">
-<h3 data-number="1.15.4" class="anchored" data-anchor-id="ontologia-.syno"><span class="header-section-number">1.15.4</span> Ontologia (.syno)</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name             <span class="co"># ← Nome do conceito (sem espaços)</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value             <span class="co"># ← Campos obrigatórios</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...       <span class="co"># ← Campos opcionais</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="ontologia-.syno" class="level3" data-number="1.16.4">
+<h3 data-number="1.16.4" class="anchored" data-anchor-id="ontologia-.syno"><span class="header-section-number">1.16.4</span> Ontologia (.syno)</h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> concept_name             <span class="co"># ← Nome do conceito (sem espaços)</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">field_name:</span> value             <span class="co"># ← Campos obrigatórios</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">[field_name:</span> value] ...       <span class="co"># ← Campos opcionais</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="cadeias-chain" class="level3" data-number="1.15.5">
-<h3 data-number="1.15.5" class="anchored" data-anchor-id="cadeias-chain"><span class="header-section-number">1.15.5</span> Cadeias (CHAIN)</h3>
-<div class="sourceCode" id="cb36"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain qualificada (com RELATIONS definidas no template)</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">#      código  relação     código (padrão alternado obrigatório)</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain simples (sem RELATIONS no template)</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">#      origem  destino (relação implícita)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="cadeias-chain" class="level3" data-number="1.16.5">
+<h3 data-number="1.16.5" class="anchored" data-anchor-id="cadeias-chain"><span class="header-section-number">1.16.5</span> Cadeias (CHAIN)</h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain qualificada (com RELATIONS definidas no template)</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> RELATION <span class="op">-&gt;</span> Code <span class="bn">[-&gt; RELATION -&gt; Code]</span> ...</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^^^^^    ^^^^</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#      código  relação     código (padrão alternado obrigatório)</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain simples (sem RELATIONS no template)</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Code <span class="op">-&gt;</span> Code <span class="bn">[-&gt; Code]</span> ...</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">#      ^^^^    ^^^^</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">#      origem  destino (relação implícita)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><em>Documento gerado a partir da especificação Synesis v1.1</em></p>
 
