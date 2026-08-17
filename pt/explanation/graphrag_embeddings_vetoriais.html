@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -100,6 +100,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Procurar"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+<script type="text/javascript">
+
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+
+if (typeof require !== 'undefined') {
+
+require.undef("plotly");
+
+requirejs.config({
+
+    paths: {
+
+        'plotly': ['https://cdn.plot.ly/plotly-2.35.2.min']
+
+    }
+
+});
+
+require(['plotly'], function(Plotly) {
+
+    window._Plotly = Plotly;
+
+});
+
+}
+
+</script>
+
+
+
 
 
 </head>
@@ -322,27 +363,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-  <li><a href="#embeddings-vetoriais-e-graphrag" id="toc-embeddings-vetoriais-e-graphrag" class="nav-link active" data-scroll-target="#embeddings-vetoriais-e-graphrag"><span class="header-section-number">1</span> Embeddings Vetoriais e GraphRAG</a>
+  <li><a href="#o-que-é-o-synesis-graph-e-o-que-muda-agora" id="toc-o-que-é-o-synesis-graph-e-o-que-muda-agora" class="nav-link active" data-scroll-target="#o-que-é-o-synesis-graph-e-o-que-muda-agora"><span class="header-section-number">1</span> O que é o synesis-graph, e o que muda agora</a>
   <ul class="collapse">
-  <li><a href="#o-que-é-o-synesis-graph-e-o-que-muda-agora" id="toc-o-que-é-o-synesis-graph-e-o-que-muda-agora" class="nav-link" data-scroll-target="#o-que-é-o-synesis-graph-e-o-que-muda-agora"><span class="header-section-number">1.1</span> O que é o synesis-graph, e o que muda agora</a></li>
-  <li><a href="#o-experimento" id="toc-o-experimento" class="nav-link" data-scroll-target="#o-experimento"><span class="header-section-number">1.2</span> O experimento</a>
+  <li><a href="#três-termos-e-o-que-cada-um-significa-no-seu-trabalho" id="toc-três-termos-e-o-que-cada-um-significa-no-seu-trabalho" class="nav-link" data-scroll-target="#três-termos-e-o-que-cada-um-significa-no-seu-trabalho"><span class="header-section-number">1.1</span> Três termos, e o que cada um significa no seu trabalho</a></li>
+  <li><a href="#como-uma-pergunta-vira-resposta" id="toc-como-uma-pergunta-vira-resposta" class="nav-link" data-scroll-target="#como-uma-pergunta-vira-resposta"><span class="header-section-number">1.2</span> Como uma pergunta vira resposta</a></li>
+  <li><a href="#o-caso-que-mostra-a-diferença" id="toc-o-caso-que-mostra-a-diferença" class="nav-link" data-scroll-target="#o-caso-que-mostra-a-diferença"><span class="header-section-number">1.3</span> O caso que mostra a diferença</a></li>
+  </ul></li>
+  <li><a href="#o-experimento" id="toc-o-experimento" class="nav-link" data-scroll-target="#o-experimento"><span class="header-section-number">2</span> O experimento</a>
   <ul class="collapse">
-  <li><a href="#por-que-um-gabarito-fixo-importa" id="toc-por-que-um-gabarito-fixo-importa" class="nav-link" data-scroll-target="#por-que-um-gabarito-fixo-importa"><span class="header-section-number">1.2.1</span> Por que um gabarito fixo importa</a></li>
-  <li><a href="#o-que-foi-comparado" id="toc-o-que-foi-comparado" class="nav-link" data-scroll-target="#o-que-foi-comparado"><span class="header-section-number">1.2.2</span> O que foi comparado</a></li>
-  <li><a href="#as-métricas-com-exemplo" id="toc-as-métricas-com-exemplo" class="nav-link" data-scroll-target="#as-métricas-com-exemplo"><span class="header-section-number">1.2.3</span> As métricas, com exemplo</a></li>
+  <li><a href="#por-que-um-gabarito-fixo-importa" id="toc-por-que-um-gabarito-fixo-importa" class="nav-link" data-scroll-target="#por-que-um-gabarito-fixo-importa"><span class="header-section-number">2.1</span> Por que um gabarito fixo importa</a></li>
+  <li><a href="#o-que-foi-comparado" id="toc-o-que-foi-comparado" class="nav-link" data-scroll-target="#o-que-foi-comparado"><span class="header-section-number">2.2</span> O que foi comparado</a></li>
+  <li><a href="#as-métricas-com-exemplo" id="toc-as-métricas-com-exemplo" class="nav-link" data-scroll-target="#as-métricas-com-exemplo"><span class="header-section-number">2.3</span> As métricas, com exemplo</a></li>
   </ul></li>
-  <li><a href="#resultado-agregado-40-perguntas-corpus-completo" id="toc-resultado-agregado-40-perguntas-corpus-completo" class="nav-link" data-scroll-target="#resultado-agregado-40-perguntas-corpus-completo"><span class="header-section-number">1.3</span> Resultado agregado (40 perguntas, corpus completo)</a></li>
-  <li><a href="#onde-cada-método-vence-sozinho" id="toc-onde-cada-método-vence-sozinho" class="nav-link" data-scroll-target="#onde-cada-método-vence-sozinho"><span class="header-section-number">1.4</span> Onde cada método vence sozinho</a>
+  <li><a href="#resultado-agregado-40-perguntas-corpus-completo" id="toc-resultado-agregado-40-perguntas-corpus-completo" class="nav-link" data-scroll-target="#resultado-agregado-40-perguntas-corpus-completo"><span class="header-section-number">3</span> Resultado agregado (40 perguntas, corpus completo)</a></li>
+  <li><a href="#onde-cada-método-vence-sozinho" id="toc-onde-cada-método-vence-sozinho" class="nav-link" data-scroll-target="#onde-cada-método-vence-sozinho"><span class="header-section-number">4</span> Onde cada método vence sozinho</a>
   <ul class="collapse">
-  <li><a href="#os-4-casos-onde-nenhum-método-chegou-perto" id="toc-os-4-casos-onde-nenhum-método-chegou-perto" class="nav-link" data-scroll-target="#os-4-casos-onde-nenhum-método-chegou-perto"><span class="header-section-number">1.4.1</span> Os 4 casos onde nenhum método chegou perto</a></li>
+  <li><a href="#os-casos-onde-nenhum-método-chegou-perto" id="toc-os-casos-onde-nenhum-método-chegou-perto" class="nav-link" data-scroll-target="#os-casos-onde-nenhum-método-chegou-perto"><span class="header-section-number">4.1</span> Os casos onde nenhum método chegou perto</a></li>
   </ul></li>
-  <li><a href="#o-que-isso-significa-para-graphrag-via-mcp" id="toc-o-que-isso-significa-para-graphrag-via-mcp" class="nav-link" data-scroll-target="#o-que-isso-significa-para-graphrag-via-mcp"><span class="header-section-number">1.5</span> O que isso significa para GraphRAG via MCP</a>
+  <li><a href="#o-que-isso-significa-para-graphrag-via-mcp" id="toc-o-que-isso-significa-para-graphrag-via-mcp" class="nav-link" data-scroll-target="#o-que-isso-significa-para-graphrag-via-mcp"><span class="header-section-number">5</span> O que isso significa para GraphRAG via MCP</a>
   <ul class="collapse">
-  <li><a href="#latência-o-custo-de-adicionar-a-busca-vetorial" id="toc-latência-o-custo-de-adicionar-a-busca-vetorial" class="nav-link" data-scroll-target="#latência-o-custo-de-adicionar-a-busca-vetorial"><span class="header-section-number">1.5.1</span> Latência: o custo de adicionar a busca vetorial</a></li>
+  <li><a href="#latência-o-custo-de-adicionar-a-busca-vetorial" id="toc-latência-o-custo-de-adicionar-a-busca-vetorial" class="nav-link" data-scroll-target="#latência-o-custo-de-adicionar-a-busca-vetorial"><span class="header-section-number">5.1</span> Latência: o custo de adicionar a busca vetorial</a></li>
   </ul></li>
-  <li><a href="#o-que-o-experimento-não-prova" id="toc-o-que-o-experimento-não-prova" class="nav-link" data-scroll-target="#o-que-o-experimento-não-prova"><span class="header-section-number">1.6</span> O que o experimento não prova</a></li>
-  <li><a href="#recomendação" id="toc-recomendação" class="nav-link" data-scroll-target="#recomendação"><span class="header-section-number">1.7</span> Recomendação</a></li>
-  </ul></li>
+  <li><a href="#o-que-o-experimento-não-prova" id="toc-o-que-o-experimento-não-prova" class="nav-link" data-scroll-target="#o-que-o-experimento-não-prova"><span class="header-section-number">6</span> O que o experimento não prova</a></li>
+  <li><a href="#perguntas-frequentes" id="toc-perguntas-frequentes" class="nav-link" data-scroll-target="#perguntas-frequentes"><span class="header-section-number">7</span> Perguntas frequentes</a></li>
+  <li><a href="#recomendação" id="toc-recomendação" class="nav-link" data-scroll-target="#recomendação"><span class="header-section-number">8</span> Recomendação</a></li>
   </ul>
 </nav>
     </div>
@@ -369,16 +413,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="embeddings-vetoriais-e-graphrag" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Embeddings Vetoriais e GraphRAG</h1>
-<section id="o-que-é-o-synesis-graph-e-o-que-muda-agora" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="o-que-é-o-synesis-graph-e-o-que-muda-agora"><span class="header-section-number">1.1</span> O que é o synesis-graph, e o que muda agora</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Em resumo, antes de qualquer número
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>O quê.</strong> Uma segunda forma de procurar conceitos no seu grafo: por <strong>significado</strong>, não por palavra exata.</p>
+<p><strong>Por quê.</strong> Procurar só por palavra-chave falha quando você não usa o termo exato que está na sua ontologia — e você quase nunca usa, porque ninguém decora o próprio vocabulário controlado.</p>
+<p><strong>O que muda.</strong> Com o recurso ligado, o conceito certo chega até o assistente em cerca de <strong>9 de cada 10 perguntas</strong>. Sem ele, em pouco menos de <strong>6 de cada 10</strong>.</p>
+<p><strong>Quanto custa.</strong> Cerca de cinquenta milésimos de segundo por pergunta — imperceptível numa conversa. Roda no seu computador, sem internet e sem API paga.</p>
+<p><strong>Quando ligar.</strong> Se você conversa com um assistente (Claude Desktop via MCP) sobre a sua pesquisa, usando suas próprias palavras. Se você só faz consultas estruturadas em que já sabe o nome exato do conceito, não precisa.</p>
+</div>
+</div>
+<p>Este documento explica o recurso e mostra a medição que sustenta esses números. Você pode parar no resumo acima e ligar o recurso; o resto é a prestação de contas.</p>
+<hr>
+<section id="o-que-é-o-synesis-graph-e-o-que-muda-agora" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="o-que-é-o-synesis-graph-e-o-que-muda-agora"><span class="header-section-number">1</span> O que é o synesis-graph, e o que muda agora</h2>
 <p>O <code>synesis-graph</code> é o pipeline que pega um projeto Synesis já codificado (as anotações qualitativas de um pesquisador, com seus conceitos, fontes e relações) e o transforma num banco de grafos consultável — hoje, Neo4j ou ArcadeDB. Não é um passo de exportação e pronto: é o que permite que Claude Desktop, conectado via <strong>MCP</strong> (o protocolo que dá a um LLM acesso a ferramentas e dados externos), leia o grafo e responda perguntas sobre a pesquisa em linguagem natural, com citação da fonte. Esse uso — pesquisador perguntando, agente respondendo com base no grafo — é o que chamamos de <strong>GraphRAG</strong>: Retrieval-Augmented Generation apoiada em uma estrutura de grafo em vez de um monte de trechos de texto soltos (ver <a href="../explanation/knowledge_graphs.html">Knowledge Graphs e GraphRAG</a> para essa base).</p>
 <p>Instalação:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis-graph</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A busca vetorial que este documento mede precisa do extra opcional <code>embeddings</code> (traz o <code>sentence-transformers</code>, usado para gerar os vetores localmente, sem chamada a API externa):</p>
+<p>A busca vetorial que este documento mede precisa do extra opcional <code>embeddings</code> (traz o <code>sentence-transformers</code>, que gera os vetores <strong>no seu próprio computador</strong>, sem chamada a API externa e sem custo por uso):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"synesis-graph[embeddings]"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Até aqui, quando o Claude Desktop precisava achar um conceito no grafo, ele só tinha uma ferramenta: buscar por <strong>palavra-chave</strong> (BM25, o mesmo algoritmo por trás do Elasticsearch — ele pontua um conceito pela sobreposição literal de termos com a pergunta). O <code>synesis-graph</code> agora oferece uma segunda: buscar por <strong>significado</strong>, via <strong>embeddings vetoriais</strong>. Um embedding é a descrição de um conceito convertida em um vetor de números; duas descrições com sentido parecido produzem vetores próximos no espaço, mesmo que não compartilhem nenhuma palavra.</p>
+<p>Até aqui, quando o Claude Desktop precisava achar um conceito no grafo, ele só tinha uma ferramenta: buscar por palavra-chave. O <code>synesis-graph</code> agora oferece uma segunda: buscar por significado.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -392,15 +453,114 @@ Backend usado neste experimento
 <p>A busca vetorial hoje só está implementada no backend <strong>ArcadeDB</strong> do <code>synesis-graph</code> — não no Neo4j. Todos os números deste documento vêm de <code>synesis-graph arcadedb --vector-embeddings ...</code> contra um banco ArcadeDB real, não de um ambiente simulado.</p>
 </div>
 </div>
-<p>A vantagem prática, resumida antes de qualquer número: hoje, se você pergunta ao Claude Desktop <em>“será que o pesquisador achou que morar de aluguel dificulta instalar painel solar?”</em>, e a ontologia nomeia esse conceito como <code>Tenure</code> (posse do imóvel) — sem a palavra “aluguel” em lugar nenhum — a busca por palavra-chave frequentemente não encontra nada, e o agente responde sem essa informação, ou inventa. A busca vetorial encontra, porque entende que “morar de aluguel” e “posse do imóvel” tratam do mesmo assunto.</p>
+<section id="três-termos-e-o-que-cada-um-significa-no-seu-trabalho" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="três-termos-e-o-que-cada-um-significa-no-seu-trabalho"><span class="header-section-number">1.1</span> Três termos, e o que cada um significa no seu trabalho</h3>
+<p>A literatura técnica chama esses métodos por sigla. Vale traduzir cada um para o raciocínio de quem codifica material qualitativo, porque o resto do documento depende dessa intuição.</p>
+<p><strong>Busca por palavra-chave (BM25).</strong> Tecnicamente: o algoritmo por trás do Elasticsearch, que pontua um conceito pela sobreposição literal de termos entre a pergunta e a descrição. Na sua prática: é o <code>Ctrl+F</code> numa transcrição. Só encontra se a palavra exata estiver lá. Se você escreveu “fedor” e a ontologia diz “odor”, ele não acha — não porque seja burro, mas porque não é o trabalho dele.</p>
+<p><strong>Busca por significado (embeddings vetoriais).</strong> Tecnicamente: a descrição de cada conceito é convertida num vetor de números; descrições com sentido parecido produzem vetores próximos, mesmo sem compartilhar nenhuma palavra. Na sua prática: é o colega que leu todo o seu material e lembra — “isso aí é parecido com aquilo que você categorizou como X”. Ele não repete suas palavras; ele reconhece a ideia.</p>
+<p><strong>Fusão dos dois (RRF, <em>Reciprocal Rank Fusion</em>).</strong> Tecnicamente: os dois métodos produzem cada um a sua lista ordenada, e a fórmula padrão da literatura de <strong>IR</strong> (<em>Information Retrieval</em>, a área que estuda sistemas de busca) — <code>1/(60+posição)</code> — combina as duas numa lista só, sem precisar normalizar escalas à mão. Na sua prática: é consultar os dois colegas e dar mais peso ao que cada um colocou no topo da própria lista. Como você verá, é o que funciona melhor — e a razão é o ponto central deste estudo.</p>
+</section>
+<section id="como-uma-pergunta-vira-resposta" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="como-uma-pergunta-vira-resposta"><span class="header-section-number">1.2</span> Como uma pergunta vira resposta</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    classDef pergunta fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20,font-weight:bold;
+    classDef metodo fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C84;
+    classDef fusao fill:#E0F7FA,stroke:#084C54,stroke-width:2px,color:#084C54,font-weight:bold;
+    classDef saida fill:#FFF3E0,stroke:#E65100,stroke-width:2px,color:#E65100,font-weight:bold;
+
+    P["Pergunta do pesquisador&lt;br/&gt;em linguagem natural"]:::pergunta
+    BM["Busca por&lt;br/&gt;palavra exata"]:::metodo
+    VE["Busca por&lt;br/&gt;significado"]:::metodo
+    RRF["Fusão das&lt;br/&gt;duas listas"]:::fusao
+    L["Lista de conceitos&lt;br/&gt;candidatos"]:::saida
+    R["Resposta do assistente&lt;br/&gt;citando a fonte"]:::saida
+
+    P --&gt; BM
+    P --&gt; VE
+    BM --&gt; RRF
+    VE --&gt; RRF
+    RRF --&gt; L
+    L --&gt; R
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>O pesquisador só vê as duas pontas: a pergunta que digitou e a resposta que recebeu. Tudo entre elas é o que este documento mede.</p>
+</section>
+<section id="o-caso-que-mostra-a-diferença" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="o-caso-que-mostra-a-diferença"><span class="header-section-number">1.3</span> O caso que mostra a diferença</h3>
+<p>Um exemplo real do gabarito deste experimento — com o resultado que as duas buscas de fato devolveram. A pergunta foi:</p>
+<blockquote class="blockquote">
+<p><em>“what nature provides for free that a new installation might destroy”</em> (o que a natureza oferece de graça e que uma nova instalação pode destruir?)</p>
+</blockquote>
+<p>O conceito certo na ontologia chama-se <code>Ecosystem_Service</code>. Repare que a pergunta não contém “ecossistema” nem “serviço” — nenhuma palavra em comum com o nome do alvo.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Só busca por palavra exata
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Devolveu <code>Dominant_Social_Paradigm</code> e <code>Environmental_Condition</code>. O alvo <strong>não aparece</strong> na lista — o assistente responde com o que tem à mão, que pode ser tangencial.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Com busca por significado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reconhece que “o que a natureza oferece de graça” <strong>é</strong> a ideia de serviço ecossistêmico, e traz <code>Ecosystem_Service</code> em <strong>1º lugar</strong>, mesmo sem nenhuma palavra em comum.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Este é um dos casos medidos em que só a busca vetorial acertou em 1º. O padrão inverso também existe — há perguntas em que só a palavra exata acerta — e é justamente por isso que a fusão dos dois vence. A seção <a href="#onde-cada-método-vence-sozinho">Onde cada método vence sozinho</a> trata disso.</p>
 <p>A pergunta deste estudo é simples de formular e difícil de responder honestamente: <strong>quanto, exatamente, esse recurso melhora a chance de o Claude Desktop achar o conceito certo?</strong></p>
-<p>A resposta não vem de opinião nem de benchmark de terceiros. Vem de um experimento controlado contra dados reais — o corpus <strong>Social_Acceptance</strong> (1.388 conceitos sobre aceitação social de tecnologias de transição energética), com um gabarito de 40 perguntas fixado <strong>antes</strong> de qualquer busca ser executada, e métricas consagradas em Recuperação de Informação (Recall@k, MRR, nDCG — explicadas com exemplo mais abaixo). Todos os números abaixo vêm dessa execução.</p>
+<p>A resposta não vem de opinião nem de benchmark de terceiros. Vem de um experimento controlado contra dados reais — o corpus <strong>Social_Acceptance</strong> (1.388 conceitos sobre aceitação social de tecnologias de transição energética), com um gabarito de 40 perguntas fixado <strong>antes</strong> de qualquer busca ser executada, medido contra um banco ArcadeDB real em 17 de agosto de 2026.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quer conferir em vez de acreditar?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O gabarito completo das 40 perguntas, os scripts que reproduzem tudo do zero, as consultas exatas enviadas ao banco e o resultado pergunta por pergunta estão em <strong><a href="../explanation/benchmark_rrf_metodologia.html">Como o benchmark foi feito</a></strong> — incluindo o que deu errado e as limitações do desenho.</p>
+</div>
+</div>
 <hr>
 </section>
-<section id="o-experimento" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="o-experimento"><span class="header-section-number">1.2</span> O experimento</h2>
-<section id="por-que-um-gabarito-fixo-importa" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="por-que-um-gabarito-fixo-importa"><span class="header-section-number">1.2.1</span> Por que um gabarito fixo importa</h3>
+</section>
+<section id="o-experimento" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="o-experimento"><span class="header-section-number">2</span> O experimento</h2>
+<section id="por-que-um-gabarito-fixo-importa" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="por-que-um-gabarito-fixo-importa"><span class="header-section-number">2.1</span> Por que um gabarito fixo importa</h3>
 <p>A armadilha mais comum em qualquer comparação de busca é formular a pergunta <em>depois</em> de ver o resultado — o que torna qualquer método “vencedor” por construção. Para evitar isso:</p>
 <ol type="1">
 <li>Uma amostra aleatória de 40 conceitos foi extraída do corpus (semente fixa, reprodutível).</li>
@@ -408,8 +568,16 @@ Backend usado neste experimento
 <li>O par (pergunta, conceito esperado) foi congelado em arquivo antes de qualquer consulta rodar.</li>
 <li>Só então os três métodos de busca foram executados contra o mesmo índice, no mesmo banco ArcadeDB.</li>
 </ol>
-<p>Exemplo do gabarito:</p>
-<table class="caption-top table">
+<p>Exemplo do gabarito (as quatro primeiras das 40):</p>
+<div id="tbl-exemplo-gabarito" class="cell anchored" data-execution_count="2">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>linhas <span class="op">=</span> [<span class="st">"| Pergunta (vocabulário do pesquisador) | Conceito esperado |"</span>, <span class="st">"|---|---|"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> RES[<span class="st">"por_pergunta"</span>][:<span class="dv">4</span>]:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    linhas.append(<span class="ss">f"| </span><span class="ch">\"</span><span class="sc">{</span>r[<span class="st">'question'</span>]<span class="sc">}</span><span class="ch">\"</span><span class="ss"> | `</span><span class="sc">{</span>r[<span class="st">'gold'</span>]<span class="sc">}</span><span class="ss">` |"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(linhas))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -422,38 +590,40 @@ Backend usado neste experimento
 </thead>
 <tbody>
 <tr class="odd">
-<td>“does owning your home versus renting change whether you can install solar panels”</td>
-<td><code>Tenure</code></td>
+<td>“how ready are people to actually put panels on their roof, not just say they like the idea”</td>
+<td><code>Adoption_Willingness</code></td>
 </tr>
 <tr class="even">
-<td>“should decarbonization money be controlled centrally or spread across local authorities”</td>
-<td><code>Funding_Centralization_Support</code></td>
+<td>“the gains people think they will get that offset the downsides of a project”</td>
+<td><code>Benefit</code></td>
 </tr>
 <tr class="odd">
-<td>“safety protocols for detecting leaks at a hydrogen storage site”</td>
-<td><code>Storage_Operation</code></td>
+<td>“the big money you have to put down at the start before anything is built”</td>
+<td><code>Capital_Cost</code></td>
 </tr>
 <tr class="even">
-<td>“is it morally right who bears the costs and who gets the benefits of a wind farm”</td>
-<td><code>Fairness</code></td>
+<td>“residents taking civic action and participating out of a sense of collective duty”</td>
+<td><code>Citizenship_Behavior</code></td>
 </tr>
 </tbody>
 </table>
-<p>Nenhuma dessas perguntas contém uma palavra que apareça no nome do conceito-alvo. É o cenário realista de um pesquisador conversando com o Claude Desktop via MCP — ele não conhece o vocabulário controlado da ontologia.</p>
+</div>
+<p>Nenhuma dessas perguntas contém uma palavra que apareça no nome do conceito-alvo — regra verificada por código, não no olho. É o cenário realista de um pesquisador conversando com o Claude Desktop via MCP: ele não conhece o vocabulário controlado da ontologia.</p>
+<p>O gabarito completo, com as 40 perguntas e o resultado de cada método, está em <a href="../explanation/benchmark_rrf_metodologia.html#gabarito-completo-e-resultado-pergunta-a-pergunta">Como o benchmark foi feito</a>.</p>
 </section>
-<section id="o-que-foi-comparado" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="o-que-foi-comparado"><span class="header-section-number">1.2.2</span> O que foi comparado</h3>
+<section id="o-que-foi-comparado" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="o-que-foi-comparado"><span class="header-section-number">2.2</span> O que foi comparado</h3>
 <p>Três estratégias de recuperação, todas rodando <strong>dentro do ArcadeDB</strong>, sem intermediário:</p>
 <ul>
 <li><strong>BM25</strong> — o índice full-text já existente (<code>SEARCH_INDEX</code>), com o mesmo mecanismo que já documentamos em <a href="../explanation/knowledge_graphs.html">Knowledge Graphs e GraphRAG</a>.</li>
-<li><strong>Vetor</strong> — <code>vector.neighbors()</code> sobre o índice <code>LSM_VECTOR</code>, usando o modelo <code>all-mpnet-base-v2</code> (768 dimensões) já embedado para este corpus.</li>
-<li><strong>RRF</strong> — fusão por <em>Reciprocal Rank Fusion</em> dos dois rankings anteriores (a fórmula padrão da literatura de IR, <code>1/(60+rank)</code>), somando os dois métodos sem normalização manual de escala.</li>
+<li><strong>Vetor</strong> — <code>vector.neighbors()</code> sobre o índice <code>LSM_VECTOR</code> (a estrutura que o ArcadeDB usa para achar vetores próximos sem varrer todos), usando o modelo <code>all-mpnet-base-v2</code> (768 dimensões) já embedado para este corpus.</li>
+<li><strong>RRF</strong> — fusão por <em>Reciprocal Rank Fusion</em> dos dois rankings anteriores.</li>
 </ul>
 </section>
-<section id="as-métricas-com-exemplo" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="as-métricas-com-exemplo"><span class="header-section-number">1.2.3</span> As métricas, com exemplo</h3>
-<p>Nenhuma inventada para a ocasião — todas de uso corrente em avaliação de sistemas de busca, e o motivo de usar três em vez de uma é que cada uma responde uma pergunta diferente sobre o mesmo resultado.</p>
-<p>Imagine que, para a pergunta sobre <code>Tenure</code>, a busca devolveu esta lista ordenada: <code>Payment_System</code>, <code>Tenure</code>, <code>Capacity</code> — o conceito certo caiu na <strong>2ª posição</strong>, não na 1ª.</p>
+<section id="as-métricas-com-exemplo" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="as-métricas-com-exemplo"><span class="header-section-number">2.3</span> As métricas, com exemplo</h3>
+<p>Nenhuma inventada para a ocasião — todas de uso corrente em avaliação de sistemas de busca. O motivo de usar três em vez de uma é que cada uma responde uma pergunta diferente sobre o mesmo resultado.</p>
+<p>Suponha que, para uma dada pergunta, a busca devolveu esta lista ordenada: <code>Payment_System</code>, <code>Tenure</code>, <code>Capacity</code> — e o conceito certo era <code>Tenure</code>, que caiu na <strong>2ª posição</strong>, não na 1ª.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -469,92 +639,247 @@ Backend usado neste experimento
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Recall@k</strong></td>
-<td>“O conceito certo está entre os k primeiros?” — 1 se sim, 0 se não, para um k escolhido</td>
+<td><strong>Recall@k</strong> (o alvo está entre os k primeiros?)</td>
+<td>Vale 1 se sim, 0 se não, para um k escolhido</td>
 <td>Recall@1 = 0 (não está em 1º); Recall@3 = 1 (está entre os 3 primeiros)</td>
 </tr>
 <tr class="even">
-<td><strong>MRR</strong> (Mean Reciprocal Rank)</td>
-<td>“Em que posição, em média, o conceito certo aparece?” — usa o inverso da posição (1/posição), então 1ª lugar vale 1,0 e posições distantes valem cada vez menos</td>
-<td>Para esta pergunta: 1/2 = 0,5</td>
+<td><strong>MRR</strong> (posição média da resposta certa)</td>
+<td>Usa o inverso da posição (1/posição), então 1º lugar vale 1,0 e posições distantes valem cada vez menos</td>
+<td>1/2 = 0,5</td>
 </tr>
 <tr class="odd">
-<td><strong>nDCG@k</strong></td>
-<td>Como o MRR, mas com um desconto mais suave pela posição (log em vez de razão simples) — é o padrão da indústria em ranking de busca (Google, Elasticsearch)</td>
+<td><strong>nDCG@k</strong> (o mesmo, mas mais tolerante)</td>
+<td>Desconta a posição de forma mais suave (log em vez de razão simples) — é o padrão da indústria em ranking de busca</td>
 <td>Próximo do MRR, ligeiramente mais tolerante com a 2ª posição</td>
 </tr>
 </tbody>
 </table>
-<p>Repare a diferença de propósito: <strong>Recall@k</strong> é a métrica que mais importa para GraphRAG, porque o LLM recebe uma <em>lista</em> de conceitos como contexto (não só o primeiro) — o que importa é se o conceito certo está nessa lista, não em que posição exata. <strong>MRR</strong> e <strong>nDCG</strong> complementam mostrando <em>quão perto do topo</em> a resposta certa costuma cair, o que interessa quando a ordem também é usada (por exemplo, para decidir qual conceito citar primeiro na resposta).</p>
+<p>Repare a diferença de propósito: a <strong>taxa de acerto entre os k primeiros</strong> é a métrica que mais importa para GraphRAG, porque o LLM recebe uma <em>lista</em> de conceitos como contexto (não só o primeiro) — o que importa é se o conceito certo está nessa lista, não em que posição exata. As outras duas complementam mostrando <em>quão perto do topo</em> a resposta certa costuma cair, o que interessa quando a ordem também é usada (por exemplo, para decidir qual conceito citar primeiro na resposta).</p>
 <hr>
 </section>
 </section>
-<section id="resultado-agregado-40-perguntas-corpus-completo" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="resultado-agregado-40-perguntas-corpus-completo"><span class="header-section-number">1.3</span> Resultado agregado (40 perguntas, corpus completo)</h2>
-<table class="caption-top table">
+<section id="resultado-agregado-40-perguntas-corpus-completo" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="resultado-agregado-40-perguntas-corpus-completo"><span class="header-section-number">3</span> Resultado agregado (40 perguntas, corpus completo)</h2>
+<div id="cell-fig-resultado-agregado" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>metricas <span class="op">=</span> [<span class="st">"Recall@1"</span>, <span class="st">"Recall@3"</span>, <span class="st">"Recall@5"</span>, <span class="st">"Recall@10"</span>, <span class="st">"MRR"</span>, <span class="st">"nDCG@5"</span>, <span class="st">"nDCG@10"</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>bm25  <span class="op">=</span> [M[<span class="st">"bm25"</span>][m] <span class="cf">for</span> m <span class="kw">in</span> metricas]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>vetor <span class="op">=</span> [M[<span class="st">"vector"</span>][m] <span class="cf">for</span> m <span class="kw">in</span> metricas]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>rrf   <span class="op">=</span> [M[<span class="st">"rrf"</span>][m] <span class="cf">for</span> m <span class="kw">in</span> metricas]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>CINZA, AZUL, LARANJA <span class="op">=</span> <span class="st">"#94A3B8"</span>, <span class="st">"#0E7490"</span>, <span class="st">"#E65100"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rotulo(v, metrica):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> metrica.startswith(<span class="st">"Recall"</span>):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">round</span>(v <span class="op">*</span> <span class="dv">10</span>)<span class="sc">}</span><span class="ss"> em cada 10"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.2f}</span><span class="ss">"</span>.replace(<span class="st">"."</span>, <span class="st">","</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nome, dados, cor <span class="kw">in</span> [</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Só palavra exata"</span>, bm25, CINZA),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Só significado"</span>, vetor, AZUL),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Os dois juntos"</span>, rrf, LARANJA),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>]:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    fig.add_trace(go.Bar(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>metricas, x<span class="op">=</span>dados, name<span class="op">=</span>nome, orientation<span class="op">=</span><span class="st">"h"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span>cor),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        text<span class="op">=</span>[rotulo(v, m) <span class="cf">for</span> v, m <span class="kw">in</span> <span class="bu">zip</span>(dados, metricas)],</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        textposition<span class="op">=</span><span class="st">"outside"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        textfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">11</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        hovertemplate<span class="op">=</span><span class="st">"%</span><span class="sc">{y}</span><span class="st"> — "</span> <span class="op">+</span> nome <span class="op">+</span> <span class="st">": %</span><span class="sc">{x:.3f}</span><span class="st">&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">"plotly_white"</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    barmode<span class="op">=</span><span class="st">"group"</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">620</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Desempenho (0 = nunca acerta, 1 = sempre acerta)"</span>, <span class="bu">range</span><span class="op">=</span>[<span class="dv">0</span>, <span class="fl">1.15</span>]),</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">""</span>, autorange<span class="op">=</span><span class="st">"reversed"</span>),</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(orientation<span class="op">=</span><span class="st">"h"</span>, yanchor<span class="op">=</span><span class="st">"bottom"</span>, y<span class="op">=</span><span class="fl">1.02</span>, x<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">10</span>, r<span class="op">=</span><span class="dv">10</span>, t<span class="op">=</span><span class="dv">60</span>, b<span class="op">=</span><span class="dv">40</span>),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    bargap<span class="op">=</span><span class="fl">0.25</span>,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-resultado-agregado" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resultado-agregado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>                            <div id="53537217-ddf8-4c5c-bfa5-bf1d9ea1655d" class="plotly-graph-div" style="height:620px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("53537217-ddf8-4c5c-bfa5-bf1d9ea1655d")) {                    Plotly.newPlot(                        "53537217-ddf8-4c5c-bfa5-bf1d9ea1655d",                        [{"hovertemplate":"%{y} — Só palavra exata: %{x:.3f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#94A3B8"},"name":"Só palavra exata","orientation":"h","text":["4 em cada 10","5 em cada 10","5 em cada 10","6 em cada 10","0,42","0,43","0,46"],"textfont":{"size":11},"textposition":"outside","x":[0.35,0.475,0.5,0.575,0.42127976190476185,0.43308664546969416,0.45821178040037125],"y":["Recall@1","Recall@3","Recall@5","Recall@10","MRR","nDCG@5","nDCG@10"],"type":"bar"},{"hovertemplate":"%{y} — Só significado: %{x:.3f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#0E7490"},"name":"Só significado","orientation":"h","text":["3 em cada 10","5 em cada 10","7 em cada 10","8 em cada 10","0,47","0,52","0,56"],"textfont":{"size":11},"textposition":"outside","x":[0.325,0.525,0.725,0.825,0.4708333333333333,0.5220370994298819,0.5559792591209306],"y":["Recall@1","Recall@3","Recall@5","Recall@10","MRR","nDCG@5","nDCG@10"],"type":"bar"},{"hovertemplate":"%{y} — Os dois juntos: %{x:.3f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#E65100"},"name":"Os dois juntos","orientation":"h","text":["4 em cada 10","7 em cada 10","8 em cada 10","9 em cada 10","0,55","0,61","0,63"],"textfont":{"size":11},"textposition":"outside","x":[0.375,0.675,0.8,0.875,0.551875,0.6071981705417808,0.6308580363007105],"y":["Recall@1","Recall@3","Recall@5","Recall@10","MRR","nDCG@5","nDCG@10"],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"xaxis":{"title":{"text":"Desempenho (0 = nunca acerta, 1 = sempre acerta)"},"range":[0,1.15]},"yaxis":{"title":{"text":""},"autorange":"reversed"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"x":0},"font":{"size":12},"margin":{"l":10,"r":10,"t":60,"b":40},"barmode":"group","height":620,"bargap":0.25},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('53537217-ddf8-4c5c-bfa5-bf1d9ea1655d');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resultado-agregado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Desempenho dos três métodos nas 40 perguntas do gabarito. Barras mais longas são melhores. A leitura em linguagem comum está anotada ao lado de cada barra.
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="tbl-agregado" class="cell anchored" data-execution_count="4">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>linhas <span class="op">=</span> [<span class="st">"::: {.callout-note collapse=</span><span class="ch">\"</span><span class="st">true</span><span class="ch">\"</span><span class="st">}"</span>, <span class="st">"## Os números exatos, em tabela"</span>, <span class="st">""</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"| Métrica | Só palavra | Só significado | Os dois juntos |"</span>, <span class="st">"|---|---:|---:|---:|"</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> metricas:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> {k: M[k][m] <span class="cf">for</span> k <span class="kw">in</span> (<span class="st">"bm25"</span>, <span class="st">"vector"</span>, <span class="st">"rrf"</span>)}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    melhor <span class="op">=</span> <span class="bu">max</span>(vals, key<span class="op">=</span>vals.get)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> [(<span class="ss">f"**</span><span class="sc">{</span>vals[k]<span class="sc">:.3f}</span><span class="ss">**"</span> <span class="cf">if</span> k <span class="op">==</span> melhor <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>vals[k]<span class="sc">:.3f}</span><span class="ss">"</span>).replace(<span class="st">"."</span>, <span class="st">","</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>             <span class="cf">for</span> k <span class="kw">in</span> (<span class="st">"bm25"</span>, <span class="st">"vector"</span>, <span class="st">"rrf"</span>)]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    linhas.append(<span class="ss">f"| </span><span class="sc">{</span>m<span class="sc">}</span><span class="ss"> | "</span> <span class="op">+</span> <span class="st">" | "</span>.join(cells) <span class="op">+</span> <span class="st">" |"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>linhas <span class="op">+=</span> [<span class="st">""</span>, <span class="st">"Medição de 17/08/2026 — ver [metodologia completa](benchmark_rrf_metodologia.qmd)."</span>, <span class="st">":::"</span>]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(linhas))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Os números exatos, em tabela
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th>Métrica</th>
-<th style="text-align: right;">BM25</th>
-<th style="text-align: right;">Vetor</th>
-<th style="text-align: right;">RRF</th>
+<th style="text-align: right;">Só palavra</th>
+<th style="text-align: right;">Só significado</th>
+<th style="text-align: right;">Os dois juntos</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Recall@1</td>
 <td style="text-align: right;">0,350</td>
-<td style="text-align: right;">0,275</td>
-<td style="text-align: right;"><strong>0,475</strong></td>
+<td style="text-align: right;">0,325</td>
+<td style="text-align: right;"><strong>0,375</strong></td>
 </tr>
 <tr class="even">
 <td>Recall@3</td>
-<td style="text-align: right;">0,575</td>
-<td style="text-align: right;">0,650</td>
-<td style="text-align: right;"><strong>0,650</strong></td>
+<td style="text-align: right;">0,475</td>
+<td style="text-align: right;">0,525</td>
+<td style="text-align: right;"><strong>0,675</strong></td>
 </tr>
 <tr class="odd">
 <td>Recall@5</td>
-<td style="text-align: right;">0,575</td>
-<td style="text-align: right;">0,700</td>
-<td style="text-align: right;"><strong>0,775</strong></td>
+<td style="text-align: right;">0,500</td>
+<td style="text-align: right;">0,725</td>
+<td style="text-align: right;"><strong>0,800</strong></td>
 </tr>
 <tr class="even">
 <td>Recall@10</td>
-<td style="text-align: right;">0,600</td>
-<td style="text-align: right;">0,875</td>
-<td style="text-align: right;"><span style="color:#c0392b"><strong>0,900</strong></span></td>
+<td style="text-align: right;">0,575</td>
+<td style="text-align: right;">0,825</td>
+<td style="text-align: right;"><strong>0,875</strong></td>
 </tr>
 <tr class="odd">
 <td>MRR</td>
-<td style="text-align: right;">0,440</td>
-<td style="text-align: right;">0,481</td>
-<td style="text-align: right;"><strong>0,603</strong></td>
+<td style="text-align: right;">0,421</td>
+<td style="text-align: right;">0,471</td>
+<td style="text-align: right;"><strong>0,552</strong></td>
 </tr>
 <tr class="even">
 <td>nDCG@5</td>
-<td style="text-align: right;">0,472</td>
-<td style="text-align: right;">0,518</td>
-<td style="text-align: right;"><strong>0,633</strong></td>
+<td style="text-align: right;">0,433</td>
+<td style="text-align: right;">0,522</td>
+<td style="text-align: right;"><strong>0,607</strong></td>
 </tr>
 <tr class="odd">
 <td>nDCG@10</td>
-<td style="text-align: right;">0,480</td>
-<td style="text-align: right;">0,576</td>
-<td style="text-align: right;"><strong>0,673</strong></td>
+<td style="text-align: right;">0,458</td>
+<td style="text-align: right;">0,556</td>
+<td style="text-align: right;"><strong>0,631</strong></td>
 </tr>
 </tbody>
 </table>
+<p>Medição de 17/08/2026 — ver <a href="../explanation/benchmark_rrf_metodologia.html">metodologia completa</a>.</p>
+</div>
+</div>
+</div>
+</div>
 <p>Três leituras, na ordem em que valem a pena ser feitas:</p>
-<p><strong>A fusão vence em toda métrica, não só na média.</strong> Isso não era garantido — poderia ter havido um método claramente superior sozinho, tornando a fusão um custo sem benefício. Não foi o caso: RRF entrega o melhor MRR (0,603 vs.&nbsp;0,440 do BM25 isolado, um ganho de <strong>+37%</strong>) e o melhor Recall@10 (<span style="color:#c0392b"><strong>0,900</strong></span>, ou seja, em 9 de cada 10 perguntas o conceito certo aparece nos 10 primeiros resultados).</p>
-<p><strong>O vetor sozinho não é sempre melhor que o BM25.</strong> No Recall@1, o vetor (0,275) perde para o BM25 (0,350). É contraintuitivo se a expectativa for “busca semântica sempre vence” — não vence. O vetor aproxima <em>significados</em>, e um corpus com 1.388 conceitos tem muitos significados vizinhos (<code>Attitude_Change</code> e <code>Opinion_Change</code>; <code>Discussion</code> e <code>Public_Discussion</code>). Errar o primeiro lugar entre dois quase-sinônimos é diferente de não encontrar nada.</p>
-<p><strong>Onde o vetor realmente compensa é no Recall@10</strong> (0,875 contra 0,600 do BM25 — um salto de 46%). É o resultado que mais importa para GraphRAG: o vetor quase nunca deixa o conceito certo <em>fora</em> da lista de contexto entregue ao LLM, mesmo quando não o coloca em primeiro. BM25, sozinho, deixa o alvo de fora em <span style="color:#c0392b"><strong>40% das perguntas</strong></span> — o LLM simplesmente não recebe a informação para responder.</p>
+<div id="leituras" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> RES[<span class="st">"sobreposicao_top1"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ganho_mrr <span class="op">=</span> (M[<span class="st">"rrf"</span>][<span class="st">"MRR"</span>] <span class="op">/</span> M[<span class="st">"bm25"</span>][<span class="st">"MRR"</span>] <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ganho_r10 <span class="op">=</span> (M[<span class="st">"vector"</span>][<span class="st">"Recall@10"</span>] <span class="op">/</span> M[<span class="st">"bm25"</span>][<span class="st">"Recall@10"</span>] <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>falha_bm25 <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> M[<span class="st">"bm25"</span>][<span class="st">"Recall@10"</span>]) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="kw">lambda</span> v: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.3f}</span><span class="ss">"</span>.replace(<span class="st">"."</span>, <span class="st">","</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>pct <span class="op">=</span> <span class="kw">lambda</span> v: <span class="ss">f"</span><span class="sc">{</span>v <span class="op">*</span> <span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>.replace(<span class="st">"."</span>, <span class="st">","</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ss">**A fusão vence em toda métrica, não só na média.** Isso não era garantido — poderia ter havido um</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ss">método claramente superior sozinho, tornando a fusão um custo sem benefício. Não foi o caso: a fusão</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ss">entrega a melhor posição média (</span><span class="sc">{</span>n(M[<span class="st">'rrf'</span>][<span class="st">'MRR'</span>])<span class="sc">}</span><span class="ss"> contra </span><span class="sc">{</span>n(M[<span class="st">'bm25'</span>][<span class="st">'MRR'</span>])<span class="sc">}</span><span class="ss"> da palavra exata,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ss">um ganho de **+</span><span class="sc">{</span>ganho_mrr<span class="sc">:.0f}</span><span class="ss">%**) e a melhor taxa de acerto no top-10</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="ss">([**</span><span class="sc">{</span>pct(M[<span class="st">'rrf'</span>][<span class="st">'Recall@10'</span>])<span class="sc">}</span><span class="ss">**]</span><span class="ch">{{</span><span class="ss">style="color:#c0392b"</span><span class="ch">}}</span><span class="ss"> das perguntas).</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="ss">**O significado sozinho não é sempre melhor que a palavra exata.** No acerto em 1º lugar, o vetor</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="ss">(</span><span class="sc">{</span>n(M[<span class="st">'vector'</span>][<span class="st">'Recall@1'</span>])<span class="sc">}</span><span class="ss">) perde para a palavra exata (</span><span class="sc">{</span>n(M[<span class="st">'bm25'</span>][<span class="st">'Recall@1'</span>])<span class="sc">}</span><span class="ss">). É</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="ss">contraintuitivo se a expectativa for "busca semântica sempre vence" — não vence. O vetor aproxima</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="ss">*significados*, e um corpus com 1.388 conceitos tem muitos significados vizinhos (`Attitude_Change`</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="ss">e `Opinion_Change`; `Discussion` e `Public_Discussion`). Errar o primeiro lugar entre dois</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="ss">quase-sinônimos é diferente de não encontrar nada.</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="ss">**Onde o vetor realmente compensa é na lista dos 10 primeiros** (</span><span class="sc">{</span>n(M[<span class="st">'vector'</span>][<span class="st">'Recall@10'</span>])<span class="sc">}</span><span class="ss"> contra</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>n(M[<span class="st">'bm25'</span>][<span class="st">'Recall@10'</span>])<span class="sc">}</span><span class="ss"> da palavra exata — um salto de </span><span class="sc">{</span>ganho_r10<span class="sc">:.0f}</span><span class="ss">%). É o resultado que mais</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="ss">importa para GraphRAG: o vetor quase nunca deixa o conceito certo *fora* da lista de contexto entregue</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="ss">ao LLM, mesmo quando não o coloca em primeiro. A palavra exata, sozinha, deixa o alvo de fora em</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="ss">[**</span><span class="sc">{</span>falha_bm25<span class="sc">:.0f}</span><span class="ss">% das perguntas**]</span><span class="ch">{{</span><span class="ss">style="color:#c0392b"</span><span class="ch">}}</span><span class="ss"> — o LLM simplesmente não recebe a</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="ss">informação para responder.</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><strong>A fusão vence em toda métrica, não só na média.</strong> Isso não era garantido — poderia ter havido um método claramente superior sozinho, tornando a fusão um custo sem benefício. Não foi o caso: a fusão entrega a melhor posição média (0,552 contra 0,421 da palavra exata, um ganho de <strong>+31%</strong>) e a melhor taxa de acerto no top-10 (<span style="color:#c0392b"><strong>87,5%</strong></span> das perguntas).</p>
+<p><strong>O significado sozinho não é sempre melhor que a palavra exata.</strong> No acerto em 1º lugar, o vetor (0,325) perde para a palavra exata (0,350). É contraintuitivo se a expectativa for “busca semântica sempre vence” — não vence. O vetor aproxima <em>significados</em>, e um corpus com 1.388 conceitos tem muitos significados vizinhos (<code>Attitude_Change</code> e <code>Opinion_Change</code>; <code>Discussion</code> e <code>Public_Discussion</code>). Errar o primeiro lugar entre dois quase-sinônimos é diferente de não encontrar nada.</p>
+<p><strong>Onde o vetor realmente compensa é na lista dos 10 primeiros</strong> (0,825 contra 0,575 da palavra exata — um salto de 43%). É o resultado que mais importa para GraphRAG: o vetor quase nunca deixa o conceito certo <em>fora</em> da lista de contexto entregue ao LLM, mesmo quando não o coloca em primeiro. A palavra exata, sozinha, deixa o alvo de fora em <span style="color:#c0392b"><strong>43% das perguntas</strong></span> — o LLM simplesmente não recebe a informação para responder.</p>
+</div>
 <hr>
 </section>
-<section id="onde-cada-método-vence-sozinho" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="onde-cada-método-vence-sozinho"><span class="header-section-number">1.4</span> Onde cada método vence sozinho</h2>
+<section id="onde-cada-método-vence-sozinho" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="onde-cada-método-vence-sozinho"><span class="header-section-number">4</span> Onde cada método vence sozinho</h2>
 <p>Uma média agregada esconde uma pergunta mais interessante: <strong>os dois métodos erram nas mesmas perguntas, ou em perguntas diferentes?</strong> Se erram nas mesmas, a fusão não ajuda. Se erram em perguntas diferentes, a fusão é o ganho real.</p>
-<table class="caption-top table">
+<div id="tbl-sobreposicao" class="cell anchored" data-execution_count="6">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> RES[<span class="st">"sobreposicao_top1"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""| | Contagem (de 40) | Exemplo real da medição |</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ss">|---|---:|---|</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ss">| Ambos acertam o 1º lugar | </span><span class="sc">{</span>o[<span class="st">'ambos'</span>]<span class="sc">}</span><span class="ss"> | — |</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ss">| Só a palavra exata acerta | </span><span class="sc">{</span>o[<span class="st">'so_bm25'</span>]<span class="sc">}</span><span class="ss"> | "the incumbent coal oil and gas regime..." → `Fossil_Fuel` |</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ss">| Só o significado acerta | </span><span class="sc">{</span>o[<span class="st">'so_vetor'</span>]<span class="sc">}</span><span class="ss"> | "what nature provides for free that a new installation might destroy" → `Ecosystem_Service` |</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ss">| Nenhum acerta o 1º lugar | </span><span class="sc">{</span>o[<span class="st">'nenhum'</span>]<span class="sc">}</span><span class="ss"> | (a maioria tem o alvo no top-3/top-5 — ver abaixo) |"""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 30%">
 <col style="width: 40%">
@@ -564,59 +889,198 @@ Backend usado neste experimento
 <tr class="header">
 <th></th>
 <th style="text-align: right;">Contagem (de 40)</th>
-<th>Exemplos</th>
+<th>Exemplo real da medição</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Ambos acertam o top-1</td>
+<td>Ambos acertam o 1º lugar</td>
 <td style="text-align: right;">5</td>
 <td>—</td>
 </tr>
 <tr class="even">
-<td>Só BM25 acerta</td>
+<td>Só a palavra exata acerta</td>
 <td style="text-align: right;">9</td>
-<td>“guaranteed fixed payment for producing renewable electricity” → <code>Feed-In_Tariff</code></td>
+<td>“the incumbent coal oil and gas regime…” → <code>Fossil_Fuel</code></td>
 </tr>
 <tr class="odd">
-<td>Só o vetor acerta</td>
-<td style="text-align: right;">6</td>
-<td>“do households go back to burning wood after briefly switching to clean fuel” → <code>Transition_Permanence</code></td>
+<td>Só o significado acerta</td>
+<td style="text-align: right;">8</td>
+<td>“what nature provides for free that a new installation might destroy” → <code>Ecosystem_Service</code></td>
 </tr>
 <tr class="even">
-<td>Nenhum acerta o top-1</td>
-<td style="text-align: right;">20</td>
+<td>Nenhum acerta o 1º lugar</td>
+<td style="text-align: right;">18</td>
 <td>(a maioria tem o alvo no top-3/top-5 — ver abaixo)</td>
 </tr>
 </tbody>
 </table>
-<p>Os conjuntos de erro <strong>quase não se sobrepõem</strong>. Quando a pergunta cita um termo técnico específico (<code>Feed-In_Tariff</code>, um jargão de política energética), o BM25 acerta de cara porque o termo aparece quase literalmente na descrição. Quando a pergunta descreve um <em>comportamento</em> sem citar o nome do conceito (voltar a usar lenha após adotar combustível limpo, sem nunca dizer “transição” ou “permanência”), o vetor entende a ideia e o BM25 não tem palavra nenhuma para casar.</p>
-<p><strong>Essa é a evidência central deste estudo</strong>: BM25 e busca vetorial não competem pelo mesmo espaço de perguntas — cobrem espaços diferentes. É por isso que a fusão soma, e não apenas repete o melhor dos dois.</p>
-<section id="os-4-casos-onde-nenhum-método-chegou-perto" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="os-4-casos-onde-nenhum-método-chegou-perto"><span class="header-section-number">1.4.1</span> Os 4 casos onde nenhum método chegou perto</h3>
+</div>
+<p>Os conjuntos de erro <strong>quase não se sobrepõem</strong>. Vale ver isso como três situações que você reconhece do seu próprio trabalho.</p>
+<p><strong>Quando você lembra do jargão, a palavra exata basta.</strong> Você quer conferir onde codificou o peso do regime de carvão, petróleo e gás. Você escreve <em>“the incumbent coal oil and gas regime that locks in existing infrastructure”</em> — e esses termos estão quase literais na descrição do conceito. A palavra exata traz <code>Fossil_Fuel</code> em 1º; a busca por significado se dispersa entre <code>Concentrated_Power</code> e <code>Infrastructure_Lock-In</code>, ideias vizinhas e plausíveis, mas não a que você queria.</p>
+<p><strong>Quando você lembra do fenômeno mas não do rótulo, só o significado salva.</strong> Você está codificando uma entrevista sobre o que a natureza oferece de graça e que uma obra pode destruir. Você não lembra que categorizou isso como <code>Ecosystem_Service</code> meses atrás, e sua pergunta não contém “ecossistema” nem “serviço”. A palavra exata devolve <code>Dominant_Social_Paradigm</code> e <code>Environmental_Condition</code> — nada útil. A busca por significado reconhece a ideia e traz o conceito em 1º lugar.</p>
+<p><strong>Quando você quer evitar duplicar um conceito, os dois juntos importam.</strong> Este terceiro caso não vem da medição — é o cenário do seu próprio projeto, e o motivo prático de ligar o recurso. Imagine que você está prestes a criar uma categoria nova para “medo de que o cheiro incomode os vizinhos”, numa pesquisa sobre biodigestores rurais. Já são 400 trechos codificados e você não confia mais na própria memória do que existe na ontologia. Você pergunta em linguagem natural: se um conceito de incômodo por odor já existir, a busca por significado o encontra mesmo que você tenha escrito “fedor” e a ontologia diga “odor”; e se existir também um rótulo próximo cujo termo você acertou por acaso, a palavra exata o traz. Ver os dois na mesma lista é o que evita criar um conceito redundante — o tipo de erro que só aparece muito depois, na hora de analisar as frequências.</p>
+<p><strong>Essa é a evidência central deste estudo</strong>: os dois métodos não competem pelo mesmo espaço de perguntas — cobrem espaços diferentes. É por isso que a fusão soma, e não apenas repete o melhor dos dois.</p>
+<section id="os-casos-onde-nenhum-método-chegou-perto" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="os-casos-onde-nenhum-método-chegou-perto"><span class="header-section-number">4.1</span> Os casos onde nenhum método chegou perto</h3>
 <p>Vale nomear as falhas em vez de escondê-las atrás da média:</p>
+<div id="falhas-totais" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>falhas <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> RES[<span class="st">"por_pergunta"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="kw">not</span> <span class="bu">any</span>(r[m][<span class="st">"rank"</span>] <span class="cf">for</span> m <span class="kw">in</span> (<span class="st">"bm25"</span>, <span class="st">"vector"</span>, <span class="st">"rrf"</span>))]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Em **</span><span class="sc">{</span><span class="bu">len</span>(falhas)<span class="sc">}</span><span class="ss"> das 40 perguntas** o alvo ficou fora do top-10 de *todos* os métodos:</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> falhas:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    viz <span class="op">=</span> <span class="st">", "</span>.join(<span class="ss">f"`</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">`"</span> <span class="cf">for</span> t <span class="kw">in</span> r[<span class="st">"vector"</span>][<span class="st">"top3"</span>])</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- `</span><span class="sc">{</span>r[<span class="st">'gold'</span>]<span class="sc">}</span><span class="ss">` — para *</span><span class="ch">\"</span><span class="sc">{</span>r[<span class="st">'question'</span>]<span class="sc">}</span><span class="ch">\"</span><span class="ss">*.  </span><span class="ch">\n</span><span class="ss">  A busca por significado devolveu </span><span class="sc">{</span>viz<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>Em <strong>2 das 40 perguntas</strong> o alvo ficou fora do top-10 de <em>todos</em> os métodos:</p>
 <ul>
-<li><code>Tenure</code> (posse do imóvel) para “does owning your home versus renting change…” — nenhum método aproximou; os resultados giraram em torno de energia solar, não do vínculo de propriedade.</li>
-<li><code>Cooperation</code> para “different stakeholders working together across disciplines” — o vetor devolveu <code>Collaboration</code>, um quase-sinônimo aceitável na prática, mas tecnicamente errado para este gabarito estrito.</li>
-<li><code>Behavioral_Control</code> para “whether a person feels capable of installing renewable tech themselves” — o vetor devolveu <code>Control</code> e <code>Willingness</code>, próximos mas não o conceito exato.</li>
-<li><code>Socio-Political_Context</code> para “the political institutions and power structures…” — o vetor devolveu <code>Socio-Economic_Context</code>, um vizinho semântico genuíno.</li>
+<li><code>Market_Demand</code> — para <em>“whether there are enough buyers and investors to make deployment happen”</em>.<br>
+A busca por significado devolveu <code>Technology_Deployment</code>, <code>Investment</code>, <code>Technology_Availability</code>.</li>
+<li><code>Renewable_Energy_Adaptation</code> — para <em>“fitting clean generation into the systems and society we already have”</em>.<br>
+A busca por significado devolveu <code>Decarbonization_Success</code>, <code>Sustainable_Business_Practice</code>, <code>New_Ecological_Paradigm</code>.</li>
 </ul>
-<p>Em três dos quatro casos, o “erro” é um conceito adjacente plausível — o tipo de resposta que um pesquisador aceitaria em uma conversa real, mas que um gabarito de resposta única não perdoa. Isso é uma limitação do desenho do experimento (uma pergunta, um único conceito certo), não necessariamente do sistema — e é discutido mais abaixo.</p>
+</div>
+<p>Nos dois casos o “erro” é um conceito adjacente plausível — <code>Investment</code> para uma pergunta sobre compradores e investidores é o tipo de resposta que um pesquisador aceitaria numa conversa real, mas que um gabarito de resposta única não perdoa. Isso é uma limitação do desenho do experimento (uma pergunta, um único conceito certo), não necessariamente do sistema — e é discutido mais abaixo.</p>
 <hr>
 </section>
 </section>
-<section id="o-que-isso-significa-para-graphrag-via-mcp" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="o-que-isso-significa-para-graphrag-via-mcp"><span class="header-section-number">1.5</span> O que isso significa para GraphRAG via MCP</h2>
+<section id="o-que-isso-significa-para-graphrag-via-mcp" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="o-que-isso-significa-para-graphrag-via-mcp"><span class="header-section-number">5</span> O que isso significa para GraphRAG via MCP</h2>
 <p><strong>Recuperabilidade</strong>, no sentido em que a IR usa a palavra, é a capacidade de um sistema trazer de volta a informação certa quando alguém pergunta por ela — mesmo sem usar os termos exatos do índice. É exatamente o problema que o Claude Desktop enfrenta a cada pergunta feita via MCP: o pesquisador não conhece o vocabulário controlado da ontologia, então cada pergunta é, por definição, um teste de recuperabilidade.</p>
-<p>O cenário de uso real não é “encontrar o nó exato” — é <strong>dar ao LLM contexto suficiente para responder com precisão</strong>, o que corresponde a Recall@5 ou Recall@10, não Recall@1. Sob essa lente:</p>
+<p>O cenário de uso real não é “encontrar o nó exato” — é <strong>dar ao LLM contexto suficiente para responder com precisão</strong>, o que corresponde à lista dos 5 ou 10 primeiros, não ao acerto em 1º lugar. Sob essa lente:</p>
+<div id="leitura-mcp" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pct <span class="op">=</span> <span class="kw">lambda</span> v: <span class="ss">f"</span><span class="sc">{</span>v <span class="op">*</span> <span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>.replace(<span class="st">"."</span>, <span class="st">","</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- **Só palavra exata** entrega o conceito certo em </span><span class="sc">{</span>pct(M[<span class="st">'bm25'</span>][<span class="st">'Recall@5'</span>])<span class="sc">}</span><span class="ss"> das perguntas no top-5.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  Em metade das conversas, o pesquisador pergunta e o MCP simplesmente não traz o conceito relevante —</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  o Claude Desktop responde com o que tem, que pode ser tangencial.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- **Os dois juntos** entregam em </span><span class="sc">{</span>pct(M[<span class="st">'rrf'</span>][<span class="st">'Recall@5'</span>])<span class="sc">}</span><span class="ss"> no top-5 e</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  [**</span><span class="sc">{</span>pct(M[<span class="st">'rrf'</span>][<span class="st">'Recall@10'</span>])<span class="sc">}</span><span class="ss"> no top-10**]</span><span class="ch">{{</span><span class="ss">style="color:#c0392b"</span><span class="ch">}}</span><span class="ss">. A diferença não é sutil: é a</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  diferença entre "o agente geralmente encontra o que você quer dizer" e "o agente frequentemente não encontra".</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <ul>
-<li><strong>BM25 sozinho</strong> entrega o conceito certo em 57,5% das perguntas no top-5. Em quase 1 de cada 3 conversas, o pesquisador pergunta e o MCP simplesmente não traz o conceito relevante — o Claude Desktop responde com o que tem, que pode ser tangencial.</li>
-<li><strong>RRF</strong> entrega em 77,5% no top-5 e <span style="color:#c0392b"><strong>90% no top-10</strong></span>. A diferença não é sutil: é a diferença entre “o agente geralmente encontra o que você quer dizer” e “o agente frequentemente não encontra”.</li>
+<li><strong>Só palavra exata</strong> entrega o conceito certo em 50,0% das perguntas no top-5. Em metade das conversas, o pesquisador pergunta e o MCP simplesmente não traz o conceito relevante — o Claude Desktop responde com o que tem, que pode ser tangencial.</li>
+<li><strong>Os dois juntos</strong> entregam em 80,0% no top-5 e <span style="color:#c0392b"><strong>87,5% no top-10</strong></span>. A diferença não é sutil: é a diferença entre “o agente geralmente encontra o que você quer dizer” e “o agente frequentemente não encontra”.</li>
 </ul>
-<section id="latência-o-custo-de-adicionar-a-busca-vetorial" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="latência-o-custo-de-adicionar-a-busca-vetorial"><span class="header-section-number">1.5.1</span> Latência: o custo de adicionar a busca vetorial</h3>
-<p>Relevante para uso interativo (MCP), medido no mesmo corpus (1.388 conceitos, 20 execuções por método):</p>
-<table class="caption-top table">
+</div>
+<section id="latência-o-custo-de-adicionar-a-busca-vetorial" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="latência-o-custo-de-adicionar-a-busca-vetorial"><span class="header-section-number">5.1</span> Latência: o custo de adicionar a busca vetorial</h3>
+<div id="cell-fig-latencia" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>LAT <span class="op">=</span> RES[<span class="st">"latencia_ms"</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>_vec, _bm <span class="op">=</span> LAT[<span class="st">"vetor_completo"</span>][<span class="st">"media"</span>], LAT[<span class="st">"bm25"</span>][<span class="st">"media"</span>]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Bar(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>[<span class="st">"Com busca por significado"</span>, <span class="st">"Só palavra exata"</span>],</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>[_vec, _bm],</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    orientation<span class="op">=</span><span class="st">"h"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span>[<span class="st">"#E65100"</span>, <span class="st">"#94A3B8"</span>]),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>[<span class="ss">f"</span><span class="sc">{</span>_vec<span class="sc">:.0f}</span><span class="ss"> ms"</span>, <span class="ss">f"</span><span class="sc">{</span>_bm<span class="sc">:.0f}</span><span class="ss"> ms"</span>],</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    textposition<span class="op">=</span><span class="st">"outside"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    textfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">13</span>),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">"%</span><span class="sc">{y}</span><span class="st">: %</span><span class="sc">{x:.1f}</span><span class="st"> ms (média)&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    showlegend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>fig.add_vline(</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="dv">100</span>, line_width<span class="op">=</span><span class="dv">2</span>, line_dash<span class="op">=</span><span class="st">"dash"</span>, line_color<span class="op">=</span><span class="st">"#c0392b"</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    annotation_text<span class="op">=</span><span class="st">"100 ms — limiar do 'instantâneo'"</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    annotation_position<span class="op">=</span><span class="st">"top"</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    annotation_font<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">"#c0392b"</span>, size<span class="op">=</span><span class="dv">12</span>),</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">"plotly_white"</span>,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">280</span>,</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Tempo por pergunta (milissegundos)"</span>, <span class="bu">range</span><span class="op">=</span>[<span class="dv">0</span>, <span class="dv">145</span>]),</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">""</span>),</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>),</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">10</span>, r<span class="op">=</span><span class="dv">10</span>, t<span class="op">=</span><span class="dv">50</span>, b<span class="op">=</span><span class="dv">40</span>),</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    bargap<span class="op">=</span><span class="fl">0.4</span>,</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-latencia" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-latencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>                            <div id="d858adef-fa67-4141-97fe-42743570023f" class="plotly-graph-div" style="height:280px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("d858adef-fa67-4141-97fe-42743570023f")) {                    Plotly.newPlot(                        "d858adef-fa67-4141-97fe-42743570023f",                        [{"hovertemplate":"%{y}: %{x:.1f} ms (média)\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#E65100","#94A3B8"]},"orientation":"h","showlegend":false,"text":["47 ms","13 ms"],"textfont":{"size":13},"textposition":"outside","x":[47.050914999999804,12.753410000277654],"y":["Com busca por significado","Só palavra exata"],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"shapes":[{"line":{"color":"#c0392b","dash":"dash","width":2},"type":"line","x0":100,"x1":100,"xref":"x","y0":0,"y1":1,"yref":"y domain"}],"annotations":[{"font":{"color":"#c0392b","size":12},"showarrow":false,"text":"100 ms — limiar do 'instantâneo'","x":100,"xanchor":"center","xref":"x","y":1,"yanchor":"bottom","yref":"y domain"}],"xaxis":{"title":{"text":"Tempo por pergunta (milissegundos)"},"range":[0,145]},"font":{"size":12},"margin":{"l":10,"r":10,"t":50,"b":40},"height":280,"yaxis":{"title":{"text":""}},"bargap":0.4},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('d858adef-fa67-4141-97fe-42743570023f');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-latencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Tempo de resposta por pergunta, medido no mesmo corpus (1.388 conceitos, 20 execuções por método). A linha marca os 100 ms que a literatura de usabilidade usa como limiar do que parece instantâneo.
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="texto-latencia" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Mostrar código do gráfico</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>extra <span class="op">=</span> LAT[<span class="st">"vetor_completo"</span>][<span class="st">"media"</span>] <span class="op">-</span> LAT[<span class="st">"bm25"</span>][<span class="st">"media"</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ss">Os dois métodos ficam bem abaixo do limiar. O custo adicional da busca vetorial é de</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ss">**~</span><span class="sc">{</span>extra<span class="sc">:.0f}</span><span class="ss"> ms** sobre a busca por palavra exata, e o total continua abaixo da metade do que uma</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ss">pessoa percebe como demora. Em uma sessão de MCP, isso é imperceptível diante da latência do próprio</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ss">LLM gerando a resposta — que é da ordem de segundos, não de milissegundos.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>nomes <span class="op">=</span> {<span class="st">"bm25"</span>: <span class="st">"Busca por palavra (BM25)"</span>, <span class="st">"encode"</span>: <span class="st">"Codificar a pergunta (encode)"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>         <span class="st">"knn"</span>: <span class="st">"Busca vetorial (kNN)"</span>, <span class="st">"vetor_completo"</span>: <span class="st">"**Vetor completo** (encode + busca)"</span>}</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>linhas <span class="op">=</span> [<span class="st">"::: {.callout-note collapse=</span><span class="ch">\"</span><span class="st">true</span><span class="ch">\"</span><span class="st">}"</span>, <span class="st">"## Os números exatos, por etapa"</span>, <span class="st">""</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">"| Etapa | Média | Mediana | p95 |"</span>, <span class="st">"|---|---:|---:|---:|"</span>]</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, nome <span class="kw">in</span> nomes.items():</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> LAT[k]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="kw">lambda</span> x: <span class="ss">f"</span><span class="sc">{</span>x<span class="sc">:.1f}</span><span class="ss"> ms"</span>.replace(<span class="st">"."</span>, <span class="st">","</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    linhas.append(<span class="ss">f"| </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>f(v[<span class="st">'media'</span>])<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>f(v[<span class="st">'mediana'</span>])<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>f(v[<span class="st">'p95'</span>])<span class="sc">}</span><span class="ss"> |"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>linhas.append(<span class="st">":::"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(linhas))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>Os dois métodos ficam bem abaixo do limiar. O custo adicional da busca vetorial é de <strong>~34 ms</strong> sobre a busca por palavra exata, e o total continua abaixo da metade do que uma pessoa percebe como demora. Em uma sessão de MCP, isso é imperceptível diante da latência do próprio LLM gerando a resposta — que é da ordem de segundos, não de milissegundos.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Os números exatos, por etapa
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th>Etapa</th>
@@ -627,56 +1091,65 @@ Backend usado neste experimento
 </thead>
 <tbody>
 <tr class="odd">
-<td>BM25 (full-text)</td>
-<td style="text-align: right;">17,2 ms</td>
-<td style="text-align: right;">18,2 ms</td>
-<td style="text-align: right;">30,9 ms</td>
+<td>Busca por palavra (BM25)</td>
+<td style="text-align: right;">12,8 ms</td>
+<td style="text-align: right;">5,6 ms</td>
+<td style="text-align: right;">27,2 ms</td>
 </tr>
 <tr class="even">
 <td>Codificar a pergunta (encode)</td>
-<td style="text-align: right;">30,3 ms</td>
-<td style="text-align: right;">30,9 ms</td>
-<td style="text-align: right;">33,5 ms</td>
+<td style="text-align: right;">34,7 ms</td>
+<td style="text-align: right;">35,0 ms</td>
+<td style="text-align: right;">37,2 ms</td>
 </tr>
 <tr class="odd">
 <td>Busca vetorial (kNN)</td>
-<td style="text-align: right;">20,0 ms</td>
-<td style="text-align: right;">23,8 ms</td>
-<td style="text-align: right;">33,9 ms</td>
+<td style="text-align: right;">12,4 ms</td>
+<td style="text-align: right;">11,7 ms</td>
+<td style="text-align: right;">12,9 ms</td>
 </tr>
 <tr class="even">
 <td><strong>Vetor completo</strong> (encode + busca)</td>
-<td style="text-align: right;">50,2 ms</td>
-<td style="text-align: right;">53,4 ms</td>
-<td style="text-align: right;">65,4 ms</td>
+<td style="text-align: right;">47,1 ms</td>
+<td style="text-align: right;">46,7 ms</td>
+<td style="text-align: right;">50,0 ms</td>
 </tr>
 </tbody>
 </table>
-<p>O custo adicional da busca vetorial é de <strong>~50 ms</strong> por pergunta — abaixo do limiar de percepção humana em conversa (a referência usual em UX é ~100 ms para algo parecer “instantâneo”). Em uma sessão de MCP, isso é imperceptível diante da latência do próprio LLM gerando a resposta.</p>
+</div>
+</div>
+</div>
+</div>
 <hr>
 </section>
 </section>
-<section id="o-que-o-experimento-não-prova" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="o-que-o-experimento-não-prova"><span class="header-section-number">1.6</span> O que o experimento não prova</h2>
-<p>Honestidade sobre limites, porque um estudo que só mostra vitórias não é confiável:</p>
-<ul>
-<li><strong>Um único corpus, um único idioma.</strong> Os números vêm do Social_Acceptance (inglês, <code>all-mpnet-base-v2</code>). Um corpus em outro idioma, com outro modelo de embedding e outra densidade conceitual, pode produzir números absolutos diferentes — não generalize estes valores para outros projetos sem medir.</li>
-<li><strong>Gabarito de resposta única penaliza sinonímia real.</strong> Como mostrado acima, boa parte dos “erros” no Recall@1 são conceitos vizinhos legítimos, não alucinações. Um gabarito com múltiplas respostas aceitas por pergunta produziria números mais altos e provavelmente mais realistas — mas também mais difícil de construir sem viés do avaliador.</li>
-<li><strong>40 perguntas é uma amostra, não uma prova estatística.</strong> É rigoroso o bastante para revelar o padrão (as duas fontes de erro não se sobrepõem, a fusão soma), mas não valida uma distribuição populacional inteira do corpus.</li>
-<li><strong>A fusão RRF ainda tem 21 erros em 40 no top-1.</strong> Ela é a melhor das três opções medidas — não é infalível.</li>
-</ul>
+<section id="o-que-o-experimento-não-prova" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="o-que-o-experimento-não-prova"><span class="header-section-number">6</span> O que o experimento não prova</h2>
+<p>Honestidade sobre limites, porque um estudo que só mostra vitórias não é confiável. Em ordem do que mais afeta a sua decisão:</p>
+<p><strong>1. Estes números são de um corpus, em inglês — meça no seu.</strong> <em>O que isso significa para você:</em> se o seu projeto for em português, ou tiver muito menos conceitos, ou tratar de um domínio mais homogêneo, os números podem ser bem diferentes. Ligue o recurso e meça no seu próprio projeto antes de assumir o mesmo ganho. O detalhe técnico: os valores vêm do Social_Acceptance com o modelo <code>all-mpnet-base-v2</code>, e tanto o idioma quanto a densidade conceitual do corpus afetam o resultado.</p>
+<p><strong>2. A régua é dura demais com sinônimos, então o ganho real é provavelmente maior.</strong> <em>O que isso significa para você:</em> boa parte dos “erros” contabilizados são conceitos vizinhos legítimos que você aceitaria numa conversa — <code>Collaboration</code> no lugar de <code>Cooperation</code>, por exemplo. O detalhe técnico: o gabarito admite uma única resposta certa por pergunta. Um gabarito com múltiplas respostas aceitas produziria números mais altos e provavelmente mais realistas, mas seria mais difícil de construir sem viés do avaliador.</p>
+<p><strong>3. Nenhum método é infalível, nem com a fusão ligada.</strong> <em>O que isso significa para você:</em> ainda haverá perguntas em que o assistente não acha o que você quer dizer. Ligar o recurso reduz muito a frequência disso; não elimina. O detalhe técnico: a fusão erra o 1º lugar na maioria das 40 perguntas — embora, na maior parte delas, o alvo esteja no top-5. Há inclusive 3 casos em que a fusão perdeu um alvo que um método isolado tinha encontrado; estão documentados na <a href="../explanation/benchmark_rrf_metodologia.html#o-que-deu-errado-e-não-foi-escondido">metodologia</a>.</p>
+<p><strong>4. São 40 perguntas: um padrão claro, não uma prova estatística.</strong> <em>O que isso significa para você:</em> a conclusão qualitativa (os dois métodos erram em perguntas diferentes, e por isso somam) é sólida. Os valores decimais específicos, não trate como constantes. O detalhe técnico: 40 perguntas bastam para revelar o padrão, mas não validam uma distribuição populacional inteira do corpus.</p>
 <hr>
 </section>
-<section id="recomendação" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="recomendação"><span class="header-section-number">1.7</span> Recomendação</h2>
-<p>Ative <code>--vector-embeddings</code> quando o uso for <strong>busca conversacional</strong> — MCP, GraphRAG, pesquisador perguntando com suas próprias palavras. É exatamente o caso onde BM25 sozinho falha 40% das vezes no top-10.</p>
+<section id="perguntas-frequentes" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="perguntas-frequentes"><span class="header-section-number">7</span> Perguntas frequentes</h2>
+<p><strong>Preciso saber programar para ativar isso?</strong> Não. É instalar um pacote e passar uma opção a mais no comando que você já usa para gerar o grafo (<code>--vector-embeddings</code>). Nenhuma linha de código.</p>
+<p><strong>Isso muda a minha ontologia ou os meus dados?</strong> Não muda nada do que você codificou. Os embeddings são um índice adicional, construído a partir das descrições dos conceitos e guardado ao lado deles. Seus conceitos, fontes e relações permanecem exatamente como estão — o que muda é só a forma de procurá-los.</p>
+<p><strong>Preciso de internet ou de API paga?</strong> Não. O <code>sentence-transformers</code> gera os vetores no seu próprio computador. Não há chamada a serviço externo, custo por uso, nem envio do seu material para fora. (O assistente que consome o grafo via MCP é outra questão — esse é o Claude Desktop, e vale a política de privacidade dele.)</p>
+<p><strong>Funciona em português?</strong> O modelo padrão (<code>all-mpnet-base-v2</code>) foi treinado em inglês, e este experimento mediu um corpus em inglês. Para material em português, existem modelos multilíngues que se encaixam no mesmo lugar — mas não medimos, então não prometemos números. Se o seu projeto é em português, ligue e avalie no seu caso antes de contar com o ganho.</p>
+<p><strong>Vale a pena se meu projeto é pequeno?</strong> Provavelmente menos. O problema que a busca por significado resolve — não lembrar o rótulo exato entre centenas de conceitos — quase não existe quando você tem trinta categorias e conhece todas de cabeça. O ganho cresce com o tamanho da ontologia.</p>
+<hr>
+</section>
+<section id="recomendação" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="recomendação"><span class="header-section-number">8</span> Recomendação</h2>
+<p>Ative <code>--vector-embeddings</code> quando o uso for <strong>busca conversacional</strong> — MCP, GraphRAG, pesquisador perguntando com suas próprias palavras. É exatamente o caso onde a palavra exata sozinha deixa o conceito certo de fora em mais de 40% das perguntas.</p>
 <p>Não é necessário para consultas Cypher/SQL estruturadas que já sabem o nome exato do conceito — ali, a busca por palavra-chave (ou o <code>MATCH</code> direto) já é ótima e o vetor não acrescenta nada.</p>
 <p>A implementação, a configuração por projeto e os passos para gerar os embeddings estão documentados no <a href="https://github.com/synesis-lang/synesis-graph#semantic-search-with-vector-embeddings-arcadedb">README do synesis-graph</a>.</p>
 <hr>
-<p><strong>Reflexão final:</strong> a busca vetorial não é “melhor” que a busca por palavra-chave — é <strong>complementar</strong>, e o experimento mostra exatamente por quê: os dois métodos erram em perguntas diferentes, não nas mesmas. É esse desencontro de erros, não a superioridade de um método sobre o outro, que faz a fusão valer o investimento de infraestrutura.</p>
+<p><strong>Reflexão final:</strong> a busca por significado não é “melhor” que a busca por palavra exata — é <strong>complementar</strong>, e o experimento mostra exatamente por quê: os dois métodos erram em perguntas diferentes, não nas mesmas. É esse desencontro de erros, não a superioridade de um método sobre o outro, que faz a fusão valer o investimento de infraestrutura.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
