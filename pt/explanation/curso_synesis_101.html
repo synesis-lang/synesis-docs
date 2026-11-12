@@ -339,6 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#sec-m2-e01" id="toc-sec-m2-e01" class="nav-link" data-scroll-target="#sec-m2-e01">E01 · O ecossistema</a></li>
   <li><a href="#sec-m2-e02" id="toc-sec-m2-e02" class="nav-link" data-scroll-target="#sec-m2-e02">E02 · Instalação</a></li>
+  <li><a href="#sec-m2-e03" id="toc-sec-m2-e03" class="nav-link" data-scroll-target="#sec-m2-e03">E03 · O compilador: conferir e exportar</a></li>
   </ul></li>
   <li><a href="#sec-continuar" id="toc-sec-continuar" class="nav-link" data-scroll-target="#sec-continuar">Para continuar</a></li>
   </ul>
@@ -448,6 +449,20 @@ Como assistir
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> init                                    <span class="co"># numa pasta vazia: cria um projeto de teste</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile project.synp <span class="at">--stats</span>            <span class="co"># sem erros = instalação funcionando</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>No VS Code, instale a extensão <strong>Synesis</strong>, do publicador <strong>synesis-lang</strong>, pelo painel Extensões. Se os painéis ficarem vazios, procure por Synesis nas configurações e informe o caminho do <code>synesis-lsp</code>.</p>
+</section>
+<section id="sec-m2-e03" class="level2">
+<h2 class="anchored" data-anchor-id="sec-m2-e03">E03 · O compilador: conferir e exportar</h2>
+<p>Os comandos básicos do compilador no terminal. O episódio mostra as etapas da compilação e as estatísticas. Ensina a ler uma mensagem de erro, que traz arquivo, linha, coluna, gravidade e o problema, e explica a diferença entre erro e aviso. Depois, exporta o projeto para JSON, CSV, Excel e Alpaca. Duas regras ficam claras: se nenhuma mensagem aparece, o projeto está correto; e a exportação é tudo ou nada, porque com um erro nenhum arquivo é gerado.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/-4ZGcUwwdNI" title="Synesis 101 · Módulo 2 · E03 · O compilador: conferir e exportar" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><span class="text-muted small">Duração: 2 min 37 s</span></p>
+<p>Os comandos do vídeo, para copiar:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile project.synp <span class="at">--stats</span>            <span class="co"># etapas + contagem de fontes, trechos e conceitos</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile project.synp <span class="at">--check-codes</span>      <span class="co"># lista os códigos que não existem na ontologia, com sugestão</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile project.synp <span class="at">--strict</span>           <span class="co"># avisos passam a contar como erros</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile project.synp <span class="at">--json</span> saida.json <span class="at">--xls</span> saida.xlsx <span class="at">--csv</span> csv   <span class="co"># a pasta csv precisa existir</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check annotations.syn                   <span class="co"># só a escrita de um arquivo, sem o template</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> validate-template template.synt         <span class="co"># confere o template enquanto você o escreve</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A conferência completa é sempre a do <code>synesis compile</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
