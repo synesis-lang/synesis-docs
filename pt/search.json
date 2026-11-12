@@ -1173,7 +1173,7 @@
     "href": "explanation/curso_synesis_101.html#sec-m2-e01",
     "title": "Curso Synesis 101",
     "section": "E01 · O ecossistema",
-    "text": "E01 · O ecossistema\nO mapa das ferramentas em volta da linguagem, antes de abrir cada uma. No centro está o compilador, que confere e exporta o projeto. Em volta dele: os gerenciadores de referências (Zotero, JabRef), o editor (VS Code), a codificação assistida por IA (synesis-coder) e o grafo de conhecimento (synesis-graph), que agentes de IA podem consultar.\n\nDuração: 3 min 51 s\n\n\n\n\n\n\nPróximos episódios\n\n\n\nOs demais episódios do Módulo 2 estão em produção e serão adicionados a esta página."
+    "text": "E01 · O ecossistema\nO mapa das ferramentas em volta da linguagem, antes de abrir cada uma. No centro está o compilador, que confere e exporta o projeto. Em volta dele: os gerenciadores de referências (Zotero, JabRef), o editor (VS Code), a codificação assistida por IA (synesis-coder) e o grafo de conhecimento (synesis-graph), que agentes de IA podem consultar.\n\nDuração: 3 min 51 s"
   },
   {
     "objectID": "explanation/codificacao_assistida_IA_metricas.html",
@@ -3463,5 +3463,12 @@
     "title": "1 Guia rapido: Synesis Explorer (VS Code)",
     "section": "",
     "text": "Com isso, voce ja consegue navegar, filtrar e visualizar seus dados Synesis diretamente no VS Code.\n\n\n\nFluxo completo (arquivo aberto + explorer + viewer)."
+  },
+  {
+    "objectID": "explanation/curso_synesis_101.html#sec-m2-e02",
+    "href": "explanation/curso_synesis_101.html#sec-m2-e02",
+    "title": "Curso Synesis 101",
+    "section": "E02 · Instalação",
+    "text": "E02 · Instalação\nO ecossistema básico em poucos minutos: o compilador, o servidor de linguagem (que liga o compilador ao editor), o synesis-coder e a extensão do VS Code. O episódio cria um projeto de teste, compila esse projeto e o abre no editor com os painéis do Synesis. Também mostra o que fazer se os painéis ficarem vazios.\n\nDuração: 1 min 40 s\nOs comandos do vídeo, para copiar. É preciso ter o Python 3.10 ou mais recente.\npip install synesis synesis-lsp synesis-coder   # se pip não for encontrado: python -m pip install ...\nsynesis init                                    # numa pasta vazia: cria um projeto de teste\nsynesis compile project.synp --stats            # sem erros = instalação funcionando\nNo VS Code, instale a extensão Synesis, do publicador synesis-lang, pelo painel Extensões. Se os painéis ficarem vazios, procure por Synesis nas configurações e informe o caminho do synesis-lsp.\n\n\n\n\n\n\nPróximos episódios\n\n\n\nOs demais episódios do Módulo 2 estão em produção e serão adicionados a esta página."
   }
 ]
