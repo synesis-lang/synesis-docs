@@ -307,12 +307,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>counts per subtree, navigation from general to specific</td>
 </tr>
 <tr class="even">
-<td><strong>Lightweight ontology</strong></td>
+<td><strong>Multi-relation taxonomy</strong></td>
 <td>hierarchy with more than one species (kind, part, instance) and associative relations</td>
 <td>SKOS publication, integration with other vocabularies</td>
 </tr>
 </tbody>
 </table>
+<p>No degree is called “ontology”: SKOS is a <strong>knowledge organization system</strong> (KOS) — vocabulary, thesaurus, taxonomy —, not a formal OWL ontology. The term is reserved for an OWL export.</p>
 <p>None of this needs special syntax in the <code>.syno</code>: these are ordinary template fields (<code>SCOPE ONTOLOGY</code>) given a <strong>function</strong> with a <code>ROLE</code> line.</p>
 <section id="the-profile-the-compiler-reports" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="the-profile-the-compiler-reports"><span class="header-section-number">1.1</span> The profile the compiler reports</h2>
@@ -324,8 +325,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   With KIND parent:      7
   With PART parent:      2
   Cycles:                none ✓
-  Organizing model:      Terminological: With synonyms (1 code without concept)  |  Conceptual: Lightweight ontology
-  EXPORT SKOS:           Terminological: Thesaurus  |  Conceptual: Lightweight ontology</code></pre>
+  Organizing model:      Terminological: With synonyms (1 code without concept)  |  Conceptual: Multi-relation taxonomy
+  EXPORT SKOS:           Terminological: Thesaurus  |  Conceptual: Multi-relation taxonomy</code></pre>
 <p>The <code>Organizing model</code> line profiles the <code>.syno</code>; each <code>EXPORT SKOS</code> block gets its own line, because an artifact may add relations (see <a href="#skos-export">MAP RELATIONS</a>). All ecosystem CLIs write their output in English.</p>
 </section>
 <section id="field-roles-role" class="level2" data-number="1.2">
@@ -483,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="skos-export" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="skos-export"><span class="header-section-number">1.5</span> SKOS export</h2>
-<p>A project’s artifacts are declared in <code>EXPORT</code> blocks of the <code>.synp</code> and run with <code>synesis export project.synp</code>. The <code>SKOS</code> format publishes the organizing model as a lightweight ontology in Turtle:</p>
+<p>A project’s artifacts are declared in <code>EXPORT</code> blocks of the <code>.synp</code> and run with <code>synesis export project.synp</code>. The <code>SKOS</code> format publishes the organizing model as a SKOS vocabulary (a KOS) in Turtle:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPORT</span> SKOS corroborated</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    OUTPUT <span class="st">"out/fraud.ttl"</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    NAMESPACE <span class="st">"https://example.org/id/fraud/"</span></span>
@@ -501,6 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="iri-policy" class="level3" data-number="1.5.1">
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="iri-policy"><span class="header-section-number">1.5.1</span> IRI policy</h3>
 <p>Each concept gets the IRI <code>NAMESPACE</code> + <code>concept/</code> + block name. The <code>NAMESPACE</code> belongs to the <strong>project</strong>: a domain the team controls and keeps, ending in <code>/</code> or <code>#</code>. <code>example.org</code> is for testing, never for publication. Because the IRI derives from the name, renaming a concept changes its IRI: after publishing, use <code>USE</code> with <code>REGISTRY</code> so the old IRI keeps resolving to the new one.</p>
+<p>The <code>NAMESPACE</code> is the researcher’s decision: changing it blocks neither the export nor the publication. If the <code>REGISTRY</code> holds IRIs from another namespace, <code>synesis export</code> warns how many were left out of the check (<code>SYNESIS_E156</code>) — links to them break unless the old address redirects. With <code>--publish</code>, an unreadable <code>REGISTRY</code> is an error (nothing is written), and <code>OUTPUT</code> and <code>REGISTRY</code> on the same file are always refused (<code>SYNESIS_E157</code>).</p>
 </section>
 <section id="the-syn-vocabulary" class="level3" data-number="1.5.2">
 <h3 data-number="1.5.2" class="anchored" data-anchor-id="the-syn-vocabulary"><span class="header-section-number">1.5.2</span> The <code>syn:</code> vocabulary</h3>
