@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Synesis in Claude Desktop – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
+ <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.qmd">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/organizing_model.html">
+ <span class="dropdown-text">The Organizing Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explanation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
+        <li>
+    <a class="dropdown-item" href="../explanation/guia_sincero.html">
+ <span class="dropdown-text">Why not Excel?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/knowledge_graphs.qmd">
+ <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../explanation/ideas.html">
+ <span class="dropdown-text">Roadmap &amp; Ideas</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link active" data-scroll-target="#what-you-need"><span class="header-section-number">1</span> What you need</a></li>
+  <li><a href="#install-the-skill-once" id="toc-install-the-skill-once" class="nav-link" data-scroll-target="#install-the-skill-once"><span class="header-section-number">2</span> 1. Install the Skill (once)</a></li>
+  <li><a href="#open-the-first-session" id="toc-open-the-first-session" class="nav-link" data-scroll-target="#open-the-first-session"><span class="header-section-number">3</span> 2. Open the first session</a></li>
+  <li><a href="#what-claude-does" id="toc-what-claude-does" class="nav-link" data-scroll-target="#what-claude-does"><span class="header-section-number">4</span> 3. What Claude does</a></li>
+  <li><a href="#audit-the-result" id="toc-audit-the-result" class="nav-link" data-scroll-target="#audit-the-result"><span class="header-section-number">5</span> 4. Audit the result</a></li>
+  <li><a href="#costs" id="toc-costs" class="nav-link" data-scroll-target="#costs"><span class="header-section-number">6</span> Costs</a></li>
+  <li><a href="#data-confidentiality" id="toc-data-confidentiality" class="nav-link" data-scroll-target="#data-confidentiality"><span class="header-section-number">7</span> Data confidentiality</a></li>
+  <li><a href="#what-stays-in-the-project-folder" id="toc-what-stays-in-the-project-folder" class="nav-link" data-scroll-target="#what-stays-in-the-project-folder"><span class="header-section-number">8</span> What stays in the project folder</a></li>
+  <li><a href="#if-something-goes-wrong" id="toc-if-something-goes-wrong" class="nav-link" data-scroll-target="#if-something-goes-wrong"><span class="header-section-number">9</span> If something goes wrong</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10</span> Next steps</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Synesis in Claude Desktop</h1>
+<p class="subtitle lead">The Skill for first steps: install it and code your sources with Claude’s help</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This Skill teaches Claude to run a Synesis project with you. It installs the tools, talks through your study, writes the template, runs the coding, checks every quotation against your sources and builds an audit dashboard that opens on your own computer.</p>
+<p>The division of roles is the same as everywhere in Synesis: <strong>the AI proposes, the compiler checks, the researcher decides</strong>. Claude leads the conversation and prepares the files. Your research questions, your categories and the approval of the template stay yours.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Status
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Skill was tested end to end on a proof project and is <strong>in testing with researchers</strong>. Your feedback helps improve it (see <a href="#if-something-goes-wrong">If something goes wrong</a>).</p>
+</div>
+</div>
+<section id="what-you-need" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="what-you-need"><span class="header-section-number">1</span> What you need</h2>
+<ul>
+<li><strong>Claude Desktop</strong> (Windows or macOS), on an account with access to the <strong>Code</strong> tab.</li>
+<li><strong>A folder</strong> on your computer for the project, holding your sources:
+<ul>
+<li>interviews and documents as <code>.txt</code> or <code>.md</code>;</li>
+<li>articles in a <code>.bib</code> bibliography with abstracts.</li>
+</ul></li>
+<li><strong>An internet connection</strong> the first time, to install the tools.</li>
+<li><strong>About an hour</strong> for the first session.</li>
+</ul>
+<p>You do <strong>not</strong> need to install Python or know how to program. VS Code is optional.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Code tab only
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Skill needs a terminal and your disk. It works in the <strong>Code</strong> tab of Claude Desktop (a local session), and <strong>not</strong> in claude.ai chat or Cowork.</p>
+</div>
+</div>
+</section>
+<section id="install-the-skill-once" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="install-the-skill-once"><span class="header-section-number">2</span> 1. Install the Skill (once)</h2>
+<ol type="1">
+<li>Download the Skill file: <a href="../../downloads/synesis-skill.zip">synesis-skill.zip</a>.</li>
+<li>In Claude Desktop, open <strong>Customize → Plugins</strong> and use <strong>Add</strong> to upload the file.</li>
+<li>Desktop warns you to install only plugins you trust. This is the Synesis project’s plugin.</li>
+</ol>
+<p>If your organization does not allow uploading plugins, ask your administrator.</p>
+</section>
+<section id="open-the-first-session" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="open-the-first-session"><span class="header-section-number">3</span> 2. Open the first session</h2>
+<ol type="1">
+<li><p>Open the <strong>Code</strong> tab and choose the <strong>project folder</strong>.</p></li>
+<li><p>Choose the <strong>Manual</strong> permission mode. Claude then asks for your approval before every command, so you see what will be installed.</p></li>
+<li><p>Type <code>/synesis</code> and say what you want to do. For example:</p>
+<blockquote class="blockquote">
+<p><code>/synesis</code> I want to code my three interviews about telemedicine with Synesis. The transcripts are in the <code>fontes</code> folder.</p>
+</blockquote></li>
+</ol>
+<p>If you just want to try it, the Skill ships with an example project with fictitious sources, in <code>skills/synesis/examples/prova</code>.</p>
+</section>
+<section id="what-claude-does" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="what-claude-does"><span class="header-section-number">4</span> 3. What Claude does</h2>
+<p>In order:</p>
+<ol type="1">
+<li><strong>Asks about confidentiality</strong> before opening any file (see <a href="#data-confidentiality">Data confidentiality</a>).</li>
+<li><strong>Installs the Synesis tools</strong> and shows a report. This happens once per computer.</li>
+<li><strong>Talks through the study:</strong> your research questions, what to extract from the sources, whether you want free or closed categories, causal relations or scales.</li>
+<li><strong>Writes the template</strong> (the description of what will be coded) and shows an example. <strong>You approve the template.</strong></li>
+<li><strong>Codes each source</strong>, one at a time, and builds the ontology of concepts.</li>
+<li><strong>Validates, checks each quotation against the original text</strong> and builds the dashboard.</li>
+</ol>
+<p>At the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of <strong>points worth checking in your audit</strong>.</p>
+</section>
+<section id="audit-the-result" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="audit-the-result"><span class="header-section-number">5</span> 4. Audit the result</h2>
+<p>The dashboard is in <code>dashboard/dashboard.html</code>. It opens with a double click, with no internet and no server.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tab</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fontes</strong> (Sources)</td>
+<td>each coded excerpt, with its quotation, note and codes. The quotation appears as <em>found</em>, <em>not found</em> or <em>unverifiable</em> in the original text</td>
+</tr>
+<tr class="even">
+<td><strong>Códigos</strong> (Codes)</td>
+<td>each code, with its definition and all its evidence</td>
+</tr>
+<tr class="odd">
+<td><strong>Relações</strong> and <strong>Questões</strong> (Relations, Questions)</td>
+<td>the relations between concepts and where the evidence for each research question is</td>
+</tr>
+<tr class="even">
+<td><strong>Qualidade</strong> (Quality)</td>
+<td>what still needs attention</td>
+</tr>
+<tr class="odd">
+<td><strong>Método</strong> (Method)</td>
+<td>the full template and how the result was produced</td>
+</tr>
+</tbody>
+</table>
+<p>To record your audit:</p>
+<ol type="1">
+<li>Mark excerpts and codes as <em>correct</em>, <em>incorrect</em> or <em>doubt</em>, with a note.</li>
+<li>Use <strong>Exportar marcações</strong> (export marks) and hand the file to Claude in the conversation, so it records it in the project. Marks you do not export stay only in the browser and can be lost.</li>
+</ol>
+<p>When something is wrong, Claude does not fix the excerpt by hand. It classifies the problem with you first: an ambiguous instruction in the template, a one-off failure, a badly converted source text, or a legitimate difference of interpretation.</p>
+</section>
+<section id="costs" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="costs"><span class="header-section-number">6</span> Costs</h2>
+<p>There are two coding modes, and Claude explains both before starting:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Who codes</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Claude session</strong></td>
+<td>the Claude of your own subscription</td>
+<td>within the limits of your plan</td>
+</tr>
+<tr class="even">
+<td><strong>API</strong></td>
+<td>a model through an API key (Anthropic, OpenRouter)</td>
+<td>billed by the provider; Claude runs a pilot with 2 or 3 sources and shows the cost before coding everything</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+API keys
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Never type an API key into the chat. Claude creates a <code>.env</code> file in the project folder with the field empty, and you paste the key directly into it.</p>
+</div>
+</div>
+</section>
+<section id="data-confidentiality" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="data-confidentiality"><span class="header-section-number">7</span> Data confidentiality</h2>
+<p>Everything Claude reads leaves your computer and goes to Anthropic (and, in API mode, to the chosen provider). That is why Claude asks before opening your sources and proposes a modality:</p>
+<ul>
+<li><strong>A. Cloud:</strong> Claude reads the sources. Use it when there is no confidential data.</li>
+<li><strong>B. Reduced exposure:</strong> Claude works only with the method and invented examples; coding runs on a local model (Ollama). This is not fully local processing.</li>
+<li><strong>C. Local:</strong> Claude does not take part. For data under strict legal or ethical confidentiality, use Synesis in VS Code with a local model.</li>
+</ul>
+</section>
+<section id="what-stays-in-the-project-folder" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="what-stays-in-the-project-folder"><span class="header-section-number">8</span> What stays in the project folder</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File or folder</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*.synp</code></td>
+<td>the project</td>
+</tr>
+<tr class="even">
+<td><code>template.synt</code></td>
+<td>the method</td>
+</tr>
+<tr class="odd">
+<td><code>*.bib</code></td>
+<td>the bibliographic sources</td>
+</tr>
+<tr class="even">
+<td><code>fontes/</code></td>
+<td>the texts</td>
+</tr>
+<tr class="odd">
+<td><code>anotacoes/</code>, <code>ontologia/</code></td>
+<td>the result of the coding</td>
+</tr>
+<tr class="even">
+<td><code>runs/</code></td>
+<td>the record of every run: what was asked of the model, what it answered and the decisions you made</td>
+</tr>
+<tr class="odd">
+<td><code>dashboard/</code>, <code>saida/</code></td>
+<td>generated files, which can be rebuilt at any time</td>
+</tr>
+</tbody>
+</table>
+<p>Keep the whole folder, except the <code>.env</code>. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> whenever you like.</p>
+</section>
+<section id="if-something-goes-wrong" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="if-something-goes-wrong"><span class="header-section-number">9</span> If something goes wrong</h2>
+<ul>
+<li><strong>“command not found”</strong> right after installation: open a new session in the Code tab. In the same session, Claude uses the full path to the tools.</li>
+<li><strong>Windows blocked the installer:</strong> Claude tries another route. On an institutional machine you may need to talk to IT support.</li>
+<li><strong>Questions about the language:</strong> ask Claude, which consults the installed reference guide.</li>
+<li><strong>Synesis errors and suggestions:</strong> open an <em>issue</em> at <a href="https://github.com/synesis-lang/synesis/issues" class="uri">https://github.com/synesis-lang/synesis/issues</a>.</li>
+</ul>
+</section>
+<section id="next-steps" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10</span> Next steps</h2>
+<ul>
+<li><a href="../tutorials/guia_pesquisadores.html">Guide for Researchers</a>: a hands-on project, without the Skill.</li>
+<li><a href="../reference/guia_referencia.html">Language Reference</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
