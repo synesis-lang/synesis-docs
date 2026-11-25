@@ -390,14 +390,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="consistência-garantida"><span class="header-section-number">1.2.2</span> Consistência Garantida</h3>
 <p>O compilador Synesis valida que:</p>
 <ul>
-<li>Se você usa o código “Custo de Aquisição”, ele deve estar definido na ontologia</li>
+<li>Se você usa o código <code>Custo_de_Aquisição</code>, ele deve estar definido na ontologia (caso contrário, o compilador avisa; com <code>--strict</code>, recusa)</li>
 <li>Se você muda o nome de um código, você precisa atualizar a definição ou usar um alias</li>
 <li>Se você cita uma fonte bibliográfica, ela deve existir no arquivo <code>.bib</code></li>
 </ul>
 <p><strong>Isso não é burocracia, é auditoria automática.</strong> É a diferença entre:</p>
 <ul>
 <li><strong>Sistema frágil</strong>: Você esquece que renomeou “Custo” para “Custo de Aquisição” em algumas anotações e esquece outras. Sua análise final está inconsistente e você nem percebe.</li>
-<li><strong>Sistema robusto</strong>: O compilador rejeita a compilação e te diz exatamente onde está o problema. Você corrige uma vez e segue confiante.</li>
+<li><strong>Sistema robusto</strong>: O compilador aponta exatamente onde está o problema. Você corrige uma vez e segue em frente.</li>
 </ul>
 </section>
 <section id="rastreabilidade-bidirecional" class="level3" data-number="1.2.3">
@@ -432,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Começar com ontologia vazia</li>
 <li>Anotar livremente criando códigos conforme emergem</li>
-<li>Periódicamente consolidar: “Esses três códigos são na verdade o mesmo conceito”</li>
+<li>Periodicamente consolidar: “Esses três códigos são na verdade o mesmo conceito”</li>
 <li>Atualizar a ontologia</li>
 <li>Recompilar para validar consistência</li>
 </ol>
@@ -442,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="liberdade-real-vs-pseudoliberdade"><span class="header-section-number">1.3.2</span> Liberdade Real vs Pseudoliberdade</h3>
 <ul>
 <li><p><strong>Pseudoliberdade</strong>: Não ter regras sobre terminologia. Resultado: você fica preso tentando lembrar o que cada termo significa três meses depois.</p></li>
-<li><p><strong>Liberdade real</strong>: Ter um sistema que valida sua consistência automaticamente. Resultado: sua mente fica livre para o trabalho interpretativo, confiando que o sistema cuida da integridade estrutural.</p></li>
+<li><p><strong>Liberdade real</strong>: Ter um sistema que confere sua consistência automaticamente. Resultado: sua mente fica livre para o trabalho interpretativo, confiando que o sistema cuida da integridade estrutural.</p></li>
 </ul>
 <p>Analogia: músicos de jazz improvisam livremente — mas sobre estruturas harmônicas bem definidas (II-V-I, blues de 12 compassos). <strong>A estrutura não limita a criatividade, ela a canaliza.</strong></p>
 <hr>

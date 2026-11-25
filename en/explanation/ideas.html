@@ -131,6 +131,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
  <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
   </li>  
@@ -141,6 +145,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
  <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
   </li>  
     </ul>
   </li>
@@ -154,7 +162,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Guide for Professionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../howto/exportar_neo4j.qmd">
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
  <span class="dropdown-text">Export to Neo4j</span></a>
   </li>  
     </ul>
@@ -173,30 +197,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">The Organizing Model</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../reference/synesis_load.html">
  <span class="dropdown-text">Synesis API</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Explanation</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
         <li>
-    <a class="dropdown-item" href="../explanation/guia_sincero.html">
- <span class="dropdown-text">Why not Excel?</span></a>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../explanation/knowledge_graphs.qmd">
- <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../explanation/ideas.html">
- <span class="dropdown-text">Roadmap &amp; Ideas</span></a>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
@@ -236,44 +261,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#synesis-ideas" id="toc-synesis-ideas" class="nav-link active" data-scroll-target="#synesis-ideas"><span class="header-section-number">1</span> Synesis: Ideas</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-extensions" id="toc-introduction-to-extensions" class="nav-link" data-scroll-target="#introduction-to-extensions"><span class="header-section-number">1.1</span> Introduction to Extensions</a></li>
-  <li><a href="#output-artifact-configuration-render" id="toc-output-artifact-configuration-render" class="nav-link" data-scroll-target="#output-artifact-configuration-render"><span class="header-section-number">1.2</span> Output Artifact Configuration (RENDER)</a>
+  <li><a href="#introduction-to-the-extensions" id="toc-introduction-to-the-extensions" class="nav-link" data-scroll-target="#introduction-to-the-extensions"><span class="header-section-number">1.1</span> Introduction to the Extensions</a></li>
+  <li><a href="#canonical-biblicalexegetical-annotation" id="toc-canonical-biblicalexegetical-annotation" class="nav-link" data-scroll-target="#canonical-biblicalexegetical-annotation"><span class="header-section-number">1.2</span> Canonical (Biblical/Exegetical) Annotation</a>
   <ul class="collapse">
-  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">1.2.1</span> Syntax</a></li>
+  <li><a href="#the-pericope-field-type" id="toc-the-pericope-field-type" class="nav-link" data-scroll-target="#the-pericope-field-type"><span class="header-section-number">1.2.1</span> The PERICOPE Field Type</a></li>
+  <li><a href="#addressing-rules-parsing" id="toc-addressing-rules-parsing" class="nav-link" data-scroll-target="#addressing-rules-parsing"><span class="header-section-number">1.2.2</span> Addressing Rules (Parsing)</a></li>
+  <li><a href="#example-template-for-exegesis" id="toc-example-template-for-exegesis" class="nav-link" data-scroll-target="#example-template-for-exegesis"><span class="header-section-number">1.2.3</span> Example Template for Exegesis</a></li>
+  <li><a href="#implementation-notes-lark-grammar" id="toc-implementation-notes-lark-grammar" class="nav-link" data-scroll-target="#implementation-notes-lark-grammar"><span class="header-section-number">1.2.4</span> Implementation Notes (Lark Grammar)</a></li>
+  <li><a href="#estimated-impact-of-the-change" id="toc-estimated-impact-of-the-change" class="nav-link" data-scroll-target="#estimated-impact-of-the-change"><span class="header-section-number">1.2.5</span> Estimated Impact of the Change</a></li>
   </ul></li>
-  <li><a href="#advanced-semantic-analysis" id="toc-advanced-semantic-analysis" class="nav-link" data-scroll-target="#advanced-semantic-analysis"><span class="header-section-number">1.3</span> Advanced Semantic Analysis</a>
+  <li><a href="#converting-logos-bible-software-notes-to-synesis" id="toc-converting-logos-bible-software-notes-to-synesis" class="nav-link" data-scroll-target="#converting-logos-bible-software-notes-to-synesis"><span class="header-section-number">1.3</span> Converting Logos Bible Software Notes to Synesis</a></li>
+  <li><a href="#strategies-for-comparative-exegesis" id="toc-strategies-for-comparative-exegesis" class="nav-link" data-scroll-target="#strategies-for-comparative-exegesis"><span class="header-section-number">1.4</span> Strategies for Comparative Exegesis</a>
   <ul class="collapse">
-  <li><a href="#ontological-redundancy-detection-fuzzy-matching" id="toc-ontological-redundancy-detection-fuzzy-matching" class="nav-link" data-scroll-target="#ontological-redundancy-detection-fuzzy-matching"><span class="header-section-number">1.3.1</span> Ontological Redundancy Detection (Fuzzy Matching)</a></li>
-  <li><a href="#hierarchical-cycle-validation" id="toc-hierarchical-cycle-validation" class="nav-link" data-scroll-target="#hierarchical-cycle-validation"><span class="header-section-number">1.3.2</span> Hierarchical Cycle Validation</a></li>
-  <li><a href="#dead-code-elimination-ghost-concepts" id="toc-dead-code-elimination-ghost-concepts" class="nav-link" data-scroll-target="#dead-code-elimination-ghost-concepts"><span class="header-section-number">1.3.3</span> Dead Code Elimination (Ghost Concepts)</a></li>
+  <li><a href="#approach-1-the-relational-join-multiple-items" id="toc-approach-1-the-relational-join-multiple-items" class="nav-link" data-scroll-target="#approach-1-the-relational-join-multiple-items"><span class="header-section-number">1.4.1</span> Approach 1: the Relational “Join” (multiple ITEMs)</a></li>
+  <li><a href="#approach-2-direct-comparison-with-bundle-single-item" id="toc-approach-2-direct-comparison-with-bundle-single-item" class="nav-link" data-scroll-target="#approach-2-direct-comparison-with-bundle-single-item"><span class="header-section-number">1.4.2</span> Approach 2: Direct Comparison with BUNDLE (single item)</a></li>
   </ul></li>
-  <li><a href="#new-structural-commands" id="toc-new-structural-commands" class="nav-link" data-scroll-target="#new-structural-commands"><span class="header-section-number">1.4</span> New Structural Commands</a>
+  <li><a href="#legal-and-normative-annotation-domain-extension" id="toc-legal-and-normative-annotation-domain-extension" class="nav-link" data-scroll-target="#legal-and-normative-annotation-domain-extension"><span class="header-section-number">1.5</span> Legal and Normative Annotation (Domain Extension)</a>
   <ul class="collapse">
-  <li><a href="#taxonomy-rigid-hierarchy" id="toc-taxonomy-rigid-hierarchy" class="nav-link" data-scroll-target="#taxonomy-rigid-hierarchy"><span class="header-section-number">1.4.1</span> TAXONOMY (Rigid Hierarchy)</a></li>
-  <li><a href="#constraint-business-rules" id="toc-constraint-business-rules" class="nav-link" data-scroll-target="#constraint-business-rules"><span class="header-section-number">1.4.2</span> CONSTRAINT (Business Rules)</a></li>
-  <li><a href="#crossref-citation-network" id="toc-crossref-citation-network" class="nav-link" data-scroll-target="#crossref-citation-network"><span class="header-section-number">1.4.3</span> CROSSREF (Citation Network)</a></li>
+  <li><a href="#topographic-addressing-legislation" id="toc-topographic-addressing-legislation" class="nav-link" data-scroll-target="#topographic-addressing-legislation"><span class="header-section-number">1.5.1</span> 1. Topographic Addressing (legislation)</a></li>
+  <li><a href="#case-law-ontology" id="toc-case-law-ontology" class="nav-link" data-scroll-target="#case-law-ontology"><span class="header-section-number">1.5.2</span> 2. Case Law Ontology</a></li>
+  <li><a href="#precedent-networks-chain" id="toc-precedent-networks-chain" class="nav-link" data-scroll-target="#precedent-networks-chain"><span class="header-section-number">1.5.3</span> 3. Precedent Networks (CHAIN)</a></li>
+  <li><a href="#proposed-example-template-and-annotation" id="toc-proposed-example-template-and-annotation" class="nav-link" data-scroll-target="#proposed-example-template-and-annotation"><span class="header-section-number">1.5.4</span> Proposed Example (template and annotation)</a></li>
   </ul></li>
-  <li><a href="#knowledge-management-zettelkasten" id="toc-knowledge-management-zettelkasten" class="nav-link" data-scroll-target="#knowledge-management-zettelkasten"><span class="header-section-number">1.5</span> Knowledge Management (Zettelkasten)</a>
+  <li><a href="#knowledge-management-zettelkasten" id="toc-knowledge-management-zettelkasten" class="nav-link" data-scroll-target="#knowledge-management-zettelkasten"><span class="header-section-number">1.6</span> Knowledge Management (Zettelkasten)</a>
   <ul class="collapse">
-  <li><a href="#zettel-block" id="toc-zettel-block" class="nav-link" data-scroll-target="#zettel-block"><span class="header-section-number">1.5.1</span> 4.1 ZETTEL Block</a></li>
-  <li><a href="#exclusive-fields-zettel-fields" id="toc-exclusive-fields-zettel-fields" class="nav-link" data-scroll-target="#exclusive-fields-zettel-fields"><span class="header-section-number">1.5.2</span> Exclusive Fields (ZETTEL FIELDS)</a></li>
+  <li><a href="#the-zettelkasten-as-a-source" id="toc-the-zettelkasten-as-a-source" class="nav-link" data-scroll-target="#the-zettelkasten-as-a-source"><span class="header-section-number">1.6.1</span> The Zettelkasten as a SOURCE</a></li>
+  <li><a href="#proposed-field-types" id="toc-proposed-field-types" class="nav-link" data-scroll-target="#proposed-field-types"><span class="header-section-number">1.6.2</span> Proposed Field Types</a></li>
+  <li><a href="#implementation-notes-lark-grammar-1" id="toc-implementation-notes-lark-grammar-1" class="nav-link" data-scroll-target="#implementation-notes-lark-grammar-1"><span class="header-section-number">1.6.3</span> Implementation Notes (Lark Grammar)</a></li>
+  <li><a href="#impact-on-export" id="toc-impact-on-export" class="nav-link" data-scroll-target="#impact-on-export"><span class="header-section-number">1.6.4</span> Impact on Export</a></li>
   </ul></li>
-  <li><a href="#canonical-annotation-biblicalexegetical" id="toc-canonical-annotation-biblicalexegetical" class="nav-link" data-scroll-target="#canonical-annotation-biblicalexegetical"><span class="header-section-number">1.6</span> Canonical Annotation (Biblical/Exegetical)</a>
+  <li><a href="#detecting-ontological-redundancy" id="toc-detecting-ontological-redundancy" class="nav-link" data-scroll-target="#detecting-ontological-redundancy"><span class="header-section-number">1.7</span> Detecting Ontological Redundancy</a></li>
+  <li><a href="#new-structural-commands" id="toc-new-structural-commands" class="nav-link" data-scroll-target="#new-structural-commands"><span class="header-section-number">1.8</span> New Structural Commands</a>
   <ul class="collapse">
-  <li><a href="#bible-block" id="toc-bible-block" class="nav-link" data-scroll-target="#bible-block"><span class="header-section-number">1.6.1</span> BIBLE Block</a></li>
-  <li><a href="#addressing-rules-parsing" id="toc-addressing-rules-parsing" class="nav-link" data-scroll-target="#addressing-rules-parsing"><span class="header-section-number">1.6.2</span> Addressing Rules (Parsing)</a></li>
-  <li><a href="#canon-template-example" id="toc-canon-template-example" class="nav-link" data-scroll-target="#canon-template-example"><span class="header-section-number">1.6.3</span> Canon Template Example</a></li>
-  </ul></li>
-  <li><a href="#immediate-visualization" id="toc-immediate-visualization" class="nav-link" data-scroll-target="#immediate-visualization"><span class="header-section-number">1.7</span> Immediate Visualization</a></li>
-  <li><a href="#data-science-integration" id="toc-data-science-integration" class="nav-link" data-scroll-target="#data-science-integration"><span class="header-section-number">1.8</span> Data Science Integration</a></li>
-  <li><a href="#possible-workflow" id="toc-possible-workflow" class="nav-link" data-scroll-target="#possible-workflow"><span class="header-section-number">1.9</span> Possible Workflow</a>
-  <ul class="collapse">
-  <li><a href="#step-1-io-decoupling-inputoutput" id="toc-step-1-io-decoupling-inputoutput" class="nav-link" data-scroll-target="#step-1-io-decoupling-inputoutput"><span class="header-section-number">1.9.1</span> Step 1: I/O Decoupling (Input/Output)</a></li>
-  <li><a href="#step-2-public-core-api-exposure" id="toc-step-2-public-core-api-exposure" class="nav-link" data-scroll-target="#step-2-public-core-api-exposure"><span class="header-section-number">1.9.2</span> Step 2: Public Core API Exposure</a></li>
-  <li><a href="#step-3-python-adapter-creation-data-science" id="toc-step-3-python-adapter-creation-data-science" class="nav-link" data-scroll-target="#step-3-python-adapter-creation-data-science"><span class="header-section-number">1.9.3</span> Step 3: Python Adapter Creation (Data Science)</a></li>
-  <li><a href="#step-4-lsp-adaptation-editor-intelligence" id="toc-step-4-lsp-adaptation-editor-intelligence" class="nav-link" data-scroll-target="#step-4-lsp-adaptation-editor-intelligence"><span class="header-section-number">1.9.4</span> Step 4: LSP Adaptation (Editor Intelligence)</a></li>
-  <li><a href="#step-5-cli-as-thin-client" id="toc-step-5-cli-as-thin-client" class="nav-link" data-scroll-target="#step-5-cli-as-thin-client"><span class="header-section-number">1.9.5</span> Step 5: CLI as “Thin Client”</a></li>
-  <li><a href="#data-flow-summary" id="toc-data-flow-summary" class="nav-link" data-scroll-target="#data-flow-summary"><span class="header-section-number">1.9.6</span> Data Flow Summary</a></li>
+  <li><a href="#constraint-business-rules" id="toc-constraint-business-rules" class="nav-link" data-scroll-target="#constraint-business-rules"><span class="header-section-number">1.8.1</span> CONSTRAINT (business rules)</a></li>
+  <li><a href="#crossref-citation-network" id="toc-crossref-citation-network" class="nav-link" data-scroll-target="#crossref-citation-network"><span class="header-section-number">1.8.2</span> CROSSREF (citation network)</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -288,298 +309,428 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="synesis-ideas" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Synesis: Ideas</h1>
 <p><strong>Ideas:</strong> Language Extension Specification Proposals</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What this document contains
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a document of <strong>proposals</strong> — specifications that have been designed but are <strong>not yet implemented</strong>. The syntax shown in the proposals <strong>does not compile</strong> with the current compiler.</p>
+<p>For what already works, see the <a href="../reference/guia_referencia.html">Language Reference</a> and the <a href="../reference/gramatica.html">Grammar</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proposals that became real
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Several needs treated here as “ideas” have already been <strong>met</strong>, sometimes by a design different from the one proposed:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Original idea</th>
+<th>What exists today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Aggregating parallel projects (<code>STUDY</code> block / <em>master project</em>)</td>
+<td>Proposal <strong>discarded</strong> for overloading the editor. Independent projects linked by <code>IDENTIFIES</code> / <code>REFERS TO</code>: <a href="../howto/ligar_projetos.html">How to Link Independent Projects</a></td>
+</tr>
+<tr class="even">
+<td>Vocabulary shared between projects</td>
+<td><code>INCLUDE SHARED ONTOLOGY</code></td>
+</tr>
+<tr class="odd">
+<td>Output artifacts declared in the project (<code>RENDER</code> command)</td>
+<td><code>EXPORT</code> blocks in the <code>.synp</code> (JSON, CSV, XLS, Alpaca, OKF, SKOS), run with <code>synesis export</code></td>
+</tr>
+<tr class="even">
+<td>Strict “is-a” taxonomy (<code>TAXONOMY</code> block)</td>
+<td>Fields with <code>ROLE HIERARCHY</code> in the ontology, without property inheritance</td>
+</tr>
+<tr class="odd">
+<td>Detecting hierarchy cycles</td>
+<td>Error <code>E118</code>, for hierarchies declared with <code>ROLE HIERARCHY</code></td>
+</tr>
+<tr class="even">
+<td>Concepts defined and never used</td>
+<td>Diagnostic <code>E120</code>, for hierarchies declared with <code>ROLE HIERARCHY</code></td>
+</tr>
+<tr class="odd">
+<td>Immediate graph visualization</td>
+<td><code>synesis-graph html</code></td>
+</tr>
+<tr class="even">
+<td>Data Science integration and compiler as a library</td>
+<td><a href="../reference/synesis_load.html"><code>synesis.load</code></a>, with DataFrame output</td>
+</tr>
+</tbody>
+</table>
+<p>The meaning of each code is in the <a href="../reference/guia_erros.html">Error Guide</a>.</p>
+</div>
+</div>
 <hr>
-<section id="introduction-to-extensions" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="introduction-to-extensions"><span class="header-section-number">1.1</span> Introduction to Extensions</h2>
-<p>This specification details the new features planned for version 1.2 of the Synesis language. The focus of this update is to evolve the language from a linear annotation system to a <strong>qualitative inference engine</strong> and knowledge management (Zettelkasten), as well as introduce native support for canonical loci (sacred texts).</p>
+<section id="introduction-to-the-extensions" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction-to-the-extensions"><span class="header-section-number">1.1</span> Introduction to the Extensions</h2>
+<p>This specification details features under consideration for a future version of the Synesis language. The focus is to evolve the language from a linear annotation system into a knowledge management system (Zettelkasten), and to introduce native support for canonical loci (sacred texts).</p>
 <hr>
 </section>
-<section id="output-artifact-configuration-render" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="output-artifact-configuration-render"><span class="header-section-number">1.2</span> Output Artifact Configuration (RENDER)</h2>
-<p>The <code>RENDER</code> command allows explicitly declaring, within the project file, which file formats should be generated and where they should be saved. This ensures compilation reproducibility without relying on command-line parameters.</p>
-<section id="syntax" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="syntax"><span class="header-section-number">1.2.1</span> Syntax</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RENDER AS <span class="bn">[JSON | CSV | EXCEL]</span> INTO <span class="st">"path/to/filename"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="semantics" class="level4" data-number="1.2.1.1">
-<h4 data-number="1.2.1.1" class="anchored" data-anchor-id="semantics"><span class="header-section-number">1.2.1.1</span> Semantics</h4>
+<section id="canonical-biblicalexegetical-annotation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="canonical-biblicalexegetical-annotation"><span class="header-section-number">1.2</span> Canonical (Biblical/Exegetical) Annotation</h2>
+<p>An addressing system specialized for sacred texts that use the Locus pattern (Book, Chapter, Verse). To keep the grammar intact, canonical addressing would be implemented through a specific field type (<code>TYPE PERICOPE</code>), leaving the standard block structure untouched.</p>
+<p>Today the same address can be recorded in a <code>TYPE TEXT</code> field, without format validation.</p>
+<section id="the-pericope-field-type" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="the-pericope-field-type"><span class="header-section-number">1.2.1</span> The PERICOPE Field Type</h3>
+<p>No block is replaced. The <code>SOURCE</code> block is still used to reference the bibliographic work (the specific translation or manuscript via BibTeX). The analytical unit (<code>ITEM</code>) receives a field typed as <code>PERICOPE</code> to identify the exact passage.</p>
+<p><strong>Syntax in the <code>.syn</code> file:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@niv2011</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">translation_type:</span> Dynamic equivalence</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The ITEM references the translation and gives the locus in a field</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@niv2011</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>28-30, 32a</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"And we know that in all things God works for the good..."</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Providence</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="addressing-rules-parsing" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="addressing-rules-parsing"><span class="header-section-number">1.2.2</span> Addressing Rules (Parsing)</h3>
+<p>The parser would apply strict rules to identify books, with ergonomic flexibility in verse punctuation:</p>
+<ol type="1">
+<li><strong>USX code (strict):</strong> exactly 3 capital letters for the book (e.g.&nbsp;<code>MAT</code>, <code>GEN</code>, <code>ROM</code>). Full names would not be accepted, to avoid ambiguity.</li>
+<li><strong>Chapter separator (flexible):</strong> both colon (<code>:</code>) and period (<code>.</code>) separate chapter and verse (e.g.&nbsp;<code>ROM 8:1</code> or <code>ROM 8.1</code>). The syntax tree (AST) normalizes the variation.</li>
+<li><strong>Verses and subdivisions:</strong> hyphen <code>-</code> for ranges and comma <code>,</code> for lists, with lowercase letters attached to numbers for exegetical subdivisions (e.g.&nbsp;<code>6a</code>, <code>6b</code>).</li>
+</ol>
+</section>
+<section id="example-template-for-exegesis" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="example-template-for-exegesis"><span class="header-section-number">1.2.3</span> Example Template for Exegesis</h3>
+<p>In the <code>.synt</code> file the field would be declared with type <code>PERICOPE</code> and scope <code>ITEM</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> biblical_exegesis</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> passage, <span class="at">quote</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> code</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> passage <span class="kw">TYPE</span> <span class="dt">PERICOPE</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Canonical locus address (Book <span class="fu">Chap:</span>Verses)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Textual excerpt from the bibliographic source</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="implementation-notes-lark-grammar" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="implementation-notes-lark-grammar"><span class="header-section-number">1.2.4</span> Implementation Notes (Lark Grammar)</h3>
+<p>Sketch of how the value of a <code>PERICOPE</code> field would be processed by the language rules:</p>
+<pre class="lark"><code>// The strict rule that processes the Locus field value
+pericope_value: usx_code WS INT separator verse_list
+
+// USX codes (strictly 3 capital letters)
+usx_code: UCASE_LETTER~3
+
+// The separator (accepts both common academic formats)
+separator: ":" | "."
+
+// Verse list with commas and optional spaces
+verse_list: verse_node ("," WS? verse_node)*
+
+// A node may be a single verse or a range
+verse_node: verse_single | verse_single "-" verse_single
+
+// The verse: a number followed by an optional lowercase letter (e.g. 6a)
+verse_single: INT /[a-z]?/</code></pre>
+</section>
+<section id="estimated-impact-of-the-change" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="estimated-impact-of-the-change"><span class="header-section-number">1.2.5</span> Estimated Impact of the Change</h3>
+<p><strong>In the compiler:</strong></p>
 <ul>
-<li><p><strong>RENDER</strong>: Command verb that initiates compilation target definition. Indicates creation of a structured representation (artifact) from interpreted data.</p></li>
-<li><p><strong>AS</strong>: Clause that specifies serialization format.</p></li>
-<li><p><code>JSON</code>: Generates complete abstract syntax tree with traceability metadata.</p></li>
-<li><p><code>CSV</code>: Generates flat relational tables (separated by block type).</p></li>
-<li><p><code>EXCEL</code>: Generates <code>.xlsx</code> file with tabs corresponding to CSV tables.</p></li>
-<li><p><strong>INTO</strong>: Clause that defines destination path.</p></li>
-<li><p>Must be a string in double quotes.</p></li>
-<li><p><strong>Relative paths</strong> to the project root are recommended to ensure portability across different machines.</p></li>
-<li><p>If destination directory doesn’t exist, compiler will attempt to create it.</p></li>
+<li><strong>Template parser:</strong> add <code>PERICOPE</code> to the list of field types, alongside <code>TEXT</code>, <code>QUOTATION</code>, <code>MEMO</code>, <code>CHAIN</code> etc.</li>
+<li><strong>Lark grammar:</strong> create the <code>pericope_value</code> rule.</li>
+<li><strong>Transformer (Python):</strong> split the string into a dictionary (<code>book</code>, <code>chapter</code>, <code>verses</code>).</li>
+</ul>
+<p>The relation between <code>ITEM</code> and <code>SOURCE</code>, BibTeX validation and <code>BUNDLE</code> validation would not change; exporters would treat the new field like any field defined in the template.</p>
+<p><strong>In the VS Code extension:</strong></p>
+<ul>
+<li><strong>Syntax highlighting:</strong> a regular expression for the canonical pattern (e.g.&nbsp;<code>\b[A-Z]{3}\s\d+[:.]\d+[\d\-,a-z\s]*\b</code>).</li>
+<li><strong>Snippets:</strong> autocomplete the <code>ITEM</code> block with the locus field already in place.</li>
+<li><strong>Code Actions (optional):</strong> convert “Romans 8, 1 to 3” into <code>ROM 8:1-3</code> as a quick-fix suggestion, without touching the compiler.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="converting-logos-bible-software-notes-to-synesis" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="converting-logos-bible-software-notes-to-synesis"><span class="header-section-number">1.3</span> Converting Logos Bible Software Notes to Synesis</h2>
+<p>There is a converter from the proprietary Logos annotation format to Markdown text:</p>
+<ul>
+<li><a href="https://github.com/agape-apps/Logos-Notes-Exporter">Logos Bible Software notes to Markdown converter</a></li>
+</ul>
+<p>From there, converting Markdown annotations into Synesis is simple.</p>
+<hr>
+</section>
+<section id="strategies-for-comparative-exegesis" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="strategies-for-comparative-exegesis"><span class="header-section-number">1.4</span> Strategies for Comparative Exegesis</h2>
+<p>Synesis offers structural flexibility to researchers who need to compare manuscripts or translations of the same passage. Since an <code>ITEM</code> belongs to exactly one <code>SOURCE</code>, there are two approaches, depending on how the data will be used later. The examples use the proposed <code>PERICOPE</code> type; today, declare these fields as <code>TEXT</code>.</p>
+<section id="approach-1-the-relational-join-multiple-items" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="approach-1-the-relational-join-multiple-items"><span class="header-section-number">1.4.1</span> Approach 1: the Relational “Join” (multiple ITEMs)</h3>
+<p>Prioritizes bibliographic rigour. Each base text (e.g.&nbsp;the Greek original and an English translation) is treated as a separate work in a <code>SOURCE</code> block. The annotation blocks correlate because the locus field acts as a relationship key.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@na28</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">language:</span> <span class="st">"grc"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@na28</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>1</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Οὐδὲν ἄρα νῦν κατάκριμα..."</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@niv2011</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">language:</span> <span class="st">"en"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@niv2011</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>1</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Therefore, there is now no condemnation..."</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Analytical advantage:</strong> produces normalized flat tables suited to Data Science workflows — translations can be grouped in Python (Pandas) or queried in graph databases, connecting nodes through the locus property.</p>
+</section>
+<section id="approach-2-direct-comparison-with-bundle-single-item" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="approach-2-direct-comparison-with-bundle-single-item"><span class="header-section-number">1.4.2</span> Approach 2: Direct Comparison with BUNDLE (single item)</h3>
+<p>If the focus is visual and hermeneutical juxtaposition, and the base text is an interlinear or parallel Bible, use the <code>BUNDLE</code> modifier, which guarantees positional correspondence between version and excerpt.</p>
+<p><strong>In the template (<code>.synt</code>):</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> passage</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> version, <span class="at">quote</span>  <span class="co"># Fields tied by position</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> passage <span class="kw">TYPE</span> <span class="dt">PERICOPE</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Canonical address</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> version <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Abbreviation of the bibliographic translation</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">NA28:</span> Nestle-Aland (Greek)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">NIV:</span> New International Version</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ESV:</span> English Standard Version</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">quote</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Excerpt matching the version</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>In the annotation (<code>.syn</code>):</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@interlinear_bible2025</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">passage:</span> ROM <span class="fu">8:</span>1</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -- Bundle pair 1 --</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> NA28</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Οὐδὲν ἄρα νῦν κατάκριμα..."</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -- Bundle pair 2 --</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">version:</span> NIV</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"Therefore, there is now no condemnation..."</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Analytical advantage:</strong> keeps the comparison cohesive in one block. The compiler raises an error if a version is annotated without its excerpt, or the reverse, and <code>ENUMERATED</code> accepts only the versions declared in <code>VALUES</code>.</p>
+<hr>
+</section>
+</section>
+<section id="legal-and-normative-annotation-domain-extension" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="legal-and-normative-annotation-domain-extension"><span class="header-section-number">1.5</span> Legal and Normative Annotation (Domain Extension)</h2>
+<p>The Synesis ecosystem is agnostic about the research domain. Configurable field types allow modelling the complexity of legal texts (legislation and case law) without changing the <code>SOURCE</code> and <code>ITEM</code> block structure.</p>
+<section id="topographic-addressing-legislation" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="topographic-addressing-legislation"><span class="header-section-number">1.5.1</span> 1. Topographic Addressing (legislation)</h3>
+<p>Normative texts require structured, non-linear addressing.</p>
+<ul>
+<li><strong>Suggested field type:</strong> <code>TYPE LEGAL_LOCUS</code></li>
+<li><strong>Parser behaviour:</strong> capture and structure the topography of the law (act, article, paragraph, item, sub-item). Example target syntax (Brazilian law): <code>CF/88 Art. 5, inc. X</code>.</li>
 </ul>
 </section>
-<section id="example-in-context-.synp" class="level4" data-number="1.2.1.2">
-<h4 data-number="1.2.1.2" class="anchored" data-anchor-id="example-in-context-.synp"><span class="header-section-number">1.2.1.2</span> Example in Context (.synp)</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> <span class="st">"Phenomenological Study 2026"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"templates/research_v1.synt"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"data/references.bib"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"data/interviews/*.syn"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology/main.syno"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Declarative Output Configuration</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generates multiple formats simultaneously in organized directories</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>RENDER AS JSON  INTO <span class="st">"dist/full_data.json"</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>RENDER AS EXCEL INTO <span class="st">"reports/human_readable/matrix.xlsx"</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>RENDER AS CSV   INTO <span class="st">"reports/raw_data/export.csv"</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="case-law-ontology" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="case-law-ontology"><span class="header-section-number">1.5.2</span> 2. Case Law Ontology</h3>
+<p>Court decisions have strict categories, which can already be enforced today with <code>ENUMERATED</code>.</p>
+<ul>
+<li><strong>Common categories:</strong> <em>Ratio Decidendi</em> (main thesis), <em>Obiter Dictum</em> (side remark) and <em>Headnote</em> (official summary).</li>
+</ul>
 </section>
-<section id="validation-rules" class="level4" data-number="1.2.1.3">
-<h4 data-number="1.2.1.3" class="anchored" data-anchor-id="validation-rules"><span class="header-section-number">1.2.1.3</span> Validation Rules</h4>
-<ol type="1">
-<li><strong>Multiplicity</strong>: Multiple <code>RENDER</code> commands are allowed in the same project. The compiler will process all sequentially.</li>
-<li><strong>Write Permission</strong>: Compiler must have write permission to target directory. If destination file is locked (e.g., open in Excel), compilation will fail with I/O error.</li>
-<li><strong>Absolute Paths</strong>: Using absolute paths (e.g., <code>C:/Users/...</code>) will emit a <em>Warning</em>, as it breaks project portability.</li>
-</ol>
+<section id="precedent-networks-chain" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="precedent-networks-chain"><span class="header-section-number">1.5.3</span> 3. Precedent Networks (CHAIN)</h3>
+<p>Mapping how decisions relate over time can use qualified chains (<code>CHAIN</code>). The proposal adds the use of bibliographic references as chain nodes.</p>
+</section>
+<section id="proposed-example-template-and-annotation" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="proposed-example-template-and-annotation"><span class="header-section-number">1.5.4</span> Proposed Example (template and annotation)</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> legal_analysis</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> locus, <span class="at">quote</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> legal_concept, <span class="at">chain</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> locus <span class="kw">TYPE</span> LEGAL_LOCUS</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Normative or case-law topographic address</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> legal_concept <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Structural classification of the court decision</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RATIO:</span> Ratio Decidendi (main thesis)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">OBITER:</span> Obiter Dictum (side argument)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">HEADNOTE:</span> Official summary</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">OVERRULES:</span> A higher court overturns the previous thesis</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CITES_PRECEDENT:</span> Decision grounded in a previous case</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DISTINGUISHES:</span> Current case distinguished from the general rule</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@stj_petition_1234</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2026-02-17</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@stj_petition_1234</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">locus:</span> CF<span class="co">/88 Art. 5, inc. X</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">legal_concept:</span> RATIO</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quote:</span> <span class="st">"intimacy, private life, honor and image of persons are inviolable..."</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Precedent graph between bibliographic works (rulings)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> <span class="fu">@stj_petition_1234</span> <span class="op">-&gt;</span> OVERRULES <span class="op">-&gt;</span> <span class="fu">@tj_decision_999</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expected advantage:</strong> exported to relational (CSV) or graph formats, the project would give the researcher the precedent network with its legal topology and traceability to the text.</p>
+<p>For the modelling that already works today, see <a href="../explanation/synesis_para_direito.html">Synesis for Legal Professionals</a>.</p>
 <hr>
 </section>
 </section>
+<section id="knowledge-management-zettelkasten" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="knowledge-management-zettelkasten"><span class="header-section-number">1.6</span> Knowledge Management (Zettelkasten)</h2>
+<p>Introduces “Permanent Notes” that synthesize knowledge. To preserve the language invariants, the Zettelkasten would not be a new block but a set of specialized fields inside the <code>ITEM</code>.</p>
+<section id="the-zettelkasten-as-a-source" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="the-zettelkasten-as-a-source"><span class="header-section-number">1.6.1</span> The Zettelkasten as a SOURCE</h3>
+<p>Since every <code>ITEM</code> belongs to a <code>SOURCE</code>, a BibTeX entry representing the author’s note repository is recommended (e.g.&nbsp;<code>@zettel_vault</code>).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The "Source" is the researcher's own repository</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@zettel_vault</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">access_date:</span> 2026-02-17</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The ITEM acts as the Permanent Note (Zettel)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@zettel_vault</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">zettel_id:</span> 2026011401</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">title:</span> <span class="st">"The Principle of Atomicity"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">body:</span> <span class="st">"A DSL should force concepts to be broken down..."</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Explicit connections</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">links:</span> 2026011205, 2025123001</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Metadata and traceability</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> DSL_Design</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">origin:</span> <span class="fu">@turing1936</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="advanced-semantic-analysis" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="advanced-semantic-analysis"><span class="header-section-number">1.3</span> Advanced Semantic Analysis</h2>
-<p>The compiler now acts as a methodological assistant, not just a syntactic validator.</p>
-<section id="ontological-redundancy-detection-fuzzy-matching" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="ontological-redundancy-detection-fuzzy-matching"><span class="header-section-number">1.3.1</span> Ontological Redundancy Detection (Fuzzy Matching)</h3>
-<p>The compiler will analyze the ontology for concepts with similar spelling (Lexical Similarity), preventing knowledge graph fragmentation.</p>
+<section id="proposed-field-types" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="proposed-field-types"><span class="header-section-number">1.6.2</span> Proposed Field Types</h3>
+<p>New types would support the graph topology of a Zettelkasten, with cross-validation at the linking stage:</p>
+<ul>
+<li><strong><code>ZETTEL_ID</code>:</strong> unique note identifier (usually a timestamp); the compiler would guarantee there are no duplicate IDs.</li>
+<li><strong><code>ZETTEL_LINK</code>:</strong> creates directed edges between notes; the compiler would check that referenced IDs exist.</li>
+<li><strong><code>BIB_REF</code>:</strong> references an external source directly in the field, creating a citation edge.</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> zettel_knowledge_base</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> zettel_id, title, body</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> links, topic, origin</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> zettel_id <span class="kw">TYPE</span> ZETTEL_ID</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Unique chronological identifier of the Zettel</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> links <span class="kw">TYPE</span> ZETTEL_LINK</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Connections to other Zettels (comma-separated IDs)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> origin <span class="kw">TYPE</span> BIB_REF</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Bibliographic reference that inspired the permanent <span class="at">note</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="implementation-notes-lark-grammar-1" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="implementation-notes-lark-grammar-1"><span class="header-section-number">1.6.3</span> Implementation Notes (Lark Grammar)</h3>
+<pre class="lark"><code>// The generic field rule absorbs the new types
+field_value: text_value
+           | chain_value
+           | zettel_id_value
+           | zettel_link_value
+           | bib_ref_value
+
+// The ID is a strictly numeric string (e.g. YYYYMMDDHH)
+zettel_id_value: INT
+
+// Comma-separated list of IDs
+zettel_link_value: INT ("," WS? INT)*
+
+// Citation format with '@'
+bib_ref_value: "@" LCASE_LETTER+ DIGIT+</code></pre>
+</section>
+<section id="impact-on-export" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="impact-on-export"><span class="header-section-number">1.6.4</span> Impact on Export</h3>
+<p>With <code>zettel_link</code> and <code>bib_ref</code> as <code>ITEM</code> field types, the JSON export would carry clean lists of <code>links</code> and the BibTeX key in <code>origin</code>, enough to build the note network in a graph database.</p>
+<hr>
+</section>
+</section>
+<section id="detecting-ontological-redundancy" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="detecting-ontological-redundancy"><span class="header-section-number">1.7</span> Detecting Ontological Redundancy</h2>
+<p>The compiler would scan the ontology for concepts with similar spelling, preventing fragmentation of the knowledge graph. Today part of this need is met in assisted coding, by the <code>normalize</code> command of <a href="../howto/synesis_coder.html">synesis-coder</a>.</p>
 <ul>
 <li><strong>Algorithm:</strong> Levenshtein / Jaro-Winkler distance.</li>
-<li><strong>Behavior:</strong> Warning during compilation.</li>
-<li><strong>Detection Example:</strong> <code>SocialInteraction</code> vs <code>Social_Interaction</code>.</li>
-</ul>
-</section>
-<section id="hierarchical-cycle-validation" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="hierarchical-cycle-validation"><span class="header-section-number">1.3.2</span> Hierarchical Cycle Validation</h3>
-<p>Prevents creation of logical loops in taxonomic definitions. * <strong>Rule:</strong> A concept cannot be an ancestor of itself. * <strong>Fatal Error:</strong> Compilation is aborted if a cycle is detected (e.g., A &gt; B &gt; C &gt; A).</p>
-</section>
-<section id="dead-code-elimination-ghost-concepts" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="dead-code-elimination-ghost-concepts"><span class="header-section-number">1.3.3</span> Dead Code Elimination (Ghost Concepts)</h3>
-<p>Identifies concepts defined in ontology that were never applied to any <code>ITEM</code> or <code>ZETTEL</code>. * <strong>Behavior:</strong> Warning (Codebook cleanup report).</p>
-<hr>
-</section>
-</section>
-<section id="new-structural-commands" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="new-structural-commands"><span class="header-section-number">1.4</span> New Structural Commands</h2>
-<section id="taxonomy-rigid-hierarchy" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="taxonomy-rigid-hierarchy"><span class="header-section-number">1.4.1</span> TAXONOMY (Rigid Hierarchy)</h3>
-<p>Replaces loose use of <code>TOPIC</code> for strict “is-a” relationship definitions. Allows property inheritance.</p>
-<p><strong>Syntax:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>TAXONOMY</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Emotions</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        &gt; Negative</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            &gt; Anger</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            &gt; Fear</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        &gt; Positive</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            &gt; Joy</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="constraint-business-rules" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="constraint-business-rules"><span class="header-section-number">1.4.2</span> CONSTRAINT (Business Rules)</h3>
-<p>Defines logical invariants to ensure methodological consistency of annotations.</p>
-<p><strong>Syntax:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CONSTRAINT</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mutual exclusion: An item cannot have both codes simultaneously</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    FORBID Code <span class="st">"Sentiment: Positive"</span> WITH Code <span class="st">"Risk: Critical"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Logical dependency: Code B requires presence of Code A</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    REQUIRE Code <span class="st">"Solution"</span> IF Code <span class="st">"Problem"</span> PRESENT</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="crossref-citation-network" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="crossref-citation-network"><span class="header-section-number">1.4.3</span> CROSSREF (Citation Network)</h3>
-<p>Formalizes rhetorical relationships between bibliographic sources (Source-to-Source), independent of internal annotations.</p>
-<p><strong>Syntax:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>CROSSREF</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@smith2019</span> <span class="op">-&gt;</span> REFUTES <span class="op">-&gt;</span> <span class="fu">@doe2018</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@jones2020</span> <span class="op">-&gt;</span> EXTENDS <span class="op">-&gt;</span> <span class="fu">@smith2019</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="knowledge-management-zettelkasten" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="knowledge-management-zettelkasten"><span class="header-section-number">1.5</span> Knowledge Management (Zettelkasten)</h2>
-<p>Introduces capability to create “Permanent Notes” that synthesize knowledge independent of a specific bibliographic source.</p>
-<section id="zettel-block" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="zettel-block"><span class="header-section-number">1.5.1</span> 4.1 ZETTEL Block</h3>
-<p>Top-level entity, sibling of <code>SOURCE</code> and <code>ONTOLOGY</code>. Does not require <code>@bibref</code>.</p>
-<p><strong>Syntax:</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Syntax: ZETTEL [UNIQUE_ID]</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ZETTEL 2026011401</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">title:</span> <span class="st">"The Atomicity Principle"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">body:</span> <span class="st">"A DSL should force concept breakdown..."</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Explicit connections (Rhizome)</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">links:</span> 2026011205, 2025123001</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Metadata</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tags:</span> DSL Design</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">origin:</span> <span class="fu">@turing1936</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exclusive-fields-zettel-fields" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="exclusive-fields-zettel-fields"><span class="header-section-number">1.5.2</span> Exclusive Fields (ZETTEL FIELDS)</h3>
-<p>In the <code>.synt</code> template file, new field types are supported:</p>
-<ul>
-<li><strong>LINK (Type REFERENCE):</strong> Creates bidirectional edges between ZETTEL nodes.</li>
-<li><strong>ORIGIN (Type REFERENCE):</strong> Creates citation edge to a SOURCE.</li>
+<li><strong>Behaviour:</strong> warning during compilation.</li>
+<li><strong>Detection example:</strong> <code>SocialInteraction</code> vs <code>Social_Interaction</code>.</li>
 </ul>
 <hr>
 </section>
+<section id="new-structural-commands" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="new-structural-commands"><span class="header-section-number">1.8</span> New Structural Commands</h2>
+<section id="constraint-business-rules" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="constraint-business-rules"><span class="header-section-number">1.8.1</span> CONSTRAINT (business rules)</h3>
+<p>Logical invariants to ensure the methodological consistency of annotations.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>CONSTRAINT</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mutual exclusion: an item cannot have both codes at once</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    FORBID Code <span class="st">"Sentiment: Positive"</span> WITH Code <span class="st">"Risk: Critical"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Logical dependency: code B requires code A</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    REQUIRE Code <span class="st">"Solution"</span> IF Code <span class="st">"Problem"</span> PRESENT</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> CONSTRAINT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="canonical-annotation-biblicalexegetical" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="canonical-annotation-biblicalexegetical"><span class="header-section-number">1.6</span> Canonical Annotation (Biblical/Exegetical)</h2>
-<p>Specialized addressing system for texts that use the Locus pattern (Book, Chapter, Verse) instead of author-date bibliographic reference.</p>
-<section id="bible-block" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="bible-block"><span class="header-section-number">1.6.1</span> BIBLE Block</h3>
-<p>Replaces <code>SOURCE</code> block for sacred texts. Uses USX standard for book identification.</p>
-<p><strong>Syntax:</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Syntax: BIBLE [USX_CODE] [CHAP:VERSE] [(VERSION)]</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>BIBLE ROM <span class="fu">8:</span>28-30 (ESV)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pericope title (String with mandatory quotes to support punctuation)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pericope:</span> <span class="st">"The efficacy of calling: The eternal purpose."</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ITEM</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quote:</span> <span class="st">"And we know that for those who love God all things work together..."</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">code:</span> Providence</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="addressing-rules-parsing" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="addressing-rules-parsing"><span class="header-section-number">1.6.2</span> Addressing Rules (Parsing)</h3>
-<p>Parser applies strict rules to avoid ambiguity:</p>
-<ol type="1">
-<li><strong>USX Code:</strong> Exactly 3 uppercase letters (e.g., <code>MAT</code>, <code>GEN</code>, <code>PSA</code>).</li>
-<li><strong>Separators:</strong> Mandatory use of <code>:</code> to separate chapter/verse and <code>-</code> for ranges.</li>
-<li><strong>Pericope:</strong> Must be delimited by double quotes <code>""</code> or triple <code>"""</code> to allow special characters, commas, and line breaks without breaking the parser.</li>
-</ol>
-</section>
-<section id="canon-template-example" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="canon-template-example"><span class="header-section-number">1.6.3</span> Canon Template Example</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> biblical_exegesis</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>BIBLE <span class="kw">FIELDS</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> pericope</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">quote</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> code</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> original_term  <span class="co"># E.g.: Greek/Hebrew</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="appendix-a-implementation-notes-lark-grammar" class="level4" data-number="1.6.3.1">
-<h4 data-number="1.6.3.1" class="anchored" data-anchor-id="appendix-a-implementation-notes-lark-grammar"><span class="header-section-number">1.6.3.1</span> Appendix A: Implementation Notes (Lark Grammar)</h4>
-<p>Grammar snippet to support <code>BIBLE</code> header:</p>
-<pre class="lark"><code>// Canon Block Definition
-canon_block: "BIBLE" usx_code bible_ref version? block_body "END"
-
-// USX Codes (strict 3 uppercase letters)
-usx_code: UCASE_LETTER UCASE_LETTER UCASE_LETTER
-
-// Supported references: 8, 8:28, 8:28-30, 8:28-9:1
-bible_ref: chapter
-         | chapter ":" verse
-         | chapter ":" verse "-" verse
-         | chapter ":" verse "-" chapter ":" verse
-
-chapter: INT
-verse: INT | "END"
-version: "(" UCASE_LETTER+ ")" | "@" LCASE_LETTER+ DIGIT+</code></pre>
-<hr>
-</section>
-</section>
-</section>
-<section id="immediate-visualization" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="immediate-visualization"><span class="header-section-number">1.7</span> Immediate Visualization</h2>
-<p>JSON output is useful for processing, but humans need to see the graph.</p>
-<p>Idea: Create a <code>synesis serve</code> command that starts a simple local server showing the connection graph (using D3.js or Cytoscape) generated from exported JSON.</p>
-<hr>
-</section>
-<section id="data-science-integration" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="data-science-integration"><span class="header-section-number">1.8</span> Data Science Integration</h2>
-<p>CSV/Excel export support is good, but direct Pandas integration would be killer.</p>
-<p>Example: A Python library <code>import synesis</code> that allows loading the project directly into a DataFrame without going through the terminal, facilitating use in Jupyter Notebooks.</p>
-</section>
-<section id="possible-workflow" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="possible-workflow"><span class="header-section-number">1.9</span> Possible Workflow</h2>
-<p>Correct. The premise is exact: the <strong>Compiler Core</strong> (Parser + Semantic Analysis) acts as the single source of truth. Both file export, the Python library (<code>synesis.load</code>), and the LSP server consume the same <strong>Abstract Syntax Tree (AST)</strong> and the same <strong>Symbol Table</strong>.</p>
-<p>Here is the objective workflow for this implementation, focusing on the “Compiler as a Library” architecture:</p>
-<section id="step-1-io-decoupling-inputoutput" class="level3" data-number="1.9.1">
-<h3 data-number="1.9.1" class="anchored" data-anchor-id="step-1-io-decoupling-inputoutput"><span class="header-section-number">1.9.1</span> Step 1: I/O Decoupling (Input/Output)</h3>
-<p>The first step is to ensure the compiler doesn’t “know” it’s writing files.</p>
-<ul>
-<li><strong>Action:</strong> Separate export functions. Today, there’s probably a <code>export_csv(ast, filepath)</code> function.</li>
-<li><strong>Refactoring:</strong> Split into two:</li>
-</ul>
-<ol type="1">
-<li><code>transform_to_tabular_data(ast)</code>: Receives AST and returns lists of dictionaries/objects in memory (without touching disk).</li>
-<li><code>write_csv(data, filepath)</code>: Receives data and only writes the file.</li>
-</ol>
-</section>
-<section id="step-2-public-core-api-exposure" class="level3" data-number="1.9.2">
-<h3 data-number="1.9.2" class="anchored" data-anchor-id="step-2-public-core-api-exposure"><span class="header-section-number">1.9.2</span> Step 2: Public Core API Exposure</h3>
-<p>The main Synesis module should expose programmatic access to compilation.</p>
-<ul>
-<li><strong>Action:</strong> Make orchestration function externally accessible.</li>
-<li><strong>Definition:</strong> Create/Adjust a method (e.g., <code>Synesis.compile_source()</code>) that accepts a string or file path and returns the <code>Project</code> object (the semantic validation result containing all linked structures).</li>
-</ul>
-</section>
-<section id="step-3-python-adapter-creation-data-science" class="level3" data-number="1.9.3">
-<h3 data-number="1.9.3" class="anchored" data-anchor-id="step-3-python-adapter-creation-data-science"><span class="header-section-number">1.9.3</span> Step 3: Python Adapter Creation (Data Science)</h3>
-<p>This is the consumer you suggested (<code>synesis.load</code>).</p>
-<ul>
-<li><strong>Dependency:</strong> Define Pandas as optional dependency.</li>
-<li><strong>Flow:</strong></li>
-</ul>
-<ol type="1">
-<li>Calls Step 2 API to get <code>Project</code> object in memory.</li>
-<li>Calls Step 1 transformation function (<code>transform_to_tabular_data</code>).</li>
-<li>Instantiates Pandas DataFrames using this data.</li>
-<li>Applies typing (converts strings to <code>datetime</code> objects, categories, etc.) based on AST types.</li>
-</ol>
-</section>
-<section id="step-4-lsp-adaptation-editor-intelligence" class="level3" data-number="1.9.4">
-<h3 data-number="1.9.4" class="anchored" data-anchor-id="step-4-lsp-adaptation-editor-intelligence"><span class="header-section-number">1.9.4</span> Step 4: LSP Adaptation (Editor Intelligence)</h3>
-<p>LSP consumes same AST, but needs different data (location instead of value).</p>
-<ul>
-<li><strong>Action:</strong> Ensure AST nodes (Item, Source, Field) preserve origin metadata (<code>line</code>, <code>column</code>, <code>file</code>).</li>
-<li><strong>Flow:</strong></li>
-</ul>
-<ol type="1">
-<li>LSP sends current file text (even incomplete).</li>
-<li>Core attempts parsing (with error tolerance).</li>
-<li>Core returns <strong>Symbol Table</strong> (list of available ontologies and definitions).</li>
-<li>LSP uses this table to provide <em>Autocomplete</em> and <em>Go to Definition</em>.</li>
-</ol>
-</section>
-<section id="step-5-cli-as-thin-client" class="level3" data-number="1.9.5">
-<h3 data-number="1.9.5" class="anchored" data-anchor-id="step-5-cli-as-thin-client"><span class="header-section-number">1.9.5</span> Step 5: CLI as “Thin Client”</h3>
-<p>The <code>synesis compile</code> terminal command becomes just another client, like Python or LSP.</p>
-<ul>
-<li><strong>Action:</strong> CLI only collects arguments, calls Step 2 API, and uses file writing functions (<code>write_csv</code>, <code>write_json</code>) defined in Step 1.</li>
-</ul>
-</section>
-<section id="data-flow-summary" class="level3" data-number="1.9.6">
-<h3 data-number="1.9.6" class="anchored" data-anchor-id="data-flow-summary"><span class="header-section-number">1.9.6</span> Data Flow Summary</h3>
-<ol type="1">
-<li><strong>Input:</strong> <code>.syn</code> / <code>.synt</code> files</li>
-<li><strong>Central Engine (Synesis Core):</strong> Generates AST + Semantic Validation.</li>
-<li><strong>Distribution:</strong></li>
-</ol>
-<ul>
-<li>via <strong>CLI</strong> -&gt; Writes to Disk (JSON/CSV).</li>
-<li>via <strong>Python SDK</strong> -&gt; Delivers Objects/DataFrames in Memory.</li>
-<li>via <strong>LSP</strong> -&gt; Delivers Position Metadata and Errors to Editor.</li>
-<li></li>
-</ul>
-<hr>
+<section id="crossref-citation-network" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="crossref-citation-network"><span class="header-section-number">1.8.2</span> CROSSREF (citation network)</h3>
+<p>Formalizes rhetorical relations between bibliographic sources, independently of internal annotations.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>CROSSREF</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@smith2019</span> <span class="op">-&gt;</span> REFUTES <span class="op">-&gt;</span> <span class="fu">@doe2018</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">@jones2020</span> <span class="op">-&gt;</span> EXTENDS <span class="op">-&gt;</span> <span class="fu">@smith2019</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> CROSSREF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

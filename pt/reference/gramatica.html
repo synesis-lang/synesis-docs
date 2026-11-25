@@ -267,8 +267,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#sec-project" id="toc-sec-project" class="nav-link" data-scroll-target="#sec-project"><span class="header-section-number">4</span> Bloco PROJECT</a>
   <ul class="collapse">
-  <li><a href="#declarações-include-e-template" id="toc-declarações-include-e-template" class="nav-link" data-scroll-target="#declarações-include-e-template"><span class="header-section-number">4.1</span> Declarações INCLUDE e TEMPLATE</a></li>
-  <li><a href="#metadata-e-description" id="toc-metadata-e-description" class="nav-link" data-scroll-target="#metadata-e-description"><span class="header-section-number">4.2</span> Metadata e Description</a></li>
+  <li><a href="#template-e-include" id="toc-template-e-include" class="nav-link" data-scroll-target="#template-e-include"><span class="header-section-number">4.1</span> TEMPLATE e INCLUDE</a></li>
+  <li><a href="#metadata-description-e-questions" id="toc-metadata-description-e-questions" class="nav-link" data-scroll-target="#metadata-description-e-questions"><span class="header-section-number">4.2</span> METADATA, DESCRIPTION e QUESTIONS</a></li>
+  <li><a href="#phase-e-export" id="toc-phase-e-export" class="nav-link" data-scroll-target="#phase-e-export"><span class="header-section-number">4.3</span> PHASE e EXPORT</a></li>
   </ul></li>
   <li><a href="#sec-annotation" id="toc-sec-annotation" class="nav-link" data-scroll-target="#sec-annotation"><span class="header-section-number">5</span> Blocos de anotação</a></li>
   <li><a href="#sec-fields" id="toc-sec-fields" class="nav-link" data-scroll-target="#sec-fields"><span class="header-section-number">6</span> Campos e valores</a>
@@ -281,12 +282,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-template" id="toc-sec-template" class="nav-link" data-scroll-target="#sec-template"><span class="header-section-number">7</span> Bloco TEMPLATE</a>
   <ul class="collapse">
   <li><a href="#cabeçalho" id="toc-cabeçalho" class="nav-link" data-scroll-target="#cabeçalho"><span class="header-section-number">7.1</span> Cabeçalho</a></li>
-  <li><a href="#especificação-de-campos-por-escopo" id="toc-especificação-de-campos-por-escopo" class="nav-link" data-scroll-target="#especificação-de-campos-por-escopo"><span class="header-section-number">7.2</span> Especificação de campos por escopo</a></li>
-  <li><a href="#definição-de-campo-individual" id="toc-definição-de-campo-individual" class="nav-link" data-scroll-target="#definição-de-campo-individual"><span class="header-section-number">7.3</span> Definição de campo individual</a></li>
-  <li><a href="#modificadores-de-ligação" id="toc-modificadores-de-ligação" class="nav-link" data-scroll-target="#modificadores-de-ligação"><span class="header-section-number">7.4</span> Modificadores de ligação</a></li>
-  <li><a href="#values-e-relations" id="toc-values-e-relations" class="nav-link" data-scroll-target="#values-e-relations"><span class="header-section-number">7.5</span> VALUES e RELATIONS</a></li>
-  <li><a href="#format-e-arity" id="toc-format-e-arity" class="nav-link" data-scroll-target="#format-e-arity"><span class="header-section-number">7.6</span> FORMAT e ARITY</a></li>
-  <li><a href="#bloco-guidelines" id="toc-bloco-guidelines" class="nav-link" data-scroll-target="#bloco-guidelines"><span class="header-section-number">7.7</span> Bloco GUIDELINES</a></li>
+  <li><a href="#campos-por-escopo" id="toc-campos-por-escopo" class="nav-link" data-scroll-target="#campos-por-escopo"><span class="header-section-number">7.2</span> Campos por escopo</a></li>
+  <li><a href="#definição-de-campo" id="toc-definição-de-campo" class="nav-link" data-scroll-target="#definição-de-campo"><span class="header-section-number">7.3</span> Definição de campo</a></li>
+  <li><a href="#values-e-relations" id="toc-values-e-relations" class="nav-link" data-scroll-target="#values-e-relations"><span class="header-section-number">7.4</span> VALUES e RELATIONS</a></li>
+  <li><a href="#format-e-arity" id="toc-format-e-arity" class="nav-link" data-scroll-target="#format-e-arity"><span class="header-section-number">7.5</span> FORMAT e ARITY</a></li>
+  <li><a href="#bloco-guidelines" id="toc-bloco-guidelines" class="nav-link" data-scroll-target="#bloco-guidelines"><span class="header-section-number">7.6</span> Bloco GUIDELINES</a></li>
   </ul></li>
   <li><a href="#sec-tokens" id="toc-sec-tokens" class="nav-link" data-scroll-target="#sec-tokens"><span class="header-section-number">8</span> Tokens</a>
   <ul class="collapse">
@@ -295,8 +295,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#valores-e-texto" id="toc-valores-e-texto" class="nav-link" data-scroll-target="#valores-e-texto"><span class="header-section-number">8.3</span> Valores e texto</a></li>
   <li><a href="#tokens-especiais" id="toc-tokens-especiais" class="nav-link" data-scroll-target="#tokens-especiais"><span class="header-section-number">8.4</span> Tokens especiais</a></li>
   </ul></li>
-  <li><a href="#sec-prioridades" id="toc-sec-prioridades" class="nav-link" data-scroll-target="#sec-prioridades"><span class="header-section-number">9</span> Prioridades — como ambiguidades são resolvidas</a></li>
+  <li><a href="#sec-prioridades" id="toc-sec-prioridades" class="nav-link" data-scroll-target="#sec-prioridades"><span class="header-section-number">9</span> Prioridades — como as ambiguidades são resolvidas</a></li>
   <li><a href="#sec-indentacao" id="toc-sec-indentacao" class="nav-link" data-scroll-target="#sec-indentacao"><span class="header-section-number">10</span> Indentação significativa</a></li>
+  <li><a href="#sec-standalone" id="toc-sec-standalone" class="nav-link" data-scroll-target="#sec-standalone"><span class="header-section-number">11</span> O parser gerado</a></li>
   </ul>
 </nav>
     </div>
@@ -333,13 +334,13 @@ Para quem é este documento?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Devs que precisam entender, estender ou depurar a sintaxe do Synesis. A gramática abaixo é a <strong>especificação canônica</strong> — o compilador a executa literalmente. Se o compilador aceita ou rejeita algo, a resposta está aqui.</p>
+<p>Devs que precisam entender, estender ou depurar a sintaxe do Synesis. A gramática abaixo é a <strong>especificação canônica</strong> — o compilador a executa literalmente. Se o compilador aceita ou rejeita algo na sintaxe, a resposta está aqui. Esta página acompanha o arquivo <code>synesis/grammar/synesis.lark</code> do <strong>synesis 0.16.0</strong>.</p>
 <p>Para entender o fluxo completo de compilação (não apenas a gramática), veja <a href="../explanation/fluxo_compilacao_interno.html">Por Dentro do Compilador</a>.</p>
 </div>
 </div>
 <section id="como-ler-este-documento" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="como-ler-este-documento"><span class="header-section-number">1</span> Como ler este documento</h2>
-<p>A gramática usa o formato <strong>Lark EBNF</strong>, que funciona assim:</p>
+<p>A gramática usa o formato <strong>Lark EBNF</strong>:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -382,7 +383,7 @@ Para quem é este documento?
 </tr>
 <tr class="even">
 <td><code>/regex/i</code></td>
-<td>Regex case-insensitive</td>
+<td>Regex que ignora maiúsculas e minúsculas</td>
 </tr>
 <tr class="odd">
 <td><code>TOKEN.N</code></td>
@@ -395,6 +396,19 @@ Para quem é este documento?
 </tbody>
 </table>
 <p>Regras em <strong>minúsculas</strong> (<code>project_block</code>) são regras gramaticais — produzem nós na árvore sintática. Regras em <strong>MAIÚSCULAS</strong> (<code>IDENTIFIER</code>) são tokens — unidades atômicas reconhecidas pelo lexer.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Gramática permissiva, semântica rigorosa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Várias restrições da linguagem <strong>não</strong> estão na gramática, e sim no validador semântico. É deliberado: um erro de gramática é um “token inesperado”; um erro semântico explica o que fazer. <strong>Erro de gramática não ensina; erro semântico sim.</strong></p>
+</div>
+</div>
 </section>
 <section id="sec-start" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="sec-start"><span class="header-section-number">2</span> Ponto de partida</h2>
@@ -408,31 +422,18 @@ block: project_block
      | template_header
      | field_spec_block
      | field_def_block</code></pre>
-<p>Um arquivo Synesis é uma lista de blocos. Quais blocos são válidos depende do tipo de arquivo:</p>
+<p>Um arquivo Synesis é uma lista de blocos. Quais blocos fazem sentido depende do tipo de arquivo:</p>
 <ul>
 <li><strong><code>.synp</code></strong> contém um <code>project_block</code></li>
 <li><strong><code>.syn</code></strong> contém <code>source_block</code> e <code>item_block</code></li>
 <li><strong><code>.syno</code></strong> contém <code>ontology_block</code></li>
 <li><strong><code>.synt</code></strong> contém <code>template_header</code>, <code>field_spec_block</code> e <code>field_def_block</code></li>
 </ul>
-<p>A gramática não impõe essa regra — ela aceita qualquer combinação. É o <strong>validador semântico</strong> (estágio posterior) que verifica se os blocos fazem sentido no contexto do tipo de arquivo.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Por que <code>(block | NEWLINE)*</code>?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>As linhas em branco (<code>NEWLINE</code>) entre blocos precisam ser aceitas explicitamente. Sem isso, o parser exigiria que os blocos fossem colados uns nos outros.</p>
-</div>
-</div>
+<p>A gramática aceita qualquer combinação; é o validador semântico que verifica o contexto. Um <code>.syn</code> ou <code>.syno</code> vazio, ou só com comentários, é tratado antes do parser e não declara bloco algum.</p>
 </section>
 <section id="sec-keywords" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="sec-keywords"><span class="header-section-number">3</span> Keywords</h2>
-<p>Todas as palavras-chave são <strong>case-insensitive</strong> — <code>PROJECT</code>, <code>project</code> e <code>Project</code> são equivalentes:</p>
+<p>Todas as palavras-chave ignoram maiúsculas e minúsculas — <code>PROJECT</code>, <code>project</code> e <code>Project</code> são equivalentes:</p>
 <pre class="lark"><code>KW_PROJECT.5: /project/i
 KW_SOURCE.5: /source/i
 KW_ITEM.5: /item/i
@@ -441,6 +442,7 @@ KW_TEMPLATE.5: /template/i
 KW_FIELD.5: /field/i
 KW_END.5: /end/i
 KW_INCLUDE.5: /include/i
+KW_SHARED.5: /shared(?![\p{L}\p{N}_-])/i
 KW_BIBLIOGRAPHY.5: /bibliography/i
 KW_ANNOTATIONS.5: /annotations/i
 KW_FIELDS.5: /fields/i
@@ -451,88 +453,97 @@ KW_BUNDLE.5: /bundle/i
 KW_TYPE.5: /type/i
 KW_SCOPE.5: /scope/i
 KW_FORMAT.5: /format/i
-KW_DESCRIPTION.5: /description/i
+KW_DESCRIPTION.5: /description(?![\p{L}\p{N}_-])/i
 KW_ARITY.5: /arity/i
 KW_VALUES.5: /values/i
 KW_RELATIONS.5: /relations/i
 KW_METADATA.5: /metadata/i
-KW_QUOTATION.5: /quotation/i
-KW_MEMO.5: /memo/i
-KW_CODE.5: /code/i
-KW_CHAIN.5: /chain/i
-KW_TEXT.5: /text/i
-KW_DATE.5: /date/i
-KW_SCALE.5: /scale/i
-KW_ENUMERATED.5: /enumerated/i
-KW_ORDERED.5: /ordered/i
+KW_QUOTATION.5: /quotation(?![\p{L}\p{N}_-])/i
+KW_MEMO.5: /memo(?![\p{L}\p{N}_-])/i
+KW_CODE.5: /code(?![\p{L}\p{N}_-])/i
+KW_CHAIN.5: /chain(?![\p{L}\p{N}_-])/i
+KW_TEXT.5: /text(?![\p{L}\p{N}_-])/i
+KW_DATE.5: /date(?![\p{L}\p{N}_-])/i
+KW_SCALE.5: /scale(?![\p{L}\p{N}_-])/i
+KW_ENUMERATED.5: /enumerated(?![\p{L}\p{N}_-])/i
+KW_ORDERED.5: /ordered(?![\p{L}\p{N}_-])/i
 KW_TOPIC.5: /topic(?![\p{L}\p{N}_-])/i
 KW_GUIDELINES.5: /guidelines/i
-KW_SHARED.5: /shared(?![\p{L}\p{N}_-])/i
+
+// blocos do .synp
+KW_EXPORT.5: /export(?![\p{L}\p{N}_-])/i
+KW_MAP.5: /map(?![\p{L}\p{N}_-])/i
+KW_QUESTIONS.5: /questions(?![\p{L}\p{N}_-])/i
+KW_PHASE.5: /phase(?![\p{L}\p{N}_-])/i
+
+// propriedades de FIELD e origem de valores
+KW_ROLE.5: /role(?![\p{L}\p{N}_-])/i
 KW_IDENTIFIES.5: /identifies(?![\p{L}\p{N}_-])/i
 KW_REFERS.5: /refers(?![\p{L}\p{N}_-])/i
 KW_TO.5: /to(?![\p{L}\p{N}_-])/i
-KW_ON.5: /on(?![\p{L}\p{N}_-])/i</code></pre>
-<p>A prioridade <code>.5</code> garante que keywords tenham preferência sobre <code>IDENTIFIER</code> e <code>FIELD_NAME</code> (prioridade <code>.1</code>) quando há ambiguidade. Isso é crítico — sem essa prioridade, <code>SOURCE</code> seria reconhecido como um identificador genérico em vez de uma keyword.</p>
+KW_ON.5: /on(?![\p{L}\p{N}_-])/i
+KW_DATASET.5: /dataset(?![\p{L}\p{N}_-])/i
+KW_CONTEXT.5: /context(?![\p{L}\p{N}_-])/i
+KW_FROM.5: /from(?![\p{L}\p{N}_-])/i</code></pre>
+<p>A prioridade <code>.5</code> garante que as keywords prevaleçam sobre <code>IDENTIFIER</code> e <code>FIELD_NAME</code> (prioridade <code>.1</code>). Sem ela, <code>SOURCE</code> seria reconhecido como identificador genérico.</p>
 <section id="lookahead-de-fronteira" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="lookahead-de-fronteira"><span class="header-section-number">3.1</span> Lookahead de fronteira</h3>
-<p>Algumas keywords trazem o sufixo <code>(?![\p{L}\p{N}_-])</code> — um <em>negative lookahead</em> que impede o token de casar como <strong>prefixo de um nome maior</strong>. Sem ele, um campo chamado <code>topic_principal</code> teria seu início consumido pela keyword <code>TOPIC</code>, e o restante (<code>_principal</code>) viraria lixo sintático.</p>
-<p>O cuidado é especialmente necessário nas palavras curtas introduzidas pela ligação entre projetos: <code>TO</code> e <code>ON</code> casariam dentro de nomes comuns como <code>to_do</code>, <code>total</code>, <code>on_hold</code> ou <code>onset</code>. Com o lookahead, <code>FIELD total TYPE TEXT</code> continua sendo um nome de campo, não a keyword <code>TO</code> seguida de <code>tal</code>.</p>
+<p>O sufixo <code>(?![\p{L}\p{N}_-])</code> é um <em>negative lookahead</em> que impede o token de casar como <strong>prefixo de um nome maior</strong>. Sem ele, um campo chamado <code>code_quality</code> teria o início consumido pela keyword <code>CODE</code>, e o restante viraria lixo sintático. Isso vale para os nomes dos tipos e para as palavras curtas: <code>TO</code> e <code>ON</code> casariam dentro de <code>total</code>, <code>to_do</code>, <code>on_hold</code> ou <code>onset</code>. Com o lookahead, <code>texto</code>, <code>chain_length</code>, <code>date_created</code> e <code>topic_area</code> são nomes de campo.</p>
 </section>
 </section>
 <section id="sec-project" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="sec-project"><span class="header-section-number">4</span> Bloco PROJECT</h2>
-<p>O bloco PROJECT é o ponto de entrada de todo projeto Synesis:</p>
 <pre class="lark"><code>project_block: KW_PROJECT IDENTIFIER NEWLINE project_body KW_END KW_PROJECT
 
 project_body: _INDENT project_items _DEDENT
             | project_items
 
-project_items: (include_stmt | metadata | description | NEWLINE)+</code></pre>
-<p>Aceita um nome (<code>IDENTIFIER</code>), seguido de declarações internas: includes, metadata e description.</p>
-<section id="declarações-include-e-template" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="declarações-include-e-template"><span class="header-section-number">4.1</span> Declarações INCLUDE e TEMPLATE</h3>
+project_items: (include_stmt | metadata | description | questions
+                | phase_block | export_block | NEWLINE)+</code></pre>
+<p>O corpo pode estar todo recuado ou todo na coluna 0.</p>
+<section id="template-e-include" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="template-e-include"><span class="header-section-number">4.1</span> TEMPLATE e INCLUDE</h3>
 <pre class="lark"><code>include_stmt: KW_TEMPLATE STRING NEWLINE
             | KW_INCLUDE include_type STRING NEWLINE
-include_type: KW_SHARED? (KW_BIBLIOGRAPHY | KW_ANNOTATIONS | KW_ONTOLOGY)</code></pre>
-<p>O TEMPLATE é declarado diretamente; os demais arquivos usam <code>INCLUDE tipo "caminho"</code>.</p>
-<p>Exemplo de uso:</p>
+include_type: KW_SHARED? (KW_BIBLIOGRAPHY | KW_ANNOTATIONS | KW_ONTOLOGY | KW_DATASET)</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> demo</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"references.bib"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations.syn"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations/"</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology.syno"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../compartilhado/vocabulario.syno"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Por que a gramática é permissiva com <code>SHARED</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>KW_SHARED?</code> aparece antes de <strong>qualquer</strong> tipo de inclusão, embora <code>SHARED</code> só seja válido para <code>ONTOLOGY</code>. A restrição é <strong>semântica</strong>, não sintática: <code>INCLUDE SHARED BIBLIOGRAPHY "..."</code> faz o parse normalmente e depois recebe o erro 84, com mensagem explicando por que a exceção existe apenas para ontologia.</p>
-<p>Codificar a restrição na gramática produziria um “token inesperado” cru — sintaticamente correto, mas pedagogicamente inútil. A escolha é deliberada: <strong>erro de gramática não ensina; erro semântico sim.</strong></p>
-</div>
-</div>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> DATASET <span class="st">"records/*.toml"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../compartilhado/vocabulario.syno"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>KW_SHARED?</code> aparece antes de <strong>qualquer</strong> tipo, embora só valha para <code>ONTOLOGY</code>: <code>INCLUDE SHARED BIBLIOGRAPHY</code> faz o parse e recebe o <a href="../reference/guia_erros.html#sec-e084">erro E084</a>, com a explicação.</p>
 </section>
-<section id="metadata-e-description" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="metadata-e-description"><span class="header-section-number">4.2</span> Metadata e Description</h3>
-<pre class="lark"><code>metadata: KW_METADATA NEWLINE _INDENT (metadata_line | NEWLINE)+ _DEDENT
-          KW_END KW_METADATA NEWLINE
+<section id="metadata-description-e-questions" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="metadata-description-e-questions"><span class="header-section-number">4.2</span> METADATA, DESCRIPTION e QUESTIONS</h3>
+<pre class="lark"><code>metadata: KW_METADATA NEWLINE _INDENT (metadata_line | NEWLINE)+ _DEDENT KW_END KW_METADATA NEWLINE
 metadata_line: TEXT_LINE NEWLINE
 
-description: KW_DESCRIPTION NEWLINE description_lines
-             KW_END KW_DESCRIPTION NEWLINE?
-description_lines: (TEXT_LINE NEWLINE | NEWLINE)+</code></pre>
-<p>Metadata e description são blocos de texto livre, delimitados por <code>END METADATA</code> e <code>END DESCRIPTION</code>.</p>
+description: KW_DESCRIPTION NEWLINE description_lines KW_END KW_DESCRIPTION NEWLINE?
+description_lines: (TEXT_LINE NEWLINE | NEWLINE)+
+
+questions: KW_QUESTIONS NEWLINE _INDENT question_lines _DEDENT KW_END KW_QUESTIONS NEWLINE?
+question_lines: (TEXT_LINE NEWLINE | NEWLINE)+</code></pre>
+<p>São blocos de texto livre. Note a diferença de recuo: <code>DESCRIPTION</code> <strong>não</strong> declara <code>_INDENT</code> (as linhas ficam no mesmo nível da keyword), enquanto <code>METADATA</code> e <code>QUESTIONS</code> exigem linhas recuadas. A forma <code>&lt;id&gt;: &lt;texto&gt;</code> das questões é conferida pelo compilador (<a href="../reference/guia_erros.html#sec-e091">E091</a>–<a href="../reference/guia_erros.html#sec-e093">E093</a>).</p>
+</section>
+<section id="phase-e-export" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="phase-e-export"><span class="header-section-number">4.3</span> PHASE e EXPORT</h3>
+<pre class="lark"><code>phase_block: KW_PHASE phase_scope IDENTIFIER NEWLINE _INDENT (export_prop | NEWLINE)+ _DEDENT KW_END KW_PHASE NEWLINE?
+phase_scope: KW_ANNOTATIONS | KW_ONTOLOGY
+
+export_block: KW_EXPORT IDENTIFIER IDENTIFIER? NEWLINE _INDENT (map_stmt | export_prop | NEWLINE)+ _DEDENT KW_END KW_EXPORT NEWLINE?
+export_prop: (IDENTIFIER | KW_DESCRIPTION) TEXT_LINE NEWLINE
+
+map_stmt: KW_MAP KW_RELATIONS? map_names (KW_FROM IDENTIFIER)? KW_TO map_target NEWLINE
+map_names: field_key ("," field_key)*
+map_target: IDENTIFIER+</code></pre>
+<p>As propriedades (<code>OUTPUT</code>, <code>NAMESPACE</code>, <code>FIELDS</code>, <code>INPUT</code>…) são <strong>palavras comuns</strong>, e o formato do <code>EXPORT</code> é um identificador. A gramática não muda quando surge uma propriedade nova; quem as confere é o compilador.</p>
 </section>
 </section>
 <section id="sec-annotation" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="sec-annotation"><span class="header-section-number">5</span> Blocos de anotação</h2>
-<p>Os três blocos de anotação compartilham a mesma estrutura interna — apenas a keyword de abertura/fechamento muda:</p>
 <pre class="lark"><code>source_block: KW_SOURCE BIBREF NEWLINE
               (_INDENT (field_entry | NEWLINE)* _DEDENT)?
               KW_END KW_SOURCE
@@ -546,27 +557,25 @@ ontology_block: KW_ONTOLOGY concept_name NEWLINE
                 KW_END KW_ONTOLOGY
 
 concept_name: CONCEPT_NAME</code></pre>
-<p>Aspectos importantes:</p>
 <ul>
-<li><strong>SOURCE</strong> e <strong>ITEM</strong> recebem um <code>BIBREF</code> (ex: <code>@smith2024</code>).</li>
-<li><strong>ONTOLOGY</strong> recebe um <code>concept_name</code> — que é mais flexível (pode conter espaços; veja a seção de <a href="#sec-tokens">Tokens</a>).</li>
-<li>O corpo <code>(field_entry | NEWLINE)*</code> é <strong>opcional</strong> — blocos vazios são sintaticamente válidos (mas o validador semântico pode rejeitá-los, como E023: EmptyItemBlock).</li>
-<li>A indentação (<code>_INDENT</code>/<code>_DEDENT</code>) delimita o corpo do bloco.</li>
+<li><code>SOURCE</code> e <code>ITEM</code> recebem um <code>BIBREF</code> (ex.: <code>@smith2024</code>).</li>
+<li><code>ONTOLOGY</code> recebe um <code>concept_name</code>, mais permissivo (veja <a href="#sec-tokens">Tokens</a>).</li>
+<li>O corpo é <strong>opcional</strong>: blocos vazios são sintaticamente válidos, mas o validador pode rejeitá-los (<a href="../reference/guia_erros.html#sec-e023">E023</a>).</li>
+<li>A indentação (<code>_INDENT</code>/<code>_DEDENT</code>) delimita o corpo.</li>
 </ul>
 </section>
 <section id="sec-fields" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="sec-fields"><span class="header-section-number">6</span> Campos e valores</h2>
-<p>Os campos (<code>field_entry</code>) aparecem dentro dos blocos de anotação. São o coração dos dados:</p>
 <pre class="lark"><code>field_entry: field_key ":" value NEWLINE continuation_block?
            | field_key ":" NEWLINE _INDENT text_block _DEDENT NEWLINE?</code></pre>
-<p>Duas formas: valor na mesma linha (com continuação opcional), ou valor multilinha indentado.</p>
+<p>Duas formas: valor na mesma linha (com continuação opcional) ou valor que começa na linha seguinte, recuado.</p>
 <section id="chaves-de-campo" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="chaves-de-campo"><span class="header-section-number">6.1</span> Chaves de campo</h3>
 <pre class="lark"><code>field_key: FIELD_NAME
          | KW_TOPIC | KW_DESCRIPTION | KW_CODE | KW_CHAIN
          | KW_TEXT | KW_MEMO | KW_QUOTATION | KW_DATE
          | KW_SCALE | KW_ENUMERATED | KW_ORDERED</code></pre>
-<p>O <code>field_key</code> aceita tanto nomes definidos pelo usuário (<code>FIELD_NAME</code>) quanto keywords que podem ser usadas como nomes de campo. Isso permite campos como <code>code:</code>, <code>chain:</code> e <code>description:</code> — que são simultaneamente keywords e nomes de campo.</p>
+<p>Além dos nomes definidos pelo usuário (<code>FIELD_NAME</code>), as keywords de tipo podem nomear campos — daí <code>code:</code>, <code>chain:</code> e <code>description:</code>.</p>
 </section>
 <section id="tipos-de-valor" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="tipos-de-valor"><span class="header-section-number">6.2</span> Tipos de valor</h3>
@@ -576,151 +585,125 @@ concept_name: CONCEPT_NAME</code></pre>
      | chain_expr
      | code_list
      | TEXT_LINE</code></pre>
-<p>O parser tenta cada alternativa na ordem acima. A prioridade dos tokens (<code>.2</code>, <code>.3</code>, <code>.4</code>) resolve ambiguidades:</p>
-<ul>
-<li><code>NUMBER.4</code> tem prioridade máxima — <code>42</code> é reconhecido como número, não como texto</li>
-<li><code>CHAIN_ELEMENT.2</code> e <code>CODE_ELEMENT.2</code> têm prioridade intermediária</li>
-<li><code>TEXT_LINE.3</code> captura todo o resto</li>
-</ul>
+<p>As prioridades dos tokens (<code>.2</code>, <code>.3</code>, <code>.4</code>) resolvem ambiguidades. A interpretação final do valor depende do <strong>tipo declarado no template</strong>: um <code>TEXT</code> com <code>-&gt;</code> continua sendo texto.</p>
 </section>
 <section id="listas-de-código-e-expressões-de-cadeia" class="level3" data-number="6.3">
 <h3 data-number="6.3" class="anchored" data-anchor-id="listas-de-código-e-expressões-de-cadeia"><span class="header-section-number">6.3</span> Listas de código e expressões de cadeia</h3>
 <pre class="lark"><code>code_list: CODE_ELEMENT ("," CODE_ELEMENT)*
-
 chain_expr: CHAIN_ELEMENT ("-&gt;" CHAIN_ELEMENT)+</code></pre>
-<p>Códigos são separados por vírgula; elementos de cadeia são separados por <code>-&gt;</code>.</p>
-<p>Exemplos:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">code:</span> Social_Cohesion, Collective_Action</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Trust <span class="op">-&gt;</span> Cooperation <span class="op">-&gt;</span> Collective_Action</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2024</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Social_Cohesion, Collective_Action</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Trust <span class="op">-&gt;</span> Cooperation <span class="op">-&gt;</span> Collective_Action</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="texto-multilinha" class="level3" data-number="6.4">
 <h3 data-number="6.4" class="anchored" data-anchor-id="texto-multilinha"><span class="header-section-number">6.4</span> Texto multilinha</h3>
 <pre class="lark"><code>continuation_block: _INDENT text_block _DEDENT
 text_block: TEXT_LINE (NEWLINE TEXT_LINE)* NEWLINE?</code></pre>
-<p>Quando o valor de um campo não cabe numa linha, o texto continua nas linhas seguintes com indentação:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">note:</span> Participant describes spontaneous collective action as a</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    primary resilience mechanism, bypassing formal institutions.</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    Suggests strong bonding social capital.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O <code>_INDENT</code> e <code>_DEDENT</code> são gerados pelo <code>SynesisIndenter</code> — funciona como a indentação significativa do Python.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2024</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Participant describes spontaneous collective action as a</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        primary resilience mechanism, bypassing formal institutions.</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        Suggests strong bonding social capital.</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>_INDENT</code> e <code>_DEDENT</code> são gerados pelo <code>SynesisIndenter</code>, como na indentação significativa do Python. A partir do synesis 0.16.0, as linhas de continuação chegam inteiras ao valor, também em listas de códigos e cadeias.</p>
 </section>
 </section>
 <section id="sec-template" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="sec-template"><span class="header-section-number">7</span> Bloco TEMPLATE</h2>
-<p>O template define a estrutura que todos os blocos de anotação devem seguir:</p>
 <section id="cabeçalho" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="cabeçalho"><span class="header-section-number">7.1</span> Cabeçalho</h3>
 <pre class="lark"><code>template_header: KW_TEMPLATE IDENTIFIER template_meta*
 template_meta: IDENTIFIER ":" value</code></pre>
+<p>Não há <code>NEWLINE</code> na regra: os metadados vão <strong>na mesma linha</strong> do nome.</p>
 </section>
-<section id="especificação-de-campos-por-escopo" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="especificação-de-campos-por-escopo"><span class="header-section-number">7.2</span> Especificação de campos por escopo</h3>
+<section id="campos-por-escopo" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="campos-por-escopo"><span class="header-section-number">7.2</span> Campos por escopo</h3>
 <pre class="lark"><code>field_spec_block: scope_type KW_FIELDS NEWLINE _INDENT field_list _DEDENT
                   KW_END scope_type KW_FIELDS
 scope_type: KW_SOURCE | KW_ITEM | KW_ONTOLOGY
 
 field_list: (requirement_clause | NEWLINE)*
 requirement_clause: KW_REQUIRED bundle_modifier? field_names
-                  | KW_OPTIONAL field_names
+                  | KW_OPTIONAL bundle_modifier? field_names
                   | KW_FORBIDDEN field_names
                   | KW_REQUIRED field_key KW_ON KW_BIBLIOGRAPHY
                   | KW_OPTIONAL field_key KW_ON KW_BIBLIOGRAPHY
+                  | KW_REQUIRED field_key KW_ON KW_DATASET STRING
+                  | KW_OPTIONAL field_key KW_ON KW_DATASET STRING
 
 bundle_modifier: KW_BUNDLE
 field_names: field_key ("," field_key)*</code></pre>
-<p>Define quais campos são obrigatórios, opcionais ou proibidos para cada escopo. O modificador <code>BUNDLE</code> indica que os campos devem aparecer sempre juntos.</p>
-<p>Exemplo:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> citation, <span class="at">note</span>, code</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O sufixo <code>ON BIBLIOGRAPHY</code> declara que o valor do campo vem da entrada <code>.bib</code> do SOURCE, não do texto do documento:</p>
+<p>As alternativas com <code>ON BIBLIOGRAPHY</code> e <code>ON DATASET</code> usam <code>field_key</code> (singular), não <code>field_names</code>. Numa lista, <code>REQUIRED a, b ON BIBLIOGRAPHY</code> seria ambíguo; a gramática elimina o caso.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> lattes_id ON <span class="kw">BIBLIOGRAPHY</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note que as duas alternativas com <code>ON BIBLIOGRAPHY</code> usam <code>field_key</code> (singular), não <code>field_names</code> (lista). Isso é deliberado: numa lista, <code>REQUIRED a, b, c ON BIBLIOGRAPHY</code> seria ambíguo — o sufixo se aplicaria a <code>c</code> apenas, ou aos três? A gramática resolve a ambiguidade eliminando o caso: <strong>lista + <code>ON BIBLIOGRAPHY</code> é erro de sintaxe.</strong></p>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> regiao ON DATASET <span class="st">"entrevista.regiao"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="definição-de-campo-individual" class="level3" data-number="7.3">
-<h3 data-number="7.3" class="anchored" data-anchor-id="definição-de-campo-individual"><span class="header-section-number">7.3</span> Definição de campo individual</h3>
+<section id="definição-de-campo" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="definição-de-campo"><span class="header-section-number">7.3</span> Definição de campo</h3>
 <pre class="lark"><code>field_def_block: KW_FIELD field_key KW_TYPE type_spec
                  (field_props | NEWLINE)*
                  (_INDENT (field_props | NEWLINE)* _DEDENT)?
                  KW_END KW_FIELD
 
 type_spec: simple_type | KW_CHAIN | KW_ENUMERATED | KW_ORDERED | KW_TOPIC
-simple_type: KW_QUOTATION | KW_MEMO | KW_CODE | KW_TEXT | KW_DATE | KW_SCALE</code></pre>
-<p>Cada campo tem um nome, um tipo, e propriedades opcionais:</p>
-<pre class="lark"><code>field_props: KW_SCOPE scope_type
+simple_type: KW_QUOTATION | KW_MEMO | KW_CODE | KW_TEXT | KW_DATE | KW_SCALE
+
+field_props: KW_SCOPE scope_type
+           | KW_ROLE IDENTIFIER+
            | KW_FORMAT format_spec
            | KW_DESCRIPTION TEXT_LINE
            | KW_ARITY COMPARATOR NUMBER
            | KW_VALUES value_list KW_END KW_VALUES
            | KW_RELATIONS relation_list KW_END KW_RELATIONS
-           | guidelines_block
            | KW_IDENTIFIES entity_label
            | KW_REFERS KW_TO entity_label
+           | KW_CONTEXT KW_FROM KW_DATASET dataset_paths
+           | guidelines_block
 
-entity_label: FIELD_NAME</code></pre>
-<p>Cada tipo de campo usa propriedades diferentes:</p>
+entity_label: FIELD_NAME
+dataset_paths: STRING ("," STRING)*</code></pre>
+<p>A gramática aceita qualquer propriedade em qualquer tipo; a matriz é semântica:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Tipo</th>
-<th>Propriedades típicas</th>
+<th>Obrigatória</th>
+<th>Exclusivas</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>QUOTATION</code>, <code>MEMO</code>, <code>TEXT</code></td>
-<td>SCOPE, DESCRIPTION</td>
+<td><code>CHAIN</code></td>
+<td><code>ARITY</code></td>
+<td><code>ARITY</code>, <code>RELATIONS</code></td>
 </tr>
 <tr class="even">
-<td><code>CODE</code></td>
-<td>SCOPE, DESCRIPTION</td>
+<td><code>ORDERED</code></td>
+<td><code>VALUES</code> (com <code>[N]</code>)</td>
+<td><code>VALUES</code></td>
 </tr>
 <tr class="odd">
-<td><code>CHAIN</code></td>
-<td>SCOPE, ARITY, RELATIONS, DESCRIPTION</td>
+<td><code>ENUMERATED</code></td>
+<td><code>VALUES</code> (sem <code>[N]</code>)</td>
+<td><code>VALUES</code></td>
 </tr>
 <tr class="even">
 <td><code>SCALE</code></td>
-<td>SCOPE, FORMAT (<code>[min..max]</code>), DESCRIPTION</td>
+<td><code>FORMAT</code></td>
+<td><code>FORMAT</code></td>
 </tr>
 <tr class="odd">
-<td><code>ORDERED</code></td>
-<td>SCOPE, VALUES (com <code>[N]</code> prefixo), DESCRIPTION</td>
-</tr>
-<tr class="even">
-<td><code>ENUMERATED</code></td>
-<td>SCOPE, VALUES, DESCRIPTION</td>
-</tr>
-<tr class="odd">
-<td><code>TOPIC</code></td>
-<td>SCOPE, DESCRIPTION</td>
-</tr>
-<tr class="even">
-<td><code>DATE</code></td>
-<td>SCOPE, DESCRIPTION</td>
+<td>demais</td>
+<td>—</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
+<p><code>DESCRIPTION</code>, <code>GUIDELINES</code> e <code>CONTEXT FROM DATASET</code> valem para todos. <code>IDENTIFIES</code> e <code>REFERS TO</code> só em <code>SCOPE SOURCE</code> (<a href="../reference/guia_erros.html#sec-e078">E078</a>); <code>ROLE</code> só em <code>SCOPE ONTOLOGY</code> (<a href="../reference/guia_erros.html#sec-e108">E108</a>). O papel depois de <code>ROLE</code> é uma sequência de palavras comuns, conferida contra o catálogo do compilador.</p>
 </section>
-<section id="modificadores-de-ligação" class="level3" data-number="7.4">
-<h3 data-number="7.4" class="anchored" data-anchor-id="modificadores-de-ligação"><span class="header-section-number">7.4</span> Modificadores de ligação</h3>
-<p><code>IDENTIFIES</code> e <code>REFERS TO</code> declaram a participação do campo na ligação entre projetos independentes:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> lattes_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher      <span class="co"># chave primária da entidade</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> autor_id <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher       <span class="co"># chave estrangeira para a entidade</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O rótulo da entidade (<code>entity_label</code>) reusa o token <code>FIELD_NAME</code> — mesma classe léxica de um nome de campo. Como qualquer propriedade em <code>field_props</code>, os dois modificadores são aceitos pela gramática em campos de <strong>qualquer</strong> escopo; a restrição a <code>SCOPE SOURCE</code> é semântica (erro 78), pela mesma razão pedagógica do <code>SHARED</code>.</p>
-<p>Ver <a href="../reference/guia_referencia.html">Ligação entre Projetos</a> no Guia de Referência para a semântica completa.</p>
-</section>
-<section id="values-e-relations" class="level3" data-number="7.5">
-<h3 data-number="7.5" class="anchored" data-anchor-id="values-e-relations"><span class="header-section-number">7.5</span> VALUES e RELATIONS</h3>
+<section id="values-e-relations" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="values-e-relations"><span class="header-section-number">7.4</span> VALUES e RELATIONS</h3>
 <pre class="lark"><code>value_list: (value_entry | NEWLINE)+
           | NEWLINE _INDENT (value_entry | NEWLINE)+ _DEDENT
           | _INDENT (value_entry | NEWLINE)+ _DEDENT
@@ -731,44 +714,43 @@ relation_list: (relation_entry | NEWLINE)+
              | NEWLINE _INDENT (relation_entry | NEWLINE)+ _DEDENT
              | _INDENT (relation_entry | NEWLINE)+ _DEDENT
 relation_entry: IDENTIFIER ":" TEXT_LINE</code></pre>
-<p>VALUES aceita um prefixo de índice opcional (<code>[1]</code>, <code>[2]</code>, etc.) para campos <code>ORDERED</code>.</p>
+<p>Cada valor é um <code>IDENTIFIER</code> (sem espaços) seguido de <code>:</code> e de uma descrição. O prefixo <code>[N]</code> é obrigatório em <code>ORDERED</code> e proibido em <code>ENUMERATED</code> (<a href="../reference/guia_erros.html#sec-e087">E087</a>).</p>
 </section>
-<section id="format-e-arity" class="level3" data-number="7.6">
-<h3 data-number="7.6" class="anchored" data-anchor-id="format-e-arity"><span class="header-section-number">7.6</span> FORMAT e ARITY</h3>
+<section id="format-e-arity" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="format-e-arity"><span class="header-section-number">7.5</span> FORMAT e ARITY</h3>
 <pre class="lark"><code>format_spec: IDENTIFIER | scale_format
 scale_format: "[" NUMBER ".." NUMBER "]"</code></pre>
-<p>FORMAT define o intervalo para campos SCALE: <code>[0..10]</code>, <code>[1..5]</code>, etc.</p>
-<pre class="lark"><code>KW_ARITY COMPARATOR NUMBER</code></pre>
-<p>ARITY define quantos elementos um CHAIN deve ter: <code>&gt;=2</code>, <code>=3</code>, <code>&lt;5</code>, etc.</p>
+<p><code>FORMAT</code> define o intervalo de um <code>SCALE</code>: <code>[0..10]</code>, <code>[1..5]</code>. <code>ARITY</code> usa um comparador e um número inteiro: <code>&gt;= 2</code>, <code>= 3</code>, <code>&lt; 5</code>.</p>
 </section>
-<section id="bloco-guidelines" class="level3" data-number="7.7">
-<h3 data-number="7.7" class="anchored" data-anchor-id="bloco-guidelines"><span class="header-section-number">7.7</span> Bloco GUIDELINES</h3>
-<pre class="lark"><code>guidelines_block: KW_GUIDELINES NEWLINE guidelines_lines
-                  KW_END KW_GUIDELINES
+<section id="bloco-guidelines" class="level3" data-number="7.6">
+<h3 data-number="7.6" class="anchored" data-anchor-id="bloco-guidelines"><span class="header-section-number">7.6</span> Bloco GUIDELINES</h3>
+<pre class="lark"><code>guidelines_block: KW_GUIDELINES NEWLINE guidelines_lines KW_END KW_GUIDELINES
 guidelines_lines: (_INDENT | _DEDENT | guideline_line | NEWLINE)*
-guideline_line: guideline_token+ NEWLINE</code></pre>
-<p>O GUIDELINES é um bloco de texto livre dentro de uma definição de FIELD. Aceita praticamente qualquer token — incluindo keywords, identificadores, strings, números e operadores — porque seu conteúdo é documentação em prosa, não código estruturado.</p>
-<pre class="lark"><code>guideline_token: TEXT_LINE | IDENTIFIER | FIELD_NAME | BIBREF | STRING
-               | NUMBER | COMPARATOR
-               | KW_PROJECT | KW_SOURCE | KW_ITEM | KW_ONTOLOGY
-               | KW_TEMPLATE | KW_FIELD | KW_INCLUDE | KW_BIBLIOGRAPHY
-               | KW_ANNOTATIONS | KW_FIELDS | KW_REQUIRED | KW_OPTIONAL
-               | KW_FORBIDDEN | KW_BUNDLE | KW_TYPE | KW_SCOPE | KW_FORMAT
-               | KW_DESCRIPTION | KW_ARITY | KW_VALUES | KW_RELATIONS
-               | KW_METADATA | KW_QUOTATION | KW_MEMO | KW_CODE | KW_CHAIN
-               | KW_TEXT | KW_DATE | KW_SCALE | KW_ENUMERATED | KW_ORDERED
-               | KW_TOPIC | KW_GUIDELINES
-               | COLON | "," | "-&gt;"
-
-COLON: ":"</code></pre>
+guideline_line: guideline_token+ NEWLINE
+guideline_token: TEXT_LINE | IDENTIFIER | FIELD_NAME | BIBREF | STRING | NUMBER | COMPARATOR
+               | KW_PROJECT | KW_SOURCE | KW_ITEM | ... | KW_GUIDELINES
+               | COLON | "," | "-&gt;"</code></pre>
+<p>É prosa dentro de um <code>FIELD</code>, por isso aceita quase qualquer token. O texto é remontado a partir dos tokens originais, com a grafia do arquivo.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Evite começar uma linha de GUIDELINES com keyword
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Palavras como <code>Include</code>, <code>Item</code>, <code>Source</code>, <code>Field</code> ou <code>End</code> no começo da linha podem confundir a leitura. Reescreva (“Para incluir…” → “Acrescente…”). <code>#</code> dentro de <code>GUIDELINES</code> não é comentário: a linha vai para o modelo.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-tokens" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="sec-tokens"><span class="header-section-number">8</span> Tokens</h2>
-<p>Os tokens são as unidades atômicas reconhecidas pelo lexer, antes de qualquer regra gramatical ser aplicada.</p>
 <section id="identificadores-e-referências" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="identificadores-e-referências"><span class="header-section-number">8.1</span> Identificadores e referências</h3>
-<pre class="lark"><code>BIBREF: "@" /[a-zA-Z][a-zA-Z0-9_-]*/
+<pre class="lark"><code>BIBREF: "@" /[a-zA-Z0-9][a-zA-Z0-9_-]*/
 
 IDENTIFIER.1: /[\p{L}_][\p{L}\p{N}_\-]*/u
 
@@ -791,23 +773,23 @@ CONCEPT_NAME.0: /[^\s#\n\r][^#\n\r]*/u</code></pre>
 <tbody>
 <tr class="odd">
 <td><code>BIBREF</code></td>
-<td><code>@</code> + letra + alfanumérico/underline/hífen</td>
-<td><code>@smith2024</code>, <code>@WHO-2023</code></td>
+<td><code>@</code> + letra ou dígito + alfanumérico/<code>_</code>/<code>-</code></td>
+<td><code>@smith2024</code>, <code>@WHO-2023</code>, <code>@001</code></td>
 </tr>
 <tr class="even">
 <td><code>IDENTIFIER</code></td>
-<td>Letra/underline + alfanumérico/underline/hífen</td>
+<td>letra/<code>_</code> + alfanumérico/<code>_</code>/<code>-</code></td>
 <td><code>demo</code>, <code>Social_Cohesion</code></td>
 </tr>
 <tr class="odd">
 <td><code>FIELD_NAME</code></td>
-<td>Como IDENTIFIER, mas exclui <code>END</code></td>
-<td><code>code</code>, <code>citation</code> (nunca <code>end</code>)</td>
+<td>como <code>IDENTIFIER</code>, exceto <code>END</code></td>
+<td><code>code</code>, <code>citation</code></td>
 </tr>
 <tr class="even">
 <td><code>CONCEPT_NAME</code></td>
-<td>Qualquer texto até <code>#</code> ou fim de linha</td>
-<td><code>Social Cohesion</code>, <code>Trust-Based Cooperation</code></td>
+<td>qualquer texto até <code>#</code> ou fim de linha</td>
+<td><code>Social_Cohesion</code></td>
 </tr>
 </tbody>
 </table>
@@ -821,7 +803,7 @@ FIELD_NAME vs END
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O <code>FIELD_NAME</code> usa um lookahead negativo <code>(?![eE][nN][dD]\b)</code> para evitar que a keyword <code>END</code> seja capturada como nome de campo. Sem isso, <code>END ITEM</code> seria parseado como um campo chamado <code>END</code> com valor <code>ITEM</code>.</p>
+<p>O lookahead negativo <code>(?![eE][nN][dD]\b)</code> impede que <code>END</code> seja lido como nome de campo; sem ele, <code>END ITEM</code> seria um campo chamado <code>END</code>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -830,32 +812,25 @@ FIELD_NAME vs END
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-CONCEPT_NAME e espaços
+<code>CONCEPT_NAME</code> e espaços
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>CONCEPT_NAME</code> tem prioridade <code>.0</code> (a mais baixa) e aceita espaços. Isso permite conceitos como <code>Social Cohesion</code> na ontologia. Os outros tokens (<code>IDENTIFIER</code>, <code>FIELD_NAME</code>) não aceitam espaços, garantindo que a gramática não seja ambígua nos demais contextos.</p>
+<p>A gramática aceita espaços no nome de um bloco <code>ONTOLOGY</code>, mas um conceito com espaços não pode ser citado em cadeias (<a href="../reference/guia_erros.html#sec-e015">E015</a>) nem usado como código (<a href="../reference/guia_erros.html#sec-e033">E033</a>). Use <code>_</code>.</p>
 </div>
 </div>
 </section>
 <section id="elementos-de-código-e-cadeia" class="level3" data-number="8.2">
 <h3 data-number="8.2" class="anchored" data-anchor-id="elementos-de-código-e-cadeia"><span class="header-section-number">8.2</span> Elementos de código e cadeia</h3>
 <pre class="lark"><code>CHAIN_ELEMENT.2: /[\p{L}_](?:(?!-&gt;)[\p{L}\p{N}_\- ])*/u
-
 CODE_ELEMENT.2: /[\p{L}_](?:(?!,)[\p{L}\p{N}_\- ])*/u</code></pre>
-<p>Ambos aceitam espaços internos, mas param antes do seu delimitador:</p>
-<ul>
-<li><code>CHAIN_ELEMENT</code> para antes de <code>-&gt;</code> (operador de cadeia)</li>
-<li><code>CODE_ELEMENT</code> para antes de <code>,</code> (separador de lista)</li>
-</ul>
-<p>Isso permite códigos com espaços como <code>Social Cohesion</code> em listas: <code>Social Cohesion, Collective Action</code>.</p>
+<p>Ambos capturam espaços internos e param antes do delimitador (<code>-&gt;</code> ou <code>,</code>). Capturar o espaço permite que o validador explique o erro em vez de o parser falhar.</p>
 </section>
 <section id="valores-e-texto" class="level3" data-number="8.3">
 <h3 data-number="8.3" class="anchored" data-anchor-id="valores-e-texto"><span class="header-section-number">8.3</span> Valores e texto</h3>
 <pre class="lark"><code>STRING: /"[^"]*"/
 NUMBER.4: /[0-9]+(\.[0-9]+)?/
 COMPARATOR: "&gt;=" | "&lt;=" | "=" | "&gt;" | "&lt;"
-
 TEXT_LINE.3: /[^\s\n\r:][^\n\r]*/</code></pre>
 <table class="caption-top table">
 <thead>
@@ -868,47 +843,44 @@ TEXT_LINE.3: /[^\s\n\r:][^\n\r]*/</code></pre>
 <tbody>
 <tr class="odd">
 <td><code>STRING</code></td>
-<td>Texto entre aspas duplas</td>
+<td>texto entre aspas duplas</td>
 <td>—</td>
 </tr>
 <tr class="even">
 <td><code>NUMBER</code></td>
-<td>Inteiro ou decimal</td>
-<td><code>.4</code> (alta)</td>
+<td>inteiro ou decimal</td>
+<td><code>.4</code></td>
 </tr>
 <tr class="odd">
 <td><code>COMPARATOR</code></td>
-<td>Operadores de comparação</td>
+<td>operadores de comparação</td>
 <td>—</td>
 </tr>
 <tr class="even">
 <td><code>TEXT_LINE</code></td>
-<td>Qualquer texto que não começa com espaço/<code>:</code></td>
+<td>texto que não começa com espaço ou <code>:</code></td>
 <td><code>.3</code></td>
 </tr>
 </tbody>
 </table>
-<p><code>TEXT_LINE</code> é o token “coringa” — captura tudo que não foi reconhecido por tokens mais específicos. A restrição <code>[^\s\n\r:]</code> no primeiro caractere evita conflito com o <code>:</code> dos campos e com indentação.</p>
+<p><code>TEXT_LINE</code> captura o que os tokens mais específicos não capturam. Permite símbolos científicos (<code>n=2383</code>, <code>p&lt;0.05</code>).</p>
 </section>
 <section id="tokens-especiais" class="level3" data-number="8.4">
 <h3 data-number="8.4" class="anchored" data-anchor-id="tokens-especiais"><span class="header-section-number">8.4</span> Tokens especiais</h3>
 <pre class="lark"><code>COMMENT: "#" /[^\n]*/
-
 NEWLINE: /(\r?\n[ \t]*)+/
 %declare _INDENT _DEDENT
-
 %ignore /[ \t]+/
 %ignore COMMENT</code></pre>
 <ul>
-<li><strong>Comentários</strong> (<code>#</code>) são ignorados pelo parser — podem aparecer em qualquer lugar.</li>
-<li><strong>NEWLINE</strong> captura quebras de linha junto com espaços/tabs iniciais da linha seguinte — isso alimenta o <code>SynesisIndenter</code> que gera os tokens <code>_INDENT</code>/<code>_DEDENT</code>.</li>
-<li><strong>Espaços e tabs</strong> são ignorados (fora do contexto de NEWLINE), tornando a indentação de conteúdo flexível.</li>
+<li><strong>Comentários</strong> (<code>#</code>) são ignorados pelo parser, salvo dentro de <code>GUIDELINES</code>.</li>
+<li><strong><code>NEWLINE</code></strong> captura a quebra de linha e o recuo seguinte, o que alimenta o <code>SynesisIndenter</code>.</li>
+<li><strong>Espaços e tabs</strong> fora desse contexto são ignorados.</li>
 </ul>
 </section>
 </section>
 <section id="sec-prioridades" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-prioridades"><span class="header-section-number">9</span> Prioridades — como ambiguidades são resolvidas</h2>
-<p>A tabela abaixo resume as prioridades e por que cada uma é necessária:</p>
+<h2 data-number="9" class="anchored" data-anchor-id="sec-prioridades"><span class="header-section-number">9</span> Prioridades — como as ambiguidades são resolvidas</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -926,7 +898,7 @@ NEWLINE: /(\r?\n[ \t]*)+/
 <tr class="odd">
 <td>Keywords (<code>KW_*</code>)</td>
 <td><code>.5</code></td>
-<td>Sempre prevalecem sobre identificadores</td>
+<td>prevalecem sobre identificadores</td>
 </tr>
 <tr class="even">
 <td><code>NUMBER</code></td>
@@ -936,37 +908,35 @@ NEWLINE: /(\r?\n[ \t]*)+/
 <tr class="odd">
 <td><code>TEXT_LINE</code></td>
 <td><code>.3</code></td>
-<td>Captura texto genérico, mas cede a tokens mais específicos</td>
+<td>texto genérico</td>
 </tr>
 <tr class="even">
 <td><code>CHAIN_ELEMENT</code>, <code>CODE_ELEMENT</code></td>
 <td><code>.2</code></td>
-<td>Prevalecem sobre <code>IDENTIFIER</code> em contexto de valor</td>
+<td>prevalecem sobre <code>IDENTIFIER</code> em valores</td>
 </tr>
 <tr class="odd">
 <td><code>IDENTIFIER</code>, <code>FIELD_NAME</code></td>
 <td><code>.1</code></td>
-<td>Prioridade base para nomes</td>
+<td>base para nomes</td>
 </tr>
 <tr class="even">
 <td><code>CONCEPT_NAME</code></td>
 <td><code>.0</code></td>
-<td>Menor prioridade — só usado quando nada mais encaixa</td>
+<td>só quando nada mais encaixa</td>
 </tr>
 </tbody>
 </table>
-<p>Se um trecho de texto casa com múltiplos tokens, o de maior prioridade vence. Isso é o que permite à gramática LALR(1) funcionar sem ambiguidade.</p>
 </section>
 <section id="sec-indentacao" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="sec-indentacao"><span class="header-section-number">10</span> Indentação significativa</h2>
-<p>O Synesis usa indentação significativa (como Python). O <code>SynesisIndenter</code> — um componente do lexer — processa as linhas e gera tokens <code>_INDENT</code> e <code>_DEDENT</code>:</p>
+<p>Como o Python, o Synesis usa indentação significativa. O <code>SynesisIndenter</code> processa as linhas e gera <code>_INDENT</code> e <code>_DEDENT</code>:</p>
 <ol type="1">
 <li>Tabs são convertidos em 4 espaços</li>
-<li>Se uma linha tem mais indentação que a anterior → gera <code>_INDENT</code></li>
-<li>Se tem menos → gera <code>_DEDENT</code></li>
-<li>Se tem a mesma → nada</li>
+<li>Mais recuo que a linha anterior → <code>_INDENT</code></li>
+<li>Menos recuo → <code>_DEDENT</code></li>
+<li>Mesmo recuo → nada</li>
 </ol>
-<p>Os tokens <code>_INDENT</code>/<code>_DEDENT</code> são declarados com <code>%declare</code> e geridos pelo Lark, não pela gramática em si. Eles aparecem nas regras como delimitadores de bloco:</p>
 <pre class="lark"><code>project_body: _INDENT project_items _DEDENT
 source_block: KW_SOURCE BIBREF NEWLINE (_INDENT ... _DEDENT)? KW_END KW_SOURCE</code></pre>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -979,9 +949,13 @@ Indentação inconsistente
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Se um arquivo mistura tabs e espaços de forma inconsistente, o <code>SynesisIndenter</code> pode gerar tokens <code>_INDENT</code>/<code>_DEDENT</code> inesperados, resultando em erros de sintaxe difíceis de diagnosticar. A normalização de tabs para 4 espaços ameniza, mas não elimina completamente esse risco.</p>
+<p>Fechar um bloco numa coluna que não corresponde a nenhum nível aberto produz erro de sintaxe, com a posição aproximada. Evite misturar tabs e espaços.</p>
 </div>
 </div>
+</section>
+<section id="sec-standalone" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="sec-standalone"><span class="header-section-number">11</span> O parser gerado</h2>
+<p>Em produção, o compilador usa <code>synesis_standalone.py</code>, um parser LALR pré-gerado a partir do <code>.lark</code> (partida mais rápida, mesma gramática). Quem altera a gramática precisa <strong>regenerar</strong> esse arquivo; há testes que comparam os dois.</p>
 
 
 </section>

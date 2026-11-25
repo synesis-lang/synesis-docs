@@ -388,7 +388,7 @@ Para quem é este documento?
         subgraph ExplorerInternals ["Dentro da extensão"]
             direction LR
             LC["SynesisLspClient&lt;br/&gt;vscode-languageclient"]
-            UI["Explorers visuais&lt;br/&gt;Reference · Code · Relation · Ontology"]
+            UI["Painéis visuais&lt;br/&gt;References · Codes · Relations&lt;br/&gt;Ontology · Template Fields"]
         end
         EX --&gt; ExplorerInternals
     end
@@ -409,6 +409,7 @@ Para quem é este documento?
             F6["semantic_tokens"]
             F7["code_actions"]
             F8["references"]
+            F9["hierarchy"]
         end
     end
 
@@ -523,7 +524,7 @@ Por que não compilar o projeto inteiro a cada tecla?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A compilação completa leva ~3.7 segundos e envolve leitura de disco para todos os arquivos do projeto. É inviável para feedback em tempo real. O <code>lsp_adapter</code> resolve isso validando apenas o arquivo aberto, usando o contexto (template, bibliografia, ontologia) em cache.</p>
+<p>A compilação completa envolve leitura de disco de todos os arquivos do projeto e pode levar vários segundos em projetos grandes. É inviável para feedback em tempo real. O <code>lsp_adapter</code> resolve isso validando apenas o arquivo aberto, usando o contexto (template, bibliografia, ontologia) em cache.</p>
 </div>
 </div>
 </section>
@@ -660,7 +661,20 @@ Mensagens pedagógicas
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Quando disponível, o <code>error_handler</code> do compilador enriquece a mensagem com contexto e sugestões — por exemplo, “Código ‘Cohesion’ não encontrado na ontologia. Você quis dizer ‘Social_Cohesion’?”. Isso é feito via <code>create_pedagogical_error()</code>, que traduz tokens Lark internos em linguagem legível.</p>
+<p>Nos erros de sintaxe, o <code>error_handler</code> do compilador enriquece a mensagem com contexto e sugestões. Isso é feito por <code>create_pedagogical_error()</code>, que traduz tokens internos do Lark em linguagem legível. As mensagens do compilador e do servidor são escritas em inglês; o <a href="../reference/guia_erros.html">Guia de Erros</a> explica cada diagnóstico.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Códigos sem definição
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um código usado nas anotações e ausente da ontologia gera um <strong>aviso</strong>, não um erro. Por padrão o editor não marca cada ocorrência: a configuração <code>synesisExplorer.diagnostics.checkCodes</code> da extensão, desligada de início, liga o diagnóstico por ocorrência (<code>E004</code>). Ao mudar a opção, o servidor recompila os projetos em cache e republica os diagnósticos.</p>
 </div>
 </div>
 </section>
@@ -691,7 +705,7 @@ Mensagens pedagógicas
 </tr>
 <tr class="odd">
 <td>Salvar (<code>did_save</code>)</td>
-<td>Validação imediata + invalidação de cache se <code>.synp</code>/<code>.synt</code>/<code>.bib</code></td>
+<td><code>.synp</code> e <code>.synt</code> invalidam os caches e revalidam os arquivos abertos, assim como o <code>.bib</code>; <code>.syn</code> e <code>.syno</code> invalidam o cache de compilação</td>
 </tr>
 <tr class="even">
 <td>Fechar (<code>did_close</code>)</td>
@@ -725,12 +739,12 @@ Mensagens pedagógicas
 <tr class="even">
 <td><strong>Document Symbols</strong></td>
 <td><code>symbols.py</code></td>
-<td>Painel de outline — mostra SOURCEs, ITEMs e ONTOLOGYs como árvore</td>
+<td>Painel de outline — mostra SOURCEs, ITEMs e ONTOLOGYs como árvore; no <code>.synp</code>, também as questões de competência e os blocos <code>EXPORT</code></td>
 </tr>
 <tr class="odd">
 <td><strong>Hover</strong></td>
 <td><code>hover.py</code></td>
-<td>Tooltip ao passar o mouse — mostra definição do código, tipo do campo</td>
+<td>Tooltip ao passar o mouse — mostra definição do código e tipo do campo; com hierarquia declarada, também pais, filhos e termos preteridos (<code>USE</code>)</td>
 </tr>
 <tr class="even">
 <td><strong>Inlay Hints</strong></td>
@@ -764,7 +778,7 @@ Mensagens pedagógicas
 <tr class="odd">
 <td><strong>Completion</strong></td>
 <td><code>completion.py</code></td>
-<td>Autocomplete para <code>@bibrefs</code>, códigos e nomes de campo</td>
+<td>Autocomplete para <code>@bibrefs</code>, códigos, nomes de campo e blocos de anotação; papéis depois de <code>ROLE</code> e propriedades dentro de <code>EXPORT</code></td>
 </tr>
 <tr class="even">
 <td><strong>Go to Definition</strong></td>
@@ -774,7 +788,7 @@ Mensagens pedagógicas
 <tr class="odd">
 <td><strong>Find References</strong></td>
 <td><code>references.py</code></td>
-<td>Encontra todos os usos de um código ou bibref no projeto</td>
+<td>Encontra todos os usos de um código ou bibref no projeto, inclusive citações em campos de hierarquia da ontologia</td>
 </tr>
 <tr class="even">
 <td><strong>Rename</strong></td>
@@ -785,6 +799,11 @@ Mensagens pedagógicas
 <td><strong>Code Actions</strong></td>
 <td><code>code_actions.py</code></td>
 <td>Quick fixes — sugestões de correção para erros comuns</td>
+</tr>
+<tr class="even">
+<td><strong>Type Hierarchy</strong></td>
+<td><code>hierarchy.py</code></td>
+<td><em>Show Type Hierarchy</em> sobre um conceito: pais e filhos declarados por campos com <code>ROLE HIERARCHY</code> (<code>KIND</code>, <code>PART</code>, <code>INSTANCE</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -834,30 +853,55 @@ Mensagens pedagógicas
 <tr class="even">
 <td><code>synesis/getExcerpts</code></td>
 <td><code>explorer_requests.py</code></td>
-<td>Itens de uma fonte específica</td>
+<td>Itens de uma fonte específica, com os campos do bloco SOURCE</td>
 </tr>
 <tr class="odd">
 <td><code>synesis/getOntologyTopics</code></td>
 <td><code>ontology_topics.py</code></td>
-<td>Hierarquia de temas da ontologia</td>
+<td>Temas da ontologia; com <code>ROLE HIERARCHY</code>, a árvore da hierarquia</td>
 </tr>
 <tr class="even">
+<td><code>synesis/getSubtreeEvidence</code></td>
+<td><code>hierarchy.py</code></td>
+<td>Itens de um conceito e de todos os seus descendentes, sem repetição</td>
+</tr>
+<tr class="odd">
 <td><code>synesis/getOntologyAnnotations</code></td>
 <td><code>ontology_annotations.py</code></td>
 <td>Códigos com localizações no fonte</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>synesis/getAbstract</code></td>
 <td><code>abstract_viewer.py</code></td>
 <td>Conteúdo do campo ABSTRACT</td>
 </tr>
+<tr class="odd">
+<td><code>synesis/getBlocks</code></td>
+<td><code>blocks.py</code></td>
+<td>Blocos SOURCE e ITEM de um arquivo, com intervalo e referência</td>
+</tr>
+<tr class="even">
+<td><code>synesis/getTemplate</code></td>
+<td><code>template_info.py</code></td>
+<td>Campos e requisitos por escopo do template compilado</td>
+</tr>
+<tr class="odd">
+<td><code>synesis/getProjectStats</code></td>
+<td><code>server.py</code></td>
+<td>Contagens do projeto compilado</td>
+</tr>
+<tr class="even">
+<td><code>synesis/validateWorkspace</code></td>
+<td><code>workspace_diagnostics.py</code></td>
+<td>Diagnósticos de todo o projeto</td>
+</tr>
 </tbody>
 </table>
-<p>Todos esses comandos dependem do <code>WorkspaceCache</code> — primeiro é necessário chamar <code>loadProject</code> para compilar e cachear o projeto.</p>
+<p>Os comandos de consulta ao projeto dependem do <code>WorkspaceCache</code> — primeiro é necessário chamar <code>loadProject</code> para compilar e cachear o projeto.</p>
 </section>
 <section id="o-contrato-lsp-extensão" class="level3" data-number="6.5">
 <h3 data-number="6.5" class="anchored" data-anchor-id="o-contrato-lsp-extensão"><span class="header-section-number">6.5</span> O contrato LSP ↔︎ extensão</h3>
-<p>As respostas desses comandos customizados são descritas por <strong>JSON Schemas versionados</strong>. O servidor valida o que produz; a extensão valida o que consome, contra uma cópia dos mesmos schemas.</p>
+<p>As respostas dos principais comandos de consulta (referências, códigos, relações, itens de uma fonte e anotações da ontologia) são descritas por <strong>JSON Schemas versionados</strong>. O servidor valida o que produz; a extensão valida o que consome, contra uma cópia dos mesmos schemas.</p>
 <p>O ganho é que uma mudança de formato no servidor não chega ao usuário como um painel vazio ou um erro obscuro no editor: ela quebra o CI dos <strong>dois</strong> repositórios ao mesmo tempo, no momento da mudança.</p>
 </section>
 <section id="tipos-de-arquivo-reconhecidos" class="level3" data-number="6.6">
@@ -1027,126 +1071,157 @@ Reversão consciente, não regressão
 <tbody>
 <tr class="odd">
 <td><code>server.py</code></td>
-<td>~1700</td>
+<td>~2100</td>
 <td>Core</td>
 <td>Todos os outros + <code>synesis</code></td>
 </tr>
 <tr class="even">
-<td><code>converters.py</code></td>
-<td>~300</td>
-<td>Tradução</td>
-<td><code>synesis.ast</code></td>
-</tr>
-<tr class="odd">
-<td><code>cache.py</code></td>
-<td>~100</td>
-<td>Cache</td>
-<td>Nenhum</td>
-</tr>
-<tr class="even">
 <td><code>explorer_requests.py</code></td>
-<td>~1200</td>
+<td>~1360</td>
 <td>Feature</td>
 <td><code>converters</code>, <code>synesis</code></td>
 </tr>
 <tr class="odd">
-<td><code>symbols.py</code></td>
-<td>~300</td>
+<td><code>ontology_annotations.py</code></td>
+<td>~700</td>
 <td>Feature</td>
-<td><code>synesis.ast.nodes</code></td>
+<td><code>synesis</code></td>
 </tr>
 <tr class="even">
 <td><code>semantic_tokens.py</code></td>
-<td>~230</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="odd">
-<td><code>hover.py</code></td>
-<td>~280</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="even">
-<td><code>completion.py</code></td>
-<td>~150</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="odd">
-<td><code>definition.py</code></td>
-<td>~90</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="even">
-<td><code>references.py</code></td>
-<td>~210</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="odd">
-<td><code>rename.py</code></td>
-<td>~520</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="even">
-<td><code>code_actions.py</code></td>
-<td>~230</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="odd">
-<td><code>inlay_hints.py</code></td>
-<td>~60</td>
-<td>Feature</td>
-<td><code>synesis</code></td>
-</tr>
-<tr class="even">
-<td><code>signature_help.py</code></td>
-<td>~80</td>
+<td>~660</td>
 <td>Feature</td>
 <td><code>synesis</code></td>
 </tr>
 <tr class="odd">
 <td><code>graph.py</code></td>
-<td>~410</td>
+<td>~610</td>
 <td>Feature</td>
 <td><code>synesis</code></td>
 </tr>
 <tr class="even">
-<td><code>ontology_annotations.py</code></td>
-<td>~680</td>
+<td><code>rename.py</code></td>
+<td>~580</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>completion.py</code></td>
+<td>~380</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>symbols.py</code></td>
+<td>~350</td>
+<td>Feature</td>
+<td><code>synesis.ast.nodes</code></td>
+</tr>
+<tr class="odd">
+<td><code>template_diagnostics.py</code></td>
+<td>~340</td>
+<td>Feature</td>
+<td>Nenhum</td>
+</tr>
+<tr class="even">
+<td><code>hover.py</code></td>
+<td>~340</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>abstract_viewer.py</code></td>
+<td>~340</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>converters.py</code></td>
+<td>~330</td>
+<td>Tradução</td>
+<td><code>synesis.ast</code></td>
+</tr>
+<tr class="odd">
+<td><code>blocks.py</code></td>
+<td>~310</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>hierarchy.py</code></td>
+<td>~300</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>code_actions.py</code></td>
+<td>~300</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>references.py</code></td>
+<td>~260</td>
 <td>Feature</td>
 <td><code>synesis</code></td>
 </tr>
 <tr class="odd">
 <td><code>ontology_topics.py</code></td>
+<td>~250</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>inlay_hints.py</code></td>
 <td>~200</td>
 <td>Feature</td>
 <td><code>synesis</code></td>
 </tr>
+<tr class="odd">
+<td><code>shared_includes.py</code></td>
+<td>~150</td>
+<td>Apoio</td>
+<td><code>synesis</code></td>
+</tr>
 <tr class="even">
-<td><code>abstract_viewer.py</code></td>
-<td>~270</td>
+<td><code>workspace_diagnostics.py</code></td>
+<td>~150</td>
 <td>Feature</td>
 <td><code>synesis</code></td>
 </tr>
 <tr class="odd">
-<td><code>template_diagnostics.py</code></td>
-<td>~290</td>
+<td><code>template_info.py</code></td>
+<td>~140</td>
 <td>Feature</td>
-<td>Nenhum</td>
+<td><code>synesis</code></td>
 </tr>
 <tr class="even">
-<td><code>workspace_diagnostics.py</code></td>
+<td><code>code_usage.py</code></td>
 <td>~110</td>
+<td>Apoio</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>signature_help.py</code></td>
+<td>~110</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>cache.py</code></td>
+<td>~110</td>
+<td>Cache</td>
+<td>Nenhum</td>
+</tr>
+<tr class="odd">
+<td><code>definition.py</code></td>
+<td>~100</td>
 <td>Feature</td>
 <td><code>synesis</code></td>
 </tr>
 </tbody>
 </table>
+<p>Tamanhos aproximados na versão 0.25 do <code>synesis-lsp</code>.</p>
 <p>Todos os módulos de feature seguem o mesmo padrão: recebem o <code>CompilationResult</code> ou o source do documento, processam, e retornam tipos LSP que o <code>server.py</code> despacha para o editor.</p>
 </section>
 <section id="sec-relacao" class="level2" data-number="11">
@@ -1157,13 +1232,13 @@ Reversão consciente, não regressão
   ├── compiler.py        ← Pipeline completo
   ├── parser/            ← Lark + transformer
   ├── semantic/          ← Validador + linker
-  └── exporters/         ← JSON, CSV, Excel
+  └── exporters/         ← JSON, CSV, Excel, Alpaca, OKF, SKOS
 
 synesis-lsp (servidor)
   ├── server.py          ← Importa de synesis.lsp_adapter
   ├── converters.py      ← Importa de synesis.ast
   └── features/          ← Importam de synesis.*</code></pre>
-<p>O <code>lsp_adapter.py</code> foi colocado dentro do compilador (e não no LSP) porque precisa acessar internamente o parser, o transformer e o validador — componentes que não fazem parte da API pública do compilador. Ele funciona como uma <strong>fachada interna</strong>: expõe <code>validate_single_file()</code> como uma operação atômica que esconde toda a complexidade do pipeline de 8 estágios.</p>
+<p>O <code>lsp_adapter.py</code> foi colocado dentro do compilador (e não no LSP) porque precisa acessar internamente o parser, o transformer e o validador — componentes que não fazem parte da API pública do compilador. Ele funciona como uma <strong>fachada interna</strong>: expõe <code>validate_single_file()</code> como uma operação atômica que esconde a complexidade do pipeline.</p>
 <section id="a-fronteira-do-agregado-multiprojeto" class="level3" data-number="11.1">
 <h3 data-number="11.1" class="anchored" data-anchor-id="a-fronteira-do-agregado-multiprojeto"><span class="header-section-number">11.1</span> A fronteira do agregado multiprojeto</h3>
 <p>Há uma capacidade do compilador que o LSP deliberadamente <strong>não</strong> usa: o passo de linkagem entre projetos (<code>synesis compile p1.synp p2.synp</code>, ver <a href="../howto/ligar_projetos.html">Ligar Projetos</a>).</p>

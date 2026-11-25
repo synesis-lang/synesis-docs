@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -225,27 +259,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-  <li><a href="#guia-rapido-synesis-explorer-vs-code" id="toc-guia-rapido-synesis-explorer-vs-code" class="nav-link active" data-scroll-target="#guia-rapido-synesis-explorer-vs-code"><span class="header-section-number">1</span> Guia rapido: Synesis Explorer (VS Code)</a>
+  <li><a href="#guia-rápido-a-extensão-synesis-para-vs-code" id="toc-guia-rápido-a-extensão-synesis-para-vs-code" class="nav-link active" data-scroll-target="#guia-rápido-a-extensão-synesis-para-vs-code"><span class="header-section-number">1</span> Guia rápido: a extensão Synesis para VS Code</a>
   <ul class="collapse">
-  <li><a href="#o-que-a-extensao-faz" id="toc-o-que-a-extensao-faz" class="nav-link" data-scroll-target="#o-que-a-extensao-faz"><span class="header-section-number">1.1</span> O que a extensao faz</a></li>
-  <li><a href="#requisitos-basicos" id="toc-requisitos-basicos" class="nav-link" data-scroll-target="#requisitos-basicos"><span class="header-section-number">1.2</span> Requisitos basicos</a></li>
-  <li><a href="#instalacao-arquivo-vsix" id="toc-instalacao-arquivo-vsix" class="nav-link" data-scroll-target="#instalacao-arquivo-vsix"><span class="header-section-number">1.3</span> Instalacao (arquivo VSIX)</a></li>
-  <li><a href="#como-abrir-seu-projeto" id="toc-como-abrir-seu-projeto" class="nav-link" data-scroll-target="#como-abrir-seu-projeto"><span class="header-section-number">1.4</span> Como abrir seu projeto</a></li>
-  <li><a href="#onde-encontrar-o-synesis-explorer" id="toc-onde-encontrar-o-synesis-explorer" class="nav-link" data-scroll-target="#onde-encontrar-o-synesis-explorer"><span class="header-section-number">1.5</span> Onde encontrar o Synesis Explorer</a></li>
-  <li><a href="#usando-os-explorers" id="toc-usando-os-explorers" class="nav-link" data-scroll-target="#usando-os-explorers"><span class="header-section-number">1.6</span> Usando os Explorers</a>
-  <ul class="collapse">
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.6.1</span> References</a></li>
-  <li><a href="#codes" id="toc-codes" class="nav-link" data-scroll-target="#codes"><span class="header-section-number">1.6.2</span> Codes</a></li>
-  <li><a href="#relations" id="toc-relations" class="nav-link" data-scroll-target="#relations"><span class="header-section-number">1.6.3</span> Relations</a></li>
-  </ul></li>
-  <li><a href="#usando-os-viewers" id="toc-usando-os-viewers" class="nav-link" data-scroll-target="#usando-os-viewers"><span class="header-section-number">1.7</span> Usando os Viewers</a>
-  <ul class="collapse">
-  <li><a href="#graph-viewer" id="toc-graph-viewer" class="nav-link" data-scroll-target="#graph-viewer"><span class="header-section-number">1.7.1</span> Graph Viewer</a></li>
-  <li><a href="#abstract-viewer" id="toc-abstract-viewer" class="nav-link" data-scroll-target="#abstract-viewer"><span class="header-section-number">1.7.2</span> Abstract Viewer</a></li>
-  </ul></li>
-  <li><a href="#dicas-rapidas" id="toc-dicas-rapidas" class="nav-link" data-scroll-target="#dicas-rapidas"><span class="header-section-number">1.8</span> Dicas rapidas</a></li>
-  <li><a href="#problemas-comuns" id="toc-problemas-comuns" class="nav-link" data-scroll-target="#problemas-comuns"><span class="header-section-number">1.9</span> Problemas comuns</a></li>
-  <li><a href="#pronto-para-usar" id="toc-pronto-para-usar" class="nav-link" data-scroll-target="#pronto-para-usar"><span class="header-section-number">1.10</span> Pronto para usar</a></li>
+  <li><a href="#o-que-a-extensão-faz" id="toc-o-que-a-extensão-faz" class="nav-link" data-scroll-target="#o-que-a-extensão-faz"><span class="header-section-number">1.1</span> O que a extensão faz</a></li>
+  <li><a href="#requisitos" id="toc-requisitos" class="nav-link" data-scroll-target="#requisitos"><span class="header-section-number">1.2</span> Requisitos</a></li>
+  <li><a href="#instalação" id="toc-instalação" class="nav-link" data-scroll-target="#instalação"><span class="header-section-number">1.3</span> Instalação</a></li>
+  <li><a href="#primeiro-projeto" id="toc-primeiro-projeto" class="nav-link" data-scroll-target="#primeiro-projeto"><span class="header-section-number">1.4</span> Primeiro projeto</a></li>
+  <li><a href="#os-painéis" id="toc-os-painéis" class="nav-link" data-scroll-target="#os-painéis"><span class="header-section-number">1.5</span> Os painéis</a></li>
+  <li><a href="#grafos-e-resumos" id="toc-grafos-e-resumos" class="nav-link" data-scroll-target="#grafos-e-resumos"><span class="header-section-number">1.6</span> Grafos e resumos</a></li>
+  <li><a href="#edição" id="toc-edição" class="nav-link" data-scroll-target="#edição"><span class="header-section-number">1.7</span> Edição</a></li>
+  <li><a href="#codificar-com-ia" id="toc-codificar-com-ia" class="nav-link" data-scroll-target="#codificar-com-ia"><span class="header-section-number">1.8</span> Codificar com IA</a></li>
+  <li><a href="#conversar-com-o-grafo" id="toc-conversar-com-o-grafo" class="nav-link" data-scroll-target="#conversar-com-o-grafo"><span class="header-section-number">1.9</span> Conversar com o grafo</a></li>
+  <li><a href="#configurações" id="toc-configurações" class="nav-link" data-scroll-target="#configurações"><span class="header-section-number">1.10</span> Configurações</a></li>
+  <li><a href="#problemas-comuns" id="toc-problemas-comuns" class="nav-link" data-scroll-target="#problemas-comuns"><span class="header-section-number">1.11</span> Problemas comuns</a></li>
+  <li><a href="#pronto-para-usar" id="toc-pronto-para-usar" class="nav-link" data-scroll-target="#pronto-para-usar"><span class="header-section-number">1.12</span> Pronto para usar</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -256,42 +283,46 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="guia-rapido-synesis-explorer-vs-code" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Guia rapido: Synesis Explorer (VS Code)</h1>
-<p><strong>Objetivo:</strong> ajudar voce a instalar e usar a extensao para navegar seus arquivos Synesis (.syn, .synt, .synp, .syno) de forma simples.</p>
+<section id="guia-rápido-a-extensão-synesis-para-vs-code" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Guia rápido: a extensão Synesis para VS Code</h1>
+<p><strong>Objetivo:</strong> ajudar você a instalar e usar a extensão <strong>Synesis</strong> (versão 0.17) para escrever e navegar arquivos Synesis (<code>.synp</code>, <code>.synt</code>, <code>.syn</code>, <code>.syno</code>, <code>.synr</code>). Esta extensão também é conhecida como Synesis Explorer.</p>
+<p>A interface da extensão está em <strong>inglês</strong>.</p>
 <hr>
-<section id="o-que-a-extensao-faz" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="o-que-a-extensao-faz"><span class="header-section-number">1.1</span> O que a extensao faz</h2>
+<section id="o-que-a-extensão-faz" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="o-que-a-extensão-faz"><span class="header-section-number">1.1</span> O que a extensão faz</h2>
 <ul>
-<li>Mostra suas referencias, codigos e relacoes em paineis laterais</li>
-<li>Abre um grafo de relacoes e o resumo (abstract) das referencias</li>
-<li>Ajuda a encontrar trechos com facilidade</li>
+<li>Valida os arquivos enquanto você digita e completa campos, códigos e relações</li>
+<li>Mostra referências, códigos, relações, ontologia e campos do template em painéis laterais</li>
+<li>Abre grafos de relações e o resumo (abstract) das referências</li>
+<li>Codifica um trecho selecionado com o <code>synesis-coder</code></li>
+<li>Conversa com um banco de grafos do projeto no chat do VS Code</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/01_tela_inicial.png" class="img-fluid figure-img"></p>
-<figcaption>Tela inicial do VS Code com a extensao instalada.</figcaption>
+<figcaption>Tela inicial do VS Code com a extensão instalada.</figcaption>
 </figure>
 </div>
 <hr>
 </section>
-<section id="requisitos-basicos" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="requisitos-basicos"><span class="header-section-number">1.2</span> Requisitos basicos</h2>
+<section id="requisitos" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="requisitos"><span class="header-section-number">1.2</span> Requisitos</h2>
 <ul>
-<li>VS Code instalado</li>
-<li>Arquivos Synesis no seu computador</li>
+<li>VS Code</li>
+<li>Python 3.10 ou superior</li>
+<li>O compilador e o servidor de linguagem, que fazem a análise (a extensão é a interface):</li>
 </ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis synesis-lsp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
-<section id="instalacao-arquivo-vsix" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="instalacao-arquivo-vsix"><span class="header-section-number">1.3</span> Instalacao (arquivo VSIX)</h2>
+<section id="instalação" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="instalação"><span class="header-section-number">1.3</span> Instalação</h2>
 <ol type="1">
-<li>Abra o VS Code</li>
-<li>Clique no icone de extensoes (barra lateral)</li>
-<li>Clique nos tres pontinhos (menu) e escolha “Install from VSIX…”</li>
-<li>Selecione o arquivo <code>.vsix</code> da extensao</li>
-<li>Aguarde a instalacao e reinicie o VS Code se solicitado</li>
+<li>No VS Code, abra a aba de extensões (<code>Ctrl+Shift+X</code>)</li>
+<li>Procure por <strong>Synesis</strong> (publicador <code>synesis-lang</code>)</li>
+<li>Clique em <strong>Install</strong></li>
 </ol>
+<p>Para instalar a partir de um arquivo <code>.vsix</code>, use o menu <code>...</code> da aba de extensões e <strong>Install from VSIX…</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/02_install.png" class="img-fluid figure-img"></p>
@@ -300,12 +331,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="como-abrir-seu-projeto" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="como-abrir-seu-projeto"><span class="header-section-number">1.4</span> Como abrir seu projeto</h2>
-<ol type="1">
-<li>Abra a pasta do seu projeto no VS Code</li>
-<li>Certifique-se de que seus arquivos <code>.syn</code> e o projeto <code>.synp</code> estao na pasta</li>
-</ol>
+<section id="primeiro-projeto" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="primeiro-projeto"><span class="header-section-number">1.4</span> Primeiro projeto</h2>
+<p>Numa pasta vazia:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> init</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Abra a pasta no VS Code. O ícone do Synesis aparece na barra de atividades e os painéis se preenchem.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/03_projeto_synesis.png" class="img-fluid figure-img"></p>
@@ -314,117 +344,210 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="onde-encontrar-o-synesis-explorer" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="onde-encontrar-o-synesis-explorer"><span class="header-section-number">1.5</span> Onde encontrar o Synesis Explorer</h2>
-<ol type="1">
-<li>Na barra lateral esquerda, clique no icone “Synesis Explorer”</li>
-<li>Voce vera tres secoes:
-<ul>
-<li>References</li>
-<li>Codes</li>
-<li>Relations (aparece quando houver relacoes)</li>
-</ul></li>
-</ol>
+<section id="os-painéis" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="os-painéis"><span class="header-section-number">1.5</span> Os painéis</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/04_painel_synesis.png" class="img-fluid figure-img"></p>
-<figcaption>Painel Synesis Explorer com as tres secoes.</figcaption>
+<figcaption>Painéis do Synesis na barra de atividades.</figcaption>
 </figure>
 </div>
-<hr>
-</section>
-<section id="usando-os-explorers" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="usando-os-explorers"><span class="header-section-number">1.6</span> Usando os Explorers</h2>
-<section id="references" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="references"><span class="header-section-number">1.6.1</span> References</h3>
-<ul>
-<li>Lista suas fontes (SOURCE)</li>
-<li>Use o botao de atualizar (refresh) quando mudar arquivos</li>
-<li>Use o filtro para encontrar rapidamente uma referencia</li>
-</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Painel</th>
+<th>Mostra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>References</strong></td>
+<td>as fontes (<code>SOURCE</code>), com os itens dentro</td>
+</tr>
+<tr class="even">
+<td><strong>Codes</strong></td>
+<td>os códigos e cada ocorrência</td>
+</tr>
+<tr class="odd">
+<td><strong>Relations</strong></td>
+<td>as cadeias (<code>CHAIN</code>), agrupadas por fonte</td>
+</tr>
+<tr class="even">
+<td><strong>Ontology Topics</strong></td>
+<td>os tópicos da ontologia; com <code>ROLE HIERARCHY</code>, a árvore de conceitos</td>
+</tr>
+<tr class="odd">
+<td><strong>Ontology (Annotations)</strong></td>
+<td>onde os conceitos são usados nos <code>.syn</code></td>
+</tr>
+<tr class="even">
+<td><strong>Template Fields</strong></td>
+<td>os campos do template, por escopo</td>
+</tr>
+</tbody>
+</table>
+<p>Alguns painéis aparecem conforme o tipo de arquivo aberto. Clique numa entrada para ir à linha exata. Cada painel tem botões de atualizar e filtrar.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/05_references.png" class="img-fluid figure-img"></p>
-<figcaption>Referencias com lista e botoes no topo.</figcaption>
+<figcaption>Painel de referências.</figcaption>
 </figure>
 </div>
-</section>
-<section id="codes" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="codes"><span class="header-section-number">1.6.2</span> Codes</h3>
-<ul>
-<li>Mostra os codigos encontrados nos seus dados</li>
-<li>Use refresh e filtro da mesma forma</li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/06_codes.png" class="img-fluid figure-img"></p>
-<figcaption>Codes com lista de codigos.</figcaption>
+<figcaption>Painel de códigos.</figcaption>
 </figure>
 </div>
-</section>
-<section id="relations" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="relations"><span class="header-section-number">1.6.3</span> Relations</h3>
-<ul>
-<li>Mostra relacoes (chains) encontradas</li>
-<li>Se nao aparecer, verifique se há campos do tipo <code>chain:</code> nos arquivos de anotação (.syn)</li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/07_relations.png" class="img-fluid figure-img"></p>
-<figcaption>Relations com algumas relacoes listadas.</figcaption>
+<figcaption>Painel de relações.</figcaption>
 </figure>
 </div>
+<p>Na árvore da ontologia, o menu de contexto de um conceito oferece <strong>Subtree Evidence</strong>: os itens do conceito e de todos os descendentes.</p>
 <hr>
 </section>
-</section>
-<section id="usando-os-viewers" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="usando-os-viewers"><span class="header-section-number">1.7</span> Usando os Viewers</h2>
-<section id="graph-viewer" class="level3" data-number="1.7.1">
-<h3 data-number="1.7.1" class="anchored" data-anchor-id="graph-viewer"><span class="header-section-number">1.7.1</span> Graph Viewer</h3>
-<ul>
-<li>Mostra um grafo das relacoes</li>
-<li>Atalho: <code>Ctrl+Alt+G</code> (Windows/Linux) ou <code>Cmd+Shift+G</code> (Mac)</li>
-</ul>
+<section id="grafos-e-resumos" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="grafos-e-resumos"><span class="header-section-number">1.6</span> Grafos e resumos</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ação</th>
+<th>Atalho (Windows/Linux)</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Grafo de relações por fonte</td>
+<td><code>Ctrl+Alt+G</code></td>
+<td><code>Cmd+Shift+G</code></td>
+</tr>
+<tr class="even">
+<td>Grafo por arquivo</td>
+<td><code>Ctrl+Alt+F</code></td>
+<td><code>Cmd+Shift+F</code></td>
+</tr>
+<tr class="odd">
+<td>Grafo por item</td>
+<td><code>Ctrl+Alt+I</code></td>
+<td><code>Cmd+Alt+I</code></td>
+</tr>
+<tr class="even">
+<td>Resumo (abstract) da referência</td>
+<td><code>Ctrl+Shift+A</code></td>
+<td><code>Cmd+Shift+A</code></td>
+</tr>
+<tr class="odd">
+<td>Codificar a seleção com IA</td>
+<td><code>Ctrl+Shift+I</code></td>
+<td><code>Cmd+Shift+I</code></td>
+</tr>
+</tbody>
+</table>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/08_graph_viewer.png" class="img-fluid figure-img"></p>
 <figcaption>Grafo aberto em uma aba.</figcaption>
 </figure>
 </div>
-</section>
-<section id="abstract-viewer" class="level3" data-number="1.7.2">
-<h3 data-number="1.7.2" class="anchored" data-anchor-id="abstract-viewer"><span class="header-section-number">1.7.2</span> Abstract Viewer</h3>
-<ul>
-<li>Mostra o abstract de referencias BibTeX</li>
-<li>Atalho: <code>Ctrl+Shift+A</code> (Windows/Linux) ou <code>Cmd+Shift+A</code> (Mac)</li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/09_abstract_viewer.png" class="img-fluid figure-img"></p>
-<figcaption>Abstract aberto em uma aba.</figcaption>
+<figcaption>Resumo aberto em uma aba.</figcaption>
 </figure>
 </div>
 <hr>
 </section>
-</section>
-<section id="dicas-rapidas" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="dicas-rapidas"><span class="header-section-number">1.8</span> Dicas rapidas</h2>
+<section id="edição" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="edição"><span class="header-section-number">1.7</span> Edição</h2>
 <ul>
-<li>Se algo nao atualizar, clique em refresh</li>
-<li>O Word Wrap é ativado automaticamente para facilitar a leitura</li>
-<li>Use o filtro para reduzir listas grandes</li>
+<li><strong>Diagnósticos em tempo real:</strong> erros e avisos sublinhados e no painel <em>Problems</em> (<code>Ctrl+Shift+M</code>)</li>
+<li><strong>Autocompletar:</strong> campos, códigos, relações, valores de listas, papéis depois de <code>ROLE</code> e propriedades de <code>EXPORT</code></li>
+<li><strong>Hover:</strong> definição do campo; em conceitos, pais, filhos e quantidade de evidências</li>
+<li><strong>Ir à definição</strong> (<code>F12</code>) e <strong>renomear</strong> (<code>F2</code>) códigos e referências em todo o projeto</li>
+<li><strong>Snippets:</strong> digite <code>field-chain</code>, <code>field-scale</code>, <code>field-ordered</code>… ou <code>SOURCE</code>, <code>ITEM</code>, <code>ONTOLOGY</code> e pressione <code>Tab</code>; os blocos de anotação trazem os campos obrigatórios do <strong>seu</strong> template</li>
+<li><strong>Temas:</strong> <em>Synesis Dark</em> e <em>Synesis Light</em></li>
 </ul>
 <hr>
 </section>
-<section id="problemas-comuns" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="problemas-comuns"><span class="header-section-number">1.9</span> Problemas comuns</h2>
-<p><strong>Nao vejo nada no painel</strong> - Verifique se a pasta do projeto foi aberta no VS Code - Verifique se ha arquivos <code>.syn</code> na pasta</p>
-<p><strong>Relations nao aparecem</strong> - Verifique se existem linhas <code>chain:</code> nos arquivos</p>
+<section id="codificar-com-ia" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="codificar-com-ia"><span class="header-section-number">1.8</span> Codificar com IA</h2>
+<p>Instale o <code>synesis-coder</code> (<code>pip install synesis-coder</code>), configure a chave no <code>.env</code> do projeto, selecione um trecho num <code>.syn</code> e use <strong>Synesis: Code Selection</strong> (<code>Ctrl+Shift+I</code>). Veja <a href="../howto/synesis_coder.html">Codificação com IA</a>.</p>
 <hr>
 </section>
-<section id="pronto-para-usar" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="pronto-para-usar"><span class="header-section-number">1.10</span> Pronto para usar</h2>
-<p>Com isso, voce ja consegue navegar, filtrar e visualizar seus dados Synesis diretamente no VS Code.</p>
+<section id="conversar-com-o-grafo" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="conversar-com-o-grafo"><span class="header-section-number">1.9</span> Conversar com o grafo</h2>
+<p>A extensão registra um participante de chat que consulta um banco ArcadeDB do projeto, criado pelo <a href="../reference/synesis_graph.html"><code>synesis-graph</code></a>. Os comandos <strong>Synesis: Settings</strong> (conexões e provedores), <strong>Synesis: Select Chat Graph Database</strong> e <strong>Synesis: Show Turn Evidence and Queries</strong> configuram o chat e mostram a trilha de auditoria de cada resposta. As chaves ficam no armazenamento seguro do VS Code.</p>
+<hr>
+</section>
+<section id="configurações" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="configurações"><span class="header-section-number">1.10</span> Configurações</h2>
+<p>Em <em>Settings</em>, procure por “Synesis” (prefixo <code>synesisExplorer.</code>):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Configuração</th>
+<th>Para quê</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>lsp.pythonPath</code></td>
+<td>caminho do executável <code>synesis-lsp</code>, se não estiver no <code>PATH</code></td>
+</tr>
+<tr class="even">
+<td><code>lsp.enabled</code></td>
+<td>liga ou desliga o servidor</td>
+</tr>
+<tr class="odd">
+<td><code>diagnostics.enabled</code></td>
+<td>mostra os sublinhados</td>
+</tr>
+<tr class="even">
+<td><code>diagnostics.checkCodes</code></td>
+<td>avisa cada código ausente da ontologia (desligado por padrão: um resumo no <code>.synp</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>inlayHints.enabled</code></td>
+<td>mostra “(Autor, Ano)” depois das referências</td>
+</tr>
+<tr class="even">
+<td><code>semanticHighlighting.enabled</code></td>
+<td>realce baseado na árvore sintática</td>
+</tr>
+<tr class="odd">
+<td><code>completion.autoImportCodes</code></td>
+<td>oferece os códigos da ontologia ao completar</td>
+</tr>
+<tr class="even">
+<td><code>coder.path</code></td>
+<td>caminho do <code>synesis-coder</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="problemas-comuns" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="problemas-comuns"><span class="header-section-number">1.11</span> Problemas comuns</h2>
+<p><strong>Os painéis estão vazios.</strong> Confira se a pasta aberta tem um arquivo <code>.synp</code> e se o <code>synesis-lsp</code> está instalado (veja o canal de saída <em>Synesis LSP</em>).</p>
+<p><strong>Um painel não aparece.</strong> Vários dependem do tipo de arquivo aberto: abra um <code>.syn</code> ou <code>.syno</code>.</p>
+<p><strong>“Failed to start Synesis LSP”.</strong> Informe em <code>synesisExplorer.lsp.pythonPath</code> o caminho completo do executável.</p>
+<p><strong>Relações não aparecem.</strong> Verifique se o template tem um campo <code>TYPE CHAIN</code> e se há cadeias anotadas.</p>
+<hr>
+</section>
+<section id="pronto-para-usar" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="pronto-para-usar"><span class="header-section-number">1.12</span> Pronto para usar</h2>
+<p>Com isso, você já consegue escrever, validar, navegar e visualizar seus dados Synesis no VS Code.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/10_full_view.png" class="img-fluid figure-img"></p>

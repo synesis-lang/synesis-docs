@@ -282,14 +282,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#referências-órfãs" id="toc-referências-órfãs" class="nav-link" data-scroll-target="#referências-órfãs"><span class="header-section-number">8.2</span> Referências órfãs</a></li>
   <li><a href="#quase-casamentos" id="toc-quase-casamentos" class="nav-link" data-scroll-target="#quase-casamentos"><span class="header-section-number">8.3</span> Quase-casamentos</a></li>
   </ul></li>
-  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">9</span> Erros comuns</a>
-  <ul class="collapse">
-  <li><a href="#dois-projetos-declaram-a-mesma-entidade" id="toc-dois-projetos-declaram-a-mesma-entidade" class="nav-link" data-scroll-target="#dois-projetos-declaram-a-mesma-entidade"><span class="header-section-number">9.1</span> Dois projetos declaram a mesma entidade</a></li>
-  <li><a href="#tipos-divergentes" id="toc-tipos-divergentes" class="nav-link" data-scroll-target="#tipos-divergentes"><span class="header-section-number">9.2</span> Tipos divergentes</a></li>
-  <li><a href="#valor-ausente-no-.bib" id="toc-valor-ausente-no-.bib" class="nav-link" data-scroll-target="#valor-ausente-no-.bib"><span class="header-section-number">9.3</span> Valor ausente no <code>.bib</code></a></li>
-  </ul></li>
-  <li><a href="#sec-lsp" id="toc-sec-lsp" class="nav-link" data-scroll-target="#sec-lsp"><span class="header-section-number">10</span> Por que o LSP nunca carrega o agregado</a></li>
-  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">11</span> Próximos passos</a></li>
+  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">9</span> Erros comuns</a></li>
+  <li><a href="#sec-grafo" id="toc-sec-grafo" class="nav-link" data-scroll-target="#sec-grafo"><span class="header-section-number">10</span> O grafo multiprojeto</a></li>
+  <li><a href="#sec-lsp" id="toc-sec-lsp" class="nav-link" data-scroll-target="#sec-lsp"><span class="header-section-number">11</span> Por que o editor nunca carrega o agregado</a></li>
+  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">12</span> Próximos passos</a></li>
   </ul>
 </nav>
     </div>
@@ -348,7 +344,7 @@ O que este guia <strong>não</strong> faz
 <li><strong><code>lattes.synp</code></strong> — currículos de pesquisadores, um SOURCE por pesquisador</li>
 <li><strong><code>abstracts.synp</code></strong> — artigos científicos, um SOURCE por artigo</li>
 </ul>
-<p>Cada artigo tem um autor que também tem currículo. Você quer perguntar: <em>quais conceitos aparecem nos artigos dos pesquisadores que declararam determinada linha de pesquisa no Lattes?</em></p>
+<p>Cada artigo tem um autor que também tem currículo. Você quer perguntar: <em>quais conceitos aparecem nos artigos dos pesquisadores que declararam determinada linha de pesquisa?</em></p>
 <p>Três caminhos ruins e por que foram descartados:</p>
 <table class="caption-top table">
 <colgroup>
@@ -364,7 +360,7 @@ O que este guia <strong>não</strong> faz
 <tbody>
 <tr class="odd">
 <td>Juntar tudo num <code>.synp</code> só</td>
-<td>O editor passa a recompilar o estudo inteiro a cada gravação. Com corpora grandes, inviável.</td>
+<td>O editor passa a recompilar o estudo inteiro a cada gravação.</td>
 </tr>
 <tr class="even">
 <td>Reconciliar por identidade (<code>A é B</code>)</td>
@@ -372,11 +368,11 @@ O que este guia <strong>não</strong> faz
 </tr>
 <tr class="odd">
 <td>O corpus central nomear cada periférico</td>
-<td>Adicionar um terceiro corpus exigiria editar o template do central. O oposto de autônomo.</td>
+<td>Adicionar um terceiro corpus exigiria editar o template do central.</td>
 </tr>
 </tbody>
 </table>
-<p>A solução adotada é o modelo do <strong>linker de C/C++</strong>: cada projeto compila isolado e expõe suas referências externas não resolvidas; um passo de linkagem resolve as referências entre eles.</p>
+<p>A solução adotada é o modelo do <strong>linker de C/C++</strong>: cada projeto compila isolado e expõe suas referências externas; um passo de ligação resolve as referências entre eles.</p>
 <hr>
 </section>
 <section id="sec-identifies" class="level1" data-number="3">
@@ -388,7 +384,7 @@ O que este guia <strong>não</strong> faz
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador Lattes do pesquisador</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    IDENTIFIES researcher</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>researcher</code> é o <strong>rótulo da entidade</strong> — um nome que você escolhe. É por ele que os outros projetos vão se referir a essa entidade, sem nunca nomear o arquivo <code>lattes.synp</code>.</p>
+<p><code>researcher</code> é o <strong>rótulo da entidade</strong>, um nome que você escolhe. É por ele que os outros projetos se referem a essa entidade, sem nunca nomear o arquivo <code>lattes.synp</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -399,23 +395,22 @@ O que este guia <strong>não</strong> faz
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Cada valor de <code>lattes_id</code> deve corresponder a um único SOURCE. Dois SOURCEs com o mesmo valor produzem o <a href="../reference/guia_erros.html#sec-erro-77">erro 77</a> já na compilação isolada do próprio projeto — antes de qualquer linkagem. Um defeito de dados que antes passaria despercebido vira erro explícito.</p>
+<p>Cada valor deve corresponder a um único SOURCE. Dois SOURCEs com o mesmo valor produzem o <a href="../reference/guia_erros.html#sec-e077">erro E077</a> já na compilação isolada do projeto.</p>
 </div>
 </div>
 <section id="quando-o-identificador-vive-no-.bib" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="quando-o-identificador-vive-no-.bib"><span class="header-section-number">3.1</span> Quando o identificador vive no <code>.bib</code></h2>
-<p>Identificadores como ID Lattes, ORCID ou CNPJ costumam ser metadados da fonte, não algo extraído do texto. Nesse caso, declare a origem do valor com <code>ON BIBLIOGRAPHY</code>:</p>
+<p>Identificadores como ID Lattes, ORCID ou CNPJ costumam ser metadados da fonte, não algo extraído do texto. Declare a origem com <code>ON BIBLIOGRAPHY</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> lattes_id ON <span class="kw">BIBLIOGRAPHY</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>E o valor passa a ser lido da entrada <code>.bib</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">curriculo_maria</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span>    = {Silva, Maria},</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>     = {Currículo Lattes},</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>      = {2026},</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lattes_id</span> = {3474000000000167}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lattes_id</span> = {ID-0001}</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Sem <code>ON BIBLIOGRAPHY</code>, o compilador exigiria o campo dentro do bloco SOURCE — o que mentiria sobre onde o dado realmente vive.</p>
+<p>Para registros estruturados em TOML, o equivalente é <a href="../reference/guia_referencia.html"><code>ON DATASET</code></a>.</p>
 <hr>
 </section>
 </section>
@@ -428,8 +423,7 @@ O que este guia <strong>não</strong> faz
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador Lattes do autor do artigo</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    REFERS TO researcher</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Repare no que <strong>não</strong> está aqui: nenhuma menção a <code>lattes.synp</code>, nenhum caminho de arquivo, nenhuma ordem de compilação. O projeto periférico conhece apenas o rótulo <code>researcher</code>.</p>
-<p>É isso que torna o estudo extensível: adicionar um quarto ou quinto corpus não exige tocar em nenhum template existente.</p>
+<p>Não há menção a <code>lattes.synp</code>, caminho de arquivo ou ordem de compilação: o projeto periférico conhece apenas o rótulo <code>researcher</code>. Por isso, adicionar um quarto corpus não exige tocar em nenhum template existente.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -440,23 +434,17 @@ Cardinalidade livre
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>REFERS TO</code> pode repetir. Vários artigos apontando para o mesmo pesquisador (<strong>n:1</strong>) é o caso normal. Um campo multivalorado — um artigo com vários autores — gera uma aresta por valor (<strong>n:n</strong>).</p>
+<p><code>REFERS TO</code> pode repetir. Vários artigos apontando para o mesmo pesquisador (<strong>n:1</strong>) é o caso normal. Um campo multivalorado, como um artigo com vários autores, gera uma aresta por valor (<strong>n:n</strong>).</p>
 </div>
 </div>
 <section id="os-dois-modificadores-lado-a-lado" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="os-dois-modificadores-lado-a-lado"><span class="header-section-number">4.1</span> Os dois modificadores lado a lado</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 31%">
-<col style="width: 31%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Modificador</th>
 <th>Papel</th>
-<th style="text-align: center;">Cria nó?</th>
+<th style="text-align: center;">Cria nó no grafo?</th>
 <th style="text-align: center;">Valor repete?</th>
 </tr>
 </thead>
@@ -465,7 +453,7 @@ Cardinalidade livre
 <td><code>IDENTIFIES &lt;entidade&gt;</code></td>
 <td>Chave primária</td>
 <td style="text-align: center;">Sim</td>
-<td style="text-align: center;">Não — unicidade validada</td>
+<td style="text-align: center;">Não</td>
 </tr>
 <tr class="even">
 <td><code>REFERS TO &lt;entidade&gt;</code></td>
@@ -475,14 +463,14 @@ Cardinalidade livre
 </tr>
 </tbody>
 </table>
-<p>Ambos só valem em campos <code>SCOPE SOURCE</code>. A ligação opera sobre SOURCEs — as unidades de coleta —, não sobre ITEMs ou conceitos. Usá-los noutro escopo produz o <a href="../reference/guia_erros.html#sec-erro-78">erro 78</a>.</p>
+<p>Ambos só valem em campos <code>SCOPE SOURCE</code> (<a href="../reference/guia_erros.html#sec-e078">E078</a>).</p>
 <hr>
 </section>
 </section>
 <section id="sec-shared" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Passo 3: compartilhar a ontologia (opcional)</h1>
-<p>Para que os corpora usem o <strong>mesmo vocabulário conceitual</strong>, coloque a ontologia numa pasta comum e declare-a com <code>INCLUDE SHARED ONTOLOGY</code>:</p>
-<pre><code>estudo/
+<p>Para que os corpora usem o <strong>mesmo vocabulário</strong>, coloque a ontologia numa pasta comum e declare-a com <code>INCLUDE SHARED ONTOLOGY</code>:</p>
+<pre class="text"><code>estudo/
 ├── compartilhado/
 │   └── vocabulario.syno
 ├── lattes/
@@ -491,17 +479,19 @@ Cardinalidade livre
 └── abstracts/
     ├── abstracts.synp
     └── abstracts.synt</code></pre>
-<p>Em cada <code>.synp</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> Lattes</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"lattes.synt"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"curriculos.bib"</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"anotacoes/*.syn"</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../compartilhado/vocabulario.syno"</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A palavra <code>SHARED</code> é o que autoriza um alvo <strong>fora</strong> da pasta do projeto. Sem ela, o caminho <code>../compartilhado/...</code> seria recusado com o <a href="../reference/guia_erros.html#sec-erro-75">erro 75</a>.</p>
-<p>A autorização mora na <strong>declaração</strong> — versionada e auditável no <code>.synp</code> —, não na geometria do caminho. Por isso funciona também com pastas de rede e outros drives:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"\\servidor\equipe\vocabulario.syno"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"Z:/estudo/vocabulario.syno"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada membro fica na <strong>sua própria pasta</strong>: um <code>.syn</code> presente na pasta de um projeto e não incluído por ele é erro.</p>
+<p>A palavra <code>SHARED</code> autoriza um alvo <strong>fora</strong> da pasta do projeto. Sem ela, <code>../compartilhado/...</code> seria recusado (<a href="../reference/guia_erros.html#sec-e075">E075</a>). Funciona também com pastas de rede e outros drives:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> Exemplo</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"t.synt"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"\\servidor\equipe\vocabulario.syno"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"Z:/estudo/vocabulario.syno"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -512,42 +502,50 @@ Cardinalidade livre
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>INCLUDE SHARED BIBLIOGRAPHY</code> ou <code>INCLUDE SHARED ANNOTATIONS</code> produzem o <a href="../reference/guia_erros.html#sec-erro-84">erro 84</a>. A exceção existe para compartilhar vocabulário; estendê-la a outros tipos abriria a contenção sem motivo.</p>
+<p>Com outro tipo, o erro é <a href="../reference/guia_erros.html#sec-e084">E084</a>.</p>
 </div>
 </div>
 <hr>
 </section>
 <section id="sec-isolado" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Passo 4: compilar isolado</h1>
-<p>Cada projeto continua compilando sozinho, normalmente:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile abstracts.synp <span class="at">--json</span> abstracts.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O compilador emite uma nota <strong>informativa</strong> registrando que há ligações pendentes:</p>
-<pre><code>INFO  abstracts.synp
-  Este projeto referencia a entidade externa `researcher` (`REFERS TO` em `autor_id`).
-  As ligacoes nao estao materializadas neste artefato. Para resolve-las,
-  compile este projeto junto com o projeto que declara `IDENTIFIES researcher`.</code></pre>
-<p>Isso é INFO — não erro, não aviso. Uma referência externa não resolvida na compilação isolada é o comportamento <strong>esperado</strong>, não um defeito. A mensagem aparece uma vez por entidade, o suficiente para documentar sem poluir o painel de problemas.</p>
+<p>Cada projeto continua compilando sozinho:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile abstracts/abstracts.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>abstracts.synt:10:1  [INFO]  External reference `researcher` (REFERS TO in autor_id) — not materialized in isolation</code></pre>
+<p>É um <strong>informativo</strong>, não erro nem aviso: uma referência externa não resolvida na compilação isolada é o comportamento esperado.</p>
 <hr>
 </section>
 <section id="sec-link" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Passo 5: ligar os projetos</h1>
-<p>Passe dois ou mais projetos ao mesmo comando <code>compile</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>SYNESIS v0.8.1  Linkando projetos.
-  compilando lattes …
-  compilando abstracts …
+<p>Passe dois ou mais projetos ao mesmo comando:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes/lattes.synp abstracts/abstracts.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>SYNESIS v0.16.0 — Linking projects.
+  compiling lattes …
+  compiling abstracts …
 
-✓ 2 projetos linkados. 7 aresta(s) resolvida(s) ['researcher'].</code></pre>
+✓ 2 projects linked. 1 edge(s) resolved ['researcher'].
+⚠ 2 orphan REFERS TO value(s) (no matching IDENTIFIES).
+
+Links between projects:
+
+              ────IDENTIFIES────  ─────REFERS TO─────
+  ENTITY      PROJECT  FIELD      PROJECT    FIELD
+  researcher  lattes   lattes_id  abstracts  autor_id
+
+Link resolution:
+
+  abstracts (autor_id)  -&gt;  researcher     1 resolved    2 orphans  (33%)</code></pre>
 <p>O que aconteceu:</p>
 <ol type="1">
-<li>Cada membro foi compilado <strong>isoladamente</strong>, com validação completa</li>
-<li>Cada <code>REFERS TO researcher</code> foi comparado com o <code>IDENTIFIES researcher</code> proprietário</li>
+<li>Cada membro foi compilado <strong>isoladamente</strong>, com validação completa (um erro em qualquer um aborta a ligação)</li>
+<li>Cada <code>REFERS TO researcher</code> foi comparado com o <code>IDENTIFIES researcher</code></li>
 <li>Cada casamento virou uma aresta do agregado</li>
 </ol>
-<p>O caminho de linkagem só ativa com <strong>dois ou mais</strong> projetos. Com um só, o comportamento é exatamente o de sempre.</p>
+<p>As duas tabelas ajudam a diagnosticar: a primeira mostra <strong>o que os templates declaram</strong>; a segunda, <strong>quanto se resolveu</strong>. Um projeto ainda sem fontes aparece como aguardando coleta.</p>
 <section id="exportar-o-agregado" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="exportar-o-agregado"><span class="header-section-number">7.1</span> Exportar o agregado</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp <span class="at">--json</span> estudo.json <span class="at">--csv</span> saida/</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes/lattes.synp abstracts/abstracts.synp <span class="dt">\</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--json</span> estudo.json <span class="at">--csv</span> saida/ <span class="at">--xls</span> planilhas/</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -555,42 +553,54 @@ Cardinalidade livre
 </colgroup>
 <thead>
 <tr class="header">
-<th>Flag</th>
+<th>Opção</th>
 <th>Resultado</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>--json</code></td>
-<td>Agregado no schema <strong>v3.1</strong>: <code>kind: "link"</code>, <code>entity_owners</code>, seção <code>links</code> com arestas e órfãos</td>
+<td>agregado no schema 3.1: <code>kind: "link"</code>, <code>members</code>, <code>entity_owners</code>, <code>links</code> (arestas e órfãos)</td>
 </tr>
 <tr class="even">
 <td><code>--csv</code></td>
-<td><code>links.csv</code> com as arestas resolvidas</td>
+<td><code>links.csv</code> com arestas e órfãos</td>
 </tr>
 <tr class="odd">
-<td><code>--stats</code></td>
-<td>Estatísticas por membro e agregadas</td>
+<td><code>--xls</code></td>
+<td>uma <strong>pasta</strong>: um <code>.xlsx</code> por membro e <code>links.xlsx</code></td>
 </tr>
 <tr class="even">
-<td><code>--xls</code></td>
-<td><strong>Não suportado</strong> — emite aviso</td>
+<td><code>--stats</code></td>
+<td>estatísticas por membro e agregadas</td>
 </tr>
 <tr class="odd">
-<td><code>--alpaca</code></td>
-<td><strong>Não suportado</strong> — emite aviso</td>
+<td><code>--alpaca</code>, <code>--okf</code></td>
+<td>sem exportador no agregado: o compilador avisa</td>
 </tr>
 </tbody>
 </table>
-<p>O JSON v3.1 é <strong>aditivo</strong>: ferramentas que consomem a v3.0 ignoram as chaves novas sem quebrar.</p>
-<p><code>--xls</code> e <code>--alpaca</code> não têm exportador no agregado porque <code>SOURCE FIELDS</code> diverge entre membros — não existe planilha ou dataset único coerente. Em vez de gerar nada em silêncio, a CLI avisa:</p>
-<pre><code>aviso: --xls ainda nao e suportado no passo de linkagem (multiplos projetos)
-— nenhum arquivo .xlsx foi gerado. Exporte cada projeto separadamente.</code></pre>
+<p><code>links.csv</code>:</p>
+<pre class="text"><code>entity,value,from_member,from_bibref,to_member,to_bibref
+researcher,ID-0001,abstracts,abstracts:@artigo_silva2024,lattes,lattes:@curriculo_maria
+researcher,id-0001,abstracts,,(orphan),
+researcher,ID-9999,abstracts,,(orphan),</code></pre>
 </section>
 <section id="estatísticas-do-agregado" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="estatísticas-do-agregado"><span class="header-section-number">7.2</span> Estatísticas do agregado</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes.synp abstracts.synp <span class="at">--stats</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Os contadores de SOURCEs, ITEMs e CHAINs são próprios de cada membro e somam. Já a ontologia, quando compartilhada via <code>INCLUDE SHARED ONTOLOGY</code>, é <strong>deduplicada</strong> — somar 74 + 74 conceitos da mesma ontologia daria 148, um número falso. Havendo sobreposição, as linhas aparecem como <code>Shared ontology</code> / <code>Shared codes</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile lattes/lattes.synp abstracts/abstracts.synp <span class="at">--stats</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Per-member statistics:
+
+  PROJECT    SOURCES  ITEMS  CHAINS
+  lattes           1      1       0
+  abstracts        3      3       0
+  ─────────  ───────  ─────  ──────
+  TOTAL            4      4       0
+
+Shared organizing model:
+
+  1 concepts, identical in the 2 projects  (INCLUDE SHARED ONTOLOGY)</code></pre>
+<p>A ontologia compartilhada é contada uma vez, não somada por membro.</p>
 <hr>
 </section>
 </section>
@@ -598,24 +608,18 @@ Cardinalidade livre
 <h1 data-number="8"><span class="header-section-number">8</span> Entendendo os resultados</h1>
 <section id="bibrefs-qualificados" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="bibrefs-qualificados"><span class="header-section-number">8.1</span> Bibrefs qualificados</h2>
-<p>No agregado, cada bibref é prefixado pelo alias do projeto de origem:</p>
-<pre><code>lattes:@curriculo_maria
-abstracts:@artigo_silva2024</code></pre>
-<p>Isso dissolve colisões: dois corpora podem legitimamente ter a mesma chave <code>.bib</code> (o mesmo perfil aparecendo em <code>linkedin.bib</code> e <code>posts.bib</code>, por exemplo) sem que o link step os confunda.</p>
+<p>No agregado, cada bibref é prefixado pelo alias do projeto de origem (<code>lattes:@curriculo_maria</code>). Dois corpora podem ter a mesma chave <code>.bib</code> sem serem confundidos.</p>
 </section>
 <section id="referências-órfãs" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="referências-órfãs"><span class="header-section-number">8.2</span> Referências órfãs</h2>
-<p>Um valor de <code>REFERS TO</code> sem <code>IDENTIFIES</code> correspondente vira <strong>aviso</strong>, não erro:</p>
-<pre><code>⚠ 1 REFERS TO orfao(s) (valor sem IDENTIFIES correspondente).</code></pre>
-<p>Isso é frequentemente legítimo — um artigo citando um autor externo, sem currículo no corpus, é exatamente isso. Nenhum nó é criado para o órfão.</p>
+<p>Um valor de <code>REFERS TO</code> sem <code>IDENTIFIES</code> correspondente vira <strong>aviso</strong> (<a href="../reference/guia_erros.html#sec-w083">W083</a>):</p>
+<pre class="text"><code>&lt;link&gt;:0:0  [WARNING]  Orphan REFERS TO `ID-9999` (researcher) in abstracts</code></pre>
+<p>Isso costuma ser legítimo — um artigo citando um autor sem currículo no corpus. Nenhum nó é criado para o órfão.</p>
 </section>
 <section id="quase-casamentos" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="quase-casamentos"><span class="header-section-number">8.3</span> Quase-casamentos</h2>
-<p>Quando o valor casaria <strong>apenas</strong> sob normalização de maiúsculas/minúsculas, o aviso é enriquecido:</p>
-<pre><code>AVISO  abstracts.synp
-  Casamento proximo: `ORCID-0000-1234` difere apenas em caixa/invisiveis.
-  Se sao a mesma entidade, canonize o valor na origem (.bib/SOURCE) — o
-  compilador nao normaliza automaticamente (evita fundir entidades distintas).</code></pre>
+<p>Quando o valor casaria <strong>apenas</strong> ignorando maiúsculas e minúsculas:</p>
+<pre class="text"><code>&lt;link&gt;:0:0  [WARNING]  Orphan REFERS TO `id-0001` (researcher) — near match `ID-0001` (differs only in case)</code></pre>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -626,7 +630,7 @@ Por que o compilador não normaliza sozinho
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Normalizar caixa automaticamente fundiria entidades que a fonte considera distintas — <code>AB-100</code> e <code>ab-100</code> podem ser deliberadamente diferentes. O compilador <strong>detecta e sugere, mas nunca funde</strong>. A decisão é do pesquisador e fica registrada na fonte, não escondida numa heurística do compilador.</p>
+<p>Normalizar fundiria entidades que a fonte pode considerar distintas. O compilador <strong>detecta e sugere, mas nunca funde</strong>. Corrija o valor na fonte, e a decisão fica registrada.</p>
 </div>
 </div>
 <hr>
@@ -634,28 +638,46 @@ Por que o compilador não normaliza sozinho
 </section>
 <section id="sec-erros" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Erros comuns</h1>
-<section id="dois-projetos-declaram-a-mesma-entidade" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="dois-projetos-declaram-a-mesma-entidade"><span class="header-section-number">9.1</span> Dois projetos declaram a mesma entidade</h2>
-<pre><code>Erro 81: A entidade `researcher` e declarada com `IDENTIFIES` por dois projetos</code></pre>
-<p>Cada rótulo tem um único corpus proprietário. Se são esquemas de identificação distintos da mesma pessoa (Lattes e ORCID), apenas um mantém o <code>IDENTIFIES</code>; o outro passa a <code>REFERS TO</code>.</p>
-</section>
-<section id="tipos-divergentes" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="tipos-divergentes"><span class="header-section-number">9.2</span> Tipos divergentes</h2>
-<pre><code>Erro 82: Os campos que participam da entidade `researcher` tem `TYPE` divergente</code></pre>
-<p>Todos os campos de uma entidade — o <code>IDENTIFIES</code> e todos os <code>REFERS TO</code> — devem ter o mesmo <code>TYPE</code>. Divergência indica que os dois lados não modelam a mesma coisa. É erro duro: comparar valores de tipos distintos produziria casamentos arbitrários.</p>
-</section>
-<section id="valor-ausente-no-.bib" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="valor-ausente-no-.bib"><span class="header-section-number">9.3</span> Valor ausente no <code>.bib</code></h2>
-<pre><code>Erro 79: Campo `lattes_id` (ON BIBLIOGRAPHY) ausente no .bib de `curriculo_maria`</code></pre>
-<p>O campo foi declarado <code>ON BIBLIOGRAPHY</code> mas a entrada <code>.bib</code> não o tem. Adicione-o à entrada ou remova a exigência do template.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Erro</th>
+<th>Causa</th>
+<th>Solução</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../reference/guia_erros.html#sec-e081">E081</a></td>
+<td>dois projetos declaram <code>IDENTIFIES</code> do mesmo rótulo</td>
+<td>só um é dono; os outros usam <code>REFERS TO</code></td>
+</tr>
+<tr class="even">
+<td><a href="../reference/guia_erros.html#sec-e082">E082</a></td>
+<td>campos da mesma entidade com <code>TYPE</code> diferentes</td>
+<td>use o mesmo tipo</td>
+</tr>
+<tr class="odd">
+<td><a href="../reference/guia_erros.html#sec-e079">E079</a></td>
+<td>campo <code>ON BIBLIOGRAPHY</code> ausente na entrada <code>.bib</code></td>
+<td>acrescente-o à entrada</td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
+<section id="sec-grafo" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> O grafo multiprojeto</h1>
+<p>Os backends de banco do <code>synesis-graph</code> transformam cada identidade em nó:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> arcadedb-embedded <span class="dt">\</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> lattes/lattes.synp <span class="at">--project</span> abstracts/abstracts.synp <span class="dt">\</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--database</span> estudo</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Veja <a href="../reference/synesis_graph.html#sec-multiprojeto">synesis-graph</a>.</p>
+<hr>
 </section>
-<section id="sec-lsp" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Por que o LSP nunca carrega o agregado</h1>
-<p>A linkagem é <strong>exclusiva da linha de comando</strong>. O servidor LSP — o que dá autocompletar, diagnósticos e navegação no VS Code — sempre trabalha com projetos isolados.</p>
-<p>Essa fronteira é deliberada. Se o editor precisasse manter o agregado em memória, cada gravação num arquivo <code>.syn</code> recompilaria o estudo inteiro. Mantendo a linkagem fora do LSP, um estudo com seis corpora grandes edita tão rápido quanto um projeto pequeno.</p>
-<p>O preço é que as arestas não aparecem no editor — e é um preço justo: elas são um resultado de análise, produzido quando você exporta, não algo que se consulta enquanto anota.</p>
+<section id="sec-lsp" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Por que o editor nunca carrega o agregado</h1>
+<p>A ligação é <strong>exclusiva da linha de comando</strong>. O servidor de linguagem trabalha com projetos isolados; assim, um estudo com vários corpora grandes edita tão rápido quanto um projeto pequeno. As arestas são um resultado de análise, produzido quando você compila o conjunto.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -666,18 +688,18 @@ A ontologia compartilhada <strong>é</strong> vista pelo editor
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Diferente das arestas, uma ontologia declarada com <code>INCLUDE SHARED ONTOLOGY</code> é carregada normalmente pelo LSP, com autocompletar e validação de códigos. A extensão instala um observador de arquivo sobre o alvo externo, então uma alteração feita por <code>git pull</code> ou por outra janela dispara revalidação dos projetos que a incluem. Ver <a href="../explanation/interface_lsp.html">A Interface LSP</a>.</p>
+<p>Uma ontologia declarada com <code>INCLUDE SHARED ONTOLOGY</code> é carregada pelo editor, com autocompletar e validação, e uma mudança no arquivo externo dispara a revalidação dos projetos que o incluem. Veja <a href="../explanation/interface_lsp.html">A Interface LSP</a>.</p>
 </div>
 </div>
 <hr>
 </section>
-<section id="sec-proximos" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Próximos passos</h1>
+<section id="sec-proximos" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Próximos passos</h1>
 <ul>
-<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a> — sintaxe completa de <code>IDENTIFIES</code> / <code>REFERS TO</code></li>
-<li><a href="../reference/guia_erros.html#sec-ligacao">Guia de Erros</a> — todos os diagnósticos de ligação (77–84)</li>
-<li><a href="../reference/gramatica.html">Gramática da Linguagem</a> — as regras Lark dos novos modificadores</li>
-<li><a href="../howto/exportar_neo4j.html">Exportar para Neo4j</a> — levar o agregado para um banco de grafos</li>
+<li><a href="../reference/guia_referencia.html#sec-ligacao">Referência da Linguagem</a></li>
+<li><a href="../reference/guia_erros.html#sec-ligacao">Guia de Erros</a></li>
+<li><a href="../reference/gramatica.html">Gramática da Linguagem</a></li>
+<li><a href="../howto/exportar_neo4j.html">Exportar para Neo4j</a></li>
 </ul>
 
 

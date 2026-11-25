@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -100,6 +134,10 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
+    <a class="dropdown-item" href="./tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./tutorials/synesis_claude_desktop.html">
  <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
   </li>  
@@ -110,6 +148,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./tutorials/synesis_explorer_tutorial.html">
  <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
   </li>  
     </ul>
   </li>
@@ -123,7 +165,23 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Guide for Professionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./howto/exportar_neo4j.qmd">
+    <a class="dropdown-item" href="./howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./howto/exportar_neo4j.html">
  <span class="dropdown-text">Export to Neo4j</span></a>
   </li>  
     </ul>
@@ -142,30 +200,31 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">The Organizing Model</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./reference/synesis_load.html">
  <span class="dropdown-text">Synesis API</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Explanation</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
         <li>
-    <a class="dropdown-item" href="./explanation/guia_sincero.html">
- <span class="dropdown-text">Why not Excel?</span></a>
+    <a class="dropdown-item" href="./reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./explanation/knowledge_graphs.qmd">
- <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./explanation/ideas.html">
- <span class="dropdown-text">Roadmap &amp; Ideas</span></a>
+    <a class="dropdown-item" href="./reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
@@ -203,21 +262,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome-to-synesis" id="toc-welcome-to-synesis" class="nav-link active" data-scroll-target="#welcome-to-synesis"><span class="header-section-number">1</span> Welcome to Synesis</a>
+  <li><a href="#welcome-to-the-synesis-language" id="toc-welcome-to-the-synesis-language" class="nav-link active" data-scroll-target="#welcome-to-the-synesis-language"><span class="header-section-number">1</span> Welcome to the Synesis Language</a>
   <ul class="collapse">
-  <li><a href="#what-do-you-need-today" id="toc-what-do-you-need-today" class="nav-link" data-scroll-target="#what-do-you-need-today"><span class="header-section-number">1.1</span> What do you need today?</a>
+  <li><a href="#fundamental-structure" id="toc-fundamental-structure" class="nav-link" data-scroll-target="#fundamental-structure"><span class="header-section-number">1.1</span> Fundamental Structure</a></li>
+  <li><a href="#flexibility-and-maturation" id="toc-flexibility-and-maturation" class="nav-link" data-scroll-target="#flexibility-and-maturation"><span class="header-section-number">1.2</span> Flexibility and Maturation</a></li>
+  <li><a href="#applicability" id="toc-applicability" class="nav-link" data-scroll-target="#applicability"><span class="header-section-number">1.3</span> Applicability</a></li>
+  <li><a href="#what-do-you-need-today" id="toc-what-do-you-need-today" class="nav-link" data-scroll-target="#what-do-you-need-today"><span class="header-section-number">1.4</span> What Do You Need Today?</a>
   <ul class="collapse">
-  <li><a href="#learn-synesis" id="toc-learn-synesis" class="nav-link" data-scroll-target="#learn-synesis"><span class="header-section-number">1.1.1</span> Learn Synesis</a></li>
-  <li><a href="#solve-a-specific-problem" id="toc-solve-a-specific-problem" class="nav-link" data-scroll-target="#solve-a-specific-problem"><span class="header-section-number">1.1.2</span> Solve a specific problem</a></li>
-  <li><a href="#consult-technical-specifications" id="toc-consult-technical-specifications" class="nav-link" data-scroll-target="#consult-technical-specifications"><span class="header-section-number">1.1.3</span> Consult technical specifications</a></li>
-  <li><a href="#understand-concepts" id="toc-understand-concepts" class="nav-link" data-scroll-target="#understand-concepts"><span class="header-section-number">1.1.4</span> Understand concepts</a></li>
+  <li><a href="#learn-synesis" id="toc-learn-synesis" class="nav-link" data-scroll-target="#learn-synesis"><span class="header-section-number">1.4.1</span> Learn Synesis</a></li>
+  <li><a href="#solve-a-specific-problem" id="toc-solve-a-specific-problem" class="nav-link" data-scroll-target="#solve-a-specific-problem"><span class="header-section-number">1.4.2</span> Solve a specific problem</a></li>
+  <li><a href="#consult-technical-specifications" id="toc-consult-technical-specifications" class="nav-link" data-scroll-target="#consult-technical-specifications"><span class="header-section-number">1.4.3</span> Consult technical specifications</a></li>
+  <li><a href="#understand-concepts" id="toc-understand-concepts" class="nav-link" data-scroll-target="#understand-concepts"><span class="header-section-number">1.4.4</span> Understand concepts</a></li>
   </ul></li>
-  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works"><span class="header-section-number">1.2</span> How it works</a>
+  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works"><span class="header-section-number">1.5</span> How It Works</a>
   <ul class="collapse">
-  <li><a href="#the-compilation-flow" id="toc-the-compilation-flow" class="nav-link" data-scroll-target="#the-compilation-flow"><span class="header-section-number">1.2.1</span> The Compilation Flow</a></li>
-  <li><a href="#the-power-of-integration" id="toc-the-power-of-integration" class="nav-link" data-scroll-target="#the-power-of-integration"><span class="header-section-number">1.2.2</span> The Power of Integration</a></li>
+  <li><a href="#the-compilation-flow" id="toc-the-compilation-flow" class="nav-link" data-scroll-target="#the-compilation-flow"><span class="header-section-number">1.5.1</span> The Compilation Flow</a></li>
+  <li><a href="#the-power-of-integration" id="toc-the-power-of-integration" class="nav-link" data-scroll-target="#the-power-of-integration"><span class="header-section-number">1.5.2</span> The Power of Integration</a></li>
   </ul></li>
-  <li><a href="#the-origin-of-the-name" id="toc-the-origin-of-the-name" class="nav-link" data-scroll-target="#the-origin-of-the-name"><span class="header-section-number">1.3</span> The Origin of the Name</a></li>
+  <li><a href="#the-origin-of-the-name" id="toc-the-origin-of-the-name" class="nav-link" data-scroll-target="#the-origin-of-the-name"><span class="header-section-number">1.6</span> The Origin of the Name</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -245,86 +307,166 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome-to-synesis" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Welcome to Synesis</h1>
-<p>Human knowledge is inherently intricate, full of nuances and deep connections. This is complexity — and it is valuable. Complication arises only when we lack adequate methods for organizing knowledge.</p>
-<p><strong>Synesis</strong> is a declarative domain-specific language (DSL) created for those who need more than simple notes. It is a method of <strong>knowledge consolidation</strong>.</p>
-<p>Unlike traditional tools, Synesis acts as a compiler for your analytical thinking: it receives your interpretations and annotations in plain text files, validates logical consistency between them, and transforms them into canonical and rigorous knowledge structures.</p>
-<p>Often, it is believed that technical rigor stifles creativity. Synesis proves the opposite: <strong>discipline is the true form of freedom.</strong> By delegating logical organization to a canonical structure, your mind is free for what truly matters: interpretation, nuance, and <em>insight</em>.</p>
-<section id="what-do-you-need-today" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-do-you-need-today"><span class="header-section-number">1.1</span> What do you need today?</h2>
-<section id="learn-synesis" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="learn-synesis"><span class="header-section-number">1.1.1</span> Learn Synesis</h3>
-<p><strong>New here?</strong> Start with our hands-on tutorials that guide you step by step.</p>
+<section id="welcome-to-the-synesis-language" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Welcome to the Synesis Language</h1>
+<p>Human knowledge is naturally intricate, full of nuances and deep connections. That complexity is valuable; complication arises when we lack adequate methods for organizing what we know. <strong>Synesis</strong> is a declarative domain-specific language (DSL) created for those who need more than simple notes: it provides methods of <strong>knowledge consolidation</strong>.</p>
+<p>Synesis acts as <strong>a compiler for analytical thinking</strong>. It receives interpretations and annotations in plain text files, validates their logical consistency and turns them into canonical, rigorous structures, organized according to objectives defined in advance by the user.</p>
+<p>By delegating logical organization to a canonical structure, Synesis shows that discipline is a form of freedom. With the structure secured, the mind stays free for what truly matters: interpretation, nuance and insight. This is possible thanks to its level of abstraction, which sets minimal structural principles — <strong>sources, meaningful excerpts and conceptual organization</strong>.</p>
+<p>This foundation gives a high degree of flexibility, allowing it to be applied to established methodologies or to custom approaches.</p>
+<section id="fundamental-structure" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="fundamental-structure"><span class="header-section-number">1.1</span> Fundamental Structure</h2>
+<p>Consider knowledge recorded in books, articles, web pages, interviews or analysis records. All of it can be structured in three fundamental blocks:</p>
 <ul>
-<li><a href="./tutorials/synesis_claude_desktop.html">Synesis in Claude Desktop</a> — Start with Claude’s help, with nothing to install by hand</li>
-<li><a href="./tutorials/guia_pesquisadores.html">Guide for Researchers</a> — Introduction to qualitative research</li>
-<li><a href="./tutorials/synesis_explorer_tutorial.html">Synesis Explorer Tutorial</a> — Set up your VSCode environment</li>
+<li><p><strong>Sources (Block 1)</strong>: The origin of the information. It may be a scientific article, a website, an interview or an original idea written in your notebook.</p></li>
+<li><p><strong>Items (Block 2)</strong>: The meaningful excerpt taken from the source. It is the equivalent of highlighting a passage in a book. Margin notes, keywords or codes assigned to these passages express their applied meaning and make thematic retrieval easier.</p></li>
+<li><p><strong>Ontology (Block 3)</strong>: The way items are organized into conceptual domains. In Computer Science the term refers to the formal categorization of data into sets of knowledge. This structure may evolve over time: it can start simple and fluid, stimulating discovery and creativity, or become more stable, ensuring rigour and consistency.</p></li>
 </ul>
 </section>
-<section id="solve-a-specific-problem" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="solve-a-specific-problem"><span class="header-section-number">1.1.2</span> Solve a specific problem</h3>
+<section id="flexibility-and-maturation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="flexibility-and-maturation"><span class="header-section-number">1.2</span> Flexibility and Maturation</h2>
+<p>In short, knowledge is organized into groups containing relevant passages (<strong>items</strong>), identified by codes and keywords, and extracted from references (<strong>sources</strong>). Synesis lets you structure and restructure these annotations continuously. As knowledge matures, its <strong>ontology</strong> can be refined, expanded or reorganized without compromising the structural integrity of the whole.</p>
+<p>This approach ranges from tacit knowledge externalized as text, hypotheses and provisional ideas to consolidated analyses. Comments, time records, versioning and explicit semantic relations can be added to items, strengthening traceability and conceptual coherence.</p>
+</section>
+<section id="applicability" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="applicability"><span class="header-section-number">1.3</span> Applicability</h2>
+<p>The same principle applies to everyday contexts — a notepad on the desk (<strong>Source</strong>) with sticky notes (<strong>Items</strong>) organized by priority or date (<strong>Ontology</strong>) — and to complex academic research workflows involving scientific articles, theses and technical documentation.</p>
+<p>Synesis is not just an organizing system but an infrastructure for translating knowledge. It converts conceptual structures into interoperable formats — from spreadsheets (<strong>CSV</strong>, <strong>Excel</strong>) to analytical notebooks (<strong>Jupyter Lab</strong>), standard vocabularies (<strong>SKOS</strong>) and graph databases (<strong>Neo4j</strong>, <strong>ArcadeDB</strong>) — making knowledge measurable, queryable and semantically navigable, including by Large Language Models (<strong>LLMs</strong>) via MCP.</p>
+</section>
+<section id="what-do-you-need-today" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="what-do-you-need-today"><span class="header-section-number">1.4</span> What Do You Need Today?</h2>
+<section id="learn-synesis" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="learn-synesis"><span class="header-section-number">1.4.1</span> Learn Synesis</h3>
+<p><strong>New here?</strong> Start with our hands-on tutorials, which guide you step by step.</p>
+<ul>
+<li><a href="./tutorials/getting-started.html">Getting Started</a> — Your first project, from zero to the first compilation</li>
+<li><a href="./tutorials/synesis_claude_desktop.html">Synesis in Claude Desktop</a> — Start with Claude’s help, with nothing to install by hand</li>
+<li><a href="./tutorials/guia_pesquisadores.html">Guide for Researchers</a> — Introduction to qualitative research</li>
+<li><a href="./tutorials/synesis_explorer_tutorial.html">Synesis Explorer Tutorial</a> — Set up the VS Code environment</li>
+</ul>
+</section>
+<section id="solve-a-specific-problem" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="solve-a-specific-problem"><span class="header-section-number">1.4.2</span> Solve a specific problem</h3>
 <p><strong>Know what you want to do?</strong> See our practical guides for common tasks.</p>
 <ul>
 <li><a href="./howto/guia_profissionais.html">Guide for Professionals</a> — Apply Synesis in organizational contexts</li>
-<li><a href="howto/exportar_neo4j.qmd">Export to Neo4j</a> — Create knowledge graphs</li>
+<li><a href="./howto/synesis_coder.html">AI-assisted Coding</a> — Annotate with synesis-coder and review the result</li>
+<li><a href="./howto/exportar_neo4j.html">Export to Neo4j</a> — Create knowledge graphs</li>
 </ul>
 </section>
-<section id="consult-technical-specifications" class="level3" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="consult-technical-specifications"><span class="header-section-number">1.1.3</span> Consult technical specifications</h3>
+<section id="consult-technical-specifications" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="consult-technical-specifications"><span class="header-section-number">1.4.3</span> Consult technical specifications</h3>
 <p><strong>Need technical details?</strong> Access the complete language and API reference.</p>
 <ul>
-<li><a href="./reference/guia_referencia.html">Language Reference</a> — Complete Synesis v1.1 syntax</li>
+<li><a href="./reference/guia_referencia.html">Language Reference</a> — Complete syntax and command line</li>
+<li><a href="./reference/guia_erros.html">Error Guide</a> — Every compiler diagnostic, with its fix</li>
 <li><a href="./reference/synesis_load.html">Synesis API</a> — Python integration (<code>synesis.load()</code>)</li>
 </ul>
 </section>
-<section id="understand-concepts" class="level3" data-number="1.1.4">
-<h3 data-number="1.1.4" class="anchored" data-anchor-id="understand-concepts"><span class="header-section-number">1.1.4</span> Understand concepts</h3>
+<section id="understand-concepts" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="understand-concepts"><span class="header-section-number">1.4.4</span> Understand concepts</h3>
 <p><strong>Want to understand the “why”?</strong> Read our explanations about philosophy and architecture.</p>
 <ul>
-<li><a href="explanation/por_que_estrutura_importa.qmd">Why Structured Annotations Matter</a> — Reflection on rigor and freedom</li>
-<li><a href="./explanation/guia_sincero.html">Why not Excel?</a> — When Synesis makes sense (and when it doesn’t)</li>
-<li><a href="explanation/knowledge_graphs.qmd">Knowledge Graphs &amp; GraphRAG</a> — Why graphs transform qualitative research</li>
-<li><a href="./explanation/ideas.html">Roadmap &amp; Ideas</a> — Future of the language</li>
+<li><a href="./explanation/por_que_estrutura_importa.html">Why Structured Annotation Matters</a> — A reflection on rigour and freedom</li>
+<li><a href="./explanation/guia_sincero.html">Why not Excel?</a> — When Synesis makes sense (and when it does not)</li>
+<li><a href="./explanation/knowledge_graphs.html">Knowledge Graphs and GraphRAG</a> — Why graphs transform qualitative research</li>
+<li><a href="./explanation/synesis_escrituras.html">Synesis for theological research</a> — How to use Synesis in theological research</li>
+<li><a href="./explanation/ideas.html">Roadmap and Ideas</a> — The future of the language</li>
 </ul>
 <hr>
 </section>
 </section>
-<section id="how-it-works" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">1.2</span> How it works</h2>
-<p>Synesis structure is modular and entirely based on <strong>plain text</strong>, offering a distraction-free environment, total portability, and maximum efficiency.</p>
-<p>The entire process is orchestrated by a project file (<code>.synp</code>), which connects its components:</p>
-<ul>
-<li><strong>Bibliographic References (<code>.bib</code>)</strong>: Your original sources.</li>
-<li><strong>Interpretive Annotations (<code>.syn</code>)</strong>: Your insights, standardized by templates (<code>.synt</code>).</li>
-<li><strong>Ontologies (<code>.syno</code>)</strong>: The major differentiator — files that formally define your analysis categories and logical interrelations.</li>
-</ul>
-<section id="the-compilation-flow" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="the-compilation-flow"><span class="header-section-number">1.2.1</span> The Compilation Flow</h3>
-<p>When compiling these files, Synesis validates concept consistency and generates universal outputs.</p>
+<section id="how-it-works" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">1.5</span> How It Works</h2>
+<p>The Synesis architecture is modular and entirely based on <strong>plain text</strong>, ensuring portability, traceability, native versioning and a distraction-free environment.</p>
+<p>The whole system is orchestrated by a project file (<em>.synp</em>), which acts as the coordination point and connects its main components:</p>
+<p><strong>Bibliographic References</strong> (<em>.bib</em>): gather and formally structure the original sources on which the knowledge rests.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">doe2026</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span>  = {Doe, John},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Knowledge Management},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>   = {Exploring knowledge annotation systems},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>    = {2026},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">number</span>  = {7},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">volume</span>  = {1}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Structural Templates</strong> (<em>.synt</em>): the normative core of the language. The template file formally defines the structure of annotations (<em>.syn</em>) and ontologies (<em>.syno</em>). It fixes the formats, required fields, relation types and declarative rules that shape the whole body of knowledge. Fully configurable, the template determines how the ontology is organized and how annotations must be structured. Like the other components, it is a plain text file.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ITEM FIELDS</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">text</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> <span class="at">note</span>, <span class="at">chain</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">text</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Textual excerpt from the bibliographic source</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Analytical memo explaining the interpretation and the causal mechanism identified</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Causal relation between concepts</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> A allows B to occur</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> A limits B</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Annotations</strong> (<em>.syn</em>): analytical records structured according to the template. They are texts organized in formal blocks, following the declared rules.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@doe2026</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doe2026</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> This study aims to assess the impacts of these transition plans on social equity in a case study of the southern coast of Iran, where the community faces severe water scarcity and there is ready access to seawater for desalination.</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Water scarcity creates necessary condition for desalination adoption, enabling transition pathway evaluation</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Water_Scarcity <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Desalination</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doe2026</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> The main contribution of this research is to consider social equity as a key factor in the nexus evaluation of energy-water transition plans.</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Positions equity as essential evaluation criterion, constraining acceptable transition configurations</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Equity <span class="op">-&gt;</span> CONSTRAINS <span class="op">-&gt;</span> Transition_Planning</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ontology</strong> (<em>.syno</em>): contains conceptual structures also defined by the template. Although they appear as structured blocks, their form and logic derive entirely from the declarations in the <em>.synt</em> file.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect <span class="fu">11:</span> Core economic factor representing financial expenditure. Mainly constrains deployment<span class="co">/technology development while enabling market penetration when reduced. Co-occurs with Deployment and Acceptance, indicating market-consumer relevance. Dimension 2: Directly affects investors, consumers, and market competitiveness. High frequency (96) across broad sources (66) confirms central role.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure associated with energy technologies and systems. Acts as primary barrier constraining technology development, site selection, and deployment when high, while enabling market penetration, technology transition, and sustainable solutions when reduced. Influences willingness to pay, acceptance, and market competitiveness. Critical determinant of renewable energy portfolio choices and infrastructure optimization decisions.</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Low_Cost</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> High_Cost</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 3</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>While annotation and ontology files resemble texts structured in blocks, it is in the template file that Synesis truly shows itself as a language. Through declarative commands, the <em>.synt</em> file defines the structural grammar governing the whole corpus, turning a set of texts into a formally organized body of knowledge.</p>
+<section id="the-compilation-flow" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="the-compilation-flow"><span class="header-section-number">1.5.1</span> The Compilation Flow</h3>
+<p>When compiling these files, Synesis validates their consistency and generates exchange formats.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-    %% --- COLOR DEFINITIONS (Synesis 2.0 Palette) ---
-    %% Primary: #084C54 (Deep Teal)
-    %% Accent: #00BFA5 (Mint/Cyan)
-    %% Background: #FFFFFF (Pure white for contrast)
-
     %% --- NODE STYLES ---
-    %% Compiler: Double circle, Strong border, White background
     classDef compiler fill:#fff,stroke:#084C54,stroke-width:4px,color:#084C54,font-weight:bold;
-
-    %% High Value: Mint border, Light cyan background, Teal text
     classDef highValue fill:#E0F7FA,stroke:#00BFA5,stroke-width:2px,color:#084C54;
-
-    %% Default Nodes (Inputs/Outputs): Light gray background, Soft border
     classDef defaultNode fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C84;
 
     %% --- DIAGRAM STRUCTURE ---
-
     subgraph Input ["Work Environment"]
         direction TB
         E["Ontology (.syno)"]:::defaultNode
@@ -340,18 +482,16 @@ ul.task-list li input[type="checkbox"] {
         direction TB
         F["Structured JSON"]:::defaultNode
         G["CSV/Excel Tables"]:::defaultNode
-        H["REFI-QDA/Others"]:::defaultNode
+        H["SKOS / Alpaca"]:::defaultNode
     end
 
     subgraph Ecosystem ["Application Ecosystem"]
         direction TB
-        I["Graph Databases\nNeo4j, Memgraph"]:::highValue
+        I["Graph Databases\nNeo4j, ArcadeDB"]:::highValue
         J["Traceable AI Agents\nvia MCP"]:::highValue
-        K["Data Science &amp; Dashboards\nR, Jupyter Labs"]:::highValue
+        K["Data Science &amp; Dashboards\nR, Jupyter Lab"]:::highValue
     end
 
-    %% --- FORCE SUBGROUP STYLE (Main Fix) ---
-    %% Use 'style' directly by subgraph ID to ensure transparency
     style Input fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54
     style Output fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54
     style Ecosystem fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray: 5 5,color:#084C54
@@ -371,7 +511,6 @@ ul.task-list li input[type="checkbox"] {
     F -. "Quantitative Analysis" .-&gt; K
     G -. "Quantitative Analysis" .-&gt; K
 
-    %% Line Style
     linkStyle default stroke:#64748B,stroke-width:1px;
 </pre>
 </div>
@@ -380,25 +519,88 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="the-power-of-integration" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="the-power-of-integration"><span class="header-section-number">1.2.2</span> The Power of Integration</h3>
-<p>The result of Synesis compilation goes far beyond static documents. The compiler transforms your definitions into universal exchange formats (JSON, Excel, CSV), making your knowledge integrable with any tech stack:</p>
-<ul>
-<li><p><strong>Graph Databases</strong>: Natively feed Neo4j or Memgraph to visualize the complex topology of your concepts.</p></li>
-<li><p><strong>Data Science</strong>: Provide structured datasets for rigorous statistical analyses in R or visualizations in Jupyter Labs.</p></li>
-<li><p><strong>AI Ready</strong>: Through the MCP (Model Context Protocol), connect your data to assistants like Claude Desktop, enabling natural language interactions with 100% traceable responses based on your “source of truth”.</p></li>
-</ul>
+<section id="the-power-of-integration" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="the-power-of-integration"><span class="header-section-number">1.5.2</span> The Power of Integration</h3>
+<p>The result of Synesis compilation goes far beyond structured documents. The compiler converts your body of knowledge into exchange formats — such as JSON, CSV, Excel, Alpaca and SKOS — making it interoperable with other technology stacks.</p>
+<p>More than exporting data, Synesis turns structured knowledge into computational infrastructure.</p>
+<section id="graph-databases" class="level4" data-number="1.5.2.1">
+<h4 data-number="1.5.2.1" class="anchored" data-anchor-id="graph-databases"><span class="header-section-number">1.5.2.1</span> Graph Databases</h4>
+<p><a href="./reference/synesis_graph.html">synesis-graph</a> takes the project to Neo4j or ArcadeDB, materializing the conceptual topology of your knowledge as navigable, queryable and visually explorable graphs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/neo4jFactors.png" class="img-fluid figure-img"></p>
+<figcaption>Neo4j Desktop with data generated by Synesis.</figcaption>
+</figure>
+</div>
+</section>
+<section id="ai-ready" class="level4" data-number="1.5.2.2">
+<h4 data-number="1.5.2.2" class="anchored" data-anchor-id="ai-ready"><span class="header-section-number">1.5.2.2</span> AI-ready</h4>
+<p>Through the MCP protocol (Model Context Protocol), your data can be connected to assistants such as Claude Desktop, enabling natural language interaction with traceable answers grounded directly in the graph database (Neo4j or ArcadeDB) — your formal source of truth.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/claude_mcp_pt.png" class="img-fluid figure-img"></p>
+<figcaption>Access to compiled data through natural language chat.</figcaption>
+</figure>
+</div>
+</section>
+<section id="data-science" class="level4" data-number="1.5.2.3">
+<h4 data-number="1.5.2.3" class="anchored" data-anchor-id="data-science"><span class="header-section-number">1.5.2.3</span> Data Science</h4>
+<p>Structured datasets ready for statistical analysis in R, computational exploration in Python or interactive visualizations in Jupyter Lab.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/jupyter_labs.png" class="img-fluid figure-img"></p>
+<figcaption>Connection with Jupyter Lab.</figcaption>
+</figure>
+</div>
+</section>
+<section id="vs-code-extension-lsp" class="level4" data-number="1.5.2.4">
+<h4 data-number="1.5.2.4" class="anchored" data-anchor-id="vs-code-extension-lsp"><span class="header-section-number">1.5.2.4</span> VS Code Extension (LSP)</h4>
+<p>Through a Language Server Protocol (LSP) server, the editor recognizes Synesis syntax and validates in real time. The environment offers structured navigation, link inspection and basic graphical views to support analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/10_full_view.png" class="img-fluid figure-img"></p>
+<figcaption>Full workflow (open file + explorer + viewer).</figcaption>
+</figure>
+</div>
+</section>
+<section id="zotero-plugin" class="level4" data-number="1.5.2.5">
+<h4 data-number="1.5.2.5" class="anchored" data-anchor-id="zotero-plugin"><span class="header-section-number">1.5.2.5</span> Zotero Plugin</h4>
+<p><a href="https://github.com/synesis-lang/zotero-synesis-export">zotero-synesis-export</a> exports PDF highlights, comments and tags from Zotero to the Synesis format, connecting academic reading to the compilation workflow.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/zotero_preferences.png" class="img-fluid figure-img"></p>
+<figcaption>Export configuration in Zotero.</figcaption>
+</figure>
+</div>
+</section>
+<section id="bible-coder" class="level4" data-number="1.5.2.6">
+<h4 data-number="1.5.2.6" class="anchored" data-anchor-id="bible-coder"><span class="header-section-number">1.5.2.6</span> Bible Coder</h4>
+<p>A VS Code extension for exegetical coding of the whole biblical text, with support for chained semantic relations (e.g.&nbsp;Word → ENABLES → Creation). Highlights of the canonical text can be combined through the compiler with annotations of classical, philosophical or patristic corpora, producing integrated graphs of conceptual networks.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Bible_Coder.png" class="img-fluid figure-img"></p>
+<figcaption>Bible Coder view.</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 </section>
-<section id="the-origin-of-the-name" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="the-origin-of-the-name"><span class="header-section-number">1.3</span> The Origin of the Name</h2>
+</section>
+<section id="the-origin-of-the-name" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="the-origin-of-the-name"><span class="header-section-number">1.6</span> The Origin of the Name</h2>
 <p>From the Greek <em>σύνεσις</em> (sýnesis):</p>
 <blockquote class="blockquote">
-<p><strong>Etymology</strong>: <strong>σῠνῑ́ημῐ</strong> (<em>sŭnī́ēmĭ</em>, “to bring together”, “to make converge”) + suffix <strong>-σῐς</strong> (<em>-sĭs</em>).</p>
+<p><strong>Etymology</strong>: from <strong>συνίημι</strong> (<em>syníēmi</em>) — “to bring together”, “to understand”, “to make converge” — plus the nominal suffix -<strong>σις</strong> (-<em>sis</em>), which indicates action or process.</p>
 </blockquote>
-<p><strong>Meanings:</strong> 1. Confluence; union; convergence. 2. Understanding; intelligence. 3. Consciousness.</p>
-<p>The result is true <em>sýnesis</em>: the convergence of information fragments into an intelligible, auditable, and technically structured whole.</p>
+<p><strong>Classical meanings:</strong></p>
+<ol type="1">
+<li>Confluence; union; convergence.</li>
+<li>Understanding; discernment; intelligence.</li>
+<li>Reflective awareness.</li>
+</ol>
+<p>The original sense combines two inseparable movements: bringing together and understanding.</p>
+<p>Synesis, as a language, embodies exactly that principle — the convergence of information fragments into an intelligible, auditable and formally structured whole.</p>
+<p><em>Synesis: the confluence of information into intelligence.</em></p>
 
 
 </section>

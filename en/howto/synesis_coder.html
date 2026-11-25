@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>synesis-coder: AI-Assisted Qualitative Coding – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
+ <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/organizing_model.html">
+ <span class="dropdown-text">The Organizing Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#synesis-coder-ai-assisted-qualitative-coding" id="toc-synesis-coder-ai-assisted-qualitative-coding" class="nav-link active" data-scroll-target="#synesis-coder-ai-assisted-qualitative-coding"><span class="header-section-number">1</span> synesis-coder: AI-Assisted Qualitative Coding</a></li>
+  <li><a href="#sec-instalacao" id="toc-sec-instalacao" class="nav-link" data-scroll-target="#sec-instalacao"><span class="header-section-number">2</span> Installation</a>
+  <ul class="collapse">
+  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration"><span class="header-section-number">2.1</span> Configuration</a></li>
+  </ul></li>
+  <li><a href="#sec-modos" id="toc-sec-modos" class="nav-link" data-scroll-target="#sec-modos"><span class="header-section-number">3</span> Commands</a></li>
+  <li><a href="#sec-item" id="toc-sec-item" class="nav-link" data-scroll-target="#sec-item"><span class="header-section-number">4</span> <code>item</code> Mode: Code a Passage</a></li>
+  <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">5</span> <code>abstract</code> Mode: Bibliographic Corpus</a>
+  <ul class="collapse">
+  <li><a href="#output-layout" id="toc-output-layout" class="nav-link" data-scroll-target="#output-layout"><span class="header-section-number">5.1</span> Output Layout</a></li>
+  <li><a href="#long-campaigns" id="toc-long-campaigns" class="nav-link" data-scroll-target="#long-campaigns"><span class="header-section-number">5.2</span> Long Campaigns</a></li>
+  </ul></li>
+  <li><a href="#sec-dataset" id="toc-sec-dataset" class="nav-link" data-scroll-target="#sec-dataset"><span class="header-section-number">6</span> <code>dataset</code> Mode: Structured Records</a></li>
+  <li><a href="#sec-document" id="toc-sec-document" class="nav-link" data-scroll-target="#sec-document"><span class="header-section-number">7</span> <code>document</code> Mode: Long Documents</a></li>
+  <li><a href="#sec-ontology" id="toc-sec-ontology" class="nav-link" data-scroll-target="#sec-ontology"><span class="header-section-number">8</span> <code>ontology</code> Mode: Define the Concepts</a>
+  <ul class="collapse">
+  <li><a href="#how-the-file-is-updated" id="toc-how-the-file-is-updated" class="nav-link" data-scroll-target="#how-the-file-is-updated"><span class="header-section-number">8.1</span> How the File Is Updated</a></li>
+  <li><a href="#sec-rejeitados" id="toc-sec-rejeitados" class="nav-link" data-scroll-target="#sec-rejeitados"><span class="header-section-number">8.2</span> Rejected Blocks Do Not Contaminate the <code>.syno</code></a></li>
+  <li><a href="#sec-json-schema" id="toc-sec-json-schema" class="nav-link" data-scroll-target="#sec-json-schema"><span class="header-section-number">8.3</span> Structured Generation (JSON Schema)</a></li>
+  </ul></li>
+  <li><a href="#sec-fases" id="toc-sec-fases" class="nav-link" data-scroll-target="#sec-fases"><span class="header-section-number">9</span> Organizing Model Phases: <code>phase</code>, <code>review</code>, <code>consolidate</code></a></li>
+  <li><a href="#sec-anchor" id="toc-sec-anchor" class="nav-link" data-scroll-target="#sec-anchor"><span class="header-section-number">10</span> Checking Quotations Without AI: <code>anchor</code></a></li>
+  <li><a href="#sec-act" id="toc-sec-act" class="nav-link" data-scroll-target="#sec-act"><span class="header-section-number">11</span> The ACT Pipeline: Review Before Accepting</a>
+  <ul class="collapse">
+  <li><a href="#critique-propose" id="toc-critique-propose" class="nav-link" data-scroll-target="#critique-propose"><span class="header-section-number">11.1</span> <code>critique</code>: Propose</a></li>
+  <li><a href="#normalize-canonicalize-codes" id="toc-normalize-canonicalize-codes" class="nav-link" data-scroll-target="#normalize-canonicalize-codes"><span class="header-section-number">11.2</span> <code>normalize</code>: Canonicalize Codes</a></li>
+  <li><a href="#incorporate-accept" id="toc-incorporate-accept" class="nav-link" data-scroll-target="#incorporate-accept"><span class="header-section-number">11.3</span> <code>incorporate</code>: Accept</a></li>
+  <li><a href="#refine-re-extract-optional" id="toc-refine-re-extract-optional" class="nav-link" data-scroll-target="#refine-re-extract-optional"><span class="header-section-number">11.4</span> <code>refine</code>: Re-extract (Optional)</a></li>
+  <li><a href="#recommended-order" id="toc-recommended-order" class="nav-link" data-scroll-target="#recommended-order"><span class="header-section-number">11.5</span> Recommended Order</a></li>
+  </ul></li>
+  <li><a href="#sec-outros-modos" id="toc-sec-outros-modos" class="nav-link" data-scroll-target="#sec-outros-modos"><span class="header-section-number">12</span> Other Commands</a>
+  <ul class="collapse">
+  <li><a href="#suggest-suggest-codes" id="toc-suggest-suggest-codes" class="nav-link" data-scroll-target="#suggest-suggest-codes"><span class="header-section-number">12.1</span> <code>suggest</code>: Suggest Codes</a></li>
+  <li><a href="#finetune-prepare-training-data" id="toc-finetune-prepare-training-data" class="nav-link" data-scroll-target="#finetune-prepare-training-data"><span class="header-section-number">12.2</span> <code>finetune</code>: Prepare Training Data</a></li>
+  </ul></li>
+  <li><a href="#sec-vscode" id="toc-sec-vscode" class="nav-link" data-scroll-target="#sec-vscode"><span class="header-section-number">13</span> VS Code Integration</a></li>
+  <li><a href="#sec-arquitetura" id="toc-sec-arquitetura" class="nav-link" data-scroll-target="#sec-arquitetura"><span class="header-section-number">14</span> How It Works Inside</a></li>
+  <li><a href="#sec-env" id="toc-sec-env" class="nav-link" data-scroll-target="#sec-env"><span class="header-section-number">15</span> Environment Variables</a></li>
+  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">16</span> Common Errors</a>
+  <ul class="collapse">
+  <li><a href="#synesis-coder-not-found" id="toc-synesis-coder-not-found" class="nav-link" data-scroll-target="#synesis-coder-not-found"><span class="header-section-number">16.1</span> <code>synesis-coder</code> Not Found</a></li>
+  <li><a href="#missing-api-key" id="toc-missing-api-key" class="nav-link" data-scroll-target="#missing-api-key"><span class="header-section-number">16.2</span> Missing API Key</a></li>
+  <li><a href="#warning-about-a-field-without-guidelines" id="toc-warning-about-a-field-without-guidelines" class="nav-link" data-scroll-target="#warning-about-a-field-without-guidelines"><span class="header-section-number">16.3</span> Warning About a Field Without GUIDELINES</a></li>
+  <li><a href="#the-model-cannot-produce-a-valid-block" id="toc-the-model-cannot-produce-a-valid-block" class="nav-link" data-scroll-target="#the-model-cannot-produce-a-valid-block"><span class="header-section-number">16.4</span> The Model Cannot Produce a Valid Block</a></li>
+  </ul></li>
+  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">17</span> Next Steps</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">synesis-coder: AI-Assisted Qualitative Coding</h1>
+<p class="subtitle lead">How to generate annotations and ontologies and process whole corpora from the command line</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="synesis-coder-ai-assisted-qualitative-coding" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> synesis-coder: AI-Assisted Qualitative Coding</h1>
+<p><code>synesis-coder</code> automates qualitative coding with a language model (Claude by default, or any server compatible with the OpenAI API). The tool reads your project template (<code>.synt</code>) and generates valid Synesis blocks (<code>SOURCE</code>, <code>ITEM</code>, <code>ONTOLOGY</code>) following the fields, relations, allowed values and instructions (<code>GUIDELINES</code>) of the template.</p>
+<p><strong>Use this guide if you:</strong></p>
+<ul>
+<li>want to code a passage selected in a <code>.syn</code> file</li>
+<li>need to batch-process a corpus of abstracts (<code>.bib</code>) or records (<code>.toml</code>)</li>
+<li>want to code a long document (interview, report)</li>
+<li>need definitions for the concepts already used in the corpus</li>
+<li>want to review what the AI annotated before accepting it</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nothing is hardcoded
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>synesis-coder</code> knows no field name, relation or value. Everything comes from the template, read by the compiler. Change the template and the AI follows the new rules.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The AI proposes, the compiler checks, you decide
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compiling without errors shows that the <strong>form</strong> is right, not that the <strong>reading</strong> is. Review what was generated (<a href="#sec-act" class="quarto-xref">Section&nbsp;11</a>). Data sent to the model leaves your computer, unless the model runs locally.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-instalacao" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Installation</h1>
+<p>Requires <strong>Python 3.10+</strong>. The compiler (<code>synesis</code> ≥ 0.16.0) is installed as a dependency.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis-coder</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> <span class="at">--version</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># synesis-coder, version 0.15.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="configuration" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="configuration"><span class="header-section-number">2.1</span> Configuration</h2>
+<p>Create a <code>.env</code> file <strong>in the project folder</strong> (from where you run the commands):</p>
+<pre class="dotenv"><code># Anthropic (default)
+ANTHROPIC_API_KEY=sk-ant-...
+
+# Optional: language of free-text fields
+SYNESIS_CODER_LANGUAGE=en
+
+# Optional: another model (default: claude-opus-4-6)
+# SYNESIS_CODER_MODEL=claude-sonnet-4-6</code></pre>
+<p>For a server compatible with the OpenAI API (local Ollama, OpenRouter, RunPod…):</p>
+<pre class="dotenv"><code>SYNESIS_CODER_BACKEND=openai
+SYNESIS_CODER_API_URL=http://localhost:11434
+SYNESIS_CODER_MODEL=model-name
+# SYNESIS_CODER_API_KEY=...   # not needed for local Ollama</code></pre>
+<p>Precedence is: environment variable &gt; project <code>.env</code> &gt; defaults file named by <code>SYNESIS_CODER_ENV_FILE</code>. Never commit the <code>.env</code>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-modos" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Commands</h1>
+<table class="table-striped table-hover caption-top table">
+<caption>Commands</caption>
+<colgroup>
+<col style="width: 9%">
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 21%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Group</th>
+<th>Command</th>
+<th>Input</th>
+<th>Output</th>
+<th style="text-align: center;">LLM?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Coding</td>
+<td><code>item</code></td>
+<td>passage + bibref</td>
+<td>ITEM block</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>abstract</code></td>
+<td><code>.bib</code> corpus</td>
+<td>SOURCE + ITEMs</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>dataset</code></td>
+<td>TOML records (<code>INCLUDE DATASET</code>)</td>
+<td>SOURCE + ITEMs</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>document</code></td>
+<td><code>.txt</code> or <code>.md</code></td>
+<td>SOURCE + ITEMs</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="odd">
+<td>Organizing model</td>
+<td><code>ontology</code></td>
+<td>annotated corpus</td>
+<td>ONTOLOGY blocks (<code>.syno</code>)</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>phase</code></td>
+<td><code>PHASE</code> block of the <code>.synp</code></td>
+<td>the phase fields</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>review</code></td>
+<td>proposals of a phase</td>
+<td>sample for judgement</td>
+<td style="text-align: center;">no</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>consolidate</code></td>
+<td>two concepts</td>
+<td>consolidation (<code>ROLE USE</code>)</td>
+<td style="text-align: center;">no</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>suggest</code></td>
+<td>passage</td>
+<td>project codes</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td>Review</td>
+<td><code>critique</code></td>
+<td><code>.syn</code></td>
+<td><code>.synr</code> with <code># REVISION</code></td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>normalize</code></td>
+<td><code>.synr</code></td>
+<td><code>.synr</code> with canonical codes</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>incorporate</code></td>
+<td><code>.synr</code></td>
+<td>final <code>.syn</code></td>
+<td style="text-align: center;"><strong>no</strong></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>refine</code></td>
+<td><code>.syn</code></td>
+<td>re-extracted <code>.syn</code></td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td>Check</td>
+<td><code>anchor</code></td>
+<td><code>.syn</code></td>
+<td>quotations found or not</td>
+<td style="text-align: center;"><strong>no</strong></td>
+</tr>
+<tr class="odd">
+<td>Training</td>
+<td><code>finetune</code></td>
+<td>project or JSONL</td>
+<td>enriched JSONL</td>
+<td style="text-align: center;">yes</td>
+</tr>
+</tbody>
+</table>
+<p>Options available in several commands:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--prompt-only</code></td>
+<td>writes the assembled prompt to Markdown and exits, without calling the model (to review the <code>GUIDELINES</code>)</td>
+</tr>
+<tr class="even">
+<td><code>--debug</code></td>
+<td>writes the audit log of the calls</td>
+</tr>
+<tr class="odd">
+<td><code>--require-guidelines</code> (global, before the command)</td>
+<td>fails if any field has no <code>GUIDELINES</code></td>
+</tr>
+<tr class="even">
+<td><code>--language</code>, <code>--model</code>, <code>--temperature</code>, <code>--max-tokens</code>, <code>--thinking-budget</code></td>
+<td>generation settings</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>synesis-coder &lt;command&gt; --help</code> for the full list.</p>
+<hr>
+</section>
+<section id="sec-item" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> <code>item</code> Mode: Code a Passage</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> item <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> ashworth2019 <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Community trust and environmental concern are the most important factors determining willingness to participate in renewable energy projects."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output is a compilable ITEM block with <strong>your</strong> template fields:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ashworth2019</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> Community trust and environmental concern are the most</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>          important factors determining willingness to participate</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>          in renewable energy projects.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Reveals dual-factor mechanism where trust and environmental</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          concern independently drive participation willingness</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Community_Trust <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Participation</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Environmental concern acts as value-based enabler of</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>          engagement with renewable energy</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Environmental_Concern <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Participation</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By default (<code>--format plain</code>) only the Synesis block is printed, ready to redirect:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> item <span class="at">--project</span> social_acceptance.synp <span class="at">--bibref</span> ashworth2019 <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Local ownership models significantly reduce opposition."</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;&gt;</span> annotations/ashworth2019.syn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>--format verbose</code> adds a header with the model, the validation result and the time.</p>
+<hr>
+</section>
+<section id="sec-abstract" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> <code>abstract</code> Mode: Bibliographic Corpus</h1>
+<p>Processes a <code>.bib</code> and generates <code>SOURCE</code> and <code>ITEM</code> blocks for each reference that has an abstract.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> corpus/references.bib <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output-dir</span> annotations/ <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--concurrent</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>--output-dir</code> is a folder
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is not a file name. The old name <code>--output</code> is still accepted as a synonym.</p>
+</div>
+</div>
+<p>Each block is validated by the compiler before being written.</p>
+<section id="output-layout" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="output-layout"><span class="header-section-number">5.1</span> Output Layout</h2>
+<p>By default everything goes to a single <code>annotations.syn</code>. For large campaigns pick <strong>one</strong> of:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--per-reference</code></td>
+<td>one <code>.syn</code> per reference (easier to review and redo)</td>
+</tr>
+<tr class="even">
+<td><code>--split-every 100</code></td>
+<td><code>annotations_0001.syn</code>, <code>annotations_0002.syn</code>… with 100 references each</td>
+</tr>
+</tbody>
+</table>
+<p>If <code>annotations.syn</code> already exists, use <code>--overwrite</code> or <code>--backup</code>.</p>
+</section>
+<section id="long-campaigns" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="long-campaigns"><span class="header-section-number">5.2</span> Long Campaigns</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="at">--project</span> p.synp <span class="at">--input</span> refs.bib <span class="at">--output-dir</span> out/ <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--per-reference</span> <span class="at">--resume</span> <span class="at">--batch-size</span> 25 <span class="at">--cooldown</span> auto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--resume</code> skips what was already annotated successfully in the output folder; failed records are redone</li>
+<li><code>--batch-size</code> processes in batches; between them the project is reloaded and the concepts already generated enter the context</li>
+<li><code>--cooldown</code> sets the pause between batches (<code>auto</code>, seconds or <code>0</code>)</li>
+</ul>
+<table class="table-striped table-hover caption-top table">
+<caption><code>abstract</code> mode options</caption>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th style="text-align: center;">Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--project</code></td>
+<td style="text-align: center;">yes</td>
+<td><code>.synp</code> file</td>
+</tr>
+<tr class="even">
+<td><code>--input</code></td>
+<td style="text-align: center;">yes</td>
+<td><code>.bib</code> with abstracts</td>
+</tr>
+<tr class="odd">
+<td><code>--output-dir</code></td>
+<td style="text-align: center;">no</td>
+<td>output folder (default: current)</td>
+</tr>
+<tr class="even">
+<td><code>--concurrent</code></td>
+<td style="text-align: center;">no</td>
+<td>simultaneous calls</td>
+</tr>
+<tr class="odd">
+<td><code>--batch-size</code></td>
+<td style="text-align: center;">no</td>
+<td>references per batch (default: 25)</td>
+</tr>
+<tr class="even">
+<td><code>--per-reference</code> / <code>--split-every N</code></td>
+<td style="text-align: center;">no</td>
+<td>output layout</td>
+</tr>
+<tr class="odd">
+<td><code>--resume</code></td>
+<td style="text-align: center;">no</td>
+<td>resumes a campaign</td>
+</tr>
+<tr class="even">
+<td><code>--overwrite</code> / <code>--backup</code></td>
+<td style="text-align: center;">no</td>
+<td>existing file</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="sec-dataset" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> <code>dataset</code> Mode: Structured Records</h1>
+<p>For forms, CVs, posts or any corpus with one TOML record per source. The <code>.synp</code> declares <code>INCLUDE DATASET</code>; <code>ON DATASET</code> fields are resolved by the compiler, and interpretive fields are generated by the model from the sections named in <code>CONTEXT FROM DATASET</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> dataset <span class="at">--project</span> lattes.synp <span class="at">--output-dir</span> annotations/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table-striped table-hover caption-top table">
+<caption><code>dataset</code> mode options</caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--output-dir</code></td>
+<td>output folder; one <code>.syn</code> per record</td>
+</tr>
+<tr class="even">
+<td><code>--single-file</code></td>
+<td>a single <code>dataset.syn</code></td>
+</tr>
+<tr class="odd">
+<td><code>--dataset</code></td>
+<td>overrides the <code>INCLUDE DATASET</code> pattern for this run only (good to test one record)</td>
+</tr>
+<tr class="even">
+<td><code>--concurrent</code></td>
+<td>simultaneous calls</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="sec-document" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> <code>document</code> Mode: Long Documents</h1>
+<p>Splits a document into overlapping chunks and generates a <code>.syn</code>. The reference (<code>--bibref</code>) must exist in the <code>.bib</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> document <span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> interview_01 <span class="dt">\</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> transcripts/interview_01.txt <span class="dt">\</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> annotations/interview_01.syn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--chunk-size</code>: maximum chunk size in characters (default: 12,000)</li>
+<li><code>--overlap</code>: overlap between chunks (default: 2,400)</li>
+<li>concepts created in earlier chunks enter the context of later ones</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sizing the chunk
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Templates with several <code>CHAIN</code> fields and long <code>GUIDELINES</code> ask for smaller chunks (8,000 to 10,000 characters).</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-ontology" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> <code>ontology</code> Mode: Define the Concepts</h1>
+<p>Analyses the annotated corpus, gathers evidence for each code (frequency, sources, relations, co-occurrences, examples) and generates <code>ONTOLOGY</code> blocks grounded in those data.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> ontology <span class="at">--project</span> social_acceptance.synp <span class="at">--output</span> ontology.syno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The context of each concept includes:</p>
+<ul>
+<li><strong>frequency</strong> and number of <strong>sources</strong></li>
+<li><strong>relations stated</strong> by the sources (up to 15), which the model must not copy as a field value</li>
+<li><strong>co-occurrences</strong> (up to 20)</li>
+<li><strong>example</strong> excerpts (up to 3)</li>
+</ul>
+<p>A generated block:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Core economic factor representing financial expenditure.</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        Mainly constrains deployment while enabling market penetration</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        when reduced.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        associated with energy technologies and systems.</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>ORDERED</code> fields are written as their <strong>index</strong> (<code>aspect: 11</code>).</p>
+<section id="how-the-file-is-updated" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="how-the-file-is-updated"><span class="header-section-number">8.1</span> How the File Is Updated</h2>
+<ul>
+<li>The <code>.syno</code> is <strong>edited block by block</strong>: an existing block receives only the generated fields; comments, other fields and order are left as they were</li>
+<li><code>--update</code> generates only what is missing: concepts without a block and absent required fields</li>
+<li>Ontology <code>CODE</code> and <code>CHAIN</code> fields are structure and are not generated by this mode; labels (<code>ROLE LABEL</code>) are left to the synonyms phase</li>
+<li>Use <code>--backup</code> to keep a copy, <code>--prompt-only</code> to see the prompt</li>
+</ul>
+</section>
+<section id="sec-rejeitados" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sec-rejeitados"><span class="header-section-number">8.2</span> Rejected Blocks Do Not Contaminate the <code>.syno</code></h2>
+<p>A block that still fails validation after the correction attempts goes to a separate file (<code>ontology.syno.rejected</code>). The <code>.syno</code> stays compilable.</p>
+</section>
+<section id="sec-json-schema" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="sec-json-schema"><span class="header-section-number">8.3</span> Structured Generation (JSON Schema)</h2>
+<p>When the model supports structured output, <code>synesis-coder</code> asks only for the field <strong>values</strong>, with a JSON Schema derived from the template, and assembles the block in code. This removes syntax errors by construction. Without support the tool uses free text; compiler validation is the same.</p>
+<p>The template needs at least one <code>SCOPE ONTOLOGY</code> field.</p>
+<hr>
+</section>
+</section>
+<section id="sec-fases" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Organizing Model Phases: <code>phase</code>, <code>review</code>, <code>consolidate</code></h1>
+<p>With <code>PHASE</code> blocks in the <code>.synp</code>, the organizing model is produced in phases — definitions, synonyms, taxonomy. The kind of each phase follows from the roles (<code>ROLE</code>) of the fields it produces.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase project.synp <span class="at">--list</span>          <span class="co"># the plan and the connection of each phase</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase project.synp definitions     <span class="co"># runs one phase</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase project.synp taxonomy <span class="at">--dry-run</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> review project.synp taxonomy <span class="at">--sample</span> 100 <span class="at">--stratify</span> depth</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> review project.synp taxonomy <span class="at">--score</span> o.taxonomy.review_edge.csv</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> consolidate project.synp voice_phishing <span class="at">--into</span> vishing</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> consolidate project.synp voice_phishing <span class="at">--revert</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Each run writes a manifest (<code>&lt;target&gt;.&lt;phase&gt;.manifest.json</code>) with what was proposed, applied or rejected; an interrupted run resumes, and repeating it without input changes does not call the model</li>
+<li><code>review</code> draws a stratified sample (<code>--unit edge|label|concept</code>) and writes a CSV for judgement (<code>judgement</code>: correct/wrong); <code>--score</code> estimates precision with a confidence interval</li>
+<li><code>consolidate</code> merges a duplicate name into the concept that holds, reversibly</li>
+<li>Model and connection per phase: <code>SYNESIS_CODER_PHASE_&lt;NAME&gt;_MODEL</code>, <code>_BACKEND</code>, <code>_API_URL</code>, <code>_API_KEY</code></li>
+</ul>
+<p>Details in <a href="../reference/organizing_model.html">The Organizing Model</a>.</p>
+<hr>
+</section>
+<section id="sec-anchor" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Checking Quotations Without AI: <code>anchor</code></h1>
+<p>Before spending on model review, check that each quotation <strong>exists</strong> in the source:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> anchor annotations/ref.syn <span class="at">--project</span> project.synp</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> anchor annotations/interview_01.syn <span class="at">--project</span> p.synp <span class="dt">\</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--source-dir</span> transcripts/ <span class="at">--json</span> report.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Every quotation of every <code>QUOTATION</code> field gets one of three states:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>State</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>found</em></td>
+<td>it is in the source (normalizing spacing, quotes and case)</td>
+</tr>
+<tr class="even">
+<td><em>not found</em></td>
+<td>it is not: the model rewrote instead of quoting</td>
+</tr>
+<tr class="odd">
+<td><em>unverifiable</em></td>
+<td>there is no source text for that reference</td>
+</tr>
+</tbody>
+</table>
+<p>Sources are the <code>&lt;bibref&gt;.txt</code> or <code>.md</code> files of <code>--source-dir</code>, then the abstracts of the <code>.bib</code>. <code>--literal</code> compares without normalization; <code>--strict</code> exits with code 1 if any quotation is not found or unverifiable.</p>
+<hr>
+</section>
+<section id="sec-act" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> The ACT Pipeline: Review Before Accepting</h1>
+<p>Initial extraction produces annotations that <strong>need review</strong>. The pipeline separates <strong>proposing</strong> a correction from <strong>accepting</strong> it, and no phase changes the original <code>.syn</code> without an explicit request.</p>
+<p>The intermediate format is <strong><code>.synr</code></strong>: a revision file with <code># REVISION</code> blocks, which goes into no project <code>INCLUDE</code>.</p>
+<pre class="text"><code>.syn  ──critique──▶  .synr  ──normalize──▶  .synr  ──incorporate──▶  .syn</code></pre>
+<section id="critique-propose" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="critique-propose"><span class="header-section-number">11.1</span> <code>critique</code>: Propose</h2>
+<p>A model rereads each ITEM against the source text and the template.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> critique annotations/interview_01.syn <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--sensitivity</span> standard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table-striped table-hover caption-top table">
+<caption><code>critique</code> mode options</caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--sensitivity</code></td>
+<td><code>lenient</code>, <code>standard</code> (default), <code>strict</code> or a number from 0 to 1</td>
+</tr>
+<tr class="even">
+<td><code>--output</code></td>
+<td>path of the <code>.synr</code></td>
+</tr>
+<tr class="odd">
+<td><code>--model</code></td>
+<td>critic model (<code>SYNESIS_CODER_CRITIQUE_MODEL</code>)</td>
+</tr>
+<tr class="even">
+<td><code>--concurrent</code>, <code>--debug</code></td>
+<td>execution</td>
+</tr>
+</tbody>
+</table>
+<p>High sensitivity produces <strong>more false positives</strong>, not more truth. The critique can use another connection (<code>SYNESIS_CODER_CRITIQUE_BACKEND</code>, <code>_API_URL</code>, <code>_API_KEY</code>), which reduces the bias of a generator judging itself.</p>
+</section>
+<section id="normalize-canonicalize-codes" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="normalize-canonicalize-codes"><span class="header-section-number">11.2</span> <code>normalize</code>: Canonicalize Codes</h2>
+<p>Looks at the whole corpus and unifies variants (<code>Social_Acceptance</code>, <code>social_acceptance</code>, <code>SocialAcceptance</code>).</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> normalize annotations/<span class="pp">*</span>.synr <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--confidence</span> 0.65 <span class="at">--inventory</span> code_inventory.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="incorporate-accept" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="incorporate-accept"><span class="header-section-number">11.3</span> <code>incorporate</code>: Accept</h2>
+<p>Applies the <code>.synr</code> and writes the validated final <code>.syn</code>. <strong>No AI</strong>: deterministic and repeatable.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> incorporate annotations/interview_01.synr <span class="dt">\</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> annotations/interview_01_final.syn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An ambiguous correction is <strong>refused, not guessed</strong>. Use <code>--backup</code> when the target already exists.</p>
+</section>
+<section id="refine-re-extract-optional" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="refine-re-extract-optional"><span class="header-section-number">11.4</span> <code>refine</code>: Re-extract (Optional)</h2>
+<p>Instead of applying point corrections, re-extracts the flagged ITEMs with the critique in context. It only accepts a version with a lower suspicion score.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> refine annotations/interview_01.syn <span class="at">--project</span> nave.synp <span class="at">--max-iter</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Default output: <code>&lt;name&gt;_refined.syn</code>. The input file is never overwritten without <code>--overwrite</code>.</p>
+</section>
+<section id="recommended-order" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="recommended-order"><span class="header-section-number">11.5</span> Recommended Order</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> anchor      annotations/annotations.syn <span class="at">--project</span> study.synp   <span class="co"># 1. free</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> critique    annotations/annotations.syn <span class="at">--project</span> study.synp   <span class="co"># 2. propose</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                         (read the .synr)                                   # 3. decide</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> normalize   annotations/annotations.synr <span class="at">--project</span> study.synp  <span class="co"># 4. canonicalize</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> incorporate annotations/annotations.synr <span class="dt">\</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">--output</span> annotations/final.syn <span class="at">--backup</span>                        <span class="co"># 5. accept</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile study.synp                                                   <span class="co"># 6. compile</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Step 3 is not decoration: the <code>.synr</code> is readable text, made for you to decide what enters your data.</p>
+<hr>
+</section>
+</section>
+<section id="sec-outros-modos" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Other Commands</h1>
+<section id="suggest-suggest-codes" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="suggest-suggest-codes"><span class="header-section-number">12.1</span> <code>suggest</code>: Suggest Codes</h2>
+<p>Returns project codes relevant to a passage, without generating a block. Codes that do not exist yet are marked <code>[NEW]</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> suggest <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Local ownership models significantly reduce opposition."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="finetune-prepare-training-data" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="finetune-prepare-training-data"><span class="header-section-number">12.2</span> <code>finetune</code>: Prepare Training Data</h2>
+<p>Generates or enriches an Alpaca JSONL.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> finetune <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> enriched_dataset.jsonl <span class="at">--enrich</span> vary <span class="at">--enrich</span> didactic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><code>--enrich</code></th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>vary</code> (default)</td>
+<td>variations of wording</td>
+</tr>
+<tr class="even">
+<td><code>didactic</code></td>
+<td>versions with explanation</td>
+</tr>
+<tr class="odd">
+<td><code>counterfactual</code></td>
+<td>counterexamples</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Relation qualifiers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pairs generated from the project do not carry the qualifier of a BUNDLE with a CHAIN (for instance a “hypothetical” status). For a faithful dataset, declare the composition in an <a href="../reference/guia_referencia.html#sec-export"><code>EXPORT ALPACA</code> block with <code>MAP</code></a> and pass that JSONL to <code>--input</code>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-vscode" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> VS Code Integration</h1>
+<p>In the <strong>Synesis</strong> extension, <code>item</code> mode codes the text selected in a <code>.syn</code>:</p>
+<ol type="1">
+<li>select the passage</li>
+<li>right-click → <strong>Synesis: Code Selection</strong> (or <code>Ctrl+Shift+I</code> / <code>Cmd+Shift+I</code>)</li>
+</ol>
+<p>The extension detects the bibref of the block under the cursor, runs <code>synesis-coder</code> in the project folder (reading its <code>.env</code>) and <strong>replaces the selection</strong> with the generated ITEM. You can cancel from the progress notification. If the executable is not on <code>PATH</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"synesisExplorer.coder.path"</span><span class="fu">:</span> <span class="st">"C:/Python312/Scripts/synesis-coder.exe"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="sec-arquitetura" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> How It Works Inside</h1>
+<pre class="text"><code>1. load       the compiler reads the project: fields, GUIDELINES, relations,
+              existing concepts, DESCRIPTION and QUESTIONS
+2. assemble   system prompt (stable, benefits from API caching)
+              + per-call prompt (reference and text)
+3. generate   model call (structured output when possible),
+              with request and token limits
+4. validate   the compiler checks; errors go back to the model
+              for correction (up to 3 attempts)
+5. write      valid blocks only</code></pre>
+<p>The instruction for each field comes, in this order, from <code>GUIDELINES</code>, from <code>DESCRIPTION</code> or, with neither, from a generic instruction based on the type. That is why writing <code>GUIDELINES</code> in every field pays off.</p>
+<hr>
+</section>
+<section id="sec-env" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Environment Variables</h1>
+<table class="table-striped table-hover caption-top table">
+<caption>General variables</caption>
+<colgroup>
+<col style="width: 34%">
+<col style="width: 27%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td>—</td>
+<td>Anthropic key (default backend)</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_BACKEND</code></td>
+<td><code>anthropic</code></td>
+<td><code>anthropic</code> or <code>openai</code></td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_API_URL</code>, <code>_API_KEY</code></td>
+<td>—</td>
+<td>OpenAI-compatible server</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MODEL</code></td>
+<td><code>claude-opus-4-6</code></td>
+<td>model</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_LANGUAGE</code></td>
+<td>template language</td>
+<td>language of free-text fields</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MAX_RETRIES</code></td>
+<td><code>3</code></td>
+<td>correction attempts</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_TEMPERATURE</code></td>
+<td><code>0.0</code></td>
+<td>temperature (omitted on models that do not accept it)</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MAX_TOKENS</code></td>
+<td>model’s</td>
+<td>output limit</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_CONCURRENT</code></td>
+<td>mode’s</td>
+<td>simultaneous calls</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_THINKING_BUDGET</code></td>
+<td><code>0</code></td>
+<td>above 0 asks for reasoning</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_EFFORT</code></td>
+<td>model’s</td>
+<td><code>low</code> to <code>max</code> (Anthropic)</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MAX_RPM</code>, <code>_MAX_INPUT_TPM</code>, <code>_MAX_OUTPUT_TPM</code></td>
+<td><code>50</code>, <code>40000</code>, <code>8000</code></td>
+<td>limits (Anthropic)</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_REQUIRE_GUIDELINES</code></td>
+<td>off</td>
+<td>requires <code>GUIDELINES</code> in every field</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_ENV_FILE</code></td>
+<td>—</td>
+<td>shared defaults file</td>
+</tr>
+</tbody>
+</table>
+<table class="table-striped table-hover caption-top table">
+<caption>Review pipeline variables</caption>
+<colgroup>
+<col style="width: 41%">
+<col style="width: 33%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Default</th>
+<th>Phase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SYNESIS_CODER_CRITIQUE_MODEL</code></td>
+<td>general model</td>
+<td><code>critique</code> and the critic in <code>refine</code></td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_NORMALIZATION_MODEL</code></td>
+<td>general model</td>
+<td><code>normalize</code></td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_REFINE_MODEL</code></td>
+<td>general model</td>
+<td><code>refine</code></td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_SUSPICION_THRESHOLD</code></td>
+<td><code>0.20</code></td>
+<td>minimum score for <code># REVISION</code></td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_MERGE_CONFIDENCE_THRESHOLD</code></td>
+<td><code>0.65</code></td>
+<td>confidence to canonicalize</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_REFINE_MAX_ITER</code></td>
+<td><code>2</code></td>
+<td>iterations in <code>refine</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="sec-erros" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Common Errors</h1>
+<section id="synesis-coder-not-found" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="synesis-coder-not-found"><span class="header-section-number">16.1</span> <code>synesis-coder</code> Not Found</h2>
+<p>The executable is not on <code>PATH</code>. Check with <code>pip show synesis-coder</code>, use <code>python -m synesis_coder</code> or set the path in the extension.</p>
+</section>
+<section id="missing-api-key" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="missing-api-key"><span class="header-section-number">16.2</span> Missing API Key</h2>
+<p>Create the <code>.env</code> in the folder the command runs from, or export the variable. A <code>.env</code> next to the installation is not read.</p>
+</section>
+<section id="warning-about-a-field-without-guidelines" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="warning-about-a-field-without-guidelines"><span class="header-section-number">16.3</span> Warning About a Field Without GUIDELINES</h2>
+<p>The model receives only the <code>DESCRIPTION</code> (or nothing) for that field. Write the instructions in the template.</p>
+</section>
+<section id="the-model-cannot-produce-a-valid-block" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="the-model-cannot-produce-a-valid-block"><span class="header-section-number">16.4</span> The Model Cannot Produce a Valid Block</h2>
+<p>After the attempts the block is recorded as a failure (in <code>ontology</code> mode, in the <code>.rejected</code> file). Read the compiler message, revise the <code>GUIDELINES</code> of the field involved and run again (<code>--resume</code> in <code>abstract</code> mode).</p>
+<hr>
+</section>
+</section>
+<section id="sec-proximos" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Next Steps</h1>
+<ul>
+<li><a href="../explanation/codificacao_assistida_IA.html">AI-Assisted Coding</a>: a real case</li>
+<li><a href="../explanation/codificacao_assistida_IA_metricas.html">Research Metrics</a></li>
+<li><a href="../howto/definir_ontologia.html">How to Define an Ontology</a></li>
+<li><a href="../howto/criar_chains.html">How to Create and Validate Chains</a></li>
+<li><a href="../howto/ligar_projetos.html">How to Link Independent Projects</a></li>
+<li><a href="../tutorials/synesis_claude_desktop.html">Synesis in Claude Desktop</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

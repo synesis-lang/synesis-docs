@@ -426,19 +426,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="você-define-seu-vocabulário-conceitual" class="level3" data-number="1.5.3">
 <h3 data-number="1.5.3" class="anchored" data-anchor-id="você-define-seu-vocabulário-conceitual"><span class="header-section-number">1.5.3</span> 3. Você define seu vocabulário conceitual</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> engajamento</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Nível de comprometimento e conexão emocional do funcionário com a organização."</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Nível de comprometimento e conexão emocional do funcionário com a organização.</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> resultados_organizacionais</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> falta_de_clareza_estrategica</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Ausência de comunicação clara sobre direção, objetivos ou visão da organização."</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Ausência de comunicação clara sobre direção, objetivos ou visão da organização.</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> fatores_organizacionais</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Conceitos são definidos explicitamente, garantindo consistência ao longo do projeto.</p>
 </section>
 <section id="o-sistema-valida-e-estrutura" class="level3" data-number="1.5.4">
 <h3 data-number="1.5.4" class="anchored" data-anchor-id="o-sistema-valida-e-estrutura"><span class="header-section-number">1.5.4</span> 4. O sistema valida e estrutura</h3>
-<p>O compilador Synesis: - Verifica consistência das anotações - Gera formatos estruturados (JSON, CSV, planilhas) - Permite integração com sistemas de análise</p>
+<p>O compilador Synesis:</p>
+<ul>
+<li>Verifica a consistência das anotações contra o modelo definido (o <em>template</em>)</li>
+<li>Gera formatos estruturados (JSON, CSV, planilhas)</li>
+<li>Permite integração com sistemas de análise e bancos de grafos</li>
+</ul>
+<p>Os nomes dos campos e as relações permitidas são definidos pela própria organização. Para começar com a ajuda de um assistente, veja a <a href="../tutorials/synesis_claude_desktop.html">Skill do Synesis para o Claude Desktop</a>; para codificar grandes volumes com IA e revisão humana, o <a href="../howto/synesis_coder.html">synesis-coder</a>.</p>
 <hr>
 </section>
 </section>
@@ -548,8 +554,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong>Identifique um domínio piloto</strong> — RH, operações ou comercial são bons pontos de partida</li>
 <li><strong>Defina o vocabulário inicial</strong> — quais conceitos são relevantes para suas decisões?</li>
-<li><strong>Treine os analistas</strong> — a curva de aprendizado é baixa para quem já trabalha com dados qualitativos</li>
+<li><strong>Treine os analistas</strong> — a sintaxe é legível; o esforço principal está em definir bem os conceitos</li>
 <li><strong>Integre com processos existentes</strong> — Synesis complementa, não substitui, ferramentas atuais</li>
+<li><strong>Cuide dos dados</strong> — retire dados pessoais antes de usar serviços de IA</li>
 </ol>
 </section>
 <section id="para-profissionais-individuais" class="level3" data-number="1.9.2">

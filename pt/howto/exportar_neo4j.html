@@ -262,51 +262,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#como-exportar-para-neo4j" id="toc-como-exportar-para-neo4j" class="nav-link active" data-scroll-target="#como-exportar-para-neo4j"><span class="header-section-number">1</span> Como Exportar para Neo4j</a>
   <ul class="collapse">
   <li><a href="#pré-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pré-requisitos"><span class="header-section-number">1.1</span> Pré-requisitos</a></li>
-  <li><a href="#passo-1-instalar-neo4j" id="toc-passo-1-instalar-neo4j" class="nav-link" data-scroll-target="#passo-1-instalar-neo4j"><span class="header-section-number">1.2</span> Passo 1: Instalar Neo4j</a>
+  <li><a href="#passo-1-instalar-o-neo4j" id="toc-passo-1-instalar-o-neo4j" class="nav-link" data-scroll-target="#passo-1-instalar-o-neo4j"><span class="header-section-number">1.2</span> Passo 1: Instalar o Neo4j</a>
   <ul class="collapse">
-  <li><a href="#opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local" id="toc-opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local" class="nav-link" data-scroll-target="#opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local"><span class="header-section-number">1.2.1</span> Opção A: Neo4j Desktop (Recomendado para desenvolvimento local)</a></li>
-  <li><a href="#opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós" id="toc-opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós" class="nav-link" data-scroll-target="#opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós"><span class="header-section-number">1.2.2</span> Opção B: Neo4j AuraDB (Cloud - Gratuito até 200K nós)</a></li>
+  <li><a href="#opção-a-neo4j-desktop-desenvolvimento-local" id="toc-opção-a-neo4j-desktop-desenvolvimento-local" class="nav-link" data-scroll-target="#opção-a-neo4j-desktop-desenvolvimento-local"><span class="header-section-number">1.2.1</span> Opção A: Neo4j Desktop (desenvolvimento local)</a></li>
+  <li><a href="#opção-b-neo4j-aura-nuvem" id="toc-opção-b-neo4j-aura-nuvem" class="nav-link" data-scroll-target="#opção-b-neo4j-aura-nuvem"><span class="header-section-number">1.2.2</span> Opção B: Neo4j Aura (nuvem)</a></li>
   </ul></li>
-  <li><a href="#passo-2-instalar-synesis-graph" id="toc-passo-2-instalar-synesis-graph" class="nav-link" data-scroll-target="#passo-2-instalar-synesis-graph"><span class="header-section-number">1.3</span> Passo 2: Instalar synesis-graph</a></li>
-  <li><a href="#passo-3-criar-arquivo-de-configuração" id="toc-passo-3-criar-arquivo-de-configuração" class="nav-link" data-scroll-target="#passo-3-criar-arquivo-de-configuração"><span class="header-section-number">1.4</span> Passo 3: Criar Arquivo de Configuração</a>
+  <li><a href="#passo-2-instalar-o-synesis-graph" id="toc-passo-2-instalar-o-synesis-graph" class="nav-link" data-scroll-target="#passo-2-instalar-o-synesis-graph"><span class="header-section-number">1.3</span> Passo 2: Instalar o synesis-graph</a></li>
+  <li><a href="#passo-3-configurar-a-conexão" id="toc-passo-3-configurar-a-conexão" class="nav-link" data-scroll-target="#passo-3-configurar-a-conexão"><span class="header-section-number">1.4</span> Passo 3: Configurar a Conexão</a></li>
+  <li><a href="#passo-4-exportar" id="toc-passo-4-exportar" class="nav-link" data-scroll-target="#passo-4-exportar"><span class="header-section-number">1.5</span> Passo 4: Exportar</a></li>
+  <li><a href="#passo-5-explorar-no-neo4j-browser" id="toc-passo-5-explorar-no-neo4j-browser" class="nav-link" data-scroll-target="#passo-5-explorar-no-neo4j-browser"><span class="header-section-number">1.6</span> Passo 5: Explorar no Neo4j Browser</a></li>
+  <li><a href="#passo-6-consultas-analíticas" id="toc-passo-6-consultas-analíticas" class="nav-link" data-scroll-target="#passo-6-consultas-analíticas"><span class="header-section-number">1.7</span> Passo 6: Consultas Analíticas</a>
   <ul class="collapse">
-  <li><a href="#para-neo4j-desktop" id="toc-para-neo4j-desktop" class="nav-link" data-scroll-target="#para-neo4j-desktop"><span class="header-section-number">1.4.1</span> Para Neo4j Desktop:</a></li>
-  <li><a href="#para-neo4j-auradb" id="toc-para-neo4j-auradb" class="nav-link" data-scroll-target="#para-neo4j-auradb"><span class="header-section-number">1.4.2</span> Para Neo4j AuraDB:</a></li>
-  </ul></li>
-  <li><a href="#passo-4-executar-a-exportação" id="toc-passo-4-executar-a-exportação" class="nav-link" data-scroll-target="#passo-4-executar-a-exportação"><span class="header-section-number">1.5</span> Passo 4: Executar a Exportação</a></li>
-  <li><a href="#passo-5-explorar-o-grafo-no-neo4j-browser" id="toc-passo-5-explorar-o-grafo-no-neo4j-browser" class="nav-link" data-scroll-target="#passo-5-explorar-o-grafo-no-neo4j-browser"><span class="header-section-number">1.6</span> Passo 5: Explorar o Grafo no Neo4j Browser</a>
-  <ul class="collapse">
-  <li><a href="#visualizar-todos-os-nós" id="toc-visualizar-todos-os-nós" class="nav-link" data-scroll-target="#visualizar-todos-os-nós"><span class="header-section-number">1.6.1</span> Visualizar Todos os Nós</a></li>
-  <li><a href="#visualizar-conceito-específico" id="toc-visualizar-conceito-específico" class="nav-link" data-scroll-target="#visualizar-conceito-específico"><span class="header-section-number">1.6.2</span> Visualizar Conceito Específico</a></li>
-  <li><a href="#visualizar-relações-de-um-conceito" id="toc-visualizar-relações-de-um-conceito" class="nav-link" data-scroll-target="#visualizar-relações-de-um-conceito"><span class="header-section-number">1.6.3</span> Visualizar Relações de um Conceito</a></li>
-  <li><a href="#ver-anotações-conectadas-a-um-conceito" id="toc-ver-anotações-conectadas-a-um-conceito" class="nav-link" data-scroll-target="#ver-anotações-conectadas-a-um-conceito"><span class="header-section-number">1.6.4</span> Ver Anotações Conectadas a um Conceito</a></li>
-  </ul></li>
-  <li><a href="#passo-6-consultas-analíticas-úteis" id="toc-passo-6-consultas-analíticas-úteis" class="nav-link" data-scroll-target="#passo-6-consultas-analíticas-úteis"><span class="header-section-number">1.7</span> Passo 6: Consultas Analíticas Úteis</a>
-  <ul class="collapse">
-  <li><a href="#top-10-conceitos-mais-frequentes" id="toc-top-10-conceitos-mais-frequentes" class="nav-link" data-scroll-target="#top-10-conceitos-mais-frequentes"><span class="header-section-number">1.7.1</span> Top 10 Conceitos Mais Frequentes</a></li>
-  <li><a href="#conceitos-que-co-ocorrem-frequentemente" id="toc-conceitos-que-co-ocorrem-frequentemente" class="nav-link" data-scroll-target="#conceitos-que-co-ocorrem-frequentemente"><span class="header-section-number">1.7.2</span> Conceitos que Co-ocorrem Frequentemente</a></li>
-  <li><a href="#chains-mais-comuns" id="toc-chains-mais-comuns" class="nav-link" data-scroll-target="#chains-mais-comuns"><span class="header-section-number">1.7.3</span> Chains Mais Comuns</a></li>
-  <li><a href="#nós-mais-centrais-bridges" id="toc-nós-mais-centrais-bridges" class="nav-link" data-scroll-target="#nós-mais-centrais-bridges"><span class="header-section-number">1.7.4</span> Nós Mais Centrais (Bridges)</a></li>
+  <li><a href="#conceitos-mais-frequentes" id="toc-conceitos-mais-frequentes" class="nav-link" data-scroll-target="#conceitos-mais-frequentes"><span class="header-section-number">1.7.1</span> Conceitos mais frequentes</a></li>
+  <li><a href="#coocorrências" id="toc-coocorrências" class="nav-link" data-scroll-target="#coocorrências"><span class="header-section-number">1.7.2</span> Coocorrências</a></li>
+  <li><a href="#relações-mais-recorrentes" id="toc-relações-mais-recorrentes" class="nav-link" data-scroll-target="#relações-mais-recorrentes"><span class="header-section-number">1.7.3</span> Relações mais recorrentes</a></li>
+  <li><a href="#nós-de-ponte" id="toc-nós-de-ponte" class="nav-link" data-scroll-target="#nós-de-ponte"><span class="header-section-number">1.7.4</span> Nós de ponte</a></li>
   </ul></li>
   <li><a href="#passo-7-atualizar-o-grafo" id="toc-passo-7-atualizar-o-grafo" class="nav-link" data-scroll-target="#passo-7-atualizar-o-grafo"><span class="header-section-number">1.8</span> Passo 7: Atualizar o Grafo</a></li>
-  <li><a href="#passo-8-calcular-métricas-avançadas-graph-data-science" id="toc-passo-8-calcular-métricas-avançadas-graph-data-science" class="nav-link" data-scroll-target="#passo-8-calcular-métricas-avançadas-graph-data-science"><span class="header-section-number">1.9</span> Passo 8: Calcular Métricas Avançadas (Graph Data Science)</a>
+  <li><a href="#passo-8-métricas-avançadas-graph-data-science" id="toc-passo-8-métricas-avançadas-graph-data-science" class="nav-link" data-scroll-target="#passo-8-métricas-avançadas-graph-data-science"><span class="header-section-number">1.9</span> Passo 8: Métricas Avançadas (Graph Data Science)</a></li>
+  <li><a href="#consultar-com-um-assistente-de-ia-mcp" id="toc-consultar-com-um-assistente-de-ia-mcp" class="nav-link" data-scroll-target="#consultar-com-um-assistente-de-ia-mcp"><span class="header-section-number">1.10</span> Consultar com um Assistente de IA (MCP)</a></li>
+  <li><a href="#solução-de-problemas" id="toc-solução-de-problemas" class="nav-link" data-scroll-target="#solução-de-problemas"><span class="header-section-number">1.11</span> Solução de Problemas</a>
   <ul class="collapse">
-  <li><a href="#instalar-gds-plugin-neo4j-desktop" id="toc-instalar-gds-plugin-neo4j-desktop" class="nav-link" data-scroll-target="#instalar-gds-plugin-neo4j-desktop"><span class="header-section-number">1.9.1</span> Instalar GDS Plugin (Neo4j Desktop)</a></li>
-  <li><a href="#métricas-disponíveis" id="toc-métricas-disponíveis" class="nav-link" data-scroll-target="#métricas-disponíveis"><span class="header-section-number">1.9.2</span> Métricas Disponíveis</a></li>
-  </ul></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">1.10</span> Troubleshooting</a>
-  <ul class="collapse">
-  <li><a href="#erro-connection-refused-boltlocalhost7687" id="toc-erro-connection-refused-boltlocalhost7687" class="nav-link" data-scroll-target="#erro-connection-refused-boltlocalhost7687"><span class="header-section-number">1.10.1</span> Erro: <code>Connection refused (bolt://localhost:7687)</code></a></li>
-  <li><a href="#erro-authentication-failed" id="toc-erro-authentication-failed" class="nav-link" data-scroll-target="#erro-authentication-failed"><span class="header-section-number">1.10.2</span> Erro: <code>Authentication failed</code></a></li>
-  <li><a href="#erro-database-not-found-neo4j" id="toc-erro-database-not-found-neo4j" class="nav-link" data-scroll-target="#erro-database-not-found-neo4j"><span class="header-section-number">1.10.3</span> Erro: <code>Database not found: neo4j</code></a></li>
-  <li><a href="#erro-synesis.load-failed-template-not-found" id="toc-erro-synesis.load-failed-template-not-found" class="nav-link" data-scroll-target="#erro-synesis.load-failed-template-not-found"><span class="header-section-number">1.10.4</span> Erro: <code>synesis.load() failed: Template not found</code></a></li>
-  <li><a href="#performance-lenta-em-projetos-grandes" id="toc-performance-lenta-em-projetos-grandes" class="nav-link" data-scroll-target="#performance-lenta-em-projetos-grandes"><span class="header-section-number">1.10.5</span> Performance Lenta em Projetos Grandes</a></li>
-  </ul></li>
-  <li><a href="#casos-de-uso-avançados" id="toc-casos-de-uso-avançados" class="nav-link" data-scroll-target="#casos-de-uso-avançados"><span class="header-section-number">1.11</span> Casos de Uso Avançados</a>
-  <ul class="collapse">
-  <li><a href="#integração-com-claude-desktop-mcp" id="toc-integração-com-claude-desktop-mcp" class="nav-link" data-scroll-target="#integração-com-claude-desktop-mcp"><span class="header-section-number">1.11.1</span> Integração com Claude Desktop (MCP)</a></li>
-  <li><a href="#exportar-visualização-para-publicação" id="toc-exportar-visualização-para-publicação" class="nav-link" data-scroll-target="#exportar-visualização-para-publicação"><span class="header-section-number">1.11.2</span> Exportar Visualização para Publicação</a></li>
-  <li><a href="#análise-de-evolução-temporal" id="toc-análise-de-evolução-temporal" class="nav-link" data-scroll-target="#análise-de-evolução-temporal"><span class="header-section-number">1.11.3</span> Análise de Evolução Temporal</a></li>
+  <li><a href="#connection-refused-boltlocalhost7687" id="toc-connection-refused-boltlocalhost7687" class="nav-link" data-scroll-target="#connection-refused-boltlocalhost7687"><span class="header-section-number">1.11.1</span> <code>Connection refused (bolt://localhost:7687)</code></a></li>
+  <li><a href="#authentication-failed" id="toc-authentication-failed" class="nav-link" data-scroll-target="#authentication-failed"><span class="header-section-number">1.11.2</span> <code>Authentication failed</code></a></li>
+  <li><a href="#database-not-found" id="toc-database-not-found" class="nav-link" data-scroll-target="#database-not-found"><span class="header-section-number">1.11.3</span> <code>Database not found</code></a></li>
+  <li><a href="#o-comando-para-com-erros-de-compilação" id="toc-o-comando-para-com-erros-de-compilação" class="nav-link" data-scroll-target="#o-comando-para-com-erros-de-compilação"><span class="header-section-number">1.11.4</span> O comando para com erros de compilação</a></li>
+  <li><a href="#cargas-grandes-demoram" id="toc-cargas-grandes-demoram" class="nav-link" data-scroll-target="#cargas-grandes-demoram"><span class="header-section-number">1.11.5</span> Cargas grandes demoram</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">1.12</span> Referências</a></li>
   </ul></li>
@@ -338,38 +319,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="como-exportar-para-neo4j" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Como Exportar para Neo4j</h1>
-<p>Este guia mostra <strong>como transformar suas anotações Synesis em um grafo de conhecimento no Neo4j</strong>, permitindo análises avançadas de rede, visualizações interativas e integração com sistemas de GraphRAG.</p>
+<p>Este guia mostra <strong>como transformar suas anotações Synesis em um grafo de conhecimento no Neo4j</strong>, para análises de rede, visualização e consulta por assistentes de IA.</p>
 <p><strong>Você deve usar este guia se:</strong></p>
 <ul>
-<li>Precisa visualizar relações complexas entre conceitos</li>
-<li>Quer calcular métricas de centralidade, comunidades ou PageRank</li>
-<li>Precisa integrar com sistemas de IA (Claude Desktop via MCP)</li>
-<li>Quer análises de rede para publicações acadêmicas</li>
+<li>Precisa explorar relações complexas entre conceitos</li>
+<li>Quer calcular centralidade, comunidades ou PageRank</li>
+<li>Quer consultar o corpus com um assistente via MCP</li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sem servidor de banco?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <code>synesis-graph</code> também grava um banco ArcadeDB <strong>local</strong>, sem instalar servidor nem Java:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis-graph</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> arcadedb-embedded <span class="at">--project</span> meu_projeto.synp</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> serve</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>E gera um <a href="../reference/synesis_graph.html#sec-html">grafo HTML</a> que abre no navegador. Veja a <a href="../reference/synesis_graph.html">referência</a>.</p>
+</div>
+</div>
 <hr>
 <section id="pré-requisitos" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="pré-requisitos"><span class="header-section-number">1.1</span> Pré-requisitos</h2>
 <ul>
-<li>Python 3.11+ instalado</li>
-<li>Projeto Synesis compilável (válido)</li>
-<li>Neo4j Desktop ou Neo4j Cloud (AuraDB)</li>
+<li>Python 3.10+</li>
+<li>Um projeto Synesis que compila sem erros</li>
+<li>Neo4j Desktop, Neo4j Server ou Neo4j Aura</li>
 </ul>
 <hr>
 </section>
-<section id="passo-1-instalar-neo4j" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="passo-1-instalar-neo4j"><span class="header-section-number">1.2</span> Passo 1: Instalar Neo4j</h2>
-<section id="opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="opção-a-neo4j-desktop-recomendado-para-desenvolvimento-local"><span class="header-section-number">1.2.1</span> Opção A: Neo4j Desktop (Recomendado para desenvolvimento local)</h3>
+<section id="passo-1-instalar-o-neo4j" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="passo-1-instalar-o-neo4j"><span class="header-section-number">1.2</span> Passo 1: Instalar o Neo4j</h2>
+<section id="opção-a-neo4j-desktop-desenvolvimento-local" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="opção-a-neo4j-desktop-desenvolvimento-local"><span class="header-section-number">1.2.1</span> Opção A: Neo4j Desktop (desenvolvimento local)</h3>
 <ol type="1">
-<li>Baixe Neo4j Desktop: https://neo4j.com/download/</li>
-<li>Instale e crie um novo projeto</li>
-<li>Crie um novo banco de dados (DBMS):
-<ul>
-<li>Nome: <code>synesis-knowledge-graph</code></li>
-<li>Password: escolha uma senha forte</li>
-<li>Versão: 5.x (última disponível)</li>
-</ul></li>
-<li>Inicie o banco de dados (botão “Start”)</li>
+<li>Baixe em <a href="https://neo4j.com/download/" class="uri">https://neo4j.com/download/</a></li>
+<li>Crie um banco (DBMS) e escolha uma senha forte</li>
+<li>Inicie o banco (<strong>Start</strong>)</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -381,31 +372,38 @@ Checkpoint ✓
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Abra o Neo4j Browser (botão “Open”) e execute:</p>
+<p>No Neo4j Browser, execute:</p>
 <pre class="cypher"><code>RETURN "Hello, Neo4j!" AS message</code></pre>
-<p>Se retornar a mensagem, está funcionando!</p>
 </div>
 </div>
 </section>
-<section id="opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="opção-b-neo4j-auradb-cloud---gratuito-até-200k-nós"><span class="header-section-number">1.2.2</span> Opção B: Neo4j AuraDB (Cloud - Gratuito até 200K nós)</h3>
+<section id="opção-b-neo4j-aura-nuvem" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="opção-b-neo4j-aura-nuvem"><span class="header-section-number">1.2.2</span> Opção B: Neo4j Aura (nuvem)</h3>
 <ol type="1">
-<li>Acesse: https://neo4j.com/cloud/aura/</li>
-<li>Crie conta gratuita</li>
-<li>Crie nova instância AuraDB Free</li>
-<li>Baixe as credenciais (arquivo <code>.txt</code> com URI, user, password)</li>
-<li>Guarde essas credenciais em local seguro</li>
+<li>Acesse <a href="https://neo4j.com/cloud/aura/" class="uri">https://neo4j.com/cloud/aura/</a> e crie uma instância</li>
+<li>Baixe o arquivo de credenciais (URI, usuário, senha) e guarde-o em local seguro</li>
 </ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dados sensíveis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um banco na nuvem recebe os trechos do seu corpus. Confira o que a ética da pesquisa e a lei de proteção de dados permitem.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
-<section id="passo-2-instalar-synesis-graph" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="passo-2-instalar-synesis-graph"><span class="header-section-number">1.3</span> Passo 2: Instalar synesis-graph</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"synesis-graph[neo4j]"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O extra <code>[neo4j]</code> instala o driver do banco de dados.</p>
-<p>Verifique a instalação:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Deve retornar: <code>synesis-graph, version 0.3.1</code></p>
+<section id="passo-2-instalar-o-synesis-graph" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="passo-2-instalar-o-synesis-graph"><span class="header-section-number">1.3</span> Passo 2: Instalar o synesis-graph</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"synesis-graph[neo4j]"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> <span class="at">--version</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># synesis-graph, version 0.13.1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -416,29 +414,20 @@ Nome anterior
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Esta ferramenta chamava-se <code>synesis2graph</code> (e antes <code>synesis2neo4j</code>). O pacote foi renomeado para <code>synesis-graph</code> e o comando agora usa subcomandos por backend — <code>synesis-graph neo4j</code>, <code>synesis-graph html</code>. Se você tem a versão antiga instalada, remova-a com <code>pip uninstall synesis2graph</code>.</p>
+<p>A ferramenta chamava-se <code>synesis2graph</code> (e antes <code>synesis2neo4j</code>). Se você tem a versão antiga, remova-a com <code>pip uninstall synesis2graph</code>.</p>
 </div>
 </div>
 <hr>
 </section>
-<section id="passo-3-criar-arquivo-de-configuração" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="passo-3-criar-arquivo-de-configuração"><span class="header-section-number">1.4</span> Passo 3: Criar Arquivo de Configuração</h2>
-<p>Crie um arquivo <code>config.toml</code> no diretório do seu projeto:</p>
-<section id="para-neo4j-desktop" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="para-neo4j-desktop"><span class="header-section-number">1.4.1</span> Para Neo4j Desktop:</h3>
+<section id="passo-3-configurar-a-conexão" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="passo-3-configurar-a-conexão"><span class="header-section-number">1.4</span> Passo 3: Configurar a Conexão</h2>
+<p>Crie <code>config.toml</code> na pasta de onde vai executar o comando:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[neo4j]</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"bolt://localhost:7687"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"bolt://127.0.0.1:7687"</span>      <span class="co"># Aura: neo4j+s://xxxxx.databases.neo4j.io</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">user</span> <span class="op">=</span> <span class="st">"neo4j"</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">password</span> <span class="op">=</span> <span class="st">"SuaSenhaAqui"</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"neo4j"</span>  <span class="co"># ou nome customizado</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="para-neo4j-auradb" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="para-neo4j-auradb"><span class="header-section-number">1.4.2</span> Para Neo4j AuraDB:</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[neo4j]</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"neo4j+s://xxxxx.databases.neo4j.io"</span>  <span class="co"># Copie da suas credenciais</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">user</span> <span class="op">=</span> <span class="st">"neo4j"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">password</span> <span class="op">=</span> <span class="st">"SuaSenhaAuraDB"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"neo4j"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># database = "meu_corpus"           # opcional; padrão: nome do PROJECT</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fulltext_analyzer = "brazilian"   # busca textual em português</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -449,48 +438,16 @@ Segurança
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>NUNCA comite <code>config.toml</code> para Git! Adicione ao <code>.gitignore</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"config.toml"</span> <span class="op">&gt;&gt;</span> .gitignore</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nunca envie <code>config.toml</code> ao Git:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"config.toml"</span> <span class="op">&gt;&gt;</span> .gitignore</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
 </section>
-</section>
-<section id="passo-4-executar-a-exportação" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="passo-4-executar-a-exportação"><span class="header-section-number">1.5</span> Passo 4: Executar a Exportação</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Como <code>config.toml</code> é o valor padrão, o <code>--config</code> pode ser omitido:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> meu_projeto.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Output esperado:</strong></p>
-<pre><code>🔍 Carregando projeto Synesis...
-✓ Projeto válido: meu_projeto
-✓ Template carregado: template.synt
-✓ Ontologia carregada: 15 conceitos, 4 relações
-
-🔗 Conectando ao Neo4j...
-✓ Conectado: bolt://localhost:7687
-
-🚀 Sincronizando grafo...
-  [████████████████████████] 100% - 234 nós, 156 arestas
-
-📊 Calculando métricas...
-✓ Métricas nativas (degree, mention_count, source_count)
-✓ Métricas GDS (pagerank, betweenness, community)
-
-✅ Exportação concluída em 3.2s</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Sem o plugin GDS
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A linha de métricas GDS só aparece se o plugin estiver instalado (ver Passo 8). Sem ele, o pipeline emite um aviso e conclui normalmente — as métricas nativas são calculadas de qualquer forma.</p>
-</div>
-</div>
+<section id="passo-4-exportar" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="passo-4-exportar"><span class="header-section-number">1.5</span> Passo 4: Exportar</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> meu_projeto.synp <span class="at">--config</span> config.toml</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>config.toml</code> é o padrão, então <code>--config</code> pode ser omitido. O pipeline compila o projeto em memória (um erro interrompe tudo antes de tocar no banco), conecta, grava o grafo, calcula as métricas e grava o contexto do projeto no vértice <code>ProjectContext</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -501,83 +458,61 @@ Checkpoint ✓
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Abra o Neo4j Browser e execute:</p>
-<pre class="cypher"><code>MATCH (n) RETURN count(n) AS total_nodes</code></pre>
-<p>Deve retornar o número de nós exportados.</p>
+<pre class="cypher"><code>MATCH (n) RETURN count(n) AS total_de_nos</code></pre>
 </div>
 </div>
 <hr>
 </section>
-<section id="passo-5-explorar-o-grafo-no-neo4j-browser" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="passo-5-explorar-o-grafo-no-neo4j-browser"><span class="header-section-number">1.6</span> Passo 5: Explorar o Grafo no Neo4j Browser</h2>
-<section id="visualizar-todos-os-nós" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="visualizar-todos-os-nós"><span class="header-section-number">1.6.1</span> Visualizar Todos os Nós</h3>
-<pre class="cypher"><code>MATCH (n)
-RETURN n
-LIMIT 100</code></pre>
+<section id="passo-5-explorar-no-neo4j-browser" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="passo-5-explorar-no-neo4j-browser"><span class="header-section-number">1.6</span> Passo 5: Explorar no Neo4j Browser</h2>
+<pre class="cypher"><code>MATCH (n) RETURN n LIMIT 100</code></pre>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Os rótulos são derivados do seu template
+Os rótulos vêm do seu template
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O <code>synesis-graph</code> não usa rótulos fixos. O nó de conceito recebe o rótulo do <strong>nome do campo</strong> no template: um campo <code>category</code> gera nós <code>:Category</code>; um campo <code>criterio</code> gera <code>:Criterio</code>. As consultas abaixo omitem o rótulo (<code>MATCH (c)</code>) para funcionar em qualquer projeto — substitua pelo rótulo do seu campo se quiser restringir. Ver <a href="../reference/synesis_graph.html#sec-modelo">synesis-graph</a>.</p>
+<p>O nó de conceito recebe o rótulo do <strong>nome do campo</strong>: um campo <code>category</code> gera <code>:Category</code>; um campo <code>criterio</code>, <code>:Criterio</code>. As consultas abaixo omitem o rótulo para servir a qualquer projeto. Para conhecer o grafo: <code>MATCH (p:ProjectContext) RETURN p.template_doc</code>.</p>
 </div>
 </div>
-</section>
-<section id="visualizar-conceito-específico" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="visualizar-conceito-específico"><span class="header-section-number">1.6.2</span> Visualizar Conceito Específico</h3>
-<pre class="cypher"><code>MATCH (c {name: "Custo"})
-RETURN c</code></pre>
-</section>
-<section id="visualizar-relações-de-um-conceito" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="visualizar-relações-de-um-conceito"><span class="header-section-number">1.6.3</span> Visualizar Relações de um Conceito</h3>
-<pre class="cypher"><code>MATCH path = (c {name: "Custo"})-[r]-&gt;(target)
+<pre class="cypher"><code>// um conceito e suas relações
+MATCH path = (c {name: "Custo"})-[r]-&gt;(alvo)
 RETURN path</code></pre>
-</section>
-<section id="ver-anotações-conectadas-a-um-conceito" class="level3" data-number="1.6.4">
-<h3 data-number="1.6.4" class="anchored" data-anchor-id="ver-anotações-conectadas-a-um-conceito"><span class="header-section-number">1.6.4</span> Ver Anotações Conectadas a um Conceito</h3>
-<pre class="cypher"><code>MATCH (i:Item)-[:MENTIONS]-&gt;(c {name: "Custo"})
-RETURN i.citation AS citacao, i.description AS interpretacao</code></pre>
+<pre class="cypher"><code>// anotações de um conceito, com a localização
+MATCH (s:Source)&lt;-[:FROM_SOURCE]-(i:Item)-[:MENTIONS]-&gt;(c {name: "Custo"})
+RETURN s.bibtex, i.citation, i.source_file, i.source_line</code></pre>
 <hr>
 </section>
-</section>
-<section id="passo-6-consultas-analíticas-úteis" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="passo-6-consultas-analíticas-úteis"><span class="header-section-number">1.7</span> Passo 6: Consultas Analíticas Úteis</h2>
-<section id="top-10-conceitos-mais-frequentes" class="level3" data-number="1.7.1">
-<h3 data-number="1.7.1" class="anchored" data-anchor-id="top-10-conceitos-mais-frequentes"><span class="header-section-number">1.7.1</span> Top 10 Conceitos Mais Frequentes</h3>
-<pre class="cypher"><code>MATCH (i:Item)-[:MENTIONS]-&gt;(c)
-RETURN c.name AS conceito, count(i) AS frequencia
-ORDER BY frequencia DESC
-LIMIT 10</code></pre>
-<p>O pipeline também grava essa contagem como propriedade, o que dispensa a agregação:</p>
+<section id="passo-6-consultas-analíticas" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="passo-6-consultas-analíticas"><span class="header-section-number">1.7</span> Passo 6: Consultas Analíticas</h2>
+<section id="conceitos-mais-frequentes" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="conceitos-mais-frequentes"><span class="header-section-number">1.7.1</span> Conceitos mais frequentes</h3>
 <pre class="cypher"><code>MATCH (c)
 WHERE c.mention_count IS NOT NULL
 RETURN c.name AS conceito, c.mention_count AS frequencia, c.source_count AS fontes
 ORDER BY frequencia DESC
 LIMIT 10</code></pre>
 </section>
-<section id="conceitos-que-co-ocorrem-frequentemente" class="level3" data-number="1.7.2">
-<h3 data-number="1.7.2" class="anchored" data-anchor-id="conceitos-que-co-ocorrem-frequentemente"><span class="header-section-number">1.7.2</span> Conceitos que Co-ocorrem Frequentemente</h3>
-<pre class="cypher"><code>MATCH (i:Item)-[:MENTIONS]-&gt;(c1)
-MATCH (i)-[:MENTIONS]-&gt;(c2)
-WHERE c1 &lt;&gt; c2
-RETURN c1.name AS conceito1, c2.name AS conceito2, count(i) AS coocorrencia
+<section id="coocorrências" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="coocorrências"><span class="header-section-number">1.7.2</span> Coocorrências</h3>
+<pre class="cypher"><code>MATCH (i:Item)-[:MENTIONS]-&gt;(c1), (i)-[:MENTIONS]-&gt;(c2)
+WHERE c1.name &lt; c2.name
+RETURN c1.name, c2.name, count(DISTINCT i) AS coocorrencia
 ORDER BY coocorrencia DESC
 LIMIT 20</code></pre>
 </section>
-<section id="chains-mais-comuns" class="level3" data-number="1.7.3">
-<h3 data-number="1.7.3" class="anchored" data-anchor-id="chains-mais-comuns"><span class="header-section-number">1.7.3</span> Chains Mais Comuns</h3>
+<section id="relações-mais-recorrentes" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="relações-mais-recorrentes"><span class="header-section-number">1.7.3</span> Relações mais recorrentes</h3>
 <pre class="cypher"><code>MATCH (c1)-[r:RELATES_TO]-&gt;(c2)
-RETURN c1.name AS origem, r.type AS relacao, c2.name AS destino, count(r) AS frequencia
-ORDER BY frequencia DESC</code></pre>
+RETURN c1.name AS origem, r.type AS relacao, c2.name AS destino, count(r) AS ocorrencias
+ORDER BY ocorrencias DESC</code></pre>
 </section>
-<section id="nós-mais-centrais-bridges" class="level3" data-number="1.7.4">
-<h3 data-number="1.7.4" class="anchored" data-anchor-id="nós-mais-centrais-bridges"><span class="header-section-number">1.7.4</span> Nós Mais Centrais (Bridges)</h3>
+<section id="nós-de-ponte" class="level3" data-number="1.7.4">
+<h3 data-number="1.7.4" class="anchored" data-anchor-id="nós-de-ponte"><span class="header-section-number">1.7.4</span> Nós de ponte</h3>
 <pre class="cypher"><code>MATCH (c)
 WHERE c.betweenness IS NOT NULL
 RETURN c.name AS conceito, c.betweenness AS centralidade
@@ -593,20 +528,7 @@ LIMIT 10</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Esta propriedade só existe se o Graph Data Science estiver instalado (Passo 8). Sem ele, use <code>degree</code> — disponível sempre, calculado em Cypher puro.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Interpretação
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Códigos com alta betweenness centralidade são “pontes” — conceitos que conectam diferentes clusters temáticos. São candidatos para categorias centrais na sua análise.</p>
+<p>Sem o GDS, use <code>degree</code>, sempre disponível.</p>
 </div>
 </div>
 <hr>
@@ -614,172 +536,111 @@ Interpretação
 </section>
 <section id="passo-7-atualizar-o-grafo" class="level2" data-number="1.8">
 <h2 data-number="1.8" class="anchored" data-anchor-id="passo-7-atualizar-o-grafo"><span class="header-section-number">1.8</span> Passo 7: Atualizar o Grafo</h2>
-<p>Se você adicionar novas anotações ao projeto Synesis, execute o mesmo comando novamente:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> meu_projeto.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A sincronização é <strong>completa</strong>: o pipeline recompila o projeto em memória e regrava o grafo. Não há modo incremental — e isso é deliberado.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Por que não há sincronização incremental
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>O grafo é um <strong>artefato derivado</strong>, não uma base de dados que se edita. A fonte de verdade são os arquivos <code>.syn</code> versionados em Git. Regravar por completo garante que o grafo corresponde exatamente ao estado atual do corpus, sem resíduos de conceitos renomeados ou anotações removidas — um risco real num modo incremental.</p>
-<p>Se a regravação demora, o gargalo costuma ser a compilação, não a escrita: valide antes com <code>synesis compile meu_projeto.synp --stats</code>.</p>
-</div>
-</div>
+<p>Execute o mesmo comando depois de novas anotações:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> meu_projeto.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>--mode</code></th>
+<th>O que faz</th>
+<th>Quando usar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>rebuild</code> (padrão)</td>
+<td>apaga e regrava o grafo</td>
+<td>sempre correto: reflete exatamente o corpus</td>
+</tr>
+<tr class="even">
+<td><code>update</code></td>
+<td>grava só o que mudou</td>
+<td>corpus grande; <strong>não remove</strong> o que foi apagado do projeto</td>
+</tr>
+</tbody>
+</table>
+<p>O grafo é um <strong>artefato derivado</strong>: a fonte de verdade são os arquivos do projeto. Depois de renomear ou apagar material, use <code>rebuild</code>.</p>
 <hr>
 </section>
-<section id="passo-8-calcular-métricas-avançadas-graph-data-science" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="passo-8-calcular-métricas-avançadas-graph-data-science"><span class="header-section-number">1.9</span> Passo 8: Calcular Métricas Avançadas (Graph Data Science)</h2>
-<section id="instalar-gds-plugin-neo4j-desktop" class="level3" data-number="1.9.1">
-<h3 data-number="1.9.1" class="anchored" data-anchor-id="instalar-gds-plugin-neo4j-desktop"><span class="header-section-number">1.9.1</span> Instalar GDS Plugin (Neo4j Desktop)</h3>
-<ol type="1">
-<li>Na tela do banco de dados, clique em “Plugins”</li>
-<li>Instale “Graph Data Science Library”</li>
-<li>Reinicie o banco de dados</li>
-</ol>
-<p>Não há nada a configurar: o pipeline <strong>detecta</strong> o plugin automaticamente. Se o GDS estiver presente, as métricas avançadas são calculadas; se não estiver, o pipeline emite um aviso e continua normalmente com as métricas nativas.</p>
-</section>
-<section id="métricas-disponíveis" class="level3" data-number="1.9.2">
-<h3 data-number="1.9.2" class="anchored" data-anchor-id="métricas-disponíveis"><span class="header-section-number">1.9.2</span> Métricas Disponíveis</h3>
-<p>Após exportar com GDS habilitado:</p>
+<section id="passo-8-métricas-avançadas-graph-data-science" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="passo-8-métricas-avançadas-graph-data-science"><span class="header-section-number">1.9</span> Passo 8: Métricas Avançadas (Graph Data Science)</h2>
+<p>Instale o plugin <strong>Graph Data Science Library</strong> no seu banco (Neo4j Desktop: <strong>Plugins</strong>) e reinicie. O pipeline o detecta: com ele, calcula <code>pagerank</code>, <code>betweenness</code> e <code>community</code>; sem ele, avisa e segue com as métricas nativas.</p>
 <pre class="cypher"><code>MATCH (c)
 WHERE c.pagerank IS NOT NULL
-RETURN c.name AS codigo,
-       c.degree AS degree,
-       c.pagerank AS pagerank,
-       c.betweenness AS betweenness,
-       c.community AS comunidade
-ORDER BY pagerank DESC
+RETURN c.name, c.degree, c.pagerank, c.betweenness, c.community
+ORDER BY c.pagerank DESC
 LIMIT 20</code></pre>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Por que a consulta não filtra por rótulo
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>O rótulo dos nós de conceito é <strong>derivado do nome do campo</strong> no seu template — um campo <code>category</code> gera nós <code>:Category</code>, um campo <code>ordem_2a</code> gera <code>:Ordem_2a</code>. Como não há um rótulo fixo <code>:Code</code>, filtrar pela presença da propriedade (<code>WHERE c.pagerank IS NOT NULL</code>) funciona em qualquer projeto. Ver <a href="../reference/synesis_graph.html#sec-modelo">synesis-graph</a> para o modelo completo.</p>
-</div>
-</div>
-<p><strong>Interpretação:</strong></p>
 <ul>
-<li><strong>PageRank alto</strong>: Códigos que recebem muitas referências de outros códigos importantes</li>
-<li><strong>Community Louvain</strong>: Códigos no mesmo cluster temático terão mesmo número de comunidade</li>
-<li><strong>Betweenness alto</strong>: Códigos que conectam diferentes temas</li>
+<li><strong>PageRank</strong> alto: conceito apontado por outros conceitos relevantes</li>
+<li><strong>Betweenness</strong> alto: conceito que liga agrupamentos</li>
+<li><strong>Community</strong> (Louvain): mesmo número, mesmo agrupamento; interprete segundo a projeção usada (veja a <a href="../reference/synesis_graph.html#sec-neo4j">referência</a>)</li>
 </ul>
 <hr>
 </section>
-</section>
-<section id="troubleshooting" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">1.10</span> Troubleshooting</h2>
-<section id="erro-connection-refused-boltlocalhost7687" class="level3" data-number="1.10.1">
-<h3 data-number="1.10.1" class="anchored" data-anchor-id="erro-connection-refused-boltlocalhost7687"><span class="header-section-number">1.10.1</span> Erro: <code>Connection refused (bolt://localhost:7687)</code></h3>
-<p><strong>Causa:</strong> Neo4j não está rodando.</p>
-<p><strong>Solução:</strong></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Neo4j Desktop: Clique em "Start" no banco de dados</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Neo4j Server:</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">neo4j</span> start</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="erro-authentication-failed" class="level3" data-number="1.10.2">
-<h3 data-number="1.10.2" class="anchored" data-anchor-id="erro-authentication-failed"><span class="header-section-number">1.10.2</span> Erro: <code>Authentication failed</code></h3>
-<p><strong>Causa:</strong> Senha incorreta em <code>config.toml</code>.</p>
-<p><strong>Solução:</strong> 1. Verifique a senha no Neo4j Desktop (Settings → “Show Password”) 2. Atualize <code>config.toml</code></p>
-</section>
-<section id="erro-database-not-found-neo4j" class="level3" data-number="1.10.3">
-<h3 data-number="1.10.3" class="anchored" data-anchor-id="erro-database-not-found-neo4j"><span class="header-section-number">1.10.3</span> Erro: <code>Database not found: neo4j</code></h3>
-<p><strong>Causa:</strong> Nome do banco de dados incorreto.</p>
-<p><strong>Solução:</strong> Execute no Neo4j Browser:</p>
-<pre class="cypher"><code>SHOW DATABASES</code></pre>
-<p>Use o nome correto em <code>config.toml</code>.</p>
-</section>
-<section id="erro-synesis.load-failed-template-not-found" class="level3" data-number="1.10.4">
-<h3 data-number="1.10.4" class="anchored" data-anchor-id="erro-synesis.load-failed-template-not-found"><span class="header-section-number">1.10.4</span> Erro: <code>synesis.load() failed: Template not found</code></h3>
-<p><strong>Causa:</strong> Arquivo <code>.synp</code> com caminho incorreto para template.</p>
-<p><strong>Solução:</strong></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valide o projeto primeiro</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> check meu_projeto.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Corrija os caminhos no <code>.synp</code>.</p>
-</section>
-<section id="performance-lenta-em-projetos-grandes" class="level3" data-number="1.10.5">
-<h3 data-number="1.10.5" class="anchored" data-anchor-id="performance-lenta-em-projetos-grandes"><span class="header-section-number">1.10.5</span> Performance Lenta em Projetos Grandes</h3>
-<p><strong>Se você tem 10K+ anotações:</strong></p>
-<ol type="1">
-<li><p>Aumente <code>batch_size</code>:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[sync]</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="dt">batch_size</span> <span class="op">=</span> <span class="dv">5000</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Desabilite métricas temporariamente:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[metrics]</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">native</span> <span class="op">=</span> <span class="cn">false</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="dt">gds</span> <span class="op">=</span> <span class="cn">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Calcule métricas manualmente depois:</p>
-<pre class="cypher"><code>// Degree Centralidade
-CALL gds.degree.mutate('myGraph', {mutateProperty: 'degree'})</code></pre></li>
-</ol>
+<section id="consultar-com-um-assistente-de-ia-mcp" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="consultar-com-um-assistente-de-ia-mcp"><span class="header-section-number">1.10</span> Consultar com um Assistente de IA (MCP)</h2>
+<p>Com o grafo no Neo4j, o servidor MCP <code>mcp-neo4j-cypher</code> permite consultá-lo em linguagem natural no Claude Desktop. Em <code>claude_desktop_config.json</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mcpServers"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"synesis-neo4j"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"uvx"</span><span class="fu">,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"mcp-neo4j-cypher@0.5.2"</span><span class="ot">,</span> <span class="st">"--read-only"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"NEO4J_URI"</span><span class="fu">:</span> <span class="st">"bolt://localhost:7687"</span><span class="fu">,</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"NEO4J_USERNAME"</span><span class="fu">:</span> <span class="st">"neo4j"</span><span class="fu">,</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"NEO4J_PASSWORD"</span><span class="fu">:</span> <span class="st">"sua_senha"</span><span class="fu">,</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"NEO4J_DATABASE"</span><span class="fu">:</span> <span class="st">"nome_do_banco"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O arquivo fica em <code>%APPDATA%\Claude\</code> (Windows) ou <code>~/Library/Application Support/Claude/</code> (macOS). Mantenha <code>--read-only</code>. O repositório traz um guia completo na pasta <code>mcp/</code>.</p>
 <hr>
 </section>
+<section id="solução-de-problemas" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="solução-de-problemas"><span class="header-section-number">1.11</span> Solução de Problemas</h2>
+<section id="connection-refused-boltlocalhost7687" class="level3" data-number="1.11.1">
+<h3 data-number="1.11.1" class="anchored" data-anchor-id="connection-refused-boltlocalhost7687"><span class="header-section-number">1.11.1</span> <code>Connection refused (bolt://localhost:7687)</code></h3>
+<p>O Neo4j não está rodando: clique em <strong>Start</strong> ou execute <code>neo4j start</code>.</p>
 </section>
-<section id="casos-de-uso-avançados" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="casos-de-uso-avançados"><span class="header-section-number">1.11</span> Casos de Uso Avançados</h2>
-<section id="integração-com-claude-desktop-mcp" class="level3" data-number="1.11.1">
-<h3 data-number="1.11.1" class="anchored" data-anchor-id="integração-com-claude-desktop-mcp"><span class="header-section-number">1.11.1</span> Integração com Claude Desktop (MCP)</h3>
-<p>Após exportar para Neo4j, você pode conectar com Claude Desktop via Model Context Protocol:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ~/.claude/config.toml</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">[mcp.servers.synesis-graph]</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="dt">command</span> <span class="op">=</span> <span class="st">"npx"</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="dt">args</span> <span class="op">=</span> <span class="op">[</span><span class="st">"-y"</span><span class="op">,</span> <span class="st">"@neo4j/mcp-server"</span><span class="op">,</span> <span class="st">"--uri"</span><span class="op">,</span> <span class="st">"bolt://localhost:7687"</span><span class="op">,</span> <span class="st">"--user"</span><span class="op">,</span> <span class="st">"neo4j"</span><span class="op">,</span> <span class="st">"--password"</span><span class="op">,</span> <span class="st">"SuaSenha"</span><span class="op">]</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Agora Claude pode consultar seu grafo diretamente em linguagem natural!</p>
-<p>Consulte: https://modelcontextprotocol.io/docs/</p>
+<section id="authentication-failed" class="level3" data-number="1.11.2">
+<h3 data-number="1.11.2" class="anchored" data-anchor-id="authentication-failed"><span class="header-section-number">1.11.2</span> <code>Authentication failed</code></h3>
+<p>Confira a senha no <code>config.toml</code>.</p>
 </section>
-<section id="exportar-visualização-para-publicação" class="level3" data-number="1.11.2">
-<h3 data-number="1.11.2" class="anchored" data-anchor-id="exportar-visualização-para-publicação"><span class="header-section-number">1.11.2</span> Exportar Visualização para Publicação</h3>
-<p>Use Bloom (Neo4j Enterprise) ou Neodash (open-source):</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar Neodash</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-p</span> 5005:5005 neo4jlabs/neodash:latest</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Acesse <code>http://localhost:5005</code> e conecte ao seu grafo.</p>
+<section id="database-not-found" class="level3" data-number="1.11.3">
+<h3 data-number="1.11.3" class="anchored" data-anchor-id="database-not-found"><span class="header-section-number">1.11.3</span> <code>Database not found</code></h3>
+<p>Veja os nomes com <code>SHOW DATABASES</code> e ajuste <code>database</code>.</p>
 </section>
-<section id="análise-de-evolução-temporal" class="level3" data-number="1.11.3">
-<h3 data-number="1.11.3" class="anchored" data-anchor-id="análise-de-evolução-temporal"><span class="header-section-number">1.11.3</span> Análise de Evolução Temporal</h3>
-<p>Se suas anotações têm timestamps:</p>
-<pre class="cypher"><code>MATCH (i:Item)
-WHERE i.timestamp IS NOT NULL
-WITH i, i.timestamp AS time
-ORDER BY time
-RETURN date(time) AS data, count(i) AS anotacoes_por_dia</code></pre>
+<section id="o-comando-para-com-erros-de-compilação" class="level3" data-number="1.11.4">
+<h3 data-number="1.11.4" class="anchored" data-anchor-id="o-comando-para-com-erros-de-compilação"><span class="header-section-number">1.11.4</span> O comando para com erros de compilação</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile meu_projeto.synp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Corrija o que o compilador apontar e exporte de novo.</p>
+</section>
+<section id="cargas-grandes-demoram" class="level3" data-number="1.11.5">
+<h3 data-number="1.11.5" class="anchored" data-anchor-id="cargas-grandes-demoram"><span class="header-section-number">1.11.5</span> Cargas grandes demoram</h3>
+<ul>
+<li>Use <code>--mode update</code> quando só houve acréscimos</li>
+<li>Uma carga interrompida deixa o grafo marcado como incompleto: rode um <code>rebuild</code></li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="referências" class="level2" data-number="1.12">
 <h2 data-number="1.12" class="anchored" data-anchor-id="referências"><span class="header-section-number">1.12</span> Referências</h2>
-<p>Para o modelo de dados completo e todas as opções da ferramenta: - <a href="../reference/synesis_graph.html">synesis-graph — Referência</a></p>
-<p>Para conceitos sobre grafos de conhecimento: - <a href="../explanation/knowledge_graphs.html">Conceitos de Knowledge Graphs</a></p>
-<p>Para cruzar corpora distintos num único grafo: - <a href="../howto/ligar_projetos.html">Como Ligar Projetos Independentes</a></p>
-<p>Para detalhes da API Synesis: - <a href="../reference/synesis_load.html">API Synesis (synesis.load)</a></p>
-<p>Para Cypher Query Language: - <a href="https://neo4j.com/docs/cypher-manual/">Neo4j Cypher Manual</a></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Não precisa de banco de dados?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Para explorar o grafo visualmente sem instalar o Neo4j, o backend HTML gera um arquivo único e autocontido:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> html <span class="at">--project</span> meu_projeto.synp <span class="at">--output</span> grafo.html</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ver <a href="../reference/synesis_graph.html#sec-html">synesis-graph</a>.</p>
-</div>
-</div>
+<ul>
+<li><a href="../reference/synesis_graph.html">synesis-graph — Referência</a></li>
+<li><a href="../explanation/knowledge_graphs.html">Knowledge Graphs &amp; GraphRAG</a></li>
+<li><a href="../howto/ligar_projetos.html">Como Ligar Projetos Independentes</a></li>
+<li><a href="../reference/synesis_load.html">API Synesis</a></li>
+<li><a href="https://neo4j.com/docs/cypher-manual/">Neo4j Cypher Manual</a></li>
+</ul>
 <hr>
-<p><strong>Ficou com dúvidas?</strong> Abra uma issue no <a href="https://github.com/synesis-lang/synesis-graph">repositório synesis-graph</a> ou consulte <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a>.</p>
+<p><strong>Ficou com dúvidas?</strong> Abra uma issue no <a href="https://github.com/synesis-lang/synesis-graph">repositório synesis-graph</a>.</p>
 
 
 </section>

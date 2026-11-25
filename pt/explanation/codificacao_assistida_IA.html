@@ -340,7 +340,7 @@ Dados reais
 <li><strong>Aspectos Modais de Dooyeweerd</strong>: classificação de conceitos em 16 aspectos modais (do quantitativo ao fiducial)</li>
 <li><strong>Dimensões de Wüstenhagen</strong>: aceitação comunitária, de mercado e sociopolítica</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> bibliometrics <span class="fu">version:</span> <span class="st">"1.0"</span> <span class="fu">author:</span> <span class="st">"Synesis Compiler Team"</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> bibliometrics <span class="fu">version:</span> <span class="st">"2.0"</span> <span class="fu">author:</span> <span class="st">"Synesis Compiler Team"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> description, epistemic_model, method</span>
@@ -352,9 +352,9 @@ Dados reais
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> description</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> topic, aspect, dimension, confidence, reasoning,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">rgt_element_a</span>, <span class="at">rgt_element_b</span>, theoretical_significance</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> ontology_description</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> topic, aspect, dimension, confidence, reasoning</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> <span class="at">rgt_element_a</span>, <span class="at">rgt_element_b</span>, theoretical_significance</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Três decisões de design merecem destaque:</p>
 <ol type="1">
@@ -517,7 +517,7 @@ Composição de tipos e GUIDELINES
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Este template usa <strong>7 tipos de campo diferentes</strong> em um único projeto: TEXT, QUOTATION, MEMO, CHAIN (com RELATIONS e ARITY), TOPIC, ORDERED (com VALUES indexados), ENUMERATED (com VALUES), e SCALE (com FORMAT). A partir da versão 2.0, cada campo incorpora também um bloco <code>GUIDELINES</code> com as instruções metodológicas que governam o comportamento da IA — o template deixa de ser apenas esquema de dados e passa a ser o <strong>playbook completo</strong> da análise.</p>
+<p>Este template usa <strong>8 tipos de campo diferentes</strong> em um único projeto: TEXT, QUOTATION, MEMO, CHAIN (com RELATIONS e ARITY), TOPIC, ORDERED (com VALUES indexados), ENUMERATED (com VALUES), e SCALE (com FORMAT). A partir da versão 2.0, cada campo incorpora também um bloco <code>GUIDELINES</code> com as instruções metodológicas que governam o comportamento da IA — o template deixa de ser apenas esquema de dados e passa a ser o <strong>playbook completo</strong> da análise.</p>
 </div>
 </div>
 <hr>
@@ -684,7 +684,7 @@ Template como playbook metodológico
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               competitiveness. High frequency (96) across broad</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>               sources (66) confirms central role.</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ontology_description:</span> Economic factor representing financial expenditure</span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                 associated with energy technologies and systems.</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                 Acts as primary barrier constraining technology</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                 development, site selection, and deployment when</span>
@@ -721,7 +721,7 @@ Template como playbook metodológico
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>               technologies like tidal and CCS. Low frequency (2)</span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>               and sources (2) limit robustness.</span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Climate belief refers to individuals' conviction</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ontology_description:</span> Climate belief refers to individuals' conviction</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                 regarding the existence and anthropogenic causation</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                 of climate change. In energy transition contexts,</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                 this worldview shapes acceptance of low-carbon</span>
@@ -783,7 +783,7 @@ Template como playbook metodológico
 <li><strong>Conceitos duplicados</strong>: variações de grafia (<code>Public Acceptance</code> vs <code>Social Acceptance</code>) podem gerar conceitos ontologicamente distintos que na verdade são o mesmo fenômeno</li>
 <li><strong>Excertos truncados</strong>: apesar das instruções, a IA ocasionalmente extrai fragmentos que não são auto-suficientes</li>
 </ul>
-<p>O Synesis facilita essa revisão porque o template <strong>valida estruturalmente</strong> os resultados: um conceito mencionado em <code>chain</code> que não existe na ontologia gera erro de compilação; um par nota/cadeia faltante viola o BUNDLE. Esses mecanismos transformam erros silenciosos em falhas explícitas.</p>
+<p>O Synesis facilita essa revisão porque o template <strong>valida estruturalmente</strong> os resultados: um conceito mencionado em <code>chain</code> sem definição na ontologia gera um aviso (erro com <code>--strict</code>); um par nota/cadeia incompleto viola o BUNDLE e é erro de compilação. Esses mecanismos transformam falhas silenciosas em mensagens explícitas.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -843,8 +843,8 @@ A IA codifica, o template valida, o pesquisador decide
 </tr>
 <tr class="even">
 <td>Exportação</td>
-<td>Compilador Synesis</td>
-<td>JSON, Neo4j, Excel para análise quantitativa</td>
+<td>Compilador Synesis e synesis-graph</td>
+<td>JSON e Excel para análise quantitativa; grafo no Neo4j ou ArcadeDB</td>
 </tr>
 </tbody>
 </table>
@@ -859,6 +859,7 @@ De prompts externos a GUIDELINES no template
 </div>
 <div class="callout-body-container callout-body">
 <p>Na versão 1.0 do projeto, “Design dos prompts” era uma etapa separada: as instruções metodológicas existiam em documentos externos e precisavam ser incluídas manualmente em cada chamada ao LLM. Na versão 2.0, essa etapa foi incorporada ao template via <code>GUIDELINES</code> — o <code>.synt</code> passou a ser o repositório único de estrutura <strong>e</strong> metodologia, versionado junto ao projeto.</p>
+<p>Hoje esse fluxo é executado pelo <a href="../howto/synesis_coder.html">synesis-coder</a>, que monta as instruções ao modelo a partir do próprio template.</p>
 </div>
 </div>
 

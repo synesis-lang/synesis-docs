@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Knowledge Graphs and GraphRAG – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
+ <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/organizing_model.html">
+ <span class="dropdown-text">The Organizing Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#knowledge-graphs-and-graphrag" id="toc-knowledge-graphs-and-graphrag" class="nav-link active" data-scroll-target="#knowledge-graphs-and-graphrag"><span class="header-section-number">1</span> Knowledge Graphs and GraphRAG</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-knowledge-graph" id="toc-what-is-a-knowledge-graph" class="nav-link" data-scroll-target="#what-is-a-knowledge-graph"><span class="header-section-number">1.1</span> What Is a Knowledge Graph?</a>
+  <ul class="collapse">
+  <li><a href="#the-fundamental-difference-tables-vs-graphs" id="toc-the-fundamental-difference-tables-vs-graphs" class="nav-link" data-scroll-target="#the-fundamental-difference-tables-vs-graphs"><span class="header-section-number">1.1.1</span> The Fundamental Difference: Tables vs Graphs</a></li>
+  </ul></li>
+  <li><a href="#why-graphs-matter-for-qualitative-research" id="toc-why-graphs-matter-for-qualitative-research" class="nav-link" data-scroll-target="#why-graphs-matter-for-qualitative-research"><span class="header-section-number">1.2</span> Why Graphs Matter for Qualitative Research</a>
+  <ul class="collapse">
+  <li><a href="#relations-are-first-class-citizens" id="toc-relations-are-first-class-citizens" class="nav-link" data-scroll-target="#relations-are-first-class-citizens"><span class="header-section-number">1.2.1</span> 1. Relations Are First-class Citizens</a></li>
+  <li><a href="#network-analysis-reveals-hidden-patterns" id="toc-network-analysis-reveals-hidden-patterns" class="nav-link" data-scroll-target="#network-analysis-reveals-hidden-patterns"><span class="header-section-number">1.2.2</span> 2. Network Analysis Reveals Hidden Patterns</a></li>
+  </ul></li>
+  <li><a href="#graphrag-grounding-ai-with-graphs" id="toc-graphrag-grounding-ai-with-graphs" class="nav-link" data-scroll-target="#graphrag-grounding-ai-with-graphs"><span class="header-section-number">1.3</span> GraphRAG: Grounding AI with Graphs</a>
+  <ul class="collapse">
+  <li><a href="#why-graphrag-is-more-powerful" id="toc-why-graphrag-is-more-powerful" class="nav-link" data-scroll-target="#why-graphrag-is-more-powerful"><span class="header-section-number">1.3.1</span> Why GraphRAG Is More Powerful</a></li>
+  <li><a href="#a-concrete-example" id="toc-a-concrete-example" class="nav-link" data-scroll-target="#a-concrete-example"><span class="header-section-number">1.3.2</span> A Concrete Example</a></li>
+  </ul></li>
+  <li><a href="#architecture-of-a-synesis-knowledge-graph" id="toc-architecture-of-a-synesis-knowledge-graph" class="nav-link" data-scroll-target="#architecture-of-a-synesis-knowledge-graph"><span class="header-section-number">1.4</span> Architecture of a Synesis Knowledge Graph</a>
+  <ul class="collapse">
+  <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes"><span class="header-section-number">1.4.1</span> Nodes</a></li>
+  <li><a href="#edges" id="toc-edges" class="nav-link" data-scroll-target="#edges"><span class="header-section-number">1.4.2</span> Edges</a></li>
+  <li><a href="#dynamic-not-fixed" id="toc-dynamic-not-fixed" class="nav-link" data-scroll-target="#dynamic-not-fixed"><span class="header-section-number">1.4.3</span> Dynamic, Not Fixed</a></li>
+  </ul></li>
+  <li><a href="#when-graphs-are-not-the-answer" id="toc-when-graphs-are-not-the-answer" class="nav-link" data-scroll-target="#when-graphs-are-not-the-answer"><span class="header-section-number">1.5</span> When Graphs Are NOT the Answer</a></li>
+  <li><a href="#graph-data-science-gds-beyond-queries" id="toc-graph-data-science-gds-beyond-queries" class="nav-link" data-scroll-target="#graph-data-science-gds-beyond-queries"><span class="header-section-number">1.6</span> Graph Data Science (GDS): Beyond Queries</a>
+  <ul class="collapse">
+  <li><a href="#path-finding" id="toc-path-finding" class="nav-link" data-scroll-target="#path-finding"><span class="header-section-number">1.6.1</span> Path Finding</a></li>
+  <li><a href="#node-similarity" id="toc-node-similarity" class="nav-link" data-scroll-target="#node-similarity"><span class="header-section-number">1.6.2</span> Node Similarity</a></li>
+  <li><a href="#gaps-co-occurrence-without-a-stated-relation" id="toc-gaps-co-occurrence-without-a-stated-relation" class="nav-link" data-scroll-target="#gaps-co-occurrence-without-a-stated-relation"><span class="header-section-number">1.6.3</span> Gaps: Co-occurrence Without a Stated Relation</a></li>
+  </ul></li>
+  <li><a href="#the-future-multimodal-graphs" id="toc-the-future-multimodal-graphs" class="nav-link" data-scroll-target="#the-future-multimodal-graphs"><span class="header-section-number">1.7</span> The Future: Multimodal Graphs</a></li>
+  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more"><span class="header-section-number">1.8</span> Learn More</a>
+  <ul class="collapse">
+  <li><a href="#graph-concepts" id="toc-graph-concepts" class="nav-link" data-scroll-target="#graph-concepts"><span class="header-section-number">1.8.1</span> Graph Concepts</a></li>
+  <li><a href="#graphrag" id="toc-graphrag" class="nav-link" data-scroll-target="#graphrag"><span class="header-section-number">1.8.2</span> GraphRAG</a></li>
+  <li><a href="#how-to-export-practice" id="toc-how-to-export-practice" class="nav-link" data-scroll-target="#how-to-export-practice"><span class="header-section-number">1.8.3</span> How to Export (Practice)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Knowledge Graphs and GraphRAG</h1>
+<p class="subtitle lead">Why knowledge graphs transform qualitative research</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="knowledge-graphs-and-graphrag" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Knowledge Graphs and GraphRAG</h1>
+<p>When you export your Synesis annotations to a graph database (Neo4j or ArcadeDB, through <a href="../reference/synesis_graph.html"><code>synesis-graph</code></a>), you are not just “saving data in another format”. You are turning <strong>structured text into navigable knowledge</strong> — a fundamental change in how we interact with qualitative analyses.</p>
+<hr>
+<section id="what-is-a-knowledge-graph" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-a-knowledge-graph"><span class="header-section-number">1.1</span> What Is a Knowledge Graph?</h2>
+<p>A <strong>knowledge graph</strong> is a representation of information where:</p>
+<ul>
+<li><strong>Nodes</strong> (vertices) represent <strong>entities</strong> (concepts, codes, annotations, sources)</li>
+<li><strong>Edges</strong> (relationships) represent <strong>connections</strong> between those entities</li>
+<li><strong>Properties</strong> store <strong>attributes</strong> of nodes and edges</li>
+</ul>
+<section id="the-fundamental-difference-tables-vs-graphs" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="the-fundamental-difference-tables-vs-graphs"><span class="header-section-number">1.1.1</span> The Fundamental Difference: Tables vs Graphs</h3>
+<p><strong>Tables (CSV/Excel):</strong></p>
+<pre><code>| Code        | Frequency   |
+|-------------|-------------|
+| Cost        | 15          |
+| Adoption    | 23          |</code></pre>
+<p>You know “Cost” appears 15 times, but <strong>not how it relates to “Adoption”</strong>.</p>
+<p><strong>Graphs:</strong></p>
+<pre class="cypher"><code>(Cost)-[INHIBITS {frequency: 8}]-&gt;(Adoption)</code></pre>
+<p>You know not only that they exist, but <strong>how they connect</strong> and <strong>how strongly</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="why-graphs-matter-for-qualitative-research" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="why-graphs-matter-for-qualitative-research"><span class="header-section-number">1.2</span> Why Graphs Matter for Qualitative Research</h2>
+<section id="relations-are-first-class-citizens" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="relations-are-first-class-citizens"><span class="header-section-number">1.2.1</span> 1. Relations Are First-class Citizens</h3>
+<p>In tables, relations are implicit (you join them mentally or in SQL). In graphs, relations are explicit and navigable.</p>
+<p><strong>Practical example:</strong></p>
+<p>You want to know: <em>“Which codes are affected by ‘Lack of Infrastructure’?”</em></p>
+<p><strong>In CSV</strong> you need to:</p>
+<ol type="1">
+<li>Open <code>chains.csv</code></li>
+<li>Filter rows where <code>from_code = "Lack_of_Infrastructure"</code></li>
+<li>List the unique values of <code>to_code</code></li>
+<li>Check transitive chains by hand</li>
+</ol>
+<p><strong>In a graph:</strong></p>
+<pre class="cypher"><code>MATCH (origin {name: "Lack_of_Infrastructure"})-[r:RELATES_TO*1..3]-&gt;(affected)
+RETURN DISTINCT affected.name AS affected_code, length(r) AS distance
+ORDER BY distance</code></pre>
+<p><strong>Result:</strong> the database walks direct and indirect connections (up to 3 hops). An indirect path, assembled from chains of different sources, is a <strong>hypothesis to examine</strong>: no single source need have asserted the whole path.</p>
+</section>
+<section id="network-analysis-reveals-hidden-patterns" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="network-analysis-reveals-hidden-patterns"><span class="header-section-number">1.2.2</span> 2. Network Analysis Reveals Hidden Patterns</h3>
+<p>Network metrics that are trivial in graphs (and nearly impossible in tables):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 31%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>What It Reveals</th>
+<th>Use in Research</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Degree centrality</strong></td>
+<td>How many connections a node has</td>
+<td>The most connected codes — candidates for central concepts in the theory</td>
+</tr>
+<tr class="even">
+<td><strong>Betweenness centrality</strong></td>
+<td>How often a node lies on paths between other nodes</td>
+<td>Codes that “bridge” thematic clusters</td>
+</tr>
+<tr class="odd">
+<td><strong>PageRank</strong></td>
+<td>Importance based on important connections</td>
+<td>Codes connected not only widely, but to other important codes</td>
+</tr>
+<tr class="even">
+<td><strong>Community detection</strong></td>
+<td>Densely connected groups of nodes</td>
+<td>Thematic clusters emerging from the data (themes, subdimensions)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Practical insight:</strong></p>
+<p>In an analysis of resistance to technology you might find:</p>
+<ul>
+<li><strong>High degree</strong>: “Trust” has 23 connections → central concept</li>
+<li><strong>High betweenness</strong>: “Digital Literacy” links the “Technology” and “Social Exclusion” clusters → important mediator</li>
+<li><strong>Same community</strong>: “Cost”, “Infrastructure” and “Access” form a cohesive cluster → “Structural Barriers” dimension</li>
+</ul>
+<p>These patterns are <strong>emergent</strong> — you did not program them; they emerge from the structure of your annotations.</p>
+<hr>
+</section>
+</section>
+<section id="graphrag-grounding-ai-with-graphs" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="graphrag-grounding-ai-with-graphs"><span class="header-section-number">1.3</span> GraphRAG: Grounding AI with Graphs</h2>
+<p><strong>RAG</strong> (Retrieval-Augmented Generation) is a technique in which LLMs (such as Claude or GPT) look up information in databases before answering. <strong>GraphRAG</strong> uses graphs instead of plain text.</p>
+<section id="why-graphrag-is-more-powerful" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="why-graphrag-is-more-powerful"><span class="header-section-number">1.3.1</span> Why GraphRAG Is More Powerful</h3>
+<p><strong>Traditional (vector) RAG:</strong></p>
+<ul>
+<li>Retrieves semantically similar texts</li>
+<li>Works well for document retrieval</li>
+<li><strong>Limitation</strong>: does not understand structural relations</li>
+</ul>
+<p><strong>GraphRAG:</strong></p>
+<ul>
+<li>Retrieves explicit relations between concepts</li>
+<li>Can follow reasoning paths (A → B → C)</li>
+<li><strong>Advantage</strong>: auditable, traceable answers</li>
+</ul>
+</section>
+<section id="a-concrete-example" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="a-concrete-example"><span class="header-section-number">1.3.2</span> A Concrete Example</h3>
+<p><strong>Question to Claude Desktop (with MCP connected to the graph):</strong></p>
+<blockquote class="blockquote">
+<p>“Why does ‘Technological Distrust’ hinder telemedicine adoption?”</p>
+</blockquote>
+<p><strong>Answer with GraphRAG:</strong></p>
+<blockquote class="blockquote">
+<p>“According to your project’s knowledge graph:</p>
+<ol type="1">
+<li>‘Technological Distrust’ appears in 8 annotations</li>
+<li>Of these, 6 establish the relation: <code>Distrust -&gt; INHIBITS -&gt; Adoption</code></li>
+<li>The most representative annotation is <code>@interview_mrs_maria, item 1</code>:
+<ul>
+<li>Quotation: <em>“How will they know what I have without touching me?”</em></li>
+<li>Memo: <em>“The participant links diagnostic quality to physical presence”</em></li>
+</ul></li>
+</ol>
+<p>‘Technological Distrust’ also co-occurs frequently with: - ‘Preference for In-person Contact’ (5 times) - ‘Lack of Information’ (3 times)</p>
+<p>You may want to explore whether distrust softens when local health agents mediate (see the chain in <code>@interview_mr_joao, item 3</code>).”</p>
+</blockquote>
+<p><strong>Notice:</strong></p>
+<ul>
+<li>The answer is traceable (it cites specific sources)</li>
+<li>It includes frequencies (quantification over qualitative data)</li>
+<li>It suggests further analyses based on graph patterns</li>
+<li><strong>You can check every claim</strong> by running the query and reading the source</li>
+</ul>
+<p>Purely vector RAG returns similar passages without the relational structure that allows these counts and paths. The two complement each other: see <a href="../explanation/graphrag_embeddings_vetoriais.html">Vector Embeddings and GraphRAG</a>. An assistant’s answer can still be wrong; the advantage is that each claim can be checked in the graph and in the source text.</p>
+<hr>
+</section>
+</section>
+<section id="architecture-of-a-synesis-knowledge-graph" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="architecture-of-a-synesis-knowledge-graph"><span class="header-section-number">1.4</span> Architecture of a Synesis Knowledge Graph</h2>
+<p>When a project is exported, the graph structure is:</p>
+<pre class="text"><code>(Item)-[:FROM_SOURCE]-&gt;(Source)
+(Item)-[:MENTIONS]-&gt;(Concept)
+(Concept)-[:RELATES_TO {type: "INHIBITS"}]-&gt;(Concept)
+(Concept)-[:GROUPED_BY]-&gt;(Theme)
+(Concept)-[:KIND_OF]-&gt;(Concept)        # with ROLE HIERARCHY</code></pre>
+<section id="nodes" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="nodes"><span class="header-section-number">1.4.1</span> Nodes</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 61%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Content</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source</code></td>
+<td>bibliographic reference and SOURCE fields</td>
+<td>interview, article, document</td>
+</tr>
+<tr class="even">
+<td><code>Item</code></td>
+<td>quotation, interpretation, ITEM fields and file location</td>
+<td>coded unit</td>
+</tr>
+<tr class="odd">
+<td>Concept (label = field name)</td>
+<td>name, definition and ontology fields</td>
+<td><code>:Code</code>, <code>:Factor</code>, <code>:Second_order</code></td>
+</tr>
+<tr class="even">
+<td>Taxonomy (label = field name)</td>
+<td>groupings such as <code>TOPIC</code></td>
+<td><code>:Topic</code>, <code>:Group</code></td>
+</tr>
+<tr class="odd">
+<td><code>ProjectContext</code></td>
+<td>project description, template and GUIDELINES</td>
+<td>one per graph</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="edges" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="edges"><span class="header-section-number">1.4.2</span> Edges</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FROM_SOURCE</code></td>
+<td>the item comes from that source</td>
+</tr>
+<tr class="even">
+<td><code>MENTIONS</code></td>
+<td>the item mentions the concept</td>
+</tr>
+<tr class="odd">
+<td><code>RELATES_TO</code></td>
+<td>relation stated in a chain, with its type</td>
+</tr>
+<tr class="even">
+<td><code>GROUPED_BY</code>, <code>QUALIFIED_BY</code>, <code>BELONGS_TO</code></td>
+<td>classification of the concept</td>
+</tr>
+<tr class="odd">
+<td><code>IS_LINKED_TO</code></td>
+<td>coupling between categories</td>
+</tr>
+<tr class="even">
+<td><code>KIND_OF</code>, <code>PART_OF</code>, <code>INSTANCE_OF</code></td>
+<td>hierarchy adopted in the <code>.syno</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dynamic-not-fixed" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="dynamic-not-fixed"><span class="header-section-number">1.4.3</span> Dynamic, Not Fixed</h3>
+<p>The graph structure is <strong>derived from the template (<code>.synt</code>)</strong>. Add an ITEM field <code>FIELD context TYPE TEXT</code> and it becomes a property of the <code>Item</code> nodes. That is why the same tool serves any domain.</p>
+<hr>
+</section>
+</section>
+<section id="when-graphs-are-not-the-answer" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="when-graphs-are-not-the-answer"><span class="header-section-number">1.5</span> When Graphs Are NOT the Answer</h2>
+<p>Graphs are no panacea. <strong>Do not use a graph database if:</strong></p>
+<ol type="1">
+<li><strong>Your focus is pure quantitative analysis</strong> (frequencies, descriptive statistics)
+<ul>
+<li>Use CSV + R/Python. Simpler and faster.</li>
+</ul></li>
+<li><strong>You have few explicit relations</strong> (isolated codes, no chains)
+<ul>
+<li>Excel is enough. A graph adds needless complexity.</li>
+</ul></li>
+<li><strong>You need complex longitudinal temporal analyses</strong>
+<ul>
+<li>Temporal graphs exist, but time-series databases (InfluxDB, TimescaleDB) are more efficient.</li>
+</ul></li>
+<li><strong>You have no Cypher background</strong>
+<ul>
+<li>There is a learning curve. If you only want it to “look nice”, use CSV visualizers (RAWGraphs, Flourish).</li>
+</ul></li>
+</ol>
+<p><strong>Use a graph database when:</strong></p>
+<ul>
+<li>You have many chains (more than 20% of annotations)</li>
+<li>You want network metrics (centrality, communities)</li>
+<li>You will integrate with AI systems (GraphRAG, MCP)</li>
+<li>You want to publish interactive, navigable visualizations</li>
+</ul>
+<hr>
+</section>
+<section id="graph-data-science-gds-beyond-queries" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="graph-data-science-gds-beyond-queries"><span class="header-section-number">1.6</span> Graph Data Science (GDS): Beyond Queries</h2>
+<p>Neo4j Graph Data Science is a library of optimized graph algorithms. A few examples:</p>
+<section id="path-finding" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="path-finding"><span class="header-section-number">1.6.1</span> Path Finding</h3>
+<pre class="cypher"><code>// What is the shortest path between "Cost" and "Satisfaction"?
+MATCH path = shortestPath((a {name:"Cost"})-[:RELATES_TO*]-(b {name:"Satisfaction"}))
+RETURN path</code></pre>
+<p><strong>Insight:</strong> if there is a direct or indirect path, you can trace it conceptually.</p>
+</section>
+<section id="node-similarity" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="node-similarity"><span class="header-section-number">1.6.2</span> Node Similarity</h3>
+<pre class="cypher"><code>// Which concepts are structurally similar to "Trust"?
+// (requires the GDS plugin and a projection called 'myGraph')
+CALL gds.nodeSimilarity.stream('myGraph')
+YIELD node1, node2, similarity
+WHERE gds.util.asNode(node1).name = "Trust"
+RETURN gds.util.asNode(node2).name AS similar_code, similarity
+ORDER BY similarity DESC
+LIMIT 10</code></pre>
+<p><strong>Insight:</strong> codes with similar connection patterns may be candidates for merging or related categories.</p>
+</section>
+<section id="gaps-co-occurrence-without-a-stated-relation" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="gaps-co-occurrence-without-a-stated-relation"><span class="header-section-number">1.6.3</span> Gaps: Co-occurrence Without a Stated Relation</h3>
+<pre class="cypher"><code>// Pairs that appear together in many items but were never linked by a chain
+MATCH (i:Item)-[:MENTIONS]-&gt;(a), (i)-[:MENTIONS]-&gt;(b)
+WHERE a.name &lt; b.name AND NOT (a)-[:RELATES_TO]-(b)
+RETURN a.name, b.name, count(DISTINCT i) AS together
+ORDER BY together DESC
+LIMIT 20</code></pre>
+<p><strong>Use:</strong> point to where rereading pays off. Appearing together does not mean a relation exists; the decision goes back to the text.</p>
+<hr>
+</section>
+</section>
+<section id="the-future-multimodal-graphs" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="the-future-multimodal-graphs"><span class="header-section-number">1.7</span> The Future: Multimodal Graphs</h2>
+<p>Synesis currently works with text. The graph architecture allows future extensions:</p>
+<ul>
+<li><strong>Images</strong>: <code>Image</code> nodes connected to <code>Item</code> (annotations on images in visual research)</li>
+<li><strong>Audio</strong>: <code>AudioSegment</code> nodes with timestamps (oral interview analysis)</li>
+<li><strong>Video</strong>: <code>VideoFrame</code> nodes (analysis of recorded interactions)</li>
+<li><strong>Geo</strong>: <code>lat</code>, <code>lon</code> properties on <code>Source</code> for spatial analysis</li>
+</ul>
+<p>The graph structure accommodates these naturally — new node types are added while relations stay consistent.</p>
+<hr>
+</section>
+<section id="learn-more" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="learn-more"><span class="header-section-number">1.8</span> Learn More</h2>
+<section id="graph-concepts" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="graph-concepts"><span class="header-section-number">1.8.1</span> Graph Concepts</h3>
+<ul>
+<li><a href="https://graphacademy.neo4j.com/">Neo4j Graph Academy</a> — free Cypher courses</li>
+<li><a href="https://neo4j.com/graph-data-book/">The Practitioner’s Guide to Graph Data</a> — free book</li>
+</ul>
+</section>
+<section id="graphrag" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="graphrag"><span class="header-section-number">1.8.2</span> GraphRAG</h3>
+<ul>
+<li><a href="https://modelcontextprotocol.io/">Model Context Protocol</a> — connecting assistants to databases</li>
+<li><a href="https://www.microsoft.com/en-us/research/project/graphrag/">Microsoft GraphRAG</a> — original research</li>
+</ul>
+</section>
+<section id="how-to-export-practice" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="how-to-export-practice"><span class="header-section-number">1.8.3</span> How to Export (Practice)</h3>
+<ul>
+<li><a href="../howto/exportar_neo4j.html">How to export to Neo4j</a> — hands-on guide</li>
+<li><a href="../reference/synesis_graph.html">synesis-graph</a> — also ArcadeDB (no server) and HTML</li>
+</ul>
+<hr>
+<p><strong>Closing thought:</strong> graphs do not replace analytical thinking — they <strong>amplify</strong> patterns already implicit in your data. Just as Synesis does not replace interpretation (it makes it traceable), a graph does not replace analysis (it makes it navigable).</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

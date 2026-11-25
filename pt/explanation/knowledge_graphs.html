@@ -243,16 +243,16 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#arquitetura-de-um-knowledge-graph-synesis" id="toc-arquitetura-de-um-knowledge-graph-synesis" class="nav-link" data-scroll-target="#arquitetura-de-um-knowledge-graph-synesis"><span class="header-section-number">1.4</span> Arquitetura de um Knowledge Graph Synesis</a>
   <ul class="collapse">
-  <li><a href="#nós-criados" id="toc-nós-criados" class="nav-link" data-scroll-target="#nós-criados"><span class="header-section-number">1.4.1</span> Nós Criados</a></li>
-  <li><a href="#arestas-criadas" id="toc-arestas-criadas" class="nav-link" data-scroll-target="#arestas-criadas"><span class="header-section-number">1.4.2</span> Arestas Criadas</a></li>
-  <li><a href="#dinâmico-vs-fixo" id="toc-dinâmico-vs-fixo" class="nav-link" data-scroll-target="#dinâmico-vs-fixo"><span class="header-section-number">1.4.3</span> Dinâmico vs Fixo</a></li>
+  <li><a href="#nós" id="toc-nós" class="nav-link" data-scroll-target="#nós"><span class="header-section-number">1.4.1</span> Nós</a></li>
+  <li><a href="#arestas" id="toc-arestas" class="nav-link" data-scroll-target="#arestas"><span class="header-section-number">1.4.2</span> Arestas</a></li>
+  <li><a href="#dinâmico-não-fixo" id="toc-dinâmico-não-fixo" class="nav-link" data-scroll-target="#dinâmico-não-fixo"><span class="header-section-number">1.4.3</span> Dinâmico, não fixo</a></li>
   </ul></li>
   <li><a href="#quando-grafos-não-são-a-resposta" id="toc-quando-grafos-não-são-a-resposta" class="nav-link" data-scroll-target="#quando-grafos-não-são-a-resposta"><span class="header-section-number">1.5</span> Quando Grafos NÃO São a Resposta</a></li>
   <li><a href="#graph-data-science-gds-além-das-queries" id="toc-graph-data-science-gds-além-das-queries" class="nav-link" data-scroll-target="#graph-data-science-gds-além-das-queries"><span class="header-section-number">1.6</span> Graph Data Science (GDS): Além das Queries</a>
   <ul class="collapse">
   <li><a href="#pathfinding-encontrar-caminhos" id="toc-pathfinding-encontrar-caminhos" class="nav-link" data-scroll-target="#pathfinding-encontrar-caminhos"><span class="header-section-number">1.6.1</span> PathFinding (Encontrar Caminhos)</a></li>
   <li><a href="#node-similarity-similaridade" id="toc-node-similarity-similaridade" class="nav-link" data-scroll-target="#node-similarity-similaridade"><span class="header-section-number">1.6.2</span> Node Similarity (Similaridade)</a></li>
-  <li><a href="#link-prediction" id="toc-link-prediction" class="nav-link" data-scroll-target="#link-prediction"><span class="header-section-number">1.6.3</span> Link Prediction</a></li>
+  <li><a href="#lacunas-coocorrência-sem-relação-afirmada" id="toc-lacunas-coocorrência-sem-relação-afirmada" class="nav-link" data-scroll-target="#lacunas-coocorrência-sem-relação-afirmada"><span class="header-section-number">1.6.3</span> Lacunas: coocorrência sem relação afirmada</a></li>
   </ul></li>
   <li><a href="#o-futuro-grafos-multimodais" id="toc-o-futuro-grafos-multimodais" class="nav-link" data-scroll-target="#o-futuro-grafos-multimodais"><span class="header-section-number">1.7</span> O Futuro: Grafos Multimodais</a></li>
   <li><a href="#aprender-mais" id="toc-aprender-mais" class="nav-link" data-scroll-target="#aprender-mais"><span class="header-section-number">1.8</span> Aprender Mais</a>
@@ -290,7 +290,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="knowledge-graphs-e-graphrag" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Knowledge Graphs e GraphRAG</h1>
-<p>Quando você export suas anotações Synesis para Neo4j, você não está apenas “salvando dados em outro formato”. Você está transformando <strong>texto estruturado em conhecimento navegável</strong> — uma mudança fundamental na forma como interagimos com análises qualitativas.</p>
+<p>Quando você exporta suas anotações Synesis para um banco de grafos (Neo4j ou ArcadeDB, pelo <a href="../reference/synesis_graph.html"><code>synesis-graph</code></a>), você não está apenas “salvando dados em outro formato”. Você está transformando <strong>texto estruturado em conhecimento navegável</strong> — uma mudança fundamental na forma como interagimos com análises qualitativas.</p>
 <hr>
 <section id="o-que-é-um-knowledge-graph" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="o-que-é-um-knowledge-graph"><span class="header-section-number">1.1</span> O Que É um Knowledge Graph?</h2>
@@ -323,10 +323,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Você quer saber: <em>“Quais códigos são afetados por ‘Falta de Infraestrutura’?”</em></p>
 <p><strong>Em CSV:</strong> Você precisa: 1. Abrir <code>chains.csv</code> 2. Filtrar linhas onde <code>codigo_origem = "Falta de Infraestrutura"</code> 3. Listar valores únicos da coluna <code>codigo_destino</code> 4. Manualmente verificar se há chains transitivas</p>
 <p><strong>Em Neo4j:</strong></p>
-<pre class="cypher"><code>MATCH (origem:Code {name: "Falta de Infraestrutura"})-[r*1..3]-&gt;(afetado:Code)
+<pre class="cypher"><code>MATCH (origem {name: "Falta_de_Infraestrutura"})-[r:RELATES_TO*1..3]-&gt;(afetado)
 RETURN DISTINCT afetado.name AS codigo_afetado, length(r) AS distancia
 ORDER BY distancia</code></pre>
-<p><strong>Resultado:</strong> Neo4j encontra automaticamente não apenas conexões diretas, mas também indiretas (chains com até 3 saltos).</p>
+<p><strong>Resultado:</strong> o banco percorre conexões diretas e indiretas (até 3 saltos). Um caminho indireto, montado a partir de cadeias de fontes diferentes, é uma <strong>hipótese a examinar</strong>: nenhuma fonte precisa ter afirmado o percurso inteiro.</p>
 </section>
 <section id="análise-de-rede-revela-padrões-invisíveis" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="análise-de-rede-revela-padrões-invisíveis"><span class="header-section-number">1.2.2</span> 2. Análise de Rede Revela Padrões Invisíveis</h3>
@@ -408,20 +408,20 @@ ORDER BY distancia</code></pre>
 <p>Sugiro explorar se a desconfiança é amenizada quando há mediação de agentes de saúde locais (veja chain identificada em <code>@entrevista_sr_joao, item 3</code>).”</p>
 </blockquote>
 <p><strong>Observe:</strong> - Resposta rastreável (cita fontes específicas) - Inclui frequências (quantificação sobre qualitativo) - Sugere análises adicionais baseadas em padrões do grafo - <strong>Você pode verificar cada afirmação</strong> clicando nos links ou executando a query Cypher</p>
-<p>Isso <strong>não é possível</strong> com RAG vetorial puro, que retornaria apenas trechos similares sem entender a estrutura relacional.</p>
+<p>Um RAG puramente vetorial retorna trechos semelhantes, sem a estrutura relacional que permite essas contagens e percursos. Os dois se complementam: veja <a href="../explanation/graphrag_embeddings_vetoriais.html">Embeddings Vetoriais e GraphRAG</a>. A resposta de um assistente continua sujeita a erro; a vantagem é que cada afirmação pode ser conferida no grafo e no texto de origem.</p>
 <hr>
 </section>
 </section>
 <section id="arquitetura-de-um-knowledge-graph-synesis" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="arquitetura-de-um-knowledge-graph-synesis"><span class="header-section-number">1.4</span> Arquitetura de um Knowledge Graph Synesis</h2>
-<p>Quando você exporta um projeto Synesis para Neo4j, a seguinte estrutura de grafo é criada:</p>
-<pre class="cypher"><code>(Source)-[:HAS_ITEM]-&gt;(Item)-[:HAS_CODE]-&gt;(Code)
-(Item)-[:REFERENCES]-&gt;(Source)
-(Code)-[:CHAIN_RELATION {type: "INIBE"}]-&gt;(Code)
-(Code)-[:BELONGS_TO_TOPIC]-&gt;(Topic)
-(Topic)-[:DEFINED_IN]-&gt;(Ontology)</code></pre>
-<section id="nós-criados" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="nós-criados"><span class="header-section-number">1.4.1</span> Nós Criados</h3>
+<p>Quando um projeto é exportado, a estrutura do grafo é:</p>
+<pre class="text"><code>(Item)-[:FROM_SOURCE]-&gt;(Source)
+(Item)-[:MENTIONS]-&gt;(Conceito)
+(Conceito)-[:RELATES_TO {type: "INIBE"}]-&gt;(Conceito)
+(Conceito)-[:GROUPED_BY]-&gt;(Tema)
+(Conceito)-[:KIND_OF]-&gt;(Conceito)        # com ROLE HIERARCHY</code></pre>
+<section id="nós" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="nós"><span class="header-section-number">1.4.1</span> Nós</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 15%">
@@ -431,92 +431,89 @@ ORDER BY distancia</code></pre>
 <thead>
 <tr class="header">
 <th>Tipo</th>
-<th>Propriedades Principais</th>
+<th>Conteúdo</th>
 <th>Exemplo</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>Source</code></td>
-<td>bibref, author, year, title</td>
-<td>Entrevista, artigo, documento</td>
+<td>referência bibliográfica e campos de SOURCE</td>
+<td>entrevista, artigo, documento</td>
 </tr>
 <tr class="even">
 <td><code>Item</code></td>
-<td>quote, memo, context, source_location</td>
-<td>Anotação individual</td>
+<td>citação, interpretação, campos de ITEM e localização no arquivo</td>
+<td>unidade codificada</td>
 </tr>
 <tr class="odd">
-<td><code>Code</code></td>
-<td>name, definition, topic</td>
-<td>Conceito analítico</td>
+<td>Conceito (rótulo = nome do campo)</td>
+<td>nome, definição e campos da ontologia</td>
+<td><code>:Code</code>, <code>:Fator</code>, <code>:Ordem_2a</code></td>
 </tr>
 <tr class="even">
-<td><code>Topic</code></td>
-<td>name</td>
-<td>Agrupamento temático</td>
+<td>Taxonomia (rótulo = nome do campo)</td>
+<td>agrupamentos como <code>TOPIC</code></td>
+<td><code>:Topic</code>, <code>:Grupo</code></td>
 </tr>
 <tr class="odd">
-<td><code>Ontology</code></td>
-<td>name, version</td>
-<td>Vocabulário do projeto</td>
-</tr>
-<tr class="even">
-<td><code>Chain</code></td>
-<td>codes[], relations[]</td>
-<td>Sequência causal</td>
+<td><code>ProjectContext</code></td>
+<td>descrição do projeto, template e GUIDELINES</td>
+<td>um por grafo</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="arestas-criadas" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="arestas-criadas"><span class="header-section-number">1.4.2</span> Arestas Criadas</h3>
+<section id="arestas" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="arestas"><span class="header-section-number">1.4.2</span> Arestas</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 39%">
-<col style="width: 42%">
+<col style="width: 31%">
+<col style="width: 68%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Tipo</th>
 <th>Significado</th>
-<th>Propriedades</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>HAS_ITEM</code></td>
-<td>Source contém Item</td>
-<td>order (posição)</td>
+<td><code>FROM_SOURCE</code></td>
+<td>o item vem daquela fonte</td>
 </tr>
 <tr class="even">
-<td><code>HAS_CODE</code></td>
-<td>Item foi codificado com Code</td>
-<td>-</td>
+<td><code>MENTIONS</code></td>
+<td>o item menciona o conceito</td>
 </tr>
 <tr class="odd">
-<td><code>CHAIN_RELATION</code></td>
-<td>Code relaciona-se com outro Code via chain</td>
-<td>relation_type (INIBE, FAVORECE, etc.), chain_id</td>
+<td><code>RELATES_TO</code></td>
+<td>relação afirmada numa cadeia, com o tipo</td>
 </tr>
 <tr class="even">
-<td><code>BELONGS_TO_TOPIC</code></td>
-<td>Code pertence a Topic</td>
-<td>-</td>
+<td><code>GROUPED_BY</code>, <code>QUALIFIED_BY</code>, <code>BELONGS_TO</code></td>
+<td>classificação do conceito</td>
+</tr>
+<tr class="odd">
+<td><code>IS_LINKED_TO</code></td>
+<td>acoplamento entre categorias</td>
+</tr>
+<tr class="even">
+<td><code>KIND_OF</code>, <code>PART_OF</code>, <code>INSTANCE_OF</code></td>
+<td>hierarquia adotada no <code>.syno</code></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="dinâmico-vs-fixo" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="dinâmico-vs-fixo"><span class="header-section-number">1.4.3</span> Dinâmico vs Fixo</h3>
-<p><strong>Crucial:</strong> A estrutura do grafo é <strong>derivada do template (.synt)</strong>, não hardcoded. Se você adicionar um campo <code>FIELD context : TEXT</code>, o pipeline cria propriedades <code>context</code> nos nós <code>Item</code>. Isso significa que o mesmo código <code>synesis2neo4j</code> funciona para <strong>qualquer domínio</strong> (medicina, sociologia, engenharia de requisitos, análise literária).</p>
+<section id="dinâmico-não-fixo" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="dinâmico-não-fixo"><span class="header-section-number">1.4.3</span> Dinâmico, não fixo</h3>
+<p>A estrutura do grafo é <strong>derivada do template (<code>.synt</code>)</strong>. Se você acrescenta um campo <code>FIELD contexto TYPE TEXT</code> de ITEM, ele passa a ser uma propriedade dos nós <code>Item</code>. Por isso a mesma ferramenta serve a qualquer domínio.</p>
 <hr>
 </section>
 </section>
 <section id="quando-grafos-não-são-a-resposta" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="quando-grafos-não-são-a-resposta"><span class="header-section-number">1.5</span> Quando Grafos NÃO São a Resposta</h2>
-<p>Grafos não são panaceia. <strong>Não use Neo4j se:</strong></p>
+<p>Grafos não são panaceia. <strong>Não use um banco de grafos se:</strong></p>
 <ol type="1">
 <li><strong>Seu foco é análise quantitativa pura</strong> (frequências, estatísticas descritivas)
 <ul>
@@ -535,7 +532,7 @@ ORDER BY distancia</code></pre>
 <li>Curva de aprendizado existe. Se é apenas para “ver bonitinho”, use visualizadores de CSV (RAWGraphs, Flourish).</li>
 </ul></li>
 </ol>
-<p><strong>Use Neo4j quando:</strong></p>
+<p><strong>Use um banco de grafos quando:</strong></p>
 <ul>
 <li>Você tem muitas chains (&gt;20% das anotações têm chains)</li>
 <li>Você quer calcular métricas de rede (centralidade, comunidades)</li>
@@ -550,31 +547,31 @@ ORDER BY distancia</code></pre>
 <section id="pathfinding-encontrar-caminhos" class="level3" data-number="1.6.1">
 <h3 data-number="1.6.1" class="anchored" data-anchor-id="pathfinding-encontrar-caminhos"><span class="header-section-number">1.6.1</span> PathFinding (Encontrar Caminhos)</h3>
 <pre class="cypher"><code>// Qual é o caminho mais curto entre "Custo" e "Satisfação"?
-MATCH path = shortestPath((a:Code {name:"Custo"})-[*]-(b:Code {name:"Satisfação"}))
+MATCH path = shortestPath((a {name:"Custo"})-[:RELATES_TO*]-(b {name:"Satisfacao"}))
 RETURN path</code></pre>
 <p><strong>Insight:</strong> Se há caminho direto ou indireto, você pode rastreá-lo conceitualmente.</p>
 </section>
 <section id="node-similarity-similaridade" class="level3" data-number="1.6.2">
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="node-similarity-similaridade"><span class="header-section-number">1.6.2</span> Node Similarity (Similaridade)</h3>
-<pre class="cypher"><code>// Quais códigos são estruturalmente similares a "Confiança"?
+<pre class="cypher"><code>// Quais conceitos são estruturalmente similares a "Confianca"?
+// (requer o plugin GDS e uma projeção chamada 'myGraph')
 CALL gds.nodeSimilarity.stream('myGraph')
 YIELD node1, node2, similarity
-WHERE gds.util.asNode(node1).name = "Confiança"
+WHERE gds.util.asNode(node1).name = "Confianca"
 RETURN gds.util.asNode(node2).name AS codigo_similar, similarity
 ORDER BY similarity DESC
 LIMIT 10</code></pre>
 <p><strong>Insight:</strong> Códigos com padrões de conexão similares podem ser candidatos para fusão ou categorias relacionadas.</p>
 </section>
-<section id="link-prediction" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="link-prediction"><span class="header-section-number">1.6.3</span> Link Prediction</h3>
-<pre class="cypher"><code>// Baseado no grafo atual, quais relações *deveriam* existir mas não foram anotadas?
-CALL gds.linkPrediction.predict.stream('myGraph')
-YIELD node1, node2, probability
-WHERE probability &gt; 0.8
-RETURN gds.util.asNode(node1).name AS codigo1,
-       gds.util.asNode(node2).name AS codigo2,
-       probability</code></pre>
-<p><strong>Uso:</strong> Identificar gaps na análise. Se o algoritmo sugere que “Custo” deveria conectar-se a “Exclusão Digital” (mas você não anotou), isso pode indicar padrão implícito nos dados que você ainda não capturou.</p>
+<section id="lacunas-coocorrência-sem-relação-afirmada" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="lacunas-coocorrência-sem-relação-afirmada"><span class="header-section-number">1.6.3</span> Lacunas: coocorrência sem relação afirmada</h3>
+<pre class="cypher"><code>// Pares que aparecem juntos em muitos itens, mas nunca foram ligados por uma cadeia
+MATCH (i:Item)-[:MENTIONS]-&gt;(a), (i)-[:MENTIONS]-&gt;(b)
+WHERE a.name &lt; b.name AND NOT (a)-[:RELATES_TO]-(b)
+RETURN a.name, b.name, count(DISTINCT i) AS juntos
+ORDER BY juntos DESC
+LIMIT 20</code></pre>
+<p><strong>Uso:</strong> apontar onde vale reler. Aparecer junto não significa que exista relação; a decisão volta ao texto.</p>
 <hr>
 </section>
 </section>
@@ -610,6 +607,7 @@ RETURN gds.util.asNode(node1).name AS codigo1,
 <h3 data-number="1.8.3" class="anchored" data-anchor-id="como-exportar-prático"><span class="header-section-number">1.8.3</span> Como Exportar (Prático)</h3>
 <ul>
 <li><a href="../howto/exportar_neo4j.html">Como exportar para Neo4j</a> — Guia hands-on</li>
+<li><a href="../reference/synesis_graph.html">synesis-graph</a> — também ArcadeDB (sem servidor) e HTML</li>
 </ul>
 <hr>
 <p><strong>Reflexão final:</strong> Grafos não substituem pensamento analítico — eles <strong>amplificam</strong> padrões que já existem implicitamente nos seus dados. Assim como o Synesis não substitui interpretação (ele a torna rastreável), Neo4j não substitui análise (ele a torna navegável).</p>

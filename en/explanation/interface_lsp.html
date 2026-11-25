@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The LSP Interface – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
+ <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/organizing_model.html">
+ <span class="dropdown-text">The Organizing Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-lsp" id="toc-what-is-lsp" class="nav-link active" data-scroll-target="#what-is-lsp"><span class="header-section-number">1</span> What Is LSP?</a></li>
+  <li><a href="#sec-arquitetura" id="toc-sec-arquitetura" class="nav-link" data-scroll-target="#sec-arquitetura"><span class="header-section-number">2</span> General Architecture</a></li>
+  <li><a href="#sec-modos" id="toc-sec-modos" class="nav-link" data-scroll-target="#sec-modos"><span class="header-section-number">3</span> The Two Modes of Operation</a>
+  <ul class="collapse">
+  <li><a href="#mode-1-per-file-validation-real-time" id="toc-mode-1-per-file-validation-real-time" class="nav-link" data-scroll-target="#mode-1-per-file-validation-real-time"><span class="header-section-number">3.1</span> Mode 1: Per-file validation (real time)</a></li>
+  <li><a href="#mode-2-full-compilation-on-demand" id="toc-mode-2-full-compilation-on-demand" class="nav-link" data-scroll-target="#mode-2-full-compilation-on-demand"><span class="header-section-number">3.2</span> Mode 2: Full compilation (on demand)</a></li>
+  </ul></li>
+  <li><a href="#sec-adapter" id="toc-sec-adapter" class="nav-link" data-scroll-target="#sec-adapter"><span class="header-section-number">4</span> The Adapter: lsp_adapter.py</a>
+  <ul class="collapse">
+  <li><a href="#what-it-exposes" id="toc-what-it-exposes" class="nav-link" data-scroll-target="#what-it-exposes"><span class="header-section-number">4.1</span> What It Exposes</a></li>
+  <li><a href="#how-discovery-works" id="toc-how-discovery-works" class="nav-link" data-scroll-target="#how-discovery-works"><span class="header-section-number">4.2</span> How Discovery Works</a></li>
+  </ul></li>
+  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">5</span> How Errors Travel</a></li>
+  <li><a href="#sec-features" id="toc-sec-features" class="nav-link" data-scroll-target="#sec-features"><span class="header-section-number">6</span> Implemented Features</a>
+  <ul class="collapse">
+  <li><a href="#real-time-validation" id="toc-real-time-validation" class="nav-link" data-scroll-target="#real-time-validation"><span class="header-section-number">6.1</span> Real-time Validation</a></li>
+  <li><a href="#navigation-and-comprehension" id="toc-navigation-and-comprehension" class="nav-link" data-scroll-target="#navigation-and-comprehension"><span class="header-section-number">6.2</span> Navigation and Comprehension</a></li>
+  <li><a href="#productivity" id="toc-productivity" class="nav-link" data-scroll-target="#productivity"><span class="header-section-number">6.3</span> Productivity</a></li>
+  <li><a href="#synesis-explorer" id="toc-synesis-explorer" class="nav-link" data-scroll-target="#synesis-explorer"><span class="header-section-number">6.4</span> Synesis Explorer</a></li>
+  <li><a href="#the-lsp-extension-contract" id="toc-the-lsp-extension-contract" class="nav-link" data-scroll-target="#the-lsp-extension-contract"><span class="header-section-number">6.5</span> The LSP ↔︎ Extension Contract</a></li>
+  <li><a href="#recognized-file-types" id="toc-recognized-file-types" class="nav-link" data-scroll-target="#recognized-file-types"><span class="header-section-number">6.6</span> Recognized File Types</a></li>
+  </ul></li>
+  <li><a href="#sec-performance" id="toc-sec-performance" class="nav-link" data-scroll-target="#sec-performance"><span class="header-section-number">7</span> Performance Strategies</a>
+  <ul class="collapse">
+  <li><a href="#layered-cache" id="toc-layered-cache" class="nav-link" data-scroll-target="#layered-cache"><span class="header-section-number">7.1</span> 1. Layered Cache</a></li>
+  <li><a href="#debounce-cancellation" id="toc-debounce-cancellation" class="nav-link" data-scroll-target="#debounce-cancellation"><span class="header-section-number">7.2</span> 2. Debounce + Cancellation</a></li>
+  <li><a href="#focused-file-first" id="toc-focused-file-first" class="nav-link" data-scroll-target="#focused-file-first"><span class="header-section-number">7.3</span> 3. Focused File First</a></li>
+  <li><a href="#workspace-fingerprint" id="toc-workspace-fingerprint" class="nav-link" data-scroll-target="#workspace-fingerprint"><span class="header-section-number">7.4</span> 4. Workspace Fingerprint</a></li>
+  </ul></li>
+  <li><a href="#sec-shared-ontology" id="toc-sec-shared-ontology" class="nav-link" data-scroll-target="#sec-shared-ontology"><span class="header-section-number">8</span> The Case of the Shared Ontology</a>
+  <ul class="collapse">
+  <li><a href="#the-broken-premise-projects-are-self-contained" id="toc-the-broken-premise-projects-are-self-contained" class="nav-link" data-scroll-target="#the-broken-premise-projects-are-self-contained"><span class="header-section-number">8.1</span> The Broken Premise: Projects Are Self-contained</a></li>
+  <li><a href="#the-broken-premise-everything-that-matters-is-under-the-workspace-root" id="toc-the-broken-premise-everything-that-matters-is-under-the-workspace-root" class="nav-link" data-scroll-target="#the-broken-premise-everything-that-matters-is-under-the-workspace-root"><span class="header-section-number">8.2</span> The Broken Premise: Everything That Matters Is Under the Workspace Root</a></li>
+  </ul></li>
+  <li><a href="#sec-ciclo" id="toc-sec-ciclo" class="nav-link" data-scroll-target="#sec-ciclo"><span class="header-section-number">9</span> Life Cycle of a File</a></li>
+  <li><a href="#sec-modulos" id="toc-sec-modulos" class="nav-link" data-scroll-target="#sec-modulos"><span class="header-section-number">10</span> Module Map</a></li>
+  <li><a href="#sec-relacao" id="toc-sec-relacao" class="nav-link" data-scroll-target="#sec-relacao"><span class="header-section-number">11</span> Relationship with the Compiler</a>
+  <ul class="collapse">
+  <li><a href="#the-boundary-of-the-multi-project-aggregate" id="toc-the-boundary-of-the-multi-project-aggregate" class="nav-link" data-scroll-target="#the-boundary-of-the-multi-project-aggregate"><span class="header-section-number">11.1</span> The Boundary of the Multi-project Aggregate</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The LSP Interface</h1>
+<p class="subtitle lead">How the Synesis compiler comes alive inside the editor — in real time</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Who is this document for?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Developers and technical readers who want to understand how the Synesis compiler connects to VS Code (or any LSP-compatible editor) to offer real-time validation, autocomplete, navigation and much more. No prior knowledge of the source code is needed.</p>
+<p>If you want to understand the compiler itself, see <a href="../explanation/fluxo_compilacao_interno.html">Inside the Compiler</a>.</p>
+</div>
+</div>
+<section id="what-is-lsp" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="what-is-lsp"><span class="header-section-number">1</span> What Is LSP?</h2>
+<p>The <strong>Language Server Protocol</strong> is an open standard created by Microsoft that separates a language’s intelligence (validation, autocomplete, navigation) from the editor itself. Instead of reimplementing everything for each editor, you build a <strong>language server</strong> that any compatible editor can use.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    VS["VS Code"]
+    EX["Synesis Explorer\n(extension)"]
+    LSP["LSP server\nsynesis-lsp"]
+    COMP["Synesis\ncompiler"]
+
+    VS --&gt; EX
+    EX -- "JSON-RPC STDIO\n(standard protocol)" --&gt; LSP
+    EX -- "synesis/loadProject\nsynesis/getCodes...\n(custom commands)" --&gt; LSP
+    LSP -- "direct Python\ncalls" --&gt; COMP
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Synesis Explorer is the VS Code extension that ties everything together. Inside it, <code>SynesisLspClient</code> (built on <code>vscode-languageclient</code>) manages the connection to the server: it starts the Python process, keeps the STDIO channel open and dispatches editor events (file opened, key typed, file saved). For features beyond the standard protocol — such as listing codes and relations — the Explorer sends <strong>custom commands</strong> over the same channel.</p>
+</section>
+<section id="sec-arquitetura" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-arquitetura"><span class="header-section-number">2</span> General Architecture</h2>
+<p>The ecosystem involves three distinct components: <strong>Synesis Explorer</strong> (VS Code extension), <strong>synesis-lsp</strong> (Python server) and the <strong>Synesis compiler</strong>. Internally the server is organized in three layers:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    classDef extension fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20,font-weight:bold;
+    classDef protocol fill:#E0F7FA,stroke:#084C54,stroke-width:2px,color:#084C54,font-weight:bold;
+    classDef adapter fill:#F8FAFC,stroke:#4A5568,stroke-width:1px,color:#084C84;
+    classDef compiler fill:#FFF3E0,stroke:#E65100,stroke-width:2px,color:#E65100,font-weight:bold;
+
+    subgraph VSCode ["VS Code"]
+        direction TB
+        EX["Synesis Explorer&lt;br/&gt;(extension)"]:::extension
+        subgraph ExplorerInternals ["Inside the extension"]
+            direction LR
+            LC["SynesisLspClient&lt;br/&gt;vscode-languageclient"]
+            UI["Visual panels&lt;br/&gt;References · Codes · Relations&lt;br/&gt;Ontology · Template Fields"]
+        end
+        EX --&gt; ExplorerInternals
+    end
+
+    subgraph LSP ["LSP server (synesis-lsp)"]
+        direction TB
+        S["server.py&lt;br/&gt;LSP protocol"]:::protocol
+        C["converters.py&lt;br/&gt;Type translation"]:::adapter
+        CA["cache.py&lt;br/&gt;Compilation cache"]:::adapter
+
+        subgraph Features ["Feature modules"]
+            direction LR
+            F1["symbols"]
+            F2["hover"]
+            F3["completion"]
+            F4["definition"]
+            F5["rename"]
+            F6["semantic_tokens"]
+            F7["code_actions"]
+            F8["references"]
+            F9["hierarchy"]
+        end
+    end
+
+    subgraph Compiler ["Synesis compiler"]
+        direction TB
+        LA["lsp_adapter.py&lt;br/&gt;Validation interface"]:::compiler
+        COMP["compiler.py&lt;br/&gt;Full pipeline"]:::compiler
+    end
+
+    LC -- "JSON-RPC STDIO&lt;br/&gt;(standard protocol)" --&gt; S
+    LC -- "synesis/loadProject&lt;br/&gt;synesis/getCodes etc.&lt;br/&gt;(custom commands)" --&gt; S
+    S --&gt; C
+    S --&gt; CA
+    S --&gt; Features
+    C --&gt; LA
+    CA --&gt; COMP
+
+    style VSCode fill:transparent,stroke:#2E7D32,stroke-width:1px,stroke-dasharray:5 5
+    style ExplorerInternals fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5
+    style LSP fill:transparent,stroke:#084C54,stroke-width:2px
+    style Features fill:transparent,stroke:#4A5568,stroke-width:1px,stroke-dasharray:5 5
+    style Compiler fill:transparent,stroke:#E65100,stroke-width:1px,stroke-dasharray:5 5
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Responsibility</th>
+<th>Modules</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Protocol</strong></td>
+<td>Receive editor events, dispatch to modules, publish results</td>
+<td><code>server.py</code></td>
+</tr>
+<tr class="even">
+<td><strong>Translation</strong></td>
+<td>Convert compiler types into LSP types (coordinates, severities)</td>
+<td><code>converters.py</code>, <code>cache.py</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Features</strong></td>
+<td>Implement each LSP feature (hover, completion etc.)</td>
+<td><code>symbols.py</code>, <code>hover.py</code>, <code>completion.py</code>, …</td>
+</tr>
+</tbody>
+</table>
+<p>The Synesis compiler knows nothing about LSP. The bridge is the <code>lsp_adapter.py</code> module, which lives inside the compiler itself and exposes a simplified interface for single-file validation.</p>
+</section>
+<section id="sec-modos" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-modos"><span class="header-section-number">3</span> The Two Modes of Operation</h2>
+<p>The LSP works in two distinct modes, depending on what the editor needs:</p>
+<section id="mode-1-per-file-validation-real-time" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="mode-1-per-file-validation-real-time"><span class="header-section-number">3.1</span> Mode 1: Per-file validation (real time)</h3>
+<p>Used on every keystroke. Fast, light, focused on the open file.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant E as Editor
+    participant S as server.py
+    participant A as lsp_adapter
+    participant P as Lark parser
+    participant V as Semantic validator
+
+    E-&gt;&gt;S: textDocument/didChange
+    Note over S: 300ms debounce
+    S-&gt;&gt;A: validate_single_file(source, uri)
+    A-&gt;&gt;A: discover_context(uri)
+    Note over A: Per-workspace cache&lt;br/&gt;(file mtimes)
+    A-&gt;&gt;P: parse_string(source)
+    P--&gt;&gt;A: AST nodes
+    A-&gt;&gt;V: validate_source/item/ontology
+    V--&gt;&gt;A: ValidationResult
+    A--&gt;&gt;S: errors + warnings
+    S-&gt;&gt;S: build_diagnostics()
+    S-&gt;&gt;E: publishDiagnostics
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>In this mode <code>lsp_adapter</code> does the heavy lifting:</p>
+<ol type="1">
+<li><strong>Discovers the context</strong> — finds the workspace <code>.synp</code>, loads template and bibliography</li>
+<li><strong>Parses</strong> — turns the text into AST nodes through Lark</li>
+<li><strong>Validates</strong> — applies semantic rules with the <code>SemanticValidator</code></li>
+<li><strong>Returns</strong> — a list of errors and warnings with precise locations</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why not compile the whole project on every keystroke?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full compilation reads every project file from disk and may take several seconds on large projects. That is unworkable for real-time feedback. <code>lsp_adapter</code> solves this by validating only the open file, using cached context (template, bibliography, ontology).</p>
+</div>
+</div>
+</section>
+<section id="mode-2-full-compilation-on-demand" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="mode-2-full-compilation-on-demand"><span class="header-section-number">3.2</span> Mode 2: Full compilation (on demand)</h3>
+<p>Used when Synesis Explorer needs complete data — codes, relations, graphs.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant X as Synesis Explorer
+    participant S as server.py
+    participant C as SynesisCompiler
+    participant CA as WorkspaceCache
+
+    X-&gt;&gt;S: synesis/loadProject
+    S-&gt;&gt;CA: get(workspace_key)
+    alt Valid cache (fingerprint match)
+        CA--&gt;&gt;S: CachedCompilation
+    else Cache miss
+        S-&gt;&gt;C: SynesisCompiler(synp).compile()
+        C--&gt;&gt;S: CompilationResult
+        S-&gt;&gt;CA: put(workspace_key, result)
+    end
+    S--&gt;&gt;X: stats + diagnostics
+    Note over X: Can now call&lt;br/&gt;getCodes, getRelations etc.
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>In this mode the server invokes the full compiler (<code>SynesisCompiler.compile()</code>) and caches the <code>CompilationResult</code>. Subsequent Explorer requests (<code>getCodes</code>, <code>getRelations</code>, <code>getRelationGraph</code>) read this cache without recompiling.</p>
+</section>
+</section>
+<section id="sec-adapter" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-adapter"><span class="header-section-number">4</span> The Adapter: lsp_adapter.py</h2>
+<p><code>lsp_adapter</code> is the bridge between the two worlds. It lives in the <code>synesis</code> package (not in <code>synesis-lsp</code>) because it needs internal access to the parser, the transformer and the validator.</p>
+<section id="what-it-exposes" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="what-it-exposes"><span class="header-section-number">4.1</span> What It Exposes</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> synesis.lsp_adapter <span class="im">import</span> (</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    validate_single_file,   <span class="co"># Validates in-memory text, returns errors</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    discover_context,       <span class="co"># Finds the workspace template/bib/ontology</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    find_workspace_root,    <span class="co"># Detects the workspace root (looks for .synp, .git)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    invalidate_cache,       <span class="co"># Forces the context to reload</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="how-discovery-works" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="how-discovery-works"><span class="header-section-number">4.2</span> How Discovery Works</h3>
+<p>When the editor opens a <code>.syn</code> file, the adapter must find the project context:</p>
+<ol type="1">
+<li><strong>Finds the workspace root</strong> — walks up the directory tree looking for a <code>.synp</code>, <code>.git</code> or <code>.vscode</code></li>
+<li><strong>Parses the <code>.synp</code></strong> — extracts the template, bibliography and ontology paths</li>
+<li><strong>Loads the context</strong> — reads template (<code>.synt</code>), bibliography (<code>.bib</code>) and ontology (<code>.syno</code>)</li>
+<li><strong>Caches</strong> — stores the context with the <code>mtime</code> of the watched files</li>
+</ol>
+<p>On the next validation the cache is checked: if no context file changed, the previous context is reused. If any <code>mtime</code> changed, the cache is invalidated and the context rebuilt.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Two caches, two purposes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong><code>lsp_adapter</code> cache</strong> stores the <em>context</em> (template + bibliography + ontology) for fast per-file validation. The server’s <strong><code>WorkspaceCache</code></strong> stores the <em>full compilation result</em> (<code>LinkedProject</code> with all sources, items and relations) to serve Synesis Explorer. They are independent caches with different life cycles.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-erros" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-erros"><span class="header-section-number">5</span> How Errors Travel</h2>
+<p>An error’s path — from detection by the compiler to the red underline in the editor — goes through several transformations:</p>
+<pre><code> Compiler                      LSP                        Editor
+┌──────────────────┐        ┌──────────────┐          ┌──────────────┐
+│ ValidationError  │──────▶│  Diagnostic  │─────────▶│  Red /       │
+│  .severity       │        │  .severity   │          │  yellow      │
+│  .location       │        │  .range      │          │  underline   │
+│  .to_diagnostic()│        │  .message    │          │              │
+└──────────────────┘        └──────────────┘          └──────────────┘</code></pre>
+<p><code>converters.py</code> does the translation:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Compiler</th>
+<th>LSP</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ErrorSeverity.ERROR</code></td>
+<td><code>DiagnosticSeverity.Error</code> (1)</td>
+<td>Red underline</td>
+</tr>
+<tr class="even">
+<td><code>ErrorSeverity.WARNING</code></td>
+<td><code>DiagnosticSeverity.Warning</code> (2)</td>
+<td>Yellow underline</td>
+</tr>
+<tr class="odd">
+<td><code>ErrorSeverity.INFO</code></td>
+<td><code>DiagnosticSeverity.Information</code> (3)</td>
+<td>Blue underline</td>
+</tr>
+<tr class="even">
+<td><code>SourceLocation(line=1, col=1)</code></td>
+<td><code>Position(line=0, character=0)</code></td>
+<td>1-based to 0-based</td>
+</tr>
+<tr class="odd">
+<td><code>error.to_diagnostic()</code></td>
+<td><code>diagnostic.message</code></td>
+<td>Readable text + suggestions</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pedagogical messages
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For syntax errors, the compiler’s <code>error_handler</code> enriches the message with context and suggestions. This is done by <code>create_pedagogical_error()</code>, which translates internal Lark tokens into readable language. Compiler and server messages are written in English; the <a href="../reference/guia_erros.html">Error Guide</a> explains each diagnostic.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Undefined codes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A code used in annotations and absent from the ontology produces a <strong>warning</strong>, not an error. By default the editor does not mark every occurrence: the extension setting <code>synesisExplorer.diagnostics.checkCodes</code>, off by default, turns on the per-occurrence diagnostic (<code>E004</code>). When the option changes, the server recompiles the cached projects and republishes the diagnostics.</p>
+</div>
+</div>
+</section>
+<section id="sec-features" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-features"><span class="header-section-number">6</span> Implemented Features</h2>
+<p><code>synesis-lsp</code> implements a broad set of LSP features, each in its own module:</p>
+<section id="real-time-validation" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="real-time-validation"><span class="header-section-number">6.1</span> Real-time Validation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Open file (<code>did_open</code>)</td>
+<td>Immediate validation</td>
+</tr>
+<tr class="even">
+<td>Type (<code>did_change</code>)</td>
+<td>300ms debounce — validates only after a pause</td>
+</tr>
+<tr class="odd">
+<td>Save (<code>did_save</code>)</td>
+<td><code>.synp</code> and <code>.synt</code> invalidate caches and revalidate open files, as does <code>.bib</code>; <code>.syn</code> and <code>.syno</code> invalidate the compilation cache</td>
+</tr>
+<tr class="even">
+<td>Close (<code>did_close</code>)</td>
+<td>Clears diagnostics and frees memory</td>
+</tr>
+</tbody>
+</table>
+<p>The debounce follows the <strong>Pyright</strong> pattern (<code>scheduleReanalysis</code>): when the user types 10 characters quickly, only 1 validation fires after the last key. This removes about 80% of unnecessary CPU use.</p>
+</section>
+<section id="navigation-and-comprehension" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="navigation-and-comprehension"><span class="header-section-number">6.2</span> Navigation and Comprehension</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Module</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Semantic Tokens</strong></td>
+<td><code>semantic_tokens.py</code></td>
+<td>Rich syntax colouring (keywords, bibrefs, codes, fields)</td>
+</tr>
+<tr class="even">
+<td><strong>Document Symbols</strong></td>
+<td><code>symbols.py</code></td>
+<td>Outline panel — shows SOURCEs, ITEMs and ONTOLOGYs as a tree; in the <code>.synp</code>, also competency questions and <code>EXPORT</code> blocks</td>
+</tr>
+<tr class="odd">
+<td><strong>Hover</strong></td>
+<td><code>hover.py</code></td>
+<td>Tooltip on hover — shows the code definition and field type; with a declared hierarchy, also parents, children and deprecated terms (<code>USE</code>)</td>
+</tr>
+<tr class="even">
+<td><strong>Inlay Hints</strong></td>
+<td><code>inlay_hints.py</code></td>
+<td>Inline hints — shows author/year next to <code>@bibref</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Signature Help</strong></td>
+<td><code>signature_help.py</code></td>
+<td>Field documentation when typing <code>:</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="productivity" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="productivity"><span class="header-section-number">6.3</span> Productivity</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Module</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Completion</strong></td>
+<td><code>completion.py</code></td>
+<td>Autocomplete for <code>@bibrefs</code>, codes, field names and annotation blocks; roles after <code>ROLE</code> and properties inside <code>EXPORT</code></td>
+</tr>
+<tr class="even">
+<td><strong>Go to Definition</strong></td>
+<td><code>definition.py</code></td>
+<td><code>Ctrl+Click</code> on <code>@bibref</code> goes to the SOURCE; on a code, to the ONTOLOGY</td>
+</tr>
+<tr class="odd">
+<td><strong>Find References</strong></td>
+<td><code>references.py</code></td>
+<td>Finds all uses of a code or bibref in the project, including citations in ontology hierarchy fields</td>
+</tr>
+<tr class="even">
+<td><strong>Rename</strong></td>
+<td><code>rename.py</code></td>
+<td>Renames a code or bibref in all workspace files</td>
+</tr>
+<tr class="odd">
+<td><strong>Code Actions</strong></td>
+<td><code>code_actions.py</code></td>
+<td>Quick fixes — correction suggestions for common errors</td>
+</tr>
+<tr class="even">
+<td><strong>Type Hierarchy</strong></td>
+<td><code>hierarchy.py</code></td>
+<td><em>Show Type Hierarchy</em> on a concept: parents and children declared by fields with <code>ROLE HIERARCHY</code> (<code>KIND</code>, <code>PART</code>, <code>INSTANCE</code>)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="synesis-explorer" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="synesis-explorer"><span class="header-section-number">6.4</span> Synesis Explorer</h3>
+<p>Synesis Explorer is a VS Code extension offering a visual interface to explore Synesis projects. It talks to the LSP server through <strong>custom commands</strong> — extensions of the standard protocol:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Module</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>synesis/loadProject</code></td>
+<td><code>server.py</code></td>
+<td>Project statistics + diagnostics</td>
+</tr>
+<tr class="even">
+<td><code>synesis/getCodes</code></td>
+<td><code>explorer_requests.py</code></td>
+<td>List of codes with usage and occurrences</td>
+</tr>
+<tr class="odd">
+<td><code>synesis/getReferences</code></td>
+<td><code>explorer_requests.py</code></td>
+<td>Sources with item counts</td>
+</tr>
+<tr class="even">
+<td><code>synesis/getRelations</code></td>
+<td><code>explorer_requests.py</code></td>
+<td>Triples (subject, relation, object) with locations</td>
+</tr>
+<tr class="odd">
+<td><code>synesis/getRelationGraph</code></td>
+<td><code>graph.py</code></td>
+<td>Relation graph in Mermaid.js format</td>
+</tr>
+<tr class="even">
+<td><code>synesis/getExcerpts</code></td>
+<td><code>explorer_requests.py</code></td>
+<td>Items of a given source, with the fields of the SOURCE block</td>
+</tr>
+<tr class="odd">
+<td><code>synesis/getOntologyTopics</code></td>
+<td><code>ontology_topics.py</code></td>
+<td>Ontology topics; with <code>ROLE HIERARCHY</code>, the hierarchy tree</td>
+</tr>
+<tr class="even">
+<td><code>synesis/getSubtreeEvidence</code></td>
+<td><code>hierarchy.py</code></td>
+<td>Items of a concept and all its descendants, without repetition</td>
+</tr>
+<tr class="odd">
+<td><code>synesis/getOntologyAnnotations</code></td>
+<td><code>ontology_annotations.py</code></td>
+<td>Codes with source locations</td>
+</tr>
+<tr class="even">
+<td><code>synesis/getAbstract</code></td>
+<td><code>abstract_viewer.py</code></td>
+<td>Content of the ABSTRACT field</td>
+</tr>
+<tr class="odd">
+<td><code>synesis/getBlocks</code></td>
+<td><code>blocks.py</code></td>
+<td>SOURCE and ITEM blocks of a file, with range and reference</td>
+</tr>
+<tr class="even">
+<td><code>synesis/getTemplate</code></td>
+<td><code>template_info.py</code></td>
+<td>Fields and requirements by scope of the compiled template</td>
+</tr>
+<tr class="odd">
+<td><code>synesis/getProjectStats</code></td>
+<td><code>server.py</code></td>
+<td>Counts for the compiled project</td>
+</tr>
+<tr class="even">
+<td><code>synesis/validateWorkspace</code></td>
+<td><code>workspace_diagnostics.py</code></td>
+<td>Diagnostics for the whole project</td>
+</tr>
+</tbody>
+</table>
+<p>Commands that query the project depend on the <code>WorkspaceCache</code> — <code>loadProject</code> must be called first to compile and cache the project.</p>
+</section>
+<section id="the-lsp-extension-contract" class="level3" data-number="6.5">
+<h3 data-number="6.5" class="anchored" data-anchor-id="the-lsp-extension-contract"><span class="header-section-number">6.5</span> The LSP ↔︎ Extension Contract</h3>
+<p>The responses of the main query commands (references, codes, relations, items of a source and ontology annotations) are described by <strong>versioned JSON Schemas</strong>. The server validates what it produces; the extension validates what it consumes, against a copy of the same schemas.</p>
+<p>The gain is that a format change in the server does not reach the user as an empty panel or an obscure error in the editor: it breaks the CI of <strong>both</strong> repositories at once, at the moment of the change.</p>
+</section>
+<section id="recognized-file-types" class="level3" data-number="6.6">
+<h3 data-number="6.6" class="anchored" data-anchor-id="recognized-file-types"><span class="header-section-number">6.6</span> Recognized File Types</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Extension</th>
+<th>Content</th>
+<th>Role in the LSP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.synp</code></td>
+<td>Project</td>
+<td>Entry point; saving invalidates the workspace cache</td>
+</tr>
+<tr class="even">
+<td><code>.synt</code></td>
+<td>Template</td>
+<td>Defines the rules; saving revalidates all open files</td>
+</tr>
+<tr class="odd">
+<td><code>.syn</code></td>
+<td>Annotations</td>
+<td>Real-time validation</td>
+</tr>
+<tr class="even">
+<td><code>.syno</code></td>
+<td>Ontology</td>
+<td>Validation and source of concept definitions</td>
+</tr>
+<tr class="odd">
+<td><code>.synr</code></td>
+<td>Review</td>
+<td>Annotations with <code># REVISION</code> blocks produced by <code>synesis-coder</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>.synr</code> type is the intermediate format of the ACT pipeline (see <a href="../howto/synesis_coder.html#sec-act">synesis-coder</a>). Since it is a <code>.syn</code> with review blocks added, it receives the same diagnostics and rename treatment — the researcher reviews suggestions inside the editor, with validation active, before consolidating them.</p>
+</section>
+</section>
+<section id="sec-performance" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-performance"><span class="header-section-number">7</span> Performance Strategies</h2>
+<p>The LSP must answer in milliseconds while the compiler works in seconds. Four strategies resolve that tension:</p>
+<section id="layered-cache" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="layered-cache"><span class="header-section-number">7.1</span> 1. Layered Cache</h3>
+<pre><code>Layer 1: lsp_adapter     → context (template, bib, ontology)
+                            Invalidation: file mtimes
+                            Avoids: reloading the template on every validation
+
+Layer 2: WorkspaceCache  → full CompilationResult
+                            Invalidation: fingerprint {count}:{max_mtime}
+                            Avoids: recompiling the project on every Explorer request
+
+Layer 3: FileState       → per-document dirty flags
+                            Invalidation: content hash + context version
+                            Avoids: revalidating an unchanged file
+
+Layer 4: Feature caches  → per-feature results (symbols, tokens)
+                            Invalidation: source hash
+                            Avoids: recomputing tokens for the same content</code></pre>
+</section>
+<section id="debounce-cancellation" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="debounce-cancellation"><span class="header-section-number">7.2</span> 2. Debounce + Cancellation</h3>
+<p>Inspired by Pyright:</p>
+<ul>
+<li><strong>300ms timer</strong> — each key restarts the timer; validation happens only after a pause</li>
+<li><strong>Task cancellation</strong> — if a validation is running and the user types again, the old one is cancelled before the new one starts</li>
+<li><strong>Result</strong>: 10 keys = 1 validation, not 10</li>
+</ul>
+</section>
+<section id="focused-file-first" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="focused-file-first"><span class="header-section-number">7.3</span> 3. Focused File First</h3>
+<p>When the context changes (e.g.&nbsp;the template was edited and saved), all open files must be revalidated. The server validates <strong>the focused file first</strong> (immediate feedback) and then the others in the background, yielding the event loop between files (<code>asyncio.sleep(0)</code>).</p>
+</section>
+<section id="workspace-fingerprint" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="workspace-fingerprint"><span class="header-section-number">7.4</span> 4. Workspace Fingerprint</h3>
+<p>Instead of computing the SHA1 of every project file, <code>WorkspaceCache</code> uses a simple fingerprint: <code>{file_count}:{latest_mtime}</code>. That is enough to detect changes in most cases and costs microseconds instead of milliseconds.</p>
+</section>
+</section>
+<section id="sec-shared-ontology" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-shared-ontology"><span class="header-section-number">8</span> The Case of the Shared Ontology</h2>
+<p>The introduction of <code>INCLUDE SHARED ONTOLOGY</code> — an ontology living <strong>outside</strong> the project folder — broke two premises the LSP assumed. It is worth documenting because the solution involved reversing an earlier architectural decision.</p>
+<section id="the-broken-premise-projects-are-self-contained" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="the-broken-premise-projects-are-self-contained"><span class="header-section-number">8.1</span> The Broken Premise: Projects Are Self-contained</h3>
+<p>The file watchers (<code>FileSystemWatcher</code>) had been <strong>removed</strong> from the project as redundant: <code>onDidSaveTextDocument</code> already triggered revalidation, and everything a project read was inside its own folder.</p>
+<p><code>INCLUDE SHARED ONTOLOGY</code> invalidates that premise. The save event fires only for <strong>documents open in the editor</strong>. A shared ontology changed by <code>git pull</code>, by another VS Code window or by another process never triggered anything — the project including it became stale <strong>silently</strong>.</p>
+<p>The extension installed watchers again, now scoped: one per external target, using the reverse index <code>target → projects</code> returned by the server. When a target changes, only the projects declaring it are reloaded, with a 300ms <em>debounce</em> — a <code>git pull</code> may rewrite the file several times in a row.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A deliberate reversal, not a regression
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The original removal of the watchers was correct <strong>for the premise of the time</strong>. What changed was the premise, not the quality of the decision. The reintroduction is scoped to external targets, not a broad watcher over the whole workspace — the original performance gain is kept where it still applies.</p>
+</div>
+</div>
+</section>
+<section id="the-broken-premise-everything-that-matters-is-under-the-workspace-root" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="the-broken-premise-everything-that-matters-is-under-the-workspace-root"><span class="header-section-number">8.2</span> The Broken Premise: Everything That Matters Is Under the Workspace Root</h3>
+<p>There was a second, subtler defect that the watcher alone would <strong>not</strong> solve. The workspace fingerprint (<a href="#sec-performance" class="quarto-xref">Section&nbsp;7</a>) walked only the workspace root. The shared ontology, living outside it, simply did not enter the calculation — editing it did not invalidate the cache.</p>
+<p>The result would be a useless watcher: it would trigger the reload, which would consult the cache, which would return old data. <strong>Fixing the fingerprint is a prerequisite of the watcher</strong>, not a later refinement.</p>
+<p>Today the <code>INCLUDE SHARED</code> targets are part of the fingerprint, and a purely external edit correctly reaches the server context.</p>
+</section>
+</section>
+<section id="sec-ciclo" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-ciclo"><span class="header-section-number">9</span> Life Cycle of a File</h2>
+<p>To consolidate, this is the full cycle when the user works with a <code>.syn</code> file:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">stateDiagram-v2
+    [*] --&gt; Open: did_open
+    Open --&gt; Validating: immediate validation
+    Validating --&gt; Diagnosed: publish_diagnostics
+
+    Diagnosed --&gt; Editing: did_change
+    Editing --&gt; Debounce: 300ms timer
+    Debounce --&gt; Editing: new key (timer reset)
+    Debounce --&gt; Validating: timer expired
+
+    Diagnosed --&gt; Saved: did_save
+    Saved --&gt; Validating: immediate validation
+    Saved --&gt; CacheInvalidated: if .synp/.synt/.bib
+
+    CacheInvalidated --&gt; RevalidatingAll: revalidate workspace
+    RevalidatingAll --&gt; Diagnosed
+
+    Diagnosed --&gt; [*]: did_close
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li><strong>Opening</strong> — immediate validation, context discovered or loaded from cache</li>
+<li><strong>Editing</strong> — 300ms debounce, dirty flag updated, previous task cancelled</li>
+<li><strong>Saving</strong> — immediate validation; for a context file, invalidates caches and revalidates the workspace</li>
+<li><strong>Closing</strong> — diagnostics cleared, FileState removed, memory freed</li>
+</ol>
+</section>
+<section id="sec-modulos" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-modulos"><span class="header-section-number">10</span> Module Map</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Lines</th>
+<th>Type</th>
+<th>Imports from</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>server.py</code></td>
+<td>~2100</td>
+<td>Core</td>
+<td>All others + <code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>explorer_requests.py</code></td>
+<td>~1360</td>
+<td>Feature</td>
+<td><code>converters</code>, <code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>ontology_annotations.py</code></td>
+<td>~700</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>semantic_tokens.py</code></td>
+<td>~660</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>graph.py</code></td>
+<td>~610</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>rename.py</code></td>
+<td>~580</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>completion.py</code></td>
+<td>~380</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>symbols.py</code></td>
+<td>~350</td>
+<td>Feature</td>
+<td><code>synesis.ast.nodes</code></td>
+</tr>
+<tr class="odd">
+<td><code>template_diagnostics.py</code></td>
+<td>~340</td>
+<td>Feature</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td><code>hover.py</code></td>
+<td>~340</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>abstract_viewer.py</code></td>
+<td>~340</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>converters.py</code></td>
+<td>~330</td>
+<td>Translation</td>
+<td><code>synesis.ast</code></td>
+</tr>
+<tr class="odd">
+<td><code>blocks.py</code></td>
+<td>~310</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>hierarchy.py</code></td>
+<td>~300</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>code_actions.py</code></td>
+<td>~300</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>references.py</code></td>
+<td>~260</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>ontology_topics.py</code></td>
+<td>~250</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>inlay_hints.py</code></td>
+<td>~200</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>shared_includes.py</code></td>
+<td>~150</td>
+<td>Support</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>workspace_diagnostics.py</code></td>
+<td>~150</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>template_info.py</code></td>
+<td>~140</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>code_usage.py</code></td>
+<td>~110</td>
+<td>Support</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="odd">
+<td><code>signature_help.py</code></td>
+<td>~110</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+<tr class="even">
+<td><code>cache.py</code></td>
+<td>~110</td>
+<td>Cache</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td><code>definition.py</code></td>
+<td>~100</td>
+<td>Feature</td>
+<td><code>synesis</code></td>
+</tr>
+</tbody>
+</table>
+<p>Approximate sizes in <code>synesis-lsp</code> version 0.25.</p>
+<p>All feature modules follow the same pattern: they receive the <code>CompilationResult</code> or the document source, process it and return LSP types that <code>server.py</code> dispatches to the editor.</p>
+</section>
+<section id="sec-relacao" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="sec-relacao"><span class="header-section-number">11</span> Relationship with the Compiler</h2>
+<p><code>synesis-lsp</code> <strong>depends</strong> on the compiler, but the compiler <strong>does not depend</strong> on the LSP. This asymmetry is intentional:</p>
+<pre><code>synesis (compiler)
+  ├── lsp_adapter.py     ← Interface for the LSP
+  ├── compiler.py        ← Full pipeline
+  ├── parser/            ← Lark + transformer
+  ├── semantic/          ← Validator + linker
+  └── exporters/         ← JSON, CSV, Excel, Alpaca, OKF, SKOS
+
+synesis-lsp (server)
+  ├── server.py          ← Imports from synesis.lsp_adapter
+  ├── converters.py      ← Imports from synesis.ast
+  └── features/          ← Import from synesis.*</code></pre>
+<p><code>lsp_adapter.py</code> was placed inside the compiler (and not in the LSP) because it needs internal access to the parser, the transformer and the validator — components that are not part of the compiler’s public API. It works as an <strong>internal façade</strong>: it exposes <code>validate_single_file()</code> as an atomic operation that hides the complexity of the pipeline.</p>
+<section id="the-boundary-of-the-multi-project-aggregate" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="the-boundary-of-the-multi-project-aggregate"><span class="header-section-number">11.1</span> The Boundary of the Multi-project Aggregate</h3>
+<p>There is one compiler capability the LSP deliberately does <strong>not</strong> use: the link step between projects (<code>synesis compile p1.synp p2.synp</code>, see <a href="../howto/ligar_projetos.html">Linking Projects</a>).</p>
+<p>The server always works with <strong>isolated</strong> projects. If it kept the aggregate in memory, every save of a <code>.syn</code> would recompile the whole study — exactly the cost the two-mode architecture (<a href="#sec-modos" class="quarto-xref">Section&nbsp;3</a>) exists to avoid. A study with six large corpora would be unusable in the editor.</p>
+<p>The practical effect is that resolved edges do not appear in the editor. This is acceptable because they are an <strong>analysis result</strong>, produced at export time — not something consulted while annotating. A project declaring <code>REFERS TO</code> receives, in isolated compilation, only an informational note (<code>SYNESIS_I080</code>), never a recurring error or warning.</p>
+<p>The shared ontology is the opposite case and worth contrasting: it <strong>is</strong> loaded by the server, with autocomplete and code validation, because it is part of the editing context of each project individually (<a href="#sec-shared-ontology" class="quarto-xref">Section&nbsp;8</a>).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+For contributors
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To add a new LSP feature (e.g.&nbsp;folding ranges), the pattern is:</p>
+<ol type="1">
+<li>Create a module in <code>synesis_lsp/</code> (e.g.&nbsp;<code>folding.py</code>)</li>
+<li>Implement the main function (e.g.&nbsp;<code>compute_folding_ranges()</code>)</li>
+<li>Register the handler in <code>server.py</code> with <code>@server.feature(TEXT_DOCUMENT_FOLDING_RANGE)</code></li>
+<li>The data come from the <code>WorkspaceCache</code> (full compilation) or from <code>compile_string</code> (fast parse of the source)</li>
+</ol>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

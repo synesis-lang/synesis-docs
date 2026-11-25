@@ -262,95 +262,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#synesis-coder-codificação-qualitativa-com-ia" id="toc-synesis-coder-codificação-qualitativa-com-ia" class="nav-link active" data-scroll-target="#synesis-coder-codificação-qualitativa-com-ia"><span class="header-section-number">1</span> synesis-coder: Codificação Qualitativa com IA</a></li>
   <li><a href="#sec-instalacao" id="toc-sec-instalacao" class="nav-link" data-scroll-target="#sec-instalacao"><span class="header-section-number">2</span> Instalação</a>
   <ul class="collapse">
-  <li><a href="#requisitos" id="toc-requisitos" class="nav-link" data-scroll-target="#requisitos"><span class="header-section-number">2.1</span> Requisitos</a></li>
-  <li><a href="#instalar-o-pacote" id="toc-instalar-o-pacote" class="nav-link" data-scroll-target="#instalar-o-pacote"><span class="header-section-number">2.2</span> Instalar o pacote</a></li>
-  <li><a href="#configurar-a-chave-de-api" id="toc-configurar-a-chave-de-api" class="nav-link" data-scroll-target="#configurar-a-chave-de-api"><span class="header-section-number">2.3</span> Configurar a chave de API</a></li>
+  <li><a href="#configuração" id="toc-configuração" class="nav-link" data-scroll-target="#configuração"><span class="header-section-number">2.1</span> Configuração</a></li>
   </ul></li>
-  <li><a href="#sec-modos" id="toc-sec-modos" class="nav-link" data-scroll-target="#sec-modos"><span class="header-section-number">3</span> Os modos de operação</a>
+  <li><a href="#sec-modos" id="toc-sec-modos" class="nav-link" data-scroll-target="#sec-modos"><span class="header-section-number">3</span> Comandos</a></li>
+  <li><a href="#sec-item" id="toc-sec-item" class="nav-link" data-scroll-target="#sec-item"><span class="header-section-number">4</span> Modo <code>item</code>: codificar um trecho</a></li>
+  <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">5</span> Modo <code>abstract</code>: corpus bibliográfico</a>
   <ul class="collapse">
-  <li><a href="#ingestão-e-extração" id="toc-ingestão-e-extração" class="nav-link" data-scroll-target="#ingestão-e-extração"><span class="header-section-number">3.1</span> Ingestão e extração</a></li>
-  <li><a href="#estruturação-e-llm" id="toc-estruturação-e-llm" class="nav-link" data-scroll-target="#estruturação-e-llm"><span class="header-section-number">3.2</span> Estruturação e LLM</a></li>
-  <li><a href="#pipeline-act-revisão-e-consolidação" id="toc-pipeline-act-revisão-e-consolidação" class="nav-link" data-scroll-target="#pipeline-act-revisão-e-consolidação"><span class="header-section-number">3.3</span> Pipeline ACT (revisão e consolidação)</a></li>
+  <li><a href="#formato-da-saída" id="toc-formato-da-saída" class="nav-link" data-scroll-target="#formato-da-saída"><span class="header-section-number">5.1</span> Formato da saída</a></li>
+  <li><a href="#campanhas-longas" id="toc-campanhas-longas" class="nav-link" data-scroll-target="#campanhas-longas"><span class="header-section-number">5.2</span> Campanhas longas</a></li>
   </ul></li>
-  <li><a href="#sec-item" id="toc-sec-item" class="nav-link" data-scroll-target="#sec-item"><span class="header-section-number">4</span> Modo <code>item</code>: codificar um trecho de texto</a>
+  <li><a href="#sec-dataset" id="toc-sec-dataset" class="nav-link" data-scroll-target="#sec-dataset"><span class="header-section-number">6</span> Modo <code>dataset</code>: registros estruturados</a></li>
+  <li><a href="#sec-document" id="toc-sec-document" class="nav-link" data-scroll-target="#sec-document"><span class="header-section-number">7</span> Modo <code>document</code>: documentos longos</a></li>
+  <li><a href="#sec-ontology" id="toc-sec-ontology" class="nav-link" data-scroll-target="#sec-ontology"><span class="header-section-number">8</span> Modo <code>ontology</code>: definir os conceitos</a>
   <ul class="collapse">
-  <li><a href="#uso-básico" id="toc-uso-básico" class="nav-link" data-scroll-target="#uso-básico"><span class="header-section-number">4.1</span> Uso básico</a></li>
-  <li><a href="#redirecionar-para-arquivo" id="toc-redirecionar-para-arquivo" class="nav-link" data-scroll-target="#redirecionar-para-arquivo"><span class="header-section-number">4.2</span> Redirecionar para arquivo</a></li>
-  <li><a href="#saída-verbose" id="toc-saída-verbose" class="nav-link" data-scroll-target="#saída-verbose"><span class="header-section-number">4.3</span> Saída verbose</a></li>
-  <li><a href="#opções-completas" id="toc-opções-completas" class="nav-link" data-scroll-target="#opções-completas"><span class="header-section-number">4.4</span> Opções completas</a></li>
+  <li><a href="#como-o-arquivo-é-atualizado" id="toc-como-o-arquivo-é-atualizado" class="nav-link" data-scroll-target="#como-o-arquivo-é-atualizado"><span class="header-section-number">8.1</span> Como o arquivo é atualizado</a></li>
+  <li><a href="#sec-rejeitados" id="toc-sec-rejeitados" class="nav-link" data-scroll-target="#sec-rejeitados"><span class="header-section-number">8.2</span> Blocos rejeitados não contaminam o <code>.syno</code></a></li>
+  <li><a href="#sec-json-schema" id="toc-sec-json-schema" class="nav-link" data-scroll-target="#sec-json-schema"><span class="header-section-number">8.3</span> Geração estruturada (JSON Schema)</a></li>
   </ul></li>
-  <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">5</span> Modo <code>abstract</code>: processar corpus bibliográfico</a>
+  <li><a href="#sec-fases" id="toc-sec-fases" class="nav-link" data-scroll-target="#sec-fases"><span class="header-section-number">9</span> Fases do modelo organizador: <code>phase</code>, <code>review</code>, <code>consolidate</code></a></li>
+  <li><a href="#sec-anchor" id="toc-sec-anchor" class="nav-link" data-scroll-target="#sec-anchor"><span class="header-section-number">10</span> Conferir citações sem IA: <code>anchor</code></a></li>
+  <li><a href="#sec-act" id="toc-sec-act" class="nav-link" data-scroll-target="#sec-act"><span class="header-section-number">11</span> O pipeline ACT: revisar antes de incorporar</a>
   <ul class="collapse">
-  <li><a href="#uso" id="toc-uso" class="nav-link" data-scroll-target="#uso"><span class="header-section-number">5.1</span> Uso</a></li>
-  <li><a href="#processamento-em-lote-e-batches" id="toc-processamento-em-lote-e-batches" class="nav-link" data-scroll-target="#processamento-em-lote-e-batches"><span class="header-section-number">5.2</span> Processamento em lote e batches</a></li>
-  <li><a href="#um-arquivo-por-referência" id="toc-um-arquivo-por-referência" class="nav-link" data-scroll-target="#um-arquivo-por-referência"><span class="header-section-number">5.3</span> Um arquivo por referência</a></li>
-  <li><a href="#opções-completas-1" id="toc-opções-completas-1" class="nav-link" data-scroll-target="#opções-completas-1"><span class="header-section-number">5.4</span> Opções completas</a></li>
+  <li><a href="#critique-propor" id="toc-critique-propor" class="nav-link" data-scroll-target="#critique-propor"><span class="header-section-number">11.1</span> <code>critique</code>: propor</a></li>
+  <li><a href="#normalize-canonizar-códigos" id="toc-normalize-canonizar-códigos" class="nav-link" data-scroll-target="#normalize-canonizar-códigos"><span class="header-section-number">11.2</span> <code>normalize</code>: canonizar códigos</a></li>
+  <li><a href="#incorporate-aceitar" id="toc-incorporate-aceitar" class="nav-link" data-scroll-target="#incorporate-aceitar"><span class="header-section-number">11.3</span> <code>incorporate</code>: aceitar</a></li>
+  <li><a href="#refine-reextrair-opcional" id="toc-refine-reextrair-opcional" class="nav-link" data-scroll-target="#refine-reextrair-opcional"><span class="header-section-number">11.4</span> <code>refine</code>: reextrair (opcional)</a></li>
+  <li><a href="#ordem-recomendada" id="toc-ordem-recomendada" class="nav-link" data-scroll-target="#ordem-recomendada"><span class="header-section-number">11.5</span> Ordem recomendada</a></li>
   </ul></li>
-  <li><a href="#sec-document" id="toc-sec-document" class="nav-link" data-scroll-target="#sec-document"><span class="header-section-number">6</span> Modo <code>document</code>: codificar documentos longos</a>
+  <li><a href="#sec-outros-modos" id="toc-sec-outros-modos" class="nav-link" data-scroll-target="#sec-outros-modos"><span class="header-section-number">12</span> Outros comandos</a>
   <ul class="collapse">
-  <li><a href="#uso-1" id="toc-uso-1" class="nav-link" data-scroll-target="#uso-1"><span class="header-section-number">6.1</span> Uso</a></li>
-  <li><a href="#controle-de-chunking" id="toc-controle-de-chunking" class="nav-link" data-scroll-target="#controle-de-chunking"><span class="header-section-number">6.2</span> Controle de chunking</a></li>
-  <li><a href="#opções-completas-2" id="toc-opções-completas-2" class="nav-link" data-scroll-target="#opções-completas-2"><span class="header-section-number">6.3</span> Opções completas</a></li>
+  <li><a href="#suggest-sugerir-códigos" id="toc-suggest-sugerir-códigos" class="nav-link" data-scroll-target="#suggest-sugerir-códigos"><span class="header-section-number">12.1</span> <code>suggest</code>: sugerir códigos</a></li>
+  <li><a href="#finetune-preparar-dados-de-treino" id="toc-finetune-preparar-dados-de-treino" class="nav-link" data-scroll-target="#finetune-preparar-dados-de-treino"><span class="header-section-number">12.2</span> <code>finetune</code>: preparar dados de treino</a></li>
   </ul></li>
-  <li><a href="#sec-ontology" id="toc-sec-ontology" class="nav-link" data-scroll-target="#sec-ontology"><span class="header-section-number">7</span> Modo <code>ontology</code>: gerar definições ontológicas</a>
+  <li><a href="#sec-vscode" id="toc-sec-vscode" class="nav-link" data-scroll-target="#sec-vscode"><span class="header-section-number">13</span> Integração com VS Code</a></li>
+  <li><a href="#sec-arquitetura" id="toc-sec-arquitetura" class="nav-link" data-scroll-target="#sec-arquitetura"><span class="header-section-number">14</span> Como funciona por dentro</a></li>
+  <li><a href="#sec-env" id="toc-sec-env" class="nav-link" data-scroll-target="#sec-env"><span class="header-section-number">15</span> Variáveis de ambiente</a></li>
+  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">16</span> Erros comuns</a>
   <ul class="collapse">
-  <li><a href="#uso-básico-1" id="toc-uso-básico-1" class="nav-link" data-scroll-target="#uso-básico-1"><span class="header-section-number">7.1</span> Uso básico</a></li>
-  <li><a href="#o-que-é-o-semantic-context" id="toc-o-que-é-o-semantic-context" class="nav-link" data-scroll-target="#o-que-é-o-semantic-context"><span class="header-section-number">7.2</span> O que é o semantic context?</a></li>
-  <li><a href="#exemplo-real-código-cost" id="toc-exemplo-real-código-cost" class="nav-link" data-scroll-target="#exemplo-real-código-cost"><span class="header-section-number">7.3</span> Exemplo real: código <code>Cost</code></a></li>
-  <li><a href="#modo-incremental---update" id="toc-modo-incremental---update" class="nav-link" data-scroll-target="#modo-incremental---update"><span class="header-section-number">7.4</span> Modo incremental (<code>--update</code>)</a></li>
-  <li><a href="#backup-automático" id="toc-backup-automático" class="nav-link" data-scroll-target="#backup-automático"><span class="header-section-number">7.5</span> Backup automático</a></li>
-  <li><a href="#sec-rejeitados" id="toc-sec-rejeitados" class="nav-link" data-scroll-target="#sec-rejeitados"><span class="header-section-number">7.6</span> Blocos rejeitados não contaminam o <code>.syno</code></a></li>
-  <li><a href="#sec-json-schema" id="toc-sec-json-schema" class="nav-link" data-scroll-target="#sec-json-schema"><span class="header-section-number">7.7</span> Geração estruturada (JSON Schema)</a></li>
-  <li><a href="#requisito-de-template" id="toc-requisito-de-template" class="nav-link" data-scroll-target="#requisito-de-template"><span class="header-section-number">7.8</span> Requisito de template</a></li>
-  <li><a href="#opções-completas-3" id="toc-opções-completas-3" class="nav-link" data-scroll-target="#opções-completas-3"><span class="header-section-number">7.9</span> Opções completas</a></li>
+  <li><a href="#synesis-coder-não-encontrado" id="toc-synesis-coder-não-encontrado" class="nav-link" data-scroll-target="#synesis-coder-não-encontrado"><span class="header-section-number">16.1</span> <code>synesis-coder</code> não encontrado</a></li>
+  <li><a href="#chave-de-api-ausente" id="toc-chave-de-api-ausente" class="nav-link" data-scroll-target="#chave-de-api-ausente"><span class="header-section-number">16.2</span> Chave de API ausente</a></li>
+  <li><a href="#aviso-de-campo-sem-guidelines" id="toc-aviso-de-campo-sem-guidelines" class="nav-link" data-scroll-target="#aviso-de-campo-sem-guidelines"><span class="header-section-number">16.3</span> Aviso de campo sem GUIDELINES</a></li>
+  <li><a href="#o-modelo-não-consegue-produzir-um-bloco-válido" id="toc-o-modelo-não-consegue-produzir-um-bloco-válido" class="nav-link" data-scroll-target="#o-modelo-não-consegue-produzir-um-bloco-válido"><span class="header-section-number">16.4</span> O modelo não consegue produzir um bloco válido</a></li>
   </ul></li>
-  <li><a href="#sec-fases" id="toc-sec-fases" class="nav-link" data-scroll-target="#sec-fases"><span class="header-section-number">8</span> Fases do modelo organizador: <code>phase</code>, <code>review</code>, <code>consolidate</code></a></li>
-  <li><a href="#sec-act" id="toc-sec-act" class="nav-link" data-scroll-target="#sec-act"><span class="header-section-number">9</span> O pipeline ACT: revisão e consolidação</a>
-  <ul class="collapse">
-  <li><a href="#fase-2-critique-revisar-as-anotações" id="toc-fase-2-critique-revisar-as-anotações" class="nav-link" data-scroll-target="#fase-2-critique-revisar-as-anotações"><span class="header-section-number">9.1</span> Fase 2 — <code>critique</code>: revisar as anotações</a></li>
-  <li><a href="#fase-3-normalize-canonizar-códigos" id="toc-fase-3-normalize-canonizar-códigos" class="nav-link" data-scroll-target="#fase-3-normalize-canonizar-códigos"><span class="header-section-number">9.2</span> Fase 3 — <code>normalize</code>: canonizar códigos</a></li>
-  <li><a href="#fase-4-incorporate-aplicar-as-revisões" id="toc-fase-4-incorporate-aplicar-as-revisões" class="nav-link" data-scroll-target="#fase-4-incorporate-aplicar-as-revisões"><span class="header-section-number">9.3</span> Fase 4 — <code>incorporate</code>: aplicar as revisões</a></li>
-  <li><a href="#fase-r-refine-reextrair-os-items-problemáticos" id="toc-fase-r-refine-reextrair-os-items-problemáticos" class="nav-link" data-scroll-target="#fase-r-refine-reextrair-os-items-problemáticos"><span class="header-section-number">9.4</span> Fase R — <code>refine</code>: reextrair os ITEMs problemáticos</a></li>
-  <li><a href="#fluxo-completo" id="toc-fluxo-completo" class="nav-link" data-scroll-target="#fluxo-completo"><span class="header-section-number">9.5</span> Fluxo completo</a></li>
-  </ul></li>
-  <li><a href="#sec-outros-modos" id="toc-sec-outros-modos" class="nav-link" data-scroll-target="#sec-outros-modos"><span class="header-section-number">10</span> Outros modos</a>
-  <ul class="collapse">
-  <li><a href="#suggest-sugerir-códigos-para-um-trecho" id="toc-suggest-sugerir-códigos-para-um-trecho" class="nav-link" data-scroll-target="#suggest-sugerir-códigos-para-um-trecho"><span class="header-section-number">10.1</span> <code>suggest</code>: sugerir códigos para um trecho</a></li>
-  <li><a href="#finetune-enriquecer-dataset-para-fine-tuning" id="toc-finetune-enriquecer-dataset-para-fine-tuning" class="nav-link" data-scroll-target="#finetune-enriquecer-dataset-para-fine-tuning"><span class="header-section-number">10.2</span> <code>finetune</code>: enriquecer dataset para fine-tuning</a></li>
-  </ul></li>
-  <li><a href="#sec-vscode" id="toc-sec-vscode" class="nav-link" data-scroll-target="#sec-vscode"><span class="header-section-number">11</span> Integração com VS Code</a>
-  <ul class="collapse">
-  <li><a href="#como-usar" id="toc-como-usar" class="nav-link" data-scroll-target="#como-usar"><span class="header-section-number">11.1</span> Como usar</a></li>
-  <li><a href="#fluxo-de-trabalho-típico" id="toc-fluxo-de-trabalho-típico" class="nav-link" data-scroll-target="#fluxo-de-trabalho-típico"><span class="header-section-number">11.2</span> Fluxo de trabalho típico</a></li>
-  <li><a href="#configuração-do-caminho-do-executável" id="toc-configuração-do-caminho-do-executável" class="nav-link" data-scroll-target="#configuração-do-caminho-do-executável"><span class="header-section-number">11.3</span> Configuração do caminho do executável</a></li>
-  <li><a href="#cancelamento" id="toc-cancelamento" class="nav-link" data-scroll-target="#cancelamento"><span class="header-section-number">11.4</span> Cancelamento</a></li>
-  </ul></li>
-  <li><a href="#sec-arquitetura" id="toc-sec-arquitetura" class="nav-link" data-scroll-target="#sec-arquitetura"><span class="header-section-number">12</span> Como funciona internamente</a>
-  <ul class="collapse">
-  <li><a href="#project_loader" id="toc-project_loader" class="nav-link" data-scroll-target="#project_loader"><span class="header-section-number">12.1</span> 1. project_loader</a></li>
-  <li><a href="#prompt_builder" id="toc-prompt_builder" class="nav-link" data-scroll-target="#prompt_builder"><span class="header-section-number">12.2</span> 2. prompt_builder</a></li>
-  <li><a href="#llm_client" id="toc-llm_client" class="nav-link" data-scroll-target="#llm_client"><span class="header-section-number">12.3</span> 3. llm_client</a></li>
-  <li><a href="#validator" id="toc-validator" class="nav-link" data-scroll-target="#validator"><span class="header-section-number">12.4</span> 4. validator</a></li>
-  </ul></li>
-  <li><a href="#sec-testes" id="toc-sec-testes" class="nav-link" data-scroll-target="#sec-testes"><span class="header-section-number">13</span> Projetos de teste reais</a>
-  <ul class="collapse">
-  <li><a href="#executar-testes-sem-api" id="toc-executar-testes-sem-api" class="nav-link" data-scroll-target="#executar-testes-sem-api"><span class="header-section-number">13.0.1</span> Executar testes sem API</a></li>
-  <li><a href="#executar-testes-de-integração" id="toc-executar-testes-de-integração" class="nav-link" data-scroll-target="#executar-testes-de-integração"><span class="header-section-number">13.0.2</span> Executar testes de integração</a></li>
-  <li><a href="#cobertura" id="toc-cobertura" class="nav-link" data-scroll-target="#cobertura"><span class="header-section-number">13.0.3</span> Cobertura</a></li>
-  </ul></li>
-  <li><a href="#sec-env" id="toc-sec-env" class="nav-link" data-scroll-target="#sec-env"><span class="header-section-number">14</span> Variáveis de ambiente</a>
-  <ul class="collapse">
-  <li><a href="#modelo-por-fase" id="toc-modelo-por-fase" class="nav-link" data-scroll-target="#modelo-por-fase"><span class="header-section-number">14.1</span> Modelo por fase</a></li>
-  <li><a href="#limiares-do-pipeline-act" id="toc-limiares-do-pipeline-act" class="nav-link" data-scroll-target="#limiares-do-pipeline-act"><span class="header-section-number">14.2</span> Limiares do pipeline ACT</a></li>
-  </ul></li>
-  <li><a href="#sec-erros" id="toc-sec-erros" class="nav-link" data-scroll-target="#sec-erros"><span class="header-section-number">15</span> Erros comuns</a>
-  <ul class="collapse">
-  <li><a href="#synesis-coder-não-encontrado" id="toc-synesis-coder-não-encontrado" class="nav-link" data-scroll-target="#synesis-coder-não-encontrado"><span class="header-section-number">15.1</span> <code>synesis-coder</code> não encontrado</a></li>
-  <li><a href="#erro-de-configuração-api-key" id="toc-erro-de-configuração-api-key" class="nav-link" data-scroll-target="#erro-de-configuração-api-key"><span class="header-section-number">15.2</span> Erro de configuração (API key)</a></li>
-  <li><a href="#template-sem-ontology-scope" id="toc-template-sem-ontology-scope" class="nav-link" data-scroll-target="#template-sem-ontology-scope"><span class="header-section-number">15.3</span> Template sem ONTOLOGY scope</a></li>
-  <li><a href="#validação-falha-após-3-tentativas" id="toc-validação-falha-após-3-tentativas" class="nav-link" data-scroll-target="#validação-falha-após-3-tentativas"><span class="header-section-number">15.4</span> Validação falha após 3 tentativas</a></li>
-  </ul></li>
-  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">16</span> Próximos passos</a></li>
+  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">17</span> Próximos passos</a></li>
   </ul>
 </nav>
     </div>
@@ -360,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">synesis-coder: Codificação Qualitativa com IA</h1>
-<p class="subtitle lead">Como gerar anotações, ontologias e processar corpora inteiros com o CLI</p>
+<p class="subtitle lead">Como gerar anotações, ontologias e processar corpora inteiros pela linha de comando</p>
 </div>
 
 
@@ -379,14 +333,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="synesis-coder-codificação-qualitativa-com-ia" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> synesis-coder: Codificação Qualitativa com IA</h1>
-<p>O <code>synesis-coder</code> automatiza a codificação qualitativa usando Claude como motor de inferência. A ferramenta lê o template do seu projeto (<code>.synt</code>) e gera blocos Synesis válidos — ITEM, SOURCE, ONTOLOGY — seguindo rigorosamente os campos, relações, valores permitidos e instruções metodológicas (GUIDELINES) do template.</p>
-<p><strong>Você deve usar este guia se:</strong></p>
+<p>O <code>synesis-coder</code> automatiza a codificação qualitativa com um modelo de linguagem (Claude por padrão, ou qualquer servidor compatível com a API OpenAI). A ferramenta lê o template do seu projeto (<code>.synt</code>) e gera blocos Synesis válidos (<code>SOURCE</code>, <code>ITEM</code>, <code>ONTOLOGY</code>) seguindo os campos, relações, valores permitidos e instruções (<code>GUIDELINES</code>) do template.</p>
+<p><strong>Use este guia se você:</strong></p>
 <ul>
-<li>Quer codificar trechos de texto selecionados em um arquivo <code>.syn</code></li>
-<li>Precisa processar um corpus de abstracts (<code>.bib</code>) em lote</li>
-<li>Quer codificar um documento longo (entrevista, relatório) com chunking automático</li>
-<li>Precisa gerar definições ontológicas (<code>.syno</code>) a partir do corpus já anotado</li>
-<li>Quer integrar a codificação ao fluxo de trabalho no VS Code (Synesis Explorer)</li>
+<li>quer codificar um trecho selecionado de um arquivo <code>.syn</code></li>
+<li>precisa processar em lote um corpus de resumos (<code>.bib</code>) ou de registros (<code>.toml</code>)</li>
+<li>quer codificar um documento longo (entrevista, relatório)</li>
+<li>precisa gerar definições para os conceitos já usados no corpus</li>
+<li>quer revisar o que a IA anotou antes de incorporar</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -394,144 +348,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nada é hardcoded
+Nada é fixo no código
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>synesis-coder</code> não contém nenhum nome de campo, relação ou valor fixo no código. Tudo é derivado dinamicamente de <code>result.template.field_specs</code> via <code>synesis.load()</code>. Se você mudar o template, a IA segue as novas regras — sem modificar a ferramenta.</p>
+<p>O <code>synesis-coder</code> não conhece nenhum nome de campo, relação ou valor. Tudo vem do template, lido pelo compilador. Se você muda o template, a IA segue as novas regras.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A IA propõe, o compilador confere, você decide
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compilar sem erros mostra que a <strong>forma</strong> está correta, não que a <strong>leitura</strong> está certa. Revise o que foi gerado (<a href="#sec-act" class="quarto-xref">Seção&nbsp;11</a>). Dados enviados ao modelo saem do seu computador, salvo quando o modelo roda localmente.</p>
 </div>
 </div>
 <hr>
 </section>
 <section id="sec-instalacao" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Instalação</h1>
-<section id="requisitos" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="requisitos"><span class="header-section-number">2.1</span> Requisitos</h2>
-<ul>
-<li>Python 3.10+</li>
-<li><a href="https://github.com/synesis-lang/synesis">synesis</a> &gt;= 0.6.0</li>
-<li>Chave de API da Anthropic (<code>ANTHROPIC_API_KEY</code>)</li>
-</ul>
-</section>
-<section id="instalar-o-pacote" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="instalar-o-pacote"><span class="header-section-number">2.2</span> Instalar o pacote</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis-coder</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Verificar:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> <span class="at">--version</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># synesis-coder, version 0.7.7</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="configurar-a-chave-de-api" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="configurar-a-chave-de-api"><span class="header-section-number">2.3</span> Configurar a chave de API</h2>
-<p>Crie um arquivo <code>.env</code> na raiz do seu projeto com a chave:</p>
-<pre class="dotenv"><code>ANTHROPIC_API_KEY=sk-ant-...</code></pre>
-<p>O <code>.env</code> é carregado automaticamente. Nunca inclua este arquivo no controle de versão.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Modelo alternativo
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>O modelo padrão é <code>claude-opus-4-6</code>. Para usar um modelo mais rápido (e mais barato), defina <code>SYNESIS_CODER_MODEL=claude-sonnet-4-6</code> no <code>.env</code> ou passe <code>--model claude-sonnet-4-6</code> na linha de comando.</p>
-</div>
-</div>
+<p>Requer <strong>Python 3.10+</strong>. O compilador (<code>synesis</code> ≥ 0.16.0) é instalado como dependência.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis-coder</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> <span class="at">--version</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># synesis-coder, version 0.15.1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="configuração" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="configuração"><span class="header-section-number">2.1</span> Configuração</h2>
+<p>Crie um arquivo <code>.env</code> <strong>na pasta do projeto</strong> (de onde você executa os comandos):</p>
+<pre class="dotenv"><code># Anthropic (padrão)
+ANTHROPIC_API_KEY=sk-ant-...
+
+# Opcional: idioma dos campos de texto livre
+SYNESIS_CODER_LANGUAGE=pt-BR
+
+# Opcional: outro modelo (padrão: claude-opus-4-6)
+# SYNESIS_CODER_MODEL=claude-sonnet-4-6</code></pre>
+<p>Para um servidor compatível com a API OpenAI (Ollama local, OpenRouter, RunPod…):</p>
+<pre class="dotenv"><code>SYNESIS_CODER_BACKEND=openai
+SYNESIS_CODER_API_URL=http://localhost:11434
+SYNESIS_CODER_MODEL=nome-do-modelo
+# SYNESIS_CODER_API_KEY=...   # dispensável no Ollama local</code></pre>
+<p>A precedência é: variável de ambiente &gt; <code>.env</code> do projeto &gt; arquivo de padrões indicado em <code>SYNESIS_CODER_ENV_FILE</code>. Nunca inclua o <code>.env</code> no controle de versão.</p>
 <hr>
 </section>
 </section>
 <section id="sec-modos" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Os modos de operação</h1>
-<p><code>synesis-coder</code> organiza seus comandos em três grupos, cobrindo o ciclo completo da pesquisa — da extração inicial à revisão e consolidação:</p>
-<section id="ingestão-e-extração" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="ingestão-e-extração"><span class="header-section-number">3.1</span> Ingestão e extração</h2>
+<h1 data-number="3"><span class="header-section-number">3</span> Comandos</h1>
 <table class="table-striped table-hover caption-top table">
-<caption>Modos de ingestão</caption>
+<caption>Comandos</caption>
 <colgroup>
-<col style="width: 17%">
-<col style="width: 26%">
-<col style="width: 20%">
-<col style="width: 35%">
+<col style="width: 9%">
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 21%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Modo</th>
-<th>Entrada</th>
-<th>Saída</th>
-<th>Uso típico</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>item</code></td>
-<td>Texto + bibref</td>
-<td>Bloco ITEM</td>
-<td>Codificar um trecho selecionado</td>
-</tr>
-<tr class="even">
-<td><code>abstract</code></td>
-<td>Corpus <code>.bib</code></td>
-<td>Blocos SOURCE + ITEM</td>
-<td>Processar abstracts em lote</td>
-</tr>
-<tr class="odd">
-<td><code>document</code></td>
-<td>Documento <code>.txt</code>/<code>.md</code></td>
-<td>Blocos SOURCE + ITEM</td>
-<td>Codificar entrevista ou relatório longo</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="estruturação-e-llm" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="estruturação-e-llm"><span class="header-section-number">3.2</span> Estruturação e LLM</h2>
-<table class="table-striped table-hover caption-top table">
-<caption>Modos de estruturação</caption>
-<colgroup>
-<col style="width: 17%">
-<col style="width: 26%">
-<col style="width: 20%">
-<col style="width: 35%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Modo</th>
-<th>Entrada</th>
-<th>Saída</th>
-<th>Uso típico</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>ontology</code></td>
-<td>Corpus anotado</td>
-<td>Arquivo <code>.syno</code></td>
-<td>Gerar definições ontológicas</td>
-</tr>
-<tr class="even">
-<td><code>suggest</code></td>
-<td>Trecho de texto</td>
-<td>Lista de códigos</td>
-<td>Sugerir códigos relevantes para um excerto</td>
-</tr>
-<tr class="odd">
-<td><code>finetune</code></td>
-<td>Dataset Alpaca</td>
-<td>JSONL enriquecido</td>
-<td>Preparar dados para fine-tuning de modelos</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="pipeline-act-revisão-e-consolidação" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="pipeline-act-revisão-e-consolidação"><span class="header-section-number">3.3</span> Pipeline ACT (revisão e consolidação)</h2>
-<table class="table-striped table-hover caption-top table">
-<caption>Pipeline ACT</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Fase</th>
-<th>Modo</th>
+<th>Grupo</th>
+<th>Comando</th>
 <th>Entrada</th>
 <th>Saída</th>
 <th style="text-align: center;">LLM?</th>
@@ -539,49 +418,153 @@ Modelo alternativo
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">2</td>
-<td><code>critique</code></td>
-<td><code>.syn</code></td>
-<td><code>.synr</code> com blocos <code># REVISION</code></td>
-<td style="text-align: center;">Sim</td>
+<td>Codificar</td>
+<td><code>item</code></td>
+<td>trecho + bibref</td>
+<td>bloco ITEM</td>
+<td style="text-align: center;">sim</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">3</td>
+<td></td>
+<td><code>abstract</code></td>
+<td>corpus <code>.bib</code></td>
+<td>SOURCE + ITEMs</td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>dataset</code></td>
+<td>registros TOML (<code>INCLUDE DATASET</code>)</td>
+<td>SOURCE + ITEMs</td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>document</code></td>
+<td><code>.txt</code> ou <code>.md</code></td>
+<td>SOURCE + ITEMs</td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="odd">
+<td>Modelo organizador</td>
+<td><code>ontology</code></td>
+<td>corpus anotado</td>
+<td>blocos ONTOLOGY (<code>.syno</code>)</td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>phase</code></td>
+<td>bloco <code>PHASE</code> do <code>.synp</code></td>
+<td>campos da fase</td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>review</code></td>
+<td>propostas de uma fase</td>
+<td>amostra para julgamento</td>
+<td style="text-align: center;">não</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>consolidate</code></td>
+<td>dois conceitos</td>
+<td>consolidação (<code>ROLE USE</code>)</td>
+<td style="text-align: center;">não</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>suggest</code></td>
+<td>trecho</td>
+<td>códigos do projeto</td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="even">
+<td>Revisar</td>
+<td><code>critique</code></td>
+<td><code>.syn</code></td>
+<td><code>.synr</code> com <code># REVISION</code></td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="odd">
+<td></td>
 <td><code>normalize</code></td>
 <td><code>.synr</code></td>
 <td><code>.synr</code> com códigos canonizados</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4</td>
-<td><code>incorporate</code></td>
-<td><code>.synr</code></td>
-<td><code>.syn</code> final validado</td>
-<td style="text-align: center;"><strong>Não</strong></td>
+<td style="text-align: center;">sim</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">R</td>
+<td></td>
+<td><code>incorporate</code></td>
+<td><code>.synr</code></td>
+<td><code>.syn</code> final</td>
+<td style="text-align: center;"><strong>não</strong></td>
+</tr>
+<tr class="odd">
+<td></td>
 <td><code>refine</code></td>
 <td><code>.syn</code></td>
-<td><code>.syn</code> refinado</td>
-<td style="text-align: center;">Sim (opt-in)</td>
+<td><code>.syn</code> refeito</td>
+<td style="text-align: center;">sim</td>
+</tr>
+<tr class="even">
+<td>Conferir</td>
+<td><code>anchor</code></td>
+<td><code>.syn</code></td>
+<td>citações encontradas ou não</td>
+<td style="text-align: center;"><strong>não</strong></td>
+</tr>
+<tr class="odd">
+<td>Treino</td>
+<td><code>finetune</code></td>
+<td>projeto ou JSONL</td>
+<td>JSONL enriquecido</td>
+<td style="text-align: center;">sim</td>
 </tr>
 </tbody>
 </table>
-<p>O pipeline ACT é descrito em detalhe em <a href="#sec-act" class="quarto-xref">Seção&nbsp;9</a>.</p>
+<p>Opções úteis em vários comandos:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Opção</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--prompt-only</code></td>
+<td>grava o prompt montado num Markdown e sai, sem chamar o modelo (para revisar as <code>GUIDELINES</code>)</td>
+</tr>
+<tr class="even">
+<td><code>--debug</code></td>
+<td>grava a trilha de auditoria das chamadas</td>
+</tr>
+<tr class="odd">
+<td><code>--require-guidelines</code> (global, antes do comando)</td>
+<td>falha se algum campo não tiver <code>GUIDELINES</code></td>
+</tr>
+<tr class="even">
+<td><code>--language</code>, <code>--model</code>, <code>--temperature</code>, <code>--max-tokens</code>, <code>--thinking-budget</code></td>
+<td>ajustes da geração</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>synesis-coder &lt;comando&gt; --help</code> para a lista completa. As mensagens da ferramenta são em inglês.</p>
 <hr>
 </section>
-</section>
 <section id="sec-item" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Modo <code>item</code>: codificar um trecho de texto</h1>
-<p>O modo mais simples. Recebe um texto e uma referência bibliográfica, e retorna um bloco ITEM válido codificado de acordo com o template do projeto.</p>
-<section id="uso-básico" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="uso-básico"><span class="header-section-number">4.1</span> Uso básico</h2>
+<h1 data-number="4"><span class="header-section-number">4</span> Modo <code>item</code>: codificar um trecho</h1>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> item <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> ashworth2019 <span class="dt">\</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Community trust and environmental concern are the most important factors determining willingness to participate in renewable energy projects."</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A saída é um bloco ITEM compilável, pronto para inserir em um arquivo <code>.syn</code>:</p>
+<p>A saída é um bloco ITEM compilável, com os campos do <strong>seu</strong> template:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ashworth2019</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> Community trust and environmental concern are the most</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>          important factors determining willingness to participate</span>
@@ -595,130 +578,71 @@ Modelo alternativo
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>          engagement with renewable energy</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Environmental_Concern <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Participation</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="redirecionar-para-arquivo" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="redirecionar-para-arquivo"><span class="header-section-number">4.2</span> Redirecionar para arquivo</h2>
-<p>O formato <code>plain</code> (padrão) emite apenas o bloco Synesis, ideal para piping:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> item <span class="dt">\</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> ashworth2019 <span class="dt">\</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Local ownership models significantly reduce opposition."</span> <span class="dt">\</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;&gt;</span> anotacoes/ashworth2019.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="saída-verbose" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="saída-verbose"><span class="header-section-number">4.3</span> Saída verbose</h2>
-<p>O formato <code>verbose</code> inclui cabeçalho com status de validação:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> item <span class="dt">\</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> ashworth2019 <span class="dt">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Local ownership models significantly reduce opposition."</span> <span class="dt">\</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--format</span> verbose</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code># synesis-coder item
-# bibref: @ashworth2019
-# model: claude-opus-4-6
-# validation: OK
-# timestamp: 2026-03-23T14:32:11
-
-ITEM @ashworth2019
-    text: Local ownership models significantly reduce opposition.
-    ...
-END ITEM</code></pre>
-</section>
-<section id="opções-completas" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="opções-completas"><span class="header-section-number">4.4</span> Opções completas</h2>
-<table class="table-striped table-hover caption-top table">
-<caption>Opções do modo <code>item</code></caption>
-<thead>
-<tr class="header">
-<th>Opção</th>
-<th style="text-align: center;">Obrigatória</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>--project</code></td>
-<td style="text-align: center;">sim</td>
-<td>Caminho para o arquivo <code>.synp</code></td>
-</tr>
-<tr class="even">
-<td><code>--bibref</code></td>
-<td style="text-align: center;">sim</td>
-<td>Referência bibliográfica (sem <code>@</code>)</td>
-</tr>
-<tr class="odd">
-<td><code>--text</code></td>
-<td style="text-align: center;">sim</td>
-<td>Texto a ser codificado</td>
-</tr>
-<tr class="even">
-<td><code>--format</code></td>
-<td style="text-align: center;">não</td>
-<td><code>plain</code> (padrão) ou <code>verbose</code></td>
-</tr>
-<tr class="odd">
-<td><code>--model</code></td>
-<td style="text-align: center;">não</td>
-<td>ID do modelo LLM</td>
-</tr>
-</tbody>
-</table>
+<p>Por padrão (<code>--format plain</code>) sai só o bloco Synesis, próprio para redirecionar:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> item <span class="at">--project</span> social_acceptance.synp <span class="at">--bibref</span> ashworth2019 <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Local ownership models significantly reduce opposition."</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;&gt;</span> anotacoes/ashworth2019.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>--format verbose</code> acrescenta um cabeçalho com o modelo, o resultado da validação e o horário.</p>
 <hr>
 </section>
-</section>
 <section id="sec-abstract" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Modo <code>abstract</code>: processar corpus bibliográfico</h1>
-<p>Processa um arquivo <code>.bib</code> completo, gerando anotações SOURCE + ITEM para cada referência que contenha abstract.</p>
-<section id="uso" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="uso"><span class="header-section-number">5.1</span> Uso</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="dt">\</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> corpus/references.bib <span class="dt">\</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output-dir</span> anotacoes/ <span class="dt">\</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--concurrent</span> 5</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h1 data-number="5"><span class="header-section-number">5</span> Modo <code>abstract</code>: corpus bibliográfico</h1>
+<p>Processa um <code>.bib</code> e gera <code>SOURCE</code> e <code>ITEM</code> para cada referência que tenha resumo.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> corpus/references.bib <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output-dir</span> anotacoes/ <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--concurrent</span> 5</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<code>--output-dir</code>, não <code>--output</code>
+<code>--output-dir</code> é uma pasta
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Esta flag sempre foi um <strong>diretório</strong> de saída, mas o nome anterior (<code>--output</code>) induzia ao erro de passar um nome de arquivo — o que criava uma <em>pasta</em> com esse nome e provocava um <code>PermissionError</code> confuso na execução seguinte. A flag foi renomeada para <code>--output-dir</code>; <code>--output</code> continua funcionando como alias retrocompatível.</p>
+<p>Não é um nome de arquivo. O nome antigo <code>--output</code> continua aceito como sinônimo.</p>
 </div>
 </div>
-<p>Para cada referência no <code>.bib</code> que tenha abstract, o modo <code>abstract</code>:</p>
-<ol type="1">
-<li>Cria um bloco <code>SOURCE @bibref</code> com os metadados bibliográficos</li>
-<li>Analisa o abstract e gera blocos <code>ITEM @bibref</code> codificando os achados relevantes</li>
-<li>Valida cada bloco via <code>synesis.load()</code> antes de gravar</li>
-</ol>
+<p>Cada bloco é validado pelo compilador antes de ser gravado.</p>
+<section id="formato-da-saída" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="formato-da-saída"><span class="header-section-number">5.1</span> Formato da saída</h2>
+<p>Por padrão, tudo vai para um único <code>annotations.syn</code>. Escolha <strong>uma</strong> das alternativas para campanhas grandes:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Opção</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--per-reference</code></td>
+<td>um <code>.syn</code> por referência (mais fácil de revisar e refazer)</td>
+</tr>
+<tr class="even">
+<td><code>--split-every 100</code></td>
+<td><code>annotations_0001.syn</code>, <code>annotations_0002.syn</code>… com 100 referências cada</td>
+</tr>
+</tbody>
+</table>
+<p>Se o <code>annotations.syn</code> já existir, use <code>--overwrite</code> ou <code>--backup</code>.</p>
 </section>
-<section id="processamento-em-lote-e-batches" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="processamento-em-lote-e-batches"><span class="header-section-number">5.2</span> Processamento em lote e batches</h2>
-<p>O modo <code>abstract</code> processa referências concorrentemente (padrão: 5 chamadas simultâneas) e organiza o trabalho em batches para evitar acúmulo de contexto:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="dt">\</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> corpus/references.bib <span class="dt">\</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output-dir</span> anotacoes/ <span class="dt">\</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--concurrent</span> 5 <span class="dt">\</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--batch-size</span> 25</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Entre cada batch, o projeto é recarregado via <code>synesis.load()</code> para incorporar as anotações já geradas — o <code>code_index</code> e <code>topic_index</code> ficam progressivamente mais ricos ao longo do processamento.</p>
-</section>
-<section id="um-arquivo-por-referência" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="um-arquivo-por-referência"><span class="header-section-number">5.3</span> Um arquivo por referência</h2>
-<p>Por padrão, todas as anotações vão para um único arquivo <code>.syn</code>. Use <code>--per-reference</code> para gerar um arquivo <code>.syn</code> por referência:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="dt">\</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> corpus/references.bib <span class="dt">\</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output-dir</span> anotacoes/ <span class="dt">\</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--per-reference</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Resultado: <code>anotacoes/ashworth2019.syn</code>, <code>anotacoes/aly2019.syn</code>, etc.</p>
-</section>
-<section id="opções-completas-1" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="opções-completas-1"><span class="header-section-number">5.4</span> Opções completas</h2>
+<section id="campanhas-longas" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="campanhas-longas"><span class="header-section-number">5.2</span> Campanhas longas</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="at">--project</span> p.synp <span class="at">--input</span> refs.bib <span class="at">--output-dir</span> out/ <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--per-reference</span> <span class="at">--resume</span> <span class="at">--batch-size</span> 25 <span class="at">--cooldown</span> auto</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--resume</code> pula o que já foi anotado com sucesso na pasta de saída; os registros que falharam são refeitos</li>
+<li><code>--batch-size</code> processa em lotes; entre eles o projeto é recarregado, e os conceitos já gerados entram no contexto</li>
+<li><code>--cooldown</code> define a pausa entre lotes (<code>auto</code>, segundos ou <code>0</code>)</li>
+</ul>
 <table class="table-striped table-hover caption-top table">
 <caption>Opções do modo <code>abstract</code></caption>
 <thead>
@@ -732,77 +656,97 @@ END ITEM</code></pre>
 <tr class="odd">
 <td><code>--project</code></td>
 <td style="text-align: center;">sim</td>
-<td>Caminho para o arquivo <code>.synp</code></td>
+<td>arquivo <code>.synp</code></td>
 </tr>
 <tr class="even">
 <td><code>--input</code></td>
 <td style="text-align: center;">sim</td>
-<td>Arquivo <code>.bib</code> com abstracts</td>
+<td><code>.bib</code> com resumos</td>
 </tr>
 <tr class="odd">
 <td><code>--output-dir</code></td>
-<td style="text-align: center;">sim</td>
-<td>Diretório de saída (alias: <code>--output</code>)</td>
+<td style="text-align: center;">não</td>
+<td>pasta de saída (padrão: a atual)</td>
 </tr>
 <tr class="even">
 <td><code>--concurrent</code></td>
 <td style="text-align: center;">não</td>
-<td>Chamadas LLM simultâneas (padrão: 5)</td>
+<td>chamadas simultâneas</td>
 </tr>
 <tr class="odd">
 <td><code>--batch-size</code></td>
 <td style="text-align: center;">não</td>
-<td>Referências por batch (padrão: 25)</td>
+<td>referências por lote (padrão: 25)</td>
 </tr>
 <tr class="even">
-<td><code>--per-reference</code></td>
+<td><code>--per-reference</code> / <code>--split-every N</code></td>
 <td style="text-align: center;">não</td>
-<td>Um arquivo <code>.syn</code> por referência</td>
+<td>formato da saída</td>
 </tr>
 <tr class="odd">
-<td><code>--format</code></td>
+<td><code>--resume</code></td>
 <td style="text-align: center;">não</td>
-<td><code>plain</code> (padrão) ou <code>verbose</code></td>
+<td>retoma uma campanha</td>
 </tr>
 <tr class="even">
-<td><code>--model</code></td>
+<td><code>--overwrite</code> / <code>--backup</code></td>
 <td style="text-align: center;">não</td>
-<td>ID do modelo LLM</td>
-</tr>
-<tr class="odd">
-<td><code>--debug</code></td>
-<td style="text-align: center;">não</td>
-<td>Log DEBUG com resposta bruta do LLM</td>
+<td>arquivo existente</td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
 </section>
-<section id="sec-document" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Modo <code>document</code>: codificar documentos longos</h1>
-<p>Processa um documento longo (entrevista transcrita, relatório, capítulo) com chunking automático — divide o texto em segmentos com overlap para garantir cobertura completa.</p>
-<section id="uso-1" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="uso-1"><span class="header-section-number">6.1</span> Uso</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> document <span class="dt">\</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> entrevista_01 <span class="dt">\</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> transcricoes/entrevista_01.txt <span class="dt">\</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> anotacoes/entrevista_01.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="sec-dataset" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Modo <code>dataset</code>: registros estruturados</h1>
+<p>Para formulários, currículos, postagens ou qualquer corpus com um registro TOML por fonte. O <code>.synp</code> declara <code>INCLUDE DATASET</code>; os campos <code>ON DATASET</code> são resolvidos pelo compilador, e os campos interpretativos são gerados pelo modelo a partir das seções indicadas em <code>CONTEXT FROM DATASET</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> dataset <span class="at">--project</span> lattes.synp <span class="at">--output-dir</span> anotacoes/</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table-striped table-hover caption-top table">
+<caption>Opções do modo <code>dataset</code></caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Opção</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--output-dir</code></td>
+<td>pasta de saída; um <code>.syn</code> por registro</td>
+</tr>
+<tr class="even">
+<td><code>--single-file</code></td>
+<td>um único <code>dataset.syn</code></td>
+</tr>
+<tr class="odd">
+<td><code>--dataset</code></td>
+<td>troca o padrão de <code>INCLUDE DATASET</code> só nesta execução (bom para testar um registro)</td>
+</tr>
+<tr class="even">
+<td><code>--concurrent</code></td>
+<td>chamadas simultâneas</td>
+</tr>
+</tbody>
+</table>
+<hr>
 </section>
-<section id="controle-de-chunking" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="controle-de-chunking"><span class="header-section-number">6.2</span> Controle de chunking</h2>
-<p>O chunking divide o documento em segmentos de tamanho configurável. O overlap garante que passagens na fronteira entre chunks não sejam perdidas:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> document <span class="dt">\</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> entrevista_01 <span class="dt">\</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> transcricoes/entrevista_01.txt <span class="dt">\</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> anotacoes/entrevista_01.syn <span class="dt">\</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chunk-size</span> 12000 <span class="dt">\</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--overlap</span> 2400</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="sec-document" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Modo <code>document</code>: documentos longos</h1>
+<p>Divide um documento em trechos com sobreposição e gera um <code>.syn</code>. A referência (<code>--bibref</code>) precisa existir no <code>.bib</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> document <span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bibref</span> entrevista_01 <span class="dt">\</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> transcricoes/entrevista_01.txt <span class="dt">\</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> anotacoes/entrevista_01.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong><code>--chunk-size</code></strong>: tamanho máximo de cada segmento em caracteres (padrão: 12.000)</li>
-<li><strong><code>--overlap</code></strong>: sobreposição entre segmentos consecutivos em caracteres (padrão: 2.400)</li>
+<li><code>--chunk-size</code>: tamanho máximo do trecho em caracteres (padrão: 12.000)</li>
+<li><code>--overlap</code>: sobreposição entre trechos (padrão: 2.400)</li>
+<li>os conceitos criados nos trechos anteriores entram no contexto dos seguintes</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -810,273 +754,120 @@ END ITEM</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Dimensionando o chunk
+Dimensionando o trecho
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O tamanho do chunk ideal depende da complexidade do template. Templates com muitos campos CHAIN e GUIDELINES extensas exigem mais tokens de contexto — nesse caso, reduza o <code>--chunk-size</code> para 8.000–10.000 caracteres. Para templates simples, 12.000 funciona bem.</p>
+<p>Templates com vários campos <code>CHAIN</code> e <code>GUIDELINES</code> extensas pedem trechos menores (8.000 a 10.000 caracteres).</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="opções-completas-2" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="opções-completas-2"><span class="header-section-number">6.3</span> Opções completas</h2>
-<table class="table-striped table-hover caption-top table">
-<caption>Opções do modo <code>document</code></caption>
-<colgroup>
-<col style="width: 22%">
-<col style="width: 41%">
-<col style="width: 35%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Opção</th>
-<th style="text-align: center;">Obrigatória</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>--project</code></td>
-<td style="text-align: center;">sim</td>
-<td>Caminho para o arquivo <code>.synp</code></td>
-</tr>
-<tr class="even">
-<td><code>--bibref</code></td>
-<td style="text-align: center;">sim</td>
-<td>Referência bibliográfica para o documento</td>
-</tr>
-<tr class="odd">
-<td><code>--input</code></td>
-<td style="text-align: center;">sim</td>
-<td>Documento <code>.txt</code> ou <code>.md</code></td>
-</tr>
-<tr class="even">
-<td><code>--output</code></td>
-<td style="text-align: center;">sim</td>
-<td>Arquivo <code>.syn</code> de saída</td>
-</tr>
-<tr class="odd">
-<td><code>--chunk-size</code></td>
-<td style="text-align: center;">não</td>
-<td>Tamanho do chunk em caracteres (padrão: 12.000)</td>
-</tr>
-<tr class="even">
-<td><code>--overlap</code></td>
-<td style="text-align: center;">não</td>
-<td>Overlap entre chunks (padrão: 2.400)</td>
-</tr>
-<tr class="odd">
-<td><code>--concurrent</code></td>
-<td style="text-align: center;">não</td>
-<td>Chunks simultâneos (padrão: 3)</td>
-</tr>
-<tr class="even">
-<td><code>--format</code></td>
-<td style="text-align: center;">não</td>
-<td><code>plain</code> (padrão) ou <code>verbose</code></td>
-</tr>
-<tr class="odd">
-<td><code>--model</code></td>
-<td style="text-align: center;">não</td>
-<td>ID do modelo LLM</td>
-</tr>
-</tbody>
-</table>
+<section id="sec-ontology" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Modo <code>ontology</code>: definir os conceitos</h1>
+<p>Analisa o corpus anotado, reúne evidência para cada código (frequência, fontes, relações, coocorrências, exemplos) e gera blocos <code>ONTOLOGY</code> fundamentados nesses dados.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> ontology <span class="at">--project</span> social_acceptance.synp <span class="at">--output</span> ontologia.syno</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O contexto de cada conceito inclui:</p>
+<ul>
+<li><strong>frequência</strong> e número de <strong>fontes</strong></li>
+<li><strong>relações afirmadas</strong> pelas fontes (até 15), que o modelo não deve copiar como valor de campo</li>
+<li><strong>coocorrências</strong> (até 20)</li>
+<li><strong>exemplos</strong> de excertos (até 3)</li>
+</ul>
+<p>Um bloco gerado:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Core economic factor representing financial expenditure.</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        Mainly constrains deployment while enabling market penetration</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        when reduced.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        associated with energy technologies and systems.</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Campos <code>ORDERED</code> são gravados pelo <strong>índice</strong> (<code>aspect: 11</code>).</p>
+<section id="como-o-arquivo-é-atualizado" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="como-o-arquivo-é-atualizado"><span class="header-section-number">8.1</span> Como o arquivo é atualizado</h2>
+<ul>
+<li>O <code>.syno</code> é <strong>editado bloco a bloco</strong>: um bloco existente recebe só os campos gerados; comentários, outros campos e a ordem ficam como estavam</li>
+<li><code>--update</code> gera apenas o que falta: conceitos sem bloco e campos obrigatórios ausentes</li>
+<li>Campos <code>CODE</code> e <code>CHAIN</code> da ontologia são estrutura e não são gerados por este modo; rótulos (<code>ROLE LABEL</code>) ficam para a fase de sinônimos</li>
+<li>Use <code>--backup</code> para guardar uma cópia; <code>--prompt-only</code> para ver o prompt</li>
+</ul>
+</section>
+<section id="sec-rejeitados" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sec-rejeitados"><span class="header-section-number">8.2</span> Blocos rejeitados não contaminam o <code>.syno</code></h2>
+<p>Um bloco que não passa na validação, depois das tentativas de correção, vai para um arquivo à parte (<code>ontologia.syno.rejected</code>). O <code>.syno</code> continua compilável.</p>
+</section>
+<section id="sec-json-schema" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="sec-json-schema"><span class="header-section-number">8.3</span> Geração estruturada (JSON Schema)</h2>
+<p>Quando o modelo suporta saída estruturada, o <code>synesis-coder</code> pede apenas os <strong>valores</strong> dos campos, com um JSON Schema derivado do template, e monta o bloco em código. Isso elimina por construção os erros de sintaxe. Sem suporte, a ferramenta usa texto livre; a validação pelo compilador é a mesma.</p>
+<p>O template precisa ter ao menos um campo <code>SCOPE ONTOLOGY</code>.</p>
 <hr>
 </section>
 </section>
-<section id="sec-ontology" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Modo <code>ontology</code>: gerar definições ontológicas</h1>
-<p>O modo mais sofisticado. Analisa o corpus já anotado, coleta evidência empírica para cada código conceitual (frequência, fontes, relações, co-ocorrências, exemplos), e gera entradas ONTOLOGY fundamentadas nos dados observados — não em conhecimento genérico do LLM.</p>
-<section id="uso-básico-1" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="uso-básico-1"><span class="header-section-number">7.1</span> Uso básico</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> ontology <span class="dt">\</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> ontologia.syno</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="o-que-é-o-semantic-context" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="o-que-é-o-semantic-context"><span class="header-section-number">7.2</span> O que é o semantic context?</h2>
-<p>Para cada código pendente, o <code>synesis-coder</code> monta um contexto semântico derivado do corpus:</p>
+<section id="sec-fases" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Fases do modelo organizador: <code>phase</code>, <code>review</code>, <code>consolidate</code></h1>
+<p>Com blocos <code>PHASE</code> no <code>.synp</code>, o modelo organizador é produzido em fases — definições, sinônimos, taxonomia. O tipo de cada fase sai dos papéis (<code>ROLE</code>) dos campos que ela produz.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase projeto.synp <span class="at">--list</span>          <span class="co"># o plano e a conexão de cada fase</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase projeto.synp definicoes      <span class="co"># executa uma fase</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase projeto.synp taxonomia <span class="at">--dry-run</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> review projeto.synp taxonomia <span class="at">--sample</span> 100 <span class="at">--stratify</span> depth</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> review projeto.synp taxonomia <span class="at">--score</span> o.taxonomia.review_edge.csv</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> consolidate projeto.synp voice_phishing <span class="at">--into</span> vishing</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> consolidate projeto.synp voice_phishing <span class="at">--revert</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>Frequência</strong>: quantas vezes o código aparece em blocos ITEM</li>
-<li><strong>Fontes</strong>: quantos SOURCEs distintos mencionam o código</li>
-<li><strong>Relações</strong>: triples do grafo de CHAIN envolvendo o código (até 15)</li>
-<li><strong>Co-ocorrências</strong>: outros códigos que aparecem nos mesmos ITEMs (até 20)</li>
-<li><strong>Exemplos</strong>: excertos concretos de campos QUOTATION/NOTE (até 3)</li>
-</ul>
-<p>Esse contexto é injetado no prompt do LLM, produzindo definições ontológicas que refletem o uso real no corpus, não definições enciclopédicas genéricas.</p>
-</section>
-<section id="exemplo-real-código-cost" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="exemplo-real-código-cost"><span class="header-section-number">7.3</span> Exemplo real: código <code>Cost</code></h2>
-<p>O código <code>Cost</code> aparece em 96 itens de 66 fontes diferentes no projeto <code>Social_Acceptance</code>. O semantic context injetado no prompt inclui:</p>
-<ul>
-<li>Relações: <code>Cost -&gt; CONSTRAINS -&gt; Deployment</code>, <code>Cost -&gt; INFLUENCES -&gt; Acceptance</code>, <code>Policy -&gt; ENABLES -&gt; Cost_Reduction</code></li>
-<li>Co-ocorrências: <code>Deployment</code>, <code>Acceptance</code>, <code>Policy</code>, <code>Technology</code></li>
-<li>Exemplos: “High initial investment costs remain the primary barrier to solar deployment in developing countries”</li>
-</ul>
-<p>A entrada ONTOLOGY gerada:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect <span class="fu">11:</span> Core economic factor representing financial</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>               expenditure. Mainly constrains deployment<span class="co">/technology</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>               development while enabling market penetration when</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>               reduced. Co-occurs with Deployment and Acceptance,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>               indicating market-consumer relevance. Dimension <span class="fu">2:</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>               Directly affects investors, consumers, and market</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>               competitiveness. High frequency (96) across broad</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>               sources (66) confirms central role.</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Economic factor representing financial expenditure</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                 associated with energy technologies and systems.</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                 Acts as primary barrier constraining technology</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>                 development, site selection, and deployment when</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>                 high, while enabling market penetration, technology</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>                 transition, and sustainable solutions when reduced.</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Low_Cost</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> High_Cost</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 0</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Observe como a classificação <code>aspect: 11</code> (Economic), <code>dimension: 2</code> (Market), <code>confidence: HIGH</code> — todas derivadas das evidências empíricas no corpus, não de associações genéricas.</p>
-</section>
-<section id="modo-incremental---update" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="modo-incremental---update"><span class="header-section-number">7.4</span> Modo incremental (<code>--update</code>)</h2>
-<p>Quando a ontologia já contém definições e você quer gerar apenas os códigos novos (adicionados após novas rodadas de codificação):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> ontology <span class="dt">\</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> ontologia.syno <span class="dt">\</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--update</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Com <code>--update</code>, o <code>synesis-coder</code>:</p>
-<ol type="1">
-<li>Carrega a ontologia existente via <code>synesis.load(load_ontology=True)</code></li>
-<li>Compara os códigos usados no corpus contra os já definidos em <code>ontology_index</code></li>
-<li>Gera entradas apenas para códigos pendentes</li>
-</ol>
-</section>
-<section id="backup-automático" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="backup-automático"><span class="header-section-number">7.5</span> Backup automático</h2>
-<p>Quando você executa <strong>sem</strong> <code>--update</code> e o arquivo <code>.syno</code> de destino já existe, o <code>synesis-coder</code> cria automaticamente um backup antes de sobrescrever:</p>
-<pre><code>ontologia.syno       →  ontologia_bkp.syno  (backup)
-ontologia.syno       ←  novo conteúdo gerado</code></pre>
-<p>Isso protege ontologias curadas manualmente contra sobrescrita acidental.</p>
-</section>
-<section id="sec-rejeitados" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="sec-rejeitados"><span class="header-section-number">7.6</span> Blocos rejeitados não contaminam o <code>.syno</code></h2>
-<p>Se um bloco ONTOLOGY não passa na validação após todas as tentativas de correção, ele <strong>não</strong> é gravado no arquivo final. Blocos rejeitados vão para um arquivo separado:</p>
-<pre><code>ontologia.syno              ←  apenas blocos válidos
-ontologia.syno.rejeitados   ←  blocos que falharam (sobrescrito a cada execução)</code></pre>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Por que isso importa
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Antes, todos os resultados eram concatenados no <code>.syno</code> final — inclusive os que continham o comentário <code># ERRO: validação falhou</code> seguido de texto malformado. Um único código mal-extraído <strong>corrompia o arquivo inteiro</strong> para qualquer <code>compile</code> ou <code>load</code> posterior. Agora o <code>.syno</code> gerado é sempre compilável, e o resumo da execução aponta o arquivo de rejeitados quando há falhas.</p>
-</div>
-</div>
-</section>
-<section id="sec-json-schema" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="sec-json-schema"><span class="header-section-number">7.7</span> Geração estruturada (JSON Schema)</h2>
-<p>Quando o modelo suporta <em>structured outputs</em>, o <code>synesis-coder</code> não pede ao LLM que escreva o bloco inteiro. Em vez disso:</p>
-<ol type="1">
-<li>Deriva um <strong>JSON Schema</strong> dos campos <code>ONTOLOGY FIELDS</code> do template</li>
-<li>Pede ao LLM apenas os <strong>valores</strong> dos campos</li>
-<li>Monta o bloco <code>ONTOLOGY ... END ONTOLOGY</code> deterministicamente, em código</li>
-</ol>
-<p>O LLM nunca digita as palavras <code>ONTOLOGY</code>, <code>END ONTOLOGY</code> ou os nomes de campo — o que <strong>elimina por construção</strong> uma classe inteira de alucinações de sintaxe. O schema usa <code>additionalProperties: false</code>, então qualquer chave inventada é descartada antes da montagem. Quando há tópicos já definidos no projeto, o campo TOPIC vira um <code>enum</code> restrito a eles.</p>
-<p>O caminho estruturado está disponível nos backends <code>anthropic</code> (via <code>output_config</code>) e <code>openai</code> (via <code>response_format</code>). Se o SDK instalado não suportar, a ferramenta <strong>cai automaticamente</strong> no caminho de texto livre — o comportamento anterior, sem quebrar nada. A validação com <code>synesis.load()</code> roda igual nos dois caminhos.</p>
-</section>
-<section id="requisito-de-template" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="requisito-de-template"><span class="header-section-number">7.8</span> Requisito de template</h2>
-<p>O template do projeto deve definir pelo menos um campo com <code>SCOPE ONTOLOGY</code>. Projetos sem escopo de ontologia (como <code>thompson_bible</code>) recebem um erro claro:</p>
-<pre><code>Erro: O template do projeto 'thompson_bible' não define campos ONTOLOGY.</code></pre>
-</section>
-<section id="opções-completas-3" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="opções-completas-3"><span class="header-section-number">7.9</span> Opções completas</h2>
-<table class="table-striped table-hover caption-top table">
-<caption>Opções do modo <code>ontology</code></caption>
-<thead>
-<tr class="header">
-<th>Opção</th>
-<th style="text-align: center;">Obrigatória</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>--project</code></td>
-<td style="text-align: center;">sim</td>
-<td>Caminho para o arquivo <code>.synp</code></td>
-</tr>
-<tr class="even">
-<td><code>--output</code></td>
-<td style="text-align: center;">sim</td>
-<td>Arquivo <code>.syno</code> de saída</td>
-</tr>
-<tr class="odd">
-<td><code>--update</code></td>
-<td style="text-align: center;">não</td>
-<td>Gera apenas códigos ainda sem definição</td>
-</tr>
-<tr class="even">
-<td><code>--concurrent</code></td>
-<td style="text-align: center;">não</td>
-<td>Chamadas LLM simultâneas (padrão: 5)</td>
-</tr>
-<tr class="odd">
-<td><code>--format</code></td>
-<td style="text-align: center;">não</td>
-<td><code>plain</code> (padrão) ou <code>verbose</code></td>
-</tr>
-<tr class="even">
-<td><code>--model</code></td>
-<td style="text-align: center;">não</td>
-<td>ID do modelo LLM</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="sec-fases" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Fases do modelo organizador: <code>phase</code>, <code>review</code>, <code>consolidate</code></h1>
-<p>Com blocos <code>PHASE</code> no <code>.synp</code> (synesis ≥ 0.15), o modelo organizador é produzido em fases: definições, sinônimos, taxonomia. O tipo de cada fase sai dos papéis (<code>ROLE</code>) dos campos que ela produz.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase projeto.synp <span class="at">--list</span>          <span class="co"># o plano e a conexão de cada fase</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase projeto.synp definicoes      <span class="co"># executa uma fase</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> phase projeto.synp taxonomia <span class="at">--dry-run</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> review projeto.synp taxonomia <span class="at">--sample</span> 100 <span class="at">--stratify</span> depth</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> review projeto.synp taxonomia <span class="at">--score</span> o.taxonomia.review_edge.csv</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> consolidate projeto.synp voice_phishing <span class="at">--into</span> vishing</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> consolidate projeto.synp voice_phishing <span class="at">--revert</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Cada execução grava um manifesto (<code>&lt;destino&gt;.&lt;fase&gt;.manifest.json</code>) com o que foi proposto, aplicado ou rejeitado; uma execução interrompida é retomada sem nova chamada ao modelo, e rodar de novo sem mudança nas entradas não chama o modelo.</li>
-<li><code>review</code> sorteia uma amostra estratificada (<code>--unit edge|label|concept</code>, <code>--stratify depth|topic|origin|none</code>) e gera um CSV para julgamento (<code>judgement</code>: correct/wrong). <code>--score</code> estima a precisão com pesos de inclusão e intervalo de confiança.</li>
-<li><code>consolidate</code> funde um nome duplicado no conceito que vale (<code>ROLE USE</code>), de forma reversível.</li>
-<li>Modelo e conexão por fase: <code>SYNESIS_CODER_PHASE_&lt;NOME&gt;_MODEL</code>, <code>_BACKEND</code>, <code>_API_URL</code>, <code>_API_KEY</code>.</li>
+<li>Cada execução grava um manifesto (<code>&lt;destino&gt;.&lt;fase&gt;.manifest.json</code>) com o que foi proposto, aplicado ou rejeitado; uma execução interrompida é retomada, e repetir sem mudança nas entradas não chama o modelo</li>
+<li><code>review</code> sorteia uma amostra estratificada (<code>--unit edge|label|concept</code>) e gera um CSV para julgamento (<code>judgement</code>: correct/wrong); <code>--score</code> estima a precisão com intervalo de confiança</li>
+<li><code>consolidate</code> funde um nome duplicado no conceito que vale, de forma reversível</li>
+<li>Modelo e conexão por fase: <code>SYNESIS_CODER_PHASE_&lt;NOME&gt;_MODEL</code>, <code>_BACKEND</code>, <code>_API_URL</code>, <code>_API_KEY</code></li>
 </ul>
 <p>Detalhes em <a href="../reference/modelo_organizador.html">O Modelo Organizador</a>.</p>
+<hr>
 </section>
-<section id="sec-act" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> O pipeline ACT: revisão e consolidação</h1>
-<p>A extração inicial (<code>item</code>, <code>abstract</code>, <code>document</code>) produz anotações que <strong>precisam ser revisadas</strong>. O pipeline ACT organiza essa revisão em fases explícitas, cada uma com um artefato próprio — nada é sobrescrito silenciosamente.</p>
-<p>O formato intermediário é o <strong><code>.synr</code></strong> (<em>Synesis revision</em>): um <code>.syn</code> acrescido de blocos <code># REVISION</code> com sugestões de correção. É um tipo de arquivo reconhecido pelo compilador e pela extensão do VS Code.</p>
-<pre><code>.syn  ──critique──▶  .synr  ──normalize──▶  .synr  ──incorporate──▶  .syn
-       (fase 2)              (fase 3)                (fase 4)</code></pre>
-<section id="fase-2-critique-revisar-as-anotações" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="fase-2-critique-revisar-as-anotações"><span class="header-section-number">9.1</span> Fase 2 — <code>critique</code>: revisar as anotações</h2>
-<p>Um segundo modelo relê cada ITEM contra o texto-fonte e o template, atribuindo um <strong>escore de suspeita</strong>. ITEMs acima do limiar recebem um bloco <code># REVISION</code> com a correção sugerida.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> critique anotacoes/entrevista_01.syn <span class="dt">\</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--threshold</span> 0.20</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Saída: <code>anotacoes/entrevista_01.synr</code>.</p>
+<section id="sec-anchor" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Conferir citações sem IA: <code>anchor</code></h1>
+<p>Antes de gastar com revisão por modelo, confira se cada citação <strong>existe</strong> na fonte:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> anchor anotacoes/ref.syn <span class="at">--project</span> projeto.synp</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> anchor anotacoes/entrevista_01.syn <span class="at">--project</span> p.synp <span class="dt">\</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--source-dir</span> transcricoes/ <span class="at">--json</span> relatorio.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada citação de cada campo <code>QUOTATION</code> recebe um de três estados:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Estado</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>found</em></td>
+<td>está na fonte (com normalização de espaços, aspas e caixa)</td>
+</tr>
+<tr class="even">
+<td><em>not found</em></td>
+<td>não está: o modelo reescreveu em vez de citar</td>
+</tr>
+<tr class="odd">
+<td><em>unverifiable</em></td>
+<td>não há texto-fonte para aquela referência</td>
+</tr>
+</tbody>
+</table>
+<p>As fontes são os arquivos <code>&lt;bibref&gt;.txt</code> ou <code>.md</code> de <code>--source-dir</code> e, em seguida, os resumos do <code>.bib</code>. <code>--literal</code> compara sem normalização; <code>--strict</code> sai com código 1 se alguma citação não for encontrada ou verificável.</p>
+<hr>
+</section>
+<section id="sec-act" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> O pipeline ACT: revisar antes de incorporar</h1>
+<p>A extração inicial produz anotações que <strong>precisam de revisão</strong>. O pipeline separa <strong>propor</strong> uma correção de <strong>aceitá-la</strong>, e nenhuma fase altera o <code>.syn</code> original sem pedido explícito.</p>
+<p>O formato intermediário é o <strong><code>.synr</code></strong>: um arquivo de revisão com blocos <code># REVISION</code>, que não entra no <code>INCLUDE</code> do projeto.</p>
+<pre class="text"><code>.syn  ──critique──▶  .synr  ──normalize──▶  .synr  ──incorporate──▶  .syn</code></pre>
+<section id="critique-propor" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="critique-propor"><span class="header-section-number">11.1</span> <code>critique</code>: propor</h2>
+<p>Um modelo relê cada ITEM contra o texto-fonte e o template.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> critique anotacoes/entrevista_01.syn <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--sensitivity</span> standard</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="table-striped table-hover caption-top table">
 <caption>Opções do modo <code>critique</code></caption>
 <colgroup>
@@ -1091,587 +882,139 @@ Por que isso importa
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>--project</code></td>
-<td><code>.synp</code> do projeto (autodetectado a partir da pasta do <code>.syn</code>)</td>
+<td><code>--sensitivity</code></td>
+<td><code>lenient</code>, <code>standard</code> (padrão), <code>strict</code> ou um número de 0 a 1</td>
 </tr>
 <tr class="even">
 <td><code>--output</code></td>
-<td>Caminho do <code>.synr</code> (padrão: mesmo nome, extensão <code>.synr</code>)</td>
-</tr>
-<tr class="odd">
-<td><code>--threshold</code></td>
-<td>Escore mínimo para emitir <code># REVISION</code> (padrão: <code>0.20</code>)</td>
-</tr>
-<tr class="even">
-<td><code>--concurrent</code></td>
-<td>Chamadas simultâneas (padrão: 3)</td>
+<td>caminho do <code>.synr</code></td>
 </tr>
 <tr class="odd">
 <td><code>--model</code></td>
-<td>Modelo crítico (<code>SYNESIS_CODER_CRITIQUE_MODEL</code>)</td>
+<td>modelo crítico (<code>SYNESIS_CODER_CRITIQUE_MODEL</code>)</td>
 </tr>
 <tr class="even">
-<td><code>--debug</code></td>
-<td>Log com resposta bruta por ITEM</td>
+<td><code>--concurrent</code>, <code>--debug</code></td>
+<td>execução</td>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Modelo crítico separado
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A crítica pode usar um modelo diferente do que gerou as anotações — configurável via <code>SYNESIS_CODER_CRITIQUE_MODEL</code>. Um segundo modelo, com contexto próprio, tende a encontrar problemas que o gerador original não veria por reproduzir os mesmos vieses.</p>
-</div>
-</div>
+<p>Sensibilidade alta gera <strong>mais falsos positivos</strong>, não mais verdade. A crítica pode usar outra conexão (<code>SYNESIS_CODER_CRITIQUE_BACKEND</code>, <code>_API_URL</code>, <code>_API_KEY</code>), o que reduz o viés de o gerador avaliar a si mesmo.</p>
 </section>
-<section id="fase-3-normalize-canonizar-códigos" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="fase-3-normalize-canonizar-códigos"><span class="header-section-number">9.2</span> Fase 3 — <code>normalize</code>: canonizar códigos</h2>
-<p>Corpora processados em lotes distintos acumulam variantes do mesmo conceito — <code>Custo</code>, <code>custo</code>, <code>Custo_Alto</code>. Esta fase analisa os códigos de <strong>todos</strong> os <code>.synr</code> juntos e propõe a forma canônica.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> normalize anotacoes/<span class="pp">*</span>.synr <span class="dt">\</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--confidence</span> 0.65 <span class="dt">\</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--inventory</span> inventario_codigos.txt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table-striped table-hover caption-top table">
-<caption>Opções do modo <code>normalize</code></caption>
-<colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Opção</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>--output-dir</code></td>
-<td>Diretório dos <code>.synr</code> normalizados (padrão: o de entrada)</td>
-</tr>
-<tr class="even">
-<td><code>--confidence</code></td>
-<td>Confiança mínima para aceitar a canonização (padrão: <code>0.65</code>)</td>
-</tr>
-<tr class="odd">
-<td><code>--inventory</code></td>
-<td>Salva o inventário de códigos em um arquivo TXT</td>
-</tr>
-<tr class="even">
-<td><code>--model</code></td>
-<td>Modelo de normalização (<code>SYNESIS_CODER_NORMALIZATION_MODEL</code>)</td>
-</tr>
-</tbody>
-</table>
+<section id="normalize-canonizar-códigos" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="normalize-canonizar-códigos"><span class="header-section-number">11.2</span> <code>normalize</code>: canonizar códigos</h2>
+<p>Olha o corpus inteiro e unifica variantes (<code>Social_Acceptance</code>, <code>social_acceptance</code>, <code>SocialAcceptance</code>).</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> normalize anotacoes/<span class="pp">*</span>.synr <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--confidence</span> 0.65 <span class="at">--inventory</span> inventario_codigos.txt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fase-4-incorporate-aplicar-as-revisões" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="fase-4-incorporate-aplicar-as-revisões"><span class="header-section-number">9.3</span> Fase 4 — <code>incorporate</code>: aplicar as revisões</h2>
-<p>Aplica os blocos <code># REVISION</code> e emite o <code>.syn</code> final, validado. <strong>Esta fase não usa LLM</strong> — é determinística e reproduzível.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> incorporate anotacoes/entrevista_01.synr <span class="dt">\</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> anotacoes/entrevista_01_final.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table-striped table-hover caption-top table">
-<caption>Opções do modo <code>incorporate</code></caption>
-<colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Opção</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>--output</code></td>
-<td>Caminho do <code>.syn</code> final (padrão: mesmo nome, extensão <code>.syn</code>)</td>
-</tr>
-<tr class="even">
-<td><code>--overwrite</code></td>
-<td>Sobrescreve sem confirmação</td>
-</tr>
-<tr class="odd">
-<td><code>--backup</code></td>
-<td>Cria cópia <code>.bak</code> antes de sobrescrever</td>
-</tr>
-</tbody>
-</table>
+<section id="incorporate-aceitar" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="incorporate-aceitar"><span class="header-section-number">11.3</span> <code>incorporate</code>: aceitar</h2>
+<p>Aplica o <code>.synr</code> e grava o <code>.syn</code> final validado. <strong>Não usa IA</strong>: é determinístico e repetível.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> incorporate anotacoes/entrevista_01.synr <span class="dt">\</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> anotacoes/entrevista_01_final.syn</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Uma correção ambígua é <strong>recusada, não adivinhada</strong>. Use <code>--backup</code> quando o destino já existir.</p>
 </section>
-<section id="fase-r-refine-reextrair-os-items-problemáticos" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="fase-r-refine-reextrair-os-items-problemáticos"><span class="header-section-number">9.4</span> Fase R — <code>refine</code>: reextrair os ITEMs problemáticos</h2>
-<p>Alternativa <strong>opcional</strong> às fases 3–4. Em vez de aplicar correções pontuais, reextrai do zero os ITEMs marcados como suspeitos, agora com o <em>feedback</em> da crítica no prompt. Itera até convergir.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> refine anotacoes/entrevista_01.syn <span class="dt">\</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> nave.synp <span class="dt">\</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--max-iter</span> 2 <span class="dt">\</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--threshold</span> 0.20</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table-striped table-hover caption-top table">
-<caption>Opções do modo <code>refine</code></caption>
-<colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Opção</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>--max-iter</code></td>
-<td>Iterações máximas por ITEM (padrão: 2)</td>
-</tr>
-<tr class="even">
-<td><code>--threshold</code></td>
-<td>Escore abaixo do qual o ITEM é considerado convergido (padrão: <code>0.20</code>)</td>
-</tr>
-<tr class="odd">
-<td><code>--critique-model</code></td>
-<td>Modelo crítico</td>
-</tr>
-<tr class="even">
-<td><code>--refine-model</code></td>
-<td>Modelo gerador da reextração</td>
-</tr>
-<tr class="odd">
-<td><code>--thinking-budget</code></td>
-<td>Tokens de <em>extended thinking</em> na reextração (<code>0</code> = desligado)</td>
-</tr>
-<tr class="even">
-<td><code>--overwrite</code> / <code>--backup</code></td>
-<td>Controle de sobrescrita</td>
-</tr>
-</tbody>
-</table>
-<p>Saída padrão: <code>&lt;nome&gt;_refined.syn</code>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-O arquivo de entrada nunca é sobrescrito por acidente
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Se <code>--output</code> apontar para o próprio arquivo de entrada, o comando <strong>falha</strong> com mensagem explícita, a menos que você passe <code>--overwrite --backup</code> deliberadamente. Uma reextração que apagasse a anotação original seria irreversível.</p>
-</div>
-</div>
+<section id="refine-reextrair-opcional" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="refine-reextrair-opcional"><span class="header-section-number">11.4</span> <code>refine</code>: reextrair (opcional)</h2>
+<p>Em vez de aplicar correções pontuais, reextrai os ITEMs marcados, com a crítica no contexto. Só aceita uma versão com escore de suspeita menor.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> refine anotacoes/entrevista_01.syn <span class="at">--project</span> nave.synp <span class="at">--max-iter</span> 2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Saída padrão: <code>&lt;nome&gt;_refined.syn</code>. O arquivo de entrada nunca é sobrescrito sem <code>--overwrite</code>.</p>
 </section>
-<section id="fluxo-completo" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="fluxo-completo"><span class="header-section-number">9.5</span> Fluxo completo</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Extrair</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> abstract <span class="at">--project</span> estudo.synp <span class="dt">\</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--input</span> corpus.bib <span class="at">--output-dir</span> anotacoes/</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Criticar</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> critique anotacoes/annotations.syn <span class="at">--project</span> estudo.synp</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Canonizar códigos</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> normalize anotacoes/<span class="pp">*</span>.synr <span class="at">--project</span> estudo.synp</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Consolidar</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> incorporate anotacoes/annotations.synr <span class="dt">\</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> anotacoes/final.syn</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Compilar</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile estudo.synp <span class="at">--json</span> resultado.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="ordem-recomendada" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="ordem-recomendada"><span class="header-section-number">11.5</span> Ordem recomendada</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> anchor      anotacoes/annotations.syn <span class="at">--project</span> estudo.synp   <span class="co"># 1. grátis</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> critique    anotacoes/annotations.syn <span class="at">--project</span> estudo.synp   <span class="co"># 2. propor</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                         (leia o .synr)                                    # 3. decidir</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> normalize   anotacoes/annotations.synr <span class="at">--project</span> estudo.synp  <span class="co"># 4. canonizar</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> incorporate anotacoes/annotations.synr <span class="dt">\</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">--output</span> anotacoes/final.syn <span class="at">--backup</span>                         <span class="co"># 5. aceitar</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile estudo.synp                                                 <span class="co"># 6. compilar</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O passo 3 não é decoração: o <code>.synr</code> é texto legível, feito para você decidir o que entra nos seus dados.</p>
 <hr>
 </section>
 </section>
-<section id="sec-outros-modos" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Outros modos</h1>
-<section id="suggest-sugerir-códigos-para-um-trecho" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="suggest-sugerir-códigos-para-um-trecho"><span class="header-section-number">10.1</span> <code>suggest</code>: sugerir códigos para um trecho</h2>
-<p>Retorna os códigos do projeto mais relevantes para um excerto, sem gerar um bloco ITEM completo. Útil para explorar a ontologia durante a codificação manual.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> suggest <span class="dt">\</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Local ownership models significantly reduce opposition."</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="sec-outros-modos" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Outros comandos</h1>
+<section id="suggest-sugerir-códigos" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="suggest-sugerir-códigos"><span class="header-section-number">12.1</span> <code>suggest</code>: sugerir códigos</h2>
+<p>Retorna códigos do projeto pertinentes a um trecho, sem gerar um bloco. Códigos que ainda não existem vêm marcados <code>[NEW]</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> suggest <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--text</span> <span class="st">"Local ownership models significantly reduce opposition."</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="finetune-enriquecer-dataset-para-fine-tuning" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="finetune-enriquecer-dataset-para-fine-tuning"><span class="header-section-number">10.2</span> <code>finetune</code>: enriquecer dataset para fine-tuning</h2>
-<p>Gera ou enriquece um dataset Alpaca (JSONL) a partir do projeto compilado, para treinar um modelo próprio.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> finetune <span class="dt">\</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> dataset_enriquecido.jsonl <span class="dt">\</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--enrich</span> vary <span class="at">--enrich</span> didactic</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table-striped table-hover caption-top table">
-<caption>Opções de <code>--enrich</code> (repetível)</caption>
-<colgroup>
-<col style="width: 75%">
-<col style="width: 25%">
-</colgroup>
+<section id="finetune-preparar-dados-de-treino" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="finetune-preparar-dados-de-treino"><span class="header-section-number">12.2</span> <code>finetune</code>: preparar dados de treino</h2>
+<p>Gera ou enriquece um JSONL no formato Alpaca.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-coder</span> finetune <span class="at">--project</span> social_acceptance.synp <span class="dt">\</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> dataset_enriquecido.jsonl <span class="at">--enrich</span> vary <span class="at">--enrich</span> didactic</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Tipo de enriquecimento</th>
+<th><code>--enrich</code></th>
 <th>Efeito</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>vary</code> (padrão)</td>
-<td>Variações de formulação do mesmo exemplo</td>
+<td>variações de formulação</td>
 </tr>
 <tr class="even">
 <td><code>didactic</code></td>
-<td>Versões com explicação do raciocínio</td>
+<td>versões com explicação</td>
 </tr>
 <tr class="odd">
 <td><code>counterfactual</code></td>
-<td>Contraexemplos para reforçar fronteiras conceituais</td>
+<td>contraexemplos</td>
 </tr>
 </tbody>
 </table>
-<p>A entrada pode ser um <code>.synp</code> (o dataset é gerado pelo compilador) ou um JSONL pré-existente via <code>--input</code>.</p>
-<hr>
-</section>
-</section>
-<section id="sec-vscode" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Integração com VS Code</h1>
-<p>O modo <code>item</code> está integrado à extensão <strong>Synesis Explorer</strong> (v0.5.25+), permitindo codificar texto diretamente no editor sem abrir o terminal.</p>
-<section id="como-usar" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="como-usar"><span class="header-section-number">11.1</span> Como usar</h2>
-<ol type="1">
-<li>Abra um arquivo <code>.syn</code> no VS Code com a extensão Synesis Explorer instalada</li>
-<li><strong>Selecione</strong> o trecho de texto que deseja codificar</li>
-<li>Clique com o botão direito → <strong>Synesis: Code Selection</strong>
-<ul>
-<li>Ou use o atalho <code>Ctrl+Shift+I</code> / <code>Cmd+Shift+I</code></li>
-</ul></li>
-</ol>
-<p>A extensão:</p>
-<ul>
-<li><strong>Detecta o bibref automaticamente</strong> a partir do bloco SOURCE ou ITEM sob o cursor</li>
-<li>Chama <code>synesis-coder item</code> como subprocesso</li>
-<li><strong>Substitui a seleção</strong> pelo bloco ITEM gerado</li>
-</ul>
-</section>
-<section id="fluxo-de-trabalho-típico" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="fluxo-de-trabalho-típico"><span class="header-section-number">11.2</span> Fluxo de trabalho típico</h2>
-<p>O cenário mais comum é o pesquisador que cola trechos de sua revisão de literatura diretamente no arquivo <code>.syn</code>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ashworth2019</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Comparative study of public attitudes toward CCS and</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                 low-carbon energy technologies in Australia and China.</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Social acceptance of energy technologies</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Online survey (Australia n=2383, China n=1266)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>However, male respondents, those who perceived themselves to</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>have higher knowledge of CCS, and those who valued economic</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>outcomes over environmental protection were more likely to</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>support CCS - as long as the risks were not perceived to</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>outweigh the benefits.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O pesquisador seleciona o texto colado (a passagem abaixo do <code>END SOURCE</code>), executa <strong>Synesis: Code Selection</strong>, e o texto é substituído por:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ashworth2019</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Comparative study of public attitudes toward CCS and</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                 low-carbon energy technologies in Australia and China.</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Social acceptance of energy technologies</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Online survey (Australia n=2383, China n=1266)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ashworth2019</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> However, male respondents, those who perceived themselves to</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>          have higher knowledge of CCS, and those who valued economic</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>          outcomes over environmental protection were more likely to</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>          support CCS - as long as the risks were not perceived to</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>          outweigh the benefits.</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> *complex* Four-factor convergence reveals multi-domain</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>          determinants requiring integrated communication strategies</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Gender <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Self-assessed knowledge increases support, revealing</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>          information deficit mechanism</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Knowledge <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Economic prioritization over environmental values predicts</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>          support, indicating value-based acceptance mechanism</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Economic_Value <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Risk-benefit assessment constrains support, revealing</span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>          conditional acceptance mechanism</span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Risk_Perception <span class="op">-&gt;</span> CONSTRAINS <span class="op">-&gt;</span> CCS_Support</span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O bibref <code>@ashworth2019</code> foi detectado automaticamente do bloco SOURCE acima. O pesquisador não precisou digitar nada — apenas selecionar e executar o comando.</p>
-</section>
-<section id="configuração-do-caminho-do-executável" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="configuração-do-caminho-do-executável"><span class="header-section-number">11.3</span> Configuração do caminho do executável</h2>
-<p>Se o <code>synesis-coder</code> não está no PATH do sistema, configure o caminho na extensão:</p>
-<p><strong>VS Code Settings</strong> → <code>synesisExplorer.coder.path</code>:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"synesisExplorer.coder.path"</span><span class="fu">:</span> <span class="st">"C:/Python312/Scripts/synesis-coder.exe"</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="cancelamento" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="cancelamento"><span class="header-section-number">11.4</span> Cancelamento</h2>
-<p>A operação pode ser cancelada a qualquer momento clicando <strong>Cancel</strong> na notificação de progresso. O subprocesso é terminado imediatamente.</p>
-<hr>
-</section>
-</section>
-<section id="sec-arquitetura" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Como funciona internamente</h1>
-<p>O <code>synesis-coder</code> opera em um pipeline de cinco estágios. Entender esse pipeline ajuda a diagnosticar problemas e ajustar o fluxo de trabalho.</p>
-<pre><code>                    ┌─────────────────────────────┐
-                    │  synesis-coder item/ontology │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │   1. project_loader          │
-                    │      synesis.load()          │
-                    │      → ctx (template, fields,│
-                    │        code_index, relations) │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │   2. prompt_builder          │
-                    │      system (cacheável):     │
-                    │        regras + template     │
-                    │        + indexes + GUIDELINES│
-                    │      user (dinâmico):        │
-                    │        bibref + texto        │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │   3. llm_client              │
-                    │      Claude API (Anthropic)  │
-                    │      rate limiting RPM/TPM   │
-                    │      prompt caching ativo    │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │   4. validator               │
-                    │      synesis.load() valida   │
-                    │      ↻ até 3 tentativas      │
-                    │      temperatura crescente   │
-                    │      0.0 → 0.2 → 0.5        │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │   5. stdout                  │
-                    │      Bloco(s) Synesis válido │
-                    └─────────────────────────────┘</code></pre>
-<section id="project_loader" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="project_loader"><span class="header-section-number">12.1</span> 1. project_loader</h2>
-<p><code>load_project()</code> invoca <code>synesis.load()</code> — o compilador Synesis — para extrair do projeto:</p>
-<ul>
-<li><strong>template fields</strong> separados por escopo (SOURCE, ITEM, ONTOLOGY)</li>
-<li><strong>GUIDELINES</strong> por campo — instruções metodológicas do pesquisador</li>
-<li><strong>code_index</strong> — conceitos existentes (de campos CODE e CHAIN)</li>
-<li><strong>topic_index</strong> — tópicos existentes (de campos TOPIC)</li>
-<li><strong>ontology_index</strong> — entradas ontológicas já definidas</li>
-<li><strong>CHAIN relations</strong> — relações causais permitidas no projeto</li>
-<li><strong>project description</strong> — descrição do projeto (bloco DESCRIPTION)</li>
-</ul>
-<p>Tudo é extraído dinamicamente do compilador. Se o pesquisador muda o template, o <code>synesis-coder</code> se adapta automaticamente.</p>
-</section>
-<section id="prompt_builder" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="prompt_builder"><span class="header-section-number">12.2</span> 2. prompt_builder</h2>
-<p>Constrói prompts em duas camadas:</p>
-<ul>
-<li><strong>System prompt</strong> (cacheável): regras absolutas do formato Synesis, descrição do projeto, instruções por campo (GUIDELINES &gt; description &gt; genérica por tipo), conceitos e tópicos existentes. Marcado com <code>cache_control: ephemeral</code> na API Anthropic — o primeiro item de um batch paga o custo total, os demais reutilizam o cache.</li>
-<li><strong>User prompt</strong> (dinâmico): bibref + texto (modo <code>item</code>) ou código + semantic_ctx (modo <code>ontology</code>).</li>
-</ul>
-<p>A hierarquia de instruções por campo é: <strong>GUIDELINES</strong> (instrução metodológica do autor do template) &gt; <strong>description</strong> (descrição do campo) &gt; <strong>instrução genérica</strong> baseada no tipo de campo.</p>
-</section>
-<section id="llm_client" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="llm_client"><span class="header-section-number">12.3</span> 3. llm_client</h2>
-<p>Duas implementações:</p>
-<ul>
-<li><code>LLMClient</code> — síncrono, usado no modo <code>item</code></li>
-<li><code>AsyncLLMClient</code> — assíncrono, usado nos modos <code>abstract</code>, <code>document</code> e <code>ontology</code> (processamento concorrente)</li>
-</ul>
-<p>Ambas compartilham rate limiting:</p>
-<ul>
-<li><strong>RPM</strong> (requests per minute): semáforo com janela deslizante de 60s</li>
-<li><strong>TPM</strong> (tokens per minute): contagem de tokens de entrada e saída</li>
-</ul>
-</section>
-<section id="validator" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="validator"><span class="header-section-number">12.4</span> 4. validator</h2>
-<p>Valida a saída do LLM compilando-a com <code>synesis.load()</code>. Se o output contém erros:</p>
-<ol type="1">
-<li>Extrai apenas blocos Synesis relevantes (<code>_extract_item_blocks</code> / <code>_extract_ontology_blocks</code>) — descarta markdown, SOURCE ou ONTOLOGY que o LLM eventualmente adicione</li>
-<li>Remove fences de código (<code>```</code>)</li>
-<li>Envia o output + diagnósticos do compilador de volta ao LLM para correção</li>
-<li>Temperatura escalona: <code>0.0 → 0.2 → 0.5</code> para evitar loops determinísticos</li>
-<li>Após 3 tentativas, retorna o melhor resultado com cabeçalho de erro comentado</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-OrphanItem é ignorado
+Qualificadores das relações
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>No modo <code>item</code>, o validador ignora o diagnóstico <code>OrphanItem</code> (ITEM sem SOURCE correspondente). Isso é esperado — o SOURCE existe no <code>.syn</code> do projeto, mas não é carregado na validação isolada para economizar tokens de contexto.</p>
+<p>Os pares gerados a partir do projeto não levam o qualificador de um BUNDLE com CHAIN (por exemplo, o estatuto “hipotética”). Para um dataset fiel, declare a composição num bloco <a href="../reference/guia_referencia.html#sec-export"><code>EXPORT ALPACA</code> com <code>MAP</code></a> e use o JSONL em <code>--input</code>.</p>
 </div>
 </div>
 <hr>
 </section>
 </section>
-<section id="sec-testes" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Projetos de teste reais</h1>
-<p>O <code>synesis-coder</code> é testado contra projetos reais com templates de complexidade variada:</p>
-<table class="table-striped table-hover caption-top table">
-<caption>Projetos usados como fixtures de teste</caption>
-<colgroup>
-<col style="width: 25%">
-<col style="width: 27%">
-<col style="width: 47%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Projeto</th>
-<th>Template</th>
-<th>Características</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Social_Acceptance</code></td>
-<td>GUIDELINES, ORDERED, ENUMERATED, SCALE, CHAIN com 5 relações</td>
-<td>Caso completo com ontologia multidimensional</td>
-</tr>
-<tr class="even">
-<td><code>aids_corpus</code></td>
-<td>CHAIN com relações em português, sem GUIDELINES</td>
-<td>Template sem instruções metodológicas</td>
-</tr>
-<tr class="odd">
-<td><code>nave</code></td>
-<td>Sem campo CHAIN</td>
-<td>Template teológico minimalista</td>
-</tr>
-<tr class="even">
-<td><code>thompson_bible</code></td>
-<td>Sem ONTOLOGY scope</td>
-<td>Projeto que rejeita modo <code>ontology</code></td>
-</tr>
-</tbody>
-</table>
-<section id="executar-testes-sem-api" class="level3" data-number="13.0.1">
-<h3 data-number="13.0.1" class="anchored" data-anchor-id="executar-testes-sem-api"><span class="header-section-number">13.0.1</span> Executar testes sem API</h3>
-<p>Testes de integração (que consomem tokens) são <strong>excluídos por padrão</strong>. Executar a suíte normalmente não gera custo de API:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> synesis-coder</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="executar-testes-de-integração" class="level3" data-number="13.0.2">
-<h3 data-number="13.0.2" class="anchored" data-anchor-id="executar-testes-de-integração"><span class="header-section-number">13.0.2</span> Executar testes de integração</h3>
-<p>Requerem <code>ANTHROPIC_API_KEY</code> no ambiente:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> tests/ <span class="at">-v</span> <span class="at">-m</span> integration</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="cobertura" class="level3" data-number="13.0.3">
-<h3 data-number="13.0.3" class="anchored" data-anchor-id="cobertura"><span class="header-section-number">13.0.3</span> Cobertura</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> tests/ <span class="at">--cov</span><span class="op">=</span>synesis_coder <span class="at">--cov-report</span><span class="op">=</span>term-missing</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="sec-vscode" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Integração com VS Code</h1>
+<p>Na extensão <strong>Synesis</strong>, o modo <code>item</code> codifica o texto selecionado num <code>.syn</code>:</p>
+<ol type="1">
+<li>selecione o trecho</li>
+<li>clique com o botão direito → <strong>Synesis: Code Selection</strong> (ou <code>Ctrl+Shift+I</code> / <code>Cmd+Shift+I</code>)</li>
+</ol>
+<p>A extensão detecta o bibref do bloco sob o cursor, executa o <code>synesis-coder</code> na pasta do projeto (lendo o <code>.env</code> dela) e <strong>substitui a seleção</strong> pelo ITEM gerado. É possível cancelar na notificação de progresso. Se o executável não estiver no <code>PATH</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"synesisExplorer.coder.path"</span><span class="fu">:</span> <span class="st">"C:/Python312/Scripts/synesis-coder.exe"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
+<section id="sec-arquitetura" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Como funciona por dentro</h1>
+<pre class="text"><code>1. carregar    o compilador lê o projeto: campos, GUIDELINES, relações,
+               conceitos existentes, DESCRIPTION e QUESTIONS
+2. montar      prompt de sistema (estável, aproveita o cache da API)
+               + prompt da vez (referência e texto)
+3. gerar       chamada ao modelo (saída estruturada quando possível),
+               com limites de requisições e tokens
+4. validar     o compilador confere; se houver erros, eles voltam ao
+               modelo para correção (até 3 tentativas)
+5. gravar      só blocos válidos</code></pre>
+<p>A instrução de cada campo vem, nesta ordem, de <code>GUIDELINES</code>, de <code>DESCRIPTION</code> ou, sem ambas, de uma instrução genérica pelo tipo. Por isso vale escrever <code>GUIDELINES</code> em todo campo.</p>
+<hr>
 </section>
-<section id="sec-env" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Variáveis de ambiente</h1>
+<section id="sec-env" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Variáveis de ambiente</h1>
 <table class="table-striped table-hover caption-top table">
-<caption>Variáveis de ambiente gerais</caption>
-<colgroup>
-<col style="width: 23%">
-<col style="width: 30%">
-<col style="width: 19%">
-<col style="width: 26%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variável</th>
-<th style="text-align: center;">Obrigatória</th>
-<th>Padrão</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>ANTHROPIC_API_KEY</code></td>
-<td style="text-align: center;">sim</td>
-<td>—</td>
-<td>Chave da API Anthropic</td>
-</tr>
-<tr class="even">
-<td><code>SYNESIS_CODER_BACKEND</code></td>
-<td style="text-align: center;">não</td>
-<td><code>anthropic</code></td>
-<td>Backend LLM (<code>anthropic</code> ou <code>openai</code>)</td>
-</tr>
-<tr class="odd">
-<td><code>SYNESIS_CODER_MODEL</code></td>
-<td style="text-align: center;">não</td>
-<td><code>claude-opus-4-6</code></td>
-<td>Modelo LLM padrão</td>
-</tr>
-<tr class="even">
-<td><code>SYNESIS_CODER_MAX_RETRIES</code></td>
-<td style="text-align: center;">não</td>
-<td><code>3</code></td>
-<td>Tentativas de correção por item</td>
-</tr>
-<tr class="odd">
-<td><code>SYNESIS_CODER_TEMPERATURE</code></td>
-<td style="text-align: center;">não</td>
-<td><code>0.0</code></td>
-<td>Temperatura de geração</td>
-</tr>
-<tr class="even">
-<td><code>SYNESIS_CODER_RPM_LIMIT</code></td>
-<td style="text-align: center;">não</td>
-<td><code>50</code></td>
-<td>Requests por minuto</td>
-</tr>
-<tr class="odd">
-<td><code>SYNESIS_CODER_TPM_LIMIT</code></td>
-<td style="text-align: center;">não</td>
-<td><code>100000</code></td>
-<td>Tokens por minuto</td>
-</tr>
-</tbody>
-</table>
-<section id="modelo-por-fase" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="modelo-por-fase"><span class="header-section-number">14.1</span> Modelo por fase</h2>
-<p>Cada fase do pipeline pode usar um modelo diferente. A variável específica tem precedência sobre <code>SYNESIS_CODER_MODEL</code>:</p>
-<table class="table-striped table-hover caption-top table">
-<caption>Modelos por fase</caption>
-<colgroup>
-<col style="width: 62%">
-<col style="width: 37%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variável</th>
-<th>Fase</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>SYNESIS_CODER_CRITIQUE_MODEL</code></td>
-<td><code>critique</code> e a crítica dentro de <code>refine</code></td>
-</tr>
-<tr class="even">
-<td><code>SYNESIS_CODER_REFINE_MODEL</code></td>
-<td>Reextração em <code>refine</code></td>
-</tr>
-<tr class="odd">
-<td><code>SYNESIS_CODER_NORMALIZATION_MODEL</code></td>
-<td><code>normalize</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="limiares-do-pipeline-act" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="limiares-do-pipeline-act"><span class="header-section-number">14.2</span> Limiares do pipeline ACT</h2>
-<table class="table-striped table-hover caption-top table">
-<caption>Limiares configuráveis</caption>
+<caption>Variáveis gerais</caption>
 <colgroup>
 <col style="width: 34%">
 <col style="width: 27%">
@@ -1686,70 +1029,155 @@ OrphanItem é ignorado
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>SYNESIS_CODER_SUSPICION_THRESHOLD</code></td>
-<td><code>0.20</code></td>
-<td>Escore mínimo para emitir <code># REVISION</code></td>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td>—</td>
+<td>chave da Anthropic (backend padrão)</td>
 </tr>
 <tr class="even">
-<td><code>SYNESIS_CODER_MERGE_CONFIDENCE_THRESHOLD</code></td>
-<td><code>0.65</code></td>
-<td>Confiança mínima para canonizar um código</td>
+<td><code>SYNESIS_CODER_BACKEND</code></td>
+<td><code>anthropic</code></td>
+<td><code>anthropic</code> ou <code>openai</code></td>
 </tr>
 <tr class="odd">
+<td><code>SYNESIS_CODER_API_URL</code>, <code>_API_KEY</code></td>
+<td>—</td>
+<td>servidor compatível com OpenAI</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MODEL</code></td>
+<td><code>claude-opus-4-6</code></td>
+<td>modelo</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_LANGUAGE</code></td>
+<td>idioma do template</td>
+<td>idioma dos campos de texto livre</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MAX_RETRIES</code></td>
+<td><code>3</code></td>
+<td>tentativas de correção</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_TEMPERATURE</code></td>
+<td><code>0.0</code></td>
+<td>temperatura (omitida em modelos que não a aceitam)</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MAX_TOKENS</code></td>
+<td>do modelo</td>
+<td>limite de saída</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_CONCURRENT</code></td>
+<td>do modo</td>
+<td>chamadas simultâneas</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_THINKING_BUDGET</code></td>
+<td><code>0</code></td>
+<td>maior que 0 pede raciocínio</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_EFFORT</code></td>
+<td>do modelo</td>
+<td><code>low</code> a <code>max</code> (Anthropic)</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_MAX_RPM</code>, <code>_MAX_INPUT_TPM</code>, <code>_MAX_OUTPUT_TPM</code></td>
+<td><code>50</code>, <code>40000</code>, <code>8000</code></td>
+<td>limites (Anthropic)</td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_REQUIRE_GUIDELINES</code></td>
+<td>desligado</td>
+<td>exige <code>GUIDELINES</code> em todo campo</td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_ENV_FILE</code></td>
+<td>—</td>
+<td>arquivo de padrões compartilhado</td>
+</tr>
+</tbody>
+</table>
+<table class="table-striped table-hover caption-top table">
+<caption>Variáveis do pipeline de revisão</caption>
+<colgroup>
+<col style="width: 41%">
+<col style="width: 33%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variável</th>
+<th>Padrão</th>
+<th>Fase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SYNESIS_CODER_CRITIQUE_MODEL</code></td>
+<td>modelo geral</td>
+<td><code>critique</code> e a crítica em <code>refine</code></td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_NORMALIZATION_MODEL</code></td>
+<td>modelo geral</td>
+<td><code>normalize</code></td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_REFINE_MODEL</code></td>
+<td>modelo geral</td>
+<td><code>refine</code></td>
+</tr>
+<tr class="even">
+<td><code>SYNESIS_CODER_SUSPICION_THRESHOLD</code></td>
+<td><code>0.20</code></td>
+<td>escore mínimo para <code># REVISION</code></td>
+</tr>
+<tr class="odd">
+<td><code>SYNESIS_CODER_MERGE_CONFIDENCE_THRESHOLD</code></td>
+<td><code>0.65</code></td>
+<td>confiança para canonizar</td>
+</tr>
+<tr class="even">
 <td><code>SYNESIS_CODER_REFINE_MAX_ITER</code></td>
 <td><code>2</code></td>
-<td>Iterações máximas por ITEM em <code>refine</code></td>
+<td>iterações em <code>refine</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
+<section id="sec-erros" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Erros comuns</h1>
+<section id="synesis-coder-não-encontrado" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="synesis-coder-não-encontrado"><span class="header-section-number">16.1</span> <code>synesis-coder</code> não encontrado</h2>
+<p>O executável não está no <code>PATH</code>. Confira com <code>pip show synesis-coder</code>, use <code>python -m synesis_coder</code> ou configure o caminho na extensão.</p>
 </section>
-<section id="sec-erros" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Erros comuns</h1>
-<section id="synesis-coder-não-encontrado" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="synesis-coder-não-encontrado"><span class="header-section-number">15.1</span> <code>synesis-coder</code> não encontrado</h2>
-<pre><code>'synesis-coder' is not recognized as an internal or external command</code></pre>
-<p>O executável não está no PATH. Soluções:</p>
-<ul>
-<li>Verifique a instalação: <code>pip show synesis-coder</code></li>
-<li>Use o caminho completo: <code>python -m synesis_coder item ...</code></li>
-<li>No VS Code: configure <code>synesisExplorer.coder.path</code> com o caminho absoluto</li>
-</ul>
+<section id="chave-de-api-ausente" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="chave-de-api-ausente"><span class="header-section-number">16.2</span> Chave de API ausente</h2>
+<p>Crie o <code>.env</code> na pasta de onde o comando é executado, ou exporte a variável. Um <code>.env</code> ao lado da instalação não é lido.</p>
 </section>
-<section id="erro-de-configuração-api-key" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="erro-de-configuração-api-key"><span class="header-section-number">15.2</span> Erro de configuração (API key)</h2>
-<pre><code>Erro de configuração: ANTHROPIC_API_KEY não encontrada</code></pre>
-<p>Crie um arquivo <code>.env</code> no diretório de onde executa o comando, ou exporte a variável:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span>sk-ant-...</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="aviso-de-campo-sem-guidelines" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="aviso-de-campo-sem-guidelines"><span class="header-section-number">16.3</span> Aviso de campo sem GUIDELINES</h2>
+<p>O modelo recebe apenas a <code>DESCRIPTION</code> (ou nada) para esse campo. Escreva as instruções no template.</p>
 </section>
-<section id="template-sem-ontology-scope" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="template-sem-ontology-scope"><span class="header-section-number">15.3</span> Template sem ONTOLOGY scope</h2>
-<pre><code>Erro: O template do projeto 'thompson_bible' não define campos ONTOLOGY.</code></pre>
-<p>O modo <code>ontology</code> requer pelo menos um campo com <code>SCOPE ONTOLOGY</code> no template. Os modos <code>item</code>, <code>abstract</code> e <code>document</code> funcionam normalmente sem ontologia.</p>
-</section>
-<section id="validação-falha-após-3-tentativas" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="validação-falha-após-3-tentativas"><span class="header-section-number">15.4</span> Validação falha após 3 tentativas</h2>
-<p>O cabeçalho de erro é incluído como comentário no output:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># synesis-coder: validation failed after 3 attempts</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># errors: Missing required field 'chain' in ITEM block</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2024</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> ...</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> ...</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Revise o bloco gerado e corrija manualmente os campos faltantes. Isso é raro em templates com GUIDELINES bem escritas.</p>
+<section id="o-modelo-não-consegue-produzir-um-bloco-válido" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="o-modelo-não-consegue-produzir-um-bloco-válido"><span class="header-section-number">16.4</span> O modelo não consegue produzir um bloco válido</h2>
+<p>Depois das tentativas, o bloco é registrado como falha (no modo <code>ontology</code>, no arquivo <code>.rejected</code>). Veja a mensagem do compilador, revise as <code>GUIDELINES</code> do campo envolvido e rode de novo (<code>--resume</code> no modo <code>abstract</code>).</p>
 <hr>
 </section>
 </section>
-<section id="sec-proximos" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Próximos passos</h1>
+<section id="sec-proximos" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Próximos passos</h1>
 <ul>
-<li><a href="../explanation/codificacao_assistida_IA.html">Codificação Assistida por IA</a> — caso real completo com o projeto Social_Acceptance</li>
-<li><a href="../explanation/codificacao_assistida_IA_metricas.html">Métricas da Pesquisa</a> — análise quantitativa dos resultados</li>
-<li><a href="../howto/definir_ontologia.html">Como Definir uma Ontologia</a> — curadoria manual das entradas geradas</li>
-<li><a href="../howto/criar_chains.html">Como Criar e Validar Chains</a> — regras de modelagem causal</li>
-<li><a href="../howto/ligar_projetos.html">Como Ligar Projetos Independentes</a> — cruzar corpora anotados separadamente</li>
-<li><a href="../tutorials/synesis_explorer_tutorial.html">Tutorial Synesis Explorer</a> — configurar o ambiente VS Code</li>
+<li><a href="../explanation/codificacao_assistida_IA.html">Codificação Assistida por IA</a>: um caso real</li>
+<li><a href="../explanation/codificacao_assistida_IA_metricas.html">Métricas da Pesquisa</a></li>
+<li><a href="../howto/definir_ontologia.html">Como Definir uma Ontologia</a></li>
+<li><a href="../howto/criar_chains.html">Como Criar e Validar Chains</a></li>
+<li><a href="../howto/ligar_projetos.html">Como Ligar Projetos Independentes</a></li>
+<li><a href="../tutorials/synesis_claude_desktop.html">Synesis no Claude Desktop</a></li>
 </ul>
 
 

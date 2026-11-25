@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>AI-assisted Coding – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
+ <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/organizing_model.html">
+ <span class="dropdown-text">The Organizing Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-visao-geral" id="toc-sec-visao-geral" class="nav-link active" data-scroll-target="#sec-visao-geral"><span class="header-section-number">1</span> Project Overview</a></li>
+  <li><a href="#sec-template" id="toc-sec-template" class="nav-link" data-scroll-target="#sec-template"><span class="header-section-number">2</span> The Template: an Advanced Analytical Structure</a></li>
+  <li><a href="#sec-prompts" id="toc-sec-prompts" class="nav-link" data-scroll-target="#sec-prompts"><span class="header-section-number">3</span> Methodological Instructions in the Template</a>
+  <ul class="collapse">
+  <li><a href="#excerpt-selection" id="toc-excerpt-selection" class="nav-link" data-scroll-target="#excerpt-selection"><span class="header-section-number">3.1</span> Excerpt Selection</a></li>
+  <li><a href="#controlling-conceptual-granularity" id="toc-controlling-conceptual-granularity" class="nav-link" data-scroll-target="#controlling-conceptual-granularity"><span class="header-section-number">3.2</span> Controlling Conceptual Granularity</a></li>
+  <li><a href="#separating-sequential-and-parallel-paths" id="toc-separating-sequential-and-parallel-paths" class="nav-link" data-scroll-target="#separating-sequential-and-parallel-paths"><span class="header-section-number">3.3</span> Separating Sequential and Parallel Paths</a></li>
+  <li><a href="#ontological-classification" id="toc-ontological-classification" class="nav-link" data-scroll-target="#ontological-classification"><span class="header-section-number">3.4</span> Ontological Classification</a></li>
+  </ul></li>
+  <li><a href="#sec-exemplos" id="toc-sec-exemplos" class="nav-link" data-scroll-target="#sec-exemplos"><span class="header-section-number">4</span> Real Examples</a>
+  <ul class="collapse">
+  <li><a href="#source-epistemic-metadata" id="toc-source-epistemic-metadata" class="nav-link" data-scroll-target="#source-epistemic-metadata"><span class="header-section-number">4.1</span> SOURCE: Epistemic Metadata</a></li>
+  <li><a href="#item-causal-chains-with-bundle" id="toc-item-causal-chains-with-bundle" class="nav-link" data-scroll-target="#item-causal-chains-with-bundle"><span class="header-section-number">4.2</span> ITEM: Causal Chains with BUNDLE</a></li>
+  <li><a href="#ontology-multidimensional-classification" id="toc-ontology-multidimensional-classification" class="nav-link" data-scroll-target="#ontology-multidimensional-classification"><span class="header-section-number">4.3</span> ONTOLOGY: Multidimensional Classification</a>
+  <ul class="collapse">
+  <li><a href="#a-high-confidence-concept" id="toc-a-high-confidence-concept" class="nav-link" data-scroll-target="#a-high-confidence-concept"><span class="header-section-number">4.3.1</span> A High-confidence Concept</a></li>
+  <li><a href="#a-low-confidence-concept" id="toc-a-low-confidence-concept" class="nav-link" data-scroll-target="#a-low-confidence-concept"><span class="header-section-number">4.3.2</span> A Low-confidence Concept</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-revisao" id="toc-sec-revisao" class="nav-link" data-scroll-target="#sec-revisao"><span class="header-section-number">5</span> The Role of Human Review</a></li>
+  <li><a href="#sec-resumo" id="toc-sec-resumo" class="nav-link" data-scroll-target="#sec-resumo"><span class="header-section-number">6</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AI-assisted Coding</h1>
+<p class="subtitle lead">A real case: bibliometric analysis of the social acceptance of energy transition technologies</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This document presents a real case of Synesis in academic research, in which qualitative coding was performed by artificial intelligence and manually reviewed by the researcher. The project analyzes <strong>factors of social acceptance of energy transition technologies</strong> from a corpus of scientific articles selected through bibliometrics.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Real data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unlike the fictitious examples on other pages of this documentation, all data shown here are real — extracted from published scientific articles and processed by the pipeline described in this document.</p>
+</div>
+</div>
+<hr>
+<section id="sec-visao-geral" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project Overview</h1>
+<p>The <code>Social_Acceptance</code> project combines three steps:</p>
+<ol type="1">
+<li><strong>Corpus selection</strong>: ~450 scientific articles identified through bibliometrics (citation analysis, co-citation and bibliographic coupling)</li>
+<li><strong>AI coding</strong>: each abstract was processed by a language model (LLM) following methodological prompts, producing the <code>.syn</code> (annotations) and <code>.syno</code> (ontology) files</li>
+<li><strong>Human review</strong>: the researcher reviewed and adjusted the results, correcting excessive generalizations, imprecise relations and duplicated concepts</li>
+</ol>
+<p>The result is a knowledge graph with hundreds of concepts and causal relations, structured in Synesis and exportable to Neo4j, Excel and JSON.</p>
+<hr>
+</section>
+<section id="sec-template" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Template: an Advanced Analytical Structure</h1>
+<p>The template defines the structure the AI must fill in. It incorporates three theoretical frameworks:</p>
+<ul>
+<li><strong>Grounded Theory</strong>: inductive extraction of concepts and relations from the data</li>
+<li><strong>Dooyeweerd’s Modal Aspects</strong>: classification of concepts into 16 modal aspects (from the numerical to the pistic, or fiducial)</li>
+<li><strong>Wüstenhagen’s Dimensions</strong>: community, market and socio-political acceptance</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> bibliometrics <span class="fu">version:</span> <span class="st">"2.0"</span> <span class="fu">author:</span> <span class="st">"Synesis Compiler Team"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> description, epistemic_model, method</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="at">text</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> <span class="kw">BUNDLE</span> <span class="at">note</span>, <span class="at">chain</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> ontology_description</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> topic, aspect, dimension, confidence, reasoning</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> <span class="at">rgt_element_a</span>, <span class="at">rgt_element_b</span>, theoretical_significance</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Three design decisions deserve attention:</p>
+<ol type="1">
+<li><strong>SOURCE with epistemic metadata</strong>: each source declares its epistemological model and method, so results can be crossed by theoretical tradition</li>
+<li><strong>BUNDLE of note + chain</strong>: each analytical interpretation (memo) is necessarily paired with its formalization as a causal chain</li>
+<li><strong>Multidimensional ONTOLOGY</strong>: each concept receives a modal classification (Dooyeweerd), a dimensional one (Wüstenhagen), a confidence level and a bipolar construct (Repertory Grid Theory)</li>
+</ol>
+<p>Here are the full definitions of the most relevant fields. From version 2.0 of the template on, each field carries a <code>GUIDELINES</code> block with the methodological instructions that used to be supplied in external prompts:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">text</span> <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Textual excerpt extracted from the bibliographic source</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        Extract COMPLETE, SELF-CONTAINED semantic units (1-3 sentences).</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        Each excerpt must <span class="fu">include:</span> subject + verb + object + qualifiers.</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        The excerpt must be intelligible without surrounding context.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">GOOD:</span> 'Community trust and environmental concern are the most important</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        factors determining willingness to participate in renewable energy projects'</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">BAD:</span> 'determining such willingness' (lacks subject<span class="co">/context)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        Score analytical value 1-5 BEFORE extraction. Extract only score <span class="fu">3-5:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">5:</span> Reveals causal mechanism or multi-step pathway (explains HOW acceptance works)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">4:</span> Shows enabling<span class="co">/shaping relationship with clear mechanism</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">3:</span> Theoretically significant association (flag as *borderline*)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">2:</span> Simple association without mechanism (SKIP)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        Score <span class="fu">1:</span> Trivial<span class="co">/obvious/redundant (SKIP)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">TEST:</span> 'Does this explain HOW or WHY social acceptance occurs?'</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        YES + mechanism visible = Extract. Otherwise SKIP.</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Analytical memo explaining the interpretation and the causal mechanism identified</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        Write an analytical description of the mechanism, significance, or rationale</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        revealed by the excerpt. Do NOT merely restate the excerpt.</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        Maximum 25 words (up to 50 words if flagged *complex*).</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        State the causal mechanism or theoretical insight, not a description of the <span class="at">text</span>.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="fu">GOOD:</span> 'Reveals dual <span class="fu">mechanism:</span> Integration and Engagement independently</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        enable transition via complementary pathways'</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">BAD:</span> 'The excerpt describes how factors influence willingness'</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        Add *borderline* flag if analytical value score is 3.</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        Add *complex* flag if 4+ factors converge on the same outcome.</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Causal<span class="co">/relational chain between ontology concepts</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> Necessary or facilitating condition (A allows B to occur)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> Direct causal effect (A affects or changes B)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> Limits or restricts (A reduces the options or viability of B)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONTESTED-BY:</span> Active opposition (A is contested or challenged by B)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RELATES-TO:</span> Generic significant association (A is related to B)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        RELATION SELECTION <span class="fu">PRIORITY:</span> ENABLES &gt; INFLUENCES &gt; CONSTRAINS &gt; CONTESTED-BY &gt; RELATES-TO</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        Selection tests for each relation <span class="fu">type:</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> 'Can B exist without A?' If NO, use ENABLES.</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INFLUENCES:</span> 'Does A increase<span class="co">/decrease/modify B?' If YES, use INFLUENCES.</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> 'Does A impose boundaries on B?' If YES, use CONSTRAINS.</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="fu">RELATES-TO:</span> Theoretically significant association. LAST RESORT — use in less than 5% of relations.</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        SEQUENTIAL vs PARALLEL CHAINS <span class="fu">(CRITICAL):</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        SEQUENTIAL <span class="fu">(A-&gt;B-&gt;C):</span> Keep in ONE <span class="at">chain</span> when factors form a causal pathway.</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        'Ownership enables financing which enables deployment'</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="op">-&gt;</span> Ownership <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financing <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        PARALLEL <span class="fu">(X,Y,Z-&gt;A):</span> Create SEPARATE <span class="kw">ITEM</span> blocks when multiple factors</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        independently affect the same outcome.</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>        'Environmental concern, education, trust determine participation'</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        <span class="op">-&gt;</span> Three separate <span class="kw">ITEM</span> blocks, each with its own <span class="at">note</span> and <span class="at">chain</span>.</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>        FACTOR GRANULARITY <span class="fu">(target:</span> fewer than 150 unique factors across the full <span class="fu">corpus):</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        Level 1 - Core <span class="fu">concept:</span> Acceptance, Deployment, Policy, Trust, Cost</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        Level 2 - Qualified concept (when distinction <span class="fu">matters):</span> Public_Acceptance, Community_Trust</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        Level 3 - Full specification (only when Level 2 loses critical <span class="fu">meaning):</span> Offshore_Wind_Acceptance</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DECISION:</span> 'Will this term appear in 5+ abstracts?' If unlikely, generalize to Level 1-2.</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> aspect <span class="kw">TYPE</span> <span class="kw">ORDERED</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Dooyeweerd's modal aspects (order is meaningful)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[0]</span> <span class="fu">Undefined:</span> Not available</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[1]</span> <span class="fu">Quantitative:</span> Measurements, statistics</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[2]</span> <span class="fu">Spatial:</span> Location, geography</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[3]</span> <span class="fu">Kinematic:</span> Movement, flow, dynamics</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[4]</span> <span class="fu">Physical:</span> Material properties, energy systems</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[5]</span> <span class="fu">Biotic:</span> Ecological, environmental, health impacts</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[6]</span> <span class="fu">Sensitive:</span> Perception, awareness, emotional responses</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[7]</span> <span class="fu">Analytical:</span> Research, analysis, methodological elements</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[8]</span> <span class="fu">Formative:</span> Planning, design, innovation</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[9]</span> <span class="fu">Lingual:</span> Communication, documentation</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[10]</span> <span class="fu">Social:</span> Community relations, collective dynamics</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[11]</span> <span class="fu">Economic:</span> Costs, markets, finance</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[12]</span> <span class="fu">Aesthetic:</span> Visual qualities, aesthetics</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[13]</span> <span class="fu">Juridical:</span> Legal, regulatory, governance</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[14]</span> <span class="fu">Ethical:</span> Moral responsibility, equity</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[15]</span> <span class="fu">Fiducial:</span> Trust, belief, values, worldview</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        Classify the factor's primary modal nature using the Dooyeweerd framework.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        The semantic domain of the factor name determines the base classification.</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        PRIMARY classification <span class="fu">mapping:</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        Economic terms <span class="op">-&gt;</span> aspect 11</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        Governance<span class="co">/regulation -&gt; aspect 13</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        Psychological<span class="co">/trust/attitudes -&gt; aspect 15 or 6</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        Environmental<span class="co">/impact/ecology -&gt; aspect 5</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        Technical<span class="co">/method/assessment -&gt; aspect 7</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        Social<span class="co">/community/participation -&gt; aspect 10</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        Critical <span class="fu">rule:</span> Semantic meaning &gt; relations &gt; co-occurrence &gt; statistics.</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> confidence <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Confidence level based on frequency and sources</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">LOW:</span> Low frequency or limited sources</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">MEDIUM:</span> Moderate frequency with reasonable support</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">HIGH:</span> High frequency and broad empirical support</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        Assign confidence based on statistical <span class="fu">evidence:</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">HIGH:</span> frequency &gt; 10 AND sources &gt; 5</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="fu">MEDIUM:</span> frequency 5-10 OR sources 3-5</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">LOW:</span> frequency &lt; 5 OR sources &lt; 3</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> theoretical_significance <span class="kw">TYPE</span> <span class="kw">SCALE</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FORMAT</span> <span class="bn">[0..5]</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Theoretical significance of the concept (0=low, 5=high)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        Rate based on frequency, source diversity, and centrality in causal chains.</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">0:</span> No theoretical significance identified</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">3:</span> Moderate significance, appears in multiple chains across several sources</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>        <span class="fu">5:</span> Core concept, foundational to the theoretical framework</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Composing types and GUIDELINES
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This template uses <strong>8 different field types</strong> in a single project: TEXT, QUOTATION, MEMO, CHAIN (with RELATIONS and ARITY), TOPIC, ORDERED (with indexed VALUES), ENUMERATED (with VALUES) and SCALE (with FORMAT). From version 2.0 on, each field also carries a <code>GUIDELINES</code> block with the methodological instructions that govern the AI’s behaviour — the template stops being only a data schema and becomes the <strong>complete playbook</strong> of the analysis.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-prompts" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Methodological Instructions in the Template</h1>
+<p>The AI does not code freely — it follows precise methodological instructions that govern each extraction and classification decision. In version 1.0 of the project these instructions were supplied in prompts external to the template. In version 2.0 they moved into the template itself through the <code>GUIDELINES</code> block, making the <code>.synt</code> the single versioned repository of the whole methodology.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The template as methodological playbook
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With <code>GUIDELINES</code>, the template stops being a data schema and becomes an <strong>executable playbook</strong>: each field defines not only <em>what</em> to store but <em>how</em> the AI should decide what to extract. The instructions live next to the structure, versioned in the same file, auditable by any collaborator.</p>
+</div>
+</div>
+<section id="excerpt-selection" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="excerpt-selection"><span class="header-section-number">3.1</span> Excerpt Selection</h2>
+<p>The <code>text</code> field instructs the AI to extract only <strong>complete semantic units</strong> (1-3 sentences) with subject, verb, object and qualifiers. Each candidate excerpt receives an analytical value score before extraction — only scores 3-5 are included:</p>
+<blockquote class="blockquote">
+<p>Score 5: Reveals a causal mechanism or multi-step pathway (explains <em>how</em> acceptance works)</p>
+<p>Score 4: Shows enabling/shaping with a clear mechanism</p>
+<p>Score 3: Theoretically significant association (<code>*borderline*</code>)</p>
+<p>Score 2: Simple association without mechanism (SKIP)</p>
+<p>Score 1: Trivial, obvious or redundant (SKIP)</p>
+</blockquote>
+<p>The decisive test, written into the field’s <code>GUIDELINES</code>: <em>“Does this explain HOW or WHY social acceptance occurs?”</em></p>
+</section>
+<section id="controlling-conceptual-granularity" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="controlling-conceptual-granularity"><span class="header-section-number">3.2</span> Controlling Conceptual Granularity</h2>
+<p>The <code>GUIDELINES</code> of the <code>chain</code> field fight <strong>concept proliferation</strong> — the greatest risk of automated coding — with a generalization hierarchy and a pragmatic decision rule:</p>
+<blockquote class="blockquote">
+<p>Level 1 — Core concept: <code>Acceptance</code>, <code>Deployment</code>, <code>Policy</code>, <code>Trust</code>, <code>Cost</code></p>
+<p>Level 2 — Qualified concept (when the distinction matters): <code>Public_Acceptance</code>, <code>Community_Trust</code></p>
+<p>Level 3 — Full specification (only when Level 2 loses critical meaning): <code>Offshore_Wind_Acceptance</code></p>
+<p><em>“Will this specific term appear in 5+ abstracts? Likely 1-2 uses → Generalize to Level 1-2.”</em></p>
+</blockquote>
+<p>The target: fewer than <strong>150 unique concepts</strong> across 450 articles.</p>
+</section>
+<section id="separating-sequential-and-parallel-paths" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="separating-sequential-and-parallel-paths"><span class="header-section-number">3.3</span> Separating Sequential and Parallel Paths</h2>
+<p>The <code>GUIDELINES</code> of the <code>chain</code> field explicitly distinguish the two structural patterns:</p>
+<p><strong>Sequential chain</strong> (A causes B, which causes C) → a single <code>chain</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Ownership <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financing <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Deployment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Parallel paths</strong> (A, B and C independently affect D) → separate <code>ITEM</code> blocks, each with its own <code>note</code>/<code>chain</code> pair:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Trust <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Cost <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chain:</span> Policy <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> Acceptance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This distinction is critical to the quality of the resulting graph: parallel paths mixed into a single chain would create spurious relations.</p>
+</section>
+<section id="ontological-classification" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="ontological-classification"><span class="header-section-number">3.4</span> Ontological Classification</h2>
+<p>The <code>GUIDELINES</code> of the <code>aspect</code>, <code>dimension</code> and <code>confidence</code> fields instruct the AI to classify each extracted concept following an explicit priority hierarchy:</p>
+<ol type="1">
+<li><strong>Semantic meaning</strong> of the concept (primary)</li>
+<li><strong>Relational profile</strong> — dominant relation types (secondary)</li>
+<li><strong>Co-occurrence patterns</strong> — frequently associated concepts (tertiary)</li>
+<li><strong>Statistical profile</strong> — frequency and source diversity (quaternary)</li>
+<li><strong>Taxonomic semantics</strong> — hierarchical and part-whole relations (quinary)</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="sec-exemplos" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Real Examples</h1>
+<p>The following examples were taken directly from the project and show the full pipeline: source → annotation → ontology.</p>
+<hr>
+<section id="source-epistemic-metadata" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="source-epistemic-metadata"><span class="header-section-number">4.1</span> SOURCE: Epistemic Metadata</h2>
+<p>Each source records not only <em>what</em> the study investigates but <em>how</em> — epistemological model and data collection method.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ashworth2019</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Comparative study of public attitudes toward CCS and</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 low-carbon energy technologies in Australia and China,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                 examining factors associated with support levels.</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Social acceptance of energy technologies,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                     comparative public opinion research</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Online survey (Australia n=2383, China n=1266)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>epistemic_model</code> field allows filtering results by theoretical tradition. At the end of the analysis the researcher can ask: <em>“Do the causal relations identified by researchers using Diffusion of Innovations differ from those identified by users of Justice Theory?”</em></p>
+<p>Another example shows a study with a different approach:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@aly2019</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">description:</span> Investigates institutional, financial, and technological</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                 barriers to large-scale solar power deployment in Tanzania</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                 through stakeholder interviews.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">epistemic_model:</span> Stakeholder analysis, barrier identification framework</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">method:</span> Semi-structured interviews (30 experts from public institutions,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            research, private sector, civil society, development partners,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            financial institutions)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="item-causal-chains-with-bundle" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="item-causal-chains-with-bundle"><span class="header-section-number">4.2</span> ITEM: Causal Chains with BUNDLE</h2>
+<p>Each item contains an excerpt and one or more note/chain pairs in a BUNDLE. Here is an example with <strong>multi-factor convergence</strong> — four independent factors affect the same outcome:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ashworth2019</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> However, male respondents, those who perceived themselves to</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          have higher knowledge of CCS, and those who valued economic</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          outcomes over environmental protection were more likely to</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          support CCS - as long as the risks were not perceived to</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          outweigh the benefits.</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> *complex* Four-factor convergence (gender, knowledge,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>          economic values, risk perception) reveals multi-domain</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>          determinants requiring integrated communication strategies</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Gender <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Self-assessed knowledge increases support, revealing</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>          information deficit mechanism where perceived understanding</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>          drives acceptance</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Knowledge <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Economic prioritization over environmental values predicts</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>          support, indicating value-based acceptance mechanism</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Economic_Value <span class="op">-&gt;</span> INFLUENCES <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Risk-benefit assessment constrains support, revealing</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>          conditional acceptance mechanism where perceived risks</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>          override other positive factors</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Risk_Perception <span class="op">-&gt;</span> CONSTRAINS <span class="op">-&gt;</span> CCS_Support</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note:</p>
+<ul>
+<li><strong>4 note/chain pairs</strong> for the same excerpt — the BUNDLE guarantees positional correspondence</li>
+<li>The first note carries the <code>*complex*</code> flag, indicating multi-factor convergence</li>
+<li>Three relations are <code>INFLUENCES</code> (direct causal effect) and one is <code>CONSTRAINS</code> (limitation) — the semantic distinction is preserved</li>
+<li>The 4 paths are <strong>parallel</strong> (each factor independently affects <code>CCS_Support</code>), so they are separate chains within the same ITEM</li>
+</ul>
+<p>Now an example of a <strong>sequential chain</strong> — one factor triggers another in cascade:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@aly2019</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> Institutional barriers for the diffusion of large-scale solar</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          power technologies are found to be predominant, and they often</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>          trigger financial and technological barriers.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Reveals sequential triggering mechanism where institutional</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          barriers activate downstream financial and technological</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>          constraints</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Institutional_Barrier <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Financial_Barrier</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Technological_Barrier</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here a single chain of 3 concepts expresses the sequential mechanism: institutional barriers <em>enable</em> (make possible) financial barriers, which in turn <em>enable</em> technological barriers. The <code>ENABLES</code> relation is used in the sense of necessary condition — without the institutional barrier, the others would not appear.</p>
+<hr>
+</section>
+<section id="ontology-multidimensional-classification" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="ontology-multidimensional-classification"><span class="header-section-number">4.3</span> ONTOLOGY: Multidimensional Classification</h2>
+<p>Each concept mentioned in the chains is defined in the ontology with a classification along several dimensions. Here are two contrasting concepts:</p>
+<section id="a-high-confidence-concept" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="a-high-confidence-concept"><span class="header-section-number">4.3.1</span> A High-confidence Concept</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect <span class="fu">11:</span> Core economic factor representing financial</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>               expenditure. Mainly constrains deployment<span class="co">/technology</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>               development while enabling market penetration when</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>               reduced. Co-occurs with Deployment and Acceptance,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>               indicating market-consumer relevance. Dimension <span class="fu">2:</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>               Directly affects investors, consumers, and market</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               competitiveness. High frequency (96) across broad</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>               sources (66) confirms central role.</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ontology_description:</span> Economic factor representing financial expenditure</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                 associated with energy technologies and systems.</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                 Acts as primary barrier constraining technology</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                 development, site selection, and deployment when</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                 high, while enabling market penetration, technology</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                 transition, and sustainable solutions when reduced.</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Low_Cost</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> High_Cost</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 0</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>topic</strong> <code>Economics</code> — emergent thematic grouping (TOPIC, open values)</li>
+<li><strong>aspect</strong> <code>11</code> (Economic) — Dooyeweerd’s modal classification (ORDERED, 16 values)</li>
+<li><strong>dimension</strong> <code>2</code> (Market_Acceptance) — Wüstenhagen’s dimension (ORDERED, 5 values)</li>
+<li><strong>confidence</strong> <code>HIGH</code> — frequency 96, in 66 different sources (ENUMERATED)</li>
+<li><strong>reasoning</strong> — justification of the classification, including statistical evidence (TEXT)</li>
+<li><strong>rgt_element_a/b</strong> — bipolar construct: <code>Low_Cost</code> vs <code>High_Cost</code> (TEXT)</li>
+<li><strong>theoretical_significance</strong> — 0-5 scale (SCALE)</li>
+</ul>
+</section>
+<section id="a-low-confidence-concept" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="a-low-confidence-concept"><span class="header-section-number">4.3.2</span> A Low-confidence Concept</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Climate_Belief</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Worldview</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 15</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 1</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> LOW</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect 15 <span class="fu">(Fiducial):</span> Climate belief represents</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>               worldview and conviction about climate change causation.</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>               Relations show influences on acceptability and support.</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>               Co-occurs with CCS support and acceptability factors.</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>               Dimension <span class="fu">1:</span> Affects community-level acceptance of</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>               technologies like tidal and CCS. Low frequency (2)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>               and sources (2) limit robustness.</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ontology_description:</span> Climate belief refers to individuals' conviction</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                 regarding the existence and anthropogenic causation</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                 of climate change. In energy transition contexts,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                 this worldview shapes acceptance of low-carbon</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                 technologies, with believers in human-induced</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                 climate change showing differential support patterns.</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_a:</span> Strong_Climate_Belief</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgt_element_b:</span> Weak_Climate_Belief</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theoretical_significance:</span> 0</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The contrast is instructive:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Cost</th>
+<th>Climate_Belief</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>confidence</strong></td>
+<td>HIGH (96 occurrences, 66 sources)</td>
+<td>LOW (2 occurrences, 2 sources)</td>
+</tr>
+<tr class="even">
+<td><strong>aspect</strong></td>
+<td>11 Economic</td>
+<td>15 Fiducial</td>
+</tr>
+<tr class="odd">
+<td><strong>dimension</strong></td>
+<td>2 Market</td>
+<td>1 Community</td>
+</tr>
+<tr class="even">
+<td><strong>topic</strong></td>
+<td>Economics</td>
+<td>Worldview</td>
+</tr>
+</tbody>
+</table>
+<p><code>Cost</code> is a central concept of the corpus — it appears in 66 different articles. <code>Climate_Belief</code> is peripheral — it emerges in only 2 sources. Both receive the same classification structure, but the <code>confidence</code> field tells the researcher which deserves more weight in the analysis.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="sec-revisao" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> The Role of Human Review</h1>
+<p>The AI produces consistent results at scale but makes systematic errors the researcher must correct:</p>
+<ul>
+<li><strong>Excessive generalization</strong>: the AI tends to simplify concepts beyond what is desirable (e.g.&nbsp;collapsing <code>Procedural Justice</code> and <code>Distributive Justice</code> into just <code>Justice</code>)</li>
+<li><strong>Imprecise relations</strong>: the distinction between <code>ENABLES</code> and <code>INFLUENCES</code> requires contextual judgement the AI does not always get right</li>
+<li><strong>Duplicated concepts</strong>: wording variants (<code>Public Acceptance</code> vs <code>Social Acceptance</code>) can create ontologically distinct concepts that are actually the same phenomenon</li>
+<li><strong>Truncated excerpts</strong>: despite the instructions, the AI occasionally extracts fragments that are not self-contained</li>
+</ul>
+<p>Synesis supports this review because the template <strong>structurally validates</strong> the results: a concept mentioned in <code>chain</code> without a definition in the ontology produces a warning (an error with <code>--strict</code>); an incomplete note/chain pair violates the BUNDLE and is a compilation error. These mechanisms turn silent failures into explicit messages.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The AI codes, the template validates, the researcher decides
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The workflow is: the AI generates data at scale → the Synesis compiler validates the structure → the researcher reviews the content. Each actor does what it does best.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-resumo" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Summary</h1>
+<table class="table-striped table-hover caption-top table">
+<caption>AI-assisted coding pipeline</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 30%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Who does it</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Corpus selection</td>
+<td>Researcher (bibliometrics)</td>
+<td>List of ~450 relevant articles</td>
+</tr>
+<tr class="even">
+<td>Template design</td>
+<td>Researcher</td>
+<td><code>.synt</code> with analytical structure, theoretical frameworks and per-field <code>GUIDELINES</code></td>
+</tr>
+<tr class="odd">
+<td>Coding</td>
+<td>AI (LLM)</td>
+<td><code>.syn</code> (annotations) and <code>.syno</code> (ontology)</td>
+</tr>
+<tr class="even">
+<td>Structural validation</td>
+<td>Synesis compiler</td>
+<td>Reference, BUNDLE, ARITY and type errors</td>
+</tr>
+<tr class="odd">
+<td>Content review</td>
+<td>Researcher</td>
+<td>Corrections to generalization, relations and duplicates</td>
+</tr>
+<tr class="even">
+<td>Export</td>
+<td>Synesis compiler and synesis-graph</td>
+<td>JSON and Excel for quantitative analysis; Neo4j or ArcadeDB graph</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+From external prompts to GUIDELINES in the template
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In version 1.0 of the project, “Prompt design” was a separate step: the methodological instructions lived in external documents and had to be included manually in each call to the LLM. In version 2.0 this step was absorbed into the template through <code>GUIDELINES</code> — the <code>.synt</code> became the single repository of structure <strong>and</strong> methodology, versioned with the project.</p>
+<p>Today this workflow is run by <a href="../howto/synesis_coder.html">synesis-coder</a>, which assembles the instructions to the model from the template itself.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

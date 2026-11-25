@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>synesis-graph – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
+ <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/organizing_model.html">
+ <span class="dropdown-text">The Organizing Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#synesis-graph" id="toc-synesis-graph" class="nav-link active" data-scroll-target="#synesis-graph"><span class="header-section-number">1</span> synesis-graph</a></li>
+  <li><a href="#sec-instalacao" id="toc-sec-instalacao" class="nav-link" data-scroll-target="#sec-instalacao"><span class="header-section-number">2</span> Installation</a></li>
+  <li><a href="#sec-backends" id="toc-sec-backends" class="nav-link" data-scroll-target="#sec-backends"><span class="header-section-number">3</span> Backends</a>
+  <ul class="collapse">
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source"><span class="header-section-number">3.1</span> Data Source</a></li>
+  </ul></li>
+  <li><a href="#sec-modelo" id="toc-sec-modelo" class="nav-link" data-scroll-target="#sec-modelo"><span class="header-section-number">4</span> Data Model: Template → Graph</a>
+  <ul class="collapse">
+  <li><a href="#nodes-always-created" id="toc-nodes-always-created" class="nav-link" data-scroll-target="#nodes-always-created"><span class="header-section-number">4.1</span> Nodes Always Created</a></li>
+  <li><a href="#translation-example" id="toc-translation-example" class="nav-link" data-scroll-target="#translation-example"><span class="header-section-number">4.2</span> Translation Example</a></li>
+  <li><a href="#deprecated-names-use" id="toc-deprecated-names-use" class="nav-link" data-scroll-target="#deprecated-names-use"><span class="header-section-number">4.3</span> Deprecated Names (<code>USE</code>)</a></li>
+  <li><a href="#edge-between-taxonomies" id="toc-edge-between-taxonomies" class="nav-link" data-scroll-target="#edge-between-taxonomies"><span class="header-section-number">4.4</span> Edge Between Taxonomies</a></li>
+  </ul></li>
+  <li><a href="#sec-contexto" id="toc-sec-contexto" class="nav-link" data-scroll-target="#sec-contexto"><span class="header-section-number">5</span> Context Travels with the Graph: <code>ProjectContext</code></a></li>
+  <li><a href="#sec-neo4j" id="toc-sec-neo4j" class="nav-link" data-scroll-target="#sec-neo4j"><span class="header-section-number">6</span> Database Backends</a>
+  <ul class="collapse">
+  <li><a href="#common-options" id="toc-common-options" class="nav-link" data-scroll-target="#common-options"><span class="header-section-number">6.1</span> Common Options</a></li>
+  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration"><span class="header-section-number">6.2</span> Configuration</a></li>
+  <li><a href="#network-metrics" id="toc-network-metrics" class="nav-link" data-scroll-target="#network-metrics"><span class="header-section-number">6.3</span> Network Metrics</a>
+  <ul class="collapse">
+  <li><a href="#native-metrics-always-available" id="toc-native-metrics-always-available" class="nav-link" data-scroll-target="#native-metrics-always-available"><span class="header-section-number">6.3.1</span> Native Metrics (Always Available)</a></li>
+  <li><a href="#advanced-metrics" id="toc-advanced-metrics" class="nav-link" data-scroll-target="#advanced-metrics"><span class="header-section-number">6.3.2</span> Advanced Metrics</a></li>
+  </ul></li>
+  <li><a href="#sec-embeddings" id="toc-sec-embeddings" class="nav-link" data-scroll-target="#sec-embeddings"><span class="header-section-number">6.4</span> Semantic Search (ArcadeDB)</a></li>
+  <li><a href="#large-loads" id="toc-large-loads" class="nav-link" data-scroll-target="#large-loads"><span class="header-section-number">6.5</span> Large Loads</a></li>
+  </ul></li>
+  <li><a href="#sec-serve" id="toc-sec-serve" class="nav-link" data-scroll-target="#sec-serve"><span class="header-section-number">7</span> Asking the Graph (<code>serve</code>)</a></li>
+  <li><a href="#sec-html" id="toc-sec-html" class="nav-link" data-scroll-target="#sec-html"><span class="header-section-number">8</span> HTML Backend</a>
+  <ul class="collapse">
+  <li><a href="#why-there-are-default-filters" id="toc-why-there-are-default-filters" class="nav-link" data-scroll-target="#why-there-are-default-filters"><span class="header-section-number">8.1</span> Why There Are Default Filters</a></li>
+  <li><a href="#hyperedges" id="toc-hyperedges" class="nav-link" data-scroll-target="#hyperedges"><span class="header-section-number">8.2</span> Hyperedges</a></li>
+  <li><a href="#layers-ontology-and-evidence" id="toc-layers-ontology-and-evidence" class="nav-link" data-scroll-target="#layers-ontology-and-evidence"><span class="header-section-number">8.3</span> Layers: Ontology and Evidence</a></li>
+  <li><a href="#toml-configuration" id="toc-toml-configuration" class="nav-link" data-scroll-target="#toml-configuration"><span class="header-section-number">8.4</span> TOML Configuration</a></li>
+  </ul></li>
+  <li><a href="#sec-multiprojeto" id="toc-sec-multiprojeto" class="nav-link" data-scroll-target="#sec-multiprojeto"><span class="header-section-number">9</span> Multi-project Graphs</a></li>
+  <li><a href="#sec-fluxo" id="toc-sec-fluxo" class="nav-link" data-scroll-target="#sec-fluxo"><span class="header-section-number">10</span> Typical Flow</a></li>
+  <li><a href="#sec-cypher" id="toc-sec-cypher" class="nav-link" data-scroll-target="#sec-cypher"><span class="header-section-number">11</span> Useful Cypher Queries</a></li>
+  <li><a href="#sec-proximos" id="toc-sec-proximos" class="nav-link" data-scroll-target="#sec-proximos"><span class="header-section-number">12</span> Next Steps</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">synesis-graph</h1>
+<p class="subtitle lead">Reference of the pipeline from Synesis projects to graphs</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="synesis-graph" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> synesis-graph</h1>
+<p><code>synesis-graph</code> turns a compiled Synesis project into a <strong>navigable graph</strong>: in a Neo4j database, in an ArcadeDB database (on a server or local, with no server) or as a self-contained HTML visualization.</p>
+<p>The translation is <strong>dynamic</strong>: the tool reads the project template (<code>.synt</code>) and derives the graph structure from it. Change the template and the graph changes with it, without touching the tool.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+No intermediate files
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The pipeline compiles the project <strong>in memory</strong> and syncs straight to the destination. The compiler is the single source of truth: a compilation error stops the process before anything is written to the database.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-instalacao" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Installation</h1>
+<p>Requires <strong>Python 3.10+</strong> and <code>synesis</code> ≥ 0.16.0 (installed as a dependency).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"synesis-graph[neo4j]"</span>        <span class="co"># with the Neo4j driver</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install synesis-graph                 <span class="co"># ArcadeDB (server and local) and HTML</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"synesis-graph[embeddings]"</span>   <span class="co"># semantic search (pulls torch, ~2 GB)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> <span class="at">--version</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># synesis-graph, version 0.13.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="sec-backends" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Backends</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Backend</th>
+<th>Command</th>
+<th>Destination</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Neo4j</strong></td>
+<td><code>synesis-graph neo4j</code></td>
+<td>Neo4j server (<code>bolt://</code>)</td>
+<td>Cypher queries, GDS metrics, MCP agents</td>
+</tr>
+<tr class="even">
+<td><strong>ArcadeDB</strong></td>
+<td><code>synesis-graph arcadedb</code></td>
+<td>ArcadeDB server (<code>http://</code>)</td>
+<td>shared graph, built-in algorithms</td>
+</tr>
+<tr class="odd">
+<td><strong>Local ArcadeDB</strong></td>
+<td><code>synesis-graph arcadedb-embedded</code></td>
+<td>a folder on your computer</td>
+<td>working alone, with no server or Java to install</td>
+</tr>
+<tr class="even">
+<td><strong>HTML</strong></td>
+<td><code>synesis-graph html</code></td>
+<td>a single <code>.html</code> file</td>
+<td>exploring, sharing, publishing</td>
+</tr>
+</tbody>
+</table>
+<p>The three database backends produce the <strong>same graph</strong> from the same project. HTML applies legibility filters (<a href="#sec-html" class="quarto-xref">Section&nbsp;8</a>).</p>
+<section id="data-source" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data-source"><span class="header-section-number">3.1</span> Data Source</h2>
+<p>All accept two mutually exclusive inputs:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the project — compiles in memory</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> project.synp</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># From a JSON exported by the compiler</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--json</span> export.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="sec-modelo" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Data Model: Template → Graph</h1>
+<table class="table-striped table-hover caption-top table">
+<caption>Type mapping</caption>
+<colgroup>
+<col style="width: 34%">
+<col style="width: 36%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Template type</th>
+<th>Graph element</th>
+<th>Edge created</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CODE</code></td>
+<td>Concept node</td>
+<td><code>MENTIONS</code> (Item → Concept)</td>
+</tr>
+<tr class="even">
+<td><code>CHAIN</code></td>
+<td>Relation between concepts</td>
+<td><code>RELATES_TO</code> (with type and description)</td>
+</tr>
+<tr class="odd">
+<td><code>TOPIC</code></td>
+<td>Taxonomy node</td>
+<td><code>GROUPED_BY</code></td>
+</tr>
+<tr class="even">
+<td>Project fields <code>ASPECT</code> / <code>DIMENSION</code></td>
+<td>Taxonomy nodes</td>
+<td><code>QUALIFIED_BY</code> / <code>BELONGS_TO</code></td>
+</tr>
+<tr class="odd">
+<td><code>ROLE HIERARCHY KIND/PART/INSTANCE</code></td>
+<td>Adopted hierarchy</td>
+<td><code>KIND_OF</code>, <code>PART_OF</code>, <code>INSTANCE_OF</code> (child → parent)</td>
+</tr>
+<tr class="even">
+<td><code>ENUMERATED</code>, <code>TEXT</code>, <code>MEMO</code></td>
+<td>Node property</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td><code>SCOPE SOURCE</code></td>
+<td>Properties of the <code>Source</code> node</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Fields are recognized by their <strong>declared type</strong>, not by name: a <code>CHAIN</code> called <code>mechanism</code> produces <code>RELATES_TO</code> as usual. <code>aspect</code> and <code>dimension</code> are not language types; they are designs of specific projects, recognized by name.</p>
+<section id="nodes-always-created" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="nodes-always-created"><span class="header-section-number">4.1</span> Nodes Always Created</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Base nodes</caption>
+<colgroup>
+<col style="width: 13%">
+<col style="width: 37%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Node</th>
+<th>Represents</th>
+<th>Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source</code></td>
+<td>The source (article, interview, document)</td>
+<td><code>bibtex</code>, <code>title</code>, <code>author</code>, <code>year</code> and the <code>SCOPE SOURCE</code> fields</td>
+</tr>
+<tr class="even">
+<td><code>Item</code></td>
+<td>The analytical unit</td>
+<td>identifier, citation, ITEM fields, <code>source_file</code>, <code>source_line</code></td>
+</tr>
+<tr class="odd">
+<td><code>ProjectContext</code></td>
+<td>The project context</td>
+<td>see <a href="#sec-contexto" class="quarto-xref">Section&nbsp;5</a></td>
+</tr>
+</tbody>
+</table>
+<p>Each <code>Item</code> is linked to its source by <code>(:Item)-[:FROM_SOURCE]-&gt;(:Source)</code>, the language invariant that every ITEM belongs to a SOURCE.</p>
+</section>
+<section id="translation-example" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="translation-example"><span class="header-section-number">4.2</span> Translation Example</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> category <span class="kw">TYPE</span> <span class="dt">CODE</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> theme <span class="kw">TYPE</span> <span class="dt">TOPIC</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(:Item)-[:MENTIONS]-&gt;(:Category)-[:GROUPED_BY]-&gt;(:Theme)</code></pre>
+<p>The label of the concept node derives from the <strong>field name</strong>: a field <code>second_order</code> produces <code>Second_order</code> nodes.</p>
+</section>
+<section id="deprecated-names-use" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="deprecated-names-use"><span class="header-section-number">4.3</span> Deprecated Names (<code>USE</code>)</h2>
+<p>A concept consolidated with <code>ROLE USE</code> does not become a node: mentions and chains go to the target, which keeps the name in <code>aliases</code>.</p>
+</section>
+<section id="edge-between-taxonomies" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="edge-between-taxonomies"><span class="header-section-number">4.4</span> Edge Between Taxonomies</h2>
+<p>The pipeline derives <code>IS_LINKED_TO</code> between taxonomy nodes; its <strong>strength</strong> counts the <code>RELATES_TO</code> relations between the concepts of the two categories.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Traceability preserved
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each item keeps its source file and line. A concept in the graph can always be traced back to the passage of the <code>.syn</code> that supports it.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-contexto" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Context Travels with the Graph: <code>ProjectContext</code></h1>
+<p>Every sync to a database writes a <code>ProjectContext</code> vertex. A database schema gives the shape, not the meaning; without the context, whoever queries the graph would have to guess the coding criteria.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>description</code></td>
+<td>the <code>DESCRIPTION</code> block of the <code>.synp</code>, verbatim</td>
+</tr>
+<tr class="even">
+<td><code>project_summary</code></td>
+<td>metadata, corpus size, provenance and competency questions</td>
+</tr>
+<tr class="odd">
+<td><code>template_doc</code></td>
+<td>the template as a readable document: fields, scales, <strong>GUIDELINES</strong>, rules and a graph navigation guide</td>
+</tr>
+<tr class="even">
+<td><code>source_count</code>, <code>item_count</code>, <code>concept_count</code></td>
+<td>counts</td>
+</tr>
+<tr class="odd">
+<td><code>compiler_version</code>, <code>synesis_graph_version</code>, <code>compiled_at</code>, <code>generated_at</code></td>
+<td>provenance</td>
+</tr>
+<tr class="even">
+<td><code>load_state</code></td>
+<td>marks whether the load finished</td>
+</tr>
+</tbody>
+</table>
+<pre class="cypher"><code>MATCH (p:ProjectContext) RETURN p.description, p.project_summary;
+MATCH (p:ProjectContext) RETURN p.template_doc;</code></pre>
+<p>The stored text is written in Portuguese. The HTML backend does not create this vertex.</p>
+<hr>
+</section>
+<section id="sec-neo4j" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Database Backends</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="at">--project</span> project.synp</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> arcadedb <span class="at">--project</span> project.synp</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> arcadedb-embedded <span class="at">--project</span> project.synp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="common-options" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="common-options"><span class="header-section-number">6.1</span> Common Options</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Options</caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--project</code></td>
+<td>Path to the <code>.synp</code>. <strong>Repeatable</strong> — see <a href="#sec-multiprojeto" class="quarto-xref">Section&nbsp;9</a></td>
+</tr>
+<tr class="even">
+<td><code>--json</code></td>
+<td>Alternative: an already exported JSON</td>
+</tr>
+<tr class="odd">
+<td><code>--config</code></td>
+<td>TOML configuration file (default: <code>config.toml</code>)</td>
+</tr>
+<tr class="even">
+<td><code>--database</code></td>
+<td>Database name; also names the unified graph in a link</td>
+</tr>
+<tr class="odd">
+<td><code>--mode rebuild\|update</code></td>
+<td><code>rebuild</code> (default) wipes and rewrites; <code>update</code> writes only changes, <strong>removing nothing</strong></td>
+</tr>
+</tbody>
+</table>
+<table class="table-striped table-hover caption-top table">
+<caption>Specific options</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Backends</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--metrics all\|fast\|none</code></td>
+<td>ArcadeDB</td>
+<td><code>fast</code> skips betweenness and communities; <code>none</code> skips metrics</td>
+</tr>
+<tr class="even">
+<td><code>--vector-embeddings FIELDS</code></td>
+<td>ArcadeDB</td>
+<td>creates vectors for semantic search</td>
+</tr>
+<tr class="odd">
+<td><code>--rebuild-embeddings</code></td>
+<td>ArcadeDB</td>
+<td>recomputes every vector</td>
+</tr>
+<tr class="even">
+<td><code>--db-path DIR</code></td>
+<td>Local ArcadeDB</td>
+<td>root where the database is created (<code>&lt;DIR&gt;/databases/&lt;project&gt;</code>)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="configuration" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="configuration"><span class="header-section-number">6.2</span> Configuration</h2>
+<p>Create a <code>config.toml</code> (the repository ships a <code>config.toml.example</code>):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[neo4j]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"bolt://127.0.0.1:7687"</span>   <span class="co"># or neo4j+s://... for Aura</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">user</span> <span class="op">=</span> <span class="st">"neo4j"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">password</span> <span class="op">=</span> <span class="st">"your_password"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">database</span> <span class="op">=</span> <span class="st">"my_corpus"</span>           <span class="co"># optional</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fulltext_analyzer = "english"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">[arcadedb]</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="dt">uri</span> <span class="op">=</span> <span class="st">"http://localhost:2480"</span>    <span class="co"># HTTP endpoint, not bolt://</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="dt">user</span> <span class="op">=</span> <span class="st">"root"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="dt">password</span> <span class="op">=</span> <span class="st">"your_password"</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">[arcadedb-embedded]</span>              <span class="co"># optional section; there are no credentials</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># db_path = "."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Never commit credentials
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add <code>config.toml</code> to <code>.gitignore</code>.</p>
+</div>
+</div>
+<p>Setting <code>fulltext_analyzer</code> to the language of your corpus (for instance <code>english</code> or <code>brazilian</code>) lets text search match inflected forms.</p>
+</section>
+<section id="network-metrics" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="network-metrics"><span class="header-section-number">6.3</span> Network Metrics</h2>
+<section id="native-metrics-always-available" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="native-metrics-always-available"><span class="header-section-number">6.3.1</span> Native Metrics (Always Available)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Node</th>
+<th>Metrics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Concept</td>
+<td><code>degree</code>, <code>in_degree</code>, <code>out_degree</code>, <code>mention_count</code> (frequency), <code>source_count</code> (spread)</td>
+</tr>
+<tr class="even">
+<td>Taxonomy</td>
+<td><code>concept_count</code>, <code>weighted_degree</code>, <code>aspect_diversity</code>, <code>dimension_diversity</code></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><code>item_count</code>, <code>concept_count</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>mention_count</code> and <code>source_count</code> measure different things
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A concept cited 40 times in a single source is a theme of that document. One cited 8 times across 8 sources is a cross-cutting finding.</p>
+</div>
+</div>
+</section>
+<section id="advanced-metrics" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="advanced-metrics"><span class="header-section-number">6.3.2</span> Advanced Metrics</h3>
+<p><code>pagerank</code>, <code>betweenness</code> and <code>community</code> (Louvain) come from different engines:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Backend</th>
+<th>Engine</th>
+<th>Requires</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Neo4j</td>
+<td>Graph Data Science</td>
+<td>the <a href="https://neo4j.com/docs/graph-data-science/current/installation/">GDS</a> plugin</td>
+</tr>
+<tr class="even">
+<td>ArcadeDB</td>
+<td>built-in algorithms (<code>algo.*</code>)</td>
+<td>nothing</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Values are not comparable between the two
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GDS computes over the concept subgraph; the ArcadeDB algorithms run over the <strong>whole graph</strong>, so edges such as <code>MENTIONS</code> and <code>GROUPED_BY</code> weigh in too. Both are valid centralities, answering slightly different questions.</p>
+</div>
+</div>
+<p>Without GDS on Neo4j, the pipeline warns and continues with native metrics. With GDS the projection adapts to the template: <code>RELATES_TO</code> (there are <code>CHAIN</code> fields), <code>CO_TAXONOMY</code> (there are <code>CODE</code> and <code>TOPIC</code>) or <code>CO_CITATION</code> (fallback). In a co-citation projection a community groups concepts that <strong>appear together</strong>, not concepts the researcher declared related.</p>
+</section>
+</section>
+<section id="sec-embeddings" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-embeddings"><span class="header-section-number">6.4</span> Semantic Search (ArcadeDB)</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> arcadedb-embedded <span class="at">--project</span> project.synp <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--vector-embeddings</span> ontology_description,topic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Vectors are generated locally, with no API key, and cached in <code>&lt;project&gt;.embeddings.json</code>; only concepts whose text changed are recomputed. <code>TEXT</code> and <code>TOPIC</code> fields are the ones to use; closed vocabularies repeat the same text across many concepts. For Portuguese or multilingual corpora use a multilingual model (the default):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[arcadedb-embedded.embeddings]</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">model</span> <span class="op">=</span> <span class="st">"sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">fields</span> <span class="op">=</span> <span class="op">[</span><span class="st">"ontology_description"</span><span class="op">,</span> <span class="st">"topic"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See the measured study in <a href="../explanation/graphrag_embeddings_vetoriais.html">Vector Embeddings and GraphRAG</a>.</p>
+</section>
+<section id="large-loads" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="large-loads"><span class="header-section-number">6.5</span> Large Loads</h2>
+<p>Writing happens in segments. If a load is interrupted, <code>ProjectContext</code> stays marked as incomplete: a new <code>rebuild</code> fixes it, and <code>--mode update</code> is refused on a partial graph. Two simultaneous loads into the same graph are refused.</p>
+<hr>
+</section>
+</section>
+<section id="sec-serve" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Asking the Graph (<code>serve</code>)</h1>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> serve                       <span class="co"># publishes ./databases; Ctrl+C stops</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> serve <span class="at">--db-path</span> ./graphs    <span class="co"># the same root used by the export</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> serve <span class="at">--install</span> claude-desktop</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> serve <span class="at">--install</span> vscode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>serve</code> keeps the local database available over HTTP and <a href="https://modelcontextprotocol.io">MCP</a>, so that Claude Desktop or VS Code can query the corpus in natural language.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--db-path</code></td>
+<td>server root (default: current folder)</td>
+</tr>
+<tr class="even">
+<td><code>--port</code></td>
+<td>HTTP port (default: 2480)</td>
+</tr>
+<tr class="odd">
+<td><code>--allow-writes</code></td>
+<td>allows changing the corpus (off by default)</td>
+</tr>
+<tr class="even">
+<td><code>--install claude-desktop\|vscode</code></td>
+<td>adds the server to the client configuration, with a backup</td>
+</tr>
+</tbody>
+</table>
+<p>The password is generated once and remembered; to choose your own, set <code>SYNESIS_DB_PASSWORD</code>.</p>
+<hr>
+</section>
+<section id="sec-html" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> HTML Backend</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> html <span class="at">--project</span> project.synp <span class="at">--output</span> graph.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Writes a single HTML file that can be opened locally, attached or published as supplementary material.</p>
+<table class="table-striped table-hover caption-top table">
+<caption><code>html</code> backend options</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th style="text-align: center;">Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--output</code></td>
+<td style="text-align: center;"><code>./graph.html</code></td>
+<td>output file</td>
+</tr>
+<tr class="even">
+<td><code>--group-by</code></td>
+<td style="text-align: center;">automatic</td>
+<td>taxonomy field used to colour communities</td>
+</tr>
+<tr class="odd">
+<td><code>--min-frequency</code></td>
+<td style="text-align: center;"><code>3</code></td>
+<td>hides concepts mentioned in fewer than N items</td>
+</tr>
+<tr class="even">
+<td><code>--min-source-count</code></td>
+<td style="text-align: center;"><code>2</code></td>
+<td>hides concepts present in fewer than N sources</td>
+</tr>
+<tr class="odd">
+<td><code>--max-nodes</code></td>
+<td style="text-align: center;"><code>200</code></td>
+<td>the N concepts of highest degree (<code>0</code> = no limit)</td>
+</tr>
+<tr class="even">
+<td><code>--max-hyperedges</code></td>
+<td style="text-align: center;"><code>50</code></td>
+<td>maximum number of hyperedges</td>
+</tr>
+<tr class="odd">
+<td><code>--include-isolated</code></td>
+<td style="text-align: center;">off</td>
+<td>includes concepts without chain connections</td>
+</tr>
+<tr class="even">
+<td><code>--all</code></td>
+<td style="text-align: center;">—</td>
+<td>turns <strong>all</strong> filters off</td>
+</tr>
+</tbody>
+</table>
+<section id="why-there-are-default-filters" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="why-there-are-default-filters"><span class="header-section-number">8.1</span> Why There Are Default Filters</h2>
+<p>A real corpus has a long tail of concepts that appear once or twice. The defaults show the concepts that recur <strong>and</strong> span sources. To see everything:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> html <span class="at">--project</span> project.synp <span class="at">--output</span> graph.html <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The filter is visual, not on the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nothing is discarded from the project; the database backends receive the full graph.</p>
+</div>
+</div>
+</section>
+<section id="hyperedges" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="hyperedges"><span class="header-section-number">8.2</span> Hyperedges</h2>
+<p>When an ITEM connects <strong>three or more</strong> concepts, the visualization shows it as a shaded region: the difference between “A–B and B–C are related” and “A, B and C appear together in this passage”.</p>
+</section>
+<section id="layers-ontology-and-evidence" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="layers-ontology-and-evidence"><span class="header-section-number">8.3</span> Layers: Ontology and Evidence</h2>
+<p>The panel separates the <strong>ontology</strong> (concepts, taxonomy and, with roles, parents and children) from the <strong>evidence</strong> (the items supporting each concept). A concept without evidence shows as such.</p>
+</section>
+<section id="toml-configuration" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="toml-configuration"><span class="header-section-number">8.4</span> TOML Configuration</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[html]</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">output_path</span> <span class="op">=</span> <span class="st">"./graph.html"</span>     <span class="co"># accepts the {project} placeholder</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by = "topic"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dt">min_frequency</span> <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="dt">min_source_count</span> <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dt">max_nodes</span> <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dt">max_hyperedges</span> <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dt">include_isolated</span> <span class="op">=</span> <span class="cn">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="sec-multiprojeto" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Multi-project Graphs</h1>
+<p>When several projects declare <code>IDENTIFIES</code> / <code>REFERS TO</code> (see <a href="../howto/ligar_projetos.html">How to Link Independent Projects</a>), the database backends <strong>reify</strong> those identities as nodes.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> neo4j <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> lattes.synp <span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--project</span> abstracts.synp <span class="dt">\</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--database</span> Study</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table-striped table-hover caption-top table">
+<caption>Reification elements</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 32%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Origin</th>
+<th>Form</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identity node</td>
+<td>each distinct value of an <code>IDENTIFIES</code> field</td>
+<td><code>(:Researcher {entity_id})</code></td>
+</tr>
+<tr class="even">
+<td><code>IDENTIFIED_AS</code></td>
+<td>the owning SOURCE</td>
+<td><code>(:Source)-[:IDENTIFIED_AS]-&gt;(:Researcher)</code></td>
+</tr>
+<tr class="odd">
+<td><code>REFERS_TO</code></td>
+<td>each matching <code>REFERS TO</code> value</td>
+<td><code>(:Source)-[:REFERS_TO {entity, member}]-&gt;(:Researcher)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>A node is born only from <code>IDENTIFIES</code></strong> (an orphan reference creates none); <strong>matching is exact</strong>, with no case normalization; and <strong>bibrefs are qualified</strong> with the member alias (<code>abstracts:@article_a</code>), so that two corpora do not collapse into one.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The HTML backend refuses multi-project input
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>synesis-graph html</code> with more than one <code>--project</code> fails with an explicit error.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-fluxo" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Typical Flow</h1>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile project.synp <span class="at">--stats</span>                            <span class="co"># 1. validate</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> html <span class="at">--project</span> project.synp <span class="at">--output</span> graph.html   <span class="co"># 2. explore</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> arcadedb-embedded <span class="at">--project</span> project.synp          <span class="co"># 3. write the graph</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis-graph</span> serve                                             <span class="co"># 4. ask</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="sec-cypher" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Useful Cypher Queries</h1>
+<pre class="cypher"><code>// Most frequent concepts
+MATCH (c)
+WHERE c.mention_count IS NOT NULL
+RETURN c.name, c.mention_count, c.source_count
+ORDER BY c.mention_count DESC
+LIMIT 10</code></pre>
+<pre class="cypher"><code>// Cross-cutting findings
+MATCH (c)
+WHERE c.source_count IS NOT NULL
+RETURN c.name, c.source_count, c.mention_count
+ORDER BY c.source_count DESC
+LIMIT 10</code></pre>
+<pre class="cypher"><code>// Textual evidence of a concept
+MATCH (s:Source)&lt;-[:FROM_SOURCE]-(i:Item)-[:MENTIONS]-&gt;(c {name: "Cost"})
+RETURN s.bibtex, i.citation</code></pre>
+<pre class="cypher"><code>// Declared relations starting at a concept
+MATCH (a {name: "Cost"})-[r:RELATES_TO]-&gt;(b)
+RETURN a.name, r.type, b.name</code></pre>
+<pre class="cypher"><code>// Evidence of a concept and all its subtypes, without double counting
+MATCH (c {name: "phishing"})&lt;-[:KIND_OF*0..]-(sub)&lt;-[:MENTIONS]-(i:Item)
+RETURN count(DISTINCT i)</code></pre>
+<pre class="cypher"><code>// Multi-project graph: sources linked to a researcher
+MATCH (r:Researcher)&lt;-[:REFERS_TO]-(s:Source)
+RETURN r.entity_id, collect(s.bibtex) AS sources</code></pre>
+<hr>
+</section>
+<section id="sec-proximos" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Next Steps</h1>
+<ul>
+<li><a href="../howto/exportar_neo4j.html">How to Export to Neo4j</a></li>
+<li><a href="../explanation/knowledge_graphs.html">Knowledge Graphs &amp; GraphRAG</a></li>
+<li><a href="../howto/ligar_projetos.html">How to Link Independent Projects</a></li>
+<li><a href="../reference/guia_referencia.html">Language Reference</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

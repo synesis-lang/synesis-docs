@@ -378,7 +378,7 @@ Para quem é este documento?
 <li>Lê e valida cada arquivo</li>
 <li>Verifica a consistência entre eles (ex: todo código usado existe no dicionário?)</li>
 <li>Liga as peças (fontes, excertos, códigos, ontologia) num grafo semântico</li>
-<li>Exporta o resultado em JSON, CSV ou Excel</li>
+<li>Exporta o resultado em JSON, CSV, Excel e outros formatos</li>
 </ol>
 <p>Para acompanhar cada estágio com exemplos concretos, usamos o projeto <code>Basic</code> — um projeto mínimo mas completo.</p>
 </section>
@@ -556,8 +556,9 @@ Para quem é este documento?
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    metadata    <span class="op">=</span> {},</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    description <span class="op">=</span> <span class="va">None</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    location    <span class="op">=</span> SourceLocation(<span class="bu">file</span><span class="op">=</span><span class="st">"project.synp"</span>, line<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    location    <span class="op">=</span> SourceLocation(<span class="bu">file</span><span class="op">=</span><span class="st">"project.synp"</span>, line<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Em seguida o compilador confere a estrutura do projeto: arquivos do diretório que não foram incluídos, arquivos declarados e não encontrados, template ausente e datas inválidas.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -594,11 +595,12 @@ SourceLocation — rastreabilidade total
 </ul></li>
 <li><code>validate_template()</code> verifica inconsistências estruturais — por exemplo, um campo listado como REQUIRED mas sem definição de FIELD.</li>
 </ol>
+<p>Se o template não existe ou não pode ser interpretado, a compilação termina aqui: sem contrato não há o que validar.</p>
 </section>
 <section id="o-que-sai-1" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="o-que-sai-1"><span class="header-section-number">5.3</span> O que sai</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>TemplateNode(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"demo"</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">""</span>,               <span class="co"># o exemplo não tem a linha TEMPLATE</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    field_specs <span class="op">=</span> {</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"description"</span>: FieldSpec(<span class="bu">type</span><span class="op">=</span>TEXT,      scope<span class="op">=</span>SOURCE),</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"citation"</span>:    FieldSpec(<span class="bu">type</span><span class="op">=</span>QUOTATION, scope<span class="op">=</span>ITEM),</span>
@@ -630,7 +632,7 @@ SourceLocation — rastreabilidade total
 </section>
 <section id="o-que-acontece-2" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="o-que-acontece-2"><span class="header-section-number">6.2</span> O que acontece</h3>
-<p>Usa a biblioteca <code>bibtexparser</code> para parsear o BibTeX. Normaliza todas as chaves para minúsculas, garantindo comparação case-insensitive.</p>
+<p>Usa a biblioteca <code>bibtexparser</code> para parsear o BibTeX. Normaliza todas as chaves para minúsculas, garantindo comparação case-insensitive. Vários <code>INCLUDE BIBLIOGRAPHY</code> se somam; numa chave repetida vale a primeira ocorrência. Quando o projeto declara <code>INCLUDE DATASET</code>, os registros TOML são carregados neste mesmo momento.</p>
 </section>
 <section id="o-que-sai-2" class="level3" data-number="6.3">
 <h3 data-number="6.3" class="anchored" data-anchor-id="o-que-sai-2"><span class="header-section-number">6.3</span> O que sai</h3>
@@ -643,8 +645,9 @@ SourceLocation — rastreabilidade total
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"journal"</span>:       <span class="st">"Journal of Social Research"</span>,</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"year"</span>:          <span class="st">"2024"</span>,</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_original_key"</span>: <span class="st">"smith2024"</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ... demais campos da entrada</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -674,26 +677,28 @@ Por que normalizar as chaves?
 <li><code>parse_file()</code> gera uma <code>lark.Tree</code></li>
 <li><code>SynesisTransformer.transform()</code> converte em objetos Python</li>
 </ol>
-<p>Se houver mais de 2 arquivos de ontologia, o parsing é feito <strong>em paralelo</strong> via <code>ThreadPoolExecutor</code> — cada thread usa sua própria instância do parser (via <code>threading.local</code>), garantindo segurança.</p>
+<p>Os arquivos de ontologia são lidos um após o outro, na ordem dos <code>INCLUDE</code>.</p>
 </section>
 <section id="o-que-sai-3" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="o-que-sai-3"><span class="header-section-number">7.3</span> O que sai</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    OntologyNode(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        concept     <span class="op">=</span> <span class="st">"Social_Cohesion"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="st">"The degree to which community members trust..."</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        fields      <span class="op">=</span> {<span class="st">"group"</span>: <span class="st">"Community_Resilience"</span>},</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        field_names <span class="op">=</span> [<span class="st">"definition"</span>, <span class="st">"group"</span>],</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        location    <span class="op">=</span> SourceLocation(<span class="st">"ontology.syno"</span>, line<span class="op">=</span><span class="dv">1</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    OntologyNode(</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        concept     <span class="op">=</span> <span class="st">"Collective_Action"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="st">"Coordinated efforts by community members..."</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        fields      <span class="op">=</span> {<span class="st">"group"</span>: <span class="st">"Community_Resilience"</span>},</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        field_names <span class="op">=</span> [<span class="st">"definition"</span>, <span class="st">"group"</span>],</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        location    <span class="op">=</span> SourceLocation(<span class="st">"ontology.syno"</span>, line<span class="op">=</span><span class="dv">8</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="st">""</span>,   <span class="co"># preenchido apenas por um campo chamado "description"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        fields      <span class="op">=</span> {<span class="st">"definition"</span>: <span class="st">"The degree to which community members trust..."</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"group"</span>: <span class="st">"Community_Resilience"</span>},</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        field_names <span class="op">=</span> [<span class="st">"definition"</span>, <span class="st">"group"</span>],</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        location    <span class="op">=</span> SourceLocation(<span class="st">"ontology.syno"</span>, line<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    OntologyNode(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        concept     <span class="op">=</span> <span class="st">"Collective_Action"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="st">""</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        fields      <span class="op">=</span> {<span class="st">"definition"</span>: <span class="st">"Coordinated efforts by community members..."</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"group"</span>: <span class="st">"Community_Resilience"</span>},</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        field_names <span class="op">=</span> [<span class="st">"definition"</span>, <span class="st">"group"</span>],</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        location    <span class="op">=</span> SourceLocation(<span class="st">"ontology.syno"</span>, line<span class="op">=</span><span class="dv">9</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="estágio-5-parsing-das-anotações" class="level2" data-number="8">
@@ -705,7 +710,7 @@ Por que normalizar as chaves?
 </section>
 <section id="o-que-acontece-4" class="level3" data-number="8.2">
 <h3 data-number="8.2" class="anchored" data-anchor-id="o-que-acontece-4"><span class="header-section-number">8.2</span> O que acontece</h3>
-<p>Mesmo processo do Estágio 4. Um arquivo <code>.syn</code> pode conter múltiplos blocos SOURCE e ITEM. O Transformer os separa em <strong>listas distintas</strong>.</p>
+<p>Mesmo processo do Estágio 4. Um arquivo <code>.syn</code> pode conter múltiplos blocos SOURCE e ITEM, que o compilador separa em <strong>listas distintas</strong>. Com mais de três arquivos de anotação, o parsing é distribuído entre até quatro processos (<code>ProcessPoolExecutor</code>).</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -724,23 +729,23 @@ ITEMs não são aninhados em SOURCEs — ainda
 <h3 data-number="8.3" class="anchored" data-anchor-id="o-que-sai-4"><span class="header-section-number">8.3</span> O que sai</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SourceNode</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>SourceNode(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    bibref   <span class="op">=</span> <span class="st">"smith2024"</span>,       <span class="co"># sem o "@"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    bibref   <span class="op">=</span> <span class="st">"@smith2024"</span>,       <span class="co"># como escrito; as comparações usam a forma normalizada</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    fields   <span class="op">=</span> {<span class="st">"description"</span>: <span class="st">"Qualitative study on community resilience..."</span>},</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    items    <span class="op">=</span> [],                 <span class="co"># vazio agora — preenchido no Estágio 7</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> SourceLocation(<span class="st">"annotations.syn"</span>, line<span class="op">=</span><span class="dv">1</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> SourceLocation(<span class="st">"annotations.syn"</span>, line<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ItemNode</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ItemNode(</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    bibref           <span class="op">=</span> <span class="st">"smith2024"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    quote            <span class="op">=</span> <span class="st">"People here look out for each other..."</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    bibref           <span class="op">=</span> <span class="st">"@smith2024"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    quote            <span class="op">=</span> <span class="st">""</span>,         <span class="co"># o campo QUOTATION chamado "citation" fica em extra_fields</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    codes            <span class="op">=</span> [<span class="st">"Social_Cohesion"</span>, <span class="st">"Collective_Action"</span>],</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    notes            <span class="op">=</span> [<span class="st">"Participant describes spontaneous..."</span>],</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    chains           <span class="op">=</span> [],</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    extra_fields     <span class="op">=</span> {},</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    code_locations   <span class="op">=</span> {},         <span class="co"># vazio agora — preenchido no Estágio 7</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    field_line_tokens <span class="op">=</span> {...},     <span class="co"># tokens brutos para resolução posterior</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> SourceLocation(<span class="st">"annotations.syn"</span>, line<span class="op">=</span><span class="dv">5</span>, col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    extra_fields     <span class="op">=</span> {<span class="st">"citation"</span>: <span class="st">'"People here look out for each other..."'</span>},</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    code_locations   <span class="op">=</span> {<span class="st">"code"</span>: [SourceLocation(...), SourceLocation(...)]},</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    field_names      <span class="op">=</span> [<span class="st">"citation"</span>, <span class="st">"note"</span>, <span class="st">"code"</span>],</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> SourceLocation(<span class="st">"annotations.syn"</span>, line<span class="op">=</span><span class="dv">6</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
@@ -756,11 +761,6 @@ ITEMs não são aninhados em SOURCEs — ainda
 <h3 data-number="9.2" class="anchored" data-anchor-id="o-que-acontece-5"><span class="header-section-number">9.2</span> O que acontece</h3>
 <p>O <code>SemanticValidator</code> percorre <strong>cada nó</strong> e aplica regras que vão além da sintaxe. Exemplos concretos com o projeto Basic:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Verificação</th>
@@ -772,32 +772,27 @@ ITEMs não são aninhados em SOURCEs — ainda
 <tr class="odd">
 <td><code>@smith2024</code> existe no <code>.bib</code>?</td>
 <td>Sim</td>
-<td>E001: UnregisteredSource</td>
-</tr>
-<tr class="even">
-<td>O ITEM tem SOURCE com mesmo bibref?</td>
-<td>Sim</td>
-<td>E002: OrphanItem</td>
-</tr>
-<tr class="odd">
-<td>A SOURCE tem pelo menos um ITEM?</td>
-<td>Sim</td>
-<td>W003: SourceWithoutItems</td>
+<td><a href="../reference/guia_erros.html#sec-e001">E001</a>: <code>UnregisteredSource</code> (erro)</td>
 </tr>
 <tr class="even">
 <td><code>Social_Cohesion</code> existe na ontologia?</td>
 <td>Sim</td>
-<td>W004: UndefinedCode</td>
+<td><a href="../reference/guia_erros.html#sec-e090">E090</a>: resumo dos códigos sem conceito (aviso); com <code>--check-codes</code>, um <a href="../reference/guia_erros.html#sec-e004">E004</a> por ocorrência</td>
 </tr>
 <tr class="odd">
 <td>Campos obrigatórios (citation, note, code) presentes no ITEM?</td>
 <td>Sim</td>
-<td>MissingRequiredField</td>
+<td><a href="../reference/guia_erros.html#sec-e020">E020</a>: <code>MissingRequiredField</code> (erro)</td>
 </tr>
 <tr class="even">
-<td>Algum campo não declarado no template foi usado?</td>
+<td>Há campo não declarado no template?</td>
 <td>Não</td>
-<td>UndeclaredField</td>
+<td><a href="../reference/guia_erros.html#sec-e022">E022</a>: <code>UnknownFieldName</code> (erro)</td>
+</tr>
+<tr class="odd">
+<td>Os valores respeitam o tipo declarado (lista, escala, cadeia)?</td>
+<td>Sim</td>
+<td>Erro específico do tipo</td>
 </tr>
 </tbody>
 </table>
@@ -818,19 +813,21 @@ ITEMs não são aninhados em SOURCEs — ainda
 <p>Este é o estágio mais importante: <strong>transforma uma coleção de nós soltos em um grafo semântico coerente</strong>.</p>
 <section id="o-que-entra-6" class="level3" data-number="10.1">
 <h3 data-number="10.1" class="anchored" data-anchor-id="o-que-entra-6"><span class="header-section-number">10.1</span> O que entra</h3>
-<p>Todas as listas de nós + o <code>ValidationResult</code> do Estágio 6. O Linker pode adicionar mais erros durante a linkagem.</p>
+<p>Todas as listas de nós, o projeto e o template. O que o Linker encontra de errado é acrescentado ao <code>ValidationResult</code> do Estágio 6.</p>
 </section>
 <section id="o-que-acontece-passo-a-passo" class="level3" data-number="10.2">
 <h3 data-number="10.2" class="anchored" data-anchor-id="o-que-acontece-passo-a-passo"><span class="header-section-number">10.2</span> O que acontece — passo a passo</h3>
 <ol type="1">
-<li><strong>Verificação de duplicatas</strong> — bibrefs e conceitos repetidos geram erros (E070, E068).</li>
-<li><strong>Associação ITEM → SOURCE</strong> — cada ITEM é ligado ao SOURCE com o mesmo <code>bibref</code>. A lista <code>SourceNode.items</code>, que estava vazia, agora é preenchida.</li>
-<li><strong>Construção do <code>ontology_index</code></strong> — dicionário <code>{código_normalizado → OntologyNode}</code> para lookup rápido.</li>
+<li><strong>Normalização de <code>ORDERED</code></strong> — o valor materializado é sempre o índice, como número inteiro.</li>
+<li><strong>Verificação de bibrefs duplicados</strong> em blocos SOURCE (<a href="../reference/guia_erros.html#sec-e070">E070</a>).</li>
+<li><strong>Associação ITEM → SOURCE</strong> — cada ITEM é ligado ao SOURCE com o mesmo <code>bibref</code>, e a lista <code>SourceNode.items</code> é preenchida. Um ITEM sem SOURCE é erro (<a href="../reference/guia_erros.html#sec-e002">E002</a>); uma SOURCE sem ITEMs, aviso (<a href="../reference/guia_erros.html#sec-e003">E003</a>).</li>
+<li><strong>Conceitos e descrições duplicados</strong> na ontologia (<a href="../reference/guia_erros.html#sec-e068">E068</a>).</li>
+<li><strong>Construção do <code>ontology_index</code></strong> — dicionário <code>{código_normalizado → OntologyNode}</code>, com os valores já interpretados pelo tipo declarado.</li>
+<li><strong>Termos preteridos</strong> — com o papel <code>USE</code>, as menções do termo antigo contam para o termo adotado.</li>
 <li><strong>Construção do <code>code_usage</code></strong> — dicionário <code>{código → [ItemNode, ...]}</code> que responde: “quais itens usaram este código?”</li>
-<li><strong>Verificação de códigos</strong> — cada código usado em ITEMs é buscado no <code>ontology_index</code>. Ausentes geram aviso W004.</li>
-<li><strong>Extração de triples</strong> — CHAINs (sequências como <code>A → B → C</code>) viram triples <code>(A, relação, B)</code>, <code>(B, relação, C)</code>.</li>
-<li><strong>Construção da hierarquia</strong> — CHAINs na ontologia com relações IS_A viram <code>{filho → pai}</code>.</li>
+<li><strong>Extração de triples</strong> — cadeias como <code>A -&gt; B -&gt; C</code> viram triples <code>(A, relação, B)</code>, <code>(B, relação, C)</code>, indexadas em <code>relation_index</code>.</li>
 <li><strong>Construção do <code>topic_index</code></strong> — campos TOPIC das ontologias viram <code>{tema → [códigos]}</code>.</li>
+<li><strong>Hierarquia</strong> — campos com <code>ROLE HIERARCHY</code> produzem a <code>role_hierarchy</code>.</li>
 </ol>
 </section>
 <section id="o-que-sai-6" class="level3" data-number="10.3">
@@ -841,7 +838,7 @@ ITEMs não são aninhados em SOURCEs — ainda
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fontes agora com seus itens associados</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    sources <span class="op">=</span> {</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"smith2024"</span>: SourceNode(</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            bibref <span class="op">=</span> <span class="st">"smith2024"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            bibref <span class="op">=</span> <span class="st">"@smith2024"</span>,</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            items  <span class="op">=</span> [ItemNode(...)]   <span class="co"># preenchido!</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    },</span>
@@ -858,37 +855,81 @@ ITEMs não são aninhados em SOURCEs — ainda
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"collective_action"</span>: [ItemNode(...)],</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    },</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Hierarquia IS_A (vazia no Basic — não há CHAINs)</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    hierarchy <span class="op">=</span> {},</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Triples de CHAINs (vazia no Basic)</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    all_triples <span class="op">=</span> [],</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Temas → códigos (do campo TOPIC nas ontologias)</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    topic_index <span class="op">=</span> {</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Community_Resilience"</span>: [<span class="st">"Social_Cohesion"</span>, <span class="st">"Collective_Action"</span>]</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Triples de CHAINs (vazias no Basic)</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    all_triples    <span class="op">=</span> [],</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    relation_index <span class="op">=</span> {},</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Temas → códigos (do campo TOPIC nas ontologias)</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    topic_index <span class="op">=</span> {</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Community_Resilience"</span>: [<span class="st">"Social_Cohesion"</span>, <span class="st">"Collective_Action"</span>]</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    hierarchy      <span class="op">=</span> {},     <span class="co"># rota antiga, por campo "parent"/"is_a"</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    role_hierarchy <span class="op">=</span> <span class="va">None</span>,   <span class="co"># preenchida por campos com ROLE HIERARCHY</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    aliases        <span class="op">=</span> {},     <span class="co"># preterido → adotado (papel USE)</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="estágio-8-exportação" class="level2" data-number="11">
 <h2 data-number="11" class="anchored" data-anchor-id="estágio-8-exportação"><span class="header-section-number">11</span> Estágio 8 — Exportação</h2>
-<p><strong>Onde:</strong> <code>exporters/json_export.py</code>, <code>exporters/csv_export.py</code>, <code>exporters/xls_export.py</code></p>
+<p><strong>Onde:</strong> <code>exporters/</code></p>
 <section id="o-que-entra-7" class="level3" data-number="11.1">
 <h3 data-number="11.1" class="anchored" data-anchor-id="o-que-entra-7"><span class="header-section-number">11.1</span> O que entra</h3>
-<p>O <code>LinkedProject</code> completo + <code>TemplateNode</code> + <code>Dict[BibEntry]</code>.</p>
+<p>O <code>LinkedProject</code> completo + <code>TemplateNode</code> + bibliografia.</p>
 </section>
 <section id="o-que-acontece-6" class="level3" data-number="11.2">
 <h3 data-number="11.2" class="anchored" data-anchor-id="o-que-acontece-6"><span class="header-section-number">11.2</span> O que acontece</h3>
-<p>Cada exportador percorre o <code>LinkedProject</code> e serializa os dados no formato alvo. A exportação só ocorre se <strong>não houver erros</strong> (ou se o flag <code>--force</code> for usado no CLI).</p>
+<p>Cada exportador percorre o <code>LinkedProject</code> e serializa os dados no formato alvo. Na linha de comando, a exportação só ocorre se <strong>não houver erros</strong> (ou com <code>--force</code>).</p>
 </section>
 <section id="o-que-sai-7" class="level3" data-number="11.3">
 <h3 data-number="11.3" class="anchored" data-anchor-id="o-que-sai-7"><span class="header-section-number">11.3</span> O que sai</h3>
-<ul>
-<li><strong>JSON</strong> — Estrutura hierárquica: sources → items → codes → ontology</li>
-<li><strong>CSV</strong> — Múltiplos arquivos relacionais: <code>sources.csv</code>, <code>items.csv</code>, <code>codes.csv</code>, <code>chains.csv</code></li>
-<li><strong>Excel</strong> — Planilha com múltiplas abas correspondendo às tabelas CSV</li>
-</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formato</th>
+<th>Módulo</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JSON</td>
+<td><code>json_export.py</code></td>
+<td>Projeto, template, bibliografia, índices, ontologia e corpus</td>
+</tr>
+<tr class="even">
+<td>CSV</td>
+<td><code>csv_export.py</code></td>
+<td><code>sources.csv</code>, <code>items.csv</code>, <code>ontologies.csv</code> e, havendo cadeias, <code>chains.csv</code></td>
+</tr>
+<tr class="odd">
+<td>Excel</td>
+<td><code>xls_export.py</code></td>
+<td>Planilha com abas correspondentes às tabelas CSV</td>
+</tr>
+<tr class="even">
+<td>Alpaca</td>
+<td><code>alpaca_export.py</code>, <code>alpaca_mapped.py</code></td>
+<td>Dados de ajuste fino</td>
+</tr>
+<tr class="odd">
+<td>OKF (experimental)</td>
+<td><code>okf_export.py</code></td>
+<td>Pacote de conhecimento em arquivos</td>
+</tr>
+<tr class="even">
+<td>SKOS</td>
+<td><code>skos_export.py</code></td>
+<td>Vocabulário em SKOS, declarado por um bloco <code>EXPORT</code> no <code>.synp</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ligar vários projetos (<code>synesis compile p1.synp p2.synp</code>) é um passo posterior, em <code>semantic/link_step.py</code>: ver <a href="../howto/ligar_projetos.html">Ligar Projetos</a>.</p>
 </section>
 </section>
 <section id="sec-orquestrador" class="level2" data-number="12">
@@ -897,26 +938,35 @@ ITEMs não são aninhados em SOURCEs — ainda
 <p>O compilador é o maestro — chama cada estágio na ordem certa e decide o que fazer com erros:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplificado para clareza</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="bu">compile</span>(<span class="va">self</span>) <span class="op">-&gt;</span> CompilationResult:</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    project, validation <span class="op">=</span> <span class="va">self</span>.parse_project()           <span class="co"># Estágio 1</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    template, tv <span class="op">=</span> <span class="va">self</span>._safe_load_template()            <span class="co"># Estágio 2</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    bibliography <span class="op">=</span> <span class="va">self</span>.load_bibliography(project)       <span class="co"># Estágio 3</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    ontologies <span class="op">=</span> <span class="va">self</span>.parse_ontologies(project)          <span class="co"># Estágio 4</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    sources, items <span class="op">=</span> <span class="va">self</span>.parse_annotations(project)     <span class="co"># Estágio 5</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    validation <span class="op">+=</span> <span class="va">self</span>.validate_all(...)                 <span class="co"># Estágio 6</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    linked <span class="op">=</span> <span class="va">self</span>.link_all(...)                          <span class="co"># Estágio 7</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Estágio 8 é acionado externamente via result.to_json(), etc.</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CompilationResult(</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        success           <span class="op">=</span> <span class="kw">not</span> validation.has_errors(),</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        linked_project    <span class="op">=</span> linked,</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        validation_result <span class="op">=</span> validation,</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        stats             <span class="op">=</span> <span class="va">self</span>._compute_stats(linked),</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    project, pv <span class="op">=</span> <span class="va">self</span>.parse_project()                      <span class="co"># Estágio 1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    sv <span class="op">=</span> <span class="va">self</span>.validate_project_structure(project)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    template, tv <span class="op">=</span> <span class="va">self</span>._safe_load_template(project)        <span class="co"># Estágio 2</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> template <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> CompilationResult(success<span class="op">=</span><span class="va">False</span>, ...)        <span class="co"># encerra aqui</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    validate_template(template)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    bibliography <span class="op">=</span> <span class="va">self</span>.load_bibliography(project)          <span class="co"># Estágio 3</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    dataset, dv <span class="op">=</span> <span class="va">self</span>.load_dataset_index(project, template)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    ontologies, ov <span class="op">=</span> <span class="va">self</span>.parse_ontologies(project)         <span class="co"># Estágio 4</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    sources, items, av <span class="op">=</span> <span class="va">self</span>.parse_annotations(project)    <span class="co"># Estágio 5</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    validation <span class="op">=</span> <span class="va">self</span>.validate_all(...)                     <span class="co"># Estágio 6</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    linked <span class="op">=</span> <span class="va">self</span>.link_all(..., validation_result<span class="op">=</span>validation)  <span class="co"># Estágio 7</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># os resultados parciais (pv, sv, tv...) são reunidos em `validation`</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Estágio 8 é acionado por quem chama: result.to_json(), etc.</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CompilationResult(</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        success           <span class="op">=</span> <span class="kw">not</span> validation.has_errors(),</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        linked_project    <span class="op">=</span> linked,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        validation_result <span class="op">=</span> validation,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        stats             <span class="op">=</span> <span class="va">self</span>._compute_stats(linked, sources, items, ontologies),</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        template          <span class="op">=</span> template,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>        bibliography      <span class="op">=</span> bibliography,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        dataset           <span class="op">=</span> dataset,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>O resultado final é um <code>CompilationResult</code> com todas as informações:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CompilationResult(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    success <span class="op">=</span> <span class="va">True</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    linked_project    <span class="op">=</span> LinkedProject(...),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    validation_result <span class="op">=</span> ValidationResult(errors<span class="op">=</span>[], warnings<span class="op">=</span>[]),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    validation_result <span class="op">=</span> ValidationResult(errors<span class="op">=</span>[], warnings<span class="op">=</span>[], info<span class="op">=</span>[]),</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    stats <span class="op">=</span> CompilationStats(</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        source_count   <span class="op">=</span> <span class="dv">1</span>,</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        item_count     <span class="op">=</span> <span class="dv">1</span>,</span>
@@ -926,8 +976,9 @@ ITEMs não são aninhados em SOURCEs — ainda
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        triple_count   <span class="op">=</span> <span class="dv">0</span>,</span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    template     <span class="op">=</span> TemplateNode(...),</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    bibliography <span class="op">=</span> {<span class="st">"smith2024"</span>: BibEntry(...)},</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    bibliography <span class="op">=</span> {<span class="st">"smith2024"</span>: {...}},</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    dataset      <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sec-lark" class="level2" data-number="13">
 <h2 data-number="13" class="anchored" data-anchor-id="sec-lark"><span class="header-section-number">13</span> Nos bastidores: o parser Lark</h2>
@@ -937,7 +988,7 @@ ITEMs não são aninhados em SOURCEs — ainda
 <pre><code>Texto bruto (.syn, .synt, etc.)
         │
         ▼
-  SynesisIndenter        ← converte tabs em 4 espaços,
+  SynesisIndenter        ← conta cada tab como 4 colunas e
         │                   gera tokens INDENT/DEDENT (como Python)
         ▼
   Lexer LALR(1)          ← tokeniza: KEYWORD, STRING, IDENTIFIER, NEWLINE...
@@ -953,7 +1004,7 @@ ITEMs não são aninhados em SOURCEs — ainda
         │
         ▼
   ProjectNode / SourceNode / ItemNode / OntologyNode / ...</code></pre>
-<p>O Synesis usa o <strong>Lark</strong> — uma biblioteca Python de parsing que aceita gramáticas no formato EBNF e gera parsers LALR(1) eficientes. A gramática completa, comentada regra por regra, está em <a href="../reference/gramatica.html">Gramática da Linguagem</a>.</p>
+<p>O Synesis usa o <strong>Lark</strong> — uma biblioteca Python de parsing que aceita gramáticas no formato EBNF e gera parsers LALR(1) eficientes. O compilador usa um parser autônomo gerado a partir de <code>synesis.lark</code>. A gramática completa, comentada regra por regra, está em <a href="../reference/gramatica.html">Gramática da Linguagem</a>.</p>
 </section>
 <section id="como-a-árvore-vira-objetos-python" class="level3" data-number="13.2">
 <h3 data-number="13.2" class="anchored" data-anchor-id="como-a-árvore-vira-objetos-python"><span class="header-section-number">13.2</span> Como a árvore vira objetos Python</h3>
@@ -1034,7 +1085,7 @@ ITEMs não são aninhados em SOURCEs — ainda
 <tr class="odd">
 <td><code>ValidationResult</code></td>
 <td>Estágios 1–7</td>
-<td>CLI</td>
+<td>CLI, editor, API</td>
 </tr>
 <tr class="even">
 <td><code>LinkedProject</code></td>
@@ -1044,7 +1095,7 @@ ITEMs não são aninhados em SOURCEs — ainda
 <tr class="odd">
 <td><code>CompilationResult</code></td>
 <td>Orquestrador</td>
-<td>CLI</td>
+<td>CLI, editor, API</td>
 </tr>
 </tbody>
 </table>
@@ -1067,22 +1118,22 @@ ITEMs não são aninhados em SOURCEs — ainda
 <tbody>
 <tr class="odd">
 <td><code>ProjectNode</code></td>
-<td><code>name</code>, <code>template_path</code>, <code>includes</code></td>
+<td><code>name</code>, <code>template_path</code>, <code>includes</code>, <code>metadata</code>, <code>description</code>, <code>questions</code>, <code>exports</code></td>
 <td>Transformer</td>
 </tr>
 <tr class="even">
 <td><code>IncludeNode</code></td>
-<td><code>include_type</code>, <code>path</code></td>
+<td><code>include_type</code>, <code>path</code>, <code>shared</code></td>
 <td>Transformer</td>
 </tr>
 <tr class="odd">
 <td><code>TemplateNode</code></td>
-<td><code>field_specs</code>, <code>required_fields</code>, <code>optional_fields</code></td>
+<td><code>field_specs</code>, <code>required_fields</code>, <code>optional_fields</code>, <code>forbidden_fields</code>, <code>bundled_fields</code></td>
 <td>template_loader</td>
 </tr>
 <tr class="even">
 <td><code>FieldSpec</code></td>
-<td><code>name</code>, <code>type</code>, <code>scope</code>, <code>arity</code>, <code>values</code>, <code>relations</code></td>
+<td><code>name</code>, <code>type</code>, <code>scope</code>, <code>arity</code>, <code>values</code>, <code>relations</code>, <code>guidelines</code>, <code>role</code></td>
 <td>Transformer</td>
 </tr>
 <tr class="odd">
@@ -1092,7 +1143,7 @@ ITEMs não são aninhados em SOURCEs — ainda
 </tr>
 <tr class="even">
 <td><code>ItemNode</code></td>
-<td><code>bibref</code>, <code>quote</code>, <code>codes</code>, <code>notes</code>, <code>chains</code>, <code>code_locations</code></td>
+<td><code>bibref</code>, <code>codes</code>, <code>notes</code>, <code>chains</code>, <code>extra_fields</code>, <code>code_locations</code></td>
 <td>Transformer + Linker</td>
 </tr>
 <tr class="odd">
@@ -1117,7 +1168,7 @@ ITEMs não são aninhados em SOURCEs — ainda
 </tr>
 <tr class="odd">
 <td><code>LinkedProject</code></td>
-<td><code>sources</code>, <code>ontology_index</code>, <code>code_usage</code>, <code>hierarchy</code>, <code>all_triples</code></td>
+<td><code>sources</code>, <code>ontology_index</code>, <code>code_usage</code>, <code>all_triples</code>, <code>topic_index</code>, <code>role_hierarchy</code></td>
 <td>Linker</td>
 </tr>
 <tr class="even">
@@ -1136,76 +1187,96 @@ ITEMs não são aninhados em SOURCEs — ainda
 <section id="sec-erros" class="level2" data-number="16">
 <h2 data-number="16" class="anchored" data-anchor-id="sec-erros"><span class="header-section-number">16</span> Erros mais comuns</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Erro</th>
+<th>Código</th>
 <th>Nome</th>
+<th>Severidade</th>
 <th>Quando acontece</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>E001</td>
-<td>UnregisteredSource</td>
+<td><a href="../reference/guia_erros.html#sec-e001">E001</a></td>
+<td><code>UnregisteredSource</code></td>
+<td>erro</td>
 <td>O bibref do SOURCE não existe no arquivo <code>.bib</code></td>
 </tr>
 <tr class="even">
-<td>E002</td>
-<td>OrphanItem</td>
+<td><a href="../reference/guia_erros.html#sec-e002">E002</a></td>
+<td><code>OrphanItem</code></td>
+<td>erro</td>
 <td>O ITEM referencia um bibref sem SOURCE correspondente</td>
 </tr>
 <tr class="odd">
-<td>W003</td>
-<td>SourceWithoutItems</td>
+<td><a href="../reference/guia_erros.html#sec-e003">E003</a></td>
+<td><code>SourceWithoutItems</code></td>
+<td>aviso</td>
 <td>Uma SOURCE foi declarada mas nenhum ITEM a referencia</td>
 </tr>
 <tr class="even">
-<td>W004</td>
-<td>UndefinedCode</td>
-<td>Um código usado no ITEM não está definido na ontologia</td>
+<td><a href="../reference/guia_erros.html#sec-e090">E090</a></td>
+<td><code>UndefinedCodesSummary</code></td>
+<td>aviso</td>
+<td>Há códigos usados e não definidos na ontologia (resumo)</td>
 </tr>
 <tr class="odd">
-<td>E005</td>
-<td>OntologyWithoutTemplateFields</td>
-<td>Há arquivos de ontologia mas o template não define <code>ONTOLOGY FIELDS</code></td>
+<td><a href="../reference/guia_erros.html#sec-e004">E004</a></td>
+<td><code>UndefinedCode</code></td>
+<td>aviso</td>
+<td>Cada código sem definição, com <code>--check-codes</code></td>
 </tr>
 <tr class="even">
-<td>E013</td>
-<td>ChainWithoutArrowOperator</td>
-<td>Um CHAIN foi declarado sem o operador <code>→</code></td>
+<td><a href="../reference/guia_erros.html#sec-e005">E005</a></td>
+<td><code>OntologyWithoutTemplateFields</code></td>
+<td>erro</td>
+<td>Há blocos ONTOLOGY mas o template não define <code>ONTOLOGY FIELDS</code></td>
 </tr>
 <tr class="odd">
-<td>E023</td>
-<td>EmptyItemBlock</td>
+<td><a href="../reference/guia_erros.html#sec-e020">E020</a></td>
+<td><code>MissingRequiredField</code></td>
+<td>erro</td>
+<td>Um campo obrigatório está ausente</td>
+</tr>
+<tr class="even">
+<td><a href="../reference/guia_erros.html#sec-e022">E022</a></td>
+<td><code>UnknownFieldName</code></td>
+<td>erro</td>
+<td>Um campo não declarado no template foi usado</td>
+</tr>
+<tr class="odd">
+<td><a href="../reference/guia_erros.html#sec-e023">E023</a></td>
+<td><code>EmptyItemBlock</code></td>
+<td>erro</td>
 <td>Um bloco ITEM está vazio (sem campos)</td>
 </tr>
 <tr class="even">
-<td>E061</td>
-<td>UnreferencedAnnotations</td>
-<td>Arquivo <code>.syn</code> existe no diretório mas não está listado no <code>project.synp</code></td>
+<td><a href="../reference/guia_erros.html#sec-e061">E061</a></td>
+<td><code>MissingAnnotationsInclude</code></td>
+<td>erro</td>
+<td>Arquivo <code>.syn</code> existe no diretório mas não está listado no <code>.synp</code></td>
 </tr>
 <tr class="odd">
-<td>E065</td>
-<td>MissingTemplateDeclaration</td>
-<td>O projeto não tem declaração TEMPLATE</td>
+<td><a href="../reference/guia_erros.html#sec-e064">E064</a></td>
+<td><code>MissingTemplateFile</code></td>
+<td>erro</td>
+<td>O template não foi encontrado ou não pôde ser interpretado</td>
 </tr>
 <tr class="even">
-<td>E068</td>
-<td>DuplicateOntologyConcept</td>
+<td><a href="../reference/guia_erros.html#sec-e068">E068</a></td>
+<td><code>DuplicateOntologyConcept</code></td>
+<td>erro</td>
 <td>O mesmo conceito foi definido duas vezes na ontologia</td>
 </tr>
 <tr class="odd">
-<td>E070</td>
-<td>DuplicateSourceBibref</td>
+<td><a href="../reference/guia_erros.html#sec-e070">E070</a></td>
+<td><code>DuplicateSourceBibref</code></td>
+<td>erro</td>
 <td>O mesmo bibref aparece em dois blocos SOURCE</td>
 </tr>
 </tbody>
 </table>
+<p>A lista completa está no <a href="../reference/guia_erros.html">Guia de Erros</a>.</p>
 
 
 </section>

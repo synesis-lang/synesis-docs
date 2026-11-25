@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Language Grammar – Synesis Language</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Synesis Language</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
+ <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/guia_pesquisadores.html">
+ <span class="dropdown-text">Guide for Researchers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
+ <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-how-to-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">How-to Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-how-to-guides">    
+        <li>
+    <a class="dropdown-item" href="../howto/guia_profissionais.html">
+ <span class="dropdown-text">Guide for Professionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
+ <span class="dropdown-text">Export to Neo4j</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="../reference/guia_referencia.html">
+ <span class="dropdown-text">Language Reference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/organizing_model.html">
+ <span class="dropdown-text">The Organizing Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_load.html">
+ <span class="dropdown-text">Synesis API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-en" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 EN</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-en">    
+        <li>
+    <a class="dropdown-item" href="../../pt/">
+ <span class="dropdown-text">🇧🇷 Português</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../en/">
+ <span class="dropdown-text">🇬🇧 English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-to-read-this-document" id="toc-how-to-read-this-document" class="nav-link active" data-scroll-target="#how-to-read-this-document"><span class="header-section-number">1</span> How to Read This Document</a></li>
+  <li><a href="#sec-start" id="toc-sec-start" class="nav-link" data-scroll-target="#sec-start"><span class="header-section-number">2</span> Starting Point</a></li>
+  <li><a href="#sec-keywords" id="toc-sec-keywords" class="nav-link" data-scroll-target="#sec-keywords"><span class="header-section-number">3</span> Keywords</a>
+  <ul class="collapse">
+  <li><a href="#boundary-lookahead" id="toc-boundary-lookahead" class="nav-link" data-scroll-target="#boundary-lookahead"><span class="header-section-number">3.1</span> Boundary Lookahead</a></li>
+  </ul></li>
+  <li><a href="#sec-project" id="toc-sec-project" class="nav-link" data-scroll-target="#sec-project"><span class="header-section-number">4</span> PROJECT Block</a>
+  <ul class="collapse">
+  <li><a href="#template-and-include" id="toc-template-and-include" class="nav-link" data-scroll-target="#template-and-include"><span class="header-section-number">4.1</span> TEMPLATE and INCLUDE</a></li>
+  <li><a href="#metadata-description-and-questions" id="toc-metadata-description-and-questions" class="nav-link" data-scroll-target="#metadata-description-and-questions"><span class="header-section-number">4.2</span> METADATA, DESCRIPTION and QUESTIONS</a></li>
+  <li><a href="#phase-and-export" id="toc-phase-and-export" class="nav-link" data-scroll-target="#phase-and-export"><span class="header-section-number">4.3</span> PHASE and EXPORT</a></li>
+  </ul></li>
+  <li><a href="#sec-annotation" id="toc-sec-annotation" class="nav-link" data-scroll-target="#sec-annotation"><span class="header-section-number">5</span> Annotation Blocks</a></li>
+  <li><a href="#sec-fields" id="toc-sec-fields" class="nav-link" data-scroll-target="#sec-fields"><span class="header-section-number">6</span> Fields and Values</a>
+  <ul class="collapse">
+  <li><a href="#field-keys" id="toc-field-keys" class="nav-link" data-scroll-target="#field-keys"><span class="header-section-number">6.1</span> Field Keys</a></li>
+  <li><a href="#value-types" id="toc-value-types" class="nav-link" data-scroll-target="#value-types"><span class="header-section-number">6.2</span> Value Types</a></li>
+  <li><a href="#code-lists-and-chain-expressions" id="toc-code-lists-and-chain-expressions" class="nav-link" data-scroll-target="#code-lists-and-chain-expressions"><span class="header-section-number">6.3</span> Code Lists and Chain Expressions</a></li>
+  <li><a href="#multi-line-text" id="toc-multi-line-text" class="nav-link" data-scroll-target="#multi-line-text"><span class="header-section-number">6.4</span> Multi-line Text</a></li>
+  </ul></li>
+  <li><a href="#sec-template" id="toc-sec-template" class="nav-link" data-scroll-target="#sec-template"><span class="header-section-number">7</span> TEMPLATE Block</a>
+  <ul class="collapse">
+  <li><a href="#header" id="toc-header" class="nav-link" data-scroll-target="#header"><span class="header-section-number">7.1</span> Header</a></li>
+  <li><a href="#fields-by-scope" id="toc-fields-by-scope" class="nav-link" data-scroll-target="#fields-by-scope"><span class="header-section-number">7.2</span> Fields by Scope</a></li>
+  <li><a href="#field-definition" id="toc-field-definition" class="nav-link" data-scroll-target="#field-definition"><span class="header-section-number">7.3</span> Field Definition</a></li>
+  <li><a href="#values-and-relations" id="toc-values-and-relations" class="nav-link" data-scroll-target="#values-and-relations"><span class="header-section-number">7.4</span> VALUES and RELATIONS</a></li>
+  <li><a href="#format-and-arity" id="toc-format-and-arity" class="nav-link" data-scroll-target="#format-and-arity"><span class="header-section-number">7.5</span> FORMAT and ARITY</a></li>
+  <li><a href="#guidelines-block" id="toc-guidelines-block" class="nav-link" data-scroll-target="#guidelines-block"><span class="header-section-number">7.6</span> GUIDELINES Block</a></li>
+  </ul></li>
+  <li><a href="#sec-tokens" id="toc-sec-tokens" class="nav-link" data-scroll-target="#sec-tokens"><span class="header-section-number">8</span> Tokens</a>
+  <ul class="collapse">
+  <li><a href="#identifiers-and-references" id="toc-identifiers-and-references" class="nav-link" data-scroll-target="#identifiers-and-references"><span class="header-section-number">8.1</span> Identifiers and References</a></li>
+  <li><a href="#code-and-chain-elements" id="toc-code-and-chain-elements" class="nav-link" data-scroll-target="#code-and-chain-elements"><span class="header-section-number">8.2</span> Code and Chain Elements</a></li>
+  <li><a href="#values-and-text" id="toc-values-and-text" class="nav-link" data-scroll-target="#values-and-text"><span class="header-section-number">8.3</span> Values and Text</a></li>
+  <li><a href="#special-tokens" id="toc-special-tokens" class="nav-link" data-scroll-target="#special-tokens"><span class="header-section-number">8.4</span> Special Tokens</a></li>
+  </ul></li>
+  <li><a href="#sec-prioridades" id="toc-sec-prioridades" class="nav-link" data-scroll-target="#sec-prioridades"><span class="header-section-number">9</span> Priorities — How Ambiguities Are Resolved</a></li>
+  <li><a href="#sec-indentacao" id="toc-sec-indentacao" class="nav-link" data-scroll-target="#sec-indentacao"><span class="header-section-number">10</span> Significant Indentation</a></li>
+  <li><a href="#sec-standalone" id="toc-sec-standalone" class="nav-link" data-scroll-target="#sec-standalone"><span class="header-section-number">11</span> The Generated Parser</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Language Grammar</h1>
+<p class="subtitle lead">The formal LALR(1) specification of Synesis — commented rule by rule</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Who is this document for?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Developers who need to understand, extend or debug the Synesis syntax. The grammar below is the <strong>canonical specification</strong> — the compiler runs it literally. If the compiler accepts or rejects something at the syntax level, the answer is here. This page follows the file <code>synesis/grammar/synesis.lark</code> of <strong>synesis 0.16.0</strong>.</p>
+<p>For the whole compilation flow (not only the grammar), see <a href="../explanation/fluxo_compilacao_interno.html">Inside the Compiler</a>.</p>
+</div>
+</div>
+<section id="how-to-read-this-document" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="how-to-read-this-document"><span class="header-section-number">1</span> How to Read This Document</h2>
+<p>The grammar uses the <strong>Lark EBNF</strong> format:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Syntax</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>rule: A B C</code></td>
+<td><code>rule</code> is <code>A</code>, then <code>B</code>, then <code>C</code>, in that order</td>
+</tr>
+<tr class="even">
+<td><code>A \| B</code></td>
+<td><code>A</code> or <code>B</code> (alternative)</td>
+</tr>
+<tr class="odd">
+<td><code>A*</code></td>
+<td>Zero or more repetitions of <code>A</code></td>
+</tr>
+<tr class="even">
+<td><code>A+</code></td>
+<td>One or more repetitions of <code>A</code></td>
+</tr>
+<tr class="odd">
+<td><code>A?</code></td>
+<td><code>A</code> is optional (zero or one)</td>
+</tr>
+<tr class="even">
+<td><code>"text"</code></td>
+<td>Exact literal</td>
+</tr>
+<tr class="odd">
+<td><code>/regex/</code></td>
+<td>Regex pattern</td>
+</tr>
+<tr class="even">
+<td><code>/regex/i</code></td>
+<td>Case-insensitive regex</td>
+</tr>
+<tr class="odd">
+<td><code>TOKEN.N</code></td>
+<td>Token with priority <code>N</code> (higher wins in case of ambiguity)</td>
+</tr>
+<tr class="even">
+<td><code>_INDENT</code> / <code>_DEDENT</code></td>
+<td>Indentation tokens generated automatically</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lowercase</strong> rules (<code>project_block</code>) are grammar rules — they produce nodes in the syntax tree. <strong>UPPERCASE</strong> rules (<code>IDENTIFIER</code>) are tokens — atomic units recognized by the lexer.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Permissive grammar, strict semantics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Several restrictions of the language are <strong>not</strong> in the grammar but in the semantic validator. This is deliberate: a grammar error is an “unexpected token”; a semantic error explains what to do. <strong>A grammar error teaches nothing; a semantic error does.</strong></p>
+</div>
+</div>
+</section>
+<section id="sec-start" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-start"><span class="header-section-number">2</span> Starting Point</h2>
+<p>Every compilation starts here. The <code>start</code> rule accepts a sequence of blocks separated by blank lines:</p>
+<pre class="lark"><code>start: (block | NEWLINE)* block (block | NEWLINE)*
+
+block: project_block
+     | source_block
+     | item_block
+     | ontology_block
+     | template_header
+     | field_spec_block
+     | field_def_block</code></pre>
+<p>A Synesis file is a list of blocks. Which blocks make sense depends on the file type:</p>
+<ul>
+<li><strong><code>.synp</code></strong> holds a <code>project_block</code></li>
+<li><strong><code>.syn</code></strong> holds <code>source_block</code> and <code>item_block</code></li>
+<li><strong><code>.syno</code></strong> holds <code>ontology_block</code></li>
+<li><strong><code>.synt</code></strong> holds <code>template_header</code>, <code>field_spec_block</code> and <code>field_def_block</code></li>
+</ul>
+<p>The grammar accepts any combination; the semantic validator checks the context. An empty <code>.syn</code> or <code>.syno</code>, or one with comments only, is handled before the parser and declares no block.</p>
+</section>
+<section id="sec-keywords" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-keywords"><span class="header-section-number">3</span> Keywords</h2>
+<p>All keywords are case-insensitive — <code>PROJECT</code>, <code>project</code> and <code>Project</code> are equivalent:</p>
+<pre class="lark"><code>KW_PROJECT.5: /project/i
+KW_SOURCE.5: /source/i
+KW_ITEM.5: /item/i
+KW_ONTOLOGY.5: /ontology/i
+KW_TEMPLATE.5: /template/i
+KW_FIELD.5: /field/i
+KW_END.5: /end/i
+KW_INCLUDE.5: /include/i
+KW_SHARED.5: /shared(?![\p{L}\p{N}_-])/i
+KW_BIBLIOGRAPHY.5: /bibliography/i
+KW_ANNOTATIONS.5: /annotations/i
+KW_FIELDS.5: /fields/i
+KW_REQUIRED.5: /required/i
+KW_OPTIONAL.5: /optional/i
+KW_FORBIDDEN.5: /forbidden/i
+KW_BUNDLE.5: /bundle/i
+KW_TYPE.5: /type/i
+KW_SCOPE.5: /scope/i
+KW_FORMAT.5: /format/i
+KW_DESCRIPTION.5: /description(?![\p{L}\p{N}_-])/i
+KW_ARITY.5: /arity/i
+KW_VALUES.5: /values/i
+KW_RELATIONS.5: /relations/i
+KW_METADATA.5: /metadata/i
+KW_QUOTATION.5: /quotation(?![\p{L}\p{N}_-])/i
+KW_MEMO.5: /memo(?![\p{L}\p{N}_-])/i
+KW_CODE.5: /code(?![\p{L}\p{N}_-])/i
+KW_CHAIN.5: /chain(?![\p{L}\p{N}_-])/i
+KW_TEXT.5: /text(?![\p{L}\p{N}_-])/i
+KW_DATE.5: /date(?![\p{L}\p{N}_-])/i
+KW_SCALE.5: /scale(?![\p{L}\p{N}_-])/i
+KW_ENUMERATED.5: /enumerated(?![\p{L}\p{N}_-])/i
+KW_ORDERED.5: /ordered(?![\p{L}\p{N}_-])/i
+KW_TOPIC.5: /topic(?![\p{L}\p{N}_-])/i
+KW_GUIDELINES.5: /guidelines/i
+
+// .synp blocks
+KW_EXPORT.5: /export(?![\p{L}\p{N}_-])/i
+KW_MAP.5: /map(?![\p{L}\p{N}_-])/i
+KW_QUESTIONS.5: /questions(?![\p{L}\p{N}_-])/i
+KW_PHASE.5: /phase(?![\p{L}\p{N}_-])/i
+
+// FIELD properties and value origin
+KW_ROLE.5: /role(?![\p{L}\p{N}_-])/i
+KW_IDENTIFIES.5: /identifies(?![\p{L}\p{N}_-])/i
+KW_REFERS.5: /refers(?![\p{L}\p{N}_-])/i
+KW_TO.5: /to(?![\p{L}\p{N}_-])/i
+KW_ON.5: /on(?![\p{L}\p{N}_-])/i
+KW_DATASET.5: /dataset(?![\p{L}\p{N}_-])/i
+KW_CONTEXT.5: /context(?![\p{L}\p{N}_-])/i
+KW_FROM.5: /from(?![\p{L}\p{N}_-])/i</code></pre>
+<p>Priority <code>.5</code> makes keywords win over <code>IDENTIFIER</code> and <code>FIELD_NAME</code> (priority <code>.1</code>). Without it, <code>SOURCE</code> would be read as a generic identifier.</p>
+<section id="boundary-lookahead" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="boundary-lookahead"><span class="header-section-number">3.1</span> Boundary Lookahead</h3>
+<p>The suffix <code>(?![\p{L}\p{N}_-])</code> is a <em>negative lookahead</em> that stops a token from matching as a <strong>prefix of a longer name</strong>. Without it, the start of a field called <code>code_quality</code> would be consumed by the <code>CODE</code> keyword and the rest would become syntax garbage. This applies to type names and to short words: <code>TO</code> and <code>ON</code> would match inside <code>total</code>, <code>to_do</code>, <code>on_hold</code> or <code>onset</code>. With the lookahead, <code>texto</code>, <code>chain_length</code>, <code>date_created</code> and <code>topic_area</code> are field names.</p>
+</section>
+</section>
+<section id="sec-project" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-project"><span class="header-section-number">4</span> PROJECT Block</h2>
+<pre class="lark"><code>project_block: KW_PROJECT IDENTIFIER NEWLINE project_body KW_END KW_PROJECT
+
+project_body: _INDENT project_items _DEDENT
+            | project_items
+
+project_items: (include_stmt | metadata | description | questions
+                | phase_block | export_block | NEWLINE)+</code></pre>
+<p>The body may be entirely indented or entirely at column 0.</p>
+<section id="template-and-include" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="template-and-include"><span class="header-section-number">4.1</span> TEMPLATE and INCLUDE</h3>
+<pre class="lark"><code>include_stmt: KW_TEMPLATE STRING NEWLINE
+            | KW_INCLUDE include_type STRING NEWLINE
+include_type: KW_SHARED? (KW_BIBLIOGRAPHY | KW_ANNOTATIONS | KW_ONTOLOGY | KW_DATASET)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> demo</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"references.bib"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"annotations/"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontology.syno"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> DATASET <span class="st">"records/*.toml"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> SHARED <span class="kw">ONTOLOGY</span> <span class="st">"../shared/vocabulary.syno"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>KW_SHARED?</code> precedes <strong>any</strong> type, although it only applies to <code>ONTOLOGY</code>: <code>INCLUDE SHARED BIBLIOGRAPHY</code> parses and then receives <a href="../reference/guia_erros.html#sec-e084">error E084</a>, with the explanation.</p>
+</section>
+<section id="metadata-description-and-questions" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="metadata-description-and-questions"><span class="header-section-number">4.2</span> METADATA, DESCRIPTION and QUESTIONS</h3>
+<pre class="lark"><code>metadata: KW_METADATA NEWLINE _INDENT (metadata_line | NEWLINE)+ _DEDENT KW_END KW_METADATA NEWLINE
+metadata_line: TEXT_LINE NEWLINE
+
+description: KW_DESCRIPTION NEWLINE description_lines KW_END KW_DESCRIPTION NEWLINE?
+description_lines: (TEXT_LINE NEWLINE | NEWLINE)+
+
+questions: KW_QUESTIONS NEWLINE _INDENT question_lines _DEDENT KW_END KW_QUESTIONS NEWLINE?
+question_lines: (TEXT_LINE NEWLINE | NEWLINE)+</code></pre>
+<p>These are free-text blocks. Note the indentation difference: <code>DESCRIPTION</code> declares <strong>no</strong> <code>_INDENT</code> (its lines sit at the same level as the keyword), while <code>METADATA</code> and <code>QUESTIONS</code> require indented lines. The <code>&lt;id&gt;: &lt;text&gt;</code> form of questions is checked by the compiler (<a href="../reference/guia_erros.html#sec-e091">E091</a>–<a href="../reference/guia_erros.html#sec-e093">E093</a>).</p>
+</section>
+<section id="phase-and-export" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="phase-and-export"><span class="header-section-number">4.3</span> PHASE and EXPORT</h3>
+<pre class="lark"><code>phase_block: KW_PHASE phase_scope IDENTIFIER NEWLINE _INDENT (export_prop | NEWLINE)+ _DEDENT KW_END KW_PHASE NEWLINE?
+phase_scope: KW_ANNOTATIONS | KW_ONTOLOGY
+
+export_block: KW_EXPORT IDENTIFIER IDENTIFIER? NEWLINE _INDENT (map_stmt | export_prop | NEWLINE)+ _DEDENT KW_END KW_EXPORT NEWLINE?
+export_prop: (IDENTIFIER | KW_DESCRIPTION) TEXT_LINE NEWLINE
+
+map_stmt: KW_MAP KW_RELATIONS? map_names (KW_FROM IDENTIFIER)? KW_TO map_target NEWLINE
+map_names: field_key ("," field_key)*
+map_target: IDENTIFIER+</code></pre>
+<p>The properties (<code>OUTPUT</code>, <code>NAMESPACE</code>, <code>FIELDS</code>, <code>INPUT</code>…) are <strong>ordinary words</strong>, and the <code>EXPORT</code> format is an identifier. The grammar does not change when a new property appears; the compiler checks them.</p>
+</section>
+</section>
+<section id="sec-annotation" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-annotation"><span class="header-section-number">5</span> Annotation Blocks</h2>
+<pre class="lark"><code>source_block: KW_SOURCE BIBREF NEWLINE
+              (_INDENT (field_entry | NEWLINE)* _DEDENT)?
+              KW_END KW_SOURCE
+
+item_block: KW_ITEM BIBREF NEWLINE
+            (_INDENT (field_entry | NEWLINE)* _DEDENT)?
+            KW_END KW_ITEM
+
+ontology_block: KW_ONTOLOGY concept_name NEWLINE
+                (_INDENT (field_entry | NEWLINE)* _DEDENT)?
+                KW_END KW_ONTOLOGY
+
+concept_name: CONCEPT_NAME</code></pre>
+<ul>
+<li><code>SOURCE</code> and <code>ITEM</code> take a <code>BIBREF</code> (such as <code>@smith2024</code>).</li>
+<li><code>ONTOLOGY</code> takes a <code>concept_name</code>, which is more permissive (see <a href="#sec-tokens">Tokens</a>).</li>
+<li>The body is <strong>optional</strong>: empty blocks are syntactically valid, but the validator may reject them (<a href="../reference/guia_erros.html#sec-e023">E023</a>).</li>
+<li>Indentation (<code>_INDENT</code>/<code>_DEDENT</code>) delimits the body.</li>
+</ul>
+</section>
+<section id="sec-fields" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-fields"><span class="header-section-number">6</span> Fields and Values</h2>
+<pre class="lark"><code>field_entry: field_key ":" value NEWLINE continuation_block?
+           | field_key ":" NEWLINE _INDENT text_block _DEDENT NEWLINE?</code></pre>
+<p>Two forms: a value on the same line (with optional continuation) or a value that starts on the next line, indented.</p>
+<section id="field-keys" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="field-keys"><span class="header-section-number">6.1</span> Field Keys</h3>
+<pre class="lark"><code>field_key: FIELD_NAME
+         | KW_TOPIC | KW_DESCRIPTION | KW_CODE | KW_CHAIN
+         | KW_TEXT | KW_MEMO | KW_QUOTATION | KW_DATE
+         | KW_SCALE | KW_ENUMERATED | KW_ORDERED</code></pre>
+<p>Besides user-defined names (<code>FIELD_NAME</code>), type keywords can name fields — hence <code>code:</code>, <code>chain:</code> and <code>description:</code>.</p>
+</section>
+<section id="value-types" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="value-types"><span class="header-section-number">6.2</span> Value Types</h3>
+<pre class="lark"><code>value: STRING
+     | NUMBER TEXT_LINE
+     | NUMBER
+     | chain_expr
+     | code_list
+     | TEXT_LINE</code></pre>
+<p>Token priorities (<code>.2</code>, <code>.3</code>, <code>.4</code>) resolve ambiguities. The final interpretation of a value depends on the <strong>type declared in the template</strong>: a <code>TEXT</code> containing <code>-&gt;</code> is still text.</p>
+</section>
+<section id="code-lists-and-chain-expressions" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="code-lists-and-chain-expressions"><span class="header-section-number">6.3</span> Code Lists and Chain Expressions</h3>
+<pre class="lark"><code>code_list: CODE_ELEMENT ("," CODE_ELEMENT)*
+chain_expr: CHAIN_ELEMENT ("-&gt;" CHAIN_ELEMENT)+</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2024</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">code:</span> Social_Cohesion, Collective_Action</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Trust <span class="op">-&gt;</span> Cooperation <span class="op">-&gt;</span> Collective_Action</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="multi-line-text" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="multi-line-text"><span class="header-section-number">6.4</span> Multi-line Text</h3>
+<pre class="lark"><code>continuation_block: _INDENT text_block _DEDENT
+text_block: TEXT_LINE (NEWLINE TEXT_LINE)* NEWLINE?</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@smith2024</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Participant describes spontaneous collective action as a</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        primary resilience mechanism, bypassing formal institutions.</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        Suggests strong bonding social capital.</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>_INDENT</code> and <code>_DEDENT</code> are generated by the <code>SynesisIndenter</code>, as in Python’s significant indentation. From synesis 0.16.0 on, continuation lines reach the value in full, also in code lists and chains.</p>
+</section>
+</section>
+<section id="sec-template" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-template"><span class="header-section-number">7</span> TEMPLATE Block</h2>
+<section id="header" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="header"><span class="header-section-number">7.1</span> Header</h3>
+<pre class="lark"><code>template_header: KW_TEMPLATE IDENTIFIER template_meta*
+template_meta: IDENTIFIER ":" value</code></pre>
+<p>There is no <code>NEWLINE</code> in the rule: metadata goes <strong>on the same line</strong> as the name.</p>
+</section>
+<section id="fields-by-scope" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="fields-by-scope"><span class="header-section-number">7.2</span> Fields by Scope</h3>
+<pre class="lark"><code>field_spec_block: scope_type KW_FIELDS NEWLINE _INDENT field_list _DEDENT
+                  KW_END scope_type KW_FIELDS
+scope_type: KW_SOURCE | KW_ITEM | KW_ONTOLOGY
+
+field_list: (requirement_clause | NEWLINE)*
+requirement_clause: KW_REQUIRED bundle_modifier? field_names
+                  | KW_OPTIONAL bundle_modifier? field_names
+                  | KW_FORBIDDEN field_names
+                  | KW_REQUIRED field_key KW_ON KW_BIBLIOGRAPHY
+                  | KW_OPTIONAL field_key KW_ON KW_BIBLIOGRAPHY
+                  | KW_REQUIRED field_key KW_ON KW_DATASET STRING
+                  | KW_OPTIONAL field_key KW_ON KW_DATASET STRING
+
+bundle_modifier: KW_BUNDLE
+field_names: field_key ("," field_key)*</code></pre>
+<p>The <code>ON BIBLIOGRAPHY</code> and <code>ON DATASET</code> alternatives use <code>field_key</code> (singular), not <code>field_names</code>. In a list, <code>REQUIRED a, b ON BIBLIOGRAPHY</code> would be ambiguous; the grammar removes the case.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> lattes_id ON <span class="kw">BIBLIOGRAPHY</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> region ON DATASET <span class="st">"interview.region"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="field-definition" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="field-definition"><span class="header-section-number">7.3</span> Field Definition</h3>
+<pre class="lark"><code>field_def_block: KW_FIELD field_key KW_TYPE type_spec
+                 (field_props | NEWLINE)*
+                 (_INDENT (field_props | NEWLINE)* _DEDENT)?
+                 KW_END KW_FIELD
+
+type_spec: simple_type | KW_CHAIN | KW_ENUMERATED | KW_ORDERED | KW_TOPIC
+simple_type: KW_QUOTATION | KW_MEMO | KW_CODE | KW_TEXT | KW_DATE | KW_SCALE
+
+field_props: KW_SCOPE scope_type
+           | KW_ROLE IDENTIFIER+
+           | KW_FORMAT format_spec
+           | KW_DESCRIPTION TEXT_LINE
+           | KW_ARITY COMPARATOR NUMBER
+           | KW_VALUES value_list KW_END KW_VALUES
+           | KW_RELATIONS relation_list KW_END KW_RELATIONS
+           | KW_IDENTIFIES entity_label
+           | KW_REFERS KW_TO entity_label
+           | KW_CONTEXT KW_FROM KW_DATASET dataset_paths
+           | guidelines_block
+
+entity_label: FIELD_NAME
+dataset_paths: STRING ("," STRING)*</code></pre>
+<p>The grammar accepts any property on any type; the matrix is semantic:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Required</th>
+<th>Exclusive</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CHAIN</code></td>
+<td><code>ARITY</code></td>
+<td><code>ARITY</code>, <code>RELATIONS</code></td>
+</tr>
+<tr class="even">
+<td><code>ORDERED</code></td>
+<td><code>VALUES</code> (with <code>[N]</code>)</td>
+<td><code>VALUES</code></td>
+</tr>
+<tr class="odd">
+<td><code>ENUMERATED</code></td>
+<td><code>VALUES</code> (without <code>[N]</code>)</td>
+<td><code>VALUES</code></td>
+</tr>
+<tr class="even">
+<td><code>SCALE</code></td>
+<td><code>FORMAT</code></td>
+<td><code>FORMAT</code></td>
+</tr>
+<tr class="odd">
+<td>others</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>DESCRIPTION</code>, <code>GUIDELINES</code> and <code>CONTEXT FROM DATASET</code> apply to all. <code>IDENTIFIES</code> and <code>REFERS TO</code> only in <code>SCOPE SOURCE</code> (<a href="../reference/guia_erros.html#sec-e078">E078</a>); <code>ROLE</code> only in <code>SCOPE ONTOLOGY</code> (<a href="../reference/guia_erros.html#sec-e108">E108</a>). The role after <code>ROLE</code> is a sequence of ordinary words, checked against the compiler’s catalogue.</p>
+</section>
+<section id="values-and-relations" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="values-and-relations"><span class="header-section-number">7.4</span> VALUES and RELATIONS</h3>
+<pre class="lark"><code>value_list: (value_entry | NEWLINE)+
+          | NEWLINE _INDENT (value_entry | NEWLINE)+ _DEDENT
+          | _INDENT (value_entry | NEWLINE)+ _DEDENT
+value_entry: index_prefix? IDENTIFIER ":" TEXT_LINE
+index_prefix: "[" NUMBER "]"
+
+relation_list: (relation_entry | NEWLINE)+
+             | NEWLINE _INDENT (relation_entry | NEWLINE)+ _DEDENT
+             | _INDENT (relation_entry | NEWLINE)+ _DEDENT
+relation_entry: IDENTIFIER ":" TEXT_LINE</code></pre>
+<p>Each value is an <code>IDENTIFIER</code> (no spaces) followed by <code>:</code> and a description. The <code>[N]</code> prefix is required in <code>ORDERED</code> and forbidden in <code>ENUMERATED</code> (<a href="../reference/guia_erros.html#sec-e087">E087</a>).</p>
+</section>
+<section id="format-and-arity" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="format-and-arity"><span class="header-section-number">7.5</span> FORMAT and ARITY</h3>
+<pre class="lark"><code>format_spec: IDENTIFIER | scale_format
+scale_format: "[" NUMBER ".." NUMBER "]"</code></pre>
+<p><code>FORMAT</code> defines the range of a <code>SCALE</code>: <code>[0..10]</code>, <code>[1..5]</code>. <code>ARITY</code> uses a comparator and an integer: <code>&gt;= 2</code>, <code>= 3</code>, <code>&lt; 5</code>.</p>
+</section>
+<section id="guidelines-block" class="level3" data-number="7.6">
+<h3 data-number="7.6" class="anchored" data-anchor-id="guidelines-block"><span class="header-section-number">7.6</span> GUIDELINES Block</h3>
+<pre class="lark"><code>guidelines_block: KW_GUIDELINES NEWLINE guidelines_lines KW_END KW_GUIDELINES
+guidelines_lines: (_INDENT | _DEDENT | guideline_line | NEWLINE)*
+guideline_line: guideline_token+ NEWLINE
+guideline_token: TEXT_LINE | IDENTIFIER | FIELD_NAME | BIBREF | STRING | NUMBER | COMPARATOR
+               | KW_PROJECT | KW_SOURCE | KW_ITEM | ... | KW_GUIDELINES
+               | COLON | "," | "-&gt;"</code></pre>
+<p>It is prose inside a <code>FIELD</code>, so it accepts almost any token. The text is reassembled from the original tokens, with the spelling of the file.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avoid starting a GUIDELINES line with a keyword
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Words such as <code>Include</code>, <code>Item</code>, <code>Source</code>, <code>Field</code> or <code>End</code> at the start of a line can confuse the reading. Rephrase (“To include…” → “Add…”). <code>#</code> inside <code>GUIDELINES</code> is not a comment: the line goes to the model.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-tokens" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-tokens"><span class="header-section-number">8</span> Tokens</h2>
+<section id="identifiers-and-references" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="identifiers-and-references"><span class="header-section-number">8.1</span> Identifiers and References</h3>
+<pre class="lark"><code>BIBREF: "@" /[a-zA-Z0-9][a-zA-Z0-9_-]*/
+
+IDENTIFIER.1: /[\p{L}_][\p{L}\p{N}_\-]*/u
+
+FIELD_NAME.1: /(?![eE][nN][dD]\b)[\p{L}_][\p{L}\p{N}_\-]*/u
+
+CONCEPT_NAME.0: /[^\s#\n\r][^#\n\r]*/u</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Token</th>
+<th>Accepts</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BIBREF</code></td>
+<td><code>@</code> + letter or digit + alphanumerics/<code>_</code>/<code>-</code></td>
+<td><code>@smith2024</code>, <code>@WHO-2023</code>, <code>@001</code></td>
+</tr>
+<tr class="even">
+<td><code>IDENTIFIER</code></td>
+<td>letter/<code>_</code> + alphanumerics/<code>_</code>/<code>-</code></td>
+<td><code>demo</code>, <code>Social_Cohesion</code></td>
+</tr>
+<tr class="odd">
+<td><code>FIELD_NAME</code></td>
+<td>as <code>IDENTIFIER</code>, except <code>END</code></td>
+<td><code>code</code>, <code>citation</code></td>
+</tr>
+<tr class="even">
+<td><code>CONCEPT_NAME</code></td>
+<td>any text up to <code>#</code> or end of line</td>
+<td><code>Social_Cohesion</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+FIELD_NAME vs END
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The negative lookahead <code>(?![eE][nN][dD]\b)</code> stops <code>END</code> from being read as a field name; without it, <code>END ITEM</code> would be a field called <code>END</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>CONCEPT_NAME</code> and spaces
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The grammar accepts spaces in the name of an <code>ONTOLOGY</code> block, but a concept with spaces cannot be cited in chains (<a href="../reference/guia_erros.html#sec-e015">E015</a>) or used as a code (<a href="../reference/guia_erros.html#sec-e033">E033</a>). Use <code>_</code>.</p>
+</div>
+</div>
+</section>
+<section id="code-and-chain-elements" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="code-and-chain-elements"><span class="header-section-number">8.2</span> Code and Chain Elements</h3>
+<pre class="lark"><code>CHAIN_ELEMENT.2: /[\p{L}_](?:(?!-&gt;)[\p{L}\p{N}_\- ])*/u
+CODE_ELEMENT.2: /[\p{L}_](?:(?!,)[\p{L}\p{N}_\- ])*/u</code></pre>
+<p>Both capture inner spaces and stop before their delimiter (<code>-&gt;</code> or <code>,</code>). Capturing the space lets the validator explain the error instead of the parser failing.</p>
+</section>
+<section id="values-and-text" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="values-and-text"><span class="header-section-number">8.3</span> Values and Text</h3>
+<pre class="lark"><code>STRING: /"[^"]*"/
+NUMBER.4: /[0-9]+(\.[0-9]+)?/
+COMPARATOR: "&gt;=" | "&lt;=" | "=" | "&gt;" | "&lt;"
+TEXT_LINE.3: /[^\s\n\r:][^\n\r]*/</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Token</th>
+<th>Accepts</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>STRING</code></td>
+<td>text in double quotes</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>NUMBER</code></td>
+<td>integer or decimal</td>
+<td><code>.4</code></td>
+</tr>
+<tr class="odd">
+<td><code>COMPARATOR</code></td>
+<td>comparison operators</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>TEXT_LINE</code></td>
+<td>text not starting with a space or <code>:</code></td>
+<td><code>.3</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>TEXT_LINE</code> captures whatever more specific tokens do not. It allows scientific symbols (<code>n=2383</code>, <code>p&lt;0.05</code>).</p>
+</section>
+<section id="special-tokens" class="level3" data-number="8.4">
+<h3 data-number="8.4" class="anchored" data-anchor-id="special-tokens"><span class="header-section-number">8.4</span> Special Tokens</h3>
+<pre class="lark"><code>COMMENT: "#" /[^\n]*/
+NEWLINE: /(\r?\n[ \t]*)+/
+%declare _INDENT _DEDENT
+%ignore /[ \t]+/
+%ignore COMMENT</code></pre>
+<ul>
+<li><strong>Comments</strong> (<code>#</code>) are ignored by the parser, except inside <code>GUIDELINES</code>.</li>
+<li><strong><code>NEWLINE</code></strong> captures the line break and the following indentation, which feeds the <code>SynesisIndenter</code>.</li>
+<li><strong>Spaces and tabs</strong> outside that context are ignored.</li>
+</ul>
+</section>
+</section>
+<section id="sec-prioridades" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-prioridades"><span class="header-section-number">9</span> Priorities — How Ambiguities Are Resolved</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Token</th>
+<th>Priority</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Keywords (<code>KW_*</code>)</td>
+<td><code>.5</code></td>
+<td>win over identifiers</td>
+</tr>
+<tr class="even">
+<td><code>NUMBER</code></td>
+<td><code>.4</code></td>
+<td><code>42</code> is a number, not text</td>
+</tr>
+<tr class="odd">
+<td><code>TEXT_LINE</code></td>
+<td><code>.3</code></td>
+<td>generic text</td>
+</tr>
+<tr class="even">
+<td><code>CHAIN_ELEMENT</code>, <code>CODE_ELEMENT</code></td>
+<td><code>.2</code></td>
+<td>win over <code>IDENTIFIER</code> in values</td>
+</tr>
+<tr class="odd">
+<td><code>IDENTIFIER</code>, <code>FIELD_NAME</code></td>
+<td><code>.1</code></td>
+<td>base for names</td>
+</tr>
+<tr class="even">
+<td><code>CONCEPT_NAME</code></td>
+<td><code>.0</code></td>
+<td>only when nothing else fits</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-indentacao" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-indentacao"><span class="header-section-number">10</span> Significant Indentation</h2>
+<p>Like Python, Synesis uses significant indentation. The <code>SynesisIndenter</code> processes the lines and emits <code>_INDENT</code> and <code>_DEDENT</code>:</p>
+<ol type="1">
+<li>Tabs are converted to 4 spaces</li>
+<li>More indentation than the previous line → <code>_INDENT</code></li>
+<li>Less indentation → <code>_DEDENT</code></li>
+<li>Same indentation → nothing</li>
+</ol>
+<pre class="lark"><code>project_body: _INDENT project_items _DEDENT
+source_block: KW_SOURCE BIBREF NEWLINE (_INDENT ... _DEDENT)? KW_END KW_SOURCE</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Inconsistent indentation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Closing a block at a column that matches no open level produces a syntax error with an approximate position. Avoid mixing tabs and spaces.</p>
+</div>
+</div>
+</section>
+<section id="sec-standalone" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="sec-standalone"><span class="header-section-number">11</span> The Generated Parser</h2>
+<p>In production the compiler uses <code>synesis_standalone.py</code>, an LALR parser pre-generated from the <code>.lark</code> file (faster start-up, same grammar). Whoever changes the grammar must <strong>regenerate</strong> that file; tests compare the two.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

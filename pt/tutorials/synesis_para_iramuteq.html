@@ -288,11 +288,11 @@ div.csl-indent {
   </ul></li>
   <li><a href="#parte-2-criando-o-template-synesis" id="toc-parte-2-criando-o-template-synesis" class="nav-link" data-scroll-target="#parte-2-criando-o-template-synesis"><span class="header-section-number">1.3</span> Parte 2 — Criando o Template Synesis</a></li>
   <li><a href="#parte-3-estruturando-o-corpus-em-synesis" id="toc-parte-3-estruturando-o-corpus-em-synesis" class="nav-link" data-scroll-target="#parte-3-estruturando-o-corpus-em-synesis"><span class="header-section-number">1.4</span> Parte 3 — Estruturando o Corpus em Synesis</a></li>
-  <li><a href="#parte-4-exportando-para-iramuteq" id="toc-parte-4-exportando-para-iramuteq" class="nav-link" data-scroll-target="#parte-4-exportando-para-iramuteq"><span class="header-section-number">1.5</span> Parte 4 — Exportando para IRaMuTeQ</a></li>
+  <li><a href="#parte-4-gerando-o-corpus-do-iramuteq" id="toc-parte-4-gerando-o-corpus-do-iramuteq" class="nav-link" data-scroll-target="#parte-4-gerando-o-corpus-do-iramuteq"><span class="header-section-number">1.5</span> Parte 4 — Gerando o corpus do IRaMuTeQ</a></li>
   <li><a href="#parte-5-synesis-como-hub-de-análise" id="toc-parte-5-synesis-como-hub-de-análise" class="nav-link" data-scroll-target="#parte-5-synesis-como-hub-de-análise"><span class="header-section-number">1.6</span> Parte 5 — Synesis como Hub de Análise</a>
   <ul class="collapse">
   <li><a href="#adicionando-anotações-ao-corpus" id="toc-adicionando-anotações-ao-corpus" class="nav-link" data-scroll-target="#adicionando-anotações-ao-corpus"><span class="header-section-number">1.6.1</span> Adicionando anotações ao corpus</a></li>
-  <li><a href="#acesso-programático-via-api" id="toc-acesso-programático-via-api" class="nav-link" data-scroll-target="#acesso-programático-via-api"><span class="header-section-number">1.6.2</span> Acesso programático via API</a></li>
+  <li><a href="#acesso-programático" id="toc-acesso-programático" class="nav-link" data-scroll-target="#acesso-programático"><span class="header-section-number">1.6.2</span> Acesso programático</a></li>
   </ul></li>
   <li><a href="#parte-6-synesis-como-camada-de-governança" id="toc-parte-6-synesis-como-camada-de-governança" class="nav-link" data-scroll-target="#parte-6-synesis-como-camada-de-governança"><span class="header-section-number">1.7</span> Parte 6 — Synesis como Camada de Governança</a></li>
   <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">1.8</span> Resumo</a></li>
@@ -332,24 +332,24 @@ div.csl-indent {
 <ul>
 <li>Estruturar um corpus diretamente em Synesis, desde a coleta</li>
 <li>Criar um template tipado com validação automática</li>
-<li>Exportar o corpus Synesis para o formato IRaMuTeQ</li>
+<li>Gerar o corpus no formato IRaMuTeQ a partir do projeto Synesis</li>
 <li>Acrescentar camadas de anotação que alimentam análises além do IRaMuTeQ</li>
 </ul>
 <p><strong>Pré-requisito:</strong> familiaridade com o formato de corpus do IRaMuTeQ (linhas <code>****</code>, variáveis e modalidades).</p>
 <hr>
 <section id="o-problema-o-corpus-iramuteq-é-um-destino-não-uma-fonte" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="o-problema-o-corpus-iramuteq-é-um-destino-não-uma-fonte"><span class="header-section-number">1.1</span> O Problema: o Corpus IRaMuTeQ é um Destino, não uma Fonte</h2>
-<p>O fluxo tradicional com o IRaMuTeQ começa fora do software: o pesquisador prepara um arquivo <code>.txt</code> com as linhas <code>****</code> — geralmente no Word ou em um editor de texto — e o insere para análise. Não há validação automática: um erro tipográfico em uma linha <code>****</code>, uma modalidade inexistente ou um campo faltante produzem ruído silencioso nos resultados.</p>
-<p>Para corpus pequenos e pesquisadores solo, isso é administrável. Para corpus com centenas de textos, múltiplos codificadores ou fases de coleta distintas, torna-se um risco metodológico real.</p>
-<p>O Synesis propõe uma inversão desse fluxo: o corpus é estruturado e mantido em Synesis desde o início, validado pelo compilador a cada edição, e exportado para IRaMuTeQ (ou qualquer outro destino) sob demanda. O arquivo <code>.txt</code> do IRaMuTeQ passa a ser um <strong>artefato derivado</strong> — gerado automaticamente a partir da fonte canônica — e não mais o ponto de partida.</p>
+<p>O fluxo tradicional com o IRaMuTeQ começa fora do software: o pesquisador prepara um arquivo <code>.txt</code> com as linhas <code>****</code>, geralmente num editor de texto, e o insere para análise. Não há validação do desenho da pesquisa: uma modalidade inexistente ou um campo faltante produz ruído silencioso nos resultados.</p>
+<p>Para corpus pequenos e pesquisadores solo, isso é administrável. Para centenas de textos, vários codificadores ou fases de coleta distintas, torna-se um risco metodológico real.</p>
+<p>O Synesis inverte o fluxo: o corpus é mantido em Synesis desde o início, validado pelo compilador a cada edição, e convertido para IRaMuTeQ sob demanda. O <code>.txt</code> do IRaMuTeQ passa a ser um <strong>artefato derivado</strong>, gerado a partir da fonte canônica.</p>
 <hr>
 </section>
 <section id="parte-1-o-corpus-iramuteq-e-sua-estrutura" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="parte-1-o-corpus-iramuteq-e-sua-estrutura"><span class="header-section-number">1.2</span> Parte 1 — O Corpus IRaMuTeQ e sua Estrutura</h2>
-<p>O IRaMuTeQ organiza corpus textuais com <strong>linhas de comando</strong> que precedem cada texto. Cada linha começa com <code>****</code> e lista variáveis no formato <code>*nome_valor</code>.</p>
+<p>O IRaMuTeQ organiza o corpus com <strong>linhas de comando</strong> que precedem cada texto. Cada linha começa com <code>****</code> e lista variáveis no formato <code>*nome_valor</code>.</p>
 <section id="exemplo-corpus-aids" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="exemplo-corpus-aids"><span class="header-section-number">1.2.1</span> Exemplo: corpus “aids”</h3>
-<p>Este corpus é formado pelas respostas à questão <em>“O que você pensa a respeito da Aids?”</em>, coletadas de 300 estudantes do ensino médio (Antunes, 2012). É um dos exemplos canônicos para uso da Classificação Hierárquica Descendente (CHD) com respostas curtas de questionários.</p>
+<p>Este corpus reúne respostas à questão <em>“O que você pensa a respeito da Aids?”</em>, coletadas de estudantes do ensino médio (Antunes, 2012). É um dos exemplos canônicos para a Classificação Hierárquica Descendente (CHD) com respostas curtas.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -361,10 +361,9 @@ Tutorial Iramuteq
 </div>
 <div class="callout-body-container callout-body">
 <p>Os exemplos deste tutorial foram extraídos do Manual de uso do software Iramuteq <span class="citation" data-cites="camargo2021">(<a href="#ref-camargo2021" role="doc-biblioref">Camargo &amp; Justo, 2021</a>)</span>.</p>
-<p>O <a href="https://github.com/synesis-lang/case-studies/tree/main/Sociology/iramuteq_aids_corpus">repositório de estudos de caso do projeto</a> contém versões prontas para uso</p>
+<p>O <a href="https://github.com/synesis-lang/case-studies/tree/main/Sociology/iramuteq_aids_corpus">repositório de estudos de caso</a> contém o projeto pronto para uso.</p>
 </div>
 </div>
-<p>As variáveis utilizadas são:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 29%">
@@ -375,7 +374,7 @@ Tutorial Iramuteq
 <tr class="header">
 <th>Variável</th>
 <th>Descrição</th>
-<th>Modalidades</th>
+<th>Modalidades no IRaMuTeQ</th>
 </tr>
 </thead>
 <tbody>
@@ -411,7 +410,6 @@ Tutorial Iramuteq
 </tr>
 </tbody>
 </table>
-<p>O corpus no formato IRaMuTeQ tem esta aparência:</p>
 <pre class="text"><code>**** *ind_001 *sex_1 *esc_2 *pes_2 *conh_1 *ati_3
 A aids é um vírus que tem que tomar muito cuidado. É importante conhecer
 seu parceiro na hora de realizar atos sexuais. O vírus pode ser transmitido
@@ -419,200 +417,248 @@ por causa de um ato irresponsável, transar sem o uso de um preservativo,
 ou através de um estupro.
 **** *ind_002 *sex_2 *esc_2 *pes_1 *conh_2 *ati_1
 Aids: quando citado, me vem na cabeça a quantidade de pessoas que possuem
-o vírus e que sofrem preconceito diante disto, por terem a doença, muitas
-vezes por descuido, muitas vezes por falta de instrução. Estas pessoas,
-em vez de sofrerem com isso, pelas pessoas que diziam ser suas amigas,
-deveriam na verdade ganhar o apoio e a ajuda de amigos e família para
-combater o vírus e o preconceito que há no assunto.
-**** *ind_003 *sex_2 *esc_2 *pes_2 *conh_2 *ati_3
-Eu penso que é uma questão complicada, porque a pessoa fica mal e tem que
-viver de remédios e tem medo de passar pra outra.
-**** *ind_004 *sex_2 *esc_2 *pes_2 *conh_2 *ati_1
-Uma dst, devido a falta de prevenção do casal. Hoje já existe tratamento,
-porém pessoas que sofrem desta doença sofrem também de um grande preconceito
-da sociedade.
-**** *ind_005 *sex_2 *esc_2 *pes_2 *conh_2 *ati_1
-É uma doença séria, que sofre muito preconceito. Mas que tem que passar a
-ser respeitada mais, pois sendo cuidado e tendo proteção, não faz mal algum.</code></pre>
-<p>Cada bloco <code>****</code> é a unidade de análise — o IRaMuTeQ chama isso de <strong>unidade de contexto inicial (UCI)</strong>. Os valores após <code>****</code> são os metadados do respondente; o texto que segue é o conteúdo analisado.</p>
+o vírus e que sofrem preconceito diante disto, por terem a doença.</code></pre>
+<p>Cada bloco <code>****</code> é uma <strong>unidade de contexto inicial (UCI)</strong>: os valores depois de <code>****</code> são os metadados do respondente, e o texto que segue é o conteúdo analisado.</p>
 <hr>
 </section>
 </section>
 <section id="parte-2-criando-o-template-synesis" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="parte-2-criando-o-template-synesis"><span class="header-section-number">1.3</span> Parte 2 — Criando o Template Synesis</h2>
-<p>O template (<code>.synt</code>) é o coração do projeto Synesis. Ele declara os campos, seus tipos e suas regras — é a partir dele que o compilador valida cada anotação.</p>
-<p>Para o corpus “aids”, o template seria:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> aids_corpus</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesquisa: Representações Sociais da Aids</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Escopo: Respostas à questão: "O que você pensa a respeito da Aids?" </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Corpus: Respostas de 300 estudantes do ensino médio (Antunes, 2012). </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE SOURCE</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> ind, sex, esc, pes, conh, ati</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> ind <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Identificador único do participante"</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> sex <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Sexo do participante"</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Masculino"</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Feminino"</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> esc <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Tipo de escola"</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Pública"</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Particular"</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> pes <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Conhece pessoa soropositiva"</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Conhece"</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Não conhece"</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> conh <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Conhecimento sobre transmissão do HIV"</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Bom conhecimento"</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Pouco conhecimento"</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> ati <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Atitude frente ao soropositivo"</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">1:</span> <span class="st">"Favorável"</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">2:</span> <span class="st">"Neutra"</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">3:</span> <span class="st">"Desfavorável"</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ITEM</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> resposta</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> resposta <span class="kw">TYPE</span> QUOTATION</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> <span class="st">"Resposta à questão aberta sobre a Aids"</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Por que isso importa:</strong> qualquer tentativa de registrar <code>ati: 4</code> ou <code>sex: 3</code> será rejeitada pelo compilador antes que os dados cheguem ao IRaMuTeQ. Com 300 participantes e múltiplos digitadores, esse tipo de verificação automática elimina uma categoria inteira de erros.</p>
+<p>O template (<code>.synt</code>) declara os campos, seus tipos e suas regras. Em Synesis, as modalidades recebem nomes legíveis; o código numérico do IRaMuTeQ é aplicado só na exportação.</p>
+<!-- file: aids_corpus.synt -->
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> aids_corpus <span class="fu">version:</span> <span class="st">"1.0"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE SOURCE</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> ind, sex, esc, pes, conh, ati</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> ind <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Identificador único do participante</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> sex <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Sexo do participante</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Masculino:</span> Sexo masculino</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Feminino:</span> Sexo feminino</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> esc <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Tipo de escola frequentada</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Publica:</span> Escola da rede pública</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Particular:</span> Escola da rede particular</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> pes <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Conhece pessoa soropositiva</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Conhece:</span> Conhece ao menos uma pessoa soropositiva</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Nao_conhece:</span> Não conhece pessoa soropositiva</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> conh <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Conhecimento sobre transmissão do HIV</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Bom:</span> Bom conhecimento</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Pouco:</span> Pouco conhecimento</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> ati <span class="kw">TYPE</span> <span class="kw">ENUMERATED</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">SOURCE</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Atitude frente ao soropositivo</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Favoravel:</span> Atitude favorável</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Neutra:</span> Atitude neutra</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Desfavoravel:</span> Atitude desfavorável</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ITEM</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> resposta</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> <span class="at">chain</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> resposta <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Resposta à questão aberta sobre a Aids</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        Copie a resposta inteira, sem corrigir a grafia.</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Relação entre ideias afirmada na resposta</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>        <span class="fu">INIBE:</span> um conceito reduz ou bloqueia outro</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>        <span class="fu">PROMOVE:</span> um conceito favorece ou amplia outro</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ASSOCIA:</span> associação entre conceitos</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="co"># CAMPOS DE ONTOLOGY</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>    <span class="kw">REQUIRED</span> descricao</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>    <span class="kw">OPTIONAL</span> grupo</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span> <span class="kw">FIELDS</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> descricao <span class="kw">TYPE</span> <span class="dt">TEXT</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Definição do conceito no contexto das representações da Aids</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> grupo <span class="kw">TYPE</span> <span class="dt">TOPIC</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Agrupamento temático do conceito</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Por que isso importa:</strong> uma tentativa de registrar <code>ati: Neutro</code> ou <code>sex: Outro</code> é rejeitada pelo compilador antes que o dado chegue ao IRaMuTeQ, com a sugestão do valor mais próximo.</p>
 <hr>
 </section>
 <section id="parte-3-estruturando-o-corpus-em-synesis" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="parte-3-estruturando-o-corpus-em-synesis"><span class="header-section-number">1.4</span> Parte 3 — Estruturando o Corpus em Synesis</h2>
-<p>Com o template definido, cada respondente é registrado diretamente em Synesis como um par <code>SOURCE</code> + <code>ITEM</code>. Esta é a etapa de entrada de dados — o equivalente a preparar o arquivo <code>.txt</code> para o IRaMuTeQ, mas com validação automática a cada registro.</p>
-<p>O corpus dos primeiros cinco participantes em Synesis:</p>
+<p>Cada respondente é um par <code>SOURCE</code> + <code>ITEM</code>. Arquivo <code>aids_corpus.syn</code>:</p>
+<!-- file: aids_corpus.syn -->
 <div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_001</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 001</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 1</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 1</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 3</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> Masculino</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> Particular</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> Nao_conhece</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> Bom</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> Desfavoravel</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_001</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> A aids é um vírus que tem que tomar muito cuidado. É importante conhecer seu parceiro na hora de realizar atos sexuais. O vírus pode ser transmitido por causa de um ato irresponsável, transar sem o uso de um preservativo, ou através de um estupro.</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> <span class="st">"A aids é um vírus que tem que tomar muito cuidado. É importante conhecer seu parceiro na hora de realizar atos sexuais."</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_002</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 002</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 1</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 1</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> Feminino</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> Particular</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> Conhece</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> Pouco</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> Favoravel</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_002</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Quando citado, me vem na cabeça a quantidade de pessoas</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    que possuem o vírus e que sofrem preconceito diante disto, por terem a doença, muitas vezes por descuido, muitas vezes por falta de instrução. Estas pessoas, em vez de sofrerem com isso, pelas pessoas que diziam ser suas amigas, deveriam na verdade ganhar o apoio e a ajuda de amigos e família para combater o vírus e o preconceito que há no assunto.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> <span class="st">"Aids: quando citado, me vem na cabeça a quantidade de pessoas que possuem o vírus e que sofrem preconceito diante disto, por terem a doença."</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> preconceito_social <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> apoio_familiar</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_003</span></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 003</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 3</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> Feminino</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> Particular</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> Nao_conhece</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> Pouco</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> Desfavoravel</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_003</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Eu penso que é uma questão complicada, porque a pessoa fica mal e tem que viver de remédios e tem medo de passar pra outra.</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_004</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 004</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 1</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_004</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Uma dst, devido a falta de prevenção do casal. Hoje já existe tratamento, porém pessoas que sofrem desta doença sofrem também de um grande preconceito da sociedade.</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@ind_005</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ind:</span> 005</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sex:</span> 2</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">esc:</span> 2</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pes:</span> 2</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conh:</span> 2</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ati:</span> 1</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_005</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> É uma doença séria, que sofre muito preconceito. Mas que tem que passar a ser respeitada mais, pois sendo cuidado e tendo proteção, não faz mal algum.</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Cada vez que um novo registro é adicionado, o compilador verifica os valores contra o template. Tentar registrar <code>ati: 4</code> ou <code>sex: 3</code> gera um erro imediato — antes que o dado malformado entre no corpus.</p>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> <span class="st">"Eu penso que é uma questão complicada, porque a pessoa fica mal e tem que viver de remédios e tem medo de passar pra outra."</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A ontologia (<code>aids_corpus.syno</code>) define os conceitos usados nas cadeias:</p>
+<!-- file: aids_corpus.syno -->
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preconceito_social</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Rejeição ou discriminação dirigida a pessoas soropositivas</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> apoio_familiar</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Suporte de familiares e amigos a quem convive com HIV<span class="co">/Aids</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A bibliografia (<code>aids_corpus.bib</code>) tem uma entrada por respondente, com chave neutra:</p>
+<!-- file: aids_corpus.bib -->
+<div class="sourceCode" id="cb5"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">ind_001</span>, <span class="st">author</span> = {Participante 001}, <span class="st">title</span> = {Resposta 001}, <span class="st">year</span> = {2012}}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">ind_002</span>, <span class="st">author</span> = {Participante 002}, <span class="st">title</span> = {Resposta 002}, <span class="st">year</span> = {2012}}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">ind_003</span>, <span class="st">author</span> = {Participante 003}, <span class="st">title</span> = {Resposta 003}, <span class="st">year</span> = {2012}}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>E o projeto (<code>aids_corpus.synp</code>):</p>
+<!-- file: aids_corpus.synp -->
+<div class="sourceCode" id="cb6"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> aids_corpus</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">TEMPLATE</span> <span class="st">"aids_corpus.synt"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"aids_corpus.bib"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"aids_corpus.syn"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"aids_corpus.syno"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../images/iramuteq_exemplo.png" class="img-fluid figure-img"></p>
-<figcaption>Projeto de exemplo no Synesis Explorer.</figcaption>
+<figcaption>Projeto de exemplo na extensão Synesis.</figcaption>
 </figure>
 </div>
 <hr>
 </section>
-<section id="parte-4-exportando-para-iramuteq" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="parte-4-exportando-para-iramuteq"><span class="header-section-number">1.5</span> Parte 4 — Exportando para IRaMuTeQ</h2>
-<p>Com o corpus em Synesis, a exportação para o formato IRaMuTeQ é um único comando:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> export <span class="at">--format</span> iramuteq corpus.synp <span class="at">--output</span> aids_iramuteq.txt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O arquivo gerado é diretamente compatível com o IRaMuTeQ:</p>
+<section id="parte-4-gerando-o-corpus-do-iramuteq" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="parte-4-gerando-o-corpus-do-iramuteq"><span class="header-section-number">1.5</span> Parte 4 — Gerando o corpus do IRaMuTeQ</h2>
+<p>O compilador <strong>não tem</strong> um exportador IRaMuTeQ. A conversão é um passo curto sobre o JSON compilado. Primeiro:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile aids_corpus.synp <span class="at">--json</span> corpus.json</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Depois, salve este script como <code>para_iramuteq.py</code>:</p>
+<!-- script: para_iramuteq.py -->
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Código numérico que o IRaMuTeQ receberá para cada modalidade</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>CODIGOS <span class="op">=</span> {</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>: {<span class="st">"Masculino"</span>: <span class="st">"1"</span>, <span class="st">"Feminino"</span>: <span class="st">"2"</span>},</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esc"</span>: {<span class="st">"Publica"</span>: <span class="st">"1"</span>, <span class="st">"Particular"</span>: <span class="st">"2"</span>},</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pes"</span>: {<span class="st">"Conhece"</span>: <span class="st">"1"</span>, <span class="st">"Nao_conhece"</span>: <span class="st">"2"</span>},</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"conh"</span>: {<span class="st">"Bom"</span>: <span class="st">"1"</span>, <span class="st">"Pouco"</span>: <span class="st">"2"</span>},</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ati"</span>: {<span class="st">"Favoravel"</span>: <span class="st">"1"</span>, <span class="st">"Neutra"</span>: <span class="st">"2"</span>, <span class="st">"Desfavoravel"</span>: <span class="st">"3"</span>},</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>VARIAVEIS <span class="op">=</span> [<span class="st">"ind"</span>, <span class="st">"sex"</span>, <span class="st">"esc"</span>, <span class="st">"pes"</span>, <span class="st">"conh"</span>, <span class="st">"ati"</span>]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>CAMPO_TEXTO <span class="op">=</span> <span class="st">"resposta"</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"corpus.json"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    dados <span class="op">=</span> json.load(f)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>linhas <span class="op">=</span> []</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> dados[<span class="st">"corpus"</span>]:</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    chave <span class="op">=</span> item[<span class="st">"source_ref"</span>].lstrip(<span class="st">"@"</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    fonte <span class="op">=</span> dados[<span class="st">"bibliography"</span>][chave]      <span class="co"># inclui os campos de SOURCE</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    marcas <span class="op">=</span> []</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> var <span class="kw">in</span> VARIAVEIS:</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        valor <span class="op">=</span> <span class="bu">str</span>(fonte[var])</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> var <span class="op">==</span> <span class="st">"ind"</span>:</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>            valor <span class="op">=</span> valor.zfill(<span class="dv">3</span>)            <span class="co"># 001 é lido como número 1</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        marcas.append(<span class="ss">f"*</span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>CODIGOS<span class="sc">.</span>get(var, {})<span class="sc">.</span>get(valor, valor)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    texto <span class="op">=</span> item[<span class="st">"data"</span>][CAMPO_TEXTO].strip().strip(<span class="st">'"'</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    texto <span class="op">=</span> re.sub(<span class="vs">r"[*$%\"]"</span>, <span class="st">" "</span>, texto)    <span class="co"># caracteres que o IRaMuTeQ reserva</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    linhas.append(<span class="st">"**** "</span> <span class="op">+</span> <span class="st">" "</span>.join(marcas))</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    linhas.append(texto)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"aids_iramuteq.txt"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(linhas) <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(dados[<span class="st">'corpus'</span>])<span class="sc">}</span><span class="ss"> textos escritos em aids_iramuteq.txt"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> para_iramuteq.py</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O arquivo gerado pode ser aberto no IRaMuTeQ (codificação UTF-8):</p>
 <pre class="text"><code>**** *ind_001 *sex_1 *esc_2 *pes_2 *conh_1 *ati_3
-A aids é um vírus que tem que tomar muito cuidado. É importante conhecer
-seu parceiro na hora de realizar atos sexuais. O vírus pode ser transmitido
-por causa de um ato irresponsável, transar sem o uso de um preservativo,
-ou através de um estupro.
+A aids é um vírus que tem que tomar muito cuidado. É importante conhecer seu parceiro na hora de realizar atos sexuais.
 **** *ind_002 *sex_2 *esc_2 *pes_1 *conh_2 *ati_1
-Aids: quando citado, me vem na cabeça a quantidade de pessoas que possuem
-o vírus e que sofrem preconceito diante disto...</code></pre>
-<p>A correspondência entre os dois formatos é direta:</p>
+Aids: quando citado, me vem na cabeça a quantidade de pessoas que possuem o vírus e que sofrem preconceito diante disto, por terem a doença.</code></pre>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -623,109 +669,87 @@ o vírus e que sofrem preconceito diante disto...</code></pre>
 <tbody>
 <tr class="odd">
 <td>Bloco <code>SOURCE</code></td>
-<td>Linha <code>****</code> com variáveis</td>
+<td>variáveis da linha <code>****</code></td>
 </tr>
 <tr class="even">
-<td>Campo <code>ind: 001</code></td>
-<td><code>*ind_001</code></td>
-</tr>
-<tr class="odd">
-<td>Campo <code>sex: 1</code></td>
+<td>Campo <code>sex: Masculino</code></td>
 <td><code>*sex_1</code></td>
 </tr>
-<tr class="even">
-<td>Campo <code>ati: 3</code></td>
+<tr class="odd">
+<td>Campo <code>ati: Desfavoravel</code></td>
 <td><code>*ati_3</code></td>
 </tr>
-<tr class="odd">
-<td>Campo <code>QUOTATION</code> no <code>ITEM</code></td>
-<td>Texto que segue a linha <code>****</code></td>
+<tr class="even">
+<td>Campo <code>QUOTATION</code> do <code>ITEM</code></td>
+<td>texto que segue a linha <code>****</code></td>
 </tr>
 </tbody>
 </table>
-<p>O arquivo <code>.txt</code> pode então ser aberto no IRaMuTeQ para CHD, análise de similitude, AFC, nuvem de palavras ou qualquer outra análise disponível no software — exatamente como no fluxo tradicional, mas com a garantia de que o corpus foi validado antes de chegar ali.</p>
+<p>Adapte <code>CODIGOS</code>, <code>VARIAVEIS</code> e <code>CAMPO_TEXTO</code> ao seu template. Daí em diante, CHD, similitude, AFC e nuvem de palavras seguem como de costume, com a garantia de que o corpus foi validado antes.</p>
 <hr>
 </section>
 <section id="parte-5-synesis-como-hub-de-análise" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="parte-5-synesis-como-hub-de-análise"><span class="header-section-number">1.6</span> Parte 5 — Synesis como Hub de Análise</h2>
-<p>A principal vantagem de manter o corpus em Synesis não é a exportação para IRaMuTeQ — é que o mesmo corpus pode alimentar múltiplos destinos simultaneamente:</p>
-<pre><code>Corpus Synesis (.synp + .bib + .syn + .synt)
+<p>A principal vantagem de manter o corpus em Synesis é que a mesma fonte alimenta vários destinos:</p>
+<pre class="text"><code>Corpus Synesis (.synp + .bib + .syn + .synt + .syno)
         │
-        ├──► Compilador valida contra template (.synt)
-        │       │
-        │       └── Erros reportados antes da análise
+        ├──► o compilador valida contra o template
+        │       └── erros relatados antes da análise
         │
-        ├──► Exportação IRaMuTeQ (.txt)
-        │       └── CHD, similitude, AFC, nuvem de palavras
+        ├──► JSON ──► script ──► IRaMuTeQ (.txt)
+        │                         └── CHD, similitude, AFC, nuvem
         │
-        ├──► Exportação CSV/JSON
-        │       └── Jupyter, R, análise estatística
-        ├──► synesis.load() no Jupyter, R
-        │         ├──  df_metadata   → variáveis do SOURCE (sex, esc, ati...)
-        │         ├── df_items      → textos + campos do ITEM
-        │         ├── df_codes      → códigos atribuídos
-        │         └── df_chains     → relações causais   
-        │              
-        ├──► Exportação REFI-QDA
-        │       └── Atlas.ti, NVivo, MAXQDA
+        ├──► CSV / Excel ──► planilhas, R, pandas
         │
-        └──► Codificação adicional no próprio corpus
-                ├── CODE    (categorias temáticas)
-                ├── CHAIN   (relações causais entre conceitos)
-                ├── MEMO    (notas analíticas do pesquisador)
-                └── SCALE   (scores numéricos por item)</code></pre>
+        ├──► synesis.load() no Jupyter
+        │         ├── sources     → variáveis do SOURCE
+        │         ├── items       → textos e campos do ITEM
+        │         ├── ontologies  → conceitos
+        │         └── chains      → relações
+        │
+        ├──► synesis-graph ──► grafo (HTML, Neo4j, ArcadeDB)
+        │
+        └──► codificação adicional no próprio corpus
+                ├── CODE, CHAIN   (categorias e relações)
+                ├── MEMO          (notas analíticas)
+                └── SCALE         (escores por item)</code></pre>
 <section id="adicionando-anotações-ao-corpus" class="level3" data-number="1.6.1">
 <h3 data-number="1.6.1" class="anchored" data-anchor-id="adicionando-anotações-ao-corpus"><span class="header-section-number">1.6.1</span> Adicionando anotações ao corpus</h3>
-<p>Após rodar a CHD no IRaMuTeQ e identificar classes temáticas, o pesquisador pode voltar ao corpus Synesis e enriquecer as anotações. Por exemplo, marcar os textos que pertencem à Classe 2 da CHD com um código explícito:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_002</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> Quando citado, me vem na cabeça a quantidade de pessoas</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    que possuem o vírus e que sofrem preconceito diante disto</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> preconceito_social <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> apoio_familiar</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Essas anotações não interferem na exportação para IRaMuTeQ — mas ficam disponíveis para exportação para Neo4j, para análise de co-ocorrência de códigos em Jupyter, ou para uma segunda rodada no IRaMuTeQ com variáveis adicionais derivadas da codificação.</p>
+<p>Depois de rodar a CHD e identificar classes temáticas, volte ao corpus e enriqueça-o. Por exemplo, acrescente um campo <code>ENUMERATED</code> ao template para a classe da CHD, ou registre uma relação:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@ind_002</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">resposta:</span> <span class="st">"Quando citado, me vem na cabeça a quantidade de pessoas que sofrem preconceito."</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> preconceito_social <span class="op">-&gt;</span> INIBE <span class="op">-&gt;</span> apoio_familiar</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Essas anotações não mudam o <code>.txt</code> do IRaMuTeQ, mas ficam disponíveis para o grafo, para as tabelas e para uma segunda rodada no IRaMuTeQ com variáveis derivadas da codificação.</p>
 </section>
-<section id="acesso-programático-via-api" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="acesso-programático-via-api"><span class="header-section-number">1.6.2</span> Acesso programático via API</h3>
-<p>O corpus compilado também pode ser carregado diretamente em um notebook Jupyter:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> synesis</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> synesis.load(<span class="st">"aids.synp"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de metadados dos participantes</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df_meta <span class="op">=</span> corpus.sources()</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de textos com metadados vinculados</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>df_items <span class="op">=</span> corpus.items()</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de códigos atribuídos</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>df_codes <span class="op">=</span> corpus.codes()</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame de cadeias causais</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>df_chains <span class="op">=</span> corpus.chains()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Cada <code>DataFrame</code> já respeita os tipos declarados no template — <code>ati</code> chega como inteiro com valores 1, 2 ou 3; nunca como string ou valor fora do intervalo.</p>
+<section id="acesso-programático" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="acesso-programático"><span class="header-section-number">1.6.2</span> Acesso programático</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> synesis</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>projeto <span class="op">=</span> synesis.SynesisCompiler(<span class="st">"aids_corpus.synp"</span>).<span class="bu">compile</span>()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>projeto.to_csv(<span class="st">"tabelas/"</span>)      <span class="co"># sources.csv, items.csv, chains.csv...</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para trabalhar inteiramente em memória, com DataFrames, use <a href="../reference/synesis_load.html"><code>synesis.load</code></a>.</p>
 <hr>
 </section>
 </section>
 <section id="parte-6-synesis-como-camada-de-governança" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="parte-6-synesis-como-camada-de-governança"><span class="header-section-number">1.7</span> Parte 6 — Synesis como Camada de Governança</h2>
-<p>Para pesquisadores solo com corpus pequenos, o IRaMuTeQ sozinho é suficiente. O Synesis passa a fazer diferença em três cenários:</p>
-<p><strong>Corpus volumosos.</strong> Com 300 ou mais participantes, a probabilidade de erro de digitação nas linhas <code>****</code> é alta. O compilador Synesis captura esses erros antes da análise, eliminando o risco de resultados contaminados por dados malformados.</p>
-<p><strong>Trabalho em equipe.</strong> Quando múltiplos pesquisadores digitam ou codificam o mesmo corpus, o template funciona como contrato: todos os campos, todos os valores permitidos e todas as relações declaradas estão em um único arquivo versionável. Discrepâncias entre codificadores são detectadas na compilação, não na reunião de orientação.</p>
-<p><strong>Pesquisa longitudinal ou multi-etapas.</strong> Quando o corpus cresce ao longo do tempo — novas coletas, novos participantes, novas variáveis — o Synesis mantém a integridade entre versões. O histórico de decisões ontológicas pode ser documentado diretamente nos arquivos <code>.syno</code> com comentários datados:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DECISÃO 2026-03-01: separamos "preconceito" em dois conceitos após</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># identificar distinção entre preconceito declarado e comportamento relatado</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nas entrevistas 45-60.</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preconceito_declarado</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Expressão verbal de atitude discriminatória"</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preconceito_comportamental</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> <span class="st">"Ação discriminatória relatada pelo participante"</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para pesquisadores solo com corpus pequenos, o IRaMuTeQ sozinho é suficiente. O Synesis faz diferença em três cenários:</p>
+<p><strong>Corpus volumosos.</strong> Com centenas de participantes, o erro de digitação em variáveis é provável. O compilador o captura antes da análise.</p>
+<p><strong>Trabalho em equipe.</strong> O template funciona como contrato: campos, valores permitidos e relações estão num único arquivo versionável. Divergências aparecem na compilação.</p>
+<p><strong>Pesquisa longitudinal.</strong> Quando o corpus cresce, o template mantém a integridade entre versões, e as decisões conceituais podem ser documentadas no <code>.syno</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DECISÃO 2026-03-01: separamos "preconceito" em dois conceitos após</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># distinguir preconceito declarado de comportamento relatado.</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preconceito_declarado</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Expressão verbal de atitude discriminatória</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> preconceito_comportamental</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Ação discriminatória relatada pelo participante</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> dimensao_social</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="resumo" class="level2" data-number="1.8">
@@ -746,18 +770,18 @@ o vírus e que sofrem preconceito diante disto...</code></pre>
 <tbody>
 <tr class="odd">
 <td>Validação de corpus</td>
-<td>Nenhuma</td>
-<td>Compilador verifica tipos e modalidades</td>
+<td>Formato do arquivo</td>
+<td>Campos e modalidades do desenho</td>
 </tr>
 <tr class="even">
-<td>Fonte canônica dos dados</td>
+<td>Fonte canônica</td>
 <td>Arquivo <code>.txt</code></td>
 <td>Corpus <code>.syn</code> + template <code>.synt</code></td>
 </tr>
 <tr class="odd">
-<td>Destinos de exportação</td>
+<td>Destinos</td>
 <td>Resultados internos</td>
-<td>IRaMuTeQ, CSV, JSON, REFI-QDA, Neo4j</td>
+<td>IRaMuTeQ (via script), CSV, JSON, Excel, grafos</td>
 </tr>
 <tr class="even">
 <td>Anotação interpretativa</td>
@@ -767,25 +791,24 @@ o vírus e que sofrem preconceito diante disto...</code></pre>
 <tr class="odd">
 <td>Trabalho em equipe</td>
 <td>Manual</td>
-<td>Template como contrato compartilhado</td>
+<td>Template como contrato</td>
 </tr>
 <tr class="even">
 <td>Acesso programático</td>
 <td>Não disponível</td>
-<td><code>synesis.load()</code> no Jupyter/R</td>
+<td>API Python</td>
 </tr>
 </tbody>
 </table>
-<p>O IRaMuTeQ continua sendo a ferramenta indicada para CHD, análise de similitude e AFC. O Synesis não substitui essas análises — ele governa o corpus que as alimenta, e abre o mesmo corpus para análises que o IRaMuTeQ não realiza.</p>
+<p>O IRaMuTeQ continua sendo a ferramenta indicada para CHD, similitude e AFC. O Synesis não substitui essas análises: ele governa o corpus que as alimenta e o abre para outras.</p>
 <hr>
 </section>
 <section id="próximos-passos" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="próximos-passos"><span class="header-section-number">1.9</span> Próximos Passos</h2>
 <ul>
-<li><a href="definir_ontologia.qmd">Como Definir uma Ontologia</a> — criar vocabulário de códigos para anotação</li>
-<li><a href="criar_chains.qmd">Como Criar Chains</a> — declarar relações causais entre conceitos</li>
-<li><a href="exportacoes.qmd">Exportações Disponíveis</a> — referência completa dos formatos de saída</li>
-<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a> — especificação formal da sintaxe Synesis</li>
+<li><a href="../howto/definir_ontologia.html">Como Definir uma Ontologia</a></li>
+<li><a href="../howto/criar_chains.html">Como Criar Chains</a></li>
+<li><a href="../reference/guia_referencia.html">Referência da Linguagem</a></li>
 </ul>
 <hr>
 <p><strong>Ficou com dúvidas?</strong> Consulte <a href="https://github.com/synesis-lang/synesis/discussions">GitHub Discussions</a> ou abra uma issue no repositório.</p>

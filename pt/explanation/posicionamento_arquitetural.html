@@ -263,13 +263,13 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><strong>Separação entre Regras e Dados:</strong> Diferente do Markdown, a linguagem orquestra os componentes da análise dividindo as responsabilidades do projeto. As regras de validação (quais campos são obrigatórios ou opcionais) são isoladas no arquivo de Template (<code>.synt</code>), enquanto o pesquisador foca apenas na interpretação dentro dos arquivos de Anotação (<code>.syn</code>).</li>
 <li><strong>Cidadania de Primeira Classe para Texto e Grafos:</strong> A linguagem permite que blocos densos de texto humano — como excertos textuais da fonte (<code>QUOTATION</code>) ou anotações analíticas do pesquisador (<code>MEMO</code>) — coexistam de forma limpa com conectores topológicos (<code>CHAIN</code>). As cadeias semânticas replicam a lógica de grafos unindo códigos e relações, mas com uma sintaxe puramente fluida.</li>
-<li><strong>Compilação Determinística:</strong> O compilador não tenta “adivinhar” formatos, garantindo que a mesma entrada sempre produza a mesma saída. A compilação completa gera artefatos estruturados rigorosos (JSON, CSV, Excel) ou falha de maneira educativa, reportando os diagnósticos de erro com contexto, arquivo, linha e coluna exatos.</li>
+<li><strong>Compilação Determinística:</strong> O compilador não tenta “adivinhar” formatos, garantindo que a mesma entrada sempre produza a mesma saída. A compilação completa gera artefatos estruturados rigorosos (JSON, CSV, Excel) ou falha de maneira educativa, reportando os diagnósticos com contexto, arquivo, linha e coluna exatos. A validação cobre a forma e a consistência do que foi anotado; se a interpretação se sustenta continua sendo julgamento do pesquisador.</li>
 </ol>
 </section>
 </section>
 <section id="prontidão-para-data-science" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="prontidão-para-data-science"><span class="header-section-number">2</span> 💡 Prontidão para Data Science</h2>
-<p>Ao exigir que os dados sigam o contrato estabelecido pelo template, a Synesis elimina a necessidade de limpeza de dados pós-análise. O compilador produz corpora qualitativos estruturados — incluindo rastreabilidade absoluta em CSV através das colunas <code>source_file</code>, <code>source_line</code> e <code>source_column</code> — entregando bases de dados imediatamente prontas para fluxos de Data Science e Bancos de Grafos. :::</p>
+<p>Ao exigir que os dados sigam o contrato estabelecido pelo template, a Synesis elimina a necessidade de limpeza de dados pós-análise. O compilador produz corpora qualitativos estruturados — incluindo rastreabilidade absoluta em CSV através das colunas <code>source_file</code>, <code>source_line</code> e <code>source_column</code> — entregando bases de dados imediatamente prontas para fluxos de Data Science e Bancos de Grafos.</p>
 
 
 </section>

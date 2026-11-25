@@ -131,6 +131,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
+    <a class="dropdown-item" href="../tutorials/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../tutorials/synesis_claude_desktop.html">
  <span class="dropdown-text">Synesis in Claude Desktop (Skill)</span></a>
   </li>  
@@ -141,6 +145,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../tutorials/synesis_explorer_tutorial.html">
  <span class="dropdown-text">Synesis Explorer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/synesis_para_iramuteq.html">
+ <span class="dropdown-text">Synesis for IRaMuTeQ Users</span></a>
   </li>  
     </ul>
   </li>
@@ -154,7 +162,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Guide for Professionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../howto/exportar_neo4j.qmd">
+    <a class="dropdown-item" href="../howto/synesis_coder.html">
+ <span class="dropdown-text">AI Coding (synesis-coder)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/definir_ontologia.html">
+ <span class="dropdown-text">How to Define an Ontology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/criar_chains.html">
+ <span class="dropdown-text">How to Create and Validate Chains</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/ligar_projetos.html">
+ <span class="dropdown-text">How to Link Independent Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../howto/exportar_neo4j.html">
  <span class="dropdown-text">Export to Neo4j</span></a>
   </li>  
     </ul>
@@ -173,30 +197,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">The Organizing Model</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../reference/gramatica.html">
+ <span class="dropdown-text">Language Grammar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reference/guia_erros.html">
+ <span class="dropdown-text">Error Guide</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../reference/synesis_load.html">
  <span class="dropdown-text">Synesis API</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explanation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Explanation</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-explanation">    
         <li>
-    <a class="dropdown-item" href="../explanation/guia_sincero.html">
- <span class="dropdown-text">Why not Excel?</span></a>
+    <a class="dropdown-item" href="../reference/synesis_graph.html">
+ <span class="dropdown-text">synesis-graph</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../explanation/knowledge_graphs.qmd">
- <span class="dropdown-text">Knowledge Graphs &amp; GraphRAG</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../explanation/ideas.html">
- <span class="dropdown-text">Roadmap &amp; Ideas</span></a>
+    <a class="dropdown-item" href="../reference/fluxo_compilacao.html">
+ <span class="dropdown-text">The Compilation Flow</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
@@ -234,29 +259,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-not-just-do-it-in-excel" id="toc-why-not-just-do-it-in-excel" class="nav-link active" data-scroll-target="#why-not-just-do-it-in-excel"><span class="header-section-number">1</span> Why not just do it in Excel?</a>
+  <li><a href="#why-not-just-do-it-in-excel" id="toc-why-not-just-do-it-in-excel" class="nav-link active" data-scroll-target="#why-not-just-do-it-in-excel"><span class="header-section-number">1</span> Why Not Just Do It in Excel?</a>
   <ul class="collapse">
-  <li><a href="#the-uncomfortable-question" id="toc-the-uncomfortable-question" class="nav-link" data-scroll-target="#the-uncomfortable-question"><span class="header-section-number">1.1</span> The uncomfortable question</a></li>
-  <li><a href="#short-answer" id="toc-short-answer" class="nav-link" data-scroll-target="#short-answer"><span class="header-section-number">1.2</span> Short answer</a></li>
-  <li><a href="#the-problems-excel-doesnt-solve" id="toc-the-problems-excel-doesnt-solve" class="nav-link" data-scroll-target="#the-problems-excel-doesnt-solve"><span class="header-section-number">1.3</span> The problems Excel doesn’t solve</a>
+  <li><a href="#the-inevitable-question" id="toc-the-inevitable-question" class="nav-link" data-scroll-target="#the-inevitable-question"><span class="header-section-number">1.1</span> The Inevitable Question</a></li>
+  <li><a href="#short-answer" id="toc-short-answer" class="nav-link" data-scroll-target="#short-answer"><span class="header-section-number">1.2</span> Short Answer</a></li>
+  <li><a href="#what-is-really-at-stake" id="toc-what-is-really-at-stake" class="nav-link" data-scroll-target="#what-is-really-at-stake"><span class="header-section-number">1.3</span> What Is Really at Stake</a></li>
+  <li><a href="#where-excel-starts-showing-structural-limits" id="toc-where-excel-starts-showing-structural-limits" class="nav-link" data-scroll-target="#where-excel-starts-showing-structural-limits"><span class="header-section-number">1.4</span> Where Excel Starts Showing Structural Limits</a>
   <ul class="collapse">
-  <li><a href="#excel-doesnt-validate-conceptual-consistency" id="toc-excel-doesnt-validate-conceptual-consistency" class="nav-link" data-scroll-target="#excel-doesnt-validate-conceptual-consistency"><span class="header-section-number">1.3.1</span> 1. Excel doesn’t validate conceptual consistency</a></li>
-  <li><a href="#excel-doesnt-connect-interpretation-to-evidence" id="toc-excel-doesnt-connect-interpretation-to-evidence" class="nav-link" data-scroll-target="#excel-doesnt-connect-interpretation-to-evidence"><span class="header-section-number">1.3.2</span> 2. Excel doesn’t connect interpretation to evidence</a></li>
-  <li><a href="#excel-doesnt-guarantee-bidirectional-traceability" id="toc-excel-doesnt-guarantee-bidirectional-traceability" class="nav-link" data-scroll-target="#excel-doesnt-guarantee-bidirectional-traceability"><span class="header-section-number">1.3.3</span> 3. Excel doesn’t guarantee bidirectional traceability</a></li>
-  <li><a href="#excel-doesnt-scale-for-complex-projects" id="toc-excel-doesnt-scale-for-complex-projects" class="nav-link" data-scroll-target="#excel-doesnt-scale-for-complex-projects"><span class="header-section-number">1.3.4</span> 4. Excel doesn’t scale for complex projects</a></li>
-  <li><a href="#excel-doesnt-natively-express-causal-relationships" id="toc-excel-doesnt-natively-express-causal-relationships" class="nav-link" data-scroll-target="#excel-doesnt-natively-express-causal-relationships"><span class="header-section-number">1.3.5</span> 5. Excel doesn’t natively express causal relationships</a></li>
+  <li><a href="#conceptual-consistency" id="toc-conceptual-consistency" class="nav-link" data-scroll-target="#conceptual-consistency"><span class="header-section-number">1.4.1</span> Conceptual Consistency</a></li>
+  <li><a href="#interpretation-is-hard-to-formalize" id="toc-interpretation-is-hard-to-formalize" class="nav-link" data-scroll-target="#interpretation-is-hard-to-formalize"><span class="header-section-number">1.4.2</span> Interpretation Is Hard to Formalize</a></li>
+  <li><a href="#traceability-grows-in-complexity" id="toc-traceability-grows-in-complexity" class="nav-link" data-scroll-target="#traceability-grows-in-complexity"><span class="header-section-number">1.4.3</span> Traceability Grows in Complexity</a></li>
+  <li><a href="#complex-relations-are-improvised" id="toc-complex-relations-are-improvised" class="nav-link" data-scroll-target="#complex-relations-are-improvised"><span class="header-section-number">1.4.4</span> Complex Relations Are Improvised</a></li>
   </ul></li>
-  <li><a href="#what-you-gain-from-the-extra-work" id="toc-what-you-gain-from-the-extra-work" class="nav-link" data-scroll-target="#what-you-gain-from-the-extra-work"><span class="header-section-number">1.4</span> What you gain from the “extra work”</a></li>
-  <li><a href="#when-excel-is-the-right-choice" id="toc-when-excel-is-the-right-choice" class="nav-link" data-scroll-target="#when-excel-is-the-right-choice"><span class="header-section-number">1.5</span> When Excel is the right choice</a></li>
-  <li><a href="#when-synesis-is-worth-the-investment" id="toc-when-synesis-is-worth-the-investment" class="nav-link" data-scroll-target="#when-synesis-is-worth-the-investment"><span class="header-section-number">1.6</span> When Synesis is worth the investment</a></li>
-  <li><a href="#the-real-cost-of-each-approach" id="toc-the-real-cost-of-each-approach" class="nav-link" data-scroll-target="#the-real-cost-of-each-approach"><span class="header-section-number">1.7</span> The real cost of each approach</a>
+  <li><a href="#what-the-extra-work-really-is" id="toc-what-the-extra-work-really-is" class="nav-link" data-scroll-target="#what-the-extra-work-really-is"><span class="header-section-number">1.5</span> What the “Extra Work” Really Is</a></li>
+  <li><a href="#when-excel-is-the-best-choice" id="toc-when-excel-is-the-best-choice" class="nav-link" data-scroll-target="#when-excel-is-the-best-choice"><span class="header-section-number">1.6</span> When Excel Is the Best Choice</a></li>
+  <li><a href="#when-synesis-becomes-rational" id="toc-when-synesis-becomes-rational" class="nav-link" data-scroll-target="#when-synesis-becomes-rational"><span class="header-section-number">1.7</span> When Synesis Becomes Rational</a></li>
+  <li><a href="#the-real-comparative-cost" id="toc-the-real-comparative-cost" class="nav-link" data-scroll-target="#the-real-comparative-cost"><span class="header-section-number">1.8</span> The Real Comparative Cost</a>
   <ul class="collapse">
-  <li><a href="#excel" id="toc-excel" class="nav-link" data-scroll-target="#excel"><span class="header-section-number">1.7.1</span> Excel</a></li>
-  <li><a href="#synesis" id="toc-synesis" class="nav-link" data-scroll-target="#synesis"><span class="header-section-number">1.7.2</span> Synesis</a></li>
+  <li><a href="#excel" id="toc-excel" class="nav-link" data-scroll-target="#excel"><span class="header-section-number">1.8.1</span> Excel</a></li>
+  <li><a href="#synesis" id="toc-synesis" class="nav-link" data-scroll-target="#synesis"><span class="header-section-number">1.8.2</span> Synesis</a></li>
   </ul></li>
-  <li><a href="#the-question-you-should-be-asking" id="toc-the-question-you-should-be-asking" class="nav-link" data-scroll-target="#the-question-you-should-be-asking"><span class="header-section-number">1.8</span> The question you should be asking</a></li>
-  <li><a href="#an-honest-middle-ground" id="toc-an-honest-middle-ground" class="nav-link" data-scroll-target="#an-honest-middle-ground"><span class="header-section-number">1.9</span> An honest middle ground</a></li>
-  <li><a href="#brutal-conclusion" id="toc-brutal-conclusion" class="nav-link" data-scroll-target="#brutal-conclusion"><span class="header-section-number">1.10</span> Brutal conclusion</a></li>
+  <li><a href="#the-right-question" id="toc-the-right-question" class="nav-link" data-scroll-target="#the-right-question"><span class="header-section-number">1.9</span> The Right Question</a></li>
+  <li><a href="#an-honest-position" id="toc-an-honest-position" class="nav-link" data-scroll-target="#an-honest-position"><span class="header-section-number">1.10</span> An Honest Position</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.11</span> Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -268,34 +293,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="why-not-just-do-it-in-excel" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Why not just do it in Excel?</h1>
-<p><strong>An honest answer about when Synesis makes sense — and when it doesn’t</strong></p>
-<hr>
-<section id="the-uncomfortable-question" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="the-uncomfortable-question"><span class="header-section-number">1.1</span> The uncomfortable question</h2>
+<h1 data-number="1"><span class="header-section-number">1</span> Why Not Just Do It in Excel?</h1>
+<p><strong>An honest answer about when Synesis makes sense — and when it does not</strong></p>
+<section id="the-inevitable-question" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-inevitable-question"><span class="header-section-number">1.1</span> The Inevitable Question</h2>
 <blockquote class="blockquote">
-<p>“Why should I learn a language, go through all this work, just to generate a spreadsheet in the end? Why not skip this step and annotate directly in Excel?”</p>
+<p>“If the final result is a spreadsheet, why learn a language? Why not write everything straight into Excel?”</p>
 </blockquote>
-<p>This is a legitimate question. And it deserves an honest answer.</p>
+<p>This question is not cynical. It is methodologically healthy.</p>
+<p>Every tool has to justify its cost.</p>
 <hr>
 </section>
 <section id="short-answer" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="short-answer"><span class="header-section-number">1.2</span> Short answer</h2>
-<p><strong>If your project is small, your data is simple, and you work alone: use Excel.</strong></p>
-<p>Seriously. Don’t overcomplicate things.</p>
-<p>Synesis exists to solve problems that Excel doesn’t solve well. If you don’t have those problems, you don’t need Synesis.</p>
+<h2 data-number="1.2" class="anchored" data-anchor-id="short-answer"><span class="header-section-number">1.2</span> Short Answer</h2>
+<p>If your project is small, simple and individual: <strong>use Excel</strong>.</p>
+<p>Excel is an extraordinary tool. Flexible, accessible, powerful and universal.</p>
+<p>Synesis does not exist to replace Excel. It exists to solve problems that appear when your spreadsheet:</p>
+<ul>
+<li>Turns into a web of internal links that is hard to maintain.</li>
+<li>Holds information so dense that it becomes visually exhausting.</li>
+<li>Needs version control.</li>
+<li>Must avoid conflict errors from real-time collaboration.</li>
+</ul>
+<p>The difference is not technical. It is structural.</p>
 <hr>
 </section>
-<section id="the-problems-excel-doesnt-solve" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="the-problems-excel-doesnt-solve"><span class="header-section-number">1.3</span> The problems Excel doesn’t solve</h2>
-<section id="excel-doesnt-validate-conceptual-consistency" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="excel-doesnt-validate-conceptual-consistency"><span class="header-section-number">1.3.1</span> 1. Excel doesn’t validate conceptual consistency</h3>
-<p>In Excel, nothing prevents you from writing:</p>
+<section id="what-is-really-at-stake" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="what-is-really-at-stake"><span class="header-section-number">1.3</span> What Is Really at Stake</h2>
+<p>The question is not “which tool is more powerful”.</p>
+<p>It is:</p>
+<blockquote class="blockquote">
+<p>Where is the structure that organizes your thinking?</p>
+</blockquote>
+<p>In Excel, structure is implicit. In Synesis, structure is explicit and validated.</p>
+<p>The difference seems small at first. It becomes decisive as the project grows.</p>
+<hr>
+</section>
+<section id="where-excel-starts-showing-structural-limits" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="where-excel-starts-showing-structural-limits"><span class="header-section-number">1.4</span> Where Excel Starts Showing Structural Limits</h2>
+<section id="conceptual-consistency" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="conceptual-consistency"><span class="header-section-number">1.4.1</span> Conceptual Consistency</h3>
+<p>In Excel you can record:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Code</th>
-<th>Relationship</th>
+<th>Relation</th>
 <th>Code</th>
 </tr>
 </thead>
@@ -317,16 +360,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Are these three ways of saying the same thing? Or are they different concepts? Excel doesn’t know. Neither will you remember six months from now.</p>
-<p><strong>Synesis forces consistency.</strong> If you defined “Cost” in the ontology, the compiler complains when you write “cost” or “Price”. This seems like bureaucracy until you have 200 codes and realize half are duplicates with slightly different names.</p>
+<p>Are these three ways of saying the same thing? Or different concepts? Excel does not know. Neither will you remember six months from now.</p>
+<p>Excel does not know. It was not built to know.</p>
+<p>Yes, you can create a code sheet, use data validation, drop-down lists, cross references. It works. But as the project grows, keeping that discipline becomes manual and fragile.</p>
+<p>The Synesis compiler does not depend only on the researcher’s memory or care. It validates content against a declared ontology.</p>
+<p>That is not bureaucracy. It is syntactic and semantic control.</p>
 </section>
-<section id="excel-doesnt-connect-interpretation-to-evidence" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="excel-doesnt-connect-interpretation-to-evidence"><span class="header-section-number">1.3.2</span> 2. Excel doesn’t connect interpretation to evidence</h3>
-<p>In Excel, you probably do something like this:</p>
+<section id="interpretation-is-hard-to-formalize" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="interpretation-is-hard-to-formalize"><span class="header-section-number">1.4.2</span> Interpretation Is Hard to Formalize</h3>
+<p>In Excel a typical structure is:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Quote</th>
+<th>Quotation</th>
 <th>Code</th>
 </tr>
 </thead>
@@ -337,140 +383,163 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Where is your interpretation? Why did you decide this is “Economic Barrier” and not “Value Perception”? Do you remember? Can you explain it to your advisor? To the reviewer who will review your article?</p>
-<p><strong>Synesis requires you to record the interpretation along with the coding.</strong> This seems like extra work until someone questions your conclusions and you have to justify each analytical decision.</p>
-</section>
-<section id="excel-doesnt-guarantee-bidirectional-traceability" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="excel-doesnt-guarantee-bidirectional-traceability"><span class="header-section-number">1.3.3</span> 3. Excel doesn’t guarantee bidirectional traceability</h3>
-<p>Try doing this in Excel: - Given a code, find all associated quotes - Given a quote, find all assigned codes - Given an article, find all extracted causal chains - Given a causal chain, find the original source</p>
-<p>You can do it with filters, VLOOKUP, pivot tables. It will work. Until you add 50 more sources and realize your spreadsheet has become a monster of interconnected tabs that only you understand (and even you, not always).</p>
-<p><strong>Synesis maintains the source → item → interpretation → code/chain structure automatically.</strong> The compiler generates CSVs with traceability columns (<code>source_file</code>, <code>source_line</code>, <code>source_column</code>). You always know where each piece of data came from.</p>
-</section>
-<section id="excel-doesnt-scale-for-complex-projects" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="excel-doesnt-scale-for-complex-projects"><span class="header-section-number">1.3.4</span> 4. Excel doesn’t scale for complex projects</h3>
-<p>With 10 interviews and 30 codes, Excel works.</p>
-<p>With 100 articles, 500 codes, and 3 researchers, Excel becomes a nightmare: - Who changed what? - Why did this code disappear? - Which version of the file was this quote in? - How do I merge analyses from three people?</p>
-<p><strong>Synesis files are text files.</strong> They work with Git. You have complete history, can merge, can revert, can work in parallel. This isn’t an advantage for an undergraduate thesis. It’s essential for a 3-year research project with a team.</p>
-</section>
-<section id="excel-doesnt-natively-express-causal-relationships" class="level3" data-number="1.3.5">
-<h3 data-number="1.3.5" class="anchored" data-anchor-id="excel-doesnt-natively-express-causal-relationships"><span class="header-section-number">1.3.5</span> 5. Excel doesn’t natively express causal relationships</h3>
-<p>Try representing this in Excel:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Lack of Information <span class="op">-&gt;</span> GENERATES <span class="op">-&gt;</span> Distrust <span class="op">-&gt;</span> INHIBITS <span class="op">-&gt;</span> Adoption</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You’ll need separate columns, or concatenated cells, or an improvised structure. Any subsequent analysis will require manual parsing.</p>
-<p><strong>Synesis has native syntax for causal chains.</strong> The compiler understands the structure and can export in formats suitable for network analysis or knowledge graphs.</p>
-<hr>
-</section>
-</section>
-<section id="what-you-gain-from-the-extra-work" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="what-you-gain-from-the-extra-work"><span class="header-section-number">1.4</span> What you gain from the “extra work”</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>“Extra work”</th>
-<th>What you gain</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Learning the syntax</td>
-<td>Structure that forces conceptual clarity</td>
-</tr>
-<tr class="even">
-<td>Defining ontology</td>
-<td>Controlled vocabulary that doesn’t become a mess</td>
-</tr>
-<tr class="odd">
-<td>Writing in plain text</td>
-<td>Versionable, searchable, durable files</td>
-</tr>
-<tr class="even">
-<td>Using the compiler</td>
-<td>Automatic validation + multiple output formats</td>
-</tr>
-<tr class="odd">
-<td>Separating source/item/code</td>
-<td>Complete and auditable traceability</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="when-excel-is-the-right-choice" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="when-excel-is-the-right-choice"><span class="header-section-number">1.5</span> When Excel is the right choice</h2>
-<p>Be honest with yourself. Use Excel if:</p>
+<p>But:</p>
 <ul>
-<li>Your project has fewer than 20 sources</li>
-<li>You work alone</li>
-<li>The codes are simple (no complex hierarchies)</li>
-<li>You don’t need to justify analytical decisions in detail</li>
-<li>The project ends in a few months and won’t be resumed</li>
-<li>You don’t plan to integrate with other analysis tools</li>
+<li>Why is this not “Value Perception”?</li>
+<li>Was the decision debated?</li>
+<li>Did it change over time?</li>
+<li>Can you reconstruct the reasoning a year from now?</li>
 </ul>
-<p><strong>There’s no shame in that.</strong> Right tool for the right problem.</p>
-<hr>
+<p>Yes, you can add note columns. You can create a separate codebook. You can document method decisions. But those layers end up scattered. There is no structural guarantee that interpretation and evidence stay traceably linked.</p>
+<p>Synesis can be configured to require interpretation as part of the record — not as an optional comment.</p>
+<p>That makes analysis auditable, not merely organized.</p>
 </section>
-<section id="when-synesis-is-worth-the-investment" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="when-synesis-is-worth-the-investment"><span class="header-section-number">1.6</span> When Synesis is worth the investment</h2>
-<p>Consider Synesis if:</p>
+<section id="traceability-grows-in-complexity" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="traceability-grows-in-complexity"><span class="header-section-number">1.4.3</span> Traceability Grows in Complexity</h3>
+<p>Excel can do:</p>
 <ul>
-<li>You have dozens or hundreds of sources</li>
-<li>Multiple people will code or review</li>
-<li>The project lasts years (dissertation, thesis, institutional research)</li>
-<li>You need to demonstrate methodological rigor</li>
-<li>The data will be reanalyzed or expanded in the future</li>
-<li>You want to integrate with network analysis or knowledge graphs</li>
-<li>Terminological consistency is critical to your conclusions</li>
-<li>You’ve already lost data or work due to spreadsheet problems</li>
+<li>Filters</li>
+<li>VLOOKUP / XLOOKUP</li>
+<li>Pivot tables</li>
+<li>Power Query</li>
+</ul>
+<p>It is technically capable.</p>
+<p>The problem is not computing power. It is architecture.</p>
+<p>Once you add dozens of sources, several researchers and successive revisions, questions appear:</p>
+<ul>
+<li>Who changed this code?</li>
+<li>In which version was this quotation different?</li>
+<li>Why did two spreadsheets diverge?</li>
+<li>How to reconcile conflicting classifications?</li>
+</ul>
+<p>Excel was not designed as a versionable system.</p>
+<p>Synesis works with structured text files. That allows version control, full history and merging of parallel contributions.</p>
+<p>For a three-month project this is overkill. For a three-year project it is methodological survival.</p>
+</section>
+<section id="complex-relations-are-improvised" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="complex-relations-are-improvised"><span class="header-section-number">1.4.4</span> Complex Relations Are Improvised</h3>
+<p>Try to represent formally:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Falta de Informação → GERA → Desconfiança → INIBE → Adoção</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In Excel this becomes:</p>
+<ul>
+<li>Multiple columns</li>
+<li>Concatenated strings</li>
+<li>Structures to be interpreted later</li>
+</ul>
+<p>Nothing stops you. But nothing guarantees structural integrity.</p>
+<p>Synesis treats causal chains as formal entities, not descriptive text.</p>
+<p>That allows export to:</p>
+<ul>
+<li>network analysis</li>
+<li>knowledge graphs</li>
+<li>automatic validation of relational consistency</li>
 </ul>
 <hr>
 </section>
-<section id="the-real-cost-of-each-approach" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="the-real-cost-of-each-approach"><span class="header-section-number">1.7</span> The real cost of each approach</h2>
-<section id="excel" class="level3" data-number="1.7.1">
-<h3 data-number="1.7.1" class="anchored" data-anchor-id="excel"><span class="header-section-number">1.7.1</span> Excel</h3>
-<p><strong>Initial cost:</strong> Low. You already know how to use it.</p>
-<p><strong>Cost over time:</strong> Grows exponentially. Maintaining complex spreadsheets, correcting inconsistencies, reconstructing lost traceability, explaining undocumented decisions.</p>
-<p><strong>Cost of error:</strong> High. Errors propagate silently. You may discover inconsistencies only at the writing stage, when it’s too late.</p>
 </section>
-<section id="synesis" class="level3" data-number="1.7.2">
-<h3 data-number="1.7.2" class="anchored" data-anchor-id="synesis"><span class="header-section-number">1.7.2</span> Synesis</h3>
-<p><strong>Initial cost:</strong> Medium. You need to learn the syntax and define the structure.</p>
-<p><strong>Cost over time:</strong> Stable. The structure is maintained. Automatic validation catches errors early.</p>
-<p><strong>Cost of error:</strong> Low. The compiler complains immediately when something is wrong.</p>
-<hr>
-</section>
-</section>
-<section id="the-question-you-should-be-asking" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="the-question-you-should-be-asking"><span class="header-section-number">1.8</span> The question you should be asking</h2>
-<p>It’s not “why not use Excel?”</p>
-<p>It’s: <strong>“What is the cost of doing it wrong?”</strong></p>
-<p>If the cost of inconsistency, loss of traceability, or conceptual mess is low for your project, use Excel.</p>
-<p>If that cost is high — because you need to defend a thesis, publish an article, or make organizational decisions based on the data — the investment in structure pays off.</p>
-<hr>
-</section>
-<section id="an-honest-middle-ground" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="an-honest-middle-ground"><span class="header-section-number">1.9</span> An honest middle ground</h2>
-<p>If you’re in doubt:</p>
-<ol type="1">
-<li><strong>Start in Excel</strong> to explore the data</li>
-<li><strong>Migrate to Synesis</strong> when you realize you need more structure</li>
-<li><strong>Export to Excel</strong> when you need specific visualizations or analyses</li>
-</ol>
-<p>Synesis is not anti-Excel. Excel is one of the output formats. The question is: where is the <strong>source of truth</strong>?</p>
+<section id="what-the-extra-work-really-is" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="what-the-extra-work-really-is"><span class="header-section-number">1.5</span> What the “Extra Work” Really Is</h2>
+<p>It is not learning syntax. It is accepting that:</p>
 <ul>
-<li>If the source of truth is the spreadsheet, you have the problems I described.</li>
-<li>If the source of truth is the Synesis files, Excel is just one of the ways to visualize.</li>
+<li>Concepts must be defined</li>
+<li>Relations must be formalized</li>
+<li>Interpretations must be justified</li>
+<li>Structure must be explicit</li>
+</ul>
+<p>Excel lets you postpone these decisions. Synesis makes you take them early. And that is uncomfortable.</p>
+<hr>
+</section>
+<section id="when-excel-is-the-best-choice" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="when-excel-is-the-best-choice"><span class="header-section-number">1.6</span> When Excel Is the Best Choice</h2>
+<p>Use Excel when:</p>
+<ul>
+<li>Data volume is small</li>
+<li>Conceptual complexity is low</li>
+<li>The project is exploratory</li>
+<li>No team is collaborating</li>
+<li>Formal traceability is not required</li>
+<li>Methodological risk is low</li>
+</ul>
+<p>Excel is excellent for exploration, initial organization and visualization. There is no virtue in needless sophistication.</p>
+<hr>
+</section>
+<section id="when-synesis-becomes-rational" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="when-synesis-becomes-rational"><span class="header-section-number">1.7</span> When Synesis Becomes Rational</h2>
+<p>Consider Synesis when:</p>
+<ul>
+<li>The vocabulary must be strictly controlled</li>
+<li>Several people code at once</li>
+<li>The project will continue or be reused</li>
+<li>You need to defend method decisions</li>
+<li>Causal relations are central to the analysis</li>
+<li>Structural integrity is part of the result</li>
+<li>You integrate large volumes of AI-generated data (<em>Big Qual</em>)</li>
+</ul>
+<p>In these cases the issue is not immediate efficiency. It is the accumulated cost of inconsistency.</p>
+<hr>
+</section>
+<section id="the-real-comparative-cost" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="the-real-comparative-cost"><span class="header-section-number">1.8</span> The Real Comparative Cost</h2>
+<section id="excel" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="excel"><span class="header-section-number">1.8.1</span> Excel</h3>
+<ul>
+<li>Low entry cost</li>
+<li>High hidden cost of structural maintenance</li>
+<li>Silent errors</li>
+<li>Heavy dependence on human discipline</li>
+</ul>
+</section>
+<section id="synesis" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="synesis"><span class="header-section-number">1.8.2</span> Synesis</h3>
+<ul>
+<li>Higher initial cost</li>
+<li>Explicit structure from the start</li>
+<li>Errors detected early</li>
+<li>Methodological scalability</li>
 </ul>
 <hr>
 </section>
-<section id="brutal-conclusion" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="brutal-conclusion"><span class="header-section-number">1.10</span> Brutal conclusion</h2>
-<p>Synesis is not for everyone. It’s not for every project.</p>
-<p>It’s for those who have already suffered with: - Spreadsheets that became incomprehensible monsters - Duplicate codes that contaminated the analysis - “Where did this come from?” questions without answers - Months of work lost due to lack of structure</p>
-<p>If you’ve never had these problems, maybe you don’t need Synesis.</p>
-<p>If you have, you know exactly why it’s worth investing in structure from the start.</p>
+</section>
+<section id="the-right-question" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="the-right-question"><span class="header-section-number">1.9</span> The Right Question</h2>
+<p>It is not:</p>
+<blockquote class="blockquote">
+<p>“Can I do this in Excel?”</p>
+</blockquote>
+<p>You probably can.</p>
+<p>It is:</p>
+<blockquote class="blockquote">
+<p>“What is the cost of inconsistency in this project?”</p>
+</blockquote>
+<p>If the cost is low, Excel will do. If the cost is high, structure is not a luxury — it is epistemological protection.</p>
 <hr>
-<p><em>The best tool is the one that solves your problem. Sometimes it’s Excel. Sometimes it’s not.</em></p>
+</section>
+<section id="an-honest-position" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="an-honest-position"><span class="header-section-number">1.10</span> An Honest Position</h2>
+<p>Synesis does not replace Excel.</p>
+<p>Excel is excellent as:</p>
+<ul>
+<li>a visualization tool</li>
+<li>a means of sharing</li>
+<li>an exploration environment</li>
+<li>an export format</li>
+</ul>
+<p>That is why one of the export formats of the Synesis compiler is precisely Excel. The difference lies in where the <strong>source of truth</strong> is.</p>
+<p>If the source of truth is the spreadsheet, you depend on manual discipline.</p>
+<p>If the source of truth is a structured, checkable system, the spreadsheet becomes just an interface.</p>
+<hr>
+</section>
+<section id="conclusion" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">1.11</span> Conclusion</h2>
+<p>Synesis is not for everyone. And that is not a flaw — it is focus.</p>
+<p>It makes sense when:</p>
+<ul>
+<li>Structure matters more than initial speed</li>
+<li>Rigor matters more than convenience</li>
+<li>Scalability matters more than improvisation</li>
+</ul>
+<hr>
+<p><em>The best tool is the one whose structural cost is proportional to the risk of your project. Sometimes it is Excel. Sometimes it is not.</em></p>
 
 
 </section>

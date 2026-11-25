@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="aplicabilidade" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="aplicabilidade"><span class="header-section-number">1.3</span> Aplicabilidade</h2>
 <p>O mesmo princípio aplica-se tanto a contextos cotidianos — como um bloco de anotações na mesa de trabalho (<strong>Fonte</strong>) com notas destacáveis (<strong>Itens</strong>) organizadas por prioridade ou data (<strong>Ontologia</strong>) — quanto a fluxos complexos de pesquisa acadêmica, envolvendo artigos científicos, teses e documentação técnica.</p>
-<p>Synesis não é apenas um sistema de organização, mas uma infraestrutura de tradução do conhecimento. Ela converte estruturas conceituais em formatos interoperáveis — de planilhas e documentos tradicionais (<strong>Excel</strong>, <strong>MS-Word</strong>) a notebooks analíticos (<strong>Jupyter Labs</strong>), formatos padronizados (<strong>REFI-QDA</strong>) e bancos de grafos <strong>(Neo4j</strong>, <strong>Memgraph</strong>) — tornando o conhecimento mensurável, consultável e semanticamente navegável, inclusive por Large Language Models (<strong>LLMs</strong>) via MCP.</p>
+<p>Synesis não é apenas um sistema de organização, mas uma infraestrutura de tradução do conhecimento. Ela converte estruturas conceituais em formatos interoperáveis — de planilhas (<strong>CSV</strong>, <strong>Excel</strong>) a notebooks analíticos (<strong>Jupyter Lab</strong>), vocabulários padronizados (<strong>SKOS</strong>) e bancos de grafos (<strong>Neo4j</strong>, <strong>ArcadeDB</strong>) — tornando o conhecimento mensurável, consultável e semanticamente navegável, inclusive por Large Language Models (<strong>LLMs</strong>) via MCP.</p>
 </section>
 <section id="o-que-você-precisa-hoje" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="o-que-você-precisa-hoje"><span class="header-section-number">1.4</span> O que você precisa hoje?</h2>
@@ -334,6 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="aprender-synesis"><span class="header-section-number">1.4.1</span> Aprender Synesis</h3>
 <p><strong>Você é novo aqui?</strong> Comece com nossos tutoriais hands-on que te guiarão passo a passo.</p>
 <ul>
+<li><a href="./tutorials/getting-started.html">Getting Started</a> — Seu primeiro projeto, do zero à primeira compilação</li>
 <li><a href="./tutorials/synesis_claude_desktop.html">Synesis no Claude Desktop</a> — Comece com a ajuda do Claude, sem instalar nada à mão</li>
 <li><a href="./tutorials/guia_pesquisadores.html">Guia para Pesquisadores</a> — Introdução para pesquisa qualitativa</li>
 <li><a href="./tutorials/synesis_explorer_tutorial.html">Tutorial Synesis Explorer</a> — Configurar o ambiente VSCode</li>
@@ -344,6 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Você sabe o que quer fazer?</strong> Veja nossos guias práticos para tarefas comuns.</p>
 <ul>
 <li><a href="./howto/guia_profissionais.html">Guia para Profissionais</a> — Aplicar Synesis em contextos organizacionais</li>
+<li><a href="./howto/synesis_coder.html">Codificação com IA</a> — Anotar com o synesis-coder e revisar o resultado</li>
 <li><a href="./howto/exportar_neo4j.html">Exportar para Neo4j</a> — Criar knowledge graphs</li>
 </ul>
 </section>
@@ -351,7 +353,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="1.4.3" class="anchored" data-anchor-id="consultar-especificações-técnicas"><span class="header-section-number">1.4.3</span> Consultar especificações técnicas</h3>
 <p><strong>Você precisa de detalhes técnicos?</strong> Acesse a referência completa da linguagem e API.</p>
 <ul>
-<li><a href="./reference/guia_referencia.html">Referência da Linguagem</a> — Sintaxe completa Synesis v1.1</li>
+<li><a href="./reference/guia_referencia.html">Referência da Linguagem</a> — Sintaxe completa e linha de comando</li>
+<li><a href="./reference/guia_erros.html">Guia de Erros</a> — Cada diagnóstico do compilador, com a correção</li>
 <li><a href="./reference/synesis_load.html">API Synesis</a> — Integração Python (<code>synesis.load()</code>)</li>
 </ul>
 </section>
@@ -373,13 +376,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A arquitetura Synesis é modular e inteiramente baseada em <strong>texto plano</strong>, garantindo portabilidade, rastreabilidade, versionamento nativo e um ambiente livre de distrações.</p>
 <p>Todo o sistema é orquestrado por um arquivo de projeto (<em>.synp</em>), que atua como ponto de coordenação e conecta seus principais componentes:</p>
 <p><strong>Referências Bibliográficas</strong> (<em>.bib</em>): Reúnem e estruturam formalmente as fontes originais que fundamentam o conhecimento.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">@Artile</span>{doe2026</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    author  = {Doe, John},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    journal = {Knowledge Management},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    title   = {Exploring knowledge annotation systems}</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    year    = {2026}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    number  = {7}</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    volume  = {1}</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">doe2026</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span>  = {Doe, John},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Knowledge Management},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span>   = {Exploring knowledge annotation systems},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span>    = {2026},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">number</span>  = {7},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">volume</span>  = {1}</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Templates Estruturais</strong> (<em>.synt</em>): O núcleo normativo da linguagem. É o arquivo de template que define formalmente a estrutura das anotações (<em>.syn</em>) e das ontologias (<em>.syno</em>). Nele são fixados os formatos, os campos obrigatórios, os tipos de relacionamento e as regras declarativas que moldam todo o corpo de conhecimento. Totalmente configurável, o template determina como a ontologia será organizada e como as anotações deverão ser estruturadas. Assim como os demais componentes, também é um arquivo de texto plano.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================</span></span>
@@ -399,28 +402,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">note</span> <span class="kw">TYPE</span> <span class="kw">MEMO</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Memo analítico explicando a interpretação e mecanismo causal identificado</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> <span class="at">chain</span> <span class="kw">TYPE</span> CHAIN</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Relação causal entre conceitos</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RELATIONS</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ENABLES:</span> A permite que B ocorra</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">CONSTRAINS:</span> A limita B</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">RELATIONS</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Anotações</strong> (<em>.syn</em>): Composto por registros analíticos estruturados conforme o template. Apresentam-se como textos organizados em blocos formais, seguindo as regras declaradas.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doe2026</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> This study aims to assess the impacts of these transition plans on social equity in a case study of the southern coast of Iran, where the community faces severe water scarcity and there is ready access to seawater for desalination.</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@doe2026</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Water scarcity creates necessary condition for desalination adoption, enabling transition pathway evaluation</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Water_Scarcity <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Desalination</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doe2026</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> This study aims to assess the impacts of these transition plans on social equity in a case study of the southern coast of Iran, where the community faces severe water scarcity and there is ready access to seawater for desalination.</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Water scarcity creates necessary condition for desalination adoption, enabling transition pathway evaluation</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doe2026</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> The main contribution of this research is to consider social equity as a key factor in the nexus evaluation of energy-water transition plans.</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Water_Scarcity <span class="op">-&gt;</span> ENABLES <span class="op">-&gt;</span> Desalination</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Positions equity as essential evaluation criterion, constraining acceptable transition configurations</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Equity <span class="op">-&gt;</span> CONSTRAINS <span class="op">-&gt;</span> Transition_Planning</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@doe2026</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text:</span> The main contribution of this research is to consider social equity as a key factor in the nexus evaluation of energy-water transition plans.</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">note:</span> Positions equity as essential evaluation criterion, constraining acceptable transition configurations</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chain:</span> Equity <span class="op">-&gt;</span> CONSTRAINS <span class="op">-&gt;</span> Transition_Planning</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Ontologia </strong>(<em>.syno</em>): Contém estruturas conceituais igualmente definidas pelo template. Embora se apresentem como blocos estruturados, sua forma e lógica derivam integralmente das declarações estabelecidas no arquivo <em>.synt</em>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Cost</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topic:</span> Economics</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11 Economic Aspect</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2 Market Dimension</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aspect:</span> 11</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dimension:</span> 2</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">confidence:</span> HIGH</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reasoning:</span> Aspect <span class="fu">11:</span> Core economic factor representing financial expenditure. Mainly constrains deployment<span class="co">/technology development while enabling market penetration when reduced. Co-occurs with Deployment and Acceptance, indicating market-consumer relevance. Dimension 2: Directly affects investors, consumers, and market competitiveness. High frequency (96) across broad sources (66) confirms central role.</span></span>
@@ -434,21 +450,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Enquanto os arquivos de anotação e ontologia se assemelham a textos estruturados em blocos, é no arquivo de template que Synesis verdadeiramente se manifesta como linguagem. Por meio de comandos declarativos, o arquivo <em>.synt</em> define a gramática estrutural que governa todo o <em>corpora</em>, transformando um conjunto de textos em um corpo de conhecimento formalmente organizado.</p>
 <section id="o-poder-da-integração" class="level3" data-number="1.5.1">
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="o-poder-da-integração"><span class="header-section-number">1.5.1</span> O Poder da Integração</h3>
-<p>O resultado da compilação Synesis vai muito além de documentos estruturados. O compilador converte seu corpo de conhecimento em formatos universais de intercâmbio — como JSON, Excel, DOCX, CSV e REFI-QDA — tornando-o interoperável com outras <em>stacks</em> tecnológicas.</p>
+<p>O resultado da compilação Synesis vai muito além de documentos estruturados. O compilador converte seu corpo de conhecimento em formatos de intercâmbio — como JSON, CSV, Excel, Alpaca e SKOS — tornando-o interoperável com outras <em>stacks</em> tecnológicas.</p>
 <p>Mais do que exportar dados, Synesis transforma conhecimento estruturado em infraestrutura computacional.</p>
 <section id="graph-databases" class="level4" data-number="1.5.1.1">
 <h4 data-number="1.5.1.1" class="anchored" data-anchor-id="graph-databases"><span class="header-section-number">1.5.1.1</span> Graph Databases</h4>
-<p>Integração nativa com Neo4j e Memgraph, permitindo materializar a topologia conceitual do seu conhecimento em grafos navegáveis, consultáveis e visualmente exploráveis.</p>
+<p>O <a href="./reference/synesis_graph.html">synesis-graph</a> leva o projeto para o Neo4j ou o ArcadeDB, permitindo materializar a topologia conceitual do seu conhecimento em grafos navegáveis, consultáveis e visualmente exploráveis.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/neo4jFactors.png" class="img-fluid figure-img"></p>
-<figcaption>Neo4j Dektop with Synesis generated data.</figcaption>
+<figcaption>Neo4j Desktop com dados gerados pelo Synesis.</figcaption>
 </figure>
 </div>
 </section>
 <section id="ai-ready" class="level4" data-number="1.5.1.2">
 <h4 data-number="1.5.1.2" class="anchored" data-anchor-id="ai-ready"><span class="header-section-number">1.5.1.2</span> AI-Ready</h4>
-<p>Por meio do protocolo MCP (Model Context Protocol), seus dados podem ser conectados a assistentes como Claude Desktop, viabilizando interações em linguagem natural com respostas rastreáveis e fundamentadas diretamente em bancos de grafos Neo4j/Memgraph — sua fonte formal de verdade.</p>
+<p>Por meio do protocolo MCP (Model Context Protocol), seus dados podem ser conectados a assistentes como Claude Desktop, viabilizando interações em linguagem natural com respostas rastreáveis e fundamentadas diretamente no banco de grafos (Neo4j ou ArcadeDB) — sua fonte formal de verdade.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/claude_mcp_pt.png" class="img-fluid figure-img"></p>
@@ -478,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="plugin-para-zotero" class="level4" data-number="1.5.1.5">
 <h4 data-number="1.5.1.5" class="anchored" data-anchor-id="plugin-para-zotero"><span class="header-section-number">1.5.1.5</span> Plugin para Zotero</h4>
-<p>Permite exportar bibliografias e anotações destacadas diretamente para o formato Synesis, integrando pesquisa acadêmica ao fluxo de compilação.</p>
+<p>O <a href="https://github.com/synesis-lang/zotero-synesis-export">zotero-synesis-export</a> exporta destaques, comentários e etiquetas de PDFs do Zotero para o formato Synesis, integrando a leitura acadêmica ao fluxo de compilação.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/zotero_preferences.png" class="img-fluid figure-img"></p>

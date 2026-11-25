@@ -285,6 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-resumo" id="toc-sec-resumo" class="nav-link" data-scroll-target="#sec-resumo"><span class="header-section-number">4</span> Resumo</a>
   <ul class="collapse">
   <li><a href="#modificadores" id="toc-modificadores" class="nav-link" data-scroll-target="#modificadores"><span class="header-section-number">4.0.1</span> Modificadores</a></li>
+  <li><a href="#além-dos-campos" id="toc-além-dos-campos" class="nav-link" data-scroll-target="#além-dos-campos"><span class="header-section-number">4.1</span> Além dos campos</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -498,8 +499,9 @@ Múltiplos códigos
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> cadeia <span class="kw">TYPE</span> CHAIN</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Relação entre conceitos</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ARITY</span> <span class="op">&gt;=</span> 2</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Relação entre conceitos</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>No arquivo de anotação (.syn):</strong></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria2026</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">citacao:</span> <span class="st">"Eu não confio nessas coisas de computador para falar com médico"</span></span>
@@ -633,16 +635,17 @@ ARITY
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Relevância do excerto para a questão de pesquisa</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        1 <span class="fu">baixa:</span> Tangencialmente relacionado</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        2 <span class="fu">media:</span> Contribui para a compreensão</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        3 <span class="fu">alta:</span> Central para a questão de pesquisa</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[1]</span> <span class="fu">baixa:</span> Tangencialmente relacionado</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[2]</span> <span class="fu">media:</span> Contribui para a compreensão</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[3]</span> <span class="fu">alta:</span> Central para a questão de pesquisa</span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>No arquivo de anotação (.syn):</strong></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria2026</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">citacao:</span> <span class="st">"Eu não confio nessas coisas de computador para falar com médico"</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">relevancia:</span> alta</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">relevancia:</span> 3</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Em um campo <code>ORDERED</code>, grava-se o <strong>índice</strong> (<code>3</code>), não o rótulo; escrever <code>alta</code> produz erro, com o índice correto na mensagem. O editor mostra o rótulo ao lado do número.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -728,20 +731,20 @@ ORDERED vs.&nbsp;ENUMERATED
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ONTOLOGY</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Prioridade do conceito para intervenção</span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>        1 <span class="fu">baixa:</span> Fator secundário</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        2 <span class="fu">media:</span> Fator relevante</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        3 <span class="fu">alta:</span> Fator crítico para intervenção</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[1]</span> <span class="fu">baixa:</span> Fator secundário</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[2]</span> <span class="fu">media:</span> Fator relevante</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        <span class="bn">[3]</span> <span class="fu">alta:</span> Fator crítico para intervenção</span>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">VALUES</span></span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>No arquivo de ontologia (.syno):</strong></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Desconfianca_Tecnologica</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">definicao:</span> Resistência a tecnologias digitais</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prioridade:</span> alta</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prioridade:</span> 3</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> Preferencia_Presencial</span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">definicao:</span> Preferência por atendimento médico face a face</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prioridade:</span> media</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prioridade:</span> 2</span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
@@ -749,6 +752,7 @@ ORDERED vs.&nbsp;ENUMERATED
 <section id="sec-resumo" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Resumo</h1>
 <p>A tabela abaixo consolida todos os tipos de campo e suas características.</p>
+<p>Os três escopos aceitam os mesmos tipos; a coluna indica o uso mais comum. O <code>ITEM</code> e a <code>ONTOLOGY</code> de um mesmo estudo costumam combinar vários deles.</p>
 <table class="table-striped table-hover caption-top table">
 <caption>Tipos de campo Synesis e suas características</caption>
 <colgroup>
@@ -760,7 +764,7 @@ ORDERED vs.&nbsp;ENUMERATED
 <thead>
 <tr class="header">
 <th>Tipo</th>
-<th>Escopos típicos</th>
+<th>Escopos comuns</th>
 <th>Propriedades especiais</th>
 <th>O que armazena</th>
 </tr>
@@ -793,14 +797,14 @@ ORDERED vs.&nbsp;ENUMERATED
 <tr class="odd">
 <td><strong>CHAIN</strong></td>
 <td>ITEM</td>
-<td>RELATIONS, ARITY</td>
+<td>ARITY (obrigatório), RELATIONS</td>
 <td>Relação entre conceitos (simples ou qualificada)</td>
 </tr>
 <tr class="even">
 <td><strong>DATE</strong></td>
 <td>SOURCE</td>
 <td>—</td>
-<td>Data (formato ISO)</td>
+<td>Data (recomenda-se ISO; o formato não é conferido)</td>
 </tr>
 <tr class="odd">
 <td><strong>SCALE</strong></td>
@@ -854,6 +858,44 @@ ORDERED vs.&nbsp;ENUMERATED
 <tr class="odd">
 <td><strong>REQUIRED BUNDLE</strong></td>
 <td>Grupo de campos que devem aparecer juntos, em igual quantidade</td>
+</tr>
+<tr class="even">
+<td><strong>OPTIONAL BUNDLE</strong></td>
+<td>O grupo pode faltar por inteiro; presente, vem completo</td>
+</tr>
+<tr class="odd">
+<td><strong>FORBIDDEN</strong></td>
+<td>O campo não pode ter valor naquele bloco</td>
+</tr>
+<tr class="even">
+<td><strong>ON BIBLIOGRAPHY</strong> / <strong>ON DATASET</strong></td>
+<td>O valor vem do <code>.bib</code> ou de um registro TOML</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="além-dos-campos" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="além-dos-campos"><span class="header-section-number">4.1</span> Além dos campos</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Outros recursos</caption>
+<thead>
+<tr class="header">
+<th>Recurso</th>
+<th>Para quê</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ROLE</code></td>
+<td>dá a um campo da ontologia uma função (rótulo, definição, hierarquia, consolidação) — veja <a href="../reference/modelo_organizador.html">O Modelo Organizador</a></td>
+</tr>
+<tr class="even">
+<td><code>IDENTIFIES</code> / <code>REFERS TO</code></td>
+<td>ligam projetos independentes — veja <a href="../howto/ligar_projetos.html">Como Ligar Projetos</a></td>
+</tr>
+<tr class="odd">
+<td><code>QUESTIONS</code>, <code>PHASE</code>, <code>EXPORT</code></td>
+<td>no <code>.synp</code>: perguntas de pesquisa, plano de produção e artefatos — veja a <a href="../reference/guia_referencia.html">Referência</a></td>
 </tr>
 </tbody>
 </table>
