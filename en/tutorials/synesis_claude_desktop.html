@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -200,16 +234,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link active" data-scroll-target="#what-you-need"><span class="header-section-number">1</span> What you need</a></li>
-  <li><a href="#install-the-skill-once" id="toc-install-the-skill-once" class="nav-link" data-scroll-target="#install-the-skill-once"><span class="header-section-number">2</span> 1. Install the Skill (once)</a></li>
-  <li><a href="#open-the-first-session" id="toc-open-the-first-session" class="nav-link" data-scroll-target="#open-the-first-session"><span class="header-section-number">3</span> 2. Open the first session</a></li>
-  <li><a href="#what-claude-does" id="toc-what-claude-does" class="nav-link" data-scroll-target="#what-claude-does"><span class="header-section-number">4</span> 3. What Claude does</a></li>
-  <li><a href="#audit-the-result" id="toc-audit-the-result" class="nav-link" data-scroll-target="#audit-the-result"><span class="header-section-number">5</span> 4. Audit the result</a></li>
-  <li><a href="#costs" id="toc-costs" class="nav-link" data-scroll-target="#costs"><span class="header-section-number">6</span> Costs</a></li>
-  <li><a href="#data-confidentiality" id="toc-data-confidentiality" class="nav-link" data-scroll-target="#data-confidentiality"><span class="header-section-number">7</span> Data confidentiality</a></li>
-  <li><a href="#what-stays-in-the-project-folder" id="toc-what-stays-in-the-project-folder" class="nav-link" data-scroll-target="#what-stays-in-the-project-folder"><span class="header-section-number">8</span> What stays in the project folder</a></li>
-  <li><a href="#if-something-goes-wrong" id="toc-if-something-goes-wrong" class="nav-link" data-scroll-target="#if-something-goes-wrong"><span class="header-section-number">9</span> If something goes wrong</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10</span> Next steps</a></li>
+  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link active" data-scroll-target="#what-you-need">What you need</a></li>
+  <li><a href="#install-the-skill-once" id="toc-install-the-skill-once" class="nav-link" data-scroll-target="#install-the-skill-once">1. Install the Skill (once)</a></li>
+  <li><a href="#open-the-first-session" id="toc-open-the-first-session" class="nav-link" data-scroll-target="#open-the-first-session">2. Open the first session</a></li>
+  <li><a href="#what-claude-does" id="toc-what-claude-does" class="nav-link" data-scroll-target="#what-claude-does">3. What Claude does</a></li>
+  <li><a href="#what-the-skill-produces" id="toc-what-the-skill-produces" class="nav-link" data-scroll-target="#what-the-skill-produces">What the Skill produces</a></li>
+  <li><a href="#audit-the-result" id="toc-audit-the-result" class="nav-link" data-scroll-target="#audit-the-result">4. Audit the result</a></li>
+  <li><a href="#try-the-example" id="toc-try-the-example" class="nav-link" data-scroll-target="#try-the-example">Try the example</a></li>
+  <li><a href="#costs" id="toc-costs" class="nav-link" data-scroll-target="#costs">Costs</a></li>
+  <li><a href="#data-confidentiality" id="toc-data-confidentiality" class="nav-link" data-scroll-target="#data-confidentiality">Data confidentiality</a></li>
+  <li><a href="#what-stays-in-the-project-folder" id="toc-what-stays-in-the-project-folder" class="nav-link" data-scroll-target="#what-stays-in-the-project-folder">What stays in the project folder</a></li>
+  <li><a href="#if-something-goes-wrong" id="toc-if-something-goes-wrong" class="nav-link" data-scroll-target="#if-something-goes-wrong">If something goes wrong</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
   </ul>
 </nav>
     </div>
@@ -238,6 +274,8 @@ ul.task-list li input[type="checkbox"] {
 
 <p>This Skill teaches Claude to run a Synesis project with you. It installs the tools, talks through your study, writes the template, runs the coding, checks every quotation against your sources and builds an audit dashboard that opens on your own computer.</p>
 <p>The division of roles is the same as everywhere in Synesis: <strong>the AI proposes, the compiler checks, the researcher decides</strong>. Claude leads the conversation and prepares the files. Your research questions, your categories and the approval of the template stay yours.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/i19RR7xNXfA" title="Synesis in Claude Desktop (video, 2 min 28 s)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><span class="text-muted small">The video is narrated in Portuguese (episode E06 of the Synesis 101 course).</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -251,8 +289,8 @@ Status
 <p>The Skill was tested end to end on a proof project and is <strong>in testing with researchers</strong>. Your feedback helps improve it (see <a href="#if-something-goes-wrong">If something goes wrong</a>).</p>
 </div>
 </div>
-<section id="what-you-need" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="what-you-need"><span class="header-section-number">1</span> What you need</h2>
+<section id="what-you-need" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-need">What you need</h2>
 <ul>
 <li><strong>Claude Desktop</strong> (Windows or macOS), on an account with access to the <strong>Code</strong> tab.</li>
 <li><strong>A folder</strong> on your computer for the project, holding your sources:
@@ -278,8 +316,8 @@ Code tab only
 </div>
 </div>
 </section>
-<section id="install-the-skill-once" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="install-the-skill-once"><span class="header-section-number">2</span> 1. Install the Skill (once)</h2>
+<section id="install-the-skill-once" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-skill-once">1. Install the Skill (once)</h2>
 <ol type="1">
 <li>Download the Skill file: <a href="../../downloads/synesis-skill.zip">synesis-skill.zip</a>.</li>
 <li>In Claude Desktop, open <strong>Customize → Plugins</strong> and use <strong>Add</strong> to upload the file.</li>
@@ -287,8 +325,8 @@ Code tab only
 </ol>
 <p>If your organization does not allow uploading plugins, ask your administrator.</p>
 </section>
-<section id="open-the-first-session" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="open-the-first-session"><span class="header-section-number">3</span> 2. Open the first session</h2>
+<section id="open-the-first-session" class="level2">
+<h2 class="anchored" data-anchor-id="open-the-first-session">2. Open the first session</h2>
 <ol type="1">
 <li><p>Open the <strong>Code</strong> tab and choose the <strong>project folder</strong>.</p></li>
 <li><p>Choose the <strong>Manual</strong> permission mode. Claude then asks for your approval before every command, so you see what will be installed.</p></li>
@@ -297,10 +335,10 @@ Code tab only
 <p><code>/synesis</code> I want to code my three interviews about telemedicine with Synesis. The transcripts are in the <code>fontes</code> folder.</p>
 </blockquote></li>
 </ol>
-<p>If you just want to try it, the Skill ships with an example project with fictitious sources, in <code>skills/synesis/examples/prova</code>.</p>
+<p>If you just want to try it, use the <a href="#try-the-example">example folder</a>.</p>
 </section>
-<section id="what-claude-does" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="what-claude-does"><span class="header-section-number">4</span> 3. What Claude does</h2>
+<section id="what-claude-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-claude-does">3. What Claude does</h2>
 <p>In order:</p>
 <ol type="1">
 <li><strong>Asks about confidentiality</strong> before opening any file (see <a href="#data-confidentiality">Data confidentiality</a>).</li>
@@ -312,8 +350,93 @@ Code tab only
 </ol>
 <p>At the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of <strong>points worth checking in your audit</strong>.</p>
 </section>
-<section id="audit-the-result" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="audit-the-result"><span class="header-section-number">5</span> 4. Audit the result</h2>
+<section id="what-the-skill-produces" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-skill-produces">What the Skill produces</h2>
+<p>The examples below come from a real session with the three fictitious interviews in the <a href="#try-the-example">example folder</a>. They are ordinary Synesis text files; you can open them in any editor.</p>
+<p>The example project is in Portuguese, so its field names and concepts are too.</p>
+<div class="grid">
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Project (<code>telemedicina.synp</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>The project gathers the files and records the research questions.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> telemedicina_rural</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"referencias.bib"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"anotacoes"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontologia"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>QUESTIONS</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Q1:</span> Que barreiras ao uso da telemedicina os entrevistados relatam?</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Q2:</span> Que benefícios da telemedicina os entrevistados percebem?</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Q3:</span> Que relações causais entre fatores os entrevistados afirmam?</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> QUESTIONS</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Template (<code>template.synt</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>Every field has instructions (GUIDELINES) with examples from another topic, so the model does not copy from your sources.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> trecho <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Trecho copiado literalmente da fala do entrevistado</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        Copie de uma a três frases contínuas, exatamente como aparecem na fonte.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        Copie apenas falas do entrevistado, nunca as perguntas do entrevistador.</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        Não corrija, não resuma, não junte frases distantes.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Correto:</span> <span class="st">"Depois que pintaram a faixa, comecei a ir de bicicleta todo dia."</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Errado:</span> <span class="st">"A moradora passou a usar a bicicleta diariamente após a faixa."</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Annotations (<code>anotacoes/</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>Each excerpt becomes an ITEM: the literal quotation, the note, the codes and, when the source states it, a chain.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dona_maria</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Entrevista fictícia com agricultora de 62 anos, moradora de comunidade rural, sobre o uso de consulta por vídeo.</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">trecho:</span> O doutor não me tocou, não olhou a minha perna de perto. Para mim, médico bom é aquele que põe a mão na gente. Se não pode examinar, eu fico achando que ele não viu direito.</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nota:</span> A fonte afirma que a ausência de toque e exame físico gera desconfiança sobre a qualidade do atendimento; sugere barreira de natureza cultural e de confiança, distinta da técnica.</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">codigos:</span> exame_fisico, confianca_no_atendimento</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cadeia:</span> exame_fisico <span class="op">-&gt;</span> HABILITA <span class="op">-&gt;</span> confianca_no_atendimento</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Ontology (<code>ontologia/</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>Each concept gets a definition with a criterion for applying it, and a theme.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> exame_fisico</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">definicao:</span> Avaliação clínica direta do corpo do paciente por meio de toque, inspeção e palpação durante o atendimento, percebida pelos entrevistados como sinal de que o médico examinou de fato. Aplica-se quando a fonte menciona a presença, a ausência ou a necessidade desse contato físico no atendimento; não se aplica a conversa ou observação apenas por vídeo sem referência ao exame.</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> pratica_clinica</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="audit-the-result" class="level2">
+<h2 class="anchored" data-anchor-id="audit-the-result">4. Audit the result</h2>
 <p>The dashboard is in <code>dashboard/dashboard.html</code>. It opens with a double click, with no internet and no server.</p>
 <table class="caption-top table">
 <colgroup>
@@ -356,8 +479,32 @@ Code tab only
 </ol>
 <p>When something is wrong, Claude does not fix the excerpt by hand. It classifies the problem with you first: an ambiguous instruction in the template, a one-off failure, a badly converted source text, or a legitimate difference of interpretation.</p>
 </section>
-<section id="costs" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="costs"><span class="header-section-number">6</span> Costs</h2>
+<section id="try-the-example" class="level2">
+<h2 class="anchored" data-anchor-id="try-the-example">Try the example</h2>
+<p>Want to see the Skill at work without using your own sources? Download the <a href="../../downloads/exemplo-telemedicina.zip">example folder</a>. It holds:</p>
+<ul>
+<li><p><strong><code>fontes/</code></strong>: three fictitious interviews about telemedicine in rural communities, ready for the Skill to code. Copy the folder somewhere new, open it in the <strong>Code</strong> tab and type:</p>
+<blockquote class="blockquote">
+<p><code>/synesis</code> I want to code my three interviews about telemedicine. The transcripts are in fontes.</p>
+</blockquote></li>
+<li><p><strong><code>resultado/</code></strong>: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the dashboard. To see the dashboard right now, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">open the example dashboard</a>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The coding is done by an AI model. Your result will be similar to the one in <code>resultado/</code>, not identical: compare structure and criteria, not every word.</p>
+</div>
+</div>
+</section>
+<section id="costs" class="level2">
+<h2 class="anchored" data-anchor-id="costs">Costs</h2>
 <p>There are two coding modes, and Claude explains both before starting:</p>
 <table class="caption-top table">
 <colgroup>
@@ -399,8 +546,8 @@ API keys
 </div>
 </div>
 </section>
-<section id="data-confidentiality" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="data-confidentiality"><span class="header-section-number">7</span> Data confidentiality</h2>
+<section id="data-confidentiality" class="level2">
+<h2 class="anchored" data-anchor-id="data-confidentiality">Data confidentiality</h2>
 <p>Everything Claude reads leaves your computer and goes to Anthropic (and, in API mode, to the chosen provider). That is why Claude asks before opening your sources and proposes a modality:</p>
 <ul>
 <li><strong>A. Cloud:</strong> Claude reads the sources. Use it when there is no confidential data.</li>
@@ -408,8 +555,8 @@ API keys
 <li><strong>C. Local:</strong> Claude does not take part. For data under strict legal or ethical confidentiality, use Synesis in VS Code with a local model.</li>
 </ul>
 </section>
-<section id="what-stays-in-the-project-folder" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="what-stays-in-the-project-folder"><span class="header-section-number">8</span> What stays in the project folder</h2>
+<section id="what-stays-in-the-project-folder" class="level2">
+<h2 class="anchored" data-anchor-id="what-stays-in-the-project-folder">What stays in the project folder</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -454,8 +601,8 @@ API keys
 </table>
 <p>Keep the whole folder, except the <code>.env</code>. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> whenever you like.</p>
 </section>
-<section id="if-something-goes-wrong" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="if-something-goes-wrong"><span class="header-section-number">9</span> If something goes wrong</h2>
+<section id="if-something-goes-wrong" class="level2">
+<h2 class="anchored" data-anchor-id="if-something-goes-wrong">If something goes wrong</h2>
 <ul>
 <li><strong>“command not found”</strong> right after installation: open a new session in the Code tab. In the same session, Claude uses the full path to the tools.</li>
 <li><strong>Windows blocked the installer:</strong> Claude tries another route. On an institutional machine you may need to talk to IT support.</li>
@@ -463,8 +610,8 @@ API keys
 <li><strong>Synesis errors and suggestions:</strong> open an <em>issue</em> at <a href="https://github.com/synesis-lang/synesis/issues" class="uri">https://github.com/synesis-lang/synesis/issues</a>.</li>
 </ul>
 </section>
-<section id="next-steps" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10</span> Next steps</h2>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
 <ul>
 <li><a href="../tutorials/guia_pesquisadores.html">Guide for Researchers</a>: a hands-on project, without the Skill.</li>
 <li><a href="../reference/guia_referencia.html">Language Reference</a></li>

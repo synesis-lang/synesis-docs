@@ -872,76 +872,90 @@
     "href": "tutorials/synesis_claude_desktop.html",
     "title": "Synesis in Claude Desktop",
     "section": "",
-    "text": "This Skill teaches Claude to run a Synesis project with you. It installs the tools, talks through your study, writes the template, runs the coding, checks every quotation against your sources and builds an audit dashboard that opens on your own computer.\nThe division of roles is the same as everywhere in Synesis: the AI proposes, the compiler checks, the researcher decides. Claude leads the conversation and prepares the files. Your research questions, your categories and the approval of the template stay yours."
+    "text": "This Skill teaches Claude to run a Synesis project with you. It installs the tools, talks through your study, writes the template, runs the coding, checks every quotation against your sources and builds an audit dashboard that opens on your own computer.\nThe division of roles is the same as everywhere in Synesis: the AI proposes, the compiler checks, the researcher decides. Claude leads the conversation and prepares the files. Your research questions, your categories and the approval of the template stay yours.\nThe video is narrated in Portuguese (episode E06 of the Synesis 101 course)."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#what-you-need",
     "href": "tutorials/synesis_claude_desktop.html#what-you-need",
     "title": "Synesis in Claude Desktop",
-    "section": "1 What you need",
-    "text": "1 What you need\n\nClaude Desktop (Windows or macOS), on an account with access to the Code tab.\nA folder on your computer for the project, holding your sources:\n\ninterviews and documents as .txt or .md;\narticles in a .bib bibliography with abstracts.\n\nAn internet connection the first time, to install the tools.\nAbout an hour for the first session.\n\nYou do not need to install Python or know how to program. VS Code is optional.\n\n\n\n\n\n\nCode tab only\n\n\n\nThe Skill needs a terminal and your disk. It works in the Code tab of Claude Desktop (a local session), and not in claude.ai chat or Cowork."
+    "section": "What you need",
+    "text": "What you need\n\nClaude Desktop (Windows or macOS), on an account with access to the Code tab.\nA folder on your computer for the project, holding your sources:\n\ninterviews and documents as .txt or .md;\narticles in a .bib bibliography with abstracts.\n\nAn internet connection the first time, to install the tools.\nAbout an hour for the first session.\n\nYou do not need to install Python or know how to program. VS Code is optional.\n\n\n\n\n\n\nCode tab only\n\n\n\nThe Skill needs a terminal and your disk. It works in the Code tab of Claude Desktop (a local session), and not in claude.ai chat or Cowork."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#install-the-skill-once",
     "href": "tutorials/synesis_claude_desktop.html#install-the-skill-once",
     "title": "Synesis in Claude Desktop",
-    "section": "2 1. Install the Skill (once)",
-    "text": "2 1. Install the Skill (once)\n\nDownload the Skill file: synesis-skill.zip.\nIn Claude Desktop, open Customize → Plugins and use Add to upload the file.\nDesktop warns you to install only plugins you trust. This is the Synesis project’s plugin.\n\nIf your organization does not allow uploading plugins, ask your administrator."
+    "section": "1. Install the Skill (once)",
+    "text": "1. Install the Skill (once)\n\nDownload the Skill file: synesis-skill.zip.\nIn Claude Desktop, open Customize → Plugins and use Add to upload the file.\nDesktop warns you to install only plugins you trust. This is the Synesis project’s plugin.\n\nIf your organization does not allow uploading plugins, ask your administrator."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#open-the-first-session",
     "href": "tutorials/synesis_claude_desktop.html#open-the-first-session",
     "title": "Synesis in Claude Desktop",
-    "section": "3 2. Open the first session",
-    "text": "3 2. Open the first session\n\nOpen the Code tab and choose the project folder.\nChoose the Manual permission mode. Claude then asks for your approval before every command, so you see what will be installed.\nType /synesis and say what you want to do. For example:\n\n/synesis I want to code my three interviews about telemedicine with Synesis. The transcripts are in the fontes folder.\n\n\nIf you just want to try it, the Skill ships with an example project with fictitious sources, in skills/synesis/examples/prova."
+    "section": "2. Open the first session",
+    "text": "2. Open the first session\n\nOpen the Code tab and choose the project folder.\nChoose the Manual permission mode. Claude then asks for your approval before every command, so you see what will be installed.\nType /synesis and say what you want to do. For example:\n\n/synesis I want to code my three interviews about telemedicine with Synesis. The transcripts are in the fontes folder.\n\n\nIf you just want to try it, use the example folder."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#what-claude-does",
     "href": "tutorials/synesis_claude_desktop.html#what-claude-does",
     "title": "Synesis in Claude Desktop",
-    "section": "4 3. What Claude does",
-    "text": "4 3. What Claude does\nIn order:\n\nAsks about confidentiality before opening any file (see Data confidentiality).\nInstalls the Synesis tools and shows a report. This happens once per computer.\nTalks through the study: your research questions, what to extract from the sources, whether you want free or closed categories, causal relations or scales.\nWrites the template (the description of what will be coded) and shows an example. You approve the template.\nCodes each source, one at a time, and builds the ontology of concepts.\nValidates, checks each quotation against the original text and builds the dashboard.\n\nAt the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of points worth checking in your audit."
+    "section": "3. What Claude does",
+    "text": "3. What Claude does\nIn order:\n\nAsks about confidentiality before opening any file (see Data confidentiality).\nInstalls the Synesis tools and shows a report. This happens once per computer.\nTalks through the study: your research questions, what to extract from the sources, whether you want free or closed categories, causal relations or scales.\nWrites the template (the description of what will be coded) and shows an example. You approve the template.\nCodes each source, one at a time, and builds the ontology of concepts.\nValidates, checks each quotation against the original text and builds the dashboard.\n\nAt the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of points worth checking in your audit."
+  },
+  {
+    "objectID": "tutorials/synesis_claude_desktop.html#what-the-skill-produces",
+    "href": "tutorials/synesis_claude_desktop.html#what-the-skill-produces",
+    "title": "Synesis in Claude Desktop",
+    "section": "What the Skill produces",
+    "text": "What the Skill produces\nThe examples below come from a real session with the three fictitious interviews in the example folder. They are ordinary Synesis text files; you can open them in any editor.\nThe example project is in Portuguese, so its field names and concepts are too.\n\n\n\n\nProject (telemedicina.synp)\n\n\nThe project gathers the files and records the research questions.\nPROJECT telemedicina_rural\nTEMPLATE \"template.synt\"\nINCLUDE BIBLIOGRAPHY \"referencias.bib\"\nINCLUDE ANNOTATIONS \"anotacoes\"\nINCLUDE ONTOLOGY \"ontologia\"\n\nQUESTIONS\n    Q1: Que barreiras ao uso da telemedicina os entrevistados relatam?\n    Q2: Que benefícios da telemedicina os entrevistados percebem?\n    Q3: Que relações causais entre fatores os entrevistados afirmam?\nEND QUESTIONS\n...\nEND PROJECT\n\n\n\n\n\n\nTemplate (template.synt)\n\n\nEvery field has instructions (GUIDELINES) with examples from another topic, so the model does not copy from your sources.\nFIELD trecho TYPE QUOTATION\n    SCOPE ITEM\n    DESCRIPTION Trecho copiado literalmente da fala do entrevistado\n    GUIDELINES\n        Copie de uma a três frases contínuas, exatamente como aparecem na fonte.\n        Copie apenas falas do entrevistado, nunca as perguntas do entrevistador.\n        Não corrija, não resuma, não junte frases distantes.\n        Correto: \"Depois que pintaram a faixa, comecei a ir de bicicleta todo dia.\"\n        Errado: \"A moradora passou a usar a bicicleta diariamente após a faixa.\"\n    END GUIDELINES\nEND FIELD\n\n\n\n\n\n\nAnnotations (anotacoes/)\n\n\nEach excerpt becomes an ITEM: the literal quotation, the note, the codes and, when the source states it, a chain.\nSOURCE @entrevista_dona_maria\n    descricao: Entrevista fictícia com agricultora de 62 anos, moradora de comunidade rural, sobre o uso de consulta por vídeo.\nEND SOURCE\n\nITEM @entrevista_dona_maria\n    trecho: O doutor não me tocou, não olhou a minha perna de perto. Para mim, médico bom é aquele que põe a mão na gente. Se não pode examinar, eu fico achando que ele não viu direito.\n    nota: A fonte afirma que a ausência de toque e exame físico gera desconfiança sobre a qualidade do atendimento; sugere barreira de natureza cultural e de confiança, distinta da técnica.\n    codigos: exame_fisico, confianca_no_atendimento\n    cadeia: exame_fisico -&gt; HABILITA -&gt; confianca_no_atendimento\nEND ITEM\n\n\n\n\n\n\nOntology (ontologia/)\n\n\nEach concept gets a definition with a criterion for applying it, and a theme.\nONTOLOGY exame_fisico\n    definicao: Avaliação clínica direta do corpo do paciente por meio de toque, inspeção e palpação durante o atendimento, percebida pelos entrevistados como sinal de que o médico examinou de fato. Aplica-se quando a fonte menciona a presença, a ausência ou a necessidade desse contato físico no atendimento; não se aplica a conversa ou observação apenas por vídeo sem referência ao exame.\n    grupo: pratica_clinica\nEND ONTOLOGY"
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#audit-the-result",
     "href": "tutorials/synesis_claude_desktop.html#audit-the-result",
     "title": "Synesis in Claude Desktop",
-    "section": "5 4. Audit the result",
-    "text": "5 4. Audit the result\nThe dashboard is in dashboard/dashboard.html. It opens with a double click, with no internet and no server.\n\n\n\n\n\n\n\nTab\nWhat it shows\n\n\n\n\nFontes (Sources)\neach coded excerpt, with its quotation, note and codes. The quotation appears as found, not found or unverifiable in the original text\n\n\nCódigos (Codes)\neach code, with its definition and all its evidence\n\n\nRelações and Questões (Relations, Questions)\nthe relations between concepts and where the evidence for each research question is\n\n\nQualidade (Quality)\nwhat still needs attention\n\n\nMétodo (Method)\nthe full template and how the result was produced\n\n\n\nTo record your audit:\n\nMark excerpts and codes as correct, incorrect or doubt, with a note.\nUse Exportar marcações (export marks) and hand the file to Claude in the conversation, so it records it in the project. Marks you do not export stay only in the browser and can be lost.\n\nWhen something is wrong, Claude does not fix the excerpt by hand. It classifies the problem with you first: an ambiguous instruction in the template, a one-off failure, a badly converted source text, or a legitimate difference of interpretation."
+    "section": "4. Audit the result",
+    "text": "4. Audit the result\nThe dashboard is in dashboard/dashboard.html. It opens with a double click, with no internet and no server.\n\n\n\n\n\n\n\nTab\nWhat it shows\n\n\n\n\nFontes (Sources)\neach coded excerpt, with its quotation, note and codes. The quotation appears as found, not found or unverifiable in the original text\n\n\nCódigos (Codes)\neach code, with its definition and all its evidence\n\n\nRelações and Questões (Relations, Questions)\nthe relations between concepts and where the evidence for each research question is\n\n\nQualidade (Quality)\nwhat still needs attention\n\n\nMétodo (Method)\nthe full template and how the result was produced\n\n\n\nTo record your audit:\n\nMark excerpts and codes as correct, incorrect or doubt, with a note.\nUse Exportar marcações (export marks) and hand the file to Claude in the conversation, so it records it in the project. Marks you do not export stay only in the browser and can be lost.\n\nWhen something is wrong, Claude does not fix the excerpt by hand. It classifies the problem with you first: an ambiguous instruction in the template, a one-off failure, a badly converted source text, or a legitimate difference of interpretation."
+  },
+  {
+    "objectID": "tutorials/synesis_claude_desktop.html#try-the-example",
+    "href": "tutorials/synesis_claude_desktop.html#try-the-example",
+    "title": "Synesis in Claude Desktop",
+    "section": "Try the example",
+    "text": "Try the example\nWant to see the Skill at work without using your own sources? Download the example folder. It holds:\n\nfontes/: three fictitious interviews about telemedicine in rural communities, ready for the Skill to code. Copy the folder somewhere new, open it in the Code tab and type:\n\n/synesis I want to code my three interviews about telemedicine. The transcripts are in fontes.\n\nresultado/: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the dashboard. To see the dashboard right now, open the example dashboard.\n\n\n\n\n\n\n\nNote\n\n\n\nThe coding is done by an AI model. Your result will be similar to the one in resultado/, not identical: compare structure and criteria, not every word."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#costs",
     "href": "tutorials/synesis_claude_desktop.html#costs",
     "title": "Synesis in Claude Desktop",
-    "section": "6 Costs",
-    "text": "6 Costs\nThere are two coding modes, and Claude explains both before starting:\n\n\n\n\n\n\n\n\nMode\nWho codes\nCost\n\n\n\n\nClaude session\nthe Claude of your own subscription\nwithin the limits of your plan\n\n\nAPI\na model through an API key (Anthropic, OpenRouter)\nbilled by the provider; Claude runs a pilot with 2 or 3 sources and shows the cost before coding everything\n\n\n\n\n\n\n\n\n\nAPI keys\n\n\n\nNever type an API key into the chat. Claude creates a .env file in the project folder with the field empty, and you paste the key directly into it."
+    "section": "Costs",
+    "text": "Costs\nThere are two coding modes, and Claude explains both before starting:\n\n\n\n\n\n\n\n\nMode\nWho codes\nCost\n\n\n\n\nClaude session\nthe Claude of your own subscription\nwithin the limits of your plan\n\n\nAPI\na model through an API key (Anthropic, OpenRouter)\nbilled by the provider; Claude runs a pilot with 2 or 3 sources and shows the cost before coding everything\n\n\n\n\n\n\n\n\n\nAPI keys\n\n\n\nNever type an API key into the chat. Claude creates a .env file in the project folder with the field empty, and you paste the key directly into it."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#data-confidentiality",
     "href": "tutorials/synesis_claude_desktop.html#data-confidentiality",
     "title": "Synesis in Claude Desktop",
-    "section": "7 Data confidentiality",
-    "text": "7 Data confidentiality\nEverything Claude reads leaves your computer and goes to Anthropic (and, in API mode, to the chosen provider). That is why Claude asks before opening your sources and proposes a modality:\n\nA. Cloud: Claude reads the sources. Use it when there is no confidential data.\nB. Reduced exposure: Claude works only with the method and invented examples; coding runs on a local model (Ollama). This is not fully local processing.\nC. Local: Claude does not take part. For data under strict legal or ethical confidentiality, use Synesis in VS Code with a local model."
+    "section": "Data confidentiality",
+    "text": "Data confidentiality\nEverything Claude reads leaves your computer and goes to Anthropic (and, in API mode, to the chosen provider). That is why Claude asks before opening your sources and proposes a modality:\n\nA. Cloud: Claude reads the sources. Use it when there is no confidential data.\nB. Reduced exposure: Claude works only with the method and invented examples; coding runs on a local model (Ollama). This is not fully local processing.\nC. Local: Claude does not take part. For data under strict legal or ethical confidentiality, use Synesis in VS Code with a local model."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#what-stays-in-the-project-folder",
     "href": "tutorials/synesis_claude_desktop.html#what-stays-in-the-project-folder",
     "title": "Synesis in Claude Desktop",
-    "section": "8 What stays in the project folder",
-    "text": "8 What stays in the project folder\n\n\n\n\n\n\n\nFile or folder\nContent\n\n\n\n\n*.synp\nthe project\n\n\ntemplate.synt\nthe method\n\n\n*.bib\nthe bibliographic sources\n\n\nfontes/\nthe texts\n\n\nanotacoes/, ontologia/\nthe result of the coding\n\n\nruns/\nthe record of every run: what was asked of the model, what it answered and the decisions you made\n\n\ndashboard/, saida/\ngenerated files, which can be rebuilt at any time\n\n\n\nKeep the whole folder, except the .env. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in VS Code whenever you like."
+    "section": "What stays in the project folder",
+    "text": "What stays in the project folder\n\n\n\n\n\n\n\nFile or folder\nContent\n\n\n\n\n*.synp\nthe project\n\n\ntemplate.synt\nthe method\n\n\n*.bib\nthe bibliographic sources\n\n\nfontes/\nthe texts\n\n\nanotacoes/, ontologia/\nthe result of the coding\n\n\nruns/\nthe record of every run: what was asked of the model, what it answered and the decisions you made\n\n\ndashboard/, saida/\ngenerated files, which can be rebuilt at any time\n\n\n\nKeep the whole folder, except the .env. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in VS Code whenever you like."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#if-something-goes-wrong",
     "href": "tutorials/synesis_claude_desktop.html#if-something-goes-wrong",
     "title": "Synesis in Claude Desktop",
-    "section": "9 If something goes wrong",
-    "text": "9 If something goes wrong\n\n“command not found” right after installation: open a new session in the Code tab. In the same session, Claude uses the full path to the tools.\nWindows blocked the installer: Claude tries another route. On an institutional machine you may need to talk to IT support.\nQuestions about the language: ask Claude, which consults the installed reference guide.\nSynesis errors and suggestions: open an issue at https://github.com/synesis-lang/synesis/issues."
+    "section": "If something goes wrong",
+    "text": "If something goes wrong\n\n“command not found” right after installation: open a new session in the Code tab. In the same session, Claude uses the full path to the tools.\nWindows blocked the installer: Claude tries another route. On an institutional machine you may need to talk to IT support.\nQuestions about the language: ask Claude, which consults the installed reference guide.\nSynesis errors and suggestions: open an issue at https://github.com/synesis-lang/synesis/issues."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#next-steps",
     "href": "tutorials/synesis_claude_desktop.html#next-steps",
     "title": "Synesis in Claude Desktop",
-    "section": "10 Next steps",
-    "text": "10 Next steps\n\nGuide for Researchers: a hands-on project, without the Skill.\nLanguage Reference"
+    "section": "Next steps",
+    "text": "Next steps\n\nGuide for Researchers: a hands-on project, without the Skill.\nLanguage Reference"
   }
 ]

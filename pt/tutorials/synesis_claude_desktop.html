@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -225,16 +259,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-  <li><a href="#o-que-você-precisa" id="toc-o-que-você-precisa" class="nav-link active" data-scroll-target="#o-que-você-precisa"><span class="header-section-number">1</span> O que você precisa</a></li>
-  <li><a href="#instalar-a-skill-uma-vez" id="toc-instalar-a-skill-uma-vez" class="nav-link" data-scroll-target="#instalar-a-skill-uma-vez"><span class="header-section-number">2</span> 1. Instalar a Skill (uma vez)</a></li>
-  <li><a href="#abrir-a-primeira-sessão" id="toc-abrir-a-primeira-sessão" class="nav-link" data-scroll-target="#abrir-a-primeira-sessão"><span class="header-section-number">3</span> 2. Abrir a primeira sessão</a></li>
-  <li><a href="#o-que-o-claude-faz" id="toc-o-que-o-claude-faz" class="nav-link" data-scroll-target="#o-que-o-claude-faz"><span class="header-section-number">4</span> 3. O que o Claude faz</a></li>
-  <li><a href="#auditar-o-resultado" id="toc-auditar-o-resultado" class="nav-link" data-scroll-target="#auditar-o-resultado"><span class="header-section-number">5</span> 4. Auditar o resultado</a></li>
-  <li><a href="#custos" id="toc-custos" class="nav-link" data-scroll-target="#custos"><span class="header-section-number">6</span> Custos</a></li>
-  <li><a href="#sigilo-dos-dados" id="toc-sigilo-dos-dados" class="nav-link" data-scroll-target="#sigilo-dos-dados"><span class="header-section-number">7</span> Sigilo dos dados</a></li>
-  <li><a href="#o-que-fica-na-pasta-do-projeto" id="toc-o-que-fica-na-pasta-do-projeto" class="nav-link" data-scroll-target="#o-que-fica-na-pasta-do-projeto"><span class="header-section-number">8</span> O que fica na pasta do projeto</a></li>
-  <li><a href="#se-algo-der-errado" id="toc-se-algo-der-errado" class="nav-link" data-scroll-target="#se-algo-der-errado"><span class="header-section-number">9</span> Se algo der errado</a></li>
-  <li><a href="#próximos-passos" id="toc-próximos-passos" class="nav-link" data-scroll-target="#próximos-passos"><span class="header-section-number">10</span> Próximos passos</a></li>
+  <li><a href="#o-que-você-precisa" id="toc-o-que-você-precisa" class="nav-link active" data-scroll-target="#o-que-você-precisa">O que você precisa</a></li>
+  <li><a href="#instalar-a-skill-uma-vez" id="toc-instalar-a-skill-uma-vez" class="nav-link" data-scroll-target="#instalar-a-skill-uma-vez">1. Instalar a Skill (uma vez)</a></li>
+  <li><a href="#abrir-a-primeira-sessão" id="toc-abrir-a-primeira-sessão" class="nav-link" data-scroll-target="#abrir-a-primeira-sessão">2. Abrir a primeira sessão</a></li>
+  <li><a href="#o-que-o-claude-faz" id="toc-o-que-o-claude-faz" class="nav-link" data-scroll-target="#o-que-o-claude-faz">3. O que o Claude faz</a></li>
+  <li><a href="#o-que-a-skill-gera" id="toc-o-que-a-skill-gera" class="nav-link" data-scroll-target="#o-que-a-skill-gera">O que a Skill gera</a></li>
+  <li><a href="#auditar-o-resultado" id="toc-auditar-o-resultado" class="nav-link" data-scroll-target="#auditar-o-resultado">4. Auditar o resultado</a></li>
+  <li><a href="#testar-com-o-nosso-exemplo" id="toc-testar-com-o-nosso-exemplo" class="nav-link" data-scroll-target="#testar-com-o-nosso-exemplo">Testar com o nosso exemplo</a></li>
+  <li><a href="#custos" id="toc-custos" class="nav-link" data-scroll-target="#custos">Custos</a></li>
+  <li><a href="#sigilo-dos-dados" id="toc-sigilo-dos-dados" class="nav-link" data-scroll-target="#sigilo-dos-dados">Sigilo dos dados</a></li>
+  <li><a href="#o-que-fica-na-pasta-do-projeto" id="toc-o-que-fica-na-pasta-do-projeto" class="nav-link" data-scroll-target="#o-que-fica-na-pasta-do-projeto">O que fica na pasta do projeto</a></li>
+  <li><a href="#se-algo-der-errado" id="toc-se-algo-der-errado" class="nav-link" data-scroll-target="#se-algo-der-errado">Se algo der errado</a></li>
+  <li><a href="#próximos-passos" id="toc-próximos-passos" class="nav-link" data-scroll-target="#próximos-passos">Próximos passos</a></li>
   </ul>
 </nav>
     </div>
@@ -263,6 +299,8 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Esta Skill ensina o Claude a conduzir um projeto Synesis com você. Ela instala as ferramentas, conversa sobre o seu estudo, escreve o template, roda a codificação, confere as citações e monta um painel de auditoria que abre no seu computador.</p>
 <p>A divisão de papéis é a mesma do resto do Synesis: <strong>a IA propõe, o compilador confere, o pesquisador decide</strong>. O Claude conduz a conversa e prepara os arquivos. As perguntas de pesquisa, as categorias e a aprovação do template continuam sendo suas.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/i19RR7xNXfA" title="Synesis no Claude Desktop (vídeo de 2 min 28 s)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><span class="text-muted small">O vídeo é o episódio E06 do <a href="../explanation/curso_synesis_101.html#sec-m2-e06">Curso Synesis 101</a>.</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -276,8 +314,8 @@ Situação
 <p>A Skill foi testada de ponta a ponta com um projeto de prova e está em <strong>fase de testes com pesquisadores</strong>. O seu retorno ajuda a melhorá-la (veja <a href="#se-algo-der-errado">Se algo der errado</a>).</p>
 </div>
 </div>
-<section id="o-que-você-precisa" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="o-que-você-precisa"><span class="header-section-number">1</span> O que você precisa</h2>
+<section id="o-que-você-precisa" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-você-precisa">O que você precisa</h2>
 <ul>
 <li><strong>Claude Desktop</strong> (Windows ou macOS), numa conta com acesso à aba <strong>Code</strong>.</li>
 <li><strong>Uma pasta</strong> no seu computador para o projeto, com as fontes:
@@ -303,8 +341,8 @@ Só na aba Code
 </div>
 </div>
 </section>
-<section id="instalar-a-skill-uma-vez" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="instalar-a-skill-uma-vez"><span class="header-section-number">2</span> 1. Instalar a Skill (uma vez)</h2>
+<section id="instalar-a-skill-uma-vez" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-a-skill-uma-vez">1. Instalar a Skill (uma vez)</h2>
 <ol type="1">
 <li>Baixe o arquivo da Skill: <a href="../../downloads/synesis-skill.zip">synesis-skill.zip</a>.</li>
 <li>No Claude Desktop, abra <strong>Customize → Plugins</strong> e use <strong>Add</strong> para enviar o arquivo.</li>
@@ -312,8 +350,8 @@ Só na aba Code
 </ol>
 <p>Se a sua organização não permite enviar plugins, peça ao administrador.</p>
 </section>
-<section id="abrir-a-primeira-sessão" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="abrir-a-primeira-sessão"><span class="header-section-number">3</span> 2. Abrir a primeira sessão</h2>
+<section id="abrir-a-primeira-sessão" class="level2">
+<h2 class="anchored" data-anchor-id="abrir-a-primeira-sessão">2. Abrir a primeira sessão</h2>
 <ol type="1">
 <li><p>Abra a aba <strong>Code</strong> e escolha a <strong>pasta do projeto</strong>.</p></li>
 <li><p>Escolha o modo de permissão <strong>Manual</strong>. O Claude passa a pedir a sua aprovação antes de cada comando, e você vê o que será instalado.</p></li>
@@ -322,10 +360,10 @@ Só na aba Code
 <p><code>/synesis</code> Quero codificar minhas três entrevistas sobre telemedicina com o Synesis. As transcrições estão na pasta <code>fontes</code>.</p>
 </blockquote></li>
 </ol>
-<p>Se quiser só experimentar, a Skill traz um projeto de exemplo, com fontes fictícias, em <code>skills/synesis/examples/prova</code>.</p>
+<p>Se quiser só experimentar, use a <a href="#testar-com-o-nosso-exemplo">pasta de exemplo</a>.</p>
 </section>
-<section id="o-que-o-claude-faz" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="o-que-o-claude-faz"><span class="header-section-number">4</span> 3. O que o Claude faz</h2>
+<section id="o-que-o-claude-faz" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-o-claude-faz">3. O que o Claude faz</h2>
 <p>Em ordem:</p>
 <ol type="1">
 <li><strong>Pergunta sobre sigilo</strong> antes de abrir qualquer arquivo (veja <a href="#sigilo-dos-dados">Sigilo dos dados</a>).</li>
@@ -337,8 +375,92 @@ Só na aba Code
 </ol>
 <p>No fim, o Claude resume o resultado: erros e avisos do compilador, quantas citações foram encontradas nas fontes, quantos conceitos a ontologia tem, e uma lista de <strong>pontos que valem a sua conferência na auditoria</strong>.</p>
 </section>
-<section id="auditar-o-resultado" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="auditar-o-resultado"><span class="header-section-number">5</span> 4. Auditar o resultado</h2>
+<section id="o-que-a-skill-gera" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-a-skill-gera">O que a Skill gera</h2>
+<p>Os exemplos abaixo vêm de uma sessão real com as três entrevistas fictícias da <a href="#testar-com-o-nosso-exemplo">pasta de exemplo</a>. São arquivos de texto comuns do Synesis; você pode abri-los em qualquer editor.</p>
+<div class="grid">
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Projeto (<code>telemedicina.synp</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>O projeto reúne os arquivos e registra as perguntas de pesquisa.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PROJECT</span> telemedicina_rural</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">TEMPLATE</span> <span class="st">"template.synt"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">BIBLIOGRAPHY</span> <span class="st">"referencias.bib"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ANNOTATIONS</span> <span class="st">"anotacoes"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE</span> <span class="kw">ONTOLOGY</span> <span class="st">"ontologia"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>QUESTIONS</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Q1:</span> Que barreiras ao uso da telemedicina os entrevistados relatam?</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Q2:</span> Que benefícios da telemedicina os entrevistados percebem?</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Q3:</span> Que relações causais entre fatores os entrevistados afirmam?</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> QUESTIONS</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">PROJECT</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Template (<code>template.synt</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>Cada campo tem instruções (GUIDELINES) com exemplos de outro tema, para o modelo não copiar das suas fontes.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FIELD</span> trecho <span class="kw">TYPE</span> QUOTATION</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SCOPE</span> <span class="kw">ITEM</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">DESCRIPTION</span> Trecho copiado literalmente da fala do entrevistado</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GUIDELINES</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        Copie de uma a três frases contínuas, exatamente como aparecem na fonte.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        Copie apenas falas do entrevistado, nunca as perguntas do entrevistador.</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        Não corrija, não resuma, não junte frases distantes.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Correto:</span> <span class="st">"Depois que pintaram a faixa, comecei a ir de bicicleta todo dia."</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Errado:</span> <span class="st">"A moradora passou a usar a bicicleta diariamente após a faixa."</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span> <span class="kw">GUIDELINES</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">FIELD</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Anotações (<code>anotacoes/</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>Cada trecho vira um ITEM: a citação literal, a nota, os códigos e, quando a fonte afirma, uma cadeia.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SOURCE</span> <span class="fu">@entrevista_dona_maria</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">descricao:</span> Entrevista fictícia com agricultora de 62 anos, moradora de comunidade rural, sobre o uso de consulta por vídeo.</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">SOURCE</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ITEM</span> <span class="fu">@entrevista_dona_maria</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">trecho:</span> O doutor não me tocou, não olhou a minha perna de perto. Para mim, médico bom é aquele que põe a mão na gente. Se não pode examinar, eu fico achando que ele não viu direito.</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nota:</span> A fonte afirma que a ausência de toque e exame físico gera desconfiança sobre a qualidade do atendimento; sugere barreira de natureza cultural e de confiança, distinta da técnica.</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">codigos:</span> exame_fisico, confianca_no_atendimento</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cadeia:</span> exame_fisico <span class="op">-&gt;</span> HABILITA <span class="op">-&gt;</span> confianca_no_atendimento</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ITEM</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-lg-6">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>Ontologia (<code>ontologia/</code>)</strong></p>
+</div>
+<div class="card-body">
+<p>Cada conceito ganha uma definição com critério de aplicação e um tema.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode synesis code-with-copy"><code class="sourceCode synesis"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ONTOLOGY</span> exame_fisico</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">definicao:</span> Avaliação clínica direta do corpo do paciente por meio de toque, inspeção e palpação durante o atendimento, percebida pelos entrevistados como sinal de que o médico examinou de fato. Aplica-se quando a fonte menciona a presença, a ausência ou a necessidade desse contato físico no atendimento; não se aplica a conversa ou observação apenas por vídeo sem referência ao exame.</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grupo:</span> pratica_clinica</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span> <span class="kw">ONTOLOGY</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="auditar-o-resultado" class="level2">
+<h2 class="anchored" data-anchor-id="auditar-o-resultado">4. Auditar o resultado</h2>
 <p>O painel fica em <code>dashboard/dashboard.html</code>. Ele abre com dois cliques, sem internet e sem servidor.</p>
 <table class="caption-top table">
 <colgroup>
@@ -381,8 +503,32 @@ Só na aba Code
 </ol>
 <p>Quando algo estiver errado, o Claude não corrige o trecho à mão. Ele classifica o problema com você antes de agir: instrução ambígua no template, falha pontual, texto-fonte mal convertido ou divergência legítima de interpretação.</p>
 </section>
-<section id="custos" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="custos"><span class="header-section-number">6</span> Custos</h2>
+<section id="testar-com-o-nosso-exemplo" class="level2">
+<h2 class="anchored" data-anchor-id="testar-com-o-nosso-exemplo">Testar com o nosso exemplo</h2>
+<p>Quer ver a Skill funcionando sem usar as suas fontes? Baixe a <a href="../../downloads/exemplo-telemedicina.zip">pasta de exemplo</a>. Ela traz:</p>
+<ul>
+<li><p><strong><code>fontes/</code></strong>: três entrevistas fictícias sobre telemedicina em comunidades rurais, prontas para a Skill codificar. Copie a pasta para um lugar novo, abra-a na aba <strong>Code</strong> e digite:</p>
+<blockquote class="blockquote">
+<p><code>/synesis</code> Quero codificar minhas três entrevistas sobre telemedicina. As transcrições estão em fontes.</p>
+</blockquote></li>
+<li><p><strong><code>resultado/</code></strong>: o que a Skill gerou numa sessão real com essas entrevistas, para você comparar com o seu: projeto, template, anotações, ontologia e o painel. Para ver o painel agora, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">abra o painel de exemplo</a>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A codificação é feita por um modelo de IA. O seu resultado será parecido com o de <code>resultado/</code>, não idêntico: compare a estrutura e os critérios, não cada palavra.</p>
+</div>
+</div>
+</section>
+<section id="custos" class="level2">
+<h2 class="anchored" data-anchor-id="custos">Custos</h2>
 <p>Há dois modos de codificação, e o Claude explica os dois antes de começar:</p>
 <table class="caption-top table">
 <colgroup>
@@ -424,8 +570,8 @@ Chaves de API
 </div>
 </div>
 </section>
-<section id="sigilo-dos-dados" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sigilo-dos-dados"><span class="header-section-number">7</span> Sigilo dos dados</h2>
+<section id="sigilo-dos-dados" class="level2">
+<h2 class="anchored" data-anchor-id="sigilo-dos-dados">Sigilo dos dados</h2>
 <p>Tudo o que o Claude lê sai do seu computador e vai para a Anthropic (e, no modo API, para o provedor escolhido). Por isso o Claude pergunta antes de abrir as fontes e propõe uma modalidade:</p>
 <ul>
 <li><strong>A. Nuvem:</strong> o Claude lê as fontes. Use quando não houver dados sigilosos.</li>
@@ -433,8 +579,8 @@ Chaves de API
 <li><strong>C. Local:</strong> o Claude não participa. Para dados sob sigilo legal ou ético estrito, use o Synesis no VS Code com um modelo local.</li>
 </ul>
 </section>
-<section id="o-que-fica-na-pasta-do-projeto" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="o-que-fica-na-pasta-do-projeto"><span class="header-section-number">8</span> O que fica na pasta do projeto</h2>
+<section id="o-que-fica-na-pasta-do-projeto" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-fica-na-pasta-do-projeto">O que fica na pasta do projeto</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -479,8 +625,8 @@ Chaves de API
 </table>
 <p>Guarde a pasta inteira, exceto o <code>.env</code>. Com ela, qualquer pessoa reconstrói os seus resultados e o seu painel. Os arquivos são os mesmos do Synesis: você pode abri-los no <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> quando quiser.</p>
 </section>
-<section id="se-algo-der-errado" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="se-algo-der-errado"><span class="header-section-number">9</span> Se algo der errado</h2>
+<section id="se-algo-der-errado" class="level2">
+<h2 class="anchored" data-anchor-id="se-algo-der-errado">Se algo der errado</h2>
 <ul>
 <li><strong>“comando não encontrado”</strong> logo depois da instalação: abra uma nova sessão na aba Code. Na mesma sessão, o Claude usa o caminho completo das ferramentas.</li>
 <li><strong>O Windows bloqueou o instalador:</strong> o Claude tenta outro caminho. Se a máquina for institucional, pode ser preciso falar com o suporte de TI.</li>
@@ -488,8 +634,8 @@ Chaves de API
 <li><strong>Erros do Synesis e sugestões:</strong> abra uma <em>issue</em> em <a href="https://github.com/synesis-lang/synesis/issues" class="uri">https://github.com/synesis-lang/synesis/issues</a>.</li>
 </ul>
 </section>
-<section id="próximos-passos" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="próximos-passos"><span class="header-section-number">10</span> Próximos passos</h2>
+<section id="próximos-passos" class="level2">
+<h2 class="anchored" data-anchor-id="próximos-passos">Próximos passos</h2>
 <ul>
 <li><a href="../tutorials/getting-started.html">Getting Started</a>: o primeiro projeto à mão, sem a Skill.</li>
 <li><a href="../explanation/curso_synesis_101.html">Curso Synesis 101</a>: vídeos curtos sobre a linguagem.</li>
