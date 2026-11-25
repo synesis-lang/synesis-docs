@@ -238,6 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#install-the-skill-once" id="toc-install-the-skill-once" class="nav-link" data-scroll-target="#install-the-skill-once">1. Install the Skill (once)</a></li>
   <li><a href="#open-the-first-session" id="toc-open-the-first-session" class="nav-link" data-scroll-target="#open-the-first-session">2. Open the first session</a></li>
   <li><a href="#what-claude-does" id="toc-what-claude-does" class="nav-link" data-scroll-target="#what-claude-does">3. What Claude does</a></li>
+  <li><a href="#add-your-sources" id="toc-add-your-sources" class="nav-link" data-scroll-target="#add-your-sources">Add your sources</a></li>
+  <li><a href="#project-view" id="toc-project-view" class="nav-link" data-scroll-target="#project-view">Follow the work: the project view</a></li>
   <li><a href="#what-the-skill-produces" id="toc-what-the-skill-produces" class="nav-link" data-scroll-target="#what-the-skill-produces">What the Skill produces</a></li>
   <li><a href="#audit-the-result" id="toc-audit-the-result" class="nav-link" data-scroll-target="#audit-the-result">4. Audit the result</a></li>
   <li><a href="#try-the-example" id="toc-try-the-example" class="nav-link" data-scroll-target="#try-the-example">Try the example</a></li>
@@ -286,18 +288,14 @@ Status
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The Skill was tested end to end on a proof project and is <strong>in testing with researchers</strong>. Your feedback helps improve it (see <a href="#if-something-goes-wrong">If something goes wrong</a>).</p>
+<p>The current version is <strong>0.3.0</strong>. The Skill was tested end to end on proof projects and is <strong>in testing with researchers</strong>. Your feedback helps improve it (see <a href="#if-something-goes-wrong">If something goes wrong</a>).</p>
 </div>
 </div>
 <section id="what-you-need" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-need">What you need</h2>
 <ul>
 <li><strong>Claude Desktop</strong> (Windows or macOS), on an account with access to the <strong>Code</strong> tab.</li>
-<li><strong>A folder</strong> on your computer for the project, holding your sources:
-<ul>
-<li>interviews and documents as <code>.txt</code> or <code>.md</code>;</li>
-<li>articles in a <code>.bib</code> bibliography with abstracts.</li>
-</ul></li>
+<li><strong>A folder</strong> on your computer for the project, and your sources. No need to organize them first: the Skill shows where to put them and in which format (see <a href="#add-your-sources">Add your sources</a>).</li>
 <li><strong>An internet connection</strong> the first time, to install the tools.</li>
 <li><strong>About an hour</strong> for the first session.</li>
 </ul>
@@ -324,6 +322,19 @@ Code tab only
 <li>Desktop warns you to install only plugins you trust. This is the Synesis project’s plugin.</li>
 </ol>
 <p>If your organization does not allow uploading plugins, ask your administrator.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Already have an earlier version?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remove the Synesis plugin in <strong>Customize → Plugins</strong> and upload the new file. Your projects do not change.</p>
+</div>
+</div>
 </section>
 <section id="open-the-first-session" class="level2">
 <h2 class="anchored" data-anchor-id="open-the-first-session">2. Open the first session</h2>
@@ -343,12 +354,100 @@ Code tab only
 <ol type="1">
 <li><strong>Asks about confidentiality</strong> before opening any file (see <a href="#data-confidentiality">Data confidentiality</a>).</li>
 <li><strong>Installs the Synesis tools</strong> and shows a report. This happens once per computer.</li>
+<li><strong>Receives your sources:</strong> creates a folder, says what each file is and recommends a format. You decide.</li>
 <li><strong>Talks through the study:</strong> your research questions, what to extract from the sources, whether you want free or closed categories, causal relations or scales.</li>
 <li><strong>Writes the template</strong> (the description of what will be coded) and shows an example. <strong>You approve the template.</strong></li>
 <li><strong>Codes each source</strong>, one at a time, and builds the ontology of concepts.</li>
 <li><strong>Validates, checks each quotation against the original text</strong> and builds the dashboard.</li>
 </ol>
+<p>Throughout the work you follow the project in a page that opens in your browser: the <a href="#project-view">project view</a>.</p>
 <p>At the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of <strong>points worth checking in your audit</strong>.</p>
+</section>
+<section id="add-your-sources" class="level2">
+<h2 class="anchored" data-anchor-id="add-your-sources">Add your sources</h2>
+<p>In the first session Claude creates the <code>inbox/</code> folder and opens the <strong>Your sources</strong> page. Copy your files there, as they are, and tell Claude.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/skill_your_sources.png" class="img-fluid figure-img" alt="The Your sources page of the Synesis Skill, with the steps and the inventory of the inbox"></p>
+<figcaption>The Your sources page</figcaption>
+</figure>
+</div>
+<p>A program looks at the files <strong>on your computer</strong> and says what to do with each one. Your originals are never changed.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What you have</th>
+<th>Format</th>
+<th>What is coded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>articles, in a literature review</td>
+<td><code>.bib</code> with abstracts (Zotero, Mendeley, Scopus, Web of Science)</td>
+<td>only the abstract of each reference</td>
+</tr>
+<tr class="even">
+<td>interviews, field notes, documents, full articles</td>
+<td><code>.txt</code>, <code>.md</code> or <code>.docx</code></td>
+<td>the whole text</td>
+</tr>
+<tr class="odd">
+<td>forms, open answers, posts, news, curricula</td>
+<td><code>.toml</code>, one record per file</td>
+<td>the sections the template points to</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+PDF
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Convert PDF files to <code>.txt</code> (UTF-8) before adding them. The page shows how, and what to check: columns, headers, broken words, scanned pages. With no confidential data, a PDF connector for Claude can help; ask Claude.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Personal data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before copying interviews, remove names and other data that identify people, in the text <strong>and in the file names</strong>. You can also ask Claude for neutral keys (<code>ent01</code>, <code>ent02</code>…).</p>
+</div>
+</div>
+</section>
+<section id="project-view" class="level2">
+<h2 class="anchored" data-anchor-id="project-view">Follow the work: the project view</h2>
+<p>The Skill keeps the page <code>view/index.html</code>, which opens with a double click, with no internet. It is read-only and updates at every step. <a href="../../downloads/exemplo-telemedicina/resultado/view_en/index.html">Open the project view of the example</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/skill_project_view.png" class="img-fluid figure-img" alt="Overview of the project view, with research questions, corpus size and the concepts-by-source matrix"></p>
+<figcaption>The Overview of the project view</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Overview:</strong> the research questions, the size of the corpus, what needs attention and the concepts-by-source matrix. Click a cell to read the excerpts.</li>
+<li><strong>Where to start:</strong> the next steps of your project.</li>
+<li><strong>The files:</strong> every block is a card, with its origin and its problems in plain words. Hover over the words in blue to understand the language.</li>
+<li><strong>Ask Claude:</strong> copies a ready request about that block, for you to paste in the conversation. Claude explains and proposes, and waits for your approval.</li>
+<li><strong>Possibilities:</strong> starts from what you want to investigate (compare, connect, organize, support an interpretation) and shows the Synesis feature that does it.</li>
+</ul>
+<p>The page speaks the language of your project: English, Portuguese, Spanish, French, German, Italian or Chinese.</p>
 </section>
 <section id="what-the-skill-produces" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-skill-produces">What the Skill produces</h2>
@@ -487,7 +586,7 @@ Code tab only
 <blockquote class="blockquote">
 <p><code>/synesis</code> I want to code my three interviews about telemedicine. The transcripts are in fontes.</p>
 </blockquote></li>
-<li><p><strong><code>resultado/</code></strong>: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the dashboard. To see the dashboard right now, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">open the example dashboard</a>.</p></li>
+<li><p><strong><code>resultado/</code></strong>: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the dashboard. To see the dashboard right now, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">open the example dashboard</a> or the <a href="../../downloads/exemplo-telemedicina/resultado/view_en/index.html">project view</a>.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -582,24 +681,28 @@ API keys
 <td>the bibliographic sources</td>
 </tr>
 <tr class="even">
-<td><code>fontes/</code></td>
-<td>the texts</td>
+<td><code>inbox/</code></td>
+<td>your original files; do not share it if it has personal data</td>
 </tr>
 <tr class="odd">
+<td><code>fontes/</code></td>
+<td>the prepared texts</td>
+</tr>
+<tr class="even">
 <td><code>anotacoes/</code>, <code>ontologia/</code></td>
 <td>the result of the coding</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>runs/</code></td>
 <td>the record of every run: what was asked of the model, what it answered and the decisions you made</td>
 </tr>
-<tr class="odd">
-<td><code>dashboard/</code>, <code>saida/</code></td>
+<tr class="even">
+<td><code>view/</code>, <code>dashboard/</code>, <code>saida/</code></td>
 <td>generated files, which can be rebuilt at any time</td>
 </tr>
 </tbody>
 </table>
-<p>Keep the whole folder, except the <code>.env</code>. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> whenever you like.</p>
+<p>Keep the whole folder; when you share it, leave out the <code>.env</code> and the <code>inbox/</code>. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> whenever you like.</p>
 </section>
 <section id="if-something-goes-wrong" class="level2">
 <h2 class="anchored" data-anchor-id="if-something-goes-wrong">If something goes wrong</h2>

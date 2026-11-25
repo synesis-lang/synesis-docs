@@ -879,14 +879,14 @@
     "href": "tutorials/synesis_claude_desktop.html#what-you-need",
     "title": "Synesis in Claude Desktop",
     "section": "What you need",
-    "text": "What you need\n\nClaude Desktop (Windows or macOS), on an account with access to the Code tab.\nA folder on your computer for the project, holding your sources:\n\ninterviews and documents as .txt or .md;\narticles in a .bib bibliography with abstracts.\n\nAn internet connection the first time, to install the tools.\nAbout an hour for the first session.\n\nYou do not need to install Python or know how to program. VS Code is optional.\n\n\n\n\n\n\nCode tab only\n\n\n\nThe Skill needs a terminal and your disk. It works in the Code tab of Claude Desktop (a local session), and not in claude.ai chat or Cowork."
+    "text": "What you need\n\nClaude Desktop (Windows or macOS), on an account with access to the Code tab.\nA folder on your computer for the project, and your sources. No need to organize them first: the Skill shows where to put them and in which format (see Add your sources).\nAn internet connection the first time, to install the tools.\nAbout an hour for the first session.\n\nYou do not need to install Python or know how to program. VS Code is optional.\n\n\n\n\n\n\nCode tab only\n\n\n\nThe Skill needs a terminal and your disk. It works in the Code tab of Claude Desktop (a local session), and not in claude.ai chat or Cowork."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#install-the-skill-once",
     "href": "tutorials/synesis_claude_desktop.html#install-the-skill-once",
     "title": "Synesis in Claude Desktop",
     "section": "1. Install the Skill (once)",
-    "text": "1. Install the Skill (once)\n\nDownload the Skill file: synesis-skill.zip.\nIn Claude Desktop, open Customize → Plugins and use Add to upload the file.\nDesktop warns you to install only plugins you trust. This is the Synesis project’s plugin.\n\nIf your organization does not allow uploading plugins, ask your administrator."
+    "text": "1. Install the Skill (once)\n\nDownload the Skill file: synesis-skill.zip.\nIn Claude Desktop, open Customize → Plugins and use Add to upload the file.\nDesktop warns you to install only plugins you trust. This is the Synesis project’s plugin.\n\nIf your organization does not allow uploading plugins, ask your administrator.\n\n\n\n\n\n\nAlready have an earlier version?\n\n\n\nRemove the Synesis plugin in Customize → Plugins and upload the new file. Your projects do not change."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#open-the-first-session",
@@ -900,7 +900,7 @@
     "href": "tutorials/synesis_claude_desktop.html#what-claude-does",
     "title": "Synesis in Claude Desktop",
     "section": "3. What Claude does",
-    "text": "3. What Claude does\nIn order:\n\nAsks about confidentiality before opening any file (see Data confidentiality).\nInstalls the Synesis tools and shows a report. This happens once per computer.\nTalks through the study: your research questions, what to extract from the sources, whether you want free or closed categories, causal relations or scales.\nWrites the template (the description of what will be coded) and shows an example. You approve the template.\nCodes each source, one at a time, and builds the ontology of concepts.\nValidates, checks each quotation against the original text and builds the dashboard.\n\nAt the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of points worth checking in your audit."
+    "text": "3. What Claude does\nIn order:\n\nAsks about confidentiality before opening any file (see Data confidentiality).\nInstalls the Synesis tools and shows a report. This happens once per computer.\nReceives your sources: creates a folder, says what each file is and recommends a format. You decide.\nTalks through the study: your research questions, what to extract from the sources, whether you want free or closed categories, causal relations or scales.\nWrites the template (the description of what will be coded) and shows an example. You approve the template.\nCodes each source, one at a time, and builds the ontology of concepts.\nValidates, checks each quotation against the original text and builds the dashboard.\n\nThroughout the work you follow the project in a page that opens in your browser: the project view.\nAt the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of points worth checking in your audit."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#what-the-skill-produces",
@@ -921,7 +921,7 @@
     "href": "tutorials/synesis_claude_desktop.html#try-the-example",
     "title": "Synesis in Claude Desktop",
     "section": "Try the example",
-    "text": "Try the example\nWant to see the Skill at work without using your own sources? Download the example folder. It holds:\n\nfontes/: three fictitious interviews about telemedicine in rural communities, ready for the Skill to code. Copy the folder somewhere new, open it in the Code tab and type:\n\n/synesis I want to code my three interviews about telemedicine. The transcripts are in fontes.\n\nresultado/: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the dashboard. To see the dashboard right now, open the example dashboard.\n\n\n\n\n\n\n\nNote\n\n\n\nThe coding is done by an AI model. Your result will be similar to the one in resultado/, not identical: compare structure and criteria, not every word."
+    "text": "Try the example\nWant to see the Skill at work without using your own sources? Download the example folder. It holds:\n\nfontes/: three fictitious interviews about telemedicine in rural communities, ready for the Skill to code. Copy the folder somewhere new, open it in the Code tab and type:\n\n/synesis I want to code my three interviews about telemedicine. The transcripts are in fontes.\n\nresultado/: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the dashboard. To see the dashboard right now, open the example dashboard or the project view.\n\n\n\n\n\n\n\nNote\n\n\n\nThe coding is done by an AI model. Your result will be similar to the one in resultado/, not identical: compare structure and criteria, not every word."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#costs",
@@ -942,7 +942,7 @@
     "href": "tutorials/synesis_claude_desktop.html#what-stays-in-the-project-folder",
     "title": "Synesis in Claude Desktop",
     "section": "What stays in the project folder",
-    "text": "What stays in the project folder\n\n\n\n\n\n\n\nFile or folder\nContent\n\n\n\n\n*.synp\nthe project\n\n\ntemplate.synt\nthe method\n\n\n*.bib\nthe bibliographic sources\n\n\nfontes/\nthe texts\n\n\nanotacoes/, ontologia/\nthe result of the coding\n\n\nruns/\nthe record of every run: what was asked of the model, what it answered and the decisions you made\n\n\ndashboard/, saida/\ngenerated files, which can be rebuilt at any time\n\n\n\nKeep the whole folder, except the .env. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in VS Code whenever you like."
+    "text": "What stays in the project folder\n\n\n\n\n\n\n\nFile or folder\nContent\n\n\n\n\n*.synp\nthe project\n\n\ntemplate.synt\nthe method\n\n\n*.bib\nthe bibliographic sources\n\n\ninbox/\nyour original files; do not share it if it has personal data\n\n\nfontes/\nthe prepared texts\n\n\nanotacoes/, ontologia/\nthe result of the coding\n\n\nruns/\nthe record of every run: what was asked of the model, what it answered and the decisions you made\n\n\nview/, dashboard/, saida/\ngenerated files, which can be rebuilt at any time\n\n\n\nKeep the whole folder; when you share it, leave out the .env and the inbox/. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in VS Code whenever you like."
   },
   {
     "objectID": "tutorials/synesis_claude_desktop.html#if-something-goes-wrong",
@@ -957,5 +957,19 @@
     "title": "Synesis in Claude Desktop",
     "section": "Next steps",
     "text": "Next steps\n\nGuide for Researchers: a hands-on project, without the Skill.\nLanguage Reference"
+  },
+  {
+    "objectID": "tutorials/synesis_claude_desktop.html#add-your-sources",
+    "href": "tutorials/synesis_claude_desktop.html#add-your-sources",
+    "title": "Synesis in Claude Desktop",
+    "section": "Add your sources",
+    "text": "Add your sources\nIn the first session Claude creates the inbox/ folder and opens the Your sources page. Copy your files there, as they are, and tell Claude.\n\n\n\nThe Your sources page\n\n\nA program looks at the files on your computer and says what to do with each one. Your originals are never changed.\n\n\n\n\n\n\n\n\nWhat you have\nFormat\nWhat is coded\n\n\n\n\narticles, in a literature review\n.bib with abstracts (Zotero, Mendeley, Scopus, Web of Science)\nonly the abstract of each reference\n\n\ninterviews, field notes, documents, full articles\n.txt, .md or .docx\nthe whole text\n\n\nforms, open answers, posts, news, curricula\n.toml, one record per file\nthe sections the template points to\n\n\n\n\n\n\n\n\n\nPDF\n\n\n\nConvert PDF files to .txt (UTF-8) before adding them. The page shows how, and what to check: columns, headers, broken words, scanned pages. With no confidential data, a PDF connector for Claude can help; ask Claude.\n\n\n\n\n\n\n\n\nPersonal data\n\n\n\nBefore copying interviews, remove names and other data that identify people, in the text and in the file names. You can also ask Claude for neutral keys (ent01, ent02…)."
+  },
+  {
+    "objectID": "tutorials/synesis_claude_desktop.html#project-view",
+    "href": "tutorials/synesis_claude_desktop.html#project-view",
+    "title": "Synesis in Claude Desktop",
+    "section": "Follow the work: the project view",
+    "text": "Follow the work: the project view\nThe Skill keeps the page view/index.html, which opens with a double click, with no internet. It is read-only and updates at every step. Open the project view of the example.\n\n\n\nThe Overview of the project view\n\n\n\nOverview: the research questions, the size of the corpus, what needs attention and the concepts-by-source matrix. Click a cell to read the excerpts.\nWhere to start: the next steps of your project.\nThe files: every block is a card, with its origin and its problems in plain words. Hover over the words in blue to understand the language.\nAsk Claude: copies a ready request about that block, for you to paste in the conversation. Claude explains and proposes, and waits for your approval.\nPossibilities: starts from what you want to investigate (compare, connect, organize, support an interpretation) and shows the Synesis feature that does it.\n\nThe page speaks the language of your project: English, Portuguese, Spanish, French, German, Italian or Chinese."
   }
 ]

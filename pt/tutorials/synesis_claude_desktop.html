@@ -263,6 +263,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#instalar-a-skill-uma-vez" id="toc-instalar-a-skill-uma-vez" class="nav-link" data-scroll-target="#instalar-a-skill-uma-vez">1. Instalar a Skill (uma vez)</a></li>
   <li><a href="#abrir-a-primeira-sessão" id="toc-abrir-a-primeira-sessão" class="nav-link" data-scroll-target="#abrir-a-primeira-sessão">2. Abrir a primeira sessão</a></li>
   <li><a href="#o-que-o-claude-faz" id="toc-o-que-o-claude-faz" class="nav-link" data-scroll-target="#o-que-o-claude-faz">3. O que o Claude faz</a></li>
+  <li><a href="#colocar-as-suas-fontes" id="toc-colocar-as-suas-fontes" class="nav-link" data-scroll-target="#colocar-as-suas-fontes">Colocar as suas fontes</a></li>
+  <li><a href="#visao-do-projeto" id="toc-visao-do-projeto" class="nav-link" data-scroll-target="#visao-do-projeto">Acompanhar o trabalho: a visão do projeto</a></li>
   <li><a href="#o-que-a-skill-gera" id="toc-o-que-a-skill-gera" class="nav-link" data-scroll-target="#o-que-a-skill-gera">O que a Skill gera</a></li>
   <li><a href="#auditar-o-resultado" id="toc-auditar-o-resultado" class="nav-link" data-scroll-target="#auditar-o-resultado">4. Auditar o resultado</a></li>
   <li><a href="#testar-com-o-nosso-exemplo" id="toc-testar-com-o-nosso-exemplo" class="nav-link" data-scroll-target="#testar-com-o-nosso-exemplo">Testar com o nosso exemplo</a></li>
@@ -311,18 +313,14 @@ Situação
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A Skill foi testada de ponta a ponta com um projeto de prova e está em <strong>fase de testes com pesquisadores</strong>. O seu retorno ajuda a melhorá-la (veja <a href="#se-algo-der-errado">Se algo der errado</a>).</p>
+<p>A versão atual é a <strong>0.3.0</strong>. A Skill foi testada de ponta a ponta com projetos de prova e está em <strong>fase de testes com pesquisadores</strong>. O seu retorno ajuda a melhorá-la (veja <a href="#se-algo-der-errado">Se algo der errado</a>).</p>
 </div>
 </div>
 <section id="o-que-você-precisa" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-você-precisa">O que você precisa</h2>
 <ul>
 <li><strong>Claude Desktop</strong> (Windows ou macOS), numa conta com acesso à aba <strong>Code</strong>.</li>
-<li><strong>Uma pasta</strong> no seu computador para o projeto, com as fontes:
-<ul>
-<li>entrevistas e documentos em <code>.txt</code> ou <code>.md</code>;</li>
-<li>artigos numa bibliografia <code>.bib</code> com os resumos.</li>
-</ul></li>
+<li><strong>Uma pasta</strong> no seu computador para o projeto, e as suas fontes. Não é preciso organizá-las antes: a Skill mostra onde colocá-las e em que formato (veja <a href="#colocar-as-suas-fontes">Colocar as suas fontes</a>).</li>
 <li><strong>Internet</strong> na primeira vez, para instalar as ferramentas.</li>
 <li><strong>Cerca de uma hora</strong> para a primeira sessão.</li>
 </ul>
@@ -349,6 +347,19 @@ Só na aba Code
 <li>O Desktop avisa para instalar apenas plugins em que você confia. Este é o plugin do projeto Synesis.</li>
 </ol>
 <p>Se a sua organização não permite enviar plugins, peça ao administrador.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Já instalou uma versão anterior?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remova o plugin Synesis em <strong>Customize → Plugins</strong> e envie o arquivo novo. Os seus projetos não mudam.</p>
+</div>
+</div>
 </section>
 <section id="abrir-a-primeira-sessão" class="level2">
 <h2 class="anchored" data-anchor-id="abrir-a-primeira-sessão">2. Abrir a primeira sessão</h2>
@@ -368,12 +379,100 @@ Só na aba Code
 <ol type="1">
 <li><strong>Pergunta sobre sigilo</strong> antes de abrir qualquer arquivo (veja <a href="#sigilo-dos-dados">Sigilo dos dados</a>).</li>
 <li><strong>Instala as ferramentas</strong> do Synesis e mostra um relatório. Isso acontece uma vez por computador.</li>
+<li><strong>Recebe as suas fontes:</strong> cria uma pasta, diz o que é cada arquivo e recomenda um formato. Você decide.</li>
 <li><strong>Conversa sobre o estudo:</strong> as suas perguntas de pesquisa, o que extrair das fontes, se você quer categorias livres ou fechadas, relações de causa ou escalas.</li>
 <li><strong>Escreve o template</strong> (a descrição do que será codificado) e mostra um exemplo. <strong>Você aprova o template.</strong></li>
 <li><strong>Codifica cada fonte</strong>, uma por vez, e monta a ontologia dos conceitos.</li>
 <li><strong>Valida, confere as citações no texto original</strong> e monta o painel.</li>
 </ol>
+<p>Durante todo o trabalho, você acompanha o projeto numa página que abre no navegador: a <a href="#visao-do-projeto">visão do projeto</a>.</p>
 <p>No fim, o Claude resume o resultado: erros e avisos do compilador, quantas citações foram encontradas nas fontes, quantos conceitos a ontologia tem, e uma lista de <strong>pontos que valem a sua conferência na auditoria</strong>.</p>
+</section>
+<section id="colocar-as-suas-fontes" class="level2">
+<h2 class="anchored" data-anchor-id="colocar-as-suas-fontes">Colocar as suas fontes</h2>
+<p>Na primeira sessão, o Claude cria a pasta <code>entrada/</code> e abre a página <strong>Suas fontes</strong>. Copie os arquivos para lá, do jeito que estão, e avise o Claude.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/skill_suas_fontes.png" class="img-fluid figure-img" alt="Página Suas fontes da Skill do Synesis, com os passos e o inventário da pasta de entrada"></p>
+<figcaption>A página Suas fontes</figcaption>
+</figure>
+</div>
+<p>Um programa examina os arquivos <strong>no seu computador</strong> e diz o que fazer com cada um. Os originais nunca são alterados.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>O que você tem</th>
+<th>Formato</th>
+<th>O que é codificado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>artigos, numa revisão de literatura</td>
+<td><code>.bib</code> com resumos (Zotero, Mendeley, Scopus, Web of Science)</td>
+<td>só o resumo de cada referência</td>
+</tr>
+<tr class="even">
+<td>entrevistas, diários de campo, documentos, artigos completos</td>
+<td><code>.txt</code>, <code>.md</code> ou <code>.docx</code></td>
+<td>o texto inteiro</td>
+</tr>
+<tr class="odd">
+<td>formulários, respostas abertas, posts, notícias, currículos</td>
+<td><code>.toml</code>, um registro por arquivo</td>
+<td>as seções que o template indica</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+PDF
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Converta os PDFs em <code>.txt</code> (UTF-8) antes de colocá-los na pasta. A página mostra como, e o que conferir: colunas, cabeçalhos, palavras partidas, páginas digitalizadas. Sem dados sigilosos, um conector de PDF do Claude pode ajudar; pergunte ao Claude.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dados pessoais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Antes de copiar entrevistas, retire nomes e outros dados que identifiquem pessoas, no texto <strong>e nos nomes dos arquivos</strong>. Se preferir, peça ao Claude chaves neutras (<code>ent01</code>, <code>ent02</code>…).</p>
+</div>
+</div>
+</section>
+<section id="visao-do-projeto" class="level2">
+<h2 class="anchored" data-anchor-id="visao-do-projeto">Acompanhar o trabalho: a visão do projeto</h2>
+<p>A Skill mantém a página <code>view/index.html</code>, que abre com dois cliques, sem internet. Ela é só de leitura e se atualiza a cada etapa. <a href="../../downloads/exemplo-telemedicina/resultado/view/index.html">Abra a visão do projeto de exemplo</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/skill_visao_projeto.png" class="img-fluid figure-img" alt="Painel da visão do projeto, com questões de pesquisa, números do corpus e matriz de conceitos por fonte"></p>
+<figcaption>O Painel da visão do projeto</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Painel:</strong> as questões de pesquisa, o tamanho do corpus, o que precisa de atenção e a matriz de conceitos por fonte. Clique numa célula para ler os trechos.</li>
+<li><strong>Por onde começar:</strong> os próximos passos do seu projeto.</li>
+<li><strong>Os arquivos:</strong> cada bloco é um cartão, com a sua origem e os seus problemas em linguagem simples. Passe o mouse sobre as palavras em azul para entender a linguagem.</li>
+<li><strong>Pedir ao Claude:</strong> copia um pedido pronto sobre aquele bloco, para você colar na conversa. O Claude explica e propõe, e espera a sua aprovação.</li>
+<li><strong>Possibilidades:</strong> parte do que você quer investigar (comparar, conectar, organizar, sustentar uma interpretação) e mostra o recurso do Synesis que faz isso.</li>
+</ul>
+<p>A página fala a língua do seu projeto: português, inglês, espanhol, francês, alemão, italiano ou chinês.</p>
 </section>
 <section id="o-que-a-skill-gera" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-a-skill-gera">O que a Skill gera</h2>
@@ -511,7 +610,7 @@ Só na aba Code
 <blockquote class="blockquote">
 <p><code>/synesis</code> Quero codificar minhas três entrevistas sobre telemedicina. As transcrições estão em fontes.</p>
 </blockquote></li>
-<li><p><strong><code>resultado/</code></strong>: o que a Skill gerou numa sessão real com essas entrevistas, para você comparar com o seu: projeto, template, anotações, ontologia e o painel. Para ver o painel agora, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">abra o painel de exemplo</a>.</p></li>
+<li><p><strong><code>resultado/</code></strong>: o que a Skill gerou numa sessão real com essas entrevistas, para você comparar com o seu: projeto, template, anotações, ontologia e o painel. Para ver o painel agora, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">abra o painel de exemplo</a> ou a <a href="../../downloads/exemplo-telemedicina/resultado/view/index.html">visão do projeto</a>.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -606,24 +705,28 @@ Chaves de API
 <td>as fontes bibliográficas</td>
 </tr>
 <tr class="even">
-<td><code>fontes/</code></td>
-<td>os textos</td>
+<td><code>entrada/</code></td>
+<td>os seus arquivos originais; não a compartilhe se houver dados pessoais</td>
 </tr>
 <tr class="odd">
+<td><code>fontes/</code></td>
+<td>os textos preparados</td>
+</tr>
+<tr class="even">
 <td><code>anotacoes/</code>, <code>ontologia/</code></td>
 <td>o resultado da codificação</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>runs/</code></td>
 <td>o registro de cada execução: o que foi pedido ao modelo, o que ele respondeu e as decisões que você tomou</td>
 </tr>
-<tr class="odd">
-<td><code>dashboard/</code>, <code>saida/</code></td>
+<tr class="even">
+<td><code>view/</code>, <code>dashboard/</code>, <code>saida/</code></td>
 <td>arquivos gerados, que podem ser refeitos a qualquer momento</td>
 </tr>
 </tbody>
 </table>
-<p>Guarde a pasta inteira, exceto o <code>.env</code>. Com ela, qualquer pessoa reconstrói os seus resultados e o seu painel. Os arquivos são os mesmos do Synesis: você pode abri-los no <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> quando quiser.</p>
+<p>Guarde a pasta inteira; ao compartilhar, deixe de fora o <code>.env</code> e a <code>entrada/</code>. Com ela, qualquer pessoa reconstrói os seus resultados e o seu painel. Os arquivos são os mesmos do Synesis: você pode abri-los no <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> quando quiser.</p>
 </section>
 <section id="se-algo-der-errado" class="level2">
 <h2 class="anchored" data-anchor-id="se-algo-der-errado">Se algo der errado</h2>
