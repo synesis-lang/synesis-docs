@@ -264,9 +264,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#open-the-first-session" id="toc-open-the-first-session" class="nav-link" data-scroll-target="#open-the-first-session">2. Open the first session</a></li>
   <li><a href="#what-claude-does" id="toc-what-claude-does" class="nav-link" data-scroll-target="#what-claude-does">3. What Claude does</a></li>
   <li><a href="#add-your-sources" id="toc-add-your-sources" class="nav-link" data-scroll-target="#add-your-sources">Add your sources</a></li>
-  <li><a href="#project-view" id="toc-project-view" class="nav-link" data-scroll-target="#project-view">Follow the work: the project view</a></li>
+  <li><a href="#project-view" id="toc-project-view" class="nav-link" data-scroll-target="#project-view">Follow the work: the project view</a>
+  <ul class="collapse">
+  <li><a href="#large-projects" id="toc-large-projects" class="nav-link" data-scroll-target="#large-projects">Large projects</a></li>
+  </ul></li>
   <li><a href="#what-the-skill-produces" id="toc-what-the-skill-produces" class="nav-link" data-scroll-target="#what-the-skill-produces">What the Skill produces</a></li>
-  <li><a href="#audit-the-result" id="toc-audit-the-result" class="nav-link" data-scroll-target="#audit-the-result">4. Audit the result</a></li>
+  <li><a href="#review-a-sample" id="toc-review-a-sample" class="nav-link" data-scroll-target="#review-a-sample">4. Review a sample</a></li>
+  <li><a href="#see-the-results" id="toc-see-the-results" class="nav-link" data-scroll-target="#see-the-results">5. See the results</a></li>
   <li><a href="#try-the-example" id="toc-try-the-example" class="nav-link" data-scroll-target="#try-the-example">Try the example</a></li>
   <li><a href="#costs" id="toc-costs" class="nav-link" data-scroll-target="#costs">Costs</a></li>
   <li><a href="#data-confidentiality" id="toc-data-confidentiality" class="nav-link" data-scroll-target="#data-confidentiality">Data confidentiality</a></li>
@@ -299,8 +303,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This Skill teaches Claude to run a Synesis project with you. It installs the tools, talks through your study, writes the template, runs the coding, checks every quotation against your sources and builds an audit dashboard that opens on your own computer.</p>
+<p>This Skill teaches Claude to run a Synesis project with you. It installs the tools, talks through your study, writes the template, runs the coding, checks every quotation against your sources, draws a sample for you to review and shows the results in pages that open on your own computer.</p>
 <p>The division of roles is the same as everywhere in Synesis: <strong>the AI proposes, the compiler checks, the researcher decides</strong>. Claude leads the conversation and prepares the files. Your research questions, your categories and the approval of the template stay yours.</p>
+<p>The Skill has a <strong>teaching and reviewing</strong> role: it teaches the language and the method and helps you check your data. It does not replace working directly with the Synesis tools (the compiler, the exports, the <a href="../tutorials/synesis_explorer_tutorial.html">VS Code extension</a>); when a task is heavy, Claude shows you how to do it with them.</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/i19RR7xNXfA" title="Synesis in Claude Desktop (video, 2 min 28 s)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p><span class="text-muted small">The video is narrated in Portuguese (episode E06 of the Synesis 101 course).</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -313,7 +318,7 @@ Status
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The current version is <strong>0.3.0</strong>. The Skill was tested end to end on proof projects and is <strong>in testing with researchers</strong>. Your feedback helps improve it (see <a href="#if-something-goes-wrong">If something goes wrong</a>).</p>
+<p>The current version is <strong>0.4.0</strong>: large projects, team review and results through the Synesis tools. The Skill was tested end to end on proof projects and is <strong>in testing with researchers</strong>. Your feedback helps improve it (see <a href="#if-something-goes-wrong">If something goes wrong</a>).</p>
 </div>
 </div>
 <section id="what-you-need" class="level2">
@@ -383,10 +388,12 @@ Already have an earlier version?
 <li><strong>Talks through the study:</strong> your research questions, what to extract from the sources, whether you want free or closed categories, causal relations or scales.</li>
 <li><strong>Writes the template</strong> (the description of what will be coded) and shows an example. <strong>You approve the template.</strong></li>
 <li><strong>Codes each source</strong>, one at a time, and builds the ontology of concepts.</li>
-<li><strong>Validates, checks each quotation against the original text</strong> and builds the dashboard.</li>
+<li><strong>Validates and checks each quotation against the original text.</strong></li>
+<li><strong>Draws a sample of the annotations for you to review</strong> (see <a href="#review-a-sample">Review a sample</a>) and shows the <a href="#see-the-results">results</a>.</li>
 </ol>
+<p>When you come back to a project that already exists, Claude first measures its size, in a second and without reading your files, and offers a numbered list of what you can do: know the project, read it more deeply, review a sample, see the results, find out what the project can answer, fix problems, continue, export.</p>
 <p>Throughout the work you follow the project in a page that opens in your browser: the <a href="#project-view">project view</a>.</p>
-<p>At the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of <strong>points worth checking in your audit</strong>.</p>
+<p>At the end Claude summarizes the result: compiler errors and warnings, how many quotations were found in the sources, how many concepts the ontology has, and a list of <strong>points worth checking in your review</strong>.</p>
 </section>
 <section id="add-your-sources" class="level2">
 <h2 class="anchored" data-anchor-id="add-your-sources">Add your sources</h2>
@@ -473,6 +480,37 @@ Personal data
 <li><strong>Possibilities:</strong> starts from what you want to investigate (compare, connect, organize, support an interpretation) and shows the Synesis feature that does it.</li>
 </ul>
 <p>The page speaks the language of your project: English, Portuguese, Spanish, French, German, Italian or Chinese.</p>
+<section id="large-projects" class="level3">
+<h3 class="anchored" data-anchor-id="large-projects">Large projects</h3>
+<p>A project with thousands of annotations does not fit in a page a browser opens quickly. The view then works in <em>breadth and depth</em>, as in Big Qual (Weller et al., 2023): the numbers, the matrix (by group: the folders of the annotations or a category of the sources) and the problems always cover the whole project, but the cards shown are a selection.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>View</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Panoramic</strong> (default for large projects)</td>
+<td>the whole template, one source from each of the largest groups (eight at most), the most used and a few rare concepts</td>
+</tr>
+<tr class="even">
+<td><strong>Sampled</strong></td>
+<td>about 30 sources drawn in every group, in proportion to its size</td>
+</tr>
+<tr class="odd">
+<td><strong>Complete</strong></td>
+<td>everything, or one group, source or concept read whole</td>
+</tr>
+</tbody>
+</table>
+<p>A banner at the top says what the page shows and has buttons to ask Claude for more, with the time a complete view takes. Blocks with a problem appear even outside the selection (up to 40). On the largest test project (958 sources, 3,943 annotations) the page went from 47 MB to 2.3 MB.</p>
+</section>
 </section>
 <section id="what-the-skill-produces" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-skill-produces">What the Skill produces</h2>
@@ -559,9 +597,39 @@ Personal data
 </div>
 </div>
 </section>
-<section id="audit-the-result" class="level2">
-<h2 class="anchored" data-anchor-id="audit-the-result">4. Audit the result</h2>
-<p>The dashboard is in <code>dashboard/dashboard.html</code>. It opens with a double click, with no internet and no server.</p>
+<section id="review-a-sample" class="level2">
+<h2 class="anchored" data-anchor-id="review-a-sample">4. Review a sample</h2>
+<p>Claude draws a sample of the annotations (30 by default, spread over the groups of the project) and builds the <strong>review</strong> page at <code>review/index.html</code>. <a href="../../downloads/exemplo-telemedicina/resultado/review_en/index.html">Open the example review</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/skill_review.png" class="img-fluid figure-img" alt="Review page of the Synesis Skill: one annotation with the excerpt in its source, the codes and the Approved, Rejected and Doubt buttons"></p>
+<figcaption>The review page</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Write your name or initials.</li>
+<li>Read the excerpt (the computer already checked that it is in the source; open <em>The excerpt in its source</em> to read around it) and what was coded.</li>
+<li>Choose <strong>Approved</strong>, <strong>Rejected</strong> or <strong>Doubt</strong> (keys 1, 2, 3). If you reject or doubt, choose a reason and, if you like, write a note or <strong>propose a correction</strong>: the block as you think it should be.</li>
+<li>Click <strong>Export for the coordinator</strong>. You get one <code>.md</code> file with your answers, your corrections and instructions for the AI that will read it.</li>
+</ol>
+<p>The sample is fixed when it is drawn: you judge the annotations as they were then. The page does not show which model produced each annotation, so it does not sway you, and it shows the rejection <strong>observed in the sample</strong>; since the sample gives more weight to small groups, Claude reports a separate estimate for the whole project.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+As a team
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The coordinator sends the review page to each researcher (it contains excerpts of the sources: send it only to people allowed to read them). Everyone judges on their own computer, with their own name, and sends the exported file to the coordinator, who gives them all to Claude. Claude reports how much you agree (Cohen’s kappa, Krippendorff’s alpha) and puts the proposed corrections side by side. A correction enters the project only when the coordinator approves it.</p>
+</div>
+</div>
+</section>
+<section id="see-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="see-the-results">5. See the results</h2>
+<p>The results page is in <code>dashboard/dashboard.html</code>. It opens with a double click, with no internet and no server.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -587,20 +655,35 @@ Personal data
 <td>the relations between concepts and where the evidence for each research question is</td>
 </tr>
 <tr class="even">
+<td><strong>Conferência</strong> (Review)</td>
+<td>the result of each review: approved, rejected, doubt, reasons, proposed corrections, agreement</td>
+</tr>
+<tr class="odd">
 <td><strong>Qualidade</strong> (Quality)</td>
 <td>what still needs attention</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Método</strong> (Method)</td>
 <td>the full template and how the result was produced</td>
 </tr>
 </tbody>
 </table>
-<p>To record your audit:</p>
-<ol type="1">
-<li>Mark excerpts and codes as <em>correct</em>, <em>incorrect</em> or <em>doubt</em>, with a note.</li>
-<li>Use <strong>Exportar marcações</strong> (export marks) and hand the file to Claude in the conversation, so it records it in the project. Marks you do not export stay only in the browser and can be lost.</li>
-</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Large projects
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a large project Claude does not build this page: it would be slow to make and heavy to open. It shows you how to read the results with the Synesis tools, which also teaches you to use them:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile project.synp <span class="at">--xls</span> results.xlsx   <span class="co"># a spreadsheet, in seconds (also --csv or --json)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> export project.synp                       <span class="co"># the exports the project declares</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or use the <a href="../tutorials/synesis_explorer_tutorial.html">Synesis extension for VS Code</a>. The project view and the review work at any size.</p>
+</div>
+</div>
 <p>When something is wrong, Claude does not fix the excerpt by hand. It classifies the problem with you first: an ambiguous instruction in the template, a one-off failure, a badly converted source text, or a legitimate difference of interpretation.</p>
 </section>
 <section id="try-the-example" class="level2">
@@ -611,7 +694,7 @@ Personal data
 <blockquote class="blockquote">
 <p><code>/synesis</code> I want to code my three interviews about telemedicine. The transcripts are in fontes.</p>
 </blockquote></li>
-<li><p><strong><code>resultado/</code></strong>: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the dashboard. To see the dashboard right now, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">open the example dashboard</a> or the <a href="../../downloads/exemplo-telemedicina/resultado/view_en/index.html">project view</a>.</p></li>
+<li><p><strong><code>resultado/</code></strong>: what the Skill produced in a real session with those interviews, so you can compare with yours: project, template, annotations, ontology and the three pages. To see them now: the <a href="../../downloads/exemplo-telemedicina/resultado/view_en/index.html">project view</a>, the <a href="../../downloads/exemplo-telemedicina/resultado/review_en/index.html">review</a> and the <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">results</a>.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -722,12 +805,12 @@ API keys
 <td>the record of every run: what was asked of the model, what it answered and the decisions you made</td>
 </tr>
 <tr class="even">
-<td><code>view/</code>, <code>dashboard/</code>, <code>saida/</code></td>
-<td>generated files, which can be rebuilt at any time</td>
+<td><code>view/</code>, <code>review/</code>, <code>dashboard/</code>, <code>saida/</code></td>
+<td>generated files, which can be rebuilt at any time (review answers are kept in <code>runs/</code> once imported)</td>
 </tr>
 </tbody>
 </table>
-<p>Keep the whole folder; when you share it, leave out the <code>.env</code> and the <code>inbox/</code>. With it, anyone can rebuild your results and your dashboard. The files are plain Synesis files: you can open them in <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> whenever you like.</p>
+<p>Keep the whole folder; when you share it, leave out the <code>.env</code> and the <code>inbox/</code>. With it, anyone can rebuild your results and your pages. The files are plain Synesis files: you can open them in <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> whenever you like.</p>
 </section>
 <section id="if-something-goes-wrong" class="level2">
 <h2 class="anchored" data-anchor-id="if-something-goes-wrong">If something goes wrong</h2>

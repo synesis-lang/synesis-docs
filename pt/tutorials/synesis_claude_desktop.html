@@ -264,9 +264,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#abrir-a-primeira-sessão" id="toc-abrir-a-primeira-sessão" class="nav-link" data-scroll-target="#abrir-a-primeira-sessão">2. Abrir a primeira sessão</a></li>
   <li><a href="#o-que-o-claude-faz" id="toc-o-que-o-claude-faz" class="nav-link" data-scroll-target="#o-que-o-claude-faz">3. O que o Claude faz</a></li>
   <li><a href="#colocar-as-suas-fontes" id="toc-colocar-as-suas-fontes" class="nav-link" data-scroll-target="#colocar-as-suas-fontes">Colocar as suas fontes</a></li>
-  <li><a href="#visao-do-projeto" id="toc-visao-do-projeto" class="nav-link" data-scroll-target="#visao-do-projeto">Acompanhar o trabalho: a visão do projeto</a></li>
+  <li><a href="#visao-do-projeto" id="toc-visao-do-projeto" class="nav-link" data-scroll-target="#visao-do-projeto">Acompanhar o trabalho: a visão do projeto</a>
+  <ul class="collapse">
+  <li><a href="#projetos-grandes" id="toc-projetos-grandes" class="nav-link" data-scroll-target="#projetos-grandes">Projetos grandes</a></li>
+  </ul></li>
   <li><a href="#o-que-a-skill-gera" id="toc-o-que-a-skill-gera" class="nav-link" data-scroll-target="#o-que-a-skill-gera">O que a Skill gera</a></li>
-  <li><a href="#auditar-o-resultado" id="toc-auditar-o-resultado" class="nav-link" data-scroll-target="#auditar-o-resultado">4. Auditar o resultado</a></li>
+  <li><a href="#conferir-uma-amostra" id="toc-conferir-uma-amostra" class="nav-link" data-scroll-target="#conferir-uma-amostra">4. Conferir uma amostra</a></li>
+  <li><a href="#ver-os-resultados" id="toc-ver-os-resultados" class="nav-link" data-scroll-target="#ver-os-resultados">5. Ver os resultados</a></li>
   <li><a href="#testar-com-o-nosso-exemplo" id="toc-testar-com-o-nosso-exemplo" class="nav-link" data-scroll-target="#testar-com-o-nosso-exemplo">Testar com o nosso exemplo</a></li>
   <li><a href="#custos" id="toc-custos" class="nav-link" data-scroll-target="#custos">Custos</a></li>
   <li><a href="#sigilo-dos-dados" id="toc-sigilo-dos-dados" class="nav-link" data-scroll-target="#sigilo-dos-dados">Sigilo dos dados</a></li>
@@ -299,8 +303,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Esta Skill ensina o Claude a conduzir um projeto Synesis com você. Ela instala as ferramentas, conversa sobre o seu estudo, escreve o template, roda a codificação, confere as citações e monta um painel de auditoria que abre no seu computador.</p>
+<p>Esta Skill ensina o Claude a conduzir um projeto Synesis com você. Ela instala as ferramentas, conversa sobre o seu estudo, escreve o template, roda a codificação, confere as citações, sorteia uma amostra para você conferir e mostra os resultados em páginas que abrem no seu computador.</p>
 <p>A divisão de papéis é a mesma do resto do Synesis: <strong>a IA propõe, o compilador confere, o pesquisador decide</strong>. O Claude conduz a conversa e prepara os arquivos. As perguntas de pesquisa, as categorias e a aprovação do template continuam sendo suas.</p>
+<p>A Skill tem um papel <strong>didático e de conferência</strong>: ela ensina a linguagem e o método e ajuda a revisar os dados. Ela não substitui o trabalho direto com as ferramentas do Synesis (o compilador, as exportações, a <a href="../tutorials/synesis_explorer_tutorial.html">extensão do VS Code</a>); quando uma tarefa é pesada, o Claude mostra como fazê-la com elas.</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/i19RR7xNXfA" title="Synesis no Claude Desktop (vídeo de 2 min 28 s)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p><span class="text-muted small">O vídeo é o episódio E06 do <a href="../explanation/curso_synesis_101.html#sec-m2-e06">Curso Synesis 101</a>.</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -313,7 +318,7 @@ Situação
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A versão atual é a <strong>0.3.0</strong>. A Skill foi testada de ponta a ponta com projetos de prova e está em <strong>fase de testes com pesquisadores</strong>. O seu retorno ajuda a melhorá-la (veja <a href="#se-algo-der-errado">Se algo der errado</a>).</p>
+<p>A versão atual é a <strong>0.4.0</strong>: projetos grandes, conferência em equipe e resultados pelas ferramentas do Synesis. A Skill foi testada de ponta a ponta com projetos de prova e está em <strong>fase de testes com pesquisadores</strong>. O seu retorno ajuda a melhorá-la (veja <a href="#se-algo-der-errado">Se algo der errado</a>).</p>
 </div>
 </div>
 <section id="o-que-você-precisa" class="level2">
@@ -383,10 +388,12 @@ Já instalou uma versão anterior?
 <li><strong>Conversa sobre o estudo:</strong> as suas perguntas de pesquisa, o que extrair das fontes, se você quer categorias livres ou fechadas, relações de causa ou escalas.</li>
 <li><strong>Escreve o template</strong> (a descrição do que será codificado) e mostra um exemplo. <strong>Você aprova o template.</strong></li>
 <li><strong>Codifica cada fonte</strong>, uma por vez, e monta a ontologia dos conceitos.</li>
-<li><strong>Valida, confere as citações no texto original</strong> e monta o painel.</li>
+<li><strong>Valida e confere as citações no texto original.</strong></li>
+<li><strong>Sorteia uma amostra das anotações para você conferir</strong> (veja <a href="#conferir-uma-amostra">Conferir uma amostra</a>) e mostra os <a href="#ver-os-resultados">resultados</a>.</li>
 </ol>
+<p>Quando você volta a um projeto que já existe, o Claude primeiro mede o tamanho dele, em um segundo e sem ler os seus arquivos, e oferece uma lista numerada do que dá para fazer: conhecer o projeto, ler mais a fundo, conferir uma amostra, ver os resultados, descobrir o que o projeto pode responder, resolver problemas, continuar, exportar.</p>
 <p>Durante todo o trabalho, você acompanha o projeto numa página que abre no navegador: a <a href="#visao-do-projeto">visão do projeto</a>.</p>
-<p>No fim, o Claude resume o resultado: erros e avisos do compilador, quantas citações foram encontradas nas fontes, quantos conceitos a ontologia tem, e uma lista de <strong>pontos que valem a sua conferência na auditoria</strong>.</p>
+<p>No fim, o Claude resume o resultado: erros e avisos do compilador, quantas citações foram encontradas nas fontes, quantos conceitos a ontologia tem, e uma lista de <strong>pontos que valem a sua conferência</strong>.</p>
 </section>
 <section id="colocar-as-suas-fontes" class="level2">
 <h2 class="anchored" data-anchor-id="colocar-as-suas-fontes">Colocar as suas fontes</h2>
@@ -461,18 +468,49 @@ Dados pessoais
 <p>A Skill mantém a página <code>view/index.html</code>, que abre com dois cliques, sem internet. Ela é só de leitura e se atualiza a cada etapa. <a href="../../downloads/exemplo-telemedicina/resultado/view/index.html">Abra a visão do projeto de exemplo</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/skill_visao_projeto.png" class="img-fluid figure-img" alt="Painel da visão do projeto, com questões de pesquisa, números do corpus e matriz de conceitos por fonte"></p>
-<figcaption>O Painel da visão do projeto</figcaption>
+<p><img src="../../images/skill_visao_projeto.png" class="img-fluid figure-img" alt="Resumo da visão do projeto, com questões de pesquisa, números do corpus e matriz de conceitos por fonte"></p>
+<figcaption>O Resumo da visão do projeto</figcaption>
 </figure>
 </div>
 <ul>
-<li><strong>Painel:</strong> as questões de pesquisa, o tamanho do corpus, o que precisa de atenção e a matriz de conceitos por fonte. Clique numa célula para ler os trechos.</li>
+<li><strong>Resumo:</strong> as questões de pesquisa, o tamanho do corpus, o que precisa de atenção e a matriz de conceitos por fonte. Clique numa célula para ler os trechos.</li>
 <li><strong>Por onde começar:</strong> os próximos passos do seu projeto.</li>
 <li><strong>Os arquivos:</strong> cada bloco é um cartão, com a sua origem e os seus problemas em linguagem simples. Passe o mouse sobre as palavras em azul para entender a linguagem.</li>
 <li><strong>Pedir ao Claude:</strong> copia um pedido pronto sobre aquele bloco, para você colar na conversa. O Claude explica e propõe, e espera a sua aprovação.</li>
 <li><strong>Possibilidades:</strong> parte do que você quer investigar (comparar, conectar, organizar, sustentar uma interpretação) e mostra o recurso do Synesis que faz isso.</li>
 </ul>
 <p>A página fala a língua do seu projeto: português, inglês, espanhol, francês, alemão, italiano ou chinês.</p>
+<section id="projetos-grandes" class="level3">
+<h3 class="anchored" data-anchor-id="projetos-grandes">Projetos grandes</h3>
+<p>Um projeto com milhares de anotações não cabe numa página que o navegador abra depressa. A visão trabalha então em <em>amplitude e profundidade</em>, como em Big Qual (Weller et al., 2023): os números, a matriz (por grupo: as pastas das anotações ou uma categoria das fontes) e os problemas valem sempre para o projeto inteiro, mas os cartões mostrados são uma seleção.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Visão</th>
+<th>O que mostra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Panorâmica</strong> (padrão nos projetos grandes)</td>
+<td>o template completo, uma fonte de cada um dos maiores grupos (no máximo oito), os conceitos mais usados e alguns raros</td>
+</tr>
+<tr class="even">
+<td><strong>Por amostragem</strong></td>
+<td>cerca de 30 fontes sorteadas em todos os grupos, proporcionalmente ao tamanho</td>
+</tr>
+<tr class="odd">
+<td><strong>Completa</strong></td>
+<td>tudo, ou um grupo, uma fonte ou um conceito lido por inteiro</td>
+</tr>
+</tbody>
+</table>
+<p>Um aviso no alto da página diz o que ela mostra e tem botões para pedir mais ao Claude, com o tempo que a visão completa leva. Blocos com problema aparecem mesmo fora da seleção (até 40). No maior projeto de teste (958 fontes, 3.943 anotações), a página caiu de 47 MB para 2,3 MB.</p>
+</section>
 </section>
 <section id="o-que-a-skill-gera" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-a-skill-gera">O que a Skill gera</h2>
@@ -558,9 +596,39 @@ Dados pessoais
 </div>
 </div>
 </section>
-<section id="auditar-o-resultado" class="level2">
-<h2 class="anchored" data-anchor-id="auditar-o-resultado">4. Auditar o resultado</h2>
-<p>O painel fica em <code>dashboard/dashboard.html</code>. Ele abre com dois cliques, sem internet e sem servidor.</p>
+<section id="conferir-uma-amostra" class="level2">
+<h2 class="anchored" data-anchor-id="conferir-uma-amostra">4. Conferir uma amostra</h2>
+<p>O Claude sorteia uma amostra das anotações (30 por padrão, espalhadas pelos grupos do projeto) e monta a página de <strong>conferência</strong> em <code>review/index.html</code>. <a href="../../downloads/exemplo-telemedicina/resultado/review/index.html">Abra a conferência de exemplo</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/skill_conferencia.png" class="img-fluid figure-img" alt="Página de conferência da Skill do Synesis: uma anotação com o trecho na fonte, os códigos e os botões Aprovada, Reprovada e Dúvida"></p>
+<figcaption>A página de conferência</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Escreva seu nome ou iniciais.</li>
+<li>Leia o trecho (o computador já conferiu que ele está na fonte; abra <em>O trecho na fonte</em> para ler em volta) e o que foi codificado.</li>
+<li>Escolha <strong>Aprovada</strong>, <strong>Reprovada</strong> ou <strong>Dúvida</strong> (teclas 1, 2, 3). Ao reprovar ou ficar em dúvida, escolha um motivo e, se quiser, escreva uma nota ou <strong>proponha uma correção</strong>: o bloco como você acha que deveria ficar.</li>
+<li>Clique em <strong>Exportar para o coordenador</strong>. Sai um arquivo <code>.md</code> com as suas respostas, as suas correções e instruções para a IA que vai lê-lo.</li>
+</ol>
+<p>A amostra fica fixa no sorteio: você julga as anotações como estavam naquele momento. A página não mostra qual modelo produziu cada anotação, para não influenciar você, e mostra a reprovação <strong>observada na amostra</strong>; como a amostra dá mais peso aos grupos pequenos, o Claude informa à parte uma estimativa para o projeto inteiro.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Em equipe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O coordenador envia a página de conferência a cada pesquisador (ela traz trechos das fontes: envie só a quem pode lê-los). Cada um julga no seu computador, com o seu nome, e envia o arquivo exportado ao coordenador, que entrega todos ao Claude. O Claude informa o quanto vocês concordam (kappa de Cohen, alfa de Krippendorff) e põe lado a lado as correções propostas. Uma correção só entra no projeto quando o coordenador aprova.</p>
+</div>
+</div>
+</section>
+<section id="ver-os-resultados" class="level2">
+<h2 class="anchored" data-anchor-id="ver-os-resultados">5. Ver os resultados</h2>
+<p>A página de resultados fica em <code>dashboard/dashboard.html</code>. Ela abre com dois cliques, sem internet e sem servidor.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -586,20 +654,35 @@ Dados pessoais
 <td>as relações entre conceitos e onde estão as evidências de cada pergunta de pesquisa</td>
 </tr>
 <tr class="even">
+<td><strong>Conferência</strong></td>
+<td>o resultado de cada conferência: aprovadas, reprovadas, dúvidas, motivos, correções propostas, concordância</td>
+</tr>
+<tr class="odd">
 <td><strong>Qualidade</strong></td>
 <td>o que ainda precisa de atenção</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Método</strong></td>
 <td>o template completo e como o resultado foi produzido</td>
 </tr>
 </tbody>
 </table>
-<p>Para registrar a sua auditoria:</p>
-<ol type="1">
-<li>Marque os trechos e os códigos como <em>correto</em>, <em>incorreto</em> ou <em>dúvida</em>, com uma nota.</li>
-<li>Use <strong>Exportar marcações</strong> e entregue o arquivo ao Claude na conversa, para que ele o registre no projeto. As marcações não exportadas ficam só no navegador e podem se perder.</li>
-</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Projetos grandes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Num projeto grande, o Claude não monta esta página: ela demoraria para ser feita e pesaria para abrir. Ele mostra como ler os resultados com as ferramentas do Synesis, o que também ensina a usá-las:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> compile projeto.synp <span class="at">--xls</span> resultados.xlsx   <span class="co"># uma planilha, em segundos (também --csv ou --json)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">synesis</span> export projeto.synp                         <span class="co"># as exportações que o projeto declara</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ou use a <a href="../tutorials/synesis_explorer_tutorial.html">extensão do Synesis para o VS Code</a>. A visão do projeto e a conferência funcionam em qualquer tamanho.</p>
+</div>
+</div>
 <p>Quando algo estiver errado, o Claude não corrige o trecho à mão. Ele classifica o problema com você antes de agir: instrução ambígua no template, falha pontual, texto-fonte mal convertido ou divergência legítima de interpretação.</p>
 </section>
 <section id="testar-com-o-nosso-exemplo" class="level2">
@@ -610,7 +693,7 @@ Dados pessoais
 <blockquote class="blockquote">
 <p><code>/synesis</code> Quero codificar minhas três entrevistas sobre telemedicina. As transcrições estão em fontes.</p>
 </blockquote></li>
-<li><p><strong><code>resultado/</code></strong>: o que a Skill gerou numa sessão real com essas entrevistas, para você comparar com o seu: projeto, template, anotações, ontologia e o painel. Para ver o painel agora, <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">abra o painel de exemplo</a> ou a <a href="../../downloads/exemplo-telemedicina/resultado/view/index.html">visão do projeto</a>.</p></li>
+<li><p><strong><code>resultado/</code></strong>: o que a Skill gerou numa sessão real com essas entrevistas, para você comparar com o seu: projeto, template, anotações, ontologia e as três páginas. Para vê-las agora: a <a href="../../downloads/exemplo-telemedicina/resultado/view/index.html">visão do projeto</a>, a <a href="../../downloads/exemplo-telemedicina/resultado/review/index.html">conferência</a> e os <a href="../../downloads/exemplo-telemedicina/resultado/dashboard/dashboard.html">resultados</a>.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -721,12 +804,12 @@ Chaves de API
 <td>o registro de cada execução: o que foi pedido ao modelo, o que ele respondeu e as decisões que você tomou</td>
 </tr>
 <tr class="even">
-<td><code>view/</code>, <code>dashboard/</code>, <code>saida/</code></td>
-<td>arquivos gerados, que podem ser refeitos a qualquer momento</td>
+<td><code>view/</code>, <code>review/</code>, <code>dashboard/</code>, <code>saida/</code></td>
+<td>arquivos gerados, que podem ser refeitos a qualquer momento (as respostas da conferência ficam em <code>runs/</code> depois de importadas)</td>
 </tr>
 </tbody>
 </table>
-<p>Guarde a pasta inteira; ao compartilhar, deixe de fora o <code>.env</code> e a <code>entrada/</code>. Com ela, qualquer pessoa reconstrói os seus resultados e o seu painel. Os arquivos são os mesmos do Synesis: você pode abri-los no <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> quando quiser.</p>
+<p>Guarde a pasta inteira; ao compartilhar, deixe de fora o <code>.env</code> e a <code>entrada/</code>. Com ela, qualquer pessoa reconstrói os seus resultados e as suas páginas. Os arquivos são os mesmos do Synesis: você pode abri-los no <a href="../tutorials/synesis_explorer_tutorial.html">VS Code</a> quando quiser.</p>
 </section>
 <section id="se-algo-der-errado" class="level2">
 <h2 class="anchored" data-anchor-id="se-algo-der-errado">Se algo der errado</h2>
